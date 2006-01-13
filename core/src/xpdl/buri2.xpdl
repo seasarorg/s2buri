@@ -1,0 +1,2293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="buri2" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2005-06-27 10:36:31</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<Participants>
+<Participant Id="buri2_Par1" Name="buri2">
+<ParticipantType Type="SYSTEM"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="buri2_App1" Name="OgnlInvoker"/>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="buri2_Wor3" Name="BuriWorkFlowsUtil">
+<ProcessHeader DurationUnit="D">
+<Created>2005-06-27 14:48:36</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="buri2_Wor3_Act8" Name="getFirstActivity">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act9" Name="Generic">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#workflows = WorkFlowsUtil"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra22"/>
+<TransitionRef Id="buri2_Wor3_Tra23"/>
+<TransitionRef Id="buri2_Wor3_Tra173"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="400"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act10" Name="PathにActivityがあるとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#activityList = #workflows.getActivityTagSelectList(#args.path)&#10;BuriDataDaoUtil.readBuriDataID(#args.path)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra106"/>
+<TransitionRef Id="buri2_Wor3_Tra104"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="480"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act11" Name="pathにActivityが無いとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BuriDataDaoUtil.readOnlyBuriDataID(#args.path)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra55"/>
+<TransitionRef Id="buri2_Wor3_Tra56"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="510"/>
+<ExtendedAttribute Name="YOffset" Value="460"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act13" Name="pathにprocessがある時">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="//#packageTagSelect = #workflows.getPackageTagSelect(#args.path)&#10;//#processTagSelect = #packageTagSelect.getWorkflowTagSelectFromBuriPath(#args.path)&#10;//#activityList = #processTagSelect.getStartActivityTagSelectList()&#10;#activityList = WorkFlowsUtil.getStartActivityTagSelectList(#args.path)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="570"/>
+<ExtendedAttribute Name="YOffset" Value="620"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act14" Name="processが無いとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.select.BuriNotSelectProcessException(#args.path,&quot;pathにプロセスの情報もしくはデータ&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="660"/>
+<ExtendedAttribute Name="YOffset" Value="670"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act15" Name="Activityが準備終わり">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#packageTagSelect = WorkFlowsUtil.getWorkFlowPackage(#args.path)&#10;#ParticipantProvider = #packageTagSelect.getParticipantProvider()"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra29"/>
+<TransitionRef Id="buri2_Wor3_Tra30"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="250"/>
+<ExtendedAttribute Name="YOffset" Value="690"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act16" Name="Providerが設定されてるとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#activityList = WorkFlowsUtil.getActivityListByParticipant(#activityList,#args.participant)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="320"/>
+<ExtendedAttribute Name="YOffset" Value="800"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act17" Name="Providerが設定されて無いとき">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="170"/>
+<ExtendedAttribute Name="YOffset" Value="800"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act18" Name="複数個のActivityがある時">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.select.BuriManySelectProcessException(#args.path,&quot;同名のActivityがあるのにユーザ情報&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="240"/>
+<ExtendedAttribute Name="YOffset" Value="960"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act19" Name="一つだけ">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = #activityList.get(0)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="440"/>
+<ExtendedAttribute Name="YOffset" Value="960"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act20" Name="無いとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.select.BuriNotSelectProcessException(#args.path,&quot;同名のActivityがあるのにユーザ情報&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="600"/>
+<ExtendedAttribute Name="YOffset" Value="960"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act21" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra34"/>
+<TransitionRef Id="buri2_Wor3_Tra33"/>
+<TransitionRef Id="buri2_Wor3_Tra35"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="290"/>
+<ExtendedAttribute Name="YOffset" Value="890"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act22" Name="データIDがある時">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#packageTagSelect = WorkFlowsUtil.getWorkFlowPackage(#args.path)&#10;#pathList = DataIDListUtil.getStatePathListByData(#args.path)&#10;#activityList = WorkFlowsUtil.getActivityTagSelectByPathList(#pathList)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra57"/>
+<TransitionRef Id="buri2_Wor3_Tra80"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="510"/>
+<ExtendedAttribute Name="YOffset" Value="690"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act23" Name="データIDが無いとき">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra24"/>
+<TransitionRef Id="buri2_Wor3_Tra25"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="660"/>
+<ExtendedAttribute Name="YOffset" Value="550"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act24" Name="データIDが無いとき">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="240"/>
+<ExtendedAttribute Name="YOffset" Value="570"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act25" Name="データIDがある時">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#pathList = DataIDListUtil.getStatePathListByData(#args.path)&#10;#activityList = DataIDListUtil.filterActivityListFromPath(#activityList ,#pathList)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra108"/>
+<TransitionRef Id="buri2_Wor3_Tra107"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="570"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act26" Name="ParticipantProvider準備">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#packageTagSelect = WorkFlowsUtil.getWorkFlowPackage(#args.path)&#10;#ParticipantProvider = #packageTagSelect.getParticipantProvider()"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra139"/>
+<TransitionRef Id="buri2_Wor3_Tra140"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="270"/>
+<ExtendedAttribute Name="YOffset" Value="220"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act27" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor3_Tra138"/>
+<TransitionRef Id="buri2_Wor3_Tra137"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="160"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act28" Name="Role設定エラー">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.BuriRoleMismatchingOfSetup(#args.path)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="220"/>
+<ExtendedAttribute Name="YOffset" Value="310"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor3_Act29" Name="PathにIDが既にあるとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = #args.path"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="730"/>
+<ExtendedAttribute Name="YOffset" Value="400"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="buri2_Wor3_Act9" Id="buri2_Wor3_Tra22" To="buri2_Wor3_Act10">
+<Condition Type="CONDITION">#args.path.activity.size() &gt; 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act9" Id="buri2_Wor3_Tra23" To="buri2_Wor3_Act11">
+<Condition Type="CONDITION">#args.path.activity.size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act23" Id="buri2_Wor3_Tra24" To="buri2_Wor3_Act13">
+<Condition Type="CONDITION">#args.path.workflowProcess != ""</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act23" Id="buri2_Wor3_Tra25" To="buri2_Wor3_Act14">
+<Condition Type="CONDITION">#args.path.workflowProcess == ""</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act13" Id="buri2_Wor3_Tra27" To="buri2_Wor3_Act15">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act15" Id="buri2_Wor3_Tra29" To="buri2_Wor3_Act16">
+<Condition Type="CONDITION">#ParticipantProvider != null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act15" Id="buri2_Wor3_Tra30" To="buri2_Wor3_Act17">
+<Condition Type="CONDITION">#ParticipantProvider == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act17" Id="buri2_Wor3_Tra31" To="buri2_Wor3_Act21">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act16" Id="buri2_Wor3_Tra32" To="buri2_Wor3_Act21">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act21" Id="buri2_Wor3_Tra33" To="buri2_Wor3_Act18">
+<Condition Type="CONDITION">#activityList.size() &gt; 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act21" Id="buri2_Wor3_Tra34" To="buri2_Wor3_Act19">
+<Condition Type="CONDITION">#activityList.size() == 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act21" Id="buri2_Wor3_Tra35" To="buri2_Wor3_Act20">
+<Condition Type="CONDITION">#activityList.size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act11" Id="buri2_Wor3_Tra55" To="buri2_Wor3_Act22">
+<Condition Type="CONDITION">#args.context.getDataID() != 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act11" Id="buri2_Wor3_Tra56" To="buri2_Wor3_Act23">
+<Condition Type="CONDITION">#args.context.getDataID() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act22" Id="buri2_Wor3_Tra57" To="buri2_Wor3_Act15">
+<Condition Type="CONDITION">#activityList.size() != 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act22" Id="buri2_Wor3_Tra80" To="buri2_Wor3_Act19">
+<Condition Type="CONDITION">#activityList.size() == 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act10" Id="buri2_Wor3_Tra104" To="buri2_Wor3_Act24">
+<Condition Type="CONDITION">#args.context.getDataID() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act24" Id="buri2_Wor3_Tra105" To="buri2_Wor3_Act15">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act10" Id="buri2_Wor3_Tra106" To="buri2_Wor3_Act25">
+<Condition Type="CONDITION">#args.context.getDataID() != 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act25" Id="buri2_Wor3_Tra107" To="buri2_Wor3_Act15">
+<Condition Type="CONDITION">#activityList.size() != 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act25" Id="buri2_Wor3_Tra108" To="buri2_Wor3_Act19">
+<Condition Type="CONDITION">#activityList.size() == 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act8" Id="buri2_Wor3_Tra136" To="buri2_Wor3_Act27">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act27" Id="buri2_Wor3_Tra137" To="buri2_Wor3_Act9">
+<Condition Type="CONDITION">#args.context.UserData == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act27" Id="buri2_Wor3_Tra138" To="buri2_Wor3_Act26">
+<Condition Type="CONDITION">#args.context.UserData != null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act26" Id="buri2_Wor3_Tra139" To="buri2_Wor3_Act9">
+<Condition Type="CONDITION">#ParticipantProvider != null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act26" Id="buri2_Wor3_Tra140" To="buri2_Wor3_Act28">
+<Condition Type="CONDITION">#ParticipantProvider == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act9" Id="buri2_Wor3_Tra173" To="buri2_Wor3_Act29">
+<Condition Type="CONDITION">#args.path.buriPathID != 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act29" Id="buri2_Wor3_Tra174" To="buri2_Wor3_Act19">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="790;880;1"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="buri2_Par1;buri2_Wor3_Act8;400;30;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor3_Act20;620;1030;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor3_Act14;680;750;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor3_Act19;460;1040;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor3_Act18;260;1040;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor3_Act28;220;380;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="buri2_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="buri2_Wor6" Name="BuriEngine">
+<ProcessHeader DurationUnit="D">
+<Created>2005-08-16 11:02:40</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="buri2_Wor6_Act1" Name="BranchIDを取得">
+<Description>BuriContext #args.context
+BuriPath #args.path</Description>
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="// 初期設定&#10;&#10;BuriDataDaoUtil.createOnlyBuriDataID(#args.path)&#10;&#10;//branchを準備する&#10;#branchDto = BuriBranchDaoUtil.setupBranchID(#stateDto,#args.path)&#10;BuriBranchDaoUtil.updateBranchPath(#branchDto,#args.path)&#10;&#10;// 最初に実行するstateは処理済みにする&#10;#stateDto = BuriStateUtil.readStateDto(#args.path,#branchDto.branchID)&#10;BuriStateUtil.stopBuriState(#stateDto)&#10;//#stateDto.branchID = #branchDto.branchID&#10;&#10;// branchスタックを準備する&#10;#branchStack = new java.util.Stack()&#10;#branchStack.push(#branchDto)&#10;&#10;// 実行に必要なデータとオブジェクトの準備&#10;#traceEle = BuriEngine.createBuriTraceElement(#args.path)&#10;//↓互換性のため&#10;#flowPickout  = FlowPickout&#10;// Pathの準備&#10;BuriPathDaoUtil.setup(#args.path)&#10;#nextPath = #args.path"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="240"/>
+<ExtendedAttribute Name="YOffset" Value="140"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act2" Name="スタックをチェックする">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra2"/>
+<TransitionRef Id="buri2_Wor6_Tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="260"/>
+<ExtendedAttribute Name="YOffset" Value="520"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act3" Name="スタックから一つ取り出す">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#tgtBranch = #branchStack.pop()&#10;#nextPath = BuriPathDaoUtil.getBuriPath(#tgtBranch.pathID)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="520"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act4" Name="初期化">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#traceEle = BuriEngine.createBuriTraceElement(#nextPath)&#10;BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)&#10;BuriEngine.traceBuriPath(#nextPath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="570"/>
+<ExtendedAttribute Name="YOffset" Value="520"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act5" Name="最初のPathと違うとき">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="ToolUtil.processActivity(#traceEle.tagSelect,#container,LocalContext.data,InnerContext)&#10;#flowPickout.doSelectActivity(#traceEle)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="570"/>
+<ExtendedAttribute Name="YOffset" Value="600"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act6" Name="最初のPathと同じ時">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#flowPickout.doFirstSelectActivity(#traceEle)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="450"/>
+<ExtendedAttribute Name="YOffset" Value="390"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act7" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra10"/>
+<TransitionRef Id="buri2_Wor6_Tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="530"/>
+<ExtendedAttribute Name="YOffset" Value="680"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act8" Name="後続Path size() != 0">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra11"/>
+<TransitionRef Id="buri2_Wor6_Tra12"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="590"/>
+<ExtendedAttribute Name="YOffset" Value="760"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act9" Name="後続Path size() == 0">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BuriBranchDaoUtil.saveBranchEntityDto(#tgtBranch)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra15"/>
+<TransitionRef Id="buri2_Wor6_Tra43"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="470"/>
+<ExtendedAttribute Name="YOffset" Value="760"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act10" Name="後続処理対象がある時">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="800"/>
+<ExtendedAttribute Name="YOffset" Value="960"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act11" Name="後続処理対象がない時">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="330"/>
+<ExtendedAttribute Name="YOffset" Value="970"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act12" Name="キューが無くなった場合">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra20"/>
+<TransitionRef Id="buri2_Wor6_Tra122"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="90"/>
+<ExtendedAttribute Name="YOffset" Value="820"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act13" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="90"/>
+<ExtendedAttribute Name="YOffset" Value="950"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act14" Name="Pathの分岐＝AND">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BuriBranchDaoUtil.saveBranchEntityDto(#tgtBranch)&#10;#childBranch = BuriBranchDaoUtil.setupBranchID(#flowPickout.getPrevWaiting(),#tgtBranch)&#10;#branchStack.addAll(#childBranch)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="520"/>
+<ExtendedAttribute Name="YOffset" Value="860"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act15" Name="Pathの分岐＝XOR">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="620"/>
+<ExtendedAttribute Name="YOffset" Value="860"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act16" Name="後続Pathを取得">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#nextPath = #flowPickout.getNextActivity()"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra16"/>
+<TransitionRef Id="buri2_Wor6_Tra18"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="630"/>
+<ExtendedAttribute Name="YOffset" Value="960"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act17" Name="State size != 0">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BuriStateUtil.updateStateDto(#stateDto,#flowPickout.getPrevStatus(),#tgtBranch.branchID)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="360"/>
+<ExtendedAttribute Name="YOffset" Value="820"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act18" Name="execute">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="240"/>
+<ExtendedAttribute Name="YOffset" Value="70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act19" Name="データを保存する">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BuriDataDaoUtil.storeBuriData(#args.path)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="170"/>
+<ExtendedAttribute Name="YOffset" Value="880"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act22" Name="初期化">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#traceEle = BuriEngine.createBuriTraceElement(#nextPath)&#10;BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)&#10;BuriEngine.traceBuriPath(#nextPath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="450"/>
+<ExtendedAttribute Name="YOffset" Value="320"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act20" Name="スタックをチェックする">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor6_Tra153"/>
+<TransitionRef Id="buri2_Wor6_Tra151"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="240"/>
+<ExtendedAttribute Name="YOffset" Value="230"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor6_Act21" Name="スタックから一つ取り出す">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#tgtBranch = #branchStack.pop()&#10;#nextPath = BuriPathDaoUtil.getBuriPath(#tgtBranch.pathID)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="450"/>
+<ExtendedAttribute Name="YOffset" Value="230"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="buri2_Wor6_Act1" Id="buri2_Wor6_Tra1" To="buri2_Wor6_Act20">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act2" Id="buri2_Wor6_Tra2" To="buri2_Wor6_Act3">
+<Condition Type="CONDITION">#branchStack.empty() == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act2" Id="buri2_Wor6_Tra3" To="buri2_Wor6_Act12">
+<Condition Type="CONDITION">#branchStack.empty() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act3" Id="buri2_Wor6_Tra4" To="buri2_Wor6_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act4" Id="buri2_Wor6_Tra5" To="buri2_Wor6_Act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act22" Id="buri2_Wor6_Tra6" To="buri2_Wor6_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act6" Id="buri2_Wor6_Tra7" To="buri2_Wor6_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act5" Id="buri2_Wor6_Tra8" To="buri2_Wor6_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act7" Id="buri2_Wor6_Tra9" To="buri2_Wor6_Act9">
+<Condition Type="CONDITION">#flowPickout.getPrevWaiting().size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act7" Id="buri2_Wor6_Tra10" To="buri2_Wor6_Act8">
+<Condition Type="CONDITION">#flowPickout.getPrevWaiting().size() &gt; 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act8" Id="buri2_Wor6_Tra11" To="buri2_Wor6_Act14">
+<Condition Type="CONDITION">#traceEle.tagSelect.isSplitAnd() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act8" Id="buri2_Wor6_Tra12" To="buri2_Wor6_Act15">
+<Condition Type="CONDITION">#traceEle.tagSelect.isSplitXor() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act14" Id="buri2_Wor6_Tra14" To="buri2_Wor6_Act11">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act9" Id="buri2_Wor6_Tra15" To="buri2_Wor6_Act11">
+<Condition Type="CONDITION">#flowPickout.getPrevStatus().size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act16" Id="buri2_Wor6_Tra16" To="buri2_Wor6_Act10">
+<Condition Type="CONDITION">#nextPath != null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act10" Id="buri2_Wor6_Tra17" To="buri2_Wor6_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="830;540;1"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act16" Id="buri2_Wor6_Tra18" To="buri2_Wor6_Act11">
+<Condition Type="CONDITION">#nextPath == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act11" Id="buri2_Wor6_Tra19" To="buri2_Wor6_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act12" Id="buri2_Wor6_Tra20" To="buri2_Wor6_Act13">
+<Condition Type="CONDITION">#args.context.getIsNotUpdateMode() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act9" Id="buri2_Wor6_Tra43" To="buri2_Wor6_Act17">
+<Condition Type="CONDITION">#flowPickout.getPrevStatus().size() != 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act17" Id="buri2_Wor6_Tra44" To="buri2_Wor6_Act11">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act18" Id="buri2_Wor6_Tra70" To="buri2_Wor6_Act1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act15" Id="buri2_Wor6_Tra96" To="buri2_Wor6_Act16">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act12" Id="buri2_Wor6_Tra122" To="buri2_Wor6_Act19">
+<Condition Type="CONDITION">#args.context.getIsNotUpdateMode() == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act19" Id="buri2_Wor6_Tra123" To="buri2_Wor6_Act13">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act21" Id="buri2_Wor6_Tra152" To="buri2_Wor6_Act22">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act20" Id="buri2_Wor6_Tra151" To="buri2_Wor6_Act21">
+<Condition Type="CONDITION">#branchStack.empty() == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor6_Act20" Id="buri2_Wor6_Tra153" To="buri2_Wor6_Act12">
+<Condition Type="CONDITION">#branchStack.empty() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="buri2_Par1;buri2_Wor6_Act18;260;1;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor6_Act13;110;1020;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="buri2_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="buri2_Wor4" Name="BuriFlowPickout">
+<ProcessHeader DurationUnit="D">
+<Created>2005-06-29 09:58:42</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="buri2_Wor4_Act1" Name="doSelectActivity">
+<Description>分岐先のチェック終了後に呼びだし
+BuriTraceElement traceEle
+BuriContext context
+Stack waitStack</Description>
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#activity = #args.traceEle.tagSelect"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act13" Name="Activityチェック">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra46"/>
+<TransitionRef Id="buri2_Wor4_Tra45"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="160"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act14" Name="FinishMode==Auto">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="240"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act15" Name="FinishMode==Manual">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#args.status.add(#args.traceEle.tracePath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="550"/>
+<ExtendedAttribute Name="YOffset" Value="160"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act16" Name="分岐先選択">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#flowPickout = FlowPickout&#10;#waitStack = new java.util.Stack()&#10;#waitStack = #flowPickout.setupWaitStack(#args.traceEle.tracePath,#waitStack,#args.traceEle,InnerContext)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="320"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act17" Name="Activityチェック">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra49"/>
+<TransitionRef Id="buri2_Wor4_Tra50"/>
+<TransitionRef Id="buri2_Wor4_Tra107"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="380"/>
+<ExtendedAttribute Name="YOffset" Value="380"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act18" Name="Split==XOR">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra52"/>
+<TransitionRef Id="buri2_Wor4_Tra53"/>
+<TransitionRef Id="buri2_Wor4_Tra51"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="220"/>
+<ExtendedAttribute Name="YOffset" Value="470"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act19" Name="Split==AND">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra55"/>
+<TransitionRef Id="buri2_Wor4_Tra252"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="480"/>
+<ExtendedAttribute Name="YOffset" Value="480"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act20" Name="複数分岐">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="exception" Value="new org.seasar.makotan.buri.exception.select.BuriManySelectActivityException(#args.traceEle.tracePath,#args.context.Buri_BuriParticipant)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="80"/>
+<ExtendedAttribute Name="YOffset" Value="570"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act21" Name="単一分岐">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="230"/>
+<ExtendedAttribute Name="YOffset" Value="650"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act22" Name="ゼロ分岐">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#ext = ExtendedAttributeUtil.getExtendedAttribute(#activity)&#10;#isNoSelectErr = #ext.containsKey(&quot;NoSelectError&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra82"/>
+<TransitionRef Id="buri2_Wor4_Tra294"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="480"/>
+<ExtendedAttribute Name="YOffset" Value="650"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act23" Name="複数分岐">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="710"/>
+<ExtendedAttribute Name="YOffset" Value="650"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act24" Name="分岐先チェック">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra59"/>
+<TransitionRef Id="buri2_Wor4_Tra134"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="410"/>
+<ExtendedAttribute Name="YOffset" Value="850"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act25" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="580"/>
+<ExtendedAttribute Name="YOffset" Value="910"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act26" Name="終端">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="600"/>
+<ExtendedAttribute Name="YOffset" Value="390"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act27" Name="分岐必須">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.select.BuriNotSelectedActivityException(#args.traceEle.tracePath,#args.context.Buri_BuriParticipant)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="550"/>
+<ExtendedAttribute Name="YOffset" Value="750"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act28" Name="次の処理へ">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="420"/>
+<ExtendedAttribute Name="YOffset" Value="1350"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act30" Name="Activity準備">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#nextPath = #waitStack.pop()&#10;#nextAct = WorkFlowsUtil.getActivityTagSelectFromPathAndParticipant(#nextPath,LocalContext.buriParticipant)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra194"/>
+<TransitionRef Id="buri2_Wor4_Tra197"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="410"/>
+<ExtendedAttribute Name="YOffset" Value="920"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act31" Name="doFirstSelectActivity">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#activity = #args.traceEle.tagSelect"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="200"/>
+<ExtendedAttribute Name="YOffset" Value="80"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act32" Name="Join==XOR">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#transitions = #nextAct.getXorJoinTransitions()"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra207"/>
+<TransitionRef Id="buri2_Wor4_Tra206"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="290"/>
+<ExtendedAttribute Name="YOffset" Value="1000"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act33" Name="Join==AND">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#canAndJoin = BuriStateUtil.canAndJoin(LocalContext.CallBuriPath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra198"/>
+<TransitionRef Id="buri2_Wor4_Tra199"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="600"/>
+<ExtendedAttribute Name="YOffset" Value="990"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act36" Name="Transitが揃った">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="550"/>
+<ExtendedAttribute Name="YOffset" Value="1140"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act37" Name="Transitは揃ってない">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="690"/>
+<ExtendedAttribute Name="YOffset" Value="1140"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act38" Name="実行待ちに追加">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#args.waitStack.add(#nextPath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="420"/>
+<ExtendedAttribute Name="YOffset" Value="1260"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act39" Name="まだ待機">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="690"/>
+<ExtendedAttribute Name="YOffset" Value="1290"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act40" Name="単一XORJoin">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="370"/>
+<ExtendedAttribute Name="YOffset" Value="1100"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act41" Name="複数XORJoin">
+<Implementation>
+<Tool Id="buri2_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BuriStateUtil.processedJoinXor(LocalContext.CallBuriPath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="260"/>
+<ExtendedAttribute Name="YOffset" Value="1110"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buri2_Wor4_Act42" Name="AND処理">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>buri2_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="buri2_Wor4_Tra54"/>
+<TransitionRef Id="buri2_Wor4_Tra56"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="buri2_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="580"/>
+<ExtendedAttribute Name="YOffset" Value="550"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="buri2_Wor4_Act1" Id="buri2_Wor4_Tra44" To="buri2_Wor4_Act13">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act13" Id="buri2_Wor4_Tra45" To="buri2_Wor4_Act15">
+<Condition Type="CONDITION">#activity.isFinishManual() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act13" Id="buri2_Wor4_Tra46" To="buri2_Wor4_Act14">
+<Condition Type="CONDITION">#activity.isFinishAuto() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act14" Id="buri2_Wor4_Tra47" To="buri2_Wor4_Act16">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act16" Id="buri2_Wor4_Tra48" To="buri2_Wor4_Act17">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act17" Id="buri2_Wor4_Tra49" To="buri2_Wor4_Act18">
+<Condition Type="CONDITION">#activity.isSplitXor() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act17" Id="buri2_Wor4_Tra50" To="buri2_Wor4_Act19">
+<Condition Type="CONDITION">#activity.isSplitAnd() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act18" Id="buri2_Wor4_Tra51" To="buri2_Wor4_Act20">
+<Condition Type="CONDITION">#waitStack.size() &gt; 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act18" Id="buri2_Wor4_Tra52" To="buri2_Wor4_Act21">
+<Condition Type="CONDITION">#waitStack.size() == 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act18" Id="buri2_Wor4_Tra53" To="buri2_Wor4_Act22">
+<Condition Type="CONDITION">#waitStack.size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act42" Id="buri2_Wor4_Tra54" To="buri2_Wor4_Act21">
+<Condition Type="CONDITION">#waitStack.size() == 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act19" Id="buri2_Wor4_Tra55" To="buri2_Wor4_Act22">
+<Condition Type="CONDITION">#waitStack.size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act42" Id="buri2_Wor4_Tra56" To="buri2_Wor4_Act23">
+<Condition Type="CONDITION">#waitStack.size() &gt; 1</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act23" Id="buri2_Wor4_Tra57" To="buri2_Wor4_Act24">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="750;860;1"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act21" Id="buri2_Wor4_Tra58" To="buri2_Wor4_Act24">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="280;860;1"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act24" Id="buri2_Wor4_Tra59" To="buri2_Wor4_Act25">
+<Condition Type="CONDITION">#waitStack.size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act22" Id="buri2_Wor4_Tra82" To="buri2_Wor4_Act27">
+<Condition Type="CONDITION">#isNoSelectErr == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act17" Id="buri2_Wor4_Tra107" To="buri2_Wor4_Act26">
+<Condition Type="CONDITION">#activity.isSplitAnd() == false &amp;&amp; #activity.isSplitXor() == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act28" Id="buri2_Wor4_Tra133" To="buri2_Wor4_Act24">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="180;880;2"/>
+<ExtendedAttribute Name="BreakPoint" Value="180;1370;1"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act24" Id="buri2_Wor4_Tra134" To="buri2_Wor4_Act30">
+<Condition Type="CONDITION">#waitStack.size() &gt; 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act31" Id="buri2_Wor4_Tra164" To="buri2_Wor4_Act14">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act30" Id="buri2_Wor4_Tra194" To="buri2_Wor4_Act32">
+<Condition Type="CONDITION">#nextAct.isJoinXor()== true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act30" Id="buri2_Wor4_Tra197" To="buri2_Wor4_Act33">
+<Condition Type="CONDITION">#nextAct.isJoinAnd()== true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act33" Id="buri2_Wor4_Tra198" To="buri2_Wor4_Act36">
+<Condition Type="CONDITION">#canAndJoin == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act33" Id="buri2_Wor4_Tra199" To="buri2_Wor4_Act37">
+<Condition Type="CONDITION">#canAndJoin == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act37" Id="buri2_Wor4_Tra200" To="buri2_Wor4_Act39">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act36" Id="buri2_Wor4_Tra201" To="buri2_Wor4_Act38">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act38" Id="buri2_Wor4_Tra204" To="buri2_Wor4_Act28">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act39" Id="buri2_Wor4_Tra205" To="buri2_Wor4_Act28">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act32" Id="buri2_Wor4_Tra206" To="buri2_Wor4_Act41">
+<Condition Type="CONDITION">(#transitions.size() &gt; 1 &amp;&amp; #nextAct.isProcessedXorJoin() == true ) || #nextAct.isEmulateXorJoin() == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act32" Id="buri2_Wor4_Tra207" To="buri2_Wor4_Act40">
+<Condition Type="CONDITION">(#transitions.size() &lt;= 1 || #nextAct.isProcessedXorJoin() == false ) &amp;&amp; #nextAct.isEmulateXorJoin() == false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act40" Id="buri2_Wor4_Tra208" To="buri2_Wor4_Act38">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act41" Id="buri2_Wor4_Tra211" To="buri2_Wor4_Act38">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act19" Id="buri2_Wor4_Tra252" To="buri2_Wor4_Act42">
+<Condition Type="CONDITION">#waitStack.size() &gt; 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor4_Act22" Id="buri2_Wor4_Tra294" To="buri2_Wor4_Act25">
+<Condition Type="CONDITION">#isNoSelectErr == true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="520;790;1"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act31;220;10;NOROUTING"/>
+<ExtendedAttribute Name="StartOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act1;400;10;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act26;750;390;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act25;730;910;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act20;100;650;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act27;690;750;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act15;660;200;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="buri2_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+<ExtendedAttribute Name="Version" Value="1.4.2"/>
+</ExtendedAttributes>
+</Package>

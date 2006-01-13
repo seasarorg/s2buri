@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="order" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2005-11-29 10:57:17</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<Participants>
+<Participant Id="order_Par1" Name="顧客">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="order_Par2" Name="出荷担当者">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="order_Par3" Name="請求担当者">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="order_App1" Name="OgnlInvoker"/>
+<Application Id="order_App2" Name="AfterOgnlInvoker"/>
+</Applications>
+<DataFields>
+<DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="shippingID,shippingID != 0"/>
+<ExtendedAttribute Name="insert" Value="ShippingSetDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="ShippingSetDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="ShippingSetDao.getShippingSetDto(#data.shippingID)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.ShippingItemDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="shippingItemID,shippingItemID != 0"/>
+<ExtendedAttribute Name="insert" Value="ShippingItemDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="ShippingItemDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="ShippingItemDao.getShippingItem(#data.shippingItemID)"/>
+<ExtendedAttribute Name="selectMany" Value="ShippingItemDao.getShippingItemByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.ShippingDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="shippingID,shippingID != 0"/>
+<ExtendedAttribute Name="insert" Value="ShippingDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="ShippingDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="ShippingDao.getShipping(#data.shippingID)"/>
+<ExtendedAttribute Name="selectMany" Value="ShippingDao.getShippingByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.OrderTitleDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="orderTitleID,orderTitleID != 0"/>
+<ExtendedAttribute Name="insert" Value="OrderTitleDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="OrderTitleDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="OrderTitleDao.getOrderTitle(#data.orderTitleID)"/>
+<ExtendedAttribute Name="selectMany" Value="OrderTitleDao.getOrderTitleByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="orderTitleID,orderTitleID != 0"/>
+<ExtendedAttribute Name="insert" Value="OrderInfoDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="OrderInfoDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="OrderInfoDao.getOrderInfo(#data.orderTitleID)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.OrderDetailDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="orderDetailID,orderDetailID != 0"/>
+<ExtendedAttribute Name="insert" Value="OrderDetailDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="OrderDetailDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="OrderDetailDao.getOrderDetail(#data.orderDetailID)"/>
+<ExtendedAttribute Name="selectMany" Value="OrderDetailDao.getOrderDetailByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.ItemDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="ItemID,ItemID != 0"/>
+<ExtendedAttribute Name="insert" Value="ItemDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="ItemDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="ItemDao.getItem(#data.itemID)"/>
+<ExtendedAttribute Name="selectMany" Value="ItemDao.getItemByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.CustomerDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="customerID,customerID != 0"/>
+<ExtendedAttribute Name="insert" Value="CustomerDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="CustomerDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="CustomerDao.getCustomer(#data.customerID)"/>
+<ExtendedAttribute Name="selectMany" Value="CustomerDao.getCustomerByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="example.org.seasar.buri.dto.BillDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="billID,billID != 0"/>
+<ExtendedAttribute Name="insert" Value="BillDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="BillDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="BillDao.getBill(#data.billID)"/>
+<ExtendedAttribute Name="selectMany" Value="BillDao.getBillByIds(#data)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor1" Name="注文">
+<ProcessHeader DurationUnit="D">
+<Created>2005-11-29 10:57:27</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<DataFields>
+<DataField Id="java.lang.Long" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="preprocess" Value="OrderInfoDao.getOrderInfo(#data)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<Activities>
+<Activity Id="order_Wor1_Act1" Name="注文">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="130"/>
+<ExtendedAttribute Name="YOffset" Value="100"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor1_Act2" Name="出荷作業中">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.出荷&quot;,#data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="order_Wor1_Tra4"/>
+<TransitionRef Id="order_Wor1_Tra2"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="310"/>
+<ExtendedAttribute Name="YOffset" Value="100"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor1_Act3" Name="出荷終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="order_Wor1_Tra3"/>
+<TransitionRef Id="order_Wor1_Tra6"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="490"/>
+<ExtendedAttribute Name="YOffset" Value="100"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor1_Act4" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="680"/>
+<ExtendedAttribute Name="YOffset" Value="100"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor1_Act5" Name="注文キャンセル">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.出荷&quot;,#data,&quot;cancel&quot;,null)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="order_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#cancelStatus =&quot;success&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="310"/>
+<ExtendedAttribute Name="YOffset" Value="220"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor1_Act6" Name="キャンセル終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="310"/>
+<ExtendedAttribute Name="YOffset" Value="330"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor1_Act7" Name="注文キャンセルエラー">
+<Implementation>
+<Tool Id="order_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#cancelStatus =&quot;NG&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="580"/>
+<ExtendedAttribute Name="YOffset" Value="220"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="order_Wor1_Act1" Id="order_Wor1_Tra1" To="order_Wor1_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor1_Act2" Id="order_Wor1_Tra2" To="order_Wor1_Act3">
+<Condition Type="CONDITION">#action==null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor1_Act3" Id="order_Wor1_Tra3" To="order_Wor1_Act4">
+<Condition Type="CONDITION">#action==null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor1_Act2" Id="order_Wor1_Tra4" To="order_Wor1_Act5">
+<Condition Type="CONDITION">#action=="cancel"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor1_Act5" Id="order_Wor1_Tra5" To="order_Wor1_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor1_Act3" Id="order_Wor1_Tra6" To="order_Wor1_Act7">
+<Condition Type="CONDITION">#action=="cancel"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="BreakPoint" Value="520;240;1"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor1_Act7" Id="order_Wor1_Tra7" To="order_Wor1_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par1;order_Wor1_Act1;60;100;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par1;order_Wor1_Act4;810;100;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par1;order_Wor1_Act6;460;330;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor2" Name="出荷">
+<ProcessHeader DurationUnit="D">
+<Created>2005-11-29 10:57:52</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<DataFields>
+<DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="preprocess" Value="ShippingSetDao.getDtoByOrderTitleID(#data)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="java.lang.Long" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="preprocess" Value="ShippingSetDao.getShippingSetDto(#data)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<Activities>
+<Activity Id="order_Wor2_Act1" Name="出荷依頼">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="160"/>
+<ExtendedAttribute Name="YOffset" Value="120"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act2" Name="出荷準備開始">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.出荷詳細&quot;,#data.items)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="280"/>
+<ExtendedAttribute Name="YOffset" Value="120"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act3" Name="出荷準備完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="680"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act4" Name="出荷済み">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleID)&#10;InnerInvoker.invoke(&quot;注文管理.請求&quot;,#data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="800"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act5" Name="出荷キャンセル">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="680"/>
+<ExtendedAttribute Name="YOffset" Value="160"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act6" Name="キャンセル済み">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.出荷詳細&quot;,#data.items,&quot;cancel&quot;,null)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="800"/>
+<ExtendedAttribute Name="YOffset" Value="160"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act7" Name="商品未揃い">
+<Route/>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="470"/>
+<ExtendedAttribute Name="YOffset" Value="30"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act8" Name="出荷準備中">
+<Implementation>
+<Tool Id="order_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#countDatas = InnerInvoker.countByPathAndDatas(&quot;注文管理.出荷詳細.商品準備完了&quot;,#data.items)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="order_Wor2_Tra31"/>
+<TransitionRef Id="order_Wor2_Tra32"/>
+<TransitionRef Id="order_Wor2_Tra33"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="530"/>
+<ExtendedAttribute Name="YOffset" Value="120"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor2_Act9" Name="商品待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="410"/>
+<ExtendedAttribute Name="YOffset" Value="120"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="order_Wor2_Act1" Id="order_Wor2_Tra1" To="order_Wor2_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act3" Id="order_Wor2_Tra3" To="order_Wor2_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act5" Id="order_Wor2_Tra7" To="order_Wor2_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act7" Id="order_Wor2_Tra17" To="order_Wor2_Act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act8" Id="order_Wor2_Tra31" To="order_Wor2_Act3">
+<Condition Type="CONDITION">#countDatas == #data.items.size() &amp;&amp; #action == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act8" Id="order_Wor2_Tra32" To="order_Wor2_Act7">
+<Condition Type="CONDITION">#countDatas &lt; #data.items.size() &amp;&amp; #action == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act8" Id="order_Wor2_Tra33" To="order_Wor2_Act5">
+<Condition Type="CONDITION">#action == "cancel"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act2" Id="order_Wor2_Tra46" To="order_Wor2_Act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor2_Act9" Id="order_Wor2_Tra47" To="order_Wor2_Act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par2;order_Wor2_Act1;80;120;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor2_Act6;930;160;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor2_Act4;930;90;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par2;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor3" Name="請求">
+<ProcessHeader DurationUnit="D">
+<Created>2005-11-29 10:58:04</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<DataFields>
+<DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.seasar.buri.dto.BillDto()&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<Activities>
+<Activity Id="order_Wor3_Act1" Name="請求依頼">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par3</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
+<ExtendedAttribute Name="XOffset" Value="170"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor3_Act2" Name="請求作業">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par3</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
+<ExtendedAttribute Name="XOffset" Value="330"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor3_Act3" Name="入金確認">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleID)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par3</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
+<ExtendedAttribute Name="XOffset" Value="690"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor3_Act4" Name="請求終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par3</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
+<ExtendedAttribute Name="XOffset" Value="850"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor3_Act5" Name="再請求準備">
+<Limit>#ReClaim</Limit>
+<Implementation>
+<Tool Id="order_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#ReClaim = @jp.starlogic.util.datetime.UtilCalendar@getInstance()&#10;//#ReClaim.addDayOfMonth(7)&#10;// 本来なら7日後とかにするんだけど、テストなので・・・&#10;#ReClaim.addSecond(10)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par3</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="order_Wor3_Tra10"/>
+<TransitionRef Id="order_Wor3_Tra12"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
+<ExtendedAttribute Name="XOffset" Value="480"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor3_Act6" Name="再請求">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par3</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
+<ExtendedAttribute Name="XOffset" Value="550"/>
+<ExtendedAttribute Name="YOffset" Value="180"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="order_Wor3_Act1" Id="order_Wor3_Tra1" To="order_Wor3_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor3_Act3" Id="order_Wor3_Tra3" To="order_Wor3_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor3_Act2" Id="order_Wor3_Tra9" To="order_Wor3_Act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor3_Act5" Id="order_Wor3_Tra10" To="order_Wor3_Act6">
+<Condition Type="CONDITION">#autoAction==true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor3_Act6" Id="order_Wor3_Tra11" To="order_Wor3_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor3_Act5" Id="order_Wor3_Tra12" To="order_Wor3_Act3">
+<Condition Type="CONDITION">#autoAction==null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par3;order_Wor3_Act1;60;90;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par3;order_Wor3_Act4;1010;90;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par3;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor5" Name="出荷詳細">
+<ProcessHeader DurationUnit="D">
+<Created>2005-11-29 11:02:01</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="order_Wor5_Act1" Name="商品準備開始">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="180"/>
+<ExtendedAttribute Name="YOffset" Value="80"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor5_Act2" Name="商品準備中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="order_Wor5_Tra7"/>
+<TransitionRef Id="order_Wor5_Tra2"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="360"/>
+<ExtendedAttribute Name="YOffset" Value="80"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor5_Act3" Name="商品準備完了">
+<Implementation>
+<Tool Id="order_App2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.出荷&quot;,#data.shippingID)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="530"/>
+<ExtendedAttribute Name="YOffset" Value="80"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="order_Wor5_Act4" Name="cancel済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
+<ExtendedAttribute Name="XOffset" Value="530"/>
+<ExtendedAttribute Name="YOffset" Value="160"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="order_Wor5_Act1" Id="order_Wor5_Tra1" To="order_Wor5_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor5_Act2" Id="order_Wor5_Tra2" To="order_Wor5_Act3">
+<Condition Type="CONDITION">#action == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="order_Wor5_Act2" Id="order_Wor5_Tra7" To="order_Wor5_Act4">
+<Condition Type="CONDITION">#action == "cancel"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par2;order_Wor5_Act1;100;80;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor5_Act4;650;160;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor5_Act3;650;80;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par2;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+<ExtendedAttribute Name="Version" Value="1.4.2"/>
+</ExtendedAttributes>
+</Package>

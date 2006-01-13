@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components namespace="wakanago" >
+	<include path="javelin.dicon"/>
+	<component name="wakanagoInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<!--<initMethod name="add"><arg>javelin.javelinTraceInterceptor</arg></initMethod>-->
+	</component>
+	
+	<component name="UtilCache" class="org.seasar.buri.xpdl.util.impl.interceptor.UtilCacheInterceptor" >
+	</component>
+	
+	
+	<component name="localContext" class="org.seasar.buri.context.BuriLocalContextImpl" instance="request">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.context.BuriInnerContextImpl" instance="request" >
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+
+	<component class="org.seasar.buri.context.utilImpl.WakanagoContextUtil">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+
+	<!-- ワカナゴエンジン -->
+
+	<component name="ActivitySelectRule" class="org.seasar.buri.xpdl.rule.impl.WakanagoActivitySelectRule">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.xpdl.rule.impl.WakanagoWorkflowProcessSelectRule">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.rule.impl.BuriToolExecuteRuleImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.rule.impl.OgnlConditionProcessingRuleImpl">
+		<property name="debugMode">false</property>
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.engine.util.BuriTraceElement" instance="prototype">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="nextElementItems">null</property>
+	</component>
+	
+	<component class="org.seasar.buri.xpdl.util.impl.ActivityTagSelectImpl" instance="prototype">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="activity">null</property>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.WorkFlowPackageTagSelectImpl" instance="prototype">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="packageDocument">null</property>
+		<property name="participantProvider">null</property>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.WorkflowProcessTagSelectImpl" instance="prototype">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="workflowProcess">null</property>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.ToolTagSelectImpl" instance="prototype">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="tool">null</property>
+	</component>
+
+	<component class="org.seasar.buri.xpdl.util.impl.ApplicationUutilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+		<aspect pointcut="getApplication" >UtilCache</aspect>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.DataFieldUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.ExtendedAttributeUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.ParticipantUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.ToolUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+		<aspect pointcut="getTools" >UtilCache</aspect>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.ActivityTagSelectUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.TransitionUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+		<aspect pointcut="getTransitions,hasSplitTransitionRestriction,hasJoinTransitionRestriction,getJoinTransitions,isSplitAnd,isSplitXor,isJoinXor,getTransitionFromActivityId,getTransitionToActivityId,getTransitionFromId" >UtilCache</aspect>
+	</component>
+	<component class="org.seasar.buri.xpdl.util.impl.WorkFlowsUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+		<property name="activitySelectRule">ActivitySelectRule</property>
+		<aspect pointcut="getActivity,getActivityTagSelectList" >UtilCache</aspect>
+	</component>
+	<component name="pathUtil" class="org.seasar.buri.xpdl.util.impl.XPathUtilImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+
+	<component class="org.seasar.buri.impl.WakanagoFlowsImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<initMethod name="readWorkFlowFromResource">
+			<arg>"buri2"</arg>
+			<arg>"xpdl/buri2.xpdl"</arg>
+		</initMethod>
+	</component>
+	
+	<component class="org.seasar.buri.impl.WakanagoFlowPickoutImpl" instance="prototype">
+		<aspect>wakanagoInterceptorChain</aspect>
+		<property name="status">null</property>
+	</component>
+	
+	<component name="engine" class="org.seasar.buri.impl.WakanagoEngineImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+
+	<!-- ワカナゴエンジン -->
+	<!-- ワカナゴエンジン用コンポーネント -->
+
+	<component name="OgnlInvoker" class="org.seasar.buri.component.impl.OgnlWakanagoInvokerImpl">
+		<aspect>wakanagoInterceptorChain</aspect>
+	</component>
+
+	
+	<!-- ワカナゴエンジン用コンポーネント -->
+
+</components>

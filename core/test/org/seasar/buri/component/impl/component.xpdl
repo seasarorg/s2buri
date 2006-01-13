@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="component" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2005-09-16 14:30:26</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<Participants>
+<Participant Id="component_Par1" Name="tet">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="component_App1" Name="mail"/>
+</Applications>
+<DataFields>
+<DataField Id="org.seasar.buri.dto.FurnitureItemDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="furnitureID,furnitureID != 0"/>
+<ExtendedAttribute Name="insert" Value="FurnitureItemDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="FurnitureItemDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="FurnitureItemDao.getFurnitureItem(#data.furnitureID)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="component_Wor1" Name="mail">
+<ProcessHeader DurationUnit="D">
+<Created>2005-09-16 14:30:43</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="component_Wor1_Act1" Name="Generic">
+<Implementation>
+<Tool Id="component_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="from" Value="makoto@starlogic.jp まこたん"/>
+<ExtendedAttribute Name="to" Value="makotan@gmail.com まこたろう"/>
+<ExtendedAttribute Name="subject" Value="テストのメールです"/>
+<ExtendedAttribute Name="body" Value="　　　　　　　　　　　　　　　　　　　　　　　　　　　平成○年○月○日&#10;　　　　　　　　　　　　　　　　　　　　　　　　　　　株式会社　○○○&#10;&#10;&#10;　　　　　　　　　　　　　　　　ご講演のお願い&#10;&#10;　謹啓　○○先生におかれましては益々ご清栄のこととお慶び申し上げます。平素より大変お世話になっております。&#10;　この度弊社では、新たに中国進出を目指す企業を対象に、「○○セミナー」を開催することとなりました。&#10;　つきましては、中国経済に精通され多数の著作を上梓されている先生にご講演いただき、参加者一同の意識啓発を図りたく存じます。&#10;　ご多用中恐縮ではございますが、ご高配賜りたくお願い申し上げます。&#10;　　　　　　　　　　　　　　　　　　　　　　　 　　　　　　　　　　　　謹白&#10;&#10;　　　　　　　　　　　　　　　　　　　記&#10;&#10;　日時・場所&#10;&#10;　講演希望テーマ&#10;&#10;　謝礼等"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>component_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="component_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="340"/>
+<ExtendedAttribute Name="YOffset" Value="70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="component_Wor1_Act2" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>component_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="component_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="210"/>
+<ExtendedAttribute Name="YOffset" Value="80"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="component_Wor1_Act2" Id="component_Wor1_Tra4" To="component_Wor1_Act1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="component_Par1;component_Wor1_Act2;80;70;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="component_Par1;component_Wor1_Act1;500;60;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="component_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+<ExtendedAttribute Name="Version" Value="1.4.2"/>
+</ExtendedAttributes>
+</Package>

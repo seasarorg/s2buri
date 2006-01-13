@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>XPDLにフローを記述する</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body015.html">s2-buriチュートリアル</A>
+:<A HREF="body016.html">XPDLの作成および使用</A>
+:</DIV><BR><BR>
+<H1>XPDLにフローを記述する</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body022.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body024.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ToolBoxのタブから<BR>
+Insert Processを選択して、大きな白いところに置きます。<BR>
+置いたProcessを右クリックで選択してpropertiesを表示、Nameを「備品管理」に変更します。<BR>
+<BR>
+備品管理プロセスを選択して右クリックでEditを選択します<BR>
+<BR>
+図のようにGeneric Activityを並べてTransitionでつないでいきます。<BR>
+それぞれのActivityで右クリックしてプロパティーを表示して、Nameを変更します。<BR>
+<BR>
+利用中と償却期間終了とリース終了の３つのActivityに関してはFinish modeをAutomaticからManualへ変更します<BR>
+<BR>
+期間終了から償却期間終了へ向かうTransitionを選択して、ConditionのExpressionに#data.isBuying() == trueを設定します<BR>
+期間終了からリース終了へ向かうTransitionを選択して、ConditionのExpressionに#data.isLease() == trueを選択します<BR>
+これでフローは準備が出来たので、開発環境のCLASSPATH上に配置します。<BR>
+<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body016.html">XPDLの作成および使用 に戻る</A></SPAN>
+</BODY></HTML>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="buri2.dicon"/>
+	<include path="org/seasar/buri/common/util/dicon/template.dicon"/>
+	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+	<component name="buriInvoker" class="org.seasar.buri.engine.invoker.impl.SimpleBuriInvokerImpl">
+	</component>
+	<component name="mail" class="org.seasar.buri.component.impl.MailSenderImpl" >
+	</component>
+	<component class="com.ozacc.mail.impl.SendMailImpl">
+		<property name="host">"127.0.0.1"</property>
+	</component>
+</components>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="aop.dicon"/>
+	<include path="j2ee.dicon"/>
+	
+	<component class="jp.starlogic.servicemanager.impl.ServiceManagerImpl">
+		<initMethod name="addStartupService">
+			<arg>"StartupService"</arg>
+		</initMethod>
+		<initMethod name="startup" ></initMethod>
+		<destroyMethod name="terminate" ></destroyMethod>
+	</component>
+	
+	<component class="jp.starlogic.servicemanager.impl.ServiceMonitorImpl">
+		<initMethod name="addService"><arg>"CounterService"</arg></initMethod>
+		<initMethod name="addService"><arg>"StartupService"</arg></initMethod>
+	</component>
+	
+	<component class="jp.starlogic.servicemanager.impl.ExecuteServiceImpl" instance="prototype" >
+		<aspect pointcut="execute" >j2ee.requiresNewTx</aspect>
+	</component>
+	
+	<component name="CounterService" class="test.sampleservice.CounterService">
+		<property name="waitTime">500</property>
+		<property name="stopCheckInterval">5000</property>
+	</component>
+	
+	<component name="StartupService" class="jp.starlogic.servicemanager.service.StartupService">
+		<property name="runningTime">50</property>
+		<property name="waitTime">0</property>
+		<property name="stopCheckInterval">500</property>
+	</component>
+	
+</components>

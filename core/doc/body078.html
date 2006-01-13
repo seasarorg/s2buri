@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>ParticipantProvider</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body048.html">s2-buriリファレンス</A>
+:<A HREF="body066.html">Java</A>
+:</DIV><BR><BR>
+<H1>ParticipantProvider</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body077.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body079.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ParticipantProviderは「userData」と「XPDLのParticipant」の相互チェックの<BR>
+ために必要なクラス。<BR>
+ParticipantProviderインタフェースをimplementsする。<BR>
+<BR>
+必要なメソッドはこの3つ<BR>
+<BR>
+boolean isUserInRole(Object userData,String participantName);<BR>
+userDataがXPDLで指定したparticipantNameに一致しているかをチェックする<BR>
+<BR>
+String getUserIDString(Object userData);<BR>
+userDataから文字列のIDを取得する。文字列のIDが無いときはnullを返す<BR>
+<BR>
+Long getUserIDNum(Object userData);<BR>
+userDataからLong型のIDを取得する。Long型のIDが無いときはnullを返す<BR>
+<BR>
+buri2.dicon上に追加登録してreadWorkFlowFromResourceの3番目の引数に設定することで利用可能になります。<BR>
+<BR>
+ぶりの中でユーザ情報はXPDLのParticipantを取得・管理するためのもので、それぞれのデータとユーザの管理はぶりをつかうプログラムに任されています。<BR>
+ユーザデータの保持はあくまでXPDLのParticipantへの変換のために存在していると考えてください。<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body066.html">Java に戻る</A></SPAN>
+</BODY></HTML>

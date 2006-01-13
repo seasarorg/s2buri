@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>アクティビティ</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body048.html">s2-buriリファレンス</A>
+:<A HREF="body049.html">XPDL</A>
+:</DIV><BR><BR>
+<H1>アクティビティ</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body060.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body062.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ワークフローでの処理の単位<BR>
+<BR>
+Finish modeをManualにするとToolを実行した後処理を停止する<BR>
+<BR>
+Toolタブに関しては後述<BR>
+<BR>
+Precondition・・・Join条件を設定するところ<BR>
+・Xorは複数の入力のうち先に到着した時点でActivityの処理をして、同時に分岐した他の処理を停止する<BR>
+・Andは複数の入力のすべてが到着してからActivityの処理をする<BR>
+<BR>
+XPDL上で複数の入力があるのに、単一の入力として扱いたい場合はActivityのExtended attributeにNOJOINを指定する。これで複数の入力は無視される。<BR>
+<BR>
+XPDL上で複数の入力はないけど、到着した時点で同時に分岐した他の処理を停止したいときは、ActivityのExtended attributeにXORJOINを指定する。これで他の処理を停止することが出来る。<BR>
+<BR>
+Postcondition・・・Split条件を指定するところ<BR>
+・Xorは複数の分岐のうち一つだけが有効(単一分岐)もし、複数が条件に引っかかる場合はエラーになる<BR>
+・Andは複数の分岐が同時に有効(複数分岐)同時に有効になるので、そのProcessで複数個のActivityが並行して処理される。Joinと1:1で対応する必要がある。<BR>
+<BR>
+Postconditionでconditionを書くときは<BR>
+#dataでinvokeしたときのデータを<BR>
+#actionでinvokeしたときのactionを参照可能<BR>
+あとは通常のJavaの記述とほぼ同じ。<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body049.html">XPDL に戻る</A></SPAN>
+</BODY></HTML>

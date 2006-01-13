@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>example.org.seasar.buri.test.BuriTest</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body093.html">サンプル説明</A>
+:</DIV><BR><BR>
+<H1>example.org.seasar.buri.test.BuriTest</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body095.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body097.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+これは主にInnerInvoker、preprocess、Activityのループ処理を実現しているテストです。<BR>
+<BR>
+想定は通販サイトの注文を受け付けた後の流れ<BR>
+<BR>
+顧客が注文します。<BR>
+注文は即出荷作業へ移り  ※出荷作業中<BR>
+出荷商品がすべて準備完了したとき請求処理に入ります。  ※出荷終了<BR>
+この時点で顧客は注文の取り消しが出来なくなります。<BR>
+請求処理をした後、入金確認した地点で注文は終了になります。※終了<BR>
+顧客はいつでも注文の状態を知ることが出来ます。<BR>
+<BR>
+<BR>
+フロー(order.xpdl)上での設計は・・・<BR>
+<BR>
+注文フローから出荷を依頼します<BR>
+出荷フローでは注文情報を受け取り、一旦出荷伝票を起こして商品をそろえる出荷詳細へ準備を依頼します。<BR>
+出荷詳細フローでは出荷の詳細情報を個別に受け取り、商品が準備できたときに出荷フローへ通知します。<BR>
+商品が準備できた出荷フローではすべての商品の出荷準備が出来たかどうかを確認して全部が揃っていない場合は再度商品待ちをします。<BR>
+もし、商品が全部揃えば出荷準備が完了として即出荷します。<BR>
+出荷と同時に注文フローへ出荷状態の変更を、請求フローへ請求依頼を出します。<BR>
+請求依頼を受けた請求フローは入金確認が終わったとき、注文フローへ状態の変更依頼を出します。<BR>
+<BR>
+<BR>
+ポイント！！<BR>
+InnerInvokerを使った時のやりとりの時にフローの独立性を高めるためにpreprocessでデータ型の変換をしています。<BR>
+商品の準備を待つ部分ではActivityのループ処理をして商品待ちを実現しています。<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body093.html">サンプル説明 に戻る</A></SPAN>
+</BODY></HTML>

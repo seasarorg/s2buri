@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="BuriFlowPickout" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2005-07-22 13:55:23</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<Participants>
+<Participant Id="BuriFlowPickout_Par1" Name="test">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="BuriFlowPickout_Wor1" Name="Simple">
+<ProcessHeader DurationUnit="D">
+<Created>2005-07-22 13:56:47</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="BuriFlowPickout_Wor1_Act1" Name="act1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="150"/>
+<ExtendedAttribute Name="YOffset" Value="60"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor1_Act2" Name="act2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="300"/>
+<ExtendedAttribute Name="YOffset" Value="60"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor1_Act3" Name="act3">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="450"/>
+<ExtendedAttribute Name="YOffset" Value="60"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="BuriFlowPickout_Wor1_Act1" Id="BuriFlowPickout_Wor1_Tra1" To="BuriFlowPickout_Wor1_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor1_Act2" Id="BuriFlowPickout_Wor1_Tra2" To="BuriFlowPickout_Wor1_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor1_Act1;70;60;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor1_Act3;580;60;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="BuriFlowPickout_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="BuriFlowPickout_Wor2" Name="MultiSelect">
+<ProcessHeader DurationUnit="D">
+<Created>2005-07-22 15:29:11</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="BuriFlowPickout_Wor2_Act1" Name="XOR">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra3"/>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra2"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="210"/>
+<ExtendedAttribute Name="YOffset" Value="120"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act2" Name="act1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="60"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act3" Name="act2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="170"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act6" Name="act4">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="380"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act5" Name="AND">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra10"/>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="210"/>
+<ExtendedAttribute Name="YOffset" Value="330"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act4" Name="act3">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="270"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act10" Name="act2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="610"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act12" Name="ANDZero">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra22"/>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra23"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="210"/>
+<ExtendedAttribute Name="YOffset" Value="770"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act11" Name="act3">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="710"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act7" Name="act4">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="820"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act9" Name="act1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="390"/>
+<ExtendedAttribute Name="YOffset" Value="500"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor2_Act8" Name="XORZero">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra24"/>
+<TransitionRef Id="BuriFlowPickout_Wor2_Tra21"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="210"/>
+<ExtendedAttribute Name="YOffset" Value="560"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="BuriFlowPickout_Wor2_Act1" Id="BuriFlowPickout_Wor2_Tra2" To="BuriFlowPickout_Wor2_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act1" Id="BuriFlowPickout_Wor2_Tra3" To="BuriFlowPickout_Wor2_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act5" Id="BuriFlowPickout_Wor2_Tra10" To="BuriFlowPickout_Wor2_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act5" Id="BuriFlowPickout_Wor2_Tra9" To="BuriFlowPickout_Wor2_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act8" Id="BuriFlowPickout_Wor2_Tra24" To="BuriFlowPickout_Wor2_Act9">
+<Condition Type="CONDITION">false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act8" Id="BuriFlowPickout_Wor2_Tra21" To="BuriFlowPickout_Wor2_Act10">
+<Condition Type="CONDITION">false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act12" Id="BuriFlowPickout_Wor2_Tra22" To="BuriFlowPickout_Wor2_Act11">
+<Condition Type="CONDITION">false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor2_Act12" Id="BuriFlowPickout_Wor2_Tra23" To="BuriFlowPickout_Wor2_Act7">
+<Condition Type="CONDITION">false</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act12;120;770;NOROUTING"/>
+<ExtendedAttribute Name="StartOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act1;110;120;NOROUTING"/>
+<ExtendedAttribute Name="StartOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act8;120;560;NOROUTING"/>
+<ExtendedAttribute Name="StartOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act5;120;330;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act4;580;270;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act2;540;60;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act6;590;380;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act11;540;710;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act7;540;820;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act10;550;610;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act3;540;170;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor2_Act9;550;500;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="BuriFlowPickout_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="BuriFlowPickout_Wor3" Name="FinalManual">
+<ProcessHeader DurationUnit="D">
+<Created>2005-07-24 12:15:57</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="BuriFlowPickout_Wor3_Act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="170"/>
+<ExtendedAttribute Name="YOffset" Value="70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor3_Act2" Name="Manual">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="300"/>
+<ExtendedAttribute Name="YOffset" Value="70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BuriFlowPickout_Wor3_Act3" Name="noProc">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BuriFlowPickout_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="BuriFlowPickout_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="450"/>
+<ExtendedAttribute Name="YOffset" Value="70"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="BuriFlowPickout_Wor3_Act1" Id="BuriFlowPickout_Wor3_Tra2" To="BuriFlowPickout_Wor3_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BuriFlowPickout_Wor3_Act2" Id="BuriFlowPickout_Wor3_Tra3" To="BuriFlowPickout_Wor3_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor3_Act1;80;70;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="BuriFlowPickout_Par1;BuriFlowPickout_Wor3_Act3;590;70;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="BuriFlowPickout_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+<ExtendedAttribute Name="Version" Value="1.4.2"/>
+</ExtendedAttributes>
+</Package>

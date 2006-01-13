@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="wakanagoTest" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2005-06-02 16:15:55</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<Participants>
+<Participant Id="wakanagoTest_Par1" Name="Role1">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="wakanagoTest_Par2" Name="LocalRole">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="wakanagoTest_App1" Name="OgnlInvoker"/>
+<Application Id="wakanagoTest_App2" Name="appNameLocal"/>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="wakanagoTest_Wor1" Name="Multi">
+<ProcessHeader DurationUnit="D">
+<Created>2005-06-02 16:16:09</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="wakanagoTest_Wor1_Act1" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="250"/>
+<ExtendedAttribute Name="YOffset" Value="40"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor1_Act1;51;10;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor1_Act1;600;10;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="wakanagoTest_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="wakanagoTest_Wor2" Name="Multi">
+<ProcessHeader DurationUnit="D">
+<Created>2005-06-02 16:16:28</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="wakanagoTest_Wor2_Act1" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="230"/>
+<ExtendedAttribute Name="YOffset" Value="50"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor2_Act1;51;10;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor2_Act1;600;10;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="wakanagoTest_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="wakanagoTest_Wor3" Name="MultiActivity">
+<ProcessHeader DurationUnit="D">
+<Created>2005-06-02 16:16:32</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="wakanagoTest_Wor3_Act1" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="280"/>
+<ExtendedAttribute Name="YOffset" Value="20"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="wakanagoTest_Wor3_Act2" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="280"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="wakanagoTest_Wor3_Act1" Id="wakanagoTest_Wor3_Tra1" To="wakanagoTest_Wor3_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor3_Act1;51;10;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor3_Act2;600;10;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="wakanagoTest_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="wakanagoTest_Wor4" Name="Nomal">
+<ProcessHeader DurationUnit="D">
+<Created>2005-06-02 16:16:39</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="wakanagoTest_Wor4_Act1" Name="start">
+<Implementation>
+<Tool Id="wakanagoTest_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="aaaabbbbcccc&#10;dddd&lt;&gt;&amp;;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="wakanagoTest_Wor4_Tra1"/>
+<TransitionRef Id="wakanagoTest_Wor4_Tra2"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="230"/>
+<ExtendedAttribute Name="YOffset" Value="60"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="wakanagoTest_Wor4_Act2" Name="stepA">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="400"/>
+<ExtendedAttribute Name="YOffset" Value="30"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="wakanagoTest_Wor4_Act3" Name="stepB">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>wakanagoTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="wakanagoTest_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="400"/>
+<ExtendedAttribute Name="YOffset" Value="120"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="wakanagoTest_Wor4_Act1" Id="wakanagoTest_Wor4_Tra1" To="wakanagoTest_Wor4_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="wakanagoTest_Wor4_Act1" Id="wakanagoTest_Wor4_Tra2" To="wakanagoTest_Wor4_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor4_Act1;90;60;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor4_Act3;550;120;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="wakanagoTest_Par1;wakanagoTest_Wor4_Act2;550;30;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="wakanagoTest_Par1;"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+<ExtendedAttribute Name="Version" Value="1.4.2"/>
+</ExtendedAttributes>
+</Package>
