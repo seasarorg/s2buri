@@ -1,68 +1,41 @@
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
-<TITLE>UnitTestを準備</TITLE>
+<TITLE>XPDLにフローを記述する</TITLE>
 <STYLE><!--
 dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 --></STYLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <DIV CLASS="level"><A HREF="body.html">ホーム</A>
-:<A HREF="body015.html">s2-buriチュートリアル</A>
-:<A HREF="body024.html">s2-buriを使っての実行およびデータの取得</A>
-:<A HREF="body025.html">準備する</A>
+:<A HREF="body019.html">s2-buriチュートリアル</A>
+:<A HREF="body020.html">XPDLの作成および使用</A>
 :</DIV><BR><BR>
-<H1>UnitTestを準備</H1>
+<H1>XPDLにフローを記述する</H1>
 <TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
 <SPAN CLASS="prev"><A HREF="body026.html">前へ</A></SPAN>
 </TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body028.html">次へ</A></SPAN>
 </TD></TR></TABLE>
 <HR>
 <BLOCKQUOTE><P CLASS="text">
-UnitTestを準備します<BR>
+ToolBoxのタブから<BR>
+Insert Processを選択して、大きな白いところに置きます。<BR>
+置いたProcessを右クリックで選択してpropertiesを表示、Nameを「備品管理」に変更します。<BR>
 <BR>
-まずはUnitTestで使うdiconファイル(FurnitureManagement.diconと仮定)<BR>
-<include path="bao.dicon"/><BR>
-配布ファイルに含まれているbao.diconをinclude<BR>
+備品管理プロセスを選択して右クリックでEditを選択します<BR>
 <BR>
-<include path="org/seasar/buri/dicon/allTestDao.dicon"/><BR>
-FurnitureManagementのDaoへアクセスするための設定<BR>
+図のようにGeneric Activityを並べてTransitionでつないでいきます。<BR>
+それぞれのActivityで右クリックしてプロパティーを表示して、Nameを変更します。<BR>
 <BR>
-<component class="org.seasar.buri.bao.FurnitureManagementBao"><BR>
-	<aspect>bao.interceptor</aspect><BR>
-</component><BR>
+利用中と償却期間終了とリース終了の３つのActivityに関してはFinish modeをAutomaticからManualへ変更します<BR>
 <BR>
+期間終了から償却期間終了へ向かうTransitionを選択して、ConditionのExpressionに#data.isBuying() == trueを設定します<BR>
+期間終了からリース終了へ向かうTransitionを選択して、ConditionのExpressionに#data.isLease() == trueを選択します<BR>
+これでフローは準備が出来たので、開発環境のCLASSPATH上に配置します。<BR>
 <BR>
-準備済みのモノは配布ファイルの中の<BR>
-test/org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon<BR>
-ここにあります<BR>
-<BR>
-普通にTestCaseを作り、継承するクラスで<BR>
-S2TestCase<BR>
-を指定します<BR>
-<BR>
-private String PATH = "org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon";<BR>
-<BR>
-ここまで準備します<BR>
-private BuriEngine buriEngine_;<BR>
-private FurnitureManagementBao fmBao_;<BR>
-<BR>
-public FurnitureManagementBaoTest(String arg0) {<BR>
-super(arg0);<BR>
-}<BR>
-<BR>
-protected void setUp() throws Exception {<BR>
-super.setUp();<BR>
-include("org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon");<BR>
-}<BR>
-<BR>
-public void testFMBaoTx() {<BR>
-}<BR>
-<BR>
-この後の作業はすべて testFMBaoTxへの追加になります<BR>
 
 </P></BLOCKQUOTE>
 
 <HR>
-<SPAN CLASS="return"><A HREF="body025.html">準備する に戻る</A></SPAN>
+<SPAN CLASS="return"><A HREF="body020.html">XPDLの作成および使用 に戻る</A></SPAN>
 </BODY></HTML>

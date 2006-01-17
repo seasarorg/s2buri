@@ -1,73 +1,37 @@
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
-<TITLE>Baoのルール</TITLE>
+<TITLE>_ACTION</TITLE>
 <STYLE><!--
 dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 --></STYLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <DIV CLASS="level"><A HREF="body.html">ホーム</A>
-:<A HREF="body048.html">s2-buriリファレンス</A>
-:<A HREF="body066.html">Java</A>
-:<A HREF="body067.html">Bao</A>
+:<A HREF="body053.html">s2-buriリファレンス</A>
+:<A HREF="body071.html">Java</A>
+:<A HREF="body072.html">Bao</A>
+:<A HREF="body073.html">Bao定数アノテーションリファレンス</A>
 :</DIV><BR><BR>
-<H1>Baoのルール</H1>
+<H1>_ACTION</H1>
 <TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
 <SPAN CLASS="prev"><A HREF="body076.html">前へ</A></SPAN>
 </TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body078.html">次へ</A></SPAN>
 </TD></TR></TABLE>
 <HR>
 <BLOCKQUOTE><P CLASS="text">
-Baoはメソッドの記述方法に応じて適切に処理しますが、ルール<BR>
+_ACTION<BR>
+メソッドと一緒に設定するアノテーション<BR>
+オプション<BR>
+フロー処理で有効<BR>
 <BR>
-・メソッド名<BR>
-先頭がget/select/find/count<BR>
-	この場合、データ取得用のメソッドとして判断します。<BR>
-それ以外<BR>
-	処理用メソッドとして判断します。<BR>
-<BR>
-・戻り値<BR>
-処理用メソッドでは何も制限がありません。<BR>
-<BR>
-データ取得用のメソッドでは<BR>
-・List<BR>
-	データの一覧用メソッドとして扱います<BR>
-	実際にはArrayListが戻ります<BR>
-・Number型<BR>
-	データ数取得メソッドとして扱います。<BR>
-<BR>
-データ一覧用メソッドでは<BR>
-dataという名前の引数がなければselect/selectManyが利用され、データを取得します<BR>
-dataという名前の引数がある場合、findManyが利用されます。<BR>
-<BR>
-データ数取得メソッドは<BR>
-あるデータがいくつその状態にあるのかを判断するためのメソッドです。<BR>
-その為、datasという名前のList型の引数が必須です。<BR>
-＃実際に使っているところはorderBao.xpdlの出荷の出荷準備中にあります<BR>
+フローの中で#actionとしてフローを切り替えるときに使います。<BR>
 <BR>
 ex)<BR>
-public List getUnderWork();<BR>
-普通のデータ取得用のメソッドです。_ACTIVITYの指定が必須<BR>
-<BR>
-void order(OrderInfoDto dto);<BR>
-処理用メソッドです。<BR>
-<BR>
-public long getEndShippingCount(List datas);<BR>
-データの数を数えるためのメソッドです。<BR>
-_ACTIVITYと_ARGSの定義が必須<BR>
-<BR>
-public void petition(FurnitureItemDto dto,String userData);<BR>
-ユーザ情報を引数に持つ処理用メソッドです。_ARGSが必須<BR>
-<BR>
-public List getWaitApprove(String userData);<BR>
-ユーザ情報を引数に持つデータ取得用のメソッドです。_ACTIVITYと_ARGSの指定が必須<BR>
-<BR>
-public List findNowUse(FurnitureItemDto findDto);<BR>
-データ検索機能付きのデータ取得用のメソッドです。_ACTIVITY指定が必須<BR>
+public static String cancel_ACTION = "cancel";<BR>
 
 </P></BLOCKQUOTE>
 
 <HR>
-<SPAN CLASS="return"><A HREF="body067.html">Bao に戻る</A></SPAN>
+<SPAN CLASS="return"><A HREF="body073.html">Bao定数アノテーションリファレンス に戻る</A></SPAN>
 </BODY></HTML>

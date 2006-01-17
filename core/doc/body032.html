@@ -1,39 +1,39 @@
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
-<TITLE>デシジョンテーブル</TITLE>
+<TITLE>フローを実行する</TITLE>
 <STYLE><!--
 dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 --></STYLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <DIV CLASS="level"><A HREF="body.html">ホーム</A>
-:<A HREF="body015.html">s2-buriチュートリアル</A>
-:<A HREF="body031.html">ルール処理ライブラリ</A>
+:<A HREF="body019.html">s2-buriチュートリアル</A>
+:<A HREF="body028.html">s2-buriを使っての実行およびデータの取得</A>
 :</DIV><BR><BR>
-<H1>デシジョンテーブル</H1>
+<H1>フローを実行する</H1>
 <TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
 <SPAN CLASS="prev"><A HREF="body031.html">前へ</A></SPAN>
 </TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body033.html">次へ</A></SPAN>
 </TD></TR></TABLE>
 <HR>
 <BLOCKQUOTE><P CLASS="text">
-Harricene<BR>
-複数個の条件式がすべてtrueになったとき特定の値を返すテーブルです。<BR>
+まずはDtoを準備します<BR>
 <BR>
-Excelに条件式を記述するだけの簡単な記述方法と、簡単なAPIで構成されています。<BR>
+FurnitureItemDto buyItemDto = new FurnitureItemDto();<BR>
+buyItemDto.setName("T45_001");<BR>
+buyItemDto.setType("PC");<BR>
+buyItemDto.setAcquisitionTypeBuy();<BR>
+buyItemDto.setAcquisition(new Date());<BR>
+<BR>
+実行用のメソッドを追加します<BR>
+fmBao_.enterItem(buyItemDto);<BR>
+<BR>
+これだけでさっき書いたフローの備品登録が呼びだされ、利用中として保持されます。<BR>
 <BR>
 
 </P></BLOCKQUOTE>
 
 <HR>
-<BLOCKQUOTE>
-<UL CLASS="child"><LI><A HREF="body033.html">Excelファイルを準備する</A>
-<LI><A HREF="body034.html">diconに準備する</A>
-<LI><A HREF="body035.html">判定する</A>
-</UL>
-
-</BLOCKQUOTE>
-<HR>
-<SPAN CLASS="return"><A HREF="body031.html">ルール処理ライブラリ に戻る</A></SPAN>
+<SPAN CLASS="return"><A HREF="body028.html">s2-buriを使っての実行およびデータの取得 に戻る</A></SPAN>
 </BODY></HTML>

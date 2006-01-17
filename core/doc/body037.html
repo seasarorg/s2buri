@@ -8,9 +8,9 @@ dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <DIV CLASS="level"><A HREF="body.html">ホーム</A>
-:<A HREF="body015.html">s2-buriチュートリアル</A>
-:<A HREF="body031.html">ルール処理ライブラリ</A>
-:<A HREF="body036.html">値取得</A>
+:<A HREF="body019.html">s2-buriチュートリアル</A>
+:<A HREF="body035.html">ルール処理ライブラリ</A>
+:<A HREF="body036.html">デシジョンテーブル</A>
 :</DIV><BR><BR>
 <H1>Excelファイルを準備する</H1>
 <TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
@@ -20,26 +20,20 @@ dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 <HR>
 <BLOCKQUOTE><P CLASS="text">
 Sampleは<BR>
-test/org/seasar/buri/tablepickup/impl/<BR>
-ここにあります<BR>
+test/org/seasar/buri/harricene/impl/<BR>
+にあります。<BR>
 <BR>
 使える値は判定実行時に渡したオブジェクトのみです。<BR>
-1行目とA列の両方が一カ所だけtrueになったときその値を取得してきます。<BR>
-記述方法の違う数種類のAPIを準備しています。<BR>
+1行目のB列から条件式を記述します<BR>
+A列は結果の戻り値です。<BR>
+判定方法は<BR>
+1行目のB列の値を判定し、2行目以降のB列の値と同じ場合有効とします。<BR>
+＃B1に値、B2に計算式を入れての判定も可能です。<BR>
 <BR>
-共通の仕様としてはCellの型に従った値が戻り値になります<BR>
+戻り値に関しては、文字列のCellであれば文字列として判定し、数値であれば数値として、日付であれば日付として判定します<BR>
 
 </P></BLOCKQUOTE>
 
 <HR>
-<BLOCKQUOTE>
-<UL CLASS="child"><LI><A HREF="body038.html">pickup</A>
-<LI><A HREF="body039.html">pickupLite</A>
-<LI><A HREF="body040.html">lookup</A>
-<LI><A HREF="body041.html">lookupLite</A>
-</UL>
-
-</BLOCKQUOTE>
-<HR>
-<SPAN CLASS="return"><A HREF="body036.html">値取得 に戻る</A></SPAN>
+<SPAN CLASS="return"><A HREF="body036.html">デシジョンテーブル に戻る</A></SPAN>
 </BODY></HTML>

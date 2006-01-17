@@ -1,37 +1,44 @@
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
-<TITLE>diconに準備する</TITLE>
+<TITLE>さらに・・・</TITLE>
 <STYLE><!--
 dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 --></STYLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <DIV CLASS="level"><A HREF="body.html">ホーム</A>
-:<A HREF="body015.html">s2-buriチュートリアル</A>
-:<A HREF="body031.html">ルール処理ライブラリ</A>
-:<A HREF="body032.html">デシジョンテーブル</A>
+:<A HREF="body019.html">s2-buriチュートリアル</A>
+:<A HREF="body028.html">s2-buriを使っての実行およびデータの取得</A>
 :</DIV><BR><BR>
-<H1>diconに準備する</H1>
+<H1>さらに・・・</H1>
 <TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
 <SPAN CLASS="prev"><A HREF="body033.html">前へ</A></SPAN>
 </TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body035.html">次へ</A></SPAN>
 </TD></TR></TABLE>
 <HR>
 <BLOCKQUOTE><P CLASS="text">
-<component name="Harricene" class="org.seasar.buri.harricene.impl.HarriceneImpl" ><BR>
-  <initMethod name="readFile"><BR>
-    <arg>"org/seasar/buri/harricene/impl/test01.xls"</arg><BR>
-    <arg>["シート名"]</arg><BR>
-  </initMethod><BR>
-</component><BR>
+このままでは単純に保存したのとそれほど違いがなかったので、更に数行追加してみましょう<BR>
 <BR>
-を追加します<BR>
+まずはさっき利用中になっている状態からさらに実行継続<BR>
+fmBao_.timeorverItem(buyItemDto);<BR>
 <BR>
-シート名の引数はオプションです。付けないと最初の一つだけを利用します。<BR>
+利用中に無いことを確認<BR>
+datas = fmBao_.getNowUse();<BR>
+System.out.println(datas);<BR>
+<BR>
+買った備品なので、償却期間終了になってます<BR>
+datas = fmBao_.getEndDepreciation();<BR>
+System.out.println(datas);<BR>
+<BR>
+<BR>
+このようにs2-buriでは簡単な呼び出しとXDPLによるフローの記述だけでワークフローを簡単に実行できるようになっています。<BR>
+<BR>
+更に大きなフローを見てみたい場合はtestフォルダのpetition.xpdlやorderBao.xpdlを参考にしてください<BR>
+良くありがちなワークフローの一部を書いてます。<BR>
 
 </P></BLOCKQUOTE>
 
 <HR>
-<SPAN CLASS="return"><A HREF="body032.html">デシジョンテーブル に戻る</A></SPAN>
+<SPAN CLASS="return"><A HREF="body028.html">s2-buriを使っての実行およびデータの取得 に戻る</A></SPAN>
 </BODY></HTML>

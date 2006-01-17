@@ -1,63 +1,29 @@
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
-<TITLE>Bao</TITLE>
+<TITLE>Toolタブ</TITLE>
 <STYLE><!--
 dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
 --></STYLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <DIV CLASS="level"><A HREF="body.html">ホーム</A>
-:<A HREF="body048.html">s2-buriリファレンス</A>
-:<A HREF="body066.html">Java</A>
+:<A HREF="body053.html">s2-buriリファレンス</A>
+:<A HREF="body054.html">XPDL</A>
 :</DIV><BR><BR>
-<H1>Bao</H1>
+<H1>Toolタブ</H1>
 <TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
 <SPAN CLASS="prev"><A HREF="body066.html">前へ</A></SPAN>
 </TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body068.html">次へ</A></SPAN>
 </TD></TR></TABLE>
 <HR>
 <BLOCKQUOTE><P CLASS="text">
-BaoとはBusinessLogic Access Objectの略です<BR>
-S2Daoの様にinterfaceを定義してAOPを設定するだけでs2-buriの持つすべての機能が簡単に利用できます。<BR>
-仮にXPDLが未実装でもS2のモック機能を使ってモックとして動作させることも出来ます。<BR>
+Activityの処理を追加するところ<BR>
 <BR>
-// Bao用interfaceの終了はBaoで終了させます。<BR>
-public interface OrderBao {<BR>
-<BR>
-// このinterfaceが対象にするプロセス名<BR>
-public static String PROCESS = "注文管理.注文";<BR>
-<BR>
-// データ取得用メソッドには必ずACTIVITYを付けてください<BR>
-public static String getUnderWork_ACTIVITY = "出荷作業中";<BR>
-// メソッド名はget/select/find/countで始めるとデータ取得用と判断します。<BR>
-// デフォルトで引数が一つの場合は#dateとしてアクセスします<BR>
-public List getUnderWork(HogeFindDto dto);<BR>
-<BR>
-// これはプロセスの実行用メソッドになります。Activity指定は省略可能です。(自動的に最適なActivityを選択します)<BR>
-public void order(HogeDto dto);<BR>
-<BR>
-//ユーザ情報を設定したい場合、StandardInvokerを自動的に使う<BR>
-//引数の内容としてはdata,userInfoしか認識しない。省略時はdata<BR>
-//他の名前を付けたモノは自動的にContextで使えるようになる<BR>
-public static String order_ARGS = "data,userInfo";<BR>
-public void order(HogeDto dto,HogeID id);<BR>
-<BR>
-//#actionの設定方法<BR>
-public static String cancel_ACTION = "cancel";<BR>
-//戻り値の設定方法<BR>
-public static String cancel_RESULT = "#result";<BR>
-public Stirng cancel(HogeDto dto);<BR>
+たとえば、他のBuriを呼びだしたり、メールを送信したりと必要に応じて記述する。記述に使うのは現時点ではOgnlInvokerとAfterOgnlInvoker等<BR>
 
 </P></BLOCKQUOTE>
 
 <HR>
-<BLOCKQUOTE>
-<UL CLASS="child"><LI><A HREF="body068.html">Bao定数アノテーションリファレンス</A>
-<LI><A HREF="body077.html">Baoのルール</A>
-</UL>
-
-</BLOCKQUOTE>
-<HR>
-<SPAN CLASS="return"><A HREF="body066.html">Java に戻る</A></SPAN>
+<SPAN CLASS="return"><A HREF="body054.html">XPDL に戻る</A></SPAN>
 </BODY></HTML>
