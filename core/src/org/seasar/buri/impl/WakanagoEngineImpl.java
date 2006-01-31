@@ -58,9 +58,13 @@ public class WakanagoEngineImpl implements WakanagoEngine {
             }
             context.put("WakanagoEngineImpl.isDebugEnabled()",new Boolean(logger.isDebugEnabled()));
             targetTagSelect = flowsUtil.getActivity(buriPath);
-            toolUtil.processActivity(targetTagSelect,container,root,context);
-            flowPickout.addProcessedActivity(buriPath,targetTagSelect,context);
-            buriPath = flowPickout.getNextActivity();
+            if(targetTagSelect.isFinishManual()==false) {
+                toolUtil.processActivity(targetTagSelect,container,root,context);
+                flowPickout.addProcessedActivity(buriPath,targetTagSelect,context);
+                buriPath = flowPickout.getNextActivity();
+            } else {
+                buriPath = null;
+            }
         } while(buriPath != null);
         return targetTagSelect;
     }
