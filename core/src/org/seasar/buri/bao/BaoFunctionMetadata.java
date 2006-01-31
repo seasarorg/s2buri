@@ -14,4 +14,6 @@ public interface BaoFunctionMetadata {
     void setActivityName(String activityName);
     String getActivityName();
     void setBaoMetadata(BaoMetadata metadata);
+    List getValidateAction();
+    void setValidateAction(List validateAction);
 }

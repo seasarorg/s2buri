@@ -29,12 +29,16 @@ public interface OrderBao {
     public static String getOrderCancelEnd_ACTIVITY = "キャンセル終了";
     public List getOrderCancelEnd();
     
+    public static String order_ACTIVITYVALIDATE = "注文";
     public void order(OrderInfoDto dto);
 
+    public static String endShipping_ACTIVITYVALIDATE = "出荷作業中";
     public void endShipping(long orderID);
     
+    public static String endBill_ACTIVITYVALIDATE = "出荷終了";
     public void endBill(long orderID);
     
+    public static String cancel_ACTIVITYVALIDATE = "出荷作業中,出荷終了";
     public static String cancel_ACTION = "cancel";
     public static String cancel_RESULT = "#cancelStatus";
     public String cancel(long orderID);

@@ -6,6 +6,7 @@ package org.seasar.buri.bao.impl;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class BaoMetadataFactoryImpl implements BaoMetadataFactory {
     private final static String ARGS = "_ARGS";
 
     private final static String ACTIVITY = "_ACTIVITY";
+    private final static String ACTIVITYVALIDATE = "_ACTIVITYVALIDATE";
     
     private static final String ACTION = "_ACTION";
     private static final String ACTCONVERTER = "_CONVERTER";
@@ -149,6 +151,7 @@ public class BaoMetadataFactoryImpl implements BaoMetadataFactory {
         BaoInvokeMetadata invokeMetadata = new BaoInvokeMetadataImpl();
         setupArgs(invokeMetadata,invoke);
         setupActivityName(invokeMetadata,invoke);
+        setupValidateActivityName(invokeMetadata,invoke);
         updateAction(invokeMetadata,invoke);
         updateActionConverter(invokeMetadata,invoke);
         updateResult(invokeMetadata,invoke);
@@ -230,6 +233,14 @@ public class BaoMetadataFactoryImpl implements BaoMetadataFactory {
 
     
     
+    
+    protected void setupValidateActivityName(BaoFunctionMetadata funcMetadata,MethodInvocation invoke) {
+        Object val = getMethodSignatureValue(invoke,ACTIVITYVALIDATE);
+        if(val != null) {
+            String validate[] = StringUtil.split(val.toString(),",");
+            funcMetadata.getValidateAction().addAll(Arrays.asList(validate));
+        }
+    }
     
     protected void setupActivityName(BaoFunctionMetadata funcMetadata,MethodInvocation invoke) {
         Object val = getMethodSignatureValue(invoke,ACTIVITY);

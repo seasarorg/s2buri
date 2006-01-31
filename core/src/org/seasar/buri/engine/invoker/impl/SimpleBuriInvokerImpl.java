@@ -34,7 +34,7 @@ public class SimpleBuriInvokerImpl extends AbstractBuriInvoker
     }
 
     public Object invoke(String path, S2Container container, Object data, Object action, String context) {
-        return invoke(path, container, data, null ,action, context, false,null);
+        return invoke(path, container, data, null ,action, context, false,null,null);
     }
 
     
@@ -59,7 +59,7 @@ public class SimpleBuriInvokerImpl extends AbstractBuriInvoker
     }
 
     public Object invokeNoUpdate(String path, S2Container container, Object data, Object action, String context) {
-        return invoke(path, container, data, null ,action, context, true,null);
+        return invoke(path, container, data, null ,action, context, true,null,null);
     }
 
 

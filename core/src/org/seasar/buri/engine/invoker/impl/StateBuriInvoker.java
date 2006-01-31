@@ -23,7 +23,7 @@ public class StateBuriInvoker extends AbstractBuriInvoker {
         addContext.put("autoAction",Boolean.TRUE);
         BuriPath path = pathDaoUtil.getBuriPath(stateDto.getPathID().longValue());
         Object data = accessUtil.getObjectFromDataID(path,stateDto.getDataID().longValue());
-        innerInvoke(path, container.getRoot(), data, null,null, null, false,addContext);
+        innerInvoke(path, container.getRoot(), data, null,null, null, false,addContext,null);
     }
 
     public DataAccessUtil getAccessUtil() {

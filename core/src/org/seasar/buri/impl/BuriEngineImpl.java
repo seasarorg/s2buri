@@ -4,7 +4,9 @@
  */
 package org.seasar.buri.impl;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.seasar.buri.context.BuriLocalContext;
@@ -19,6 +21,7 @@ import org.seasar.buri.engine.FlowPickout;
 import org.seasar.buri.engine.WakanagoEngine;
 import org.seasar.buri.engine.WakanagoWorkFlows;
 import org.seasar.buri.engine.util.BuriTraceElement;
+import org.seasar.buri.exception.BuriValidateException;
 import org.seasar.buri.rule.ConditionProcessingRule;
 import org.seasar.buri.rule.ToolExecuteRule;
 import org.seasar.buri.xpdl.rule.ActivitySelectRule;
@@ -100,8 +103,21 @@ public class BuriEngineImpl implements BuriEngine {
 //        context.setBuriEngine(this);
         context.setCallBuriPath(path);
         pathDaoUtil.getBuriPath(path);
+        validateActionList(path);
     }
 
+    protected void validateActionList(BuriPath path) {
+        BuriLocalContext context = contextUtil.getLocalContext();
+        List validateList = (List)context.get("ValidateAction");
+        if(validateList != null && validateList.size() >= 1) {
+            Collections.sort(validateList);
+            String actName = path.getActivity().get(0).toString();
+            int pos = Collections.binarySearch(validateList,actName);
+            if(pos==-1) {
+                throw new BuriValidateException("",validateList,actName);
+            }
+        }
+    }
     
     public BuriLocalContext createContext(Object data) {
         return createContext(data,container.getRoot());

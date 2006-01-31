@@ -5,6 +5,7 @@
 package org.seasar.buri.xpdl.rule.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.seasar.buri.context.BuriLocalContext;
@@ -12,6 +13,8 @@ import org.seasar.buri.context.ContextUtil;
 import org.seasar.buri.engine.BuriParticipant;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.WakanagoEngine;
+import org.seasar.buri.exception.select.BuriManySelectProcessException;
+import org.seasar.buri.exception.select.BuriNotSelectProcessException;
 import org.seasar.buri.xpdl.rule.ActivitySelectRule;
 import org.seasar.buri.xpdl.util.ActivityTagSelect;
 import org.seasar.buri.xpdl.util.ActivityTagSelectUtil;
@@ -33,14 +36,24 @@ public class BuriActivitySelectRule implements ActivitySelectRule {
         args.put("path",path);
         args.put("participant",context.getBuriParticipant());
         args.put("context",context);
-        Object act = buriExecuteEngine.execute(container, "buri2.BuriWorkFlowsUtil.getFirstActivity",args,"#result");
-        ActivityTagSelect tagSelect = (ActivityTagSelect)act;
-        if(path.getActivity().size()==0) {
-            path.moveChildPath(tagSelect);
-        } else {
-            path.changePath(tagSelect);
-        }
+        List actList = (List)buriExecuteEngine.execute(container, "buri2.BuriWorkFlowsUtil.getFirstActivity",args,"#activityList");
+        ActivityTagSelect tagSelect = getActivityTagSelect(path,actList);
         return tagSelect;
+    }
+    
+    protected ActivityTagSelect getActivityTagSelect(BuriPath path,List actList) {
+        if(actList == null || actList.size() == 0 ) {
+            throw new BuriNotSelectProcessException(path,"同名のActivityがあるのにユーザ情報");
+         } else if(actList.size() > 1) {
+             throw new BuriManySelectProcessException(path,"同名のActivityがあるのにユーザ情報");
+         }
+         ActivityTagSelect tagSelect = (ActivityTagSelect)actList.get(0);
+         if(path.getActivity().size()==0) {
+             path.moveChildPath(tagSelect);
+         } else {
+             path.changePath(tagSelect);
+         }
+         return tagSelect;
     }
 
     public WakanagoEngine getBuriExecuteEngine() {

@@ -13,7 +13,6 @@ public class BaoInvokeMetadataImpl extends AbstractBaoMetadata implements
     private String action = null;
     private BuriConvert buriConvert = null;
     private String result = null;
-    
 
     public String getAction() {
         return action;
@@ -54,5 +53,6 @@ public class BaoInvokeMetadataImpl extends AbstractBaoMetadata implements
         buff.append("]");
         return buff.toString();
     }
+
 
 }

@@ -250,7 +250,7 @@
 <Implementation>
 <Tool Id="buri2_App1" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.select.BuriManySelectProcessException(#args.path,&quot;同名のActivityがあるのにユーザ情報&quot;)"/>
+<ExtendedAttribute Name="exception" Value="//new org.seasar.buri.exception.select.BuriManySelectProcessException(#args.path,&quot;同名のActivityがあるのにユーザ情報&quot;)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -297,7 +297,7 @@
 <Implementation>
 <Tool Id="buri2_App1" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="exception" Value="new org.seasar.buri.exception.select.BuriNotSelectProcessException(#args.path,&quot;同名のActivityがあるのにユーザ情報&quot;)"/>
+<ExtendedAttribute Name="exception" Value="//new org.seasar.buri.exception.select.BuriNotSelectProcessException(#args.path,&quot;同名のActivityがあるのにユーザ情報&quot;)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -2277,8 +2277,8 @@ Stack waitStack</Description>
 <ExtendedAttributes>
 <ExtendedAttribute Name="StartOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act31;220;10;NOROUTING"/>
 <ExtendedAttribute Name="StartOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act1;400;10;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act26;750;390;NOROUTING"/>
 <ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act25;730;910;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act26;750;390;NOROUTING"/>
 <ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act20;100;650;NOROUTING"/>
 <ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act27;690;750;NOROUTING"/>
 <ExtendedAttribute Name="EndOfWorkflow" Value="buri2_Par1;buri2_Wor4_Act15;660;200;NOROUTING"/>

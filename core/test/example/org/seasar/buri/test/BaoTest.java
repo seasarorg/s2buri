@@ -232,6 +232,75 @@ public class BaoTest extends S2TestCase {
         
     }    
     
+    public void testInvokeExceptionOrderTx() {
+        // ñ{ìñÇÕburi2.diconÇ…èëÇ≠Ç‡ÇÃ
+        buriEngine_.getWorkflows().readWorkFlowFromResource("íçï∂ä«óù","orderBao.xpdl");
+
+        customerSetup();
+        itemSetup();
+        List datas = null;
+        OrderInfoDto orderInfoDto1 = orderSetup1();
+
+        orderBao_.order(orderInfoDto1);
+        
+        try{
+            orderBao_.order(orderInfoDto1);
+            fail();
+        } catch(Exception ex) {
+            
+        }
+
+        datas = orderBao_.getUnderWork();
+        assertEquals(datas.size(),1);
+        System.out.println(datas);
+        
+        datas = shippingBao_.getNowWaiting();
+        assertEquals(datas.size(),1);
+        System.out.println(datas);
+        
+        datas = shippingItemBao_.getItemWaiting();
+        assertEquals(datas.size(),2);
+        System.out.println(datas);
+        
+        Object status = orderBao_.cancel(orderInfoDto1.getOrderTitleID());
+        assertEquals(status.toString(),"success");
+        
+        datas = orderBao_.getOrderCancelEnd();
+        assertEquals(datas.size(),1);
+        
+        datas = orderBao_.getUnderWork();
+        assertEquals(datas.size(),0);
+        
+        datas = orderBao_.getEndShipping();
+        assertEquals(datas.size(),0);
+
+        datas = shippingItemBao_.getCancel();
+        System.out.println(datas);
+        assertEquals(datas.size(),2);
+        
+        datas = shippingItemBao_.getItemWaiting();
+        System.out.println(datas);
+        assertEquals(datas.size(),0);
+        
+        datas = shippingItemBao_.getEndShipping();
+        System.out.println(datas);
+        assertEquals(datas.size(),0);
+        
+        datas = shippingBao_.getShippingCancel();
+        System.out.println(datas);
+        assertEquals(datas.size(),1);
+        
+        datas = shippingBao_.getNowWaiting();
+        System.out.println(datas);
+        assertEquals(datas.size(),0);
+        
+        datas = shippingBao_.getEndShipping();
+        System.out.println(datas);
+        assertEquals(datas.size(),0);
+        
+        
+    }    
+    
     protected OrderInfoDto orderSetup1() {
         OrderInfoDto dto = new OrderInfoDto();
         dto.setCustomerID(ãq1.getCustomerID());

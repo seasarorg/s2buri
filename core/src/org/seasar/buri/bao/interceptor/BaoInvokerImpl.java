@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.bao.interceptor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -37,8 +38,10 @@ public class BaoInvokerImpl extends AbstractBuriInvoker implements BaoInvoker {
         Object data = getInvokeData(invokeMetadata,invoke);
         Object userData = getUserData(invokeMetadata,invoke);
         Map appContext = getAppContext(invokeMetadata,invoke,data,"data");
+        Map locContext = new HashMap();
+        locContext.put("ValidateAction",invokeMetadata.getValidateAction());
         getContextUtil().getLocalContext().setContainer(container.getRoot());
-        Object result = innerInvoke(path,container.getRoot(),data,userData,action,resultOgnl,false,appContext);
+        Object result = innerInvoke(path,container.getRoot(),data,userData,action,resultOgnl,false,appContext,locContext);
         return result;
     }
     

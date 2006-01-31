@@ -40,13 +40,13 @@ public abstract class AbstractBuriInvoker {
         return container.getRoot();
     }
     
-    protected Object invokeImpl(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object invokeImpl(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         BuriPath buriPath = new BuriPath(path);
-        Object result = invokeImpl(buriPath, container, data, userData,action, context, notUpdateMode,appendContext);
+        Object result = invokeImpl(buriPath, container, data, userData,action, context, notUpdateMode,appendContext,locContext);
         return result;
     }
     
-    protected Object invokeImpl(BuriPath buriPath, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object invokeImpl(BuriPath buriPath, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         BuriLocalContext localContext = getContextUtil().getLocalContext();
         buriEngine.createContext(data,container);
         setupBuriLocalContext(container, data, userData,action);
@@ -57,55 +57,58 @@ public abstract class AbstractBuriInvoker {
         }
         localContext.getUserContext().setData(data);
         localContext.setIsNotUpdateMode(notUpdateMode);
+        if(locContext !=null) {
+            localContext.putAll(locContext);
+        }
         buriEngine.execute(buriPath);
         Object result = getObjectFromContext(context);
         return result;
     }
     
-    protected Object invoke(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
-        return invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext);
+    protected Object invoke(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map localContext) {
+        return invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext,localContext);
     }
-    protected Object innerInvoke(String path, S2Container s2con, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object innerInvoke(String path, S2Container s2con, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         BuriPath buriPath = new BuriPath(path);
-        Object result = innerInvoke(buriPath, s2con, data, userData,action, context, notUpdateMode,appendContext);
+        Object result = innerInvoke(buriPath, s2con, data, userData,action, context, notUpdateMode,appendContext,locContext);
         return result;
     }
-    protected Object innerInvoke(BuriPath buriPath, S2Container s2con, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object innerInvoke(BuriPath buriPath, S2Container s2con, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         S2Container container = getContextUtil().getLocalContext().getContainer();
         ContextBackup backup = new ContextBackup();
         backup.backup();
         Object result = null;
         if(data instanceof List) {
-            result = invokeList(buriPath, container, (List)data, userData,action, context, notUpdateMode,appendContext);
+            result = invokeList(buriPath, container, (List)data, userData,action, context, notUpdateMode,appendContext,locContext);
         } else {
-            result = invokeOne(buriPath, container, data, userData,action, context, notUpdateMode,appendContext);
+            result = invokeOne(buriPath, container, data, userData,action, context, notUpdateMode,appendContext,locContext);
         }
         backup.restore();
         return result;
     }
-    protected Object invokeOne(BuriPath buriPath, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object invokeOne(BuriPath buriPath, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         getContextUtil().getLocalContext().setContainer(container);
         getContextUtil().getLocalContext().clear();
         getContextUtil().getContext().clear();
-        Object result = invokeImpl(buriPath, container, data, userData,action, context, notUpdateMode,appendContext);
+        Object result = invokeImpl(buriPath, container, data, userData,action, context, notUpdateMode,appendContext,locContext);
         return result;
     }
     
-    protected Object invokeList(BuriPath buriPath, S2Container container, List data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object invokeList(BuriPath buriPath, S2Container container, List data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         Iterator ite = ((List)data).iterator();
         Object result = null;
         while(ite.hasNext()) {
             Object tgt= ite.next();
-            result = invokeOne(buriPath, container, tgt, userData,action, context, notUpdateMode,appendContext);
+            result = invokeOne(buriPath, container, tgt, userData,action, context, notUpdateMode,appendContext,locContext);
         }
         return result;
     }
     
-    protected Object invokeOne(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext) {
+    protected Object invokeOne(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         getContextUtil().getLocalContext().setContainer(container);
         getContextUtil().getLocalContext().clear();
         getContextUtil().getContext().clear();
-        Object result = invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext);
+        Object result = invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext,locContext);
         return result;
     }
     

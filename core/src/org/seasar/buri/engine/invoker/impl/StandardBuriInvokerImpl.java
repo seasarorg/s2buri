@@ -42,7 +42,7 @@ public class StandardBuriInvokerImpl extends AbstractBuriInvoker implements
     }
 
     public Object invokeAction(String path, S2Container container, Object data, Object action, Object userData, String context) {
-        return invoke(path, container, data, userData, action, context,false,null);
+        return invoke(path, container, data, userData, action, context,false,null,null);
     }
 
 
@@ -75,7 +75,7 @@ public class StandardBuriInvokerImpl extends AbstractBuriInvoker implements
     }
 
     public Object invokeActionNoUpdate(String path, S2Container container, Object data, Object action, Object userData, String context) {
-        return invoke(path, container, data, userData, action, context,true,null);
+        return invoke(path, container, data, userData, action, context,true,null,null);
     }
     
 
