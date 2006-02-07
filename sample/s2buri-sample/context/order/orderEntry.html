@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<title>注文画面（商品選択）</title>
+</head>
+<body>
+<h3>注文画面（商品選択）</h3>
+<center>
+
+	注文したい商品を選択し、注文個数を入力して下さい。<br>
+	注文内容が決まったら、注文確認ボタンを押して下さい。<br>
+
+	<!-- ToDo:注文は複数可能にする -->
+	<br>
+	<table border="1">
+		<tr>
+			<th>商品名</th>
+			<th>注文個数</th>
+		</tr>
+		<tr>
+			<td align="center">
+				<select>
+					<option>商品1</option>
+					<option>商品2</option>
+					<option>商品3</option>
+					<option>商品4</option>
+				</select>
+			</td>
+			<td align="center">
+				<input type="text" value="" size="5">個
+			</td>
+		</tr>
+	</table>
+	
+	<br>
+	<table>
+		<tr>
+			<td align="center">
+				<input type="button" value="注文を確認する" onclick="location.href='orderConfirm.html'"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<input type="button" value="注文をキャンセルしログアウトする" onclick="location.href='orderLogout.html'"/>
+			</td>
+		</tr>
+	</table>
+
+</center>
+</body>
+</html>
