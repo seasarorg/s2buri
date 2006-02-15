@@ -4,6 +4,13 @@
  */
 package org.seasar.buri.common.util;
 
+import java.lang.reflect.Field;
+
+import org.aopalliance.intercept.MethodInvocation;
+import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.framework.util.FieldUtil;
+
 public class ClassDefUtilImpl implements ClassDefUtil{
     public String getClassName(Class clazz) {
         return clazz.getName();
@@ -17,5 +24,15 @@ public class ClassDefUtilImpl implements ClassDefUtil{
     public Class getClazz(Object data) {
         Class clazz = data.getClass();
         return clazz;
+    }
+
+    public Object getMethodSignatureValue(MethodInvocation invoke,String sig,String methodName) {
+        BeanDesc desc = BeanDescFactory.getBeanDesc(getClazz(invoke.getThis()));
+        String argsName = methodName+sig;
+        if(desc.hasField(argsName)) {
+            Field field = desc.getField(argsName);
+            return FieldUtil.get(field, null);
+        }
+        return null;
     }
 }
