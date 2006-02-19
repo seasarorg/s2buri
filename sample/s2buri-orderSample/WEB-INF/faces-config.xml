@@ -7,18 +7,34 @@
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
 
 <faces-config>
-	
-    <application>
-    	<message-bundle>appMessages</message-bundle>
-    	<locale-config>
-        	<default-locale>en</default-locale>
-        	<supported-locale>ja</supported-locale>
-    	</locale-config>
+
+	<application>
+		<message-bundle>appMessages</message-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>ja</supported-locale>
+		</locale-config>
 	</application>
 
 	<converter>
 		<converter-for-class>java.util.Date</converter-for-class>
-		<converter-class>org.seasar.jsf.convert.S2DateTimeConverter</converter-class>
+		<converter-class>
+			org.seasar.jsf.convert.S2DateTimeConverter
+		</converter-class>
 	</converter>
-	
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>order</from-outcome>
+			<to-view-id>/order/orderCustomerSelect.html</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>orderEntry</from-outcome>
+			<to-view-id>/order/orderEntry.html</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>

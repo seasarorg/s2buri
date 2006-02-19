@@ -30,5 +30,30 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/s2-framework-2.3.4.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/s2-jsf-1.0.13.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/xercesImpl-2.5.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/derby.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/derbyclient.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/derbyLocale_ja_JP.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/derbynet.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/derbytools.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/jsr173_api.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/ozacc-mail-1.1.4.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2-buri-0.2.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2javelin.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/saxon8.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/saxon8-jdom.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/saxon8-sql.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/xbean_xpath.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/xbean.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/xmlpublic.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/xpdl.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derby.jar"/>
+	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbyclient.jar"/>
+	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbytools.jar"/>
+	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbynet.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

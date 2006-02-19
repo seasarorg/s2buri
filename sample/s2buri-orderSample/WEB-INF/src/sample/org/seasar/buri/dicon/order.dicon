@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="aop.dicon"/>
+
+	<component class="sample.org.seasar.buri.dto.CustomerListDto" instance="request"/>
+	
+	<component class="org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister">
+		<initMethod name="addClassPattern">
+			<arg>"sample.org.seasar.buri.action.impl"</arg>
+			<arg>".*Impl"</arg>
+		</initMethod>
+		<initMethod name="addClassPattern">
+			<arg>"sample.org.seasar.buri.logic.impl"</arg>
+			<arg>".*Impl"</arg>
+		</initMethod>
+    </component>
+
+	<component class="org.seasar.framework.container.autoregister.AspectAutoRegister">
+		<property name="interceptor">aop.traceInterceptor</property>
+		<initMethod name="addClassPattern">
+			<arg>"sample.org.seasar.buri.action.impl"</arg>
+			<arg>".*Impl"</arg>
+		</initMethod>
+		<initMethod name="addClassPattern">
+			<arg>"sample.org.seasar.buri.logic.impl"</arg>
+			<arg>".*Impl"</arg>
+		</initMethod>
+	</component>	
+	
+</components>
