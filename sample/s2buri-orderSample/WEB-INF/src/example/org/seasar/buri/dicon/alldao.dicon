@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="dao.dicon"/>
+	<include path="aop.dicon"/>
+
+	<component name="DaoInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<initMethod name="add"><arg>aop.traceInterceptor</arg></initMethod>
+		<initMethod name="add"><arg>dao.interceptor</arg></initMethod>
+	</component>
+	<component name="ComponentInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<initMethod name="add"><arg>dao.interceptor</arg></initMethod>
+	</component>
+
+	<component name="OrderInfoDao" class="example.org.seasar.buri.dao.util.OrderInfoDao">
+	</component>
+
+	<component name="ShippingSetDao" class="example.org.seasar.buri.dao.util.ShippingSetDao">
+	</component>
+
+	
+	<component name="ShippingDao" class="example.org.seasar.buri.dao.ShippingDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	<component name="OrderTitleDao" class="example.org.seasar.buri.dao.OrderTitleDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	<component name="ItemDao" class="example.org.seasar.buri.dao.ItemDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	<component name="OrderDetailDao" class="example.org.seasar.buri.dao.OrderDetailDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	<component name="ShippingItemDao" class="example.org.seasar.buri.dao.ShippingItemDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	<component name="CustomerDao" class="example.org.seasar.buri.dao.CustomerDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	<component name="BillDao" class="example.org.seasar.buri.dao.BillDao">
+		<aspect>DaoInterceptorChain</aspect>
+	</component>
+
+	
+</components>

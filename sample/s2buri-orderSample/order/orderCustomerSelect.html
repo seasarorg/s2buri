@@ -1,0 +1,52 @@
+<html xmlns:m="http://www.seasar.org/maya" m:action="#{orderCustomerSelectInitAction.inithialize}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<title>注文画面（顧客名選択）</title>
+</head>
+<body>
+<h3>注文画面（顧客名選択）</h3>
+<center>
+
+	注文をする顧客を選択して、ログインボタンを押して下さい。<br>
+	
+	<br>
+	<form>
+	<table>
+		<tr>
+			<td>
+				<select
+					m:value="#{customerListDto.customerList}"
+					m:label="顧客名"
+					m:itemValue="customerName"
+					m:itemLabel="customerId"
+					m:nullLabel="選択して下さい。">
+					<option value="1">選択して下さい。</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+		
+	<br>
+	<table>
+		<tr>
+			<td>
+				<input 
+					type="submit" 
+					value="注文画面へ" 
+					m:action="orderEntry"
+					onclick="location.href='orderEntry.html'"/>
+			</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td>
+				<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+			</td>
+		</tr>
+	</table>
+	</form>
+</center>
+</body>
+</html>
