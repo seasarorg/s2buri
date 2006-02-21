@@ -55,5 +55,7 @@
 	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbyclient.jar"/>
 	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbytools.jar"/>
 	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbynet.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/orai18n.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

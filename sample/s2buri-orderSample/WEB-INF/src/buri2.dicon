@@ -10,6 +10,7 @@
 	</component>
 	
 	<component name="UtilCache" class="org.seasar.buri.xpdl.util.impl.interceptor.UtilCacheInterceptor" >
+		<property name="classDefUtil">ClassDefUtil</property>
 	</component>
 
 	<component class="org.seasar.buri.engine.BuriParticipant" instance="request" >
@@ -20,6 +21,9 @@
 	</component>
 	<component name="LocalContext" class="org.seasar.buri.context.BuriLocalContextImpl" instance="request" >
 		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	
+	<component name="ClassDefUtil" class="org.seasar.buri.common.util.ClassDefUtilImpl">
 	</component>
 
 	<component class="org.seasar.buri.context.utilImpl.BuriContextUtilImpl" >
@@ -40,123 +44,127 @@
 
 	<component class="org.seasar.buri.impl.WakanagoFlowsImpl">
 		<aspect>BuriInterceptorChain</aspect>
+	<!--
 		<initMethod name="readWorkFlowFromResource">
-			<arg>"注文管理"</arg>
-			<arg>"orderBao.xpdl"</arg>
+			<arg>"buri2"</arg>
+			<arg>"xpdl/buri2.xpdl"</arg>
 		</initMethod>
+	-->
 	</component>
+	
 	
 	<component class="org.seasar.buri.xpdl.util.impl.DataFieldUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.seasar.buri.xpdl.util.impl.BuriDataMetaDataUtilImpl">
-		<aspect pointcut="getMetaDataFromTypeName" >UtilCache</aspect>
 		<aspect>BuriInterceptorChain</aspect>
+		<aspect pointcut="getMetaDataFromTypeName" >UtilCache</aspect>
 	</component>
 	<component name="BuriPathDaoUtil" class="org.seasar.buri.dao.util.impl.BuriPathDaoUtilImpl">
-		<property name="buriPathDao">BuriPathDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="buriPathDao">BuriPathDao</property>
 	</component>
 	<component name="DataIDListUtil" class="org.seasar.buri.dao.datautil.impl.DataIDListUtilImpl">
-		<property name="buriDataDao">BuriDataDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="buriDataDao">BuriDataDao</property>
 	</component>
 	<component name="BuriHistoryUtil" class="org.seasar.buri.dao.util.impl.BuriHistoryUtilImpl">
-		<property name="buriDataPathHistoryDao">BuriDataPathHistoryDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="buriDataPathHistoryDao">BuriDataPathHistoryDao</property>
 	</component>
 	<component name="DataAccessUtil" class="org.seasar.buri.dao.datautil.impl.DataAccessUtilImpl">
-		<property name="buriDataDao">BuriDataDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="buriDataDao">BuriDataDao</property>
 	</component>
 
 <!-- sequence 有りのDBを使う場合 で高速化をする場合(Dtoを書き換えてjar作り直しの必要有り)
 	<component name="BuriDataDaoUtil" class="org.seasar.buri.dao.datautil.impl.BuriDataDaoUtilImpl">
-		<property name="buriDataDao">BuriDataDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="buriDataDao">BuriDataDao</property>
 	</component>
 	<component name="BuriBranchDaoUtil" class="org.seasar.buri.dao.util.impl.BuriBranchDaoUtilImpl">
-		<property name="branchDao">BuriBranchDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="branchDao">BuriBranchDao</property>
 	</component>
 	<component name="BuriStateUtil" class="org.seasar.buri.dao.util.impl.BuriStateUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="pathDao">BuriPathDao</property>
 		<property name="branchDao">BuriBranchDao</property>
 		<property name="stateDao">BuriStateDao</property>
-		<aspect>BuriInterceptorChain</aspect>
 	</component>
   -->
   
 <!-- 標準設定
   -->
 	<component name="BuriDataDaoUtil" class="org.seasar.buri.dao.datautil.impl.NoSBuriDataDaoUtilImpl">
-		<property name="buriDataDao">BuriDataDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="buriDataDao">BuriDataDao</property>
 	</component>
 	<component name="BuriBranchDaoUtil" class="org.seasar.buri.dao.util.impl.NoSBuriBranchDaoUtilImpl">
-		<property name="branchDao">BuriBranchDao</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="branchDao">BuriBranchDao</property>
 	</component>
 	<component name="BuriStateUtil" class="org.seasar.buri.dao.util.impl.NoSBuriStateUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="pathDao">BuriPathDao</property>
 		<property name="branchDao">BuriBranchDao</property>
 		<property name="stateDao">BuriStateDao</property>
-		<aspect>BuriInterceptorChain</aspect>
 	</component>
 <!-- 標準設定　ここまで
   -->
 
 
 	<component class="org.seasar.buri.xpdl.util.impl.ActivityTagSelectImpl" instance="prototype">
-		<property name="activity">null</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="activity">null</property>
 	</component>
 	<component class="org.seasar.buri.xpdl.util.impl.WorkFlowPackageTagSelectImpl" instance="prototype">
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="packageDocument">null</property>
 		<property name="participantProvider">null</property>
-		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.seasar.buri.xpdl.util.impl.WorkflowProcessTagSelectImpl" instance="prototype">
-		<property name="workflowProcess">null</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="workflowProcess">null</property>
 	</component>
 	<component class="org.seasar.buri.xpdl.util.impl.ToolTagSelectImpl" instance="prototype">
-		<property name="tool">null</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="tool">null</property>
 	</component>
 
 
 	<component class="org.seasar.buri.xpdl.util.impl.ApplicationUutilImpl">
-		<property name="pathUtil">pathUtil</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
 	</component>
 	<component name="ExtendedAttributeUtil" class="org.seasar.buri.xpdl.util.impl.ExtendedAttributeUtilImpl">
-		<property name="pathUtil">pathUtil</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
 	</component>
 	<component name="ParticipantUtil" class="org.seasar.buri.xpdl.util.impl.ParticipantUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="pathUtil">pathUtil</property>
 		<aspect pointcut="getParticipantList,getParticipantFromName,getParticipant,getParticipantArray" >UtilCache</aspect>
-		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component name="ToolUtil" class="org.seasar.buri.xpdl.util.impl.ToolUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="pathUtil">pathUtil</property>
 		<aspect pointcut="getTools" >UtilCache</aspect>
-		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.seasar.buri.xpdl.util.impl.ActivityTagSelectUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.seasar.buri.xpdl.util.impl.TransitionUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="pathUtil">pathUtil</property>
 		<aspect pointcut="getTransitions,hasSplitTransitionRestriction,hasJoinTransitionRestriction,getJoinTransitions,isSplitAnd,isSplitXor,isJoinXor,getTransitionFromActivityId,getTransitionToActivityId,getTransitionFromId" >UtilCache</aspect>
-		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component name="WorkFlowsUtil" class="org.seasar.buri.xpdl.util.impl.WorkFlowsUtilImpl">
-		<property name="pathUtil">pathUtil</property>
-		<property name="activitySelectRule">wakanago.ActivitySelectRule</property>
-		<aspect pointcut="getActivity,getActivityTagSelectList" >UtilCache</aspect>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="pathUtil">pathUtil</property>
+		<!--<property name="activitySelectRule">wakanago.ActivitySelectRule</property>-->
+		<!--<property name="activitySelectRule">BuriActivitySelectRule</property>-->
+		<aspect pointcut="getActivity,getActivityTagSelectList" >UtilCache</aspect>
 	</component>
 	<component name="pathUtil" class="org.seasar.buri.xpdl.util.impl.XPathUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
@@ -183,8 +191,8 @@
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="com.ozacc.mail.impl.SendMailImpl">
-		<property name="host">"127.0.0.1"</property>
 		<aspect>BuriInterceptorChain</aspect>
+		<property name="host">"127.0.0.1"</property>
 	</component>
 
 	<component name="OgnlInvoker" class="org.seasar.buri.component.impl.OgnlInvokerImpl">

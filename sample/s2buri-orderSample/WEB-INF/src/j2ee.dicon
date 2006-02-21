@@ -3,7 +3,7 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components namespace="j2ee">
 
-	<include path="DerbyWeb.dicon"/>
+	<include path="Oracle.dicon"/>
 
 	<component name="transactionManager"
 		class="org.seasar.extension.jta.TransactionManagerImpl"/>
