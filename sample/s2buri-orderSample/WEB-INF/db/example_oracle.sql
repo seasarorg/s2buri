@@ -8,6 +8,10 @@ CREATE TABLE Bill (
        CustomerID           NUMBER(38,0) NOT NULL 
 );
 
+DROP INDEX XIF4Bill;
+DROP INDEX XIF5Bill;
+DROP INDEX XIF6Bill;
+
 CREATE INDEX XIF4Bill ON Bill(ShippingID ASC);
 CREATE INDEX XIF5Bill ON Bill(OrderTItleID ASC);
 CREATE INDEX XIF6Bill ON Bill(CustomerID ASC);
@@ -31,6 +35,9 @@ CREATE TABLE ShippingItem (
        ShippingID           NUMBER(38,0) NOT NULL ,
        ShippingItemID       NUMBER(38,0) NOT NULL
 );
+
+DROP INDEX XIF1ShippingItem;
+DROP INDEX XIF2ShippingItem;
 
 CREATE INDEX XIF1ShippingItem ON ShippingItem(OrderDetailID ASC);
 CREATE INDEX XIF2ShippingItem ON ShippingItem(ShippingID ASC);
@@ -56,6 +63,9 @@ CREATE TABLE Shipping (
        CustomerID           NUMBER(38,0) NOT NULL 
 );
 
+DROP INDEX XIF3Shipping;
+DROP INDEX XIF4Shipping;
+
 CREATE INDEX XIF3Shipping ON Shipping(OrderTitleID ASC);
 CREATE INDEX XIF4Shipping ON Shipping(CustomerID ASC);
 
@@ -80,6 +90,9 @@ CREATE TABLE OrderDetail (
        OrderTitleID         NUMBER(38,0) NOT NULL 
 );
 
+DROP INDEX XIF3OrderDetail;
+DROP INDEX XIF4OrderDetail;
+
 CREATE INDEX XIF3OrderDetail ON OrderDetail(ItemID ASC);
 CREATE INDEX XIF4OrderDetail ON OrderDetail(OrderTitleID ASC);
 
@@ -103,6 +116,8 @@ CREATE TABLE OrderTitle (
        CustomerID           NUMBER(38,0) NOT NULL ,
        status               INTEGER
 );
+
+DROP INDEX XIF2OrderTitle;
 
 CREATE INDEX XIF2OrderTitle ON OrderTitle(CustomerID ASC);
 

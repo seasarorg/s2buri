@@ -1,0 +1,819 @@
+DEBUG 2006-02-22 14:45:19,609 [main] END org.seasar.buri.dao.BuriBranchDao#insert([/branchID=0/parentBranchID=null/pathID=6/dataID=3/processDate=null/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:19,609 [main] Line:5//式=[BuriBranchDaoUtil.setupBranchID(#stateDto,#args.path)] :[/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:19,609 [main] #branchDto = [/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:19,609 [main] Line:6//式=[BuriBranchDaoUtil.updateBranchPath(#branchDto,#args.path)] :null
+DEBUG 2006-02-22 14:45:19,609 [main] // 最初に実行するstateは処理済みにする
+DEBUG 2006-02-22 14:45:19,609 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getBuriStateByPathAndData(6, 3)
+DEBUG 2006-02-22 14:45:19,609 [main] SELECT 
+	BuriState.dataid
+	, BuriState.branchid
+	, BuriState.pathid
+	, BuriState.processdate
+	, BuriState.versionno
+	, BuriState.insertdate
+	, BuriState.useridnum
+	, BuriState.useridval
+	, BuriState.stateid
+	, BuriState.abortdate 
+FROM 
+	BuriState 
+WHERE 
+	pathID = 6 
+	and dataID = 3 
+	and processDate > CURRENT_TIMESTAMP
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,639 [main] END org.seasar.buri.dao.BuriStateDao#getBuriStateByPathAndData(6, 3) : null
+DEBUG 2006-02-22 14:45:19,639 [main] BEGIN org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:19 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0])
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,639 [main] select BuriStatusID.nextval from dual
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,639 [main] INSERT INTO BuriState (dataid, useridnum, useridval, branchid, pathid, processdate, versionno, insertdate, stateid, autoruntime, abortdate) VALUES (3, null, null, 3, 6, '9999-12-31', 0, '2006-02-22', 5, '9999-12-31', '9999-12-31')
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,639 [main] END org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:19 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:19,639 [main] Line:9//式=[BuriStateUtil.readStateDto(#args.path,#branchDto.branchID)] :[/stateID=5/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:19 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]
+DEBUG 2006-02-22 14:45:19,639 [main] #stateDto = [/stateID=5/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:19 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]
+DEBUG 2006-02-22 14:45:19,639 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getBuriState(5)
+DEBUG 2006-02-22 14:45:19,639 [main] SELECT BuriState.dataid, BuriState.useridnum, BuriState.useridval, BuriState.branchid, BuriState.pathid, BuriState.processdate, BuriState.versionno, BuriState.insertdate, BuriState.stateid, BuriState.autoruntime, BuriState.abortdate FROM BuriState WHERE  BuriState.StateID = 5
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,639 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,639 [main] END org.seasar.buri.dao.BuriStateDao#getBuriState(5) : [/stateID=5/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:19.639/processDate=9999-12-31 23:59:59.0/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=0]
+DEBUG 2006-02-22 14:45:19,639 [main] BEGIN org.seasar.buri.dao.BuriStateDao#update([/stateID=5/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:19.639/processDate=Wed Feb 22 14:45:19 JST 2006/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=0])
+DEBUG 2006-02-22 14:45:19,649 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,649 [main] UPDATE BuriState SET dataid = 3, useridnum = null, useridval = null, branchid = 3, pathid = 6, processdate = '2006-02-22', versionno = 1, insertdate = '2006-02-22 14.45.19', autoruntime = '9999-12-31 23.59.59', abortdate = '9999-12-31 23.59.59' WHERE stateID = 5 AND versionno = 0
+DEBUG 2006-02-22 14:45:19,649 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,649 [main] END org.seasar.buri.dao.BuriStateDao#update([/stateID=5/pathID=6/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:19.639/processDate=Wed Feb 22 14:45:19 JST 2006/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:19,649 [main] Line:10//式=[BuriStateUtil.stopBuriState(#stateDto)] :null
+DEBUG 2006-02-22 14:45:19,649 [main] //#stateDto.branchID = #branchDto.branchID
+DEBUG 2006-02-22 14:45:19,649 [main] // branchスタックを準備する
+DEBUG 2006-02-22 14:45:19,649 [main] Line:14//式=[new java.util.Stack()] :[]
+DEBUG 2006-02-22 14:45:19,649 [main] #branchStack = []
+DEBUG 2006-02-22 14:45:19,649 [main] Line:15//式=[#branchStack.push(#branchDto)] :[/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:19,649 [main] // 実行に必要なデータとオブジェクトの準備
+DEBUG 2006-02-22 14:45:19,649 [main] Line:18//式=[BuriEngine.createBuriTraceElement(#args.path)] :[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor1_Act2/childElement=null]]
+/tracePath=注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:19,649 [main] #traceEle = [nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor1_Act2/childElement=null]]
+/tracePath=注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:19,649 [main] //↓互換性のため
+DEBUG 2006-02-22 14:45:19,649 [main] Line:20//式=[FlowPickout] :org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:19,649 [main] #flowPickout = org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:19,649 [main] // Pathの準備
+DEBUG 2006-02-22 14:45:19,649 [main] Line:22//式=[BuriPathDaoUtil.setup(#args.path)] :null
+DEBUG 2006-02-22 14:45:19,649 [main] Line:23//式=[#args.path] :注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,649 [main] #nextPath = 注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,649 [main] END ExecutePath = [buri2.BuriEngine.BranchIDを取得[buri2.buri2_Wor6.buri2_Wor6_Act1]]
+DEBUG 2006-02-22 14:45:19,659 [main] wakanago Processed = buri2.BuriEngine.スタックをチェックする[buri2.buri2_Wor6.buri2_Wor6_Act20]
+DEBUG 2006-02-22 14:45:19,659 [main] wakanago Processed = buri2.BuriEngine.スタックから一つ取り出す[buri2.buri2_Wor6.buri2_Wor6_Act21]
+DEBUG 2006-02-22 14:45:19,669 [main] BEGIN ExecutePath = [buri2.BuriEngine.スタックから一つ取り出す[buri2.buri2_Wor6.buri2_Wor6_Act21]]
+DEBUG 2006-02-22 14:45:19,669 [main] Line:0//式=[#branchStack.pop()] :[/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:19,669 [main] #tgtBranch = [/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:19,669 [main] BEGIN org.seasar.buri.dao.BuriPathDao#getBuriPath(6)
+DEBUG 2006-02-22 14:45:19,669 [main] SELECT BuriPath.pathid, BuriPath.pathname, BuriPath.realpathname FROM BuriPath WHERE  BuriPath.PathID = 6
+DEBUG 2006-02-22 14:45:19,669 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,669 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,669 [main] END org.seasar.buri.dao.BuriPathDao#getBuriPath(6) : [/pathID=6/pathName=注文管理.注文.注文/realPathName=注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,669 [main] Line:1//式=[BuriPathDaoUtil.getBuriPath(#tgtBranch.pathID)] :注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,669 [main] #nextPath = 注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,669 [main] END ExecutePath = [buri2.BuriEngine.スタックから一つ取り出す[buri2.buri2_Wor6.buri2_Wor6_Act21]]
+DEBUG 2006-02-22 14:45:19,669 [main] wakanago Processed = buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act22]
+DEBUG 2006-02-22 14:45:19,679 [main] BEGIN ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act22]]
+DEBUG 2006-02-22 14:45:19,679 [main] Line:0//式=[BuriEngine.createBuriTraceElement(#nextPath)] :[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor1_Act2/childElement=null]]
+/tracePath=注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:19,709 [main] #traceEle = [nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor1_Act2/childElement=null]]
+/tracePath=注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:19,729 [main] BEGIN org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=6/dataID=3/insertDate=Wed Feb 22 14:45:19 JST 2006])
+DEBUG 2006-02-22 14:45:19,729 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,729 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,740 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,740 [main] select BurihistoryID.nextval from dual
+DEBUG 2006-02-22 14:45:19,740 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,740 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,740 [main] INSERT INTO BuriDataPathHistory (dataid, useridnum, useridval, pathid, historyid, insertdate) VALUES (3, null, null, 6, 6, '2006-02-22')
+DEBUG 2006-02-22 14:45:19,750 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,750 [main] END org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=6/dataID=3/insertDate=Wed Feb 22 14:45:19 JST 2006]) : 1
+DEBUG 2006-02-22 14:45:19,750 [main] Line:1//式=[BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)] :null
+DEBUG 2006-02-22 14:45:19,750 [main] BuriEngine processed = 注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]/data={[/orderTitleID=0/orderDate=Wed Feb 22 14:45:18 JST 2006/customerID=3/status=0]/orderDetail=[[/orderDetailID=0/orderCount=1/itemID=7/orderTitleID=0], [/orderDetailID=0/orderCount=2/itemID=8/orderTitleID=0]]}/userData=null
+DEBUG 2006-02-22 14:45:19,750 [main] Line:2//式=[BuriEngine.traceBuriPath(#nextPath)] :null
+DEBUG 2006-02-22 14:45:19,750 [main] END ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act22]]
+DEBUG 2006-02-22 14:45:19,750 [main] wakanago Processed = buri2.BuriEngine.最初のPathと同じ時[buri2.buri2_Wor6.buri2_Wor6_Act6]
+DEBUG 2006-02-22 14:45:19,750 [main] BEGIN ExecutePath = [buri2.BuriEngine.最初のPathと同じ時[buri2.buri2_Wor6.buri2_Wor6_Act6]]
+DEBUG 2006-02-22 14:45:19,750 [main] wakanago Processed = buri2.BuriFlowPickout.doFirstSelectActivity[buri2.BuriFlowPickout.doFirstSelectActivity]
+DEBUG 2006-02-22 14:45:19,760 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.doFirstSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act31]]
+DEBUG 2006-02-22 14:45:19,760 [main] Line:0//式=[#args.traceEle.tagSelect] :ActivityTagSelectImpl注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,760 [main] #activity = ActivityTagSelectImpl注文管理.注文.注文[注文管理.order_Wor1.order_Wor1_Act1]
+DEBUG 2006-02-22 14:45:19,760 [main] END ExecutePath = [buri2.BuriFlowPickout.doFirstSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act31]]
+DEBUG 2006-02-22 14:45:19,760 [main] wakanago Processed = buri2.BuriFlowPickout.FinishMode==Auto[buri2.buri2_Wor4.buri2_Wor4_Act14]
+DEBUG 2006-02-22 14:45:19,770 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]
+DEBUG 2006-02-22 14:45:19,780 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]]
+DEBUG 2006-02-22 14:45:19,780 [main] Line:0//式=[FlowPickout] :org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:19,780 [main] #flowPickout = org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:19,780 [main] Line:1//式=[new java.util.Stack()] :[]
+DEBUG 2006-02-22 14:45:19,780 [main] #waitStack = []
+DEBUG 2006-02-22 14:45:19,780 [main] //Condition式=[true] :true
+DEBUG 2006-02-22 14:45:19,780 [main] Line:2//式=[#flowPickout.setupWaitStack(#args.traceEle.tracePath,#waitStack,#args.traceEle,InnerContext)] :[注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]]
+DEBUG 2006-02-22 14:45:19,780 [main] #waitStack = [注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]]
+DEBUG 2006-02-22 14:45:19,780 [main] END ExecutePath = [buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]]
+DEBUG 2006-02-22 14:45:19,790 [main] wakanago Processed = buri2.BuriFlowPickout.Activityチェック[buri2.buri2_Wor4.buri2_Wor4_Act17]
+DEBUG 2006-02-22 14:45:19,790 [main] wakanago Processed = buri2.BuriFlowPickout.Split==XOR[buri2.buri2_Wor4.buri2_Wor4_Act18]
+DEBUG 2006-02-22 14:45:19,800 [main] wakanago Processed = buri2.BuriFlowPickout.単一分岐[buri2.buri2_Wor4.buri2_Wor4_Act21]
+DEBUG 2006-02-22 14:45:19,810 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先チェック[buri2.buri2_Wor4.buri2_Wor4_Act24]
+DEBUG 2006-02-22 14:45:19,810 [main] wakanago Processed = buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]
+DEBUG 2006-02-22 14:45:19,820 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]]
+DEBUG 2006-02-22 14:45:19,820 [main] Line:0//式=[#waitStack.pop()] :注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,820 [main] #nextPath = 注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,820 [main] Line:1//式=[WorkFlowsUtil.getActivityTagSelectFromPathAndParticipant(#nextPath,LocalContext.buriParticipant)] :ActivityTagSelectImpl注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,820 [main] #nextAct = ActivityTagSelectImpl注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,820 [main] END ExecutePath = [buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]]
+DEBUG 2006-02-22 14:45:19,830 [main] wakanago Processed = buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]
+DEBUG 2006-02-22 14:45:19,830 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]]
+DEBUG 2006-02-22 14:45:19,830 [main] Line:0//式=[#nextAct.getXorJoinTransitions()] :[]
+DEBUG 2006-02-22 14:45:19,830 [main] #transitions = []
+DEBUG 2006-02-22 14:45:19,830 [main] END ExecutePath = [buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]]
+DEBUG 2006-02-22 14:45:19,840 [main] wakanago Processed = buri2.BuriFlowPickout.単一XORJoin[buri2.buri2_Wor4.buri2_Wor4_Act40]
+DEBUG 2006-02-22 14:45:19,850 [main] wakanago Processed = buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]
+DEBUG 2006-02-22 14:45:19,850 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]]
+DEBUG 2006-02-22 14:45:19,860 [main] Line:0//式=[#args.waitStack.add(#nextPath)] :true
+DEBUG 2006-02-22 14:45:19,860 [main] END ExecutePath = [buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]]
+DEBUG 2006-02-22 14:45:19,860 [main] wakanago Processed = buri2.BuriFlowPickout.次の処理へ[buri2.buri2_Wor4.buri2_Wor4_Act28]
+DEBUG 2006-02-22 14:45:19,860 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先チェック[buri2.buri2_Wor4.buri2_Wor4_Act24]
+DEBUG 2006-02-22 14:45:19,860 [main] wakanago Processed = buri2.BuriFlowPickout.終了[buri2.buri2_Wor4.buri2_Wor4_Act25]
+DEBUG 2006-02-22 14:45:19,870 [main] Line:0//式=[#flowPickout.doFirstSelectActivity(#traceEle)] :null
+DEBUG 2006-02-22 14:45:19,870 [main] END ExecutePath = [buri2.BuriEngine.最初のPathと同じ時[buri2.buri2_Wor6.buri2_Wor6_Act6]]
+DEBUG 2006-02-22 14:45:19,870 [main] wakanago Processed = buri2.BuriEngine.Generic[buri2.buri2_Wor6.buri2_Wor6_Act7]
+DEBUG 2006-02-22 14:45:19,880 [main] wakanago Processed = buri2.BuriEngine.後続Path size() != 0[buri2.buri2_Wor6.buri2_Wor6_Act8]
+DEBUG 2006-02-22 14:45:19,890 [main] wakanago Processed = buri2.BuriEngine.Pathの分岐＝XOR[buri2.buri2_Wor6.buri2_Wor6_Act15]
+DEBUG 2006-02-22 14:45:19,890 [main] wakanago Processed = buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]
+DEBUG 2006-02-22 14:45:19,890 [main] BEGIN ExecutePath = [buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]]
+DEBUG 2006-02-22 14:45:19,900 [main] Line:0//式=[#flowPickout.getNextActivity()] :注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,900 [main] #nextPath = 注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,900 [main] END ExecutePath = [buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]]
+DEBUG 2006-02-22 14:45:19,910 [main] wakanago Processed = buri2.BuriEngine.後続処理対象がある時[buri2.buri2_Wor6.buri2_Wor6_Act10]
+DEBUG 2006-02-22 14:45:19,910 [main] wakanago Processed = buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]
+DEBUG 2006-02-22 14:45:19,910 [main] BEGIN ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]]
+DEBUG 2006-02-22 14:45:19,920 [main] Line:0//式=[BuriEngine.createBuriTraceElement(#nextPath)] :[nextElementItems=[[condition=#action==null/judges=false/nextActivityId=order_Wor1_Act3/childElement=null], [condition=#action=="cancel"/judges=false/nextActivityId=order_Wor1_Act5/childElement=null]]
+/tracePath=注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:19,920 [main] #traceEle = [nextElementItems=[[condition=#action==null/judges=false/nextActivityId=order_Wor1_Act3/childElement=null], [condition=#action=="cancel"/judges=false/nextActivityId=order_Wor1_Act5/childElement=null]]
+/tracePath=注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:19,920 [main] BEGIN org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor1.order_Wor1_Act2)
+DEBUG 2006-02-22 14:45:19,920 [main] SELECT BuriPath.pathid, BuriPath.pathname, BuriPath.realpathname FROM BuriPath WHERE  BuriPath.realPathName = '注文管理.order_Wor1.order_Wor1_Act2'
+DEBUG 2006-02-22 14:45:19,920 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,930 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,930 [main] END org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor1.order_Wor1_Act2) : null
+DEBUG 2006-02-22 14:45:19,930 [main] BEGIN org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.注文.出荷作業中/realPathName=注文管理.order_Wor1.order_Wor1_Act2])
+DEBUG 2006-02-22 14:45:19,930 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,930 [main] select BuriPathID.nextval from dual
+DEBUG 2006-02-22 14:45:19,930 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,940 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,940 [main] INSERT INTO BuriPath (pathid, pathname, realpathname) VALUES (7, '注文管理.注文.出荷作業中', '注文管理.order_Wor1.order_Wor1_Act2')
+DEBUG 2006-02-22 14:45:19,940 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,940 [main] END org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.注文.出荷作業中/realPathName=注文管理.order_Wor1.order_Wor1_Act2]) : 1
+DEBUG 2006-02-22 14:45:19,940 [main] BEGIN org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=7/dataID=3/insertDate=Wed Feb 22 14:45:19 JST 2006])
+DEBUG 2006-02-22 14:45:19,940 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,940 [main] select BurihistoryID.nextval from dual
+DEBUG 2006-02-22 14:45:19,940 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:19,940 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,940 [main] INSERT INTO BuriDataPathHistory (dataid, useridnum, useridval, pathid, historyid, insertdate) VALUES (3, null, null, 7, 7, '2006-02-22')
+DEBUG 2006-02-22 14:45:19,940 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:19,940 [main] END org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=7/dataID=3/insertDate=Wed Feb 22 14:45:19 JST 2006]) : 1
+DEBUG 2006-02-22 14:45:19,940 [main] Line:1//式=[BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)] :null
+DEBUG 2006-02-22 14:45:19,940 [main] BuriEngine processed = 注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]/data={[/orderTitleID=0/orderDate=Wed Feb 22 14:45:18 JST 2006/customerID=3/status=0]/orderDetail=[[/orderDetailID=0/orderCount=1/itemID=7/orderTitleID=0], [/orderDetailID=0/orderCount=2/itemID=8/orderTitleID=0]]}/userData=null
+DEBUG 2006-02-22 14:45:19,940 [main] Line:2//式=[BuriEngine.traceBuriPath(#nextPath)] :null
+DEBUG 2006-02-22 14:45:19,940 [main] END ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]]
+DEBUG 2006-02-22 14:45:19,940 [main] wakanago Processed = buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]
+DEBUG 2006-02-22 14:45:19,950 [main] BEGIN ExecutePath = [buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]]
+DEBUG 2006-02-22 14:45:19,970 [main] Line:0//式=[ToolUtil.processActivity(#traceEle.tagSelect,#container,LocalContext.data,InnerContext)] :null
+DEBUG 2006-02-22 14:45:19,970 [main] wakanago Processed = buri2.BuriFlowPickout.doSelectActivity[buri2.BuriFlowPickout.doSelectActivity]
+DEBUG 2006-02-22 14:45:19,970 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.doSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act1]]
+DEBUG 2006-02-22 14:45:19,970 [main] Line:0//式=[#args.traceEle.tagSelect] :ActivityTagSelectImpl注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,970 [main] #activity = ActivityTagSelectImpl注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]
+DEBUG 2006-02-22 14:45:19,970 [main] END ExecutePath = [buri2.BuriFlowPickout.doSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act1]]
+DEBUG 2006-02-22 14:45:19,980 [main] wakanago Processed = buri2.BuriFlowPickout.Activityチェック[buri2.buri2_Wor4.buri2_Wor4_Act13]
+DEBUG 2006-02-22 14:45:19,980 [main] wakanago Processed = buri2.BuriFlowPickout.FinishMode==Manual[buri2.buri2_Wor4.buri2_Wor4_Act15]
+DEBUG 2006-02-22 14:45:19,990 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.FinishMode==Manual[buri2.buri2_Wor4.buri2_Wor4_Act15]]
+DEBUG 2006-02-22 14:45:19,990 [main] Line:0//式=[#args.status.add(#args.traceEle.tracePath)] :true
+DEBUG 2006-02-22 14:45:19,990 [main] END ExecutePath = [buri2.BuriFlowPickout.FinishMode==Manual[buri2.buri2_Wor4.buri2_Wor4_Act15]]
+DEBUG 2006-02-22 14:45:20,000 [main] Line:1//式=[#flowPickout.doSelectActivity(#traceEle)] :null
+DEBUG 2006-02-22 14:45:20,000 [main] END ExecutePath = [buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]]
+DEBUG 2006-02-22 14:45:20,000 [main] wakanago Processed = buri2.BuriEngine.Generic[buri2.buri2_Wor6.buri2_Wor6_Act7]
+DEBUG 2006-02-22 14:45:20,000 [main] wakanago Processed = buri2.BuriEngine.後続Path size() == 0[buri2.buri2_Wor6.buri2_Wor6_Act9]
+DEBUG 2006-02-22 14:45:20,000 [main] BEGIN ExecutePath = [buri2.BuriEngine.後続Path size() == 0[buri2.buri2_Wor6.buri2_Wor6_Act9]]
+DEBUG 2006-02-22 14:45:20,010 [main] BEGIN org.seasar.buri.dao.BuriBranchDao#update([/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=Wed Feb 22 14:45:20 JST 2006/versionNo=0])
+DEBUG 2006-02-22 14:45:20,010 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,010 [main] UPDATE BuriBranch SET dataid = 3, parentbranchid = null, pathid = 6, processdate = '2006-02-22', versionno = 1 WHERE branchID = 3 AND versionno = 0
+DEBUG 2006-02-22 14:45:20,010 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,020 [main] END org.seasar.buri.dao.BuriBranchDao#update([/branchID=3/parentBranchID=null/pathID=6/dataID=3/processDate=Wed Feb 22 14:45:20 JST 2006/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,020 [main] Line:0//式=[BuriBranchDaoUtil.saveBranchEntityDto(#tgtBranch)] :null
+DEBUG 2006-02-22 14:45:20,020 [main] END ExecutePath = [buri2.BuriEngine.後続Path size() == 0[buri2.buri2_Wor6.buri2_Wor6_Act9]]
+DEBUG 2006-02-22 14:45:20,020 [main] wakanago Processed = buri2.BuriEngine.State size != 0[buri2.buri2_Wor6.buri2_Wor6_Act17]
+DEBUG 2006-02-22 14:45:20,030 [main] BEGIN ExecutePath = [buri2.BuriEngine.State size != 0[buri2.buri2_Wor6.buri2_Wor6_Act17]]
+DEBUG 2006-02-22 14:45:20,040 [main] BEGIN org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=7/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0])
+DEBUG 2006-02-22 14:45:20,040 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,040 [main] select BuriStatusID.nextval from dual
+DEBUG 2006-02-22 14:45:20,040 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,040 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,040 [main] INSERT INTO BuriState (dataid, useridnum, useridval, branchid, pathid, processdate, versionno, insertdate, stateid, autoruntime, abortdate) VALUES (3, null, null, 3, 7, '9999-12-31', 0, '2006-02-22', 6, '9999-12-31', '9999-12-31')
+DEBUG 2006-02-22 14:45:20,040 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,040 [main] END org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=7/dataID=3/branchID=3/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,040 [main] Line:0//式=[BuriStateUtil.updateStateDto(#stateDto,#flowPickout.getPrevStatus(),#tgtBranch.branchID)] :null
+DEBUG 2006-02-22 14:45:20,040 [main] END ExecutePath = [buri2.BuriEngine.State size != 0[buri2.buri2_Wor6.buri2_Wor6_Act17]]
+DEBUG 2006-02-22 14:45:20,050 [main] wakanago Processed = buri2.BuriEngine.後続処理対象がない時[buri2.buri2_Wor6.buri2_Wor6_Act11]
+DEBUG 2006-02-22 14:45:20,050 [main] wakanago Processed = buri2.BuriEngine.スタックをチェックする[buri2.buri2_Wor6.buri2_Wor6_Act2]
+DEBUG 2006-02-22 14:45:20,060 [main] wakanago Processed = buri2.BuriEngine.キューが無くなった場合[buri2.buri2_Wor6.buri2_Wor6_Act12]
+DEBUG 2006-02-22 14:45:20,060 [main] wakanago Processed = buri2.BuriEngine.データを保存する[buri2.buri2_Wor6.buri2_Wor6_Act19]
+DEBUG 2006-02-22 14:45:20,070 [main] BEGIN ExecutePath = [buri2.BuriEngine.データを保存する[buri2.buri2_Wor6.buri2_Wor6_Act19]]
+DEBUG 2006-02-22 14:45:20,070 [main] Line:0//式=[OrderInfoDao] :example.org.seasar.buri.dao.util.OrderInfoDao@20ca8b
+DEBUG 2006-02-22 14:45:20,070 [main] BEGIN example.org.seasar.buri.dao.OrderTitleDao#insert({[/orderTitleID=0/orderDate=Wed Feb 22 14:45:18 JST 2006/customerID=3/status=0]/orderDetail=[[/orderDetailID=0/orderCount=1/itemID=7/orderTitleID=0], [/orderDetailID=0/orderCount=2/itemID=8/orderTitleID=0]]})
+DEBUG 2006-02-22 14:45:20,080 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,080 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,100 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,100 [main] select orderTitleID.nextval from dual
+DEBUG 2006-02-22 14:45:20,100 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,100 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,100 [main] INSERT INTO OrderTitle (ordertitleid, customerid, orderdate, status) VALUES (2, 3, '2006-02-22', 0)
+DEBUG 2006-02-22 14:45:20,110 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,110 [main] END example.org.seasar.buri.dao.OrderTitleDao#insert({[/orderTitleID=0/orderDate=Wed Feb 22 14:45:18 JST 2006/customerID=3/status=0]/orderDetail=[[/orderDetailID=0/orderCount=1/itemID=7/orderTitleID=0], [/orderDetailID=0/orderCount=2/itemID=8/orderTitleID=0]]}) : 1
+DEBUG 2006-02-22 14:45:20,110 [main] BEGIN example.org.seasar.buri.dao.OrderDetailDao#insert([/orderDetailID=0/orderCount=1/itemID=7/orderTitleID=2])
+DEBUG 2006-02-22 14:45:20,110 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,120 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,120 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,120 [main] select orderDetailID.nextval from dual
+DEBUG 2006-02-22 14:45:20,120 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,120 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,120 [main] INSERT INTO OrderDetail (ordertitleid, itemid, ordercount, orderdetailid) VALUES (2, 7, 1, 3)
+DEBUG 2006-02-22 14:45:20,140 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,140 [main] END example.org.seasar.buri.dao.OrderDetailDao#insert([/orderDetailID=0/orderCount=1/itemID=7/orderTitleID=2]) : 1
+DEBUG 2006-02-22 14:45:20,140 [main] BEGIN example.org.seasar.buri.dao.OrderDetailDao#insert([/orderDetailID=0/orderCount=2/itemID=8/orderTitleID=2])
+DEBUG 2006-02-22 14:45:20,140 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,140 [main] select orderDetailID.nextval from dual
+DEBUG 2006-02-22 14:45:20,150 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,150 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,150 [main] INSERT INTO OrderDetail (ordertitleid, itemid, ordercount, orderdetailid) VALUES (2, 8, 2, 4)
+DEBUG 2006-02-22 14:45:20,150 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,150 [main] END example.org.seasar.buri.dao.OrderDetailDao#insert([/orderDetailID=0/orderCount=2/itemID=8/orderTitleID=2]) : 1
+DEBUG 2006-02-22 14:45:20,150 [main] Line:1//式=[OrderInfoDao.insert(#data)] :null
+DEBUG 2006-02-22 14:45:20,150 [main] BEGIN org.seasar.buri.dao.BuriDataDao#update([/dataID=3/pkeyVal=null/pkeyNum=2/dataType=example.org.seasar.buri.dto.OrderInfoDto])
+DEBUG 2006-02-22 14:45:20,150 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,150 [main] UPDATE BuriData SET datatype = 'example.org.seasar.buri.dto.OrderInfoDto', pkeyval = null, pkeynum = 2 WHERE dataID = 3
+DEBUG 2006-02-22 14:45:20,150 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,150 [main] END org.seasar.buri.dao.BuriDataDao#update([/dataID=3/pkeyVal=null/pkeyNum=2/dataType=example.org.seasar.buri.dto.OrderInfoDto]) : 1
+DEBUG 2006-02-22 14:45:20,150 [main] Line:0//式=[BuriDataDaoUtil.storeBuriData(#args.path)] :null
+DEBUG 2006-02-22 14:45:20,150 [main] END ExecutePath = [buri2.BuriEngine.データを保存する[buri2.buri2_Wor6.buri2_Wor6_Act19]]
+DEBUG 2006-02-22 14:45:20,150 [main] wakanago Processed = buri2.BuriEngine.終了[buri2.buri2_Wor6.buri2_Wor6_Act13]
+DEBUG 2006-02-22 14:45:20,160 [main] BEGIN ExecutePath = [注文管理.注文.出荷作業中[注文管理.order_Wor1.order_Wor1_Act2]]
+DEBUG 2006-02-22 14:45:20,160 [main] BEGIN example.org.seasar.buri.dao.ShippingDao#getShippingByOrderTitleID(2)
+DEBUG 2006-02-22 14:45:20,160 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,160 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,170 [main] SELECT Shipping.ordertitleid, Shipping.customerid, Shipping.shippingid, Shipping.shippingdate FROM Shipping WHERE orderTitleID = 2
+DEBUG 2006-02-22 14:45:20,170 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,170 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,170 [main] END example.org.seasar.buri.dao.ShippingDao#getShippingByOrderTitleID(2) : null
+DEBUG 2006-02-22 14:45:20,180 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.getFirstActivity[buri2.BuriWorkFlowsUtil.getFirstActivity]
+DEBUG 2006-02-22 14:45:20,180 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.Generic[buri2.buri2_Wor3.buri2_Wor3_Act27]
+DEBUG 2006-02-22 14:45:20,180 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.Generic[buri2.buri2_Wor3.buri2_Wor3_Act9]
+DEBUG 2006-02-22 14:45:20,180 [main] BEGIN ExecutePath = [buri2.BuriWorkFlowsUtil.Generic[buri2.buri2_Wor3.buri2_Wor3_Act9]]
+DEBUG 2006-02-22 14:45:20,210 [main] Line:0//式=[WorkFlowsUtil] :org.seasar.buri.xpdl.util.impl.WorkFlowsUtilImpl$$EnhancedByS2AOP$$19845fb@17834de
+DEBUG 2006-02-22 14:45:20,210 [main] #workflows = org.seasar.buri.xpdl.util.impl.WorkFlowsUtilImpl$$EnhancedByS2AOP$$19845fb@17834de
+DEBUG 2006-02-22 14:45:20,210 [main] END ExecutePath = [buri2.BuriWorkFlowsUtil.Generic[buri2.buri2_Wor3.buri2_Wor3_Act9]]
+DEBUG 2006-02-22 14:45:20,210 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.pathにActivityが無いとき[buri2.buri2_Wor3.buri2_Wor3_Act11]
+DEBUG 2006-02-22 14:45:20,210 [main] BEGIN ExecutePath = [buri2.BuriWorkFlowsUtil.pathにActivityが無いとき[buri2.buri2_Wor3.buri2_Wor3_Act11]]
+DEBUG 2006-02-22 14:45:20,210 [main] BEGIN org.seasar.buri.dao.BuriDataDao#getBuridataFromDto([/dataID=0/pkeyVal=null/pkeyNum=0/dataType=example.org.seasar.buri.dto.ShippingSetDto])
+DEBUG 2006-02-22 14:45:20,210 [main] select
+	*
+from
+	Buridata
+where
+	dataType = 'example.org.seasar.buri.dto.ShippingSetDto'
+	
+	and pkeyNum = 0
+
+DEBUG 2006-02-22 14:45:20,210 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,210 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,210 [main] END org.seasar.buri.dao.BuriDataDao#getBuridataFromDto([/dataID=0/pkeyVal=null/pkeyNum=0/dataType=example.org.seasar.buri.dto.ShippingSetDto]) : null
+DEBUG 2006-02-22 14:45:20,210 [main] Line:0//式=[BuriDataDaoUtil.readOnlyBuriDataID(#args.path)] :0
+DEBUG 2006-02-22 14:45:20,210 [main] END ExecutePath = [buri2.BuriWorkFlowsUtil.pathにActivityが無いとき[buri2.buri2_Wor3.buri2_Wor3_Act11]]
+DEBUG 2006-02-22 14:45:20,210 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.データIDが無いとき[buri2.buri2_Wor3.buri2_Wor3_Act23]
+DEBUG 2006-02-22 14:45:20,210 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.pathにprocessがある時[buri2.buri2_Wor3.buri2_Wor3_Act13]
+DEBUG 2006-02-22 14:45:20,210 [main] BEGIN ExecutePath = [buri2.BuriWorkFlowsUtil.pathにprocessがある時[buri2.buri2_Wor3.buri2_Wor3_Act13]]
+DEBUG 2006-02-22 14:45:20,210 [main] //#packageTagSelect = #workflows.getPackageTagSelect(#args.path)
+DEBUG 2006-02-22 14:45:20,210 [main] //#processTagSelect = #packageTagSelect.getWorkflowTagSelectFromBuriPath(#args.path)
+DEBUG 2006-02-22 14:45:20,210 [main] //#activityList = #processTagSelect.getStartActivityTagSelectList()
+DEBUG 2006-02-22 14:45:20,230 [main] Line:3//式=[WorkFlowsUtil.getStartActivityTagSelectList(#args.path)] :[ActivityTagSelectImpl注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]]
+DEBUG 2006-02-22 14:45:20,230 [main] #activityList = [ActivityTagSelectImpl注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]]
+DEBUG 2006-02-22 14:45:20,230 [main] END ExecutePath = [buri2.BuriWorkFlowsUtil.pathにprocessがある時[buri2.buri2_Wor3.buri2_Wor3_Act13]]
+DEBUG 2006-02-22 14:45:20,230 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.Activityが準備終わり[buri2.buri2_Wor3.buri2_Wor3_Act15]
+DEBUG 2006-02-22 14:45:20,250 [main] BEGIN ExecutePath = [buri2.BuriWorkFlowsUtil.Activityが準備終わり[buri2.buri2_Wor3.buri2_Wor3_Act15]]
+DEBUG 2006-02-22 14:45:20,250 [main] Line:0//式=[WorkFlowsUtil.getWorkFlowPackage(#args.path)] :org.seasar.buri.xpdl.util.impl.WorkFlowPackageTagSelectImpl$$EnhancedByS2AOP$$18a3a1d@1be20c
+DEBUG 2006-02-22 14:45:20,250 [main] #packageTagSelect = org.seasar.buri.xpdl.util.impl.WorkFlowPackageTagSelectImpl$$EnhancedByS2AOP$$18a3a1d@1be20c
+DEBUG 2006-02-22 14:45:20,250 [main] Line:1//式=[#packageTagSelect.getParticipantProvider()] :null
+DEBUG 2006-02-22 14:45:20,250 [main] #ParticipantProvider = null
+DEBUG 2006-02-22 14:45:20,250 [main] END ExecutePath = [buri2.BuriWorkFlowsUtil.Activityが準備終わり[buri2.buri2_Wor3.buri2_Wor3_Act15]]
+DEBUG 2006-02-22 14:45:20,250 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.Providerが設定されて無いとき[buri2.buri2_Wor3.buri2_Wor3_Act17]
+DEBUG 2006-02-22 14:45:20,250 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.Generic[buri2.buri2_Wor3.buri2_Wor3_Act21]
+DEBUG 2006-02-22 14:45:20,250 [main] wakanago Processed = buri2.BuriWorkFlowsUtil.一つだけ[buri2.buri2_Wor3.buri2_Wor3_Act19]
+DEBUG 2006-02-22 14:45:20,250 [main] BEGIN ExecutePath = [buri2.BuriWorkFlowsUtil.一つだけ[buri2.buri2_Wor3.buri2_Wor3_Act19]]
+DEBUG 2006-02-22 14:45:20,250 [main] Line:0//式=[#activityList.get(0)] :ActivityTagSelectImpl注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,250 [main] #result = ActivityTagSelectImpl注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,250 [main] END ExecutePath = [buri2.BuriWorkFlowsUtil.一つだけ[buri2.buri2_Wor3.buri2_Wor3_Act19]]
+DEBUG 2006-02-22 14:45:20,250 [main] BEGIN org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor2.order_Wor2_Act1)
+DEBUG 2006-02-22 14:45:20,250 [main] SELECT BuriPath.pathid, BuriPath.pathname, BuriPath.realpathname FROM BuriPath WHERE  BuriPath.realPathName = '注文管理.order_Wor2.order_Wor2_Act1'
+DEBUG 2006-02-22 14:45:20,250 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,250 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,250 [main] END org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor2.order_Wor2_Act1) : null
+DEBUG 2006-02-22 14:45:20,250 [main] BEGIN org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.出荷.出荷依頼/realPathName=注文管理.order_Wor2.order_Wor2_Act1])
+DEBUG 2006-02-22 14:45:20,250 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,250 [main] select BuriPathID.nextval from dual
+DEBUG 2006-02-22 14:45:20,250 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,250 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,250 [main] INSERT INTO BuriPath (pathid, pathname, realpathname) VALUES (8, '注文管理.出荷.出荷依頼', '注文管理.order_Wor2.order_Wor2_Act1')
+DEBUG 2006-02-22 14:45:20,250 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,250 [main] END org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.出荷.出荷依頼/realPathName=注文管理.order_Wor2.order_Wor2_Act1]) : 1
+DEBUG 2006-02-22 14:45:20,260 [main] wakanago Processed = buri2.BuriEngine.execute[buri2.BuriEngine.execute]
+DEBUG 2006-02-22 14:45:20,260 [main] wakanago Processed = buri2.BuriEngine.BranchIDを取得[buri2.buri2_Wor6.buri2_Wor6_Act1]
+DEBUG 2006-02-22 14:45:20,260 [main] BEGIN ExecutePath = [buri2.BuriEngine.BranchIDを取得[buri2.buri2_Wor6.buri2_Wor6_Act1]]
+DEBUG 2006-02-22 14:45:20,260 [main] // 初期設定
+DEBUG 2006-02-22 14:45:20,260 [main] BEGIN org.seasar.buri.dao.BuriDataDao#getBuridataFromDto([/dataID=0/pkeyVal=null/pkeyNum=0/dataType=example.org.seasar.buri.dto.ShippingSetDto])
+DEBUG 2006-02-22 14:45:20,260 [main] select
+	*
+from
+	Buridata
+where
+	dataType = 'example.org.seasar.buri.dto.ShippingSetDto'
+	
+	and pkeyNum = 0
+
+DEBUG 2006-02-22 14:45:20,260 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,260 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,260 [main] END org.seasar.buri.dao.BuriDataDao#getBuridataFromDto([/dataID=0/pkeyVal=null/pkeyNum=0/dataType=example.org.seasar.buri.dto.ShippingSetDto]) : null
+DEBUG 2006-02-22 14:45:20,260 [main] BEGIN org.seasar.buri.dao.BuriDataDao#insert([/dataID=0/pkeyVal=null/pkeyNum=0/dataType=example.org.seasar.buri.dto.ShippingSetDto])
+DEBUG 2006-02-22 14:45:20,260 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,260 [main] select BuriDataID.nextval from dual
+DEBUG 2006-02-22 14:45:20,260 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,260 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,260 [main] INSERT INTO BuriData (dataid, datatype, pkeyval, pkeynum) VALUES (4, 'example.org.seasar.buri.dto.ShippingSetDto', null, 0)
+DEBUG 2006-02-22 14:45:20,270 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,270 [main] END org.seasar.buri.dao.BuriDataDao#insert([/dataID=0/pkeyVal=null/pkeyNum=0/dataType=example.org.seasar.buri.dto.ShippingSetDto]) : 1
+DEBUG 2006-02-22 14:45:20,270 [main] Line:2//式=[BuriDataDaoUtil.createOnlyBuriDataID(#args.path)] :4
+DEBUG 2006-02-22 14:45:20,370 [main] //branchを準備する
+DEBUG 2006-02-22 14:45:20,370 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getAllBuriStateByPathAndData(8, 4)
+DEBUG 2006-02-22 14:45:20,370 [main] SELECT 
+	BuriState.dataid
+	, BuriState.branchid
+	, BuriState.pathid
+	, BuriState.processdate
+	, BuriState.versionno
+	, BuriState.insertdate
+	, BuriState.useridnum
+	, BuriState.useridval
+	, BuriState.stateid
+	, BuriState.abortdate 
+FROM 
+	BuriState 
+WHERE 
+	pathID = 8 
+	and dataID = 4 
+order by 
+	processDate DESC
+DEBUG 2006-02-22 14:45:20,380 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,380 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,380 [main] END org.seasar.buri.dao.BuriStateDao#getAllBuriStateByPathAndData(8, 4) : null
+DEBUG 2006-02-22 14:45:20,380 [main] BEGIN org.seasar.buri.dao.BuriBranchDao#insert([/branchID=0/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0])
+DEBUG 2006-02-22 14:45:20,380 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,380 [main] select BuriBranchID.nextval from dual
+DEBUG 2006-02-22 14:45:20,380 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,380 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,380 [main] INSERT INTO BuriBranch (dataid, branchid, parentbranchid, pathid, processdate, versionno) VALUES (4, 4, null, 8, null, 0)
+DEBUG 2006-02-22 14:45:20,420 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,420 [main] END org.seasar.buri.dao.BuriBranchDao#insert([/branchID=0/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,420 [main] Line:5//式=[BuriBranchDaoUtil.setupBranchID(#stateDto,#args.path)] :[/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:20,420 [main] #branchDto = [/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:20,420 [main] Line:6//式=[BuriBranchDaoUtil.updateBranchPath(#branchDto,#args.path)] :null
+DEBUG 2006-02-22 14:45:20,420 [main] // 最初に実行するstateは処理済みにする
+DEBUG 2006-02-22 14:45:20,420 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getBuriStateByPathAndData(8, 4)
+DEBUG 2006-02-22 14:45:20,420 [main] SELECT 
+	BuriState.dataid
+	, BuriState.branchid
+	, BuriState.pathid
+	, BuriState.processdate
+	, BuriState.versionno
+	, BuriState.insertdate
+	, BuriState.useridnum
+	, BuriState.useridval
+	, BuriState.stateid
+	, BuriState.abortdate 
+FROM 
+	BuriState 
+WHERE 
+	pathID = 8 
+	and dataID = 4 
+	and processDate > CURRENT_TIMESTAMP
+DEBUG 2006-02-22 14:45:20,420 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,420 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,420 [main] END org.seasar.buri.dao.BuriStateDao#getBuriStateByPathAndData(8, 4) : null
+DEBUG 2006-02-22 14:45:20,420 [main] BEGIN org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0])
+DEBUG 2006-02-22 14:45:20,420 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,420 [main] select BuriStatusID.nextval from dual
+DEBUG 2006-02-22 14:45:20,420 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,420 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,420 [main] INSERT INTO BuriState (dataid, useridnum, useridval, branchid, pathid, processdate, versionno, insertdate, stateid, autoruntime, abortdate) VALUES (4, null, null, 4, 8, '9999-12-31', 0, '2006-02-22', 7, '9999-12-31', '9999-12-31')
+DEBUG 2006-02-22 14:45:20,431 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,431 [main] END org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,431 [main] Line:9//式=[BuriStateUtil.readStateDto(#args.path,#branchDto.branchID)] :[/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]
+DEBUG 2006-02-22 14:45:20,431 [main] #stateDto = [/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]
+DEBUG 2006-02-22 14:45:20,431 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getBuriState(7)
+DEBUG 2006-02-22 14:45:20,431 [main] SELECT BuriState.dataid, BuriState.useridnum, BuriState.useridval, BuriState.branchid, BuriState.pathid, BuriState.processdate, BuriState.versionno, BuriState.insertdate, BuriState.stateid, BuriState.autoruntime, BuriState.abortdate FROM BuriState WHERE  BuriState.StateID = 7
+DEBUG 2006-02-22 14:45:20,431 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,431 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,431 [main] END org.seasar.buri.dao.BuriStateDao#getBuriState(7) : [/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=9999-12-31 23:59:59.0/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=0]
+DEBUG 2006-02-22 14:45:20,431 [main] BEGIN org.seasar.buri.dao.BuriStateDao#update([/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=Wed Feb 22 14:45:20 JST 2006/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=0])
+DEBUG 2006-02-22 14:45:20,431 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,431 [main] UPDATE BuriState SET dataid = 4, useridnum = null, useridval = null, branchid = 4, pathid = 8, processdate = '2006-02-22', versionno = 1, insertdate = '2006-02-22 14.45.20', autoruntime = '9999-12-31 23.59.59', abortdate = '9999-12-31 23.59.59' WHERE stateID = 7 AND versionno = 0
+DEBUG 2006-02-22 14:45:20,431 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,431 [main] END org.seasar.buri.dao.BuriStateDao#update([/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=Wed Feb 22 14:45:20 JST 2006/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,431 [main] Line:10//式=[BuriStateUtil.stopBuriState(#stateDto)] :null
+DEBUG 2006-02-22 14:45:20,431 [main] //#stateDto.branchID = #branchDto.branchID
+DEBUG 2006-02-22 14:45:20,431 [main] // branchスタックを準備する
+DEBUG 2006-02-22 14:45:20,431 [main] Line:14//式=[new java.util.Stack()] :[]
+DEBUG 2006-02-22 14:45:20,431 [main] #branchStack = []
+DEBUG 2006-02-22 14:45:20,431 [main] Line:15//式=[#branchStack.push(#branchDto)] :[/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:20,431 [main] // 実行に必要なデータとオブジェクトの準備
+DEBUG 2006-02-22 14:45:20,441 [main] Line:18//式=[BuriEngine.createBuriTraceElement(#args.path)] :[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act2/childElement=null]]
+/tracePath=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,441 [main] #traceEle = [nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act2/childElement=null]]
+/tracePath=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,441 [main] //↓互換性のため
+DEBUG 2006-02-22 14:45:20,441 [main] Line:20//式=[FlowPickout] :org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:20,441 [main] #flowPickout = org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:20,441 [main] // Pathの準備
+DEBUG 2006-02-22 14:45:20,451 [main] Line:22//式=[BuriPathDaoUtil.setup(#args.path)] :null
+DEBUG 2006-02-22 14:45:20,451 [main] Line:23//式=[#args.path] :注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,451 [main] #nextPath = 注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,451 [main] END ExecutePath = [buri2.BuriEngine.BranchIDを取得[buri2.buri2_Wor6.buri2_Wor6_Act1]]
+DEBUG 2006-02-22 14:45:20,451 [main] wakanago Processed = buri2.BuriEngine.スタックをチェックする[buri2.buri2_Wor6.buri2_Wor6_Act20]
+DEBUG 2006-02-22 14:45:20,451 [main] wakanago Processed = buri2.BuriEngine.スタックから一つ取り出す[buri2.buri2_Wor6.buri2_Wor6_Act21]
+DEBUG 2006-02-22 14:45:20,451 [main] BEGIN ExecutePath = [buri2.BuriEngine.スタックから一つ取り出す[buri2.buri2_Wor6.buri2_Wor6_Act21]]
+DEBUG 2006-02-22 14:45:20,451 [main] Line:0//式=[#branchStack.pop()] :[/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:20,451 [main] #tgtBranch = [/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:20,451 [main] BEGIN org.seasar.buri.dao.BuriPathDao#getBuriPath(8)
+DEBUG 2006-02-22 14:45:20,451 [main] SELECT BuriPath.pathid, BuriPath.pathname, BuriPath.realpathname FROM BuriPath WHERE  BuriPath.PathID = 8
+DEBUG 2006-02-22 14:45:20,451 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,451 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,451 [main] END org.seasar.buri.dao.BuriPathDao#getBuriPath(8) : [/pathID=8/pathName=注文管理.出荷.出荷依頼/realPathName=注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,451 [main] Line:1//式=[BuriPathDaoUtil.getBuriPath(#tgtBranch.pathID)] :注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,451 [main] #nextPath = 注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,461 [main] END ExecutePath = [buri2.BuriEngine.スタックから一つ取り出す[buri2.buri2_Wor6.buri2_Wor6_Act21]]
+DEBUG 2006-02-22 14:45:20,461 [main] wakanago Processed = buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act22]
+DEBUG 2006-02-22 14:45:20,461 [main] BEGIN ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act22]]
+DEBUG 2006-02-22 14:45:20,461 [main] Line:0//式=[BuriEngine.createBuriTraceElement(#nextPath)] :[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act2/childElement=null]]
+/tracePath=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,461 [main] #traceEle = [nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act2/childElement=null]]
+/tracePath=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,461 [main] BEGIN org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=8/dataID=4/insertDate=Wed Feb 22 14:45:20 JST 2006])
+DEBUG 2006-02-22 14:45:20,461 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,461 [main] select BurihistoryID.nextval from dual
+DEBUG 2006-02-22 14:45:20,461 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,461 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,461 [main] INSERT INTO BuriDataPathHistory (dataid, useridnum, useridval, pathid, historyid, insertdate) VALUES (4, null, null, 8, 8, '2006-02-22')
+DEBUG 2006-02-22 14:45:20,461 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,461 [main] END org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=8/dataID=4/insertDate=Wed Feb 22 14:45:20 JST 2006]) : 1
+DEBUG 2006-02-22 14:45:20,461 [main] Line:1//式=[BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)] :null
+DEBUG 2006-02-22 14:45:20,471 [main] BuriEngine processed = 注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]/data={[/shippingID=0/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}/userData=null
+DEBUG 2006-02-22 14:45:20,471 [main] Line:2//式=[BuriEngine.traceBuriPath(#nextPath)] :null
+DEBUG 2006-02-22 14:45:20,471 [main] END ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act22]]
+DEBUG 2006-02-22 14:45:20,471 [main] wakanago Processed = buri2.BuriEngine.最初のPathと同じ時[buri2.buri2_Wor6.buri2_Wor6_Act6]
+DEBUG 2006-02-22 14:45:20,471 [main] BEGIN ExecutePath = [buri2.BuriEngine.最初のPathと同じ時[buri2.buri2_Wor6.buri2_Wor6_Act6]]
+DEBUG 2006-02-22 14:45:20,471 [main] wakanago Processed = buri2.BuriFlowPickout.doFirstSelectActivity[buri2.BuriFlowPickout.doFirstSelectActivity]
+DEBUG 2006-02-22 14:45:20,471 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.doFirstSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act31]]
+DEBUG 2006-02-22 14:45:20,471 [main] Line:0//式=[#args.traceEle.tagSelect] :ActivityTagSelectImpl注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,471 [main] #activity = ActivityTagSelectImpl注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]
+DEBUG 2006-02-22 14:45:20,471 [main] END ExecutePath = [buri2.BuriFlowPickout.doFirstSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act31]]
+DEBUG 2006-02-22 14:45:20,471 [main] wakanago Processed = buri2.BuriFlowPickout.FinishMode==Auto[buri2.buri2_Wor4.buri2_Wor4_Act14]
+DEBUG 2006-02-22 14:45:20,471 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]
+DEBUG 2006-02-22 14:45:20,471 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]]
+DEBUG 2006-02-22 14:45:20,471 [main] Line:0//式=[FlowPickout] :org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:20,471 [main] #flowPickout = org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:20,471 [main] Line:1//式=[new java.util.Stack()] :[]
+DEBUG 2006-02-22 14:45:20,471 [main] #waitStack = []
+DEBUG 2006-02-22 14:45:20,471 [main] //Condition式=[true] :true
+DEBUG 2006-02-22 14:45:20,471 [main] Line:2//式=[#flowPickout.setupWaitStack(#args.traceEle.tracePath,#waitStack,#args.traceEle,InnerContext)] :[注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]]
+DEBUG 2006-02-22 14:45:20,471 [main] #waitStack = [注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]]
+DEBUG 2006-02-22 14:45:20,471 [main] END ExecutePath = [buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]]
+DEBUG 2006-02-22 14:45:20,471 [main] wakanago Processed = buri2.BuriFlowPickout.Activityチェック[buri2.buri2_Wor4.buri2_Wor4_Act17]
+DEBUG 2006-02-22 14:45:20,481 [main] wakanago Processed = buri2.BuriFlowPickout.Split==XOR[buri2.buri2_Wor4.buri2_Wor4_Act18]
+DEBUG 2006-02-22 14:45:20,481 [main] wakanago Processed = buri2.BuriFlowPickout.単一分岐[buri2.buri2_Wor4.buri2_Wor4_Act21]
+DEBUG 2006-02-22 14:45:20,481 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先チェック[buri2.buri2_Wor4.buri2_Wor4_Act24]
+DEBUG 2006-02-22 14:45:20,481 [main] wakanago Processed = buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]
+DEBUG 2006-02-22 14:45:20,481 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]]
+DEBUG 2006-02-22 14:45:20,481 [main] Line:0//式=[#waitStack.pop()] :注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,481 [main] #nextPath = 注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,481 [main] Line:1//式=[WorkFlowsUtil.getActivityTagSelectFromPathAndParticipant(#nextPath,LocalContext.buriParticipant)] :ActivityTagSelectImpl注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,481 [main] #nextAct = ActivityTagSelectImpl注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,481 [main] END ExecutePath = [buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]]
+DEBUG 2006-02-22 14:45:20,491 [main] wakanago Processed = buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]
+DEBUG 2006-02-22 14:45:20,491 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]]
+DEBUG 2006-02-22 14:45:20,491 [main] Line:0//式=[#nextAct.getXorJoinTransitions()] :[]
+DEBUG 2006-02-22 14:45:20,491 [main] #transitions = []
+DEBUG 2006-02-22 14:45:20,491 [main] END ExecutePath = [buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]]
+DEBUG 2006-02-22 14:45:20,491 [main] wakanago Processed = buri2.BuriFlowPickout.単一XORJoin[buri2.buri2_Wor4.buri2_Wor4_Act40]
+DEBUG 2006-02-22 14:45:20,491 [main] wakanago Processed = buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]
+DEBUG 2006-02-22 14:45:20,491 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]]
+DEBUG 2006-02-22 14:45:20,491 [main] Line:0//式=[#args.waitStack.add(#nextPath)] :true
+DEBUG 2006-02-22 14:45:20,491 [main] END ExecutePath = [buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]]
+DEBUG 2006-02-22 14:45:20,491 [main] wakanago Processed = buri2.BuriFlowPickout.次の処理へ[buri2.buri2_Wor4.buri2_Wor4_Act28]
+DEBUG 2006-02-22 14:45:20,491 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先チェック[buri2.buri2_Wor4.buri2_Wor4_Act24]
+DEBUG 2006-02-22 14:45:20,501 [main] wakanago Processed = buri2.BuriFlowPickout.終了[buri2.buri2_Wor4.buri2_Wor4_Act25]
+DEBUG 2006-02-22 14:45:20,501 [main] Line:0//式=[#flowPickout.doFirstSelectActivity(#traceEle)] :null
+DEBUG 2006-02-22 14:45:20,501 [main] END ExecutePath = [buri2.BuriEngine.最初のPathと同じ時[buri2.buri2_Wor6.buri2_Wor6_Act6]]
+DEBUG 2006-02-22 14:45:20,521 [main] wakanago Processed = buri2.BuriEngine.Generic[buri2.buri2_Wor6.buri2_Wor6_Act7]
+DEBUG 2006-02-22 14:45:20,531 [main] wakanago Processed = buri2.BuriEngine.後続Path size() != 0[buri2.buri2_Wor6.buri2_Wor6_Act8]
+DEBUG 2006-02-22 14:45:20,531 [main] wakanago Processed = buri2.BuriEngine.Pathの分岐＝XOR[buri2.buri2_Wor6.buri2_Wor6_Act15]
+DEBUG 2006-02-22 14:45:20,541 [main] wakanago Processed = buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]
+DEBUG 2006-02-22 14:45:20,541 [main] BEGIN ExecutePath = [buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]]
+DEBUG 2006-02-22 14:45:20,541 [main] Line:0//式=[#flowPickout.getNextActivity()] :注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,541 [main] #nextPath = 注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,541 [main] END ExecutePath = [buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]]
+DEBUG 2006-02-22 14:45:20,541 [main] wakanago Processed = buri2.BuriEngine.後続処理対象がある時[buri2.buri2_Wor6.buri2_Wor6_Act10]
+DEBUG 2006-02-22 14:45:20,541 [main] wakanago Processed = buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]
+DEBUG 2006-02-22 14:45:20,541 [main] BEGIN ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]]
+DEBUG 2006-02-22 14:45:20,551 [main] Line:0//式=[BuriEngine.createBuriTraceElement(#nextPath)] :[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act9/childElement=null]]
+/tracePath=注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,551 [main] #traceEle = [nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act9/childElement=null]]
+/tracePath=注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,551 [main] BEGIN org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor2.order_Wor2_Act2)
+DEBUG 2006-02-22 14:45:20,551 [main] SELECT BuriPath.pathid, BuriPath.pathname, BuriPath.realpathname FROM BuriPath WHERE  BuriPath.realPathName = '注文管理.order_Wor2.order_Wor2_Act2'
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,551 [main] END org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor2.order_Wor2_Act2) : null
+DEBUG 2006-02-22 14:45:20,551 [main] BEGIN org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.出荷.出荷準備開始/realPathName=注文管理.order_Wor2.order_Wor2_Act2])
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,551 [main] select BuriPathID.nextval from dual
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,551 [main] INSERT INTO BuriPath (pathid, pathname, realpathname) VALUES (9, '注文管理.出荷.出荷準備開始', '注文管理.order_Wor2.order_Wor2_Act2')
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,551 [main] END org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.出荷.出荷準備開始/realPathName=注文管理.order_Wor2.order_Wor2_Act2]) : 1
+DEBUG 2006-02-22 14:45:20,551 [main] BEGIN org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=9/dataID=4/insertDate=Wed Feb 22 14:45:20 JST 2006])
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,551 [main] select BurihistoryID.nextval from dual
+DEBUG 2006-02-22 14:45:20,551 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,561 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,561 [main] INSERT INTO BuriDataPathHistory (dataid, useridnum, useridval, pathid, historyid, insertdate) VALUES (4, null, null, 9, 9, '2006-02-22')
+DEBUG 2006-02-22 14:45:20,561 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,561 [main] END org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=9/dataID=4/insertDate=Wed Feb 22 14:45:20 JST 2006]) : 1
+DEBUG 2006-02-22 14:45:20,561 [main] Line:1//式=[BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)] :null
+DEBUG 2006-02-22 14:45:20,561 [main] BuriEngine processed = 注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]/data={[/shippingID=0/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}/userData=null
+DEBUG 2006-02-22 14:45:20,561 [main] Line:2//式=[BuriEngine.traceBuriPath(#nextPath)] :null
+DEBUG 2006-02-22 14:45:20,561 [main] END ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]]
+DEBUG 2006-02-22 14:45:20,561 [main] wakanago Processed = buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]
+DEBUG 2006-02-22 14:45:20,561 [main] BEGIN ExecutePath = [buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]]
+DEBUG 2006-02-22 14:45:20,561 [main] Line:0//式=[ToolUtil.processActivity(#traceEle.tagSelect,#container,LocalContext.data,InnerContext)] :null
+DEBUG 2006-02-22 14:45:20,561 [main] wakanago Processed = buri2.BuriFlowPickout.doSelectActivity[buri2.BuriFlowPickout.doSelectActivity]
+DEBUG 2006-02-22 14:45:20,561 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.doSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act1]]
+DEBUG 2006-02-22 14:45:20,561 [main] Line:0//式=[#args.traceEle.tagSelect] :ActivityTagSelectImpl注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,561 [main] #activity = ActivityTagSelectImpl注文管理.出荷.出荷準備開始[注文管理.order_Wor2.order_Wor2_Act2]
+DEBUG 2006-02-22 14:45:20,561 [main] END ExecutePath = [buri2.BuriFlowPickout.doSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act1]]
+DEBUG 2006-02-22 14:45:20,561 [main] wakanago Processed = buri2.BuriFlowPickout.Activityチェック[buri2.buri2_Wor4.buri2_Wor4_Act13]
+DEBUG 2006-02-22 14:45:20,561 [main] wakanago Processed = buri2.BuriFlowPickout.FinishMode==Auto[buri2.buri2_Wor4.buri2_Wor4_Act14]
+DEBUG 2006-02-22 14:45:20,561 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]
+DEBUG 2006-02-22 14:45:20,561 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]]
+DEBUG 2006-02-22 14:45:20,561 [main] Line:0//式=[FlowPickout] :org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:20,561 [main] #flowPickout = org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631
+DEBUG 2006-02-22 14:45:20,561 [main] Line:1//式=[new java.util.Stack()] :[]
+DEBUG 2006-02-22 14:45:20,561 [main] #waitStack = []
+DEBUG 2006-02-22 14:45:20,561 [main] //Condition式=[true] :true
+DEBUG 2006-02-22 14:45:20,571 [main] Line:2//式=[#flowPickout.setupWaitStack(#args.traceEle.tracePath,#waitStack,#args.traceEle,InnerContext)] :[注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]]
+DEBUG 2006-02-22 14:45:20,571 [main] #waitStack = [注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]]
+DEBUG 2006-02-22 14:45:20,571 [main] END ExecutePath = [buri2.BuriFlowPickout.分岐先選択[buri2.buri2_Wor4.buri2_Wor4_Act16]]
+DEBUG 2006-02-22 14:45:20,571 [main] wakanago Processed = buri2.BuriFlowPickout.Activityチェック[buri2.buri2_Wor4.buri2_Wor4_Act17]
+DEBUG 2006-02-22 14:45:20,571 [main] wakanago Processed = buri2.BuriFlowPickout.Split==XOR[buri2.buri2_Wor4.buri2_Wor4_Act18]
+DEBUG 2006-02-22 14:45:20,571 [main] wakanago Processed = buri2.BuriFlowPickout.単一分岐[buri2.buri2_Wor4.buri2_Wor4_Act21]
+DEBUG 2006-02-22 14:45:20,571 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先チェック[buri2.buri2_Wor4.buri2_Wor4_Act24]
+DEBUG 2006-02-22 14:45:20,571 [main] wakanago Processed = buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]
+DEBUG 2006-02-22 14:45:20,571 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]]
+DEBUG 2006-02-22 14:45:20,591 [main] Line:0//式=[#waitStack.pop()] :注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,591 [main] #nextPath = 注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,591 [main] Line:1//式=[WorkFlowsUtil.getActivityTagSelectFromPathAndParticipant(#nextPath,LocalContext.buriParticipant)] :ActivityTagSelectImpl注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,591 [main] #nextAct = ActivityTagSelectImpl注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,591 [main] END ExecutePath = [buri2.BuriFlowPickout.Activity準備[buri2.buri2_Wor4.buri2_Wor4_Act30]]
+DEBUG 2006-02-22 14:45:20,601 [main] wakanago Processed = buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]
+DEBUG 2006-02-22 14:45:20,601 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]]
+DEBUG 2006-02-22 14:45:20,601 [main] Line:0//式=[#nextAct.getXorJoinTransitions()] :[<xml-fragment From="order_Wor2_Act7" Id="order_Wor2_Tra17" To="order_Wor2_Act9" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xpdl:ExtendedAttributes>
+    <xpdl:ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+  </xpdl:ExtendedAttributes>
+</xml-fragment>, <xml-fragment From="order_Wor2_Act2" Id="order_Wor2_Tra46" To="order_Wor2_Act9" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xpdl:ExtendedAttributes>
+    <xpdl:ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+  </xpdl:ExtendedAttributes>
+</xml-fragment>]
+DEBUG 2006-02-22 14:45:20,601 [main] #transitions = [<xml-fragment From="order_Wor2_Act7" Id="order_Wor2_Tra17" To="order_Wor2_Act9" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xpdl:ExtendedAttributes>
+    <xpdl:ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+  </xpdl:ExtendedAttributes>
+</xml-fragment>, <xml-fragment From="order_Wor2_Act2" Id="order_Wor2_Tra46" To="order_Wor2_Act9" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xpdl:ExtendedAttributes>
+    <xpdl:ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+  </xpdl:ExtendedAttributes>
+</xml-fragment>]
+DEBUG 2006-02-22 14:45:20,601 [main] END ExecutePath = [buri2.BuriFlowPickout.Join==XOR[buri2.buri2_Wor4.buri2_Wor4_Act32]]
+DEBUG 2006-02-22 14:45:20,611 [main] wakanago Processed = buri2.BuriFlowPickout.複数XORJoin[buri2.buri2_Wor4.buri2_Wor4_Act41]
+DEBUG 2006-02-22 14:45:20,621 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.複数XORJoin[buri2.buri2_Wor4.buri2_Wor4_Act41]]
+DEBUG 2006-02-22 14:45:20,621 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getAllBuriStateByPathAndData(8, 4)
+DEBUG 2006-02-22 14:45:20,621 [main] SELECT 
+	BuriState.dataid
+	, BuriState.branchid
+	, BuriState.pathid
+	, BuriState.processdate
+	, BuriState.versionno
+	, BuriState.insertdate
+	, BuriState.useridnum
+	, BuriState.useridval
+	, BuriState.stateid
+	, BuriState.abortdate 
+FROM 
+	BuriState 
+WHERE 
+	pathID = 8 
+	and dataID = 4 
+order by 
+	processDate DESC
+DEBUG 2006-02-22 14:45:20,621 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,631 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,631 [main] END org.seasar.buri.dao.BuriStateDao#getAllBuriStateByPathAndData(8, 4) : [/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=2006-02-22 14:45:20.431/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=9999-12-31 23:59:59.0/versionNo=1]
+DEBUG 2006-02-22 14:45:20,631 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getAllBuriStateByPathAndData(8, 4)
+DEBUG 2006-02-22 14:45:20,631 [main] SELECT 
+	BuriState.dataid
+	, BuriState.branchid
+	, BuriState.pathid
+	, BuriState.processdate
+	, BuriState.versionno
+	, BuriState.insertdate
+	, BuriState.useridnum
+	, BuriState.useridval
+	, BuriState.stateid
+	, BuriState.abortdate 
+FROM 
+	BuriState 
+WHERE 
+	pathID = 8 
+	and dataID = 4 
+order by 
+	processDate DESC
+DEBUG 2006-02-22 14:45:20,631 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,631 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,631 [main] END org.seasar.buri.dao.BuriStateDao#getAllBuriStateByPathAndData(8, 4) : [/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=2006-02-22 14:45:20.431/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=9999-12-31 23:59:59.0/versionNo=1]
+DEBUG 2006-02-22 14:45:20,631 [main] BEGIN org.seasar.buri.dao.BuriBranchDao#getBuriBranch(4)
+DEBUG 2006-02-22 14:45:20,631 [main] SELECT BuriBranch.dataid, BuriBranch.branchid, BuriBranch.parentbranchid, BuriBranch.pathid, BuriBranch.processdate, BuriBranch.versionno FROM BuriBranch WHERE  BuriBranch.BranchID = 4
+DEBUG 2006-02-22 14:45:20,631 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,631 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,631 [main] END org.seasar.buri.dao.BuriBranchDao#getBuriBranch(4) : [/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=null/versionNo=0]
+DEBUG 2006-02-22 14:45:20,631 [main] BEGIN org.seasar.buri.dao.BuriBranchDao#getBuriParentBranch(4)
+DEBUG 2006-02-22 14:45:20,631 [main] SELECT BuriBranch.dataid, BuriBranch.branchid, BuriBranch.parentbranchid, BuriBranch.pathid, BuriBranch.processdate, BuriBranch.versionno FROM BuriBranch WHERE  BuriBranch.parentBranchID = 4
+DEBUG 2006-02-22 14:45:20,631 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,651 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,651 [main] END org.seasar.buri.dao.BuriBranchDao#getBuriParentBranch(4) : []
+DEBUG 2006-02-22 14:45:20,651 [main] BEGIN org.seasar.buri.dao.BuriStateDao#getBuriState(7)
+DEBUG 2006-02-22 14:45:20,651 [main] SELECT BuriState.dataid, BuriState.useridnum, BuriState.useridval, BuriState.branchid, BuriState.pathid, BuriState.processdate, BuriState.versionno, BuriState.insertdate, BuriState.stateid, BuriState.autoruntime, BuriState.abortdate FROM BuriState WHERE  BuriState.StateID = 7
+DEBUG 2006-02-22 14:45:20,651 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,661 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,661 [main] END org.seasar.buri.dao.BuriStateDao#getBuriState(7) : [/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=2006-02-22 14:45:20.431/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=1]
+DEBUG 2006-02-22 14:45:20,661 [main] BEGIN org.seasar.buri.dao.BuriStateDao#update([/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=Wed Feb 22 14:45:20 JST 2006/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=1])
+DEBUG 2006-02-22 14:45:20,661 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,661 [main] UPDATE BuriState SET dataid = 4, useridnum = null, useridval = null, branchid = 4, pathid = 8, processdate = '2006-02-22', versionno = 2, insertdate = '2006-02-22 14.45.20', autoruntime = '9999-12-31 23.59.59', abortdate = '9999-12-31 23.59.59' WHERE stateID = 7 AND versionno = 1
+DEBUG 2006-02-22 14:45:20,661 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,661 [main] END org.seasar.buri.dao.BuriStateDao#update([/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=2006-02-22 14:45:20.42/processDate=Wed Feb 22 14:45:20 JST 2006/autoRunTime=9999-12-31 23:59:59.0/abortDate=9999-12-31 23:59:59.0/versionNo=1]) : 1
+DEBUG 2006-02-22 14:45:20,661 [main] Line:0//式=[BuriStateUtil.processedJoinXor(LocalContext.CallBuriPath)] :null
+DEBUG 2006-02-22 14:45:20,661 [main] END ExecutePath = [buri2.BuriFlowPickout.複数XORJoin[buri2.buri2_Wor4.buri2_Wor4_Act41]]
+DEBUG 2006-02-22 14:45:20,661 [main] wakanago Processed = buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]
+DEBUG 2006-02-22 14:45:20,661 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]]
+DEBUG 2006-02-22 14:45:20,661 [main] Line:0//式=[#args.waitStack.add(#nextPath)] :true
+DEBUG 2006-02-22 14:45:20,681 [main] END ExecutePath = [buri2.BuriFlowPickout.実行待ちに追加[buri2.buri2_Wor4.buri2_Wor4_Act38]]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriFlowPickout.次の処理へ[buri2.buri2_Wor4.buri2_Wor4_Act28]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriFlowPickout.分岐先チェック[buri2.buri2_Wor4.buri2_Wor4_Act24]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriFlowPickout.終了[buri2.buri2_Wor4.buri2_Wor4_Act25]
+DEBUG 2006-02-22 14:45:20,681 [main] Line:1//式=[#flowPickout.doSelectActivity(#traceEle)] :null
+DEBUG 2006-02-22 14:45:20,681 [main] END ExecutePath = [buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriEngine.Generic[buri2.buri2_Wor6.buri2_Wor6_Act7]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriEngine.後続Path size() != 0[buri2.buri2_Wor6.buri2_Wor6_Act8]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriEngine.Pathの分岐＝XOR[buri2.buri2_Wor6.buri2_Wor6_Act15]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]
+DEBUG 2006-02-22 14:45:20,681 [main] BEGIN ExecutePath = [buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]]
+DEBUG 2006-02-22 14:45:20,681 [main] Line:0//式=[#flowPickout.getNextActivity()] :注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,681 [main] #nextPath = 注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,681 [main] END ExecutePath = [buri2.BuriEngine.後続Pathを取得[buri2.buri2_Wor6.buri2_Wor6_Act16]]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriEngine.後続処理対象がある時[buri2.buri2_Wor6.buri2_Wor6_Act10]
+DEBUG 2006-02-22 14:45:20,681 [main] wakanago Processed = buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]
+DEBUG 2006-02-22 14:45:20,681 [main] BEGIN ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]]
+DEBUG 2006-02-22 14:45:20,691 [main] Line:0//式=[BuriEngine.createBuriTraceElement(#nextPath)] :[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act8/childElement=null]]
+/tracePath=注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,691 [main] #traceEle = [nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act8/childElement=null]]
+/tracePath=注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d]
+DEBUG 2006-02-22 14:45:20,691 [main] BEGIN org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor2.order_Wor2_Act9)
+DEBUG 2006-02-22 14:45:20,691 [main] SELECT BuriPath.pathid, BuriPath.pathname, BuriPath.realpathname FROM BuriPath WHERE  BuriPath.realPathName = '注文管理.order_Wor2.order_Wor2_Act9'
+DEBUG 2006-02-22 14:45:20,691 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,691 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,691 [main] END org.seasar.buri.dao.BuriPathDao#getBuriPathFromRealPath(注文管理.order_Wor2.order_Wor2_Act9) : null
+DEBUG 2006-02-22 14:45:20,691 [main] BEGIN org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.出荷.商品待ち/realPathName=注文管理.order_Wor2.order_Wor2_Act9])
+DEBUG 2006-02-22 14:45:20,691 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,691 [main] select BuriPathID.nextval from dual
+DEBUG 2006-02-22 14:45:20,691 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,691 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,691 [main] INSERT INTO BuriPath (pathid, pathname, realpathname) VALUES (10, '注文管理.出荷.商品待ち', '注文管理.order_Wor2.order_Wor2_Act9')
+DEBUG 2006-02-22 14:45:20,701 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,701 [main] END org.seasar.buri.dao.BuriPathDao#insert([/pathID=0/pathName=注文管理.出荷.商品待ち/realPathName=注文管理.order_Wor2.order_Wor2_Act9]) : 1
+DEBUG 2006-02-22 14:45:20,701 [main] BEGIN org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=10/dataID=4/insertDate=Wed Feb 22 14:45:20 JST 2006])
+DEBUG 2006-02-22 14:45:20,701 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,701 [main] select BurihistoryID.nextval from dual
+DEBUG 2006-02-22 14:45:20,701 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,701 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,701 [main] INSERT INTO BuriDataPathHistory (dataid, useridnum, useridval, pathid, historyid, insertdate) VALUES (4, null, null, 10, 10, '2006-02-22')
+DEBUG 2006-02-22 14:45:20,701 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,701 [main] END org.seasar.buri.dao.BuriDataPathHistoryDao#insert([/historyID=0/pathID=10/dataID=4/insertDate=Wed Feb 22 14:45:20 JST 2006]) : 1
+DEBUG 2006-02-22 14:45:20,701 [main] Line:1//式=[BuriHistoryUtil.addHistory(#traceEle.tagSelect,#nextPath)] :null
+DEBUG 2006-02-22 14:45:20,701 [main] BuriEngine processed = 注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]/data={[/shippingID=0/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}/userData=null
+DEBUG 2006-02-22 14:45:20,701 [main] Line:2//式=[BuriEngine.traceBuriPath(#nextPath)] :null
+DEBUG 2006-02-22 14:45:20,701 [main] END ExecutePath = [buri2.BuriEngine.初期化[buri2.buri2_Wor6.buri2_Wor6_Act4]]
+DEBUG 2006-02-22 14:45:20,701 [main] wakanago Processed = buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]
+DEBUG 2006-02-22 14:45:20,701 [main] BEGIN ExecutePath = [buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]]
+DEBUG 2006-02-22 14:45:20,701 [main] Line:0//式=[ToolUtil.processActivity(#traceEle.tagSelect,#container,LocalContext.data,InnerContext)] :null
+DEBUG 2006-02-22 14:45:20,701 [main] wakanago Processed = buri2.BuriFlowPickout.doSelectActivity[buri2.BuriFlowPickout.doSelectActivity]
+DEBUG 2006-02-22 14:45:20,701 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.doSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act1]]
+DEBUG 2006-02-22 14:45:20,701 [main] Line:0//式=[#args.traceEle.tagSelect] :ActivityTagSelectImpl注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,701 [main] #activity = ActivityTagSelectImpl注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+DEBUG 2006-02-22 14:45:20,701 [main] END ExecutePath = [buri2.BuriFlowPickout.doSelectActivity[buri2.buri2_Wor4.buri2_Wor4_Act1]]
+DEBUG 2006-02-22 14:45:20,701 [main] wakanago Processed = buri2.BuriFlowPickout.Activityチェック[buri2.buri2_Wor4.buri2_Wor4_Act13]
+DEBUG 2006-02-22 14:45:20,701 [main] wakanago Processed = buri2.BuriFlowPickout.FinishMode==Manual[buri2.buri2_Wor4.buri2_Wor4_Act15]
+DEBUG 2006-02-22 14:45:20,701 [main] BEGIN ExecutePath = [buri2.BuriFlowPickout.FinishMode==Manual[buri2.buri2_Wor4.buri2_Wor4_Act15]]
+DEBUG 2006-02-22 14:45:20,701 [main] Line:0//式=[#args.status.add(#args.traceEle.tracePath)] :true
+DEBUG 2006-02-22 14:45:20,701 [main] END ExecutePath = [buri2.BuriFlowPickout.FinishMode==Manual[buri2.buri2_Wor4.buri2_Wor4_Act15]]
+DEBUG 2006-02-22 14:45:20,711 [main] Line:1//式=[#flowPickout.doSelectActivity(#traceEle)] :null
+DEBUG 2006-02-22 14:45:20,711 [main] END ExecutePath = [buri2.BuriEngine.最初のPathと違うとき[buri2.buri2_Wor6.buri2_Wor6_Act5]]
+DEBUG 2006-02-22 14:45:20,711 [main] wakanago Processed = buri2.BuriEngine.Generic[buri2.buri2_Wor6.buri2_Wor6_Act7]
+DEBUG 2006-02-22 14:45:20,731 [main] wakanago Processed = buri2.BuriEngine.後続Path size() == 0[buri2.buri2_Wor6.buri2_Wor6_Act9]
+DEBUG 2006-02-22 14:45:20,731 [main] BEGIN ExecutePath = [buri2.BuriEngine.後続Path size() == 0[buri2.buri2_Wor6.buri2_Wor6_Act9]]
+DEBUG 2006-02-22 14:45:20,731 [main] BEGIN org.seasar.buri.dao.BuriBranchDao#update([/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=Wed Feb 22 14:45:20 JST 2006/versionNo=0])
+DEBUG 2006-02-22 14:45:20,731 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,731 [main] UPDATE BuriBranch SET dataid = 4, parentbranchid = null, pathid = 8, processdate = '2006-02-22', versionno = 1 WHERE branchID = 4 AND versionno = 0
+DEBUG 2006-02-22 14:45:20,741 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,741 [main] END org.seasar.buri.dao.BuriBranchDao#update([/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=Wed Feb 22 14:45:20 JST 2006/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,741 [main] Line:0//式=[BuriBranchDaoUtil.saveBranchEntityDto(#tgtBranch)] :null
+DEBUG 2006-02-22 14:45:20,741 [main] END ExecutePath = [buri2.BuriEngine.後続Path size() == 0[buri2.buri2_Wor6.buri2_Wor6_Act9]]
+DEBUG 2006-02-22 14:45:20,741 [main] wakanago Processed = buri2.BuriEngine.State size != 0[buri2.buri2_Wor6.buri2_Wor6_Act17]
+DEBUG 2006-02-22 14:45:20,741 [main] BEGIN ExecutePath = [buri2.BuriEngine.State size != 0[buri2.buri2_Wor6.buri2_Wor6_Act17]]
+DEBUG 2006-02-22 14:45:20,741 [main] BEGIN org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=10/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0])
+DEBUG 2006-02-22 14:45:20,741 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,741 [main] select BuriStatusID.nextval from dual
+DEBUG 2006-02-22 14:45:20,741 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,741 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,741 [main] INSERT INTO BuriState (dataid, useridnum, useridval, branchid, pathid, processdate, versionno, insertdate, stateid, autoruntime, abortdate) VALUES (4, null, null, 4, 10, '9999-12-31', 0, '2006-02-22', 8, '9999-12-31', '9999-12-31')
+DEBUG 2006-02-22 14:45:20,751 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,751 [main] END org.seasar.buri.dao.BuriStateDao#insert([/stateID=0/pathID=10/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Fri Dec 31 23:59:59 JST 9999/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0]) : 1
+DEBUG 2006-02-22 14:45:20,751 [main] Line:0//式=[BuriStateUtil.updateStateDto(#stateDto,#flowPickout.getPrevStatus(),#tgtBranch.branchID)] :null
+DEBUG 2006-02-22 14:45:20,751 [main] END ExecutePath = [buri2.BuriEngine.State size != 0[buri2.buri2_Wor6.buri2_Wor6_Act17]]
+DEBUG 2006-02-22 14:45:20,751 [main] wakanago Processed = buri2.BuriEngine.後続処理対象がない時[buri2.buri2_Wor6.buri2_Wor6_Act11]
+DEBUG 2006-02-22 14:45:20,751 [main] wakanago Processed = buri2.BuriEngine.スタックをチェックする[buri2.buri2_Wor6.buri2_Wor6_Act2]
+DEBUG 2006-02-22 14:45:20,751 [main] wakanago Processed = buri2.BuriEngine.キューが無くなった場合[buri2.buri2_Wor6.buri2_Wor6_Act12]
+DEBUG 2006-02-22 14:45:20,751 [main] wakanago Processed = buri2.BuriEngine.データを保存する[buri2.buri2_Wor6.buri2_Wor6_Act19]
+DEBUG 2006-02-22 14:45:20,751 [main] BEGIN ExecutePath = [buri2.BuriEngine.データを保存する[buri2.buri2_Wor6.buri2_Wor6_Act19]]
+DEBUG 2006-02-22 14:45:20,751 [main] BEGIN example.org.seasar.buri.dao.ShippingDao#insert({[/shippingID=0/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]})
+DEBUG 2006-02-22 14:45:20,751 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,751 [main] select shippingID.nextval from dual
+DEBUG 2006-02-22 14:45:20,751 [main] 論理的なコネクションを取得しました
+DEBUG 2006-02-22 14:45:20,751 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,751 [main] INSERT INTO Shipping (ordertitleid, customerid, shippingid, shippingdate) VALUES (2, 0, 2, '9970-12-31')
+DEBUG 2006-02-22 14:45:20,761 [main] 論理的なコネクションを閉じました
+DEBUG 2006-02-22 14:45:20,761 [main] END example.org.seasar.buri.dao.ShippingDao#insert({[/shippingID=0/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}) Throwable:org.seasar.framework.exception.SQLRuntimeException: [ESSR0071]SQLで例外が発生しました。理由はjava.sql.SQLException: ORA-02291: 整合性制約(SYSTEM.SYS_C004117)に違反しました - 親キーがありません
+
+ERROR 2006-02-22 14:45:20,761 [main] exception=org.seasar.framework.exception.SQLRuntimeException: [ESSR0071]SQLで例外が発生しました。理由はjava.sql.SQLException: ORA-02291: 整合性制約(SYSTEM.SYS_C004117)に違反しました - 親キーがありません
+
+expression=ShippingSetDao.insert(#data)
+context={container=org.seasar.framework.container.impl.S2ContainerImpl@1eae15f, data={[/shippingID=2/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}}
+DEBUG 2006-02-22 14:45:20,761 [main] Line:0//式=[ShippingSetDao.insert(#data)] :null
+ERROR 2006-02-22 14:45:20,761 [main] exception=org.seasar.framework.exception.SQLRuntimeException: [ESSR0071]SQLで例外が発生しました。理由はjava.sql.SQLException: ORA-02291: 整合性制約(SYSTEM.SYS_C004117)に違反しました - 親キーがありません
+
+expression=BuriDataDaoUtil.storeBuriData(#args.path)
+context={stateDto=[/stateID=7/pathID=8/dataID=4/branchID=4/userIDNum=null/userIDVal=null/insertDate=Wed Feb 22 14:45:20 JST 2006/processDate=Wed Feb 22 14:45:20 JST 2006/autoRunTime=Fri Dec 31 23:59:59 JST 9999/abortDate=Fri Dec 31 23:59:59 JST 9999/versionNo=0], container=org.seasar.framework.container.impl.S2ContainerImpl@1e5a5dc, tgtBranch=[/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=Wed Feb 22 14:45:20 JST 2006/versionNo=1], WakanagoEngineImpl.isDebugEnabled()=true, nextPath=注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9], BuriContext=(this Map), args={context={CallBuriPath=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1], DataID=4, Action=null, Data={[/shippingID=2/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}, BuriParticipant=BuriParticipant/userData=null/userIDVal=null/userIDNum=null, UserData=null, IsNotUpdateMode=false, BranchIDContextKey=4, FlowPickout=org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631, AfterProcess=[org.seasar.buri.rule.impl.BuriToolExecuteRuleImpl$BuriExecuteDelayInfo@1ec41c0]}, path=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]}, flowPickout=org.seasar.buri.impl.BuriFlowPickout$$EnhancedByS2AOP$$18facfb@149e631, FlowPickout=org.seasar.buri.impl.WakanagoFlowPickoutImpl$$EnhancedByS2AOP$$e8787a@1d0e2c9, branchStack=[], traceEle=[nextElementItems=[[condition=true/judges=false/nextActivityId=order_Wor2_Act8/childElement=null]]
+/tracePath=注文管理.出荷.商品待ち[注文管理.order_Wor2.order_Wor2_Act9]
+/workFlows=org.seasar.buri.impl.WakanagoFlowsImpl$$EnhancedByS2AOP$$14f1726@9d267d], branchDto=[/branchID=4/parentBranchID=null/pathID=8/dataID=4/processDate=Wed Feb 22 14:45:20 JST 2006/versionNo=1]}
+DEBUG 2006-02-22 14:45:20,761 [main] Line:0//式=[BuriDataDaoUtil.storeBuriData(#args.path)] :null
+ERROR 2006-02-22 14:45:20,761 [main] exception=org.seasar.framework.exception.SQLRuntimeException: [ESSR0071]SQLで例外が発生しました。理由はjava.sql.SQLException: ORA-02291: 整合性制約(SYSTEM.SYS_C004117)に違反しました - 親キーがありません
+
+expression=ShippingBao.shipping(#data)
+context={action=null, UserData=null, data={[/shippingID=2/shippingDate=Thu Dec 31 23:59:59 JST 9970/orderTitleID=2/customerID=0]/items=[[/shippingItemID=0/orderDetailID=3/shippingID=0], [/shippingItemID=0/orderDetailID=4/shippingID=0]]}, UserContext=(this Map), callPath=注文管理.出荷.出荷依頼[注文管理.order_Wor2.order_Wor2_Act1]}
+DEBUG 2006-02-22 14:45:20,961 [main] Line:0//式=[ShippingBao.shipping(#data)] :null
+DEBUG 2006-02-22 14:45:20,971 [main] トランザクションをロールバックしました
+DEBUG 2006-02-22 14:45:20,971 [main] 物理的なコネクションを閉じました

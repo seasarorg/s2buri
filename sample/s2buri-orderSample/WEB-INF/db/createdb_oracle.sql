@@ -15,6 +15,11 @@ CREATE TABLE BuriState (
        PRIMARY KEY (StateID)
 );
 
+DROP INDEX XIF1BuriState;
+DROP INDEX XIF3BuriState;
+DROP INDEX XIF2BuriState;
+DROP INDEX XIF4BuriState;
+
 CREATE INDEX XIF1BuriState ON BuriState(PathID ASC);
 CREATE INDEX XIF3BuriState ON BuriState(autoRunTime ASC);
 CREATE INDEX XIF2BuriState ON BuriState(DataID ASC);
@@ -41,6 +46,10 @@ CREATE TABLE BuriBranch (
        PRIMARY KEY (BranchID)
 );
 
+DROP INDEX XIF1BuriBranch;
+DROP INDEX XIF2BuriBranch;
+DROP INDEX XIF3BuriBranch;
+
 CREATE INDEX XIF1BuriBranch ON BuriBranch(PathID ASC);
 CREATE INDEX XIF2BuriBranch ON BuriBranch(parentBranchID ASC);
 CREATE INDEX XIF3BuriBranch ON BuriBranch(DataID ASC);
@@ -66,6 +75,9 @@ CREATE TABLE BuriDataPathHistory (
        PRIMARY KEY (historyID)
 );
 
+DROP INDEX XIF3BuriDataPathHi;
+DROP INDEX XIF4BuriDataPathHi;
+
 CREATE INDEX XIF3BuriDataPathHi ON BuriDataPathHistory(PathID ASC);
 CREATE INDEX XIF4BuriDataPathHi ON BuriDataPathHistory(DataID ASC);
 
@@ -87,6 +99,9 @@ CREATE TABLE BuriData (
        dataType             VARCHAR(200) NOT NULL,
        PRIMARY KEY (DataID)
 );
+
+DROP INDEX XIE1BuriData;
+DROP INDEX XIE2BuriData;
 
 CREATE INDEX XIE1BuriData ON BuriData(pkeyval ASC,dataType ASC);
 CREATE INDEX XIE2BuriData ON BuriData(pkeyNum ASC,dataType ASC);
