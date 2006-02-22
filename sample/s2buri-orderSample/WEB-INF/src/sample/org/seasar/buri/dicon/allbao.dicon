@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="bao.dicon"/>
+	<component name="InterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<initMethod name="add"><arg>bao.interceptor</arg></initMethod>
+	</component>
+
+	<component name="BillBao" class="example.org.seasar.buri.bao.BillBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="OrderBao" class="example.org.seasar.buri.bao.OrderBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="ShippingBao" class="example.org.seasar.buri.bao.ShippingBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="ShippingItemBao" class="example.org.seasar.buri.bao.ShippingItemBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+</components>

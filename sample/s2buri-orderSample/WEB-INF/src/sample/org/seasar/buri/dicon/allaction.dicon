@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="aop.dicon"/>
+	<include path="sample/org/seasar/buri/dicon/alldao.dicon"/>
+
+	<!--
+	<component name="customerListDto" class="sample.org.seasar.buri.dto.CustomerListDto" instance="request"/>
+	-->
+	
+	<component name="orderCustomerSelectInitAction" class="sample.org.seasar.buri.action.impl.OrderCustomerSelectInitActionImpl" instance="request"/>
+	<component name="orderLogic" class="sample.org.seasar.buri.logic.impl.OrderLogicImpl"/>
+		
+</components>
