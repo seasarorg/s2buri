@@ -25,9 +25,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/nekohtml-0.9.3-nirvana.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/ognl-2.6.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/poi-2.5.1-final-20040804.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/s2-dao-1.0.29.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/s2-extension-2.3.4.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/s2-framework-2.3.4.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/s2-jsf-1.0.13.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/xercesImpl-2.5.0.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/derby.jar"/>
@@ -57,5 +54,11 @@
 	<classpathentry kind="lib" path="C:/Eclipse/eclipse/ext_extension/derby/eclipse/plugins/org.apache.derby.core_10.1.2/derbynet.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/orai18n.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/geronimo-jta_1.0.1B_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2-dao-1.0.30.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2-dao-tiger-1.0.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2-extension-2.3.6.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2-framework-2.3.6.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/s2-tiger-2.3.4.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

@@ -1,8 +1,9 @@
 package sample.org.seasar.buri.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CustomerListDto {
+public class CustomerListDto implements Serializable {
 
 	public List customerList;
 

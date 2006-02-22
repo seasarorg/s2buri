@@ -3,6 +3,5 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
 	<include path="jsf.dicon"/>
-	<include path="sample/org/seasar/buri/dicon/order.dicon"/>
-	<include path="example/org/seasar/buri/test/baotest.dicon"/>
+	<include path="sample/org/seasar/buri/dicon/allaction.dicon"/>
 </components>

@@ -1,7 +1,8 @@
 package sample.org.seasar.buri.action.impl;
 
+import java.util.List;
+
 import sample.org.seasar.buri.action.OrderCustomerSelectInitAction;
-import sample.org.seasar.buri.dto.CustomerListDto;
 import sample.org.seasar.buri.logic.OrderLogic;
 
 public class OrderCustomerSelectInitActionImpl implements OrderCustomerSelectInitAction {
@@ -11,13 +12,19 @@ public class OrderCustomerSelectInitActionImpl implements OrderCustomerSelectIni
 		this.logic = logic;
 	}
 
-	private CustomerListDto dto;
-	public void setCustomerListDto(CustomerListDto dto) {
-		this.dto = dto;
+//	private CustomerListDto dto;
+//	public void setCustomerListDto(CustomerListDto dto) {
+//		this.dto = dto;
+//	}
+
+	private List customerList;
+	public List getCustomerList() {
+		return customerList;
 	}
 	
 	public String inithialize() {
-		dto.setCustomerList(logic.getAllCustomer());
+		//dto.setCustomerList(logic.getAllCustomer());
+		customerList = logic.getAllCustomer();
 		return null;
 	}
 	
