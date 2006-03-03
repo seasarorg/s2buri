@@ -27,12 +27,12 @@
 	<classpathentry kind="lib" path="lib/jsr173_api.jar"/>
 	<classpathentry kind="lib" path="lib/s2-dao-1.0.25.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/j2re1.4.2_04"/>
-	<classpathentry kind="lib" path="lib/derby.jar"/>
-	<classpathentry kind="lib" path="lib/derbyclient.jar"/>
 	<classpathentry kind="lib" path="lib/derbyLocale_ja_JP.jar"/>
-	<classpathentry kind="lib" path="lib/derbynet.jar"/>
-	<classpathentry kind="lib" path="lib/derbytools.jar"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry kind="lib" path="lib/s2javelin.jar"/>
+	<classpathentry kind="lib" path="C:/java/eclipse3.1/plugins/org.apache.derby.core_10.1.1/derby.jar"/>
+	<classpathentry kind="lib" path="C:/java/eclipse3.1/plugins/org.apache.derby.core_10.1.1/derbyclient.jar"/>
+	<classpathentry kind="lib" path="C:/java/eclipse3.1/plugins/org.apache.derby.core_10.1.1/derbytools.jar"/>
+	<classpathentry kind="lib" path="C:/java/eclipse3.1/plugins/org.apache.derby.core_10.1.1/derbynet.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

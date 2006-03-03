@@ -62,6 +62,7 @@ public class ShippingSetDao {
         ShippingSetDto setDto = new ShippingSetDto();
         ShippingDto dto = shippingDao.getShippingByOrderTitleID(orderInfo.getOrderTitleID());
         if(dto == null) {
+            setDto.setCustomerID(orderInfo.getCustomerID());
             setDto.setOrderTitleID(orderInfo.getOrderTitleID());
             Iterator ite = orderInfo.getOrderDetail().iterator();
             while(ite.hasNext()) {

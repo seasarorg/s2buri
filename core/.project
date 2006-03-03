@@ -23,7 +23,7 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.apache.derby.ui.derbyEngine</nature>
 		<nature>org.seasar.kijimuna.core.nature</nature>
+		<nature>org.apache.derby.ui.derbyEngine</nature>
 	</natures>
 </projectDescription>

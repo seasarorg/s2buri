@@ -66,7 +66,7 @@ public abstract class AbstractBuriInvoker {
     }
     
     protected Object invoke(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map localContext) {
-        return innerInvoke(path, container, data, userData,action, context, notUpdateMode,appendContext,localContext);
+        return invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext,localContext);
     }
     protected Object innerInvoke(String path, S2Container s2con, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         BuriPath buriPath = new BuriPath(path);
