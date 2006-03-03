@@ -29,7 +29,7 @@ public class MailSenderImplTest extends S2TestCase {
         buriEngine_.getWorkflows().readWorkFlowFromResource("component","org/seasar/buri/component/impl/component.xpdl");
     }
     
-    public void testSendMail() {
+    public void testSendMailTx() {
         FurnitureItemDto buyItemDto = new FurnitureItemDto();
         buyItemDto.setName("T45_001");
         buyItemDto.setType("PC");
