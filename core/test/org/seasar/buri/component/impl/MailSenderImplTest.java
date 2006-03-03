@@ -35,7 +35,7 @@ public class MailSenderImplTest extends S2TestCase {
         buyItemDto.setType("PC");
         buyItemDto.setAcquisitionTypeBuy();
         buyItemDto.setAcquisition(new Date());
-        invoker_.invoke("component.mail",getContainer(), buyItemDto);
+        invoker_.invoke("component.mail",getContainer().getRoot(), buyItemDto);
     }
 
 }

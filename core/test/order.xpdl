@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Package Id="order" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="order" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
 <PackageHeader>
 <XPDLVersion>1.0</XPDLVersion>
 <Vendor>Together</Vendor>
@@ -159,16 +159,15 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="130"/>
-<ExtendedAttribute Name="YOffset" Value="100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="130,100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor1_Act2" Name="出荷作業中">
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.出荷&quot;,#data)"/>
+<ExtendedAttribute Name="ognl" Value="InnerInvoker&#10;SimpleInvoker&#10;MailSender&#10;InnerInvoker.invoke(&quot;注文管理.出荷&quot;,#data)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -190,9 +189,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="310"/>
-<ExtendedAttribute Name="YOffset" Value="100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor1_Act3" Name="出荷終了">
@@ -218,9 +216,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="490"/>
-<ExtendedAttribute Name="YOffset" Value="100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="490,100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor1_Act4" Name="終了">
@@ -235,9 +232,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="680"/>
-<ExtendedAttribute Name="YOffset" Value="100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="680,100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor1_Act5" Name="注文キャンセル">
@@ -261,9 +257,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="310"/>
-<ExtendedAttribute Name="YOffset" Value="220"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,220"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor1_Act6" Name="キャンセル終了">
@@ -278,9 +273,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="310"/>
-<ExtendedAttribute Name="YOffset" Value="330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor1_Act7" Name="注文キャンセルエラー">
@@ -299,59 +293,58 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="580"/>
-<ExtendedAttribute Name="YOffset" Value="220"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="580,220"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="order_Wor1_Act1" Id="order_Wor1_Tra1" To="order_Wor1_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor1_Act2" Id="order_Wor1_Tra2" To="order_Wor1_Act3">
 <Condition Type="CONDITION">#action==null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor1_Act3" Id="order_Wor1_Tra3" To="order_Wor1_Act4">
 <Condition Type="CONDITION">#action==null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor1_Act2" Id="order_Wor1_Tra4" To="order_Wor1_Act5">
 <Condition Type="CONDITION">#action=="cancel"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor1_Act5" Id="order_Wor1_Tra5" To="order_Wor1_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor1_Act3" Id="order_Wor1_Tra6" To="order_Wor1_Act7">
 <Condition Type="CONDITION">#action=="cancel"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
-<ExtendedAttribute Name="BreakPoint" Value="520;240;1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="520,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor1_Act7" Id="order_Wor1_Tra7" To="order_Wor1_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par1;order_Wor1_Act1;60;100;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par1;order_Wor1_Act4;810;100;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par1;order_Wor1_Act6;460;330;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par1,CONNECTING_ACTIVITY_ID=order_Wor1_Act6,X_OFFSET=460,Y_OFFSET=330,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par1,CONNECTING_ACTIVITY_ID=order_Wor1_Act4,X_OFFSET=810,Y_OFFSET=100,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par1,CONNECTING_ACTIVITY_ID=order_Wor1_Act1,X_OFFSET=60,Y_OFFSET=100,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="order_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor2" Name="出荷">
@@ -390,9 +383,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="160"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="160,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act2" Name="出荷準備開始">
@@ -411,9 +403,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="280"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="280,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act3" Name="出荷準備完了">
@@ -428,9 +419,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="680"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="680,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act4" Name="出荷済み">
@@ -449,9 +439,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="800"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="800,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act5" Name="出荷キャンセル">
@@ -466,9 +455,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="680"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="680,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act6" Name="キャンセル済み">
@@ -487,9 +475,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="800"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="800,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act7" Name="商品未揃い">
@@ -501,9 +488,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="470"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act8" Name="出荷準備中">
@@ -533,9 +519,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="530"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="530,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor2_Act9" Name="商品待ち">
@@ -555,67 +540,66 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="410"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="410,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="order_Wor2_Act1" Id="order_Wor2_Tra1" To="order_Wor2_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act3" Id="order_Wor2_Tra3" To="order_Wor2_Act4">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act5" Id="order_Wor2_Tra7" To="order_Wor2_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act7" Id="order_Wor2_Tra17" To="order_Wor2_Act9">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act8" Id="order_Wor2_Tra31" To="order_Wor2_Act3">
 <Condition Type="CONDITION">#countDatas == #data.items.size() &amp;&amp; #action == null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act8" Id="order_Wor2_Tra32" To="order_Wor2_Act7">
 <Condition Type="CONDITION">#countDatas &lt; #data.items.size() &amp;&amp; #action == null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act8" Id="order_Wor2_Tra33" To="order_Wor2_Act5">
 <Condition Type="CONDITION">#action == "cancel"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act2" Id="order_Wor2_Tra46" To="order_Wor2_Act9">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor2_Act9" Id="order_Wor2_Tra47" To="order_Wor2_Act8">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par2;order_Wor2_Act1;80;120;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor2_Act6;930;160;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor2_Act4;930;90;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par2;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par2,CONNECTING_ACTIVITY_ID=order_Wor2_Act4,X_OFFSET=930,Y_OFFSET=90,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par2,CONNECTING_ACTIVITY_ID=order_Wor2_Act6,X_OFFSET=930,Y_OFFSET=160,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par2,CONNECTING_ACTIVITY_ID=order_Wor2_Act1,X_OFFSET=80,Y_OFFSET=120,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="order_Par2"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor3" Name="請求">
@@ -646,9 +630,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="170"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor3_Act2" Name="請求作業">
@@ -663,9 +646,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="330"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="330,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor3_Act3" Name="入金確認">
@@ -684,9 +666,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="690"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="690,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor3_Act4" Name="請求終了">
@@ -706,9 +687,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="850"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="850,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor3_Act5" Name="再請求準備">
@@ -738,9 +718,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="480"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="480,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor3_Act6" Name="再請求">
@@ -755,50 +734,49 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="550"/>
-<ExtendedAttribute Name="YOffset" Value="180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="550,180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par3"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="order_Wor3_Act1" Id="order_Wor3_Tra1" To="order_Wor3_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor3_Act3" Id="order_Wor3_Tra3" To="order_Wor3_Act4">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor3_Act2" Id="order_Wor3_Tra9" To="order_Wor3_Act5">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor3_Act5" Id="order_Wor3_Tra10" To="order_Wor3_Act6">
 <Condition Type="CONDITION">#autoAction==true</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor3_Act6" Id="order_Wor3_Tra11" To="order_Wor3_Act4">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor3_Act5" Id="order_Wor3_Tra12" To="order_Wor3_Act3">
 <Condition Type="CONDITION">#autoAction==null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par3;order_Wor3_Act1;60;90;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par3;order_Wor3_Act4;1010;90;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par3;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par3,CONNECTING_ACTIVITY_ID=order_Wor3_Act4,X_OFFSET=1010,Y_OFFSET=90,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par3,CONNECTING_ACTIVITY_ID=order_Wor3_Act1,X_OFFSET=60,Y_OFFSET=90,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="order_Par3"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor5" Name="出荷詳細">
@@ -819,9 +797,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="180"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor5_Act2" Name="商品準備中">
@@ -846,9 +823,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="360"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor5_Act3" Name="商品準備完了">
@@ -867,9 +843,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="530"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="530,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="order_Wor5_Act4" Name="cancel済み">
@@ -884,41 +859,40 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="order_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="530"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="530,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="order_Wor5_Act1" Id="order_Wor5_Tra1" To="order_Wor5_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor5_Act2" Id="order_Wor5_Tra2" To="order_Wor5_Act3">
 <Condition Type="CONDITION">#action == null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="order_Wor5_Act2" Id="order_Wor5_Tra7" To="order_Wor5_Act4">
 <Condition Type="CONDITION">#action == "cancel"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="order_Par2;order_Wor5_Act1;100;80;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor5_Act4;650;160;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="order_Par2;order_Wor5_Act3;650;80;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="order_Par2;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par2,CONNECTING_ACTIVITY_ID=order_Wor5_Act3,X_OFFSET=650,Y_OFFSET=80,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par2,CONNECTING_ACTIVITY_ID=order_Wor5_Act4,X_OFFSET=650,Y_OFFSET=160,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=order_Par2,CONNECTING_ACTIVITY_ID=order_Wor5_Act1,X_OFFSET=100,Y_OFFSET=80,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="order_Par2"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 </WorkflowProcesses>
 <ExtendedAttributes>
-<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
-<ExtendedAttribute Name="Version" Value="1.4.2"/>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-1-C-20060130-1601"/>
 </ExtendedAttributes>
 </Package>

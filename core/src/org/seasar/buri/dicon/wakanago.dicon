@@ -21,6 +21,9 @@
 	<component class="org.seasar.buri.context.utilImpl.WakanagoContextUtil">
 		<aspect>wakanagoInterceptorChain</aspect>
 	</component>
+	
+	<component name="ClassDefUtil" class="org.seasar.buri.common.util.ClassDefUtilImpl">
+	</component>
 
 	<!-- ワカナゴエンジン -->
 

@@ -16,12 +16,18 @@ public class ClassDefUtilImpl implements ClassDefUtil{
         return clazz.getName();
     }
     public String getClassName(Object data) {
+        if(data==null) {
+            return "";
+        }
         Class clazz = getClazz(data);
         String className = data.getClass().getName();
         String clazzName = clazz.getName();
         return className;
     }
     public Class getClazz(Object data) {
+        if(data==null) {
+            return null;
+        }
         Class clazz = data.getClass();
         return clazz;
     }

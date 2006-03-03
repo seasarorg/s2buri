@@ -21,6 +21,9 @@
 	<component name="LocalContext" class="org.seasar.buri.context.BuriLocalContextImpl" instance="request" >
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
+	
+	<component name="ClassDefUtil" class="org.seasar.buri.common.util.ClassDefUtilImpl">
+	</component>
 
 	<component class="org.seasar.buri.context.utilImpl.BuriContextUtilImpl" >
 		<aspect>BuriInterceptorChain</aspect>
@@ -201,5 +204,7 @@
 	<component name="AfterOgnlInvoker" class="org.seasar.buri.component.impl.AfterOgnlInvoker">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
-	
+
+
+
 </components>

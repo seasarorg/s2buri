@@ -14,7 +14,7 @@ public class SimpleBuriInvokerImpl extends AbstractBuriInvoker
             implements SimpleBuriInvoker {
 
     public Object invoke(String path, Object data) {
-        return invoke( path, getTargetContainer().getRoot(), data);
+        return invoke( path, getTargetContainer(), data);
     }
 
     public Object invoke(String path, Object data, String context) {
