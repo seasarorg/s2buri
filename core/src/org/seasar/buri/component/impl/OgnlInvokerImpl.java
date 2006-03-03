@@ -59,7 +59,10 @@ public class OgnlInvokerImpl implements OgnlInvoker {
         if(isDebug) {
             getLogger().debug("Call OgnlTraceInvoker Exception = [" + exception + "]");
         }
-        RuntimeException runtimeException = (RuntimeException)processor.getValue(exception,getContainer(),contextData);
+        RuntimeException runtimeException = null;
+        if( isProcessedOgnl(exception,isDebug) ) { //ognlLine.length()>0) {
+            runtimeException = (RuntimeException)processor.getValue(exception,getContainer(),contextData);
+        }
         throw runtimeException;
     }
     
