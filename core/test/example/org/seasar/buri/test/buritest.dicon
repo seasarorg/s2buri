@@ -3,7 +3,7 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
 	<include path="example/org/seasar/buri/test/serviceManager.dicon"/>
-	<include path="example/org/seasar/buri/test/buri2.dicon"/>
+	<include path="buri2.dicon"/>
 	<include path="example/org/seasar/buri/dicon/alldao.dicon"/>	
 	<!--
 	<include path="javelin.dicon"/>

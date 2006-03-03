@@ -11,6 +11,7 @@ import jp.starlogic.servicemanager.service.BuriAutoInvokeService;
 
 import org.seasar.buri.dao.BuriPathDao;
 import org.seasar.buri.dao.BuriStateDao;
+import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.invoker.SimpleBuriInvoker;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -43,6 +44,8 @@ public class BuriTest extends S2TestCase {
     private BuriStateDao stateDao_;
     private BuriPathDao pathDao_;
     private BuriAutoInvokeService autoInvokeService_;
+
+    private BuriEngine buriEngine_;
     
     private SimpleBuriInvoker buriInvoker;
     
@@ -66,6 +69,9 @@ public class BuriTest extends S2TestCase {
     }
     
     public void testNomalOrderTx() {
+        // 本当はburi2.diconに書くもの
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
+
         customerSetup();
         itemSetup();
         List datas = null;
@@ -175,6 +181,8 @@ public class BuriTest extends S2TestCase {
     }
     
     public void testCancelSuccessOrderTx() {
+        // 本当はburi2.diconに書くもの
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
         customerSetup();
         itemSetup();
         List datas = null;
@@ -233,6 +241,8 @@ public class BuriTest extends S2TestCase {
         
     }
     public void testCancelNGOrderTx() {
+        // 本当はburi2.diconに書くもの
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
         customerSetup();
         itemSetup();
         List datas = null;
@@ -348,6 +358,8 @@ public class BuriTest extends S2TestCase {
     }
     
     public void testTimeoutOrderTx() throws Exception {
+        // 本当はburi2.diconに書くもの
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
         customerSetup();
         itemSetup();
         List datas = null;
