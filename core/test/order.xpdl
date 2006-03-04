@@ -427,7 +427,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleID)&#10;InnerInvoker.invoke(&quot;注文管理.請求&quot;,#data)"/>
+<ExtendedAttribute Name="ognl" Value="#orderData=#data&#10;InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleID)&#10;#orderData&#10;#data&#10;InnerInvoker.invoke(&quot;注文管理.請求&quot;,#data)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -613,7 +613,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.seasar.buri.dto.BillDto()&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
+<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.seasar.buri.dto.BillDto()&#10;#data&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

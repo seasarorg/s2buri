@@ -36,15 +36,15 @@ public class BuriDataMetaDataUtilImpl implements BuriDataMetaDataUtil {
     }
     
     public BuriDataMetaData getMetaDataFromTypeName(BuriPath path,String dataType) {
-        if(metadataCache.containsKey(path+dataType)){
-            return (BuriDataMetaData)metadataCache.get(path+dataType);
-        }
+//        if(metadataCache.containsKey(path+dataType)){
+//            return (BuriDataMetaData)metadataCache.get(path+dataType);
+//        }
         DataField dataField = dataFieldUtil.getDataField(path,dataType);
         if(dataField==null) {
             throw new BuriNoDataFieldException(new Object[]{path.getWorkflowPackage(),dataType});
         }
         BuriDataMetaData metaData = getBuriDataMetaData(dataField);
-        metadataCache.put(path+dataType,metaData);
+//        metadataCache.put(path+dataType,metaData);
         return metaData;
     }
 

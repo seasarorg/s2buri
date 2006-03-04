@@ -70,7 +70,7 @@ public class BuriTest extends S2TestCase {
     
     public void testNomalOrderTx() {
         // 本当はburi2.diconに書くもの
-        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","order.xpdl");
 
         customerSetup();
         itemSetup();
@@ -142,6 +142,7 @@ public class BuriTest extends S2TestCase {
 
         datas = buriInvoker.getDataListFromPath("注文管理.請求.請求作業");
         assertEquals(datas.size(),1);
+        System.out.println(datas.get(0).getClass().getName());
         BillDto billDto = (BillDto)datas.get(0);
 
         datas = buriInvoker.getDataListFromPath("注文管理.請求.再請求準備");
@@ -182,7 +183,7 @@ public class BuriTest extends S2TestCase {
     
     public void testCancelSuccessOrderTx() {
         // 本当はburi2.diconに書くもの
-        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","order.xpdl");
         customerSetup();
         itemSetup();
         List datas = null;
@@ -242,7 +243,7 @@ public class BuriTest extends S2TestCase {
     }
     public void testCancelNGOrderTx() {
         // 本当はburi2.diconに書くもの
-        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","order.xpdl");
         customerSetup();
         itemSetup();
         List datas = null;
@@ -359,7 +360,7 @@ public class BuriTest extends S2TestCase {
     
     public void testTimeoutOrderTx() throws Exception {
         // 本当はburi2.diconに書くもの
-        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","orderBao.xpdl");
+        buriEngine_.getWorkflows().readWorkFlowFromResource("注文管理","order.xpdl");
         customerSetup();
         itemSetup();
         List datas = null;

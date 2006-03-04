@@ -145,6 +145,11 @@
 <FinishMode>
 <Automatic/>
 </FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="570,620"/>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="buri2_Par1"/>
@@ -343,12 +348,13 @@
 <TransitionRefs>
 <TransitionRef Id="buri2_Wor3_Tra57"/>
 <TransitionRef Id="buri2_Wor3_Tra80"/>
+<TransitionRef Id="buri2_Wor3_tra1"/>
 </TransitionRefs>
 </Split>
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="510,690"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="480,695"/>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="buri2_Par1"/>
 </ExtendedAttributes>
 </Activity>
@@ -604,7 +610,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="buri2_Wor3_Act22" Id="buri2_Wor3_Tra57" To="buri2_Wor3_Act15">
-<Condition Type="CONDITION">#activityList.size() != 1</Condition>
+<Condition Type="CONDITION">#activityList.size() &gt; 1</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
@@ -683,6 +689,12 @@
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="790,880"/>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buri2_Wor3_Act22" Id="buri2_Wor3_tra1" To="buri2_Wor3_Act13">
+<Condition Type="CONDITION">#activityList.size() == 0</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>

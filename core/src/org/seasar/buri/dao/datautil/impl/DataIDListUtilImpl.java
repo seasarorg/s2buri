@@ -148,8 +148,10 @@ public class DataIDListUtilImpl implements DataIDListUtil {
         while(ite.hasNext()) {
             BuriPathEntityDto entityDto = (BuriPathEntityDto)ite.next();
             BuriPath resultPath = new BuriPath(entityDto.getPathName(),entityDto.getRealPathName());
-            resultPath.setBuriPathID(entityDto.getPathID());
-            result.add(resultPath);
+            if(path.getWorkflowProcess().equals(resultPath.getWorkflowProcess())) {
+                resultPath.setBuriPathID(entityDto.getPathID());
+                result.add(resultPath);
+            }
         }
         return result;
     }

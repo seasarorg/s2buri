@@ -12,6 +12,7 @@ public interface DataAccessUtil {
     void sotreData(Object data);
     void sotreDataNoPkey(Object data);
     
+    Object getObjectFromDataID(BuriPath path, long dataID,String className);
     Object getObjectFromDataID(BuriPath path, long dataID);
 
     Object callOgnls(BuriDataMetaData metaData,String processOgnl,Object data);

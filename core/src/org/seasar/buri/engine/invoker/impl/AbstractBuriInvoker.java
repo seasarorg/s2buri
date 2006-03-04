@@ -66,7 +66,21 @@ public abstract class AbstractBuriInvoker {
     }
     
     protected Object invoke(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map localContext) {
-        return invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext,localContext);
+//        return innerInvoke(path, container, data, userData,action, context, notUpdateMode,appendContext,localContext);
+        ContextBackup backup = new ContextBackup();
+        backup.backup();
+        Object result = null;
+        if(data instanceof List) {
+            Iterator ite = ((List)data).iterator();
+            while(ite.hasNext()) {
+                Object tgt= ite.next();
+                result = invoke(path, container, tgt, userData,action, context, notUpdateMode,appendContext,localContext);
+            }
+        } else {
+            result = invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext,localContext);
+        }
+        backup.restore();
+        return result;
     }
     protected Object innerInvoke(String path, S2Container s2con, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         BuriPath buriPath = new BuriPath(path);
@@ -88,8 +102,8 @@ public abstract class AbstractBuriInvoker {
     }
     protected Object invokeOne(BuriPath buriPath, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         getContextUtil().getLocalContext().setContainer(container);
-        getContextUtil().getLocalContext().clear();
-        getContextUtil().getContext().clear();
+//        getContextUtil().getLocalContext().clear();
+//        getContextUtil().getContext().clear();
         Object result = invokeImpl(buriPath, container, data, userData,action, context, notUpdateMode,appendContext,locContext);
         return result;
     }
@@ -106,8 +120,8 @@ public abstract class AbstractBuriInvoker {
     
     protected Object invokeOne(String path, S2Container container, Object data, Object userData,Object action, String context, boolean notUpdateMode,Map appendContext,Map locContext) {
         getContextUtil().getLocalContext().setContainer(container);
-        getContextUtil().getLocalContext().clear();
-        getContextUtil().getContext().clear();
+//        getContextUtil().getLocalContext().clear();
+//        getContextUtil().getContext().clear();
         Object result = invokeImpl(path, container, data, userData,action, context, notUpdateMode,appendContext,locContext);
         return result;
     }

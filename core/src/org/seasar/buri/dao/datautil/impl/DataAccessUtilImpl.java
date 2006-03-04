@@ -62,7 +62,12 @@ public class DataAccessUtilImpl implements DataAccessUtil {
     
     public Object getObjectFromDataID(BuriPath path,long dataID) {
         BuriLocalContext context = contextUtil.getLocalContext();
-        BuriDataMetaData metaData = metaDataUtil.getMetaDataFromTypeName(path,context.getDataClassName());
+        Object result = getObjectFromDataID(path,dataID,context.getDataClassName());
+        return result;
+    }
+    
+    public Object getObjectFromDataID(BuriPath path,long dataID,String className) {
+        BuriDataMetaData metaData = metaDataUtil.getMetaDataFromTypeName(path,className);
         Object result = getObjectFromDataID(metaData,dataID);
         return result;
     }
