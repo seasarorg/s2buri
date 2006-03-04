@@ -17,6 +17,7 @@ public interface BuriTestManyDao {
     public String getBuriTestMany_ARGS = "testID01,testID02";
     public BuriTestManyDto getBuriTestMany(long testID01,long testID02);
     
+    public String insert_ARGS = "dto";
     public void insert(BuriTestManyDto dto);
     
     public void update(BuriTestManyDto dto);

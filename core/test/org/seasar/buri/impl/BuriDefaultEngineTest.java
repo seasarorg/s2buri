@@ -97,7 +97,7 @@ public class BuriDefaultEngineTest extends S2TestCase {
         
         System.out.println("buriEngine.getStatePathListByData");
         setupContext(testDto, null,path);
-        Collection pathList = listUtil_.getStatePathListByData(new BuriPath("basicTest"));
+        Collection pathList = listUtil_.getStatePathListByData(new BuriPath("basicTest.test02"));
         assertEquals(pathList.size(),1);
         BuriPath tgtPath = (BuriPath)pathList.iterator().next();
         assertEquals(tgtPath.toString(),"basicTest.test02.stopThis[basicTest.basicTest_Wor2.basicTest_Wor2_Act2]");

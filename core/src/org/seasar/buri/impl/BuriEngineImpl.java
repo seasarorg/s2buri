@@ -62,7 +62,7 @@ public class BuriEngineImpl implements BuriEngine {
         Map args = new HashMap();
         args.put("context",context);
         args.put("path",context.getCallBuriPath());
-        buriExecuteEngine.execute(container, "buri2.BuriEngine.execute",args);
+        buriExecuteEngine.execute(context.getContainer(), "buri2.BuriEngine.execute",args);
         toolExecuteRule.afterExecuteTool();
 //        context.setContext(null);
     }

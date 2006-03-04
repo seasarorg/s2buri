@@ -17,6 +17,7 @@ public interface BuriTestCHARDao {
     public String getBuriTestCHAR_ARGS = "testID";
     public BuriTestCHARDto getBuriTestCHAR(String testID);
     
+    public String insert_ARGS = "dto";
     public void insert(BuriTestCHARDto dto);
     
     public void update(BuriTestCHARDto dto);

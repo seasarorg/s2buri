@@ -72,6 +72,7 @@ public class TimeUtilTest extends TestCase {
      */
     public void testSetMaxSecond() {
         Calendar calendar = CalendarUtil.getCalendar();
+        calendar.set(Calendar.SECOND,10);
         Calendar calendar2 = TimeUtil.setMaxSecond(calendar);
         int org = TimeUtil.getSecond(calendar);
         int proc = TimeUtil.getSecond(calendar2);
@@ -106,6 +107,7 @@ public class TimeUtilTest extends TestCase {
      */
     public void testSetMaxMinute() {
         Calendar calendar = CalendarUtil.getCalendar();
+        calendar.set(Calendar.MINUTE,10);
         Calendar calendar2 = TimeUtil.setMaxMinute(calendar);
         int org = TimeUtil.getMinute(calendar);
         int proc = TimeUtil.getMinute(calendar2);
@@ -140,6 +142,7 @@ public class TimeUtilTest extends TestCase {
      */
     public void testSetMaxHour() {
         Calendar calendar = CalendarUtil.getCalendar();
+        calendar.set(Calendar.HOUR_OF_DAY,10);
         Calendar calendar2 = TimeUtil.setMaxHour(calendar);
         int org = TimeUtil.getHour(calendar);
         int proc = TimeUtil.getHour(calendar2);
