@@ -10,7 +10,9 @@
 	</component>
 	
 	<component name="UtilCache" class="org.seasar.buri.xpdl.util.impl.interceptor.UtilCacheInterceptor" >
+		<!--
 		<property name="classDefUtil">ClassDefUtil</property>
+		-->
 	</component>
 
 	<component class="org.seasar.buri.engine.BuriParticipant" instance="request" >

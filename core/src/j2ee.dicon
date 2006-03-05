@@ -43,8 +43,19 @@
 		<property name="user">"BURI2"</property>
 		<property name="password">"buri2"</property>
 	</component>
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
+			"org.postgresql.Driver"
+		</property>
+		<property name="URL">
+			"jdbc:postgresql://localhost/buri"
+		</property>
+		<property name="user">"buri"</property>
+		<property name="password">"buriburi"</property>
+	</component>
 	-->
-	
+
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">
@@ -54,6 +65,7 @@
 			"jdbc:derby:db/buri;create=true"
 		</property>
 	</component>
+	
 	<component name="connectionPool"
 		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
 		<property name="timeout">600</property>

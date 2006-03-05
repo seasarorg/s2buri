@@ -395,6 +395,7 @@ public class BuriTest extends S2TestCase {
         
         stateDao_.getAllBuriState();
         Thread.sleep(10*1000);
+        stateDao_.getTimeOrverState();
         /*
          * 本当は別Threadで動作するサービスなんだけど
          * 別Threadにするとトランザクション制御でThreadが固まるので

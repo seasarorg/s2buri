@@ -5,4 +5,4 @@ FROM
 WHERE 
 	pathID = /*pathID*/0 
 	and dataID = /*dataID*/0 
-	and processDate > timestamp
+	and processDate > CURRENT_TIMESTAMP

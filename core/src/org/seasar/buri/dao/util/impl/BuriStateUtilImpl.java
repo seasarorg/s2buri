@@ -260,8 +260,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         if(readEntityDto == null) {
             stateDao.insert(stateEntityDto);
         } else {
-            readEntityDto.setProcessDate(new Date());
-            stateDao.update(readEntityDto);
+//            readEntityDto.setProcessDate(new Date());
+            stateDao.updateProcessedByBranchID(stateEntityDto.getStateID());
         }
     }
 

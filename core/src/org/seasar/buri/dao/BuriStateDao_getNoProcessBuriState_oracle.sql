@@ -3,4 +3,4 @@ SELECT
 FROM 
 	BuriState 
 WHERE 
-	processDate > timestamp
+	processDate > CURRENT_TIMESTAMP

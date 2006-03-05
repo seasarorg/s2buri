@@ -33,6 +33,9 @@ public interface BuriStateDao {
     public String updateAbortByBranchID_ARGS = "branchID,savingStateID";
     public void updateAbortByBranchID(long branchID,long savingStateID);
     
+    public String updateProcessedByBranchID_ARGS = "long StateID";
+    public void updateProcessedByBranchID(long StateID);
+    
     public String countByBranchIDAndNotProcessed_ARGS = "branchID";
     public long countByBranchIDAndNotProcessed(long branchID);
     
