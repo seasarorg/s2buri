@@ -9,7 +9,7 @@ CREATE TABLE BuriState (
        BranchID             INTEGER ,
        PathID               INTEGER ,
        DataID               INTEGER ,
-       UserIDVal            VARCHAR(20),
+       UserIDVal            VARCHAR(100),
        autoRunTime          TIMESTAMP,
        UserIDNum            INTEGER,
        insertDate           TIMESTAMP NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE BuriDataPathHistory (
 					INCREMENT BY 1),
        PathID               INTEGER ,
        DataID               INTEGER ,
-       UserIDVal            VARCHAR(20),
+       UserIDVal            VARCHAR(100),
        UserIDNum            INTEGER,
        insertDate           TIMESTAMP NOT NULL,
        PRIMARY KEY (historyID)

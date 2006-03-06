@@ -1,11 +1,11 @@
-SHIPPING,/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 DROP TABLE BuriState;
 CREATE TABLE BuriState (
        StateID              INTEGER NOT NULL,
        BranchID             INTEGER ,
        PathID               INTEGER ,
        DataID               INTEGER ,
-       UserIDVal            VARCHAR(20),
+       UserIDVal            VARCHAR(100),
        autoRunTime          TIMESTAMP,
        UserIDNum            INTEGER,
        insertDate           TIMESTAMP NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE BuriDataPathHistory (
        historyID            INTEGER NOT NULL,
        PathID               INTEGER ,
        DataID               INTEGER ,
-       UserIDVal            VARCHAR(20),
+       UserIDVal            VARCHAR(100),
        UserIDNum            INTEGER,
        insertDate           TIMESTAMP NOT NULL,
        PRIMARY KEY (historyID)
