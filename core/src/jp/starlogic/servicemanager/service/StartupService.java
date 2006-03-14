@@ -4,7 +4,6 @@
  */
 package jp.starlogic.servicemanager.service;
 
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -101,7 +100,7 @@ public class StartupService extends AbstractGetRunService {
     }
 
     protected long getTimeInMillis() {
-        return GregorianCalendar.getInstance().getTimeInMillis();
+        return System.currentTimeMillis();
     }
 
     public ServiceManager getManager() {

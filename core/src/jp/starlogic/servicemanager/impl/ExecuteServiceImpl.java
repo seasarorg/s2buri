@@ -4,8 +4,6 @@
  */
 package jp.starlogic.servicemanager.impl;
 
-import java.util.GregorianCalendar;
-
 import jp.starlogic.servicemanager.ExecuteService;
 import jp.starlogic.servicemanager.OneService;
 import jp.starlogic.servicemanager.ServiceMonitor;
@@ -68,7 +66,7 @@ public class ExecuteServiceImpl implements ExecuteService {
     }
     
     protected long getTimeInMillis() {
-        return GregorianCalendar.getInstance().getTimeInMillis();
+        return System.currentTimeMillis();
     }
     
     protected void runWaitTime(OneService service,long waitTime) {
