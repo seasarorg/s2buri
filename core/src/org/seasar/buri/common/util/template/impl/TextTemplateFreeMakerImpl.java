@@ -41,4 +41,12 @@ public class TextTemplateFreeMakerImpl implements TextTemplate {
         return result;
     }
 
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
 }
