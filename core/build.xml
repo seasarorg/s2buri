@@ -22,6 +22,8 @@
 				<include name="**/*.xml" />
 				<include name="**/*.xpdl" />
 				<include name="**/*.dtd" />
+				<include name="**/*.dicon" />
+				<include name="**/*.sql" />
 				<exclude name="build.xml" />
 			</fileset>
 		</copy>
