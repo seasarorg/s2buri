@@ -6,7 +6,6 @@
 	<classpathentry kind="var" path="TOMCAT_HOME/common/lib/jsp-api.jar"/>
 	<classpathentry kind="src" path="WEB-INF/src"/>
 	<classpathentry output="work" kind="src" path="work"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/myfaces-1.0.9.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/commons-codec-1.2.jar"/>
@@ -42,13 +41,11 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/commons-digester-1.6.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/commons-lang-2.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/derby-10.1.2.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/derbyclient-10.1.2.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/derbyLocale_ja_JP-10.1.2.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/derbynet-10.1.2.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/derbytools-10.1.2.1.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/dozer-2.0.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/s2-dao-1.0.31.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/s2-extension-2.3.7.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/s2-framework-2.3.7.jar"/>
