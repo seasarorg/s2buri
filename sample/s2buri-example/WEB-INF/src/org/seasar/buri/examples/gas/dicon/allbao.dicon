@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="bao.dicon"/>
+	<include path="aop.dicon"/>
+	<include path="org/seasar/buri/examples/gas/dicon/alldao.dicon"/>
+	
+	<component class="org.seasar.buri.examples.gas.bao.GasRateBao">
+		<aspect>bao.interceptor</aspect>
+		<aspect>aop.traceInterceptor</aspect>
+	</component>
+
+	<component class="org.seasar.buri.examples.gas.logic.impl.GasRateLogicImpl">
+		<aspect>aop.traceInterceptor</aspect>
+	</component>
+
+	<component name="BillingService" class="org.seasar.buri.examples.gas.service.impl.BillingServiceImpl">
+		<aspect>aop.traceInterceptor</aspect>
+	</component>
+
+	<component name="pickup" class="org.seasar.buri.tablepickup.impl.TablePickupImpl">
+	  <initMethod name="readFile">
+	    <arg>"rate_table.xls"</arg>
+	    <arg>{"rate","rate2"}</arg>
+	  </initMethod>
+	</component>
+
+</components>

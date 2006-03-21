@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="org/seasar/buri/examples/gas/dicon/allaop.dicon"/>
+	<include path="org/seasar/buri/examples/gas/dicon/allbao.dicon"/>
+
+
+	<component name="meterCheckInputDto" class="org.seasar.buri.examples.gas.dto.MeterCheckInputDto" instance="request"/>
+	<component name="billReportDto" class="org.seasar.buri.examples.gas.dto.BillReportDto" instance="request"/>
+	<component name="paymentDto" class="org.seasar.buri.examples.gas.dto.PaymentDto" instance="request"/>
+	
+	<component name="meterCheckInputAction" class="org.seasar.buri.examples.gas.action.impl.MeterCheckInputActionImpl" instance="request">
+		<aspect pointcut="entry">logicInterceptorChain</aspect>
+	</component>
+	<component name="billListInitAction" class="org.seasar.buri.examples.gas.action.impl.BillListInitActionImpl" instance="request">
+		<aspect pointcut="initialize">logicInterceptorChain</aspect>
+	</component>
+	<component name="billListAction" class="org.seasar.buri.examples.gas.action.impl.BillListActionImpl" instance="request">
+		<aspect pointcut="goPayment">logicInterceptorChain</aspect>
+	</component>
+	<component name="paymentAction" class="org.seasar.buri.examples.gas.action.impl.PaymentActionImpl" instance="request">
+		<aspect pointcut="pay">logicInterceptorChain</aspect>
+	</component>
+	<component name="paymentFormInitAction" class="org.seasar.buri.examples.gas.action.impl.PaymentFormInitActionImpl" instance="request">
+		<aspect pointcut="initialize">logicInterceptorChain</aspect>
+	</component>
+	<component name="approvedPaymentListInitAction" class="org.seasar.buri.examples.gas.action.impl.ApprovedPaymentListInitActionImpl" instance="request">
+		<aspect pointcut="initialize">logicInterceptorChain</aspect>
+	</component>
+	<component name="remindedPaymentListInitAction" class="org.seasar.buri.examples.gas.action.impl.RemindedPaymentListInitActionImpl" instance="request">
+		<aspect pointcut="initialize">logicInterceptorChain</aspect>
+	</component>
+
+</components>

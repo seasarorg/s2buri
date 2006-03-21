@@ -1,0 +1,49 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:action="#{paymentFormInitAction.initialize}"
+	m:extends="/WEB-INF/layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j" />
+<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+<title>支払受付</title>
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="支払受付"/>
+<span m:inject="s:insert" m:name="body">
+<form>
+<h3>入金額を入力してください</h3>
+<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+<table class="tablebg">
+<tr>
+    <td class="label">お名前
+　　　　</td>
+    <td>
+<span m:value="#{paymentDto.customerName}">鰤 太郎</span> 様
+    </td>
+</tr>
+<tr>
+    <td class="label">請求番号
+　　　　</td>
+    <td><span m:value="#{paymentDto.billCode}">3333</span>
+    </td>
+</tr>
+<tr>
+    <td class="label">請求額
+　　　　</td>
+    <td><span m:value="#{paymentDto.billAmount}">10000</span> 円
+    </td>
+</tr>
+<tr>
+    <td class="label">入金額
+　　　　</td>
+    <td><input type="text" m:value="#{paymentDto.paymentAmount}" value="10000"/> 円
+    </td>
+</tr>
+</table>
+<input type="submit" value="登録" m:action="#{paymentAction.pay}"/>
+<input type="hidden" m:value="#{paymentDto.customerName}"/><br>
+<input type="hidden" m:value="#{paymentDto.billCode}"/><br>
+<input type="hidden" m:value="#{paymentDto.billAmount}"/><br>
+</form>
+</span>
+</body>
+</html>

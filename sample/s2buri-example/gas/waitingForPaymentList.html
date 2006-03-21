@@ -1,0 +1,48 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:action="#{billListInitAction.initialize}"
+	m:extends="/WEB-INF/layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j"/>
+<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+<title>請求済みお客様一覧</title>
+</head>
+
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="請求済みお客様一覧"/>
+<span m:inject="s:insert" m:name="body">
+
+<h3>請求済みお客様一覧</h3>
+<span m:inject="h:messages" globalOnly="true" m:class="error"/>
+<form>
+<table class="tablebg">
+    <tr class="label">
+        <th>請求番号</th>
+        <th>お名前</th>
+        <th>使用量</th>
+        <th>請求額</th>
+        <th>連絡先</th>
+        <th></th>
+    </tr>
+    <span m:inject="s:forEach"
+    	m:items="#{billDtoList}"
+    	m:var="e"
+    	m:varIndex="i">
+	<tr class="evenRow" m:class="#{i % 2 == 0 ? 'evenRow' : 'oddRow'}">
+		<td class="left"><span m:value="#{e.billCode}">7369</span></td>
+        <td class="right"><span m:value="#{e.customerName}">テスト</span> 様</td>
+        <td class="right"><span m:value="#{e.meterIndication}">50</span> m<sup>3</sup></td>
+        <td class="right"><span m:value="#{e.billAmount}">7902</span> 円</td>
+        <td class="right"><span m:value="#{e.recipientMailAddress}">hoge@example.com</span></td>
+        <td><a href="paymentForm.html" m:action="#{billListAction.goPayment}">支払処理へ
+        		<span m:inject="f:param" m:name="billCode" m:value="#{e.billCode}"/>
+        		<span m:inject="f:param" m:name="billAmount" m:value="#{e.billAmount}"/>
+        		<span m:inject="f:param" m:name="customerName" m:value="#{e.customerName}"/>
+            </a>
+        </td>
+	</tr>
+	</span>
+</table>
+</form>
+</span>
+</body>
+</html>

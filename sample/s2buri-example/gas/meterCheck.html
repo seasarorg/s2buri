@@ -1,0 +1,30 @@
+<html xmlns:m="http://www.seasar.org/maya" m:extends="/WEB-INF/layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j" />
+<title>検針結果入力</title>
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="検針結果入力"/>
+<span m:inject="s:insert" m:name="body">
+<form>
+<h3>検針結果入力</h3>
+<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+<table class="tablebg">
+<tr>
+    <td class="label">お客様番号
+　　　　</td>
+    <td><input type="text" m:value="#{meterCheckInputDto.customerCode}"/>
+    </td>
+</tr>
+<tr>
+    <td class="label">検針結果(m<sup>3</sup>)
+　　　　</td>
+    <td><input type="text" m:value="#{meterCheckInputDto.meterIndication}"/> m<sup>3</sup>
+    </td>
+</tr>
+</table>
+<input type="submit" value="登録" m:action="#{meterCheckInputAction.entry}"/>
+</form>
+</span>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="GasRatePackage" Name="GasRatePackage" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2006-01-16 15:40:09</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="GasRatePackage_Wor1" Name="GasRateProcess">
+<ProcessHeader DurationUnit="D">
+<Created>2006-01-16 15:40:45</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<DataFields>
+<DataField Id="org.seasar.buri.examples.gas.entity.MeterCheck" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="meterCheckId, meterCheckId != 0"/>
+<ExtendedAttribute Name="insert" Value="MeterCheckDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="MeterCheckDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="MeterCheckDao.getMeterCheckById(#data.meterCheckId)"/>
+<ExtendedAttribute Name="selectMany" Value="MeterCheckDao.getMeterCheckListByIds(#data)"/>
+<ExtendedAttribute Name="filterMany" Value="MeterCheckDao.getByIdAndDto(#id, #findDto)"/>
+</ExtendedAttributes>
+</DataField>
+<DataField Id="java.lang.Long" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="preprocess" Value="MeterCheckDao.getMeterCheckById(#data)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<Participants>
+<Participant Id="GasRatePackage_Wor1_Par1" Name="検針員">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="GasRatePackage_Wor1_App1" Name="OgnlInvoker"/>
+</Applications>
+<Activities>
+<Activity Id="GasRatePackage_Wor1_Act1" Name="開始">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="140"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="190,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act2" Name="料金計算">
+<Implementation>
+<Tool Id="GasRatePackage_Wor1_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="BillingService.createBill(#data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="260"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="320,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act3" Name="支払待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="360"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="450,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act4" Name="支払受付">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="GasRatePackage_Wor1_Tra10"/>
+<TransitionRef Id="GasRatePackage_Wor1_Tra11"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="480"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="580,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act5" Name="受領メール送信">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="610"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="710,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act6" Name="督促メール送信">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="590"/>
+<ExtendedAttribute Name="YOffset" Value="200"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="710,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act7" Name="支払処理完了済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="730"/>
+<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="850,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_Act8" Name="督促済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="730"/>
+<ExtendedAttribute Name="YOffset" Value="200"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="850,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="GasRatePackage_Wor1_act1" Name="請求メール送信">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>GasRatePackage_Wor1_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="ParticipantID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="XOffset" Value="310"/>
+<ExtendedAttribute Name="YOffset" Value="200"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="GasRatePackage_Wor1_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="389,237"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="GasRatePackage_Wor1_Act1" Id="GasRatePackage_Wor1_Tra2" To="GasRatePackage_Wor1_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_Act2" Id="GasRatePackage_Wor1_Tra3" To="GasRatePackage_Wor1_act1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_Act3" Id="GasRatePackage_Wor1_Tra8" To="GasRatePackage_Wor1_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_Act4" Id="GasRatePackage_Wor1_Tra10" To="GasRatePackage_Wor1_Act5">
+<Condition Type="CONDITION">#data.billAmount == #data.paymentAmount</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_Act4" Id="GasRatePackage_Wor1_Tra11" To="GasRatePackage_Wor1_Act6">
+<Condition Type="CONDITION">#data.billAmount &gt; #data.paymentAmount</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_Act5" Id="GasRatePackage_Wor1_Tra12" To="GasRatePackage_Wor1_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_Act6" Id="GasRatePackage_Wor1_Tra13" To="GasRatePackage_Wor1_Act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="GasRatePackage_Wor1_act1" Id="GasRatePackage_Wor1_tra1" To="GasRatePackage_Wor1_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="StartOfWorkflow" Value="GasRatePackage_Wor1_Par1;GasRatePackage_Wor1_Act1;60;90;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="GasRatePackage_Wor1_Par1;GasRatePackage_Wor1_Act7;850;90;NOROUTING"/>
+<ExtendedAttribute Name="EndOfWorkflow" Value="GasRatePackage_Wor1_Par1;GasRatePackage_Wor1_Act8;850;200;NOROUTING"/>
+<ExtendedAttribute Name="ParticipantVisualOrder" Value="GasRatePackage_Wor1_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=GasRatePackage_Wor1_Par1,CONNECTING_ACTIVITY_ID=GasRatePackage_Wor1_Act7,X_OFFSET=1001,Y_OFFSET=141,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=GasRatePackage_Wor1_Par1,CONNECTING_ACTIVITY_ID=GasRatePackage_Wor1_Act8,X_OFFSET=1001,Y_OFFSET=251,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=GasRatePackage_Wor1_Par1,CONNECTING_ACTIVITY_ID=GasRatePackage_Wor1_Act1,X_OFFSET=111,Y_OFFSET=141,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="GasRatePackage_Wor1_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+<ExtendedAttribute Name="Version" Value="1.4.2"/>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+</ExtendedAttributes>
+</Package>

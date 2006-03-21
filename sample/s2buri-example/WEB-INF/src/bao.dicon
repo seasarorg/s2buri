@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components namespace="bao">
+	<include path="buri2.dicon"/>
+	<component class="org.seasar.buri.bao.impl.BaoMetadataFactoryImpl">
+	</component>
+	
+	<component class="org.seasar.buri.bao.interceptor.BaoInvokerImpl">
+	</component>
+	
+	<component name="interceptor" class="org.seasar.buri.bao.interceptor.BaoInterceptorImpl">
+	</component>
+	
+</components>

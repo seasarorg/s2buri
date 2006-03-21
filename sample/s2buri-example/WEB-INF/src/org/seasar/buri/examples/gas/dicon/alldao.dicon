@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="dao.dicon"/>
+	<include path="aop.dicon"/>
+
+	<component name="CustomerDao" class="org.seasar.buri.examples.gas.dao.CustomerDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+	<component name="MeterCheckDao" class="org.seasar.buri.examples.gas.dao.MeterCheckDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+	
+</components>

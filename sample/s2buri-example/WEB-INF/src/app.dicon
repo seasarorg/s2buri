@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="jsf.dicon"/>
+	<include path="org/seasar/buri/examples/gas/dicon/allconverter.dicon"/>
+	<include path="org/seasar/buri/examples/gas/dicon/allvalidator.dicon"/>
+
+	<include path="org/seasar/buri/examples/gas/dicon/gasRate.dicon"/>
+</components>

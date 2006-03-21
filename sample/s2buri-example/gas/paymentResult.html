@@ -1,0 +1,41 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:extends="/WEB-INF/layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j" />
+<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+<title>支払処理結果</title>
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="支払処理結果"/>
+<span m:inject="s:insert" m:name="body">
+<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+<h3>以下の内容で支払処理を行いました</h3>
+<table class="tablebg">
+<tr>
+    <td class="label">お名前
+    </td>
+    <td><span m:value="#{paymentDto.customerName}">鰤 太郎</span> 様
+    </td>
+</tr>
+<tr>
+    <td class="label">請求番号
+    </td>
+    <td><span m:value="#{paymentDto.billCode}">3333</span>
+    </td>
+</tr>
+<tr>
+    <td class="label">請求額
+    </td>
+    <td><span m:value="#{paymentDto.billAmount}">10000</span> 円
+    </td>
+</tr>
+<tr>
+    <td class="label">入金額
+    </td>
+    <td><span m:value="#{paymentDto.paymentAmount}">10000</span> 円
+    </td>
+</tr>
+</table>
+</span>
+</body>
+</html>

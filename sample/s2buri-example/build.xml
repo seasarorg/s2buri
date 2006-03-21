@@ -1,0 +1,56 @@
+<project name="s2buri-example" default="prepare" basedir=".">
+	
+	<property name="db.dir" location="WEB-INF/db"/>
+	<property name="lib.dir" location="WEB-INF/lib"/>
+	
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*" />
+		</fileset>
+	</path>
+	
+    <target name="prepare" description="--> prepare project directories">
+        <mkdir dir="${db.dir}"/>
+    </target>
+	
+	<target name="prepare-db" depends="create-tables,insert-data"/>
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: db-taskdef               
+         - - - - - - - - - - - - - - - - - -->
+    <target name="db-taskdef" depends="prepare">
+      <macrodef name="run-sql">
+        <attribute name="pattern" />
+        <sequential>
+    		<sql
+    		    driver="org.apache.derby.jdbc.EmbeddedDriver"
+    		    url="jdbc:derby:${db.dir}/buri;create=true"
+    		    userid=""
+    		    password=""
+    		>
+    			<classpath refid="project.classpath" />
+    			<fileset dir=".">
+    				<include name="@{pattern}" />
+    			</fileset>
+    		</sql>
+        </sequential>
+      </macrodef>
+    </target>
+
+    <target name="delete-db-dir" description="--> clean project">
+    	<delete dir="${db.dir}" />
+    </target>
+	
+	<target name="create-tables" depends="db-taskdef">
+		<run-sql pattern="WEB-INF/sql/create/*.sql"/>
+	</target>
+	
+	<target name="insert-data" depends="db-taskdef">
+		<run-sql pattern="WEB-INF/sql/insert/*.sql"/>
+	</target>
+	
+	<target name="drop-tables" depends="db-taskdef">
+		<run-sql pattern="WEB-INF/sql/drop/*.sql"/>
+	</target>
+
+</project>
