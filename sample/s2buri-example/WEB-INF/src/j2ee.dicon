@@ -23,12 +23,7 @@
 			"org.apache.derby.jdbc.EmbeddedDriver"
 		</property>
 		<property name="URL">
-    		"jdbc:derby:C:/app/eclipse-workspace/s2buri-example/WEB-INF/db/buri"
-			<!--
-			"jdbc:derby:" + @org.seasar.framework.util.EclipseUtil@getProjectRoot("s2buri-example").getAbsolutePath() + "/WEB-INF/db/buri"
-			"jdbc:derby:WEB-INF/db/buri"
-			"jdbc:derby:/WEB-INF/db/buri"
-			-->
+    		"jdbc:derby:@basedir@/WEB-INF/db/buri"
 		</property>
 		<property name="user">""</property>
 		<property name="password">""</property>

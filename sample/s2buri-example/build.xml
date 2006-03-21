@@ -1,5 +1,4 @@
-<project name="s2buri-example" default="prepare" basedir=".">
-	
+<project name="s2buri-example" default="prepare-env" basedir=".">
 	<property name="db.dir" location="WEB-INF/db"/>
 	<property name="lib.dir" location="WEB-INF/lib"/>
 	
@@ -9,16 +8,29 @@
 		</fileset>
 	</path>
 	
-    <target name="prepare" description="--> prepare project directories">
-        <mkdir dir="${db.dir}"/>
+    <target name="clean" description="--> clean project">
+    	<delete dir="${db.dir}" />
     </target>
 	
-	<target name="prepare-db" depends="create-tables,insert-data"/>
+	<target name="prepare-env"
+		depends="create-tables,insert-data,replace-j2ee-dicon"
+		description="--> prepare environment for s2buri-example"
+	/>
+	
+	<target name="replace-j2ee-dicon">
+		<pathconvert targetos="unix" property="basedir.unix">
+			<path>
+				<pathelement location="${basedir}"/>
+			</path>
+		</pathconvert>
+		<replace file="WEB-INF/src/j2ee.dicon" token="@basedir@" value="${basedir.unix}"/>
+	</target>
 	
     <!-- - - - - - - - - - - - - - - - - - 
           target: db-taskdef               
          - - - - - - - - - - - - - - - - - -->
-    <target name="db-taskdef" depends="prepare">
+    <target name="db-taskdef">
+      <mkdir dir="${db.dir}"/>
       <macrodef name="run-sql">
         <attribute name="pattern" />
         <sequential>
@@ -37,10 +49,6 @@
       </macrodef>
     </target>
 
-    <target name="delete-db-dir" description="--> clean project">
-    	<delete dir="${db.dir}" />
-    </target>
-	
 	<target name="create-tables" depends="db-taskdef">
 		<run-sql pattern="WEB-INF/sql/create/*.sql"/>
 	</target>
