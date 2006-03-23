@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Shift_JIS"?>
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
@@ -75,7 +75,7 @@
 		<property name="buriDataDao">BuriDataDao</property>
 	</component>
 
-<!-- sequence æœ‰ã‚Šã®DBã‚’ä½¿ã†å ´åˆ ã§é«˜é€ŸåŒ–ã‚’ã™ã‚‹å ´åˆ(Dtoã‚’æ›¸ãæ›ãˆã¦jarä½œã‚Šç›´ã—ã®å¿…è¦æœ‰ã‚Š)
+<!-- sequence —L‚è‚ÌDB‚ðŽg‚¤ê‡ ‚Å‚‘¬‰»‚ð‚·‚éê‡(Dto‚ð‘‚«Š·‚¦‚Äjarì‚è’¼‚µ‚Ì•K—v—L‚è)
 	<component name="BuriDataDaoUtil" class="org.seasar.buri.dao.datautil.impl.BuriDataDaoUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
 		<property name="buriDataDao">BuriDataDao</property>
@@ -92,7 +92,7 @@
 	</component>
   -->
   
-<!-- æ¨™æº–è¨­å®š
+<!-- •W€Ý’è
   -->
 	<component name="BuriDataDaoUtil" class="org.seasar.buri.dao.datautil.impl.NoSBuriDataDaoUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
@@ -108,7 +108,7 @@
 		<property name="branchDao">BuriBranchDao</property>
 		<property name="stateDao">BuriStateDao</property>
 	</component>
-<!-- æ¨™æº–è¨­å®šã€€ã“ã“ã¾ã§
+<!-- •W€Ý’è@‚±‚±‚Ü‚Å
   -->
 
 
@@ -180,7 +180,7 @@
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 
-	<!-- ã¶ã‚Šï¼’ç”¨ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ -->
+	<!-- ‚Ô‚è‚Q—pƒRƒ“ƒ|[ƒlƒ“ƒg -->
 
 	<component class="org.seasar.buri.common.util.template.impl.TextTemplateFreeMakerImpl">
 		<aspect>BuriInterceptorChain</aspect>
