@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/geronimo-j2ee_1.4_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/javassist-3.0.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/ognl-2.6.5.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/poi-2.5.1-final-20040804.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/postgresql-8.1-404.jdbc3.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/s2-dao-1.0.31.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/s2-dao-1.0.31-sources.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/s2-extension-2.3.7.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/s2-extension-2.3.7-sources.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/s2-framework-2.3.7.jar"/>
+	<classpathentry kind="lib" path="/s2coffee/lib/s2-framework-2.3.7-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/s2coffee"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
