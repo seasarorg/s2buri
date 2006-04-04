@@ -1,0 +1,79 @@
+<project name="s2buri" default="dist" basedir=".">
+
+	<property file="project.properties" />
+
+	<fileset id="classpath" dir="${lib}">
+		<include name="*" />
+		<exclude name="s2buri*" />
+	</fileset>
+
+	<target name="compile">
+		<javac srcdir="${src}" destdir="${build}" debug="on">
+			<classpath>
+				<fileset refid="classpath" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="copy" depends="compile">
+		<copy todir="${build}">
+			<fileset dir="${src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.xpdl" />
+				<include name="**/*.dtd" />
+				<include name="**/*.dicon" />
+				<include name="**/*.sql" />
+				<exclude name="build.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="dist" depends="compile,copy">
+		<jar jarfile="${lib}/${burijarfile}" basedir="${build}" includes="${buripackage},${svmpackage},${xpdlpackage},BRI*.properties,SVM*.properties" />
+	</target>
+	
+	<target name="testcopy" depends="copy">
+	     <copy todir="${build}">
+	         <fileset dir="${src}">
+	             <include name="**/*.dicon" />
+	             <include name="**/*.txt" />
+	             <include name="**/*.xls" />
+	             <include name="**/*.xpdl" />
+	         </fileset>
+	     </copy>
+	 </target>
+
+	<target name="cleanbuild">
+		<delete dir="${lib}/${burijarfile}" />
+	</target>
+
+	<target name="clean" depends="cleanbuild">
+		<delete file="${lib}/${burijarfile}" />
+	</target>
+
+	<target name="cleans2jarfile">
+		<delete>
+			<fileset dir="${lib}" defaultexcludes="no">
+				<include name="${lib}/${burijarfile}" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="setup" depends="dist">
+		<mkdir dir="${setupdir}" />
+		<delete>
+			<fileset dir="${setupdir}" />
+		</delete>
+		<copy todir="${setupdir}">
+			<fileset dir=".">
+				<exclude name="**/CVS/**" />
+				<exclude name="${build}/**" />
+			</fileset>
+		</copy>
+		<delete dir="${setupdir}build"/>
+		<mkdir dir="${setupdir}build"/>
+		<zip zipfile="${releasezipfile}" basedir="../setup2" includes="s2buri/"/>
+	</target>
+
+</project>
