@@ -32,6 +32,7 @@ import org.seasar.buri.bao.BuriConvert;
 import org.seasar.buri.common.util.ClassDefUtil;
 import org.seasar.buri.common.util.IsNumberUtil;
 import org.seasar.buri.exception.BuriBaoException;
+import org.seasar.framework.aop.S2MethodInvocation;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 
@@ -67,28 +68,28 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     }
 
     protected void updateProcess(BaoMetadata metadata, MethodInvocation invoke) {
-        BuriProcess anot = getAnnotationOfClass(invoke, BuriProcess.class);
-        if (anot != null) {
-            metadata.setProcess(anot.value());
+        BuriProcess annot = getAnnotationOfClass(invoke, BuriProcess.class);
+        if (annot != null) {
+            metadata.setProcess(annot.value());
         } else {
             throw createBaoExcep("EBRI0021", invoke);
         }
     }
 
     protected void updateUserInfo(BaoMetadata metadata, MethodInvocation invoke) {
-        BuriUserInfo anot = getAnnotationOfClass(invoke, BuriUserInfo.class);
-        if (anot != null) {
-            metadata.setUserInfo(anot.value());
+        BuriUserInfo annot = getAnnotationOfClass(invoke, BuriUserInfo.class);
+        if (annot != null) {
+            metadata.setUserInfo(annot.value());
         }
     }
 
     @SuppressWarnings("unchecked")
     protected void updateGlobalConverter(BaoMetadata metadata,
             MethodInvocation invoke) {
-        Annotation anot = getAnnotationOfClass(invoke, BuriConverter.class);
-        if (anot != null) {
-            LOG.debug("Annotation: " + anot);
-            BuriConvertRule[] rules = ((BuriConverter) anot).value();
+        Annotation annot = getAnnotationOfClass(invoke, BuriConverter.class);
+        if (annot != null) {
+            LOG.debug("Annotation: " + annot);
+            BuriConvertRule[] rules = ((BuriConverter) annot).value();
             for (BuriConvertRule rule : rules) {
                 LOG.debug("ConvertRule: " + rule.clazz() + ", " + rule.ognl());
                 String className = classDefUtil.getClassName(rule.clazz());
@@ -99,9 +100,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     }
 
     protected void updateTargetDto(BaoMetadata metadata, MethodInvocation invoke) {
-        Annotation anot = getAnnotationOfClass(invoke, BuriTargetDto.class);
-        if (anot != null) {
-            metadata.setTargetDto((Class) ((BuriTargetDto) anot).value());
+        Annotation annot = getAnnotationOfClass(invoke, BuriTargetDto.class);
+        if (annot != null) {
+            metadata.setTargetDto((Class) ((BuriTargetDto) annot).value());
         }
     }
 
@@ -161,18 +162,18 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
 
     protected void updateAction(BaoInvokeMetadata invokeMetadata,
             MethodInvocation invoke) {
-        BuriAction anot = getAnnotationOfMethod(invoke, BuriAction.class);
-        if (anot != null) {
-            invokeMetadata.setAction(anot.value());
+        BuriAction annot = getAnnotationOfMethod(invoke, BuriAction.class);
+        if (annot != null) {
+            invokeMetadata.setAction(annot.value());
         }
     }
 
     protected void updateActionConverter(BaoInvokeMetadata invokeMetadata,
             MethodInvocation invoke) {
-        BuriActionConverter anot = getAnnotationOfMethod(invoke,
+        BuriActionConverter annot = getAnnotationOfMethod(invoke,
             BuriActionConverter.class);
-        if (anot != null) {
-            BuriConvertRule rule = anot.value();
+        if (annot != null) {
+            BuriConvertRule rule = annot.value();
             LOG.debug("ConvertRule: " + rule.clazz() + ", " + rule.ognl());
             BuriConvert convert = new BuriConvert(rule.clazz(), rule.ognl());
             invokeMetadata.setBuriConvert(convert);
@@ -181,9 +182,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
 
     protected void updateResult(BaoInvokeMetadata invokeMetadata,
             MethodInvocation invoke) {
-        BuriResult anot = getAnnotationOfMethod(invoke, BuriResult.class);
-        if (anot != null) {
-            invokeMetadata.setResult(anot.value());
+        BuriResult annot = getAnnotationOfMethod(invoke, BuriResult.class);
+        if (annot != null) {
+            invokeMetadata.setResult(annot.value());
         }
     }
 
@@ -237,26 +238,26 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     @SuppressWarnings("unchecked")
     protected void setupValidateActivityName(BaoFunctionMetadata funcMetadata,
             MethodInvocation invoke) {
-        BuriActivityValidate anot = getAnnotationOfMethod(invoke,
+        BuriActivityValidate annot = getAnnotationOfMethod(invoke,
             BuriActivityValidate.class);
-        if (anot != null) {
-            String validate[] = anot.value();
+        if (annot != null) {
+            String validate[] = annot.value();
             funcMetadata.getValidateAction().addAll(Arrays.asList(validate));
         }
     }
 
     protected void setupActivityName(BaoFunctionMetadata funcMetadata,
             MethodInvocation invoke) {
-        BuriActivity anot = getAnnotationOfMethod(invoke, BuriActivity.class);
-        if (anot != null) {
-            funcMetadata.setActivityName(anot.value());
+        BuriActivity annot = getAnnotationOfMethod(invoke, BuriActivity.class);
+        if (annot != null) {
+            funcMetadata.setActivityName(annot.value());
         }
     }
 
     protected void setupArgs(BaoFunctionMetadata fm, MethodInvocation invoke) {
-        BuriArgs anot = getAnnotationOfMethod(invoke, BuriArgs.class);
-        if (anot != null) {
-            String[] args = anot.value();
+        BuriArgs annot = getAnnotationOfMethod(invoke, BuriArgs.class);
+        if (annot != null) {
+            String[] args = annot.value();
             fm.setArgName(Arrays.asList(args));
         } else {
             if (invoke.getArguments().length == 0) {
@@ -272,27 +273,28 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
             invoke.getMethod().getName() });
     }
 
-    @SuppressWarnings("unchecked")
-    private <T extends Annotation> T getAnnotationOfClass(
+    protected <T extends Annotation> T getAnnotationOfClass(
             MethodInvocation invoke, Class<T> annotationClass) {
-        Class<Object> enhancedClass = (Class<Object>) invoke.getThis()
-            .getClass();
-        for (Class<Object> interfc : enhancedClass.getInterfaces()) {
-            T anot = interfc.getAnnotation(annotationClass);
-            if (anot != null) {
-                return anot;
-            }
-        }
-        T anot = enhancedClass.getSuperclass().getAnnotation(annotationClass);
-        if (anot != null) {
-            return anot;
-        }
-        return null;
+        return getTargetClass(invoke).getAnnotation(annotationClass);
     }
 
-    private <T extends Annotation> T getAnnotationOfMethod(
+    protected <T extends Annotation> T getAnnotationOfMethod(
             MethodInvocation invoke, Class<T> annotationClass) {
-        return (T) invoke.getMethod().getAnnotation(annotationClass);
+        return invoke.getMethod().getAnnotation(annotationClass);
+    }
+
+    @SuppressWarnings("unchecked")
+    protected Class<Object> getTargetClass(MethodInvocation invoke) {
+        if (invoke instanceof S2MethodInvocation) {
+            return ((S2MethodInvocation) invoke).getTargetClass();
+        }
+        Class thisClass = invoke.getThis().getClass();
+        Class superClass = thisClass.getSuperclass();
+        if (superClass == Object.class) {
+            return thisClass.getInterfaces()[0];
+        } else {
+            return superClass;
+        }
     }
 
     public void setClassDefUtil(ClassDefUtil classDefUtil) {
