@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="org/seasar/buri/bao/test/dicon/bao.dicon"/>
+	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+	
+	<component class="org.seasar.buri.bao.TigerPetitionBaoImpl">
+		<aspect>bao.interceptor</aspect>
+	</component>
+
+	<component name="ParticipantProvider" class="org.seasar.buri.engine.invoker.impl.TestParticipantProviderImpl">
+	</component>
+	
+</components>
