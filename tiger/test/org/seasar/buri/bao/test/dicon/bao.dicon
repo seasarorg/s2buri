@@ -10,6 +10,9 @@
 	<component class="org.seasar.buri.bao.impl.BaoMetadataFactoryImpl">
 	</component>
 -->
+	<component class="org.seasar.buri.engine.invoker.impl.StandardBuriInvokerImpl">
+	</component>
+
 	<component class="org.seasar.buri.bao.interceptor.BaoInvokerImpl">
 	</component>
 	
