@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.seasar.container</groupId>
+  <artifactId>s2-extension</artifactId>
+  <name>Seasar2 Extension</name>
+  <version>2.2.10</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.seasar.container</groupId>
+      <artifactId>s2-framework</artifactId>
+      <version>2.2.10</version>
+    </dependency>
+    <dependency>
+      <groupId>poi</groupId>
+      <artifactId>poi-2.5.1-final</artifactId>
+      <version>20040804</version>
+    </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,6 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.seasar.dao</groupId>
+  <artifactId>s2-dao</artifactId>
+  <version>1.0.25</version>
+</project>

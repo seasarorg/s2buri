@@ -17,7 +17,10 @@
 
 	<target name="copy" depends="compile">
 		<copy todir="${build}">
-			<fileset dir="${src}">
+			<fileset dir="${resourcesrc}">
+				<exclude name="main" />
+				<exclude name="test" />
+				<exclude name="repository" />
 				<include name="**/*.properties" />
 				<include name="**/*.xml" />
 				<include name="**/*.xpdl" />
@@ -25,6 +28,9 @@
 				<include name="**/*.dicon" />
 				<include name="**/*.sql" />
 				<exclude name="build.xml" />
+			</fileset>
+			<fileset dir="${src.resources}">
+				<include name="**/*" />
 			</fileset>
 		</copy>
 	</target>
