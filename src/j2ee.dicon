@@ -37,44 +37,25 @@
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">
 			"org.postgresql.Driver"
-        </property>
-        <property name="URL">
-          "jdbc:postgresql://localhost/TEST"
-        </property>
-        <property name="user">"xxxx"</property>
-        <property name="password">"xxxx"</property>
-    </component>
-
-	<component name="xaDataSource"
-		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
-		<property name="driverClassName">
-			"net.sourceforge.jtds.jdbc.Driver"
-        </property>
-        <property name="URL">
-            "jdbc:jtds:sqlserver://localhost/TEST;instance=SQLEXPRESS"
-        </property>
-        <property name="user">"xxxx"</property>
-        <property name="password">"xxxx"</property>
-    </component>
+		</property>
+		<property name="URL">
+			"jdbc:postgresql://localhost/buri"
+		</property>
+		<property name="user">"buri"</property>
+		<property name="password">"buriburi"</property>
+	</component>
 	-->
 
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">
-			"org.hsqldb.jdbcDriver"
+			"org.apache.derby.jdbc.EmbeddedDriver"
 		</property>
 		<property name="URL">
-			<!--
-			"jdbc:hsqldb:hsql://localhost:9001"
-			-->
-			"jdbc:hsqldb:file:"
-				 + @org.seasar.framework.util.EclipseUtil@getProjectRoot("s2dao").getAbsolutePath()
-				 + "/s2-dao/target/test-classes/data/demo"
+			"jdbc:derby:db/buri;create=true"
 		</property>
-		<property name="user">"sa"</property>
-		<property name="password">""</property>
-		<!--<initMethod>#out.println(@org.seasar.framework.util.EclipseUtil@getProjectRoot("s2dao").getAbsolutePath())</initMethod>-->
 	</component>
+
 
 	<component name="connectionPool"
 		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">

@@ -30,5 +30,6 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.seasar.kijimuna.core.nature</nature>
 		<nature>com.atlassw.tools.eclipse.checkstyle.CheckstyleNature</nature>
+		<nature>org.apache.derby.ui.derbyEngine</nature>
 	</natures>
 </projectDescription>
