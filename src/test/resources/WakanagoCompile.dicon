@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<!-- 書き換えが必要 -->
+	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+	<!-- ここまで -->
+	
+	<include path="aop.dicon"/>
+	<include path="OgnlScript.dicon"/>
+	<include path="XMLOouoReaderTest.dicon"/>
+	<include path="template.dicon"/>
+	<include path="org/seasar/buri/dicon/allDao.dicon"/>
+
+	<component class="org.seasar.buri.engine.wakanago.WakanagoEngineImpl">
+		<!--
+		<initMethod>
+		#self.readWorkFlowFromResource("sample.xpdl")
+		</initMethod>
+		-->
+	</component>
+
+
+	<component class="org.seasar.buri.dao.util.impl.BuriDataUtilImpl">
+	</component>
+	<component class="org.seasar.buri.dao.util.impl.BuriPathUtilImpl">
+	</component>
+	<component class="org.seasar.buri.dao.util.impl.BuriStateUtilImpl">
+	</component>
+
+
+
+	<component class="org.seasar.buri.compiler.wakanago.WakanagoCompilerImpl">
+	</component>
+	<component class="org.seasar.buri.compiler.wakanago.CompilePackageImpl">
+	</component>
+	<component class="org.seasar.buri.compiler.wakanago.CompileProcessImpl">
+	</component>
+	<component class="org.seasar.buri.compiler.wakanago.DataFieldCompilerImpl">
+	</component>
+	
+	<component class="jp.starlogic.common.janino.util.impl.BasicComplerImpl">
+	</component>
+	
+	<component class="org.seasar.buri.component.impl.BuriComponentUtilImpl">
+	</component>
+	<component name="OgnlInvoker" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
+	</component>
+
+	<component class="org.seasar.buri.util.packages.abst.AbstDataAccessUtilManyKey" instance="outer" >
+	</component>
+	<component class="org.seasar.buri.util.packages.abst.AbstDataAccessUtilLongKey" instance="outer" >
+	</component>
+
+
+	<component class="org.seasar.buri.util.packages.abst.AbstBuriExePackages" instance="outer" >
+		<property name="dataAccessFactory">
+			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
+			</component>
+		</property>
+	</component>
+	<component class="org.seasar.buri.util.packages.abst.AbstBuriExecProcess" instance="outer" >
+		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
+		<initMethod name="addConditonAOP"><arg>traceInterceptor</arg></initMethod>
+		<property name="buriExePackages">null</property>
+		<property name="dataAccessFactory">
+			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
+			</component>
+		</property>
+	</component>
+	
+	<component name="rootDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
+	</component>
+</components>
