@@ -4,11 +4,17 @@
  */
 package org.seasar.buri.dao.util;
 
+import java.util.List;
+
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 
 public interface BuriDataUtil {
-    long getBuriDataId(Object argDto,DataAccessFactory factory,BuriSystemContext sysContext);
-    void updateBuriData(Object argDto,DataAccessFactory factory,BuriSystemContext sysContext);
+    List getIDListByPathName(String pathName,DataAccessFactory factory,BuriSystemContext sysContext);
+    List getDtoListByPathName(String pathName,DataAccessFactory factory,BuriSystemContext sysContext);
+    
+    void storeData(DataAccessFactory factory,BuriSystemContext sysContext);
+    long getBuriDataId(DataAccessFactory factory,BuriSystemContext sysContext);
+    void updateBuriData(DataAccessFactory factory,BuriSystemContext sysContext);
     Object getBuriData(long dataId,DataAccessFactory factory);
 }

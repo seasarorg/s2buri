@@ -26,10 +26,25 @@
 	<component class="org.seasar.buri.dao.BuriStateDao">
 		<aspect>wakanagoDaoInterceptorChain</aspect>
 	</component>
+	<component class="org.seasar.buri.dao.BuriStateUndoLogDao">
+		<aspect>wakanagoDaoInterceptorChain</aspect>
+	</component>
 	<component class="org.seasar.buri.dao.BuriStateUserDao">
 		<aspect>wakanagoDaoInterceptorChain</aspect>
 	</component>
+	<component class="org.seasar.buri.dao.BuriTransactionDao">
+		<aspect>wakanagoDaoInterceptorChain</aspect>
+	</component>
 	<component class="org.seasar.buri.dao.BuriUserDao">
+		<aspect>wakanagoDaoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.dao.BuriPathDataDao">
+		<aspect>wakanagoDaoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.dao.BuriPathDataUserDao">
+		<aspect>wakanagoDaoInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.dao.BuriIDListDao">
 		<aspect>wakanagoDaoInterceptorChain</aspect>
 	</component>
 </components>

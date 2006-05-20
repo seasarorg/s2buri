@@ -15,7 +15,7 @@ import org.seasar.buri.oouo.internal.structure.BuriPackageType;
 import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
-import org.seasar.buri.util.packages.abst.AbstBuriExecProcess;
+import org.seasar.buri.util.packages.abst.AbstBuriExeProcessDataAccess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 import org.seasar.framework.container.S2Container;
 
@@ -63,7 +63,7 @@ public class CompileProcessImpl implements CompileProcess {
     
     
     protected Class getAbstractProcessClass(ParticipantProvider provider) {
-        return AbstBuriExecProcess.class;
+        return AbstBuriExeProcessDataAccess.class;
     }
 
     public String getProcessTemplateName() {

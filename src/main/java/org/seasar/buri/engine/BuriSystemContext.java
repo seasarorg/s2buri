@@ -11,11 +11,17 @@ public class BuriSystemContext extends HashMap {
     
     private static final long serialVersionUID = 1L;
     
+    private Class tgtClass;
     private BuriPath callPath;
     private Stack pathStack;
     private Long dataID;
     private Long userID;
     private Long statusID;
+    private Long BTID;
+    private long buriExecMode = RELEASED;
+    public static long UNDER_TEST = 1;
+    public static long RELEASED = 0;
+    
 
     public BuriUserContext getUserContext() {
         return (BuriUserContext)super.get("userContext");
@@ -54,6 +60,24 @@ public class BuriSystemContext extends HashMap {
     public void setStatusID(Long statusID) {
         this.statusID = statusID;
     }
+    public Long getBTID() {
+        return BTID;
+    }
+    public void setBTID(Long btid) {
+        BTID = btid;
+    }
+    public long getBuriExecMode() {
+        return buriExecMode;
+    }
+    public void setBuriExecMode(long buriExecMode) {
+        this.buriExecMode = buriExecMode;
+    }
+    public Class getTgtClass() {
+        return tgtClass;
+    }
+    public void setTgtClass(Class tgtClass) {
+        this.tgtClass = tgtClass;
+    }
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append(super.toString());
@@ -62,6 +86,9 @@ public class BuriSystemContext extends HashMap {
         buff.append("/dataID=").append(dataID);
         buff.append("/userID=").append(userID);
         buff.append("/statusID=").append(statusID);
+        buff.append("/BTID=").append(BTID);
+        buff.append("/buriExecMode=").append(buriExecMode);
+        buff.append("/tgtClass=").append(tgtClass);
         buff.append("]");
         return buff.toString();
     }

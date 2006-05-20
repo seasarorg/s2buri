@@ -12,6 +12,10 @@
 	<include path="template.dicon"/>
 	<include path="org/seasar/buri/dicon/allDao.dicon"/>
 
+	<component name="BuriInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<initMethod name="add"><arg>traceInterceptor</arg></initMethod>
+	</component>
+
 	<component class="org.seasar.buri.engine.wakanago.WakanagoEngineImpl">
 		<!--
 		<initMethod>
@@ -22,12 +26,20 @@
 
 
 	<component class="org.seasar.buri.dao.util.impl.BuriDataUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.seasar.buri.dao.util.impl.BuriPathUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.seasar.buri.dao.util.impl.BuriStateUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
 	</component>
-
+	<component class="org.seasar.buri.dao.util.impl.BTIDUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	<component class="org.seasar.buri.dao.util.impl.BuriUndoLogUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
 
 
 	<component class="org.seasar.buri.compiler.wakanago.WakanagoCompilerImpl">
@@ -54,12 +66,14 @@
 
 
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExePackages" instance="outer" >
+		<aspect>BuriInterceptorChain</aspect>
 		<property name="dataAccessFactory">
 			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
 			</component>
 		</property>
 	</component>
-	<component class="org.seasar.buri.util.packages.abst.AbstBuriExecProcess" instance="outer" >
+	<component class="org.seasar.buri.util.packages.abst.AbstBuriExeProcessDataAccess" instance="outer" >
+		<aspect>BuriInterceptorChain</aspect>
 		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
 		<initMethod name="addConditonAOP"><arg>traceInterceptor</arg></initMethod>
 		<property name="buriExePackages">null</property>

@@ -17,6 +17,7 @@ public class BuriStateUndoLogEntityDto {
     private String userIDVal = null;
     private Long userIDNum = null;
     private long BTID;
+    private long createBTID;
 	private Date insertDate = new Timestamp((new Date()).getTime());
     private Date autoRunTime = (new GregorianCalendar(9999,11,31,23,59,59)).getTime();
 	private Date processDate = (new GregorianCalendar(9999,11,31,23,59,59)).getTime();
@@ -26,7 +27,7 @@ public class BuriStateUndoLogEntityDto {
 	public BuriStateUndoLogEntityDto() {
 	}
     
-    public BuriStateUndoLogEntityDto(BuriStateEntityDto dto) {
+    public BuriStateUndoLogEntityDto(BuriStateEntityDto dto,long newBTID) {
         stateID = dto.getStateID();
         pathID = dto.getPathID();
         dataID = dto.getDataID();
@@ -34,6 +35,7 @@ public class BuriStateUndoLogEntityDto {
         userIDVal = dto.getUserIDVal();
         userIDNum = dto.getUserIDNum();
         BTID = dto.getBTID();
+        createBTID = newBTID;
         insertDate = dto.getInsertDate();
         autoRunTime = dto.getAutoRunTime();
         processDate = dto.getProcessDate();
@@ -131,6 +133,7 @@ public class BuriStateUndoLogEntityDto {
         buff.append("/userIDNum=").append(userIDNum);
         buff.append("/userIDVal=").append(userIDVal);
         buff.append("/BTID=").append(BTID);
+        buff.append("/createBTID=").append(createBTID);
 		buff.append("/insertDate=").append(insertDate);
 		buff.append("/processDate=").append(processDate);
         buff.append("/autoRunTime=").append(autoRunTime);
@@ -178,6 +181,14 @@ public class BuriStateUndoLogEntityDto {
 
     public void setBTID(long btid) {
         BTID = btid;
+    }
+
+    public long getCreateBTID() {
+        return createBTID;
+    }
+
+    public void setCreateBTID(long createBTID) {
+        this.createBTID = createBTID;
     }
 	
 	

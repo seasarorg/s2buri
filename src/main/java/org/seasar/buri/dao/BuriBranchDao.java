@@ -12,9 +12,9 @@ public interface BuriBranchDao {
     
     public String select_ARGS = "BranchID";
     public BuriBranchEntityDto select(long branchID);
-    
-    public String selectFromDto_ARGS = "dto";
-    public BuriBranchEntityDto selectFromDto(BuriBranchEntityDto dto);
+
+//    public String selectFromDto_ARGS = "dto";
+//    public List selectFromDto(BuriBranchEntityDto dto);
     
     public void insert(BuriBranchEntityDto dto);
     

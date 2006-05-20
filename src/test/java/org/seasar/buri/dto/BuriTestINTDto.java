@@ -41,10 +41,10 @@ public class BuriTestINTDto {
     }
     
     public String toString() {
-        StringBuffer buff = new StringBuffer();
-        buff.append("testID=").append(testID).append("\n");
-        buff.append("value=").append(value).append("\n");
-        buff.append("versionNo=").append(versionNo).append("\n");
+        StringBuffer buff = new StringBuffer("[");
+        buff.append("testID=").append(testID);
+        buff.append("/value=").append(value);
+        buff.append("/versionNo=").append(versionNo).append("]");
         return buff.toString();
     }
     

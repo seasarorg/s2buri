@@ -18,6 +18,9 @@ public interface BuriUserDao {
     
     public long getNewBuriStateUserID();
 
+    public String getBuriUserFromDto_ARGS = "dto";
+    public List getBuriUserFromDto(BuriUserEntityDto dto);
+
     public void insert(BuriUserEntityDto dto);
     
     public void update(BuriUserEntityDto dto);

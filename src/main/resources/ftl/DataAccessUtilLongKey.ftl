@@ -16,7 +16,7 @@ public List get(List keyVals) {
 
 
 public Long getKey(Object key) {
-    return getLongPkey(key,"testID");
+    return getLongPkey(key,"${pkey}");
 }
 
 public Object getObjectFromKey(Long keyObj) {
@@ -29,7 +29,6 @@ public Object getObjectFromKey(Long keyObj) {
 public Object Store(Object data) {
     String execScript = "";
     if(hasAvailableKey(data)) {
-    Object evalResult = scriptFactory.getScript("ognl").eval(data,"${script}",null);
 		<#assign script = buriComponentUtil.convScriptToJavaString(fieldType.getUpdate())>
         execScript = "${script}";
     } else {

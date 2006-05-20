@@ -14,7 +14,7 @@ public interface BuriDataDao {
 	public BuriDataEntityDto getBuriData(long DataID);
     
     public String getBuridataFromDto_ARGS = "dto";
-    public BuriDataEntityDto getBuridataFromDto(BuriDataEntityDto dto);
+    public List getBuridataFromDto(BuriDataEntityDto dto);
 	
 	public void insert(BuriDataEntityDto dto);
 	

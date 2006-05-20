@@ -12,10 +12,16 @@ import org.seasar.buri.dao.util.BuriPathUtil;
 import org.seasar.buri.dao.BuriPathDao;
 import org.seasar.buri.dto.BuriPathEntityDto;
 import org.seasar.buri.engine.BuriPath;
+import org.seasar.buri.util.packages.BuriExecProcess;
 
 public class BuriPathUtilImpl implements BuriPathUtil {
     private BuriPathDao pathDao;
     
+    public BuriPath getBuriPathByID(long pathID) {
+        BuriPathEntityDto dto = pathDao.getBuriPath(pathID);
+        BuriPath path = new BuriPath(dto.getPathName(),dto.getRealPathName(),dto.getPathID(),dto.getPathType());
+        return path;
+    }
     
     public BuriPath getBuriPathFromRealPath(BuriPath srcPath) {
         assert srcPath != null;
@@ -23,11 +29,13 @@ public class BuriPathUtilImpl implements BuriPathUtil {
             return srcPath;
         }
         assert srcPath.getRealPath().getActivity().size() > 0;
-        BuriPathEntityDto dto = pathDao.getBuriPathFromRealPath(srcPath.getRealPath().getPlainName());
+        String realPath = srcPath.getRealPath().getPlainName();
+        BuriPathEntityDto dto = pathDao.getBuriPathFromRealPath(realPath);
         if(dto==null) {
             dto = new BuriPathEntityDto();
             dto.setPathName(srcPath.getPlainName());
             dto.setRealPathName(srcPath.getRealPath().getPlainName());
+            dto.setPathType(srcPath.getPathType());
             pathDao.insert(dto);
         }
         BuriPath result = srcPath.setBuriPathID(dto.getPathID());
@@ -36,14 +44,18 @@ public class BuriPathUtilImpl implements BuriPathUtil {
     
     public List getBuriPathFromPathName(BuriPath srcPath) {
         List result = new ArrayList();
-        List entityList = pathDao.getBuriPathFromPath(srcPath.getPlainName());
+        List entityList = pathDao.getBuriPathFromPath(srcPath.getPlainName(),srcPath.getPathType());
         Iterator ite = entityList.iterator();
         while(ite.hasNext()) {
             BuriPathEntityDto dto = (BuriPathEntityDto)ite.next();
-            BuriPath path = new BuriPath(dto.getPathName(),dto.getRealPathName(),dto.getPathID());
+            BuriPath path = new BuriPath(dto.getPathName(),dto.getRealPathName(),dto.getPathID(),dto.getPathType());
             result.add(path);
         }
         return result;
+    }
+    
+    public long getPathType(BuriExecProcess process) {
+        return process.getBuriWorkflowProcessType().getPathType();
     }
 
     public BuriPathDao getPathDao() {

@@ -86,6 +86,7 @@ CREATE TABLE BuriStateUndoLog (
        processDate          TIMESTAMP,
        abortDate            TIMESTAMP NOT NULL,
        versionNo            INTEGER NOT NULL,
+       createBtid           INTEGER NOT NULL,
        PRIMARY KEY (StateUndoLogID)
 );
 
@@ -256,4 +257,53 @@ CREATE INDEX XIE2BuriUser ON BuriUser
        UserIDNum                       ASC
 );
 
+drop view BuriPathData;
 
+create view BuriPathData as 
+select 
+	BuriPath.pathID as pathID
+	,BuriPath.PathName as PathName
+	,BuriPath.RealPathName as RealPathName
+	,BuriPath.pathType as pathType
+	,BuriData.pkeyNum as pkeyNum
+	,BuriData.pkeyVal as pkeyVal
+	,BuriData.dataType as dataType
+	,BuriData.dataID as dataID
+	,BuriState.StateID as StateID
+from
+	BuriPath
+	,BuriState
+	,BuriData
+where
+	BuriPath.pathID = BuriState.pathID
+	and BuriData.dataID = BuriState.dataID
+	and BuriState.processDate > CURRENT_TIMESTAMP
+;
+
+drop view BuriPathDataUser;
+
+create view BuriPathDataUser as 
+select
+	BuriPathData.pathID as pathID
+	,BuriPathData.PathName as PathName
+	,BuriPathData.RealPathName as RealPathName
+	,BuriPathData.pathType as pathType
+	,BuriPathData.pkeyNum as pkeyNum
+	,BuriPathData.pkeyVal as pkeyVal
+	,BuriPathData.dataType as dataType
+	,BuriPathData.dataID as dataID
+	,BuriPathData.StateID as StateID
+	,BuriUser.UserID as UserID
+	,BuriUser.UserIDVal as UserIDVal
+	,BuriUser.UserIDNum as UserIDNum
+from
+	BuriPathData
+	,BuriStateUser
+	,BuriUser
+where
+	BuriPathData.StateID = BuriStateUser.StateID
+	and BuriUser.BuriUserID = BuriStateUser.BuriUserID
+;
+
+
+	

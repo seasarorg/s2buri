@@ -19,9 +19,9 @@ import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
+import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
-import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.FilterAccessUtil;
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 import org.seasar.coffee.script.Script;
@@ -45,7 +45,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     public void setup(BuriWorkflowProcessType process) {
         this.process = process;
         DataAccessFactory rootFactory = (DataAccessFactory)container.getComponent("rootDataAccessFactory");
-        dataAccessFactory.addChildFactory(process.getId(),rootFactory);
+        rootFactory.addChildFactory(process.getId(),this);
     }
     
     public BuriWorkflowProcessType getBuriWorkflowProcessType() {
@@ -63,13 +63,23 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
         return actType.getId();
     }
     
+    public String getActivityNameById(String actId) {
+        BuriActivityType actType = process.getActivityById(actId);
+        return actType.getName();
+    }
+    
     public void entryActivity(String actId,BuriSystemContext sysContext,BranchWalker walker) {
         BuriActivityType actType = process.getActivityById(actId);
         String mode = "_start";
         if(actType.isFinishModeManual()) {
             mode = "_restart";
         }
+        walker = setupStatus(actId,sysContext,walker);
         execActivity(actId,mode,sysContext,walker);
+    }
+    
+    protected BranchWalker setupStatus(String actId,BuriSystemContext sysContext,BranchWalker walker) {
+        return walker;
     }
     
     protected void startActivity(String actId,BuriSystemContext sysContext,BranchWalker walker) {
@@ -194,8 +204,8 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
         
     }
     
-    protected void joinAndFlow(BuriSystemContext sysContext,BranchWalker walker,String nextName,String nextId) {
-        
+    protected boolean joinAndFlow(BuriSystemContext sysContext,BranchWalker walker,String nextName,String nextId) {
+        return true;
     }
 
     

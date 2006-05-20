@@ -93,7 +93,7 @@
 <Implementation>
 <Tool Id="wakanagoTest_app1">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#data.abc = &quot;abc&quot;&#10;@System@out.println(&quot;setp1&quot;)"/>
+<ExtendedAttribute Name="ognl" Value="#data.value = &quot;2&quot;&#10;@System@out.println(&quot;setp1&quot;)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -221,7 +221,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="wakanagoTest_wp1_act4" Id="wakanagoTest_wp1_tra3" To="wakanagoTest_wp1_act7">
-<Condition Type="CONDITION">#data.val == 2</Condition>
+<Condition Type="CONDITION">#data.value == "1"</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
@@ -240,7 +240,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="wakanagoTest_wp1_act4" Id="wakanagoTest_wp1_tra6" To="wakanagoTest_wp1_act5">
-<Condition Type="CONDITION">#data.val == 1</Condition>
+<Condition Type="CONDITION">#data.value == "2"</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>

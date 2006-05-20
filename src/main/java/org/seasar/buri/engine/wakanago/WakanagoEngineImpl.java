@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.seasar.buri.compiler.BuriCompiler;
+import org.seasar.buri.dao.util.BuriStateUtil;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
@@ -25,6 +26,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected Map packageObjs = new HashMap();
     protected Map roleMap = new HashMap();
     protected BuriCompiler buriCompiler;
+    protected BuriStateUtil stateUtil;
     
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
         readWorkFlowFromResource(workFlowName,resourceName,new DefaultParticipantProvider());
@@ -60,7 +62,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     
     protected void execActivity(BuriExecProcess wp,BuriSystemContext sysContext) {
         String actId = wp.selectActivityId(sysContext);
-        BranchWalker walker = createBranchWalker(sysContext);
+        BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
         wp.entryActivity(actId,sysContext,walker);
     }
     
@@ -81,19 +83,10 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         BuriPath callPath = sysContext.getCallPath();
         BuriExePackages wPackageObj = (BuriExePackages)packageObjs.get(packageName);
         
-        String packageId = ClassUtil.getShortClassName(wPackageObj.getClass());
-        callPath = callPath.setWorkflowPackage(callPath.getWorkflowPackage(),packageId);
+        String packageId = wPackageObj.getBuriPackageType().getId();
+        callPath = callPath.setWorkflowPackage(packageName,packageId);
         sysContext.setCallPath(callPath);
         return wPackageObj;
-    }
-    
-    public BranchWalker createBranchWalker(BuriSystemContext sysContext) {
-        BranchWalker walker = new BranchWalker();
-        walker.setBranchID(0);
-        walker.setParentBranchID(0);
-        walker.setParentPath(sysContext.getCallPath().moveUpPath());
-        walker.setNowPath(null);
-        return walker;
     }
     
     
@@ -114,6 +107,12 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
     public void setBuriCompiler(BuriCompiler buriCompiler) {
         this.buriCompiler = buriCompiler;
+    }
+    public BuriStateUtil getStateUtil() {
+        return stateUtil;
+    }
+    public void setStateUtil(BuriStateUtil stateUtil) {
+        this.stateUtil = stateUtil;
     }
 
 }

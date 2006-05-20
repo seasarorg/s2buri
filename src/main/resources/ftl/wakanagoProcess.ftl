@@ -30,7 +30,20 @@ public void ${activityId}(BuriUserContext context,BuriPath nowPath) {
 }
 
 public void ${activityId}_start(BuriSystemContext sysContext,BranchWalker walker) {
+	<#assign transition = process.getRefFromTransition(activityId)>
+	//${transition?size}
+	<#if transition?size gt 1>
+	    <#if activity.isJoinAnd()>
+    boolean canExec = joinAndFlow(sysContext,walker,"${activity.getName()}","${activityId}");
+    if(canExec == false) {
+    	return;
+    }
+    	<#else>
+    joinXorFlow(sysContext,walker,"${activity.getName()}","${activityId}");
+    	</#if>
+    </#if>
     walker = walker.moveNext("${activity.getName()}","${activityId}");
+    startActivity(sysContext,walker);
     ${activityId}_process(sysContext,walker);
 }
 
@@ -42,6 +55,7 @@ public void ${activityId}_process(BuriSystemContext sysContext,BranchWalker walk
     }
     </#list>
     <#if activity.isFinishModeManual()>
+    exitFlow(sysContext,walker);
     return;
     <#else>
     ${activityId}_next(sysContext,walker);
@@ -49,7 +63,7 @@ public void ${activityId}_process(BuriSystemContext sysContext,BranchWalker walk
 }
 
 public void ${activityId}_next(BuriSystemContext sysContext,BranchWalker walker) {
-	<#assign transition = process.getRefTransition(activityId)>
+	<#assign transition = process.getRefFromTransition(activityId)>
 	<#if transition?size == 0>
 	return;
 	<#elseif transition?size == 1>
@@ -65,19 +79,38 @@ public void ${activityId}_next(BuriSystemContext sysContext,BranchWalker walker)
         results.add("${oneTrans.getTo()}");
     }
     	</#list>
+    results = filterNextActivity(sysContext,walker,results);
     
     if(results.size() == 0) {
-        //エラー
+        noSelectActivity(sysContext,walker);
     } else if(results.size() == 1) {
-        
+        <#if activity.isSplitAnd()>
+        oneSelectActivitySplitAnd(sysContext,walker);
+    	<#else>
+        oneSelectActivitySplitXor(sysContext,walker);
+	    </#if>
     } else {
-        //XORの時エラー
+    	<#if activity.isSplitAnd()>
+        manySelectActivitySplitAnd(sysContext,walker);
+    	<#else>
+        manySelectActivitySplitXor(sysContext,walker);
+    	</#if>
     }
+
+        <#if activity.isSplitAnd()>
+    BranchWalker parentBranch = splitAndPreprocess(sysContext,walker);
+	    </#if>
     
     Iterator ite = results.iterator();
     while(ite.hasNext()) {
         String key = ite.next().toString();
+    	<#if activity.isSplitAnd()>
+        BranchWalker childWalker = getSplitAndWalker(sysContext,walker,parentBranch);
+        startActivity(key,sysContext,childWalker);
+    	<#else>
+        
 	    startActivity(key,sysContext,walker);
+    	</#if>
     }
 	</#if>
 }
@@ -99,6 +132,7 @@ public Object ${oneTrans.getId()}_condition(BuriSystemContext sysContext,BranchW
     <#if activity.isFinishModeManual()>
 public void ${activityId}_restart(BuriSystemContext sysContext,BranchWalker walker) {
     walker = walker.moveNext("${activity.getName()}","${activityId}");
+    restartActivity(sysContext,walker);
     ${activityId}_next(sysContext,walker);
 }
     

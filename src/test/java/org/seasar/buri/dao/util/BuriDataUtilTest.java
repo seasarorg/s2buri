@@ -39,18 +39,18 @@ public class BuriDataUtilTest extends S2TestCase {
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
 
         
-        long dataId = dataUtil.getBuriDataId(dto,dataAccessFactory,sysContext);
+        long dataId = dataUtil.getBuriDataId(dataAccessFactory,sysContext);
         assertTrue(dataId != 0);
         
         dto.setValue("hoge");
         buriTestINTDao.insert(dto);
         
-        dataUtil.updateBuriData(dto,dataAccessFactory,sysContext);
+        dataUtil.updateBuriData(dataAccessFactory,sysContext);
         
         userContext = engine.createUserContext(dto,null,null);
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
-        long saveId = dataUtil.getBuriDataId(dto,dataAccessFactory,sysContext);
+        long saveId = dataUtil.getBuriDataId(dataAccessFactory,sysContext);
         assertEquals(dataId,saveId);
         
     }
