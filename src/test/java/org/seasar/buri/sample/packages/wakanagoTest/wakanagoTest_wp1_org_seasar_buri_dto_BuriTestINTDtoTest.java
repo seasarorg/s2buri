@@ -33,10 +33,12 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDtoTest extends
         
         dto = new BuriTestINTDto();
         dto.setValue("test02");
-        utilLongKey.Store(dto);
+        dto = (BuriTestINTDto)utilLongKey.Store(dto);
+        System.out.println(dto);
         long testID2 = dto.getTestID();
         
-        dto = (BuriTestINTDto)utilLongKey.getDataFromDto(new Long(testID1));
+        dto.setTestID(testID1);
+        dto = (BuriTestINTDto)utilLongKey.getDataFromDto(dto);
         assertEquals("test01",dto.getValue());
         
         dto.setValue("UpdateVal01");

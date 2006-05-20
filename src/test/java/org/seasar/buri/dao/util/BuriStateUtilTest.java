@@ -36,6 +36,7 @@ public class BuriStateUtilTest extends S2TestCase {
     
     public void testBuriStateProceedTx() {
         BuriTestINTDto dto = new BuriTestINTDto();
+        dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null);
@@ -82,6 +83,7 @@ public class BuriStateUtilTest extends S2TestCase {
     
     public void testBuriStateAbortTx() {
         BuriTestINTDto dto = new BuriTestINTDto();
+        dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null);
@@ -112,6 +114,7 @@ public class BuriStateUtilTest extends S2TestCase {
     public void testBuriStateBranchTx() {
         long startSize = branchDao.getAllBuriBranch().size();
         BuriTestINTDto dto = new BuriTestINTDto();
+        dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null);
@@ -166,6 +169,7 @@ public class BuriStateUtilTest extends S2TestCase {
     public void testBuriStateBranchAbortTx() {
         long startSize = branchDao.getAllBuriBranch().size();
         BuriTestINTDto dto = new BuriTestINTDto();
+        dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null);

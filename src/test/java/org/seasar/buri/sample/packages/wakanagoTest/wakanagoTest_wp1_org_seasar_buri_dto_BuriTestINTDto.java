@@ -52,7 +52,7 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto extends AbstDat
     }
 
     public Object getDataFromDto(Object keyVal) {
-        BuriTestINTDto dto = new BuriTestINTDto();
+        BuriTestINTDto dto = (BuriTestINTDto)keyVal;
         String execScript = "BuriTestINTDao.getBuriTestINT(#data.testID)";
         return runScript(dto,execScript);
     }
