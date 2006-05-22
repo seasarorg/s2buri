@@ -7,7 +7,7 @@ package org.seasar.buri.dao;
 import java.util.List;
 
 public interface BuriIDListDao {
-    public Class BEAN = Long.class;
+    public Class BEAN = Long.TYPE;
     
     public String getIDListByPathName_ARGS = "className,pathName,pathType";
     public List getIDListByPathName(String className,String pathName,Long pathType);

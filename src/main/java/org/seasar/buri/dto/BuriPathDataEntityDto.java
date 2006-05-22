@@ -5,6 +5,8 @@
 package org.seasar.buri.dto;
 
 public class BuriPathDataEntityDto {
+    public static final String TABLE = "BuriPathData";
+    
     private long pathID;
     private String pathName;
     private String realPathName;

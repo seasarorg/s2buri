@@ -11,8 +11,10 @@ import java.util.List;
 import org.seasar.buri.dao.BuriDataDao;
 import org.seasar.buri.dao.BuriIDListDao;
 import org.seasar.buri.dao.BuriPathDataDao;
+import org.seasar.buri.dao.BuriPathDataUserDao;
 import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.dto.BuriDataEntityDto;
+import org.seasar.buri.dto.BuriPathDataEntityDto;
 import org.seasar.buri.dto.BuriPathDataUserEntityDto;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
@@ -25,25 +27,38 @@ public class BuriDataUtilImpl implements BuriDataUtil{
     private BuriDataDao dataDao;
     private BuriIDListDao idListDao;
     private BuriPathDataDao pathDataDao;
+    private BuriPathDataUserDao pathDataUserDao;
     
     public List getIDListByPathName(String pathName,DataAccessFactory factory,BuriSystemContext sysContext) {
         List result;
-        String className = sysContext.getTgtClass().getName();
-        Long pathType = sysContext.getCallPath().getPathType();
         Class tgtCalss = sysContext.getTgtClass();
         DataAccessUtil util = factory.getDataAccessUtil(tgtCalss);
         if(util instanceof DataAccessUtilLongKey) {
-            result = idListDao.getIDListByPathName(className,pathName,pathType);
+            result = getDataDtoList(pathName,(DataAccessUtilLongKey)util,sysContext);
         } else {
-            result = getDtoList(pathName,(DataAccessUtilManyKey)util,sysContext);
+            result = getDataUserDtoList(pathName,(DataAccessUtilManyKey)util,sysContext);
         }
         return result;
     }
     
-    protected List getDtoList(String pathName,DataAccessUtilManyKey dataUtil,BuriSystemContext sysContext) {
+    protected List getDataDtoList(String pathName,DataAccessUtilLongKey dataUtil,BuriSystemContext sysContext) {
         String className = sysContext.getTgtClass().getName();
         Long pathType = sysContext.getCallPath().getPathType();
         List infoList = pathDataDao.getListByPathName(className,pathName,pathType);
+        Iterator ite = infoList.iterator();
+        List result = new ArrayList();
+        while(ite.hasNext()) {
+            BuriPathDataEntityDto dto = (BuriPathDataEntityDto)ite.next();
+            result.add(dto.getPkeyNum());
+        }
+        return result;
+    }
+    
+    protected List getDataUserDtoList(String pathName,DataAccessUtilManyKey dataUtil,BuriSystemContext sysContext) {
+        String className = sysContext.getTgtClass().getName();
+        Long pathType = sysContext.getCallPath().getPathType();
+        Long userID = sysContext.getUserID();
+        List infoList = pathDataUserDao.getListByPathNameAndUser(className,pathName,pathType,userID);
         Iterator ite = infoList.iterator();
         List result = new ArrayList();
         while(ite.hasNext()) {
@@ -55,9 +70,12 @@ public class BuriDataUtilImpl implements BuriDataUtil{
     }
     
     public List getDtoListByPathName(String pathName,DataAccessFactory factory,BuriSystemContext sysContext) {
-        List result;
+        List result = new ArrayList();
         DataAccessUtil util = factory.getDataAccessUtil(sysContext.getTgtClass());
         List keys = getIDListByPathName(pathName,factory,sysContext);
+        if(keys.size()==0) {
+            return result;
+        }
         if(util instanceof DataAccessUtilLongKey) {
             result = ((DataAccessUtilLongKey)util).get(keys);
         } else {

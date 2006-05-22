@@ -11,7 +11,7 @@ import org.seasar.buri.dto.BuriPathDataEntityDto;
 public interface BuriPathDataDao {
     public Class BEAN = BuriPathDataEntityDto.class;
     
-    public String getListByPathName_ARGS = "className,pathName,pathType";
+    public String getListByPathName_ARGS = "dataType,pathName,pathType";
     public List getListByPathName(String className,String pathName,Long pathType);
 
 }
