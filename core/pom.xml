@@ -3,7 +3,7 @@
   <groupId>org.seasar.buri</groupId>
   <artifactId>s2-buri</artifactId>
   <name>S2Buri</name>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
   <description>Workstate Engine</description>
   <url>http://s2buri.sandbox.seasar.org/</url>
   <inceptionYear>2006</inceptionYear>
