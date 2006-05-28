@@ -5,8 +5,8 @@
 package org.seasar.buri.exception.select;
 
 import org.seasar.buri.engine.BuriPath;
+import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.exception.BuriXpdlPathException;
-import org.seasar.buri.oouo.internal.structure.BuriParticipantType;
 
 
 
@@ -25,7 +25,7 @@ public class BuriManySelectActivityException extends BuriXpdlPathException {
      * @param messageCode
      * @param path
      */
-    public BuriManySelectActivityException(BuriPath path,BuriParticipantType participant) {
+    public BuriManySelectActivityException(BuriPath path,ParticipantProvider participant) {
         super("EBRI0006", path,participant);
     }
 }

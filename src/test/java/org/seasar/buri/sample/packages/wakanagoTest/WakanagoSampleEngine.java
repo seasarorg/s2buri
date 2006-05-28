@@ -5,7 +5,7 @@
 package org.seasar.buri.sample.packages.wakanagoTest;
 
 import org.seasar.buri.engine.ParticipantProvider;
-import org.seasar.buri.engine.wakanago.WakanagoEngineImpl;
+import org.seasar.buri.engine.impl.WakanagoEngineImpl;
 
 public class WakanagoSampleEngine extends WakanagoEngineImpl{
     

@@ -5,7 +5,7 @@
 package org.seasar.buri.exception;
 
 import org.seasar.buri.engine.BuriPath;
-import org.seasar.buri.oouo.internal.structure.BuriParticipantType;
+import org.seasar.buri.engine.ParticipantProvider;
 
 /**
  * @author makotan
@@ -23,7 +23,7 @@ public class BuriXpdlPathException extends BuriException {
     public BuriXpdlPathException(String messageCode,BuriPath path) {
         super(messageCode, new Object[]{path.getPlainName()});
     }
-    public BuriXpdlPathException(String messageCode,BuriPath path,BuriParticipantType participant) {
+    public BuriXpdlPathException(String messageCode,BuriPath path,ParticipantProvider participant) {
         super(messageCode, new Object[]{path.getPlainName(),participant});
     }
 

@@ -14,5 +14,6 @@ public interface BuriExecProcess {
     
     void setBuriExePackages(BuriExePackages packages);
     
+    BranchWalker readBranchWalker(BuriSystemContext sysContext);
     BuriWorkflowProcessType getBuriWorkflowProcessType();
 }

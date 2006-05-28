@@ -13,6 +13,10 @@ import org.seasar.buri.util.packages.BranchWalker;
 public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
     private BuriStateUtil stateUtil;
 
+    public BranchWalker readBranchWalker(BuriSystemContext sysContext) {
+        BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
+        return walker;
+    }
     
     protected BranchWalker setupStatus(String actId,BuriSystemContext sysContext,BranchWalker walker) {
         BranchWalker startWalker = walker.moveNext(getActivityNameById(actId),actId);

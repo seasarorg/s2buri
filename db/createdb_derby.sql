@@ -1,3 +1,7 @@
+drop view BuriPathDataUser;
+
+drop view BuriPathData;
+
 
 DROP TABLE BuriStateUser;
 
@@ -257,7 +261,6 @@ CREATE INDEX XIE2BuriUser ON BuriUser
        UserIDNum                       ASC
 );
 
-drop view BuriPathData;
 
 create view BuriPathData as 
 select 
@@ -280,7 +283,6 @@ where
 	and BuriState.processDate > CURRENT_TIMESTAMP
 ;
 
-drop view BuriPathDataUser;
 
 create view BuriPathDataUser as 
 select
@@ -293,7 +295,7 @@ select
 	,BuriPathData.dataType as dataType
 	,BuriPathData.dataID as dataID
 	,BuriPathData.StateID as StateID
-	,BuriUser.UserID as UserID
+	,BuriUser.BuriUserID as BuriUserID
 	,BuriUser.UserIDVal as UserIDVal
 	,BuriUser.UserIDNum as UserIDNum
 from

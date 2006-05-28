@@ -2,5 +2,9 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
-	<include path="buri/dicon/buriSimple.dicon"/>
+	<!-- ぶり利用者編集必須のdicon -->
+	
+	<!-- 書き換えが必要 -->
+	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+	
 </components>

@@ -41,7 +41,7 @@ public interface BuriStateDao {
     public String getBuriStateByPathAndData_QUERY = "pathID = /*pathID*/0 and dataID = /*dataID*/0 and processDate > CURRENT_TIMESTAMP ";
     public String getBuriStateByPathAndData_ARGS = "pathID,dataID";
     public BuriStateEntityDto getBuriStateByPathAndData(long pathID,long dataID);
-
+    
 //    public String getAllBuriStateByPathAndData_QUERY = "pathID = /*pathID*/0 and dataID = /*dataID*/0 order by processDate DESC";
 //    public String getAllBuriStateByPathAndData_ARGS = "pathID,dataID";
 //    public BuriStateEntityDto getAllBuriStateByPathAndData(long pathID,long dataID);

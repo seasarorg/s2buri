@@ -30,7 +30,7 @@ public void ${activityId}(BuriUserContext context,BuriPath nowPath) {
 }
 
 public void ${activityId}_start(BuriSystemContext sysContext,BranchWalker walker) {
-	<#assign transition = process.getRefFromTransition(activityId)>
+	<#assign transition = process.getRefToTransition(activityId)>
 	//${transition?size}
 	<#if transition?size gt 1>
 	    <#if activity.isJoinAnd()>
@@ -74,10 +74,14 @@ public void ${activityId}_next(BuriSystemContext sysContext,BranchWalker walker)
     Boolean oneResult;
     
     	<#list transition as oneTrans>
+			<#if oneTrans.hasCondition() >
     oneResult = conditionCheck("${oneTrans.getId()}","${oneTrans.getConditionStr()?j_string}",sysContext,walker);
     if(oneResult.booleanValue()) {
         results.add("${oneTrans.getTo()}");
     }
+    		<#else>
+    results.add("${oneTrans.getTo()}");
+    		</#if>
     	</#list>
     results = filterNextActivity(sysContext,walker,results);
     

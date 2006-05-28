@@ -52,6 +52,15 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
         return process;
     }
     
+    public BranchWalker readBranchWalker(BuriSystemContext sysContext) {
+        BranchWalker walker = new BranchWalker();
+        walker.setBranchID(0);
+        walker.setParentBranchID(0);
+        walker.setParentPath(sysContext.getCallPath().moveUpPath());
+        walker.setNowPath(null);
+        return walker;
+    }
+    
 
     public String selectActivityId(BuriSystemContext sysContext) {
         assert sysContext.getCallPath().getActivityName() != null;

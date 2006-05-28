@@ -3,7 +3,7 @@
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
 	<include path="WakanagoCompile.dicon"/>
-	<include path="org/seasar/buri/dicon/allDao.dicon"/>
+	<include path="buri/dicon/allDao.dicon"/>
 
 	<component class="org.seasar.buri.dao.util.impl.BuriDataUtilImpl">
 	</component>

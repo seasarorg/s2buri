@@ -9,6 +9,9 @@ public interface BuriPathDao {
 	public Class BEAN = BuriPathEntityDto.class;
 
 	public List getAllBuriPath();
+    
+    public String getPathListByLikePathName_ARGS = "PathName,pathType";
+    public List getPathListByLikePathName(String pathName,Long pathType);
 
 	public String getBuriPath_ARGS = "PathID";
 	public BuriPathEntityDto getBuriPath(long PathID);
@@ -22,8 +25,8 @@ public interface BuriPathDao {
     public String getPathListByPathAndData_ARGS = "path,dataID,pathType";
     public List getPathListByPathAndData(String path,long dataID,Long pathType);
     
-//    public String getBuriPathByDataID_ARGS = "dataID";
-//    public List getBuriPathByDataID(long dataID);
+    public String getBuriPathByDataID_ARGS = "dataID";
+    public List getBuriPathByDataID(long dataID);
     
 //    public String getBuriPathFromDto_ARGS = "dto";
 //    public List getBuriPathFromDto(BuriPathEntityDto dto);

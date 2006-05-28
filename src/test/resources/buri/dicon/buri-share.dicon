@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<!-- Standard と Simpleで共通のdicon wakanagoにも一部必要 -->
+	<include path="buri/dicon/OgnlScript.dicon"/>
+	<include path="buri/dicon/template.dicon"/>
+	<include path="buri/dicon/allDao.dicon"/>
+	<include path="aop.dicon"/>
+	
+	<component name="rootDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
+	</component>
+	<component name="OgnlInvoker" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
+	</component>
+
+	
+	<component class="jp.starlogic.common.janino.util.impl.BasicComplerImpl">
+	</component>
+	
+	<component class="org.seasar.buri.component.impl.BuriComponentUtilImpl">
+	</component>
+
+	
+	<component class="org.seasar.buri.oouo.reader.impl.XMLOouoReader">
+	</component>
+	<component class="org.seasar.buri.oouo.reader.impl.OouoClassDefFactoryImpl">
+		<initMethod name="create">
+			<arg>@org.seasar.buri.oouo.internal.structure.BuriPackageType@class</arg>
+		</initMethod>
+	</component>
+	
+</components>

@@ -5,8 +5,8 @@
 package org.seasar.buri.exception.select;
 
 import org.seasar.buri.engine.BuriPath;
+import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.exception.BuriXpdlPathException;
-import org.seasar.buri.oouo.internal.structure.BuriParticipantType;
 
 
 
@@ -20,7 +20,7 @@ public class BuriNotSelectedActivityException extends BuriXpdlPathException {
      */
     private static final long serialVersionUID = -8358547778982675056L;
 
-    public BuriNotSelectedActivityException(BuriPath path,BuriParticipantType participant) {
+    public BuriNotSelectedActivityException(BuriPath path,ParticipantProvider participant) {
         super("EBRI0007", path,participant);
     }
 

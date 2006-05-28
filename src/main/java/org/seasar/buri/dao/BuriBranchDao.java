@@ -12,6 +12,9 @@ public interface BuriBranchDao {
     
     public String select_ARGS = "BranchID";
     public BuriBranchEntityDto select(long branchID);
+    
+    public String getBranchByParentID_ARGS = "parentBranchID";
+    public List getBranchByParentID(long parentBranchID);
 
 //    public String selectFromDto_ARGS = "dto";
 //    public List selectFromDto(BuriBranchEntityDto dto);

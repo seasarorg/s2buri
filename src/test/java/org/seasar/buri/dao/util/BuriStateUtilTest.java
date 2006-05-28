@@ -15,7 +15,7 @@ import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
 import org.seasar.buri.engine.WakanagoEngine;
-import org.seasar.buri.engine.wakanago.WakanagoEngineImpl;
+import org.seasar.buri.engine.impl.WakanagoEngineImpl;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -209,7 +209,7 @@ public class BuriStateUtilTest extends S2TestCase {
         long count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory,sysContext,child2);
         assertEquals(2,count);
         
-        stateUtil.abortBranch(dataAccessFactory,sysContext,walker);
+        stateUtil.abortBranch(dataAccessFactory,sysContext,child2);
         count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory,sysContext,child2);
         assertEquals(0,count);
     }

@@ -17,6 +17,12 @@ import org.seasar.buri.util.packages.BuriExecProcess;
 public class BuriPathUtilImpl implements BuriPathUtil {
     private BuriPathDao pathDao;
     
+    public List getPathListByDataId(long dataID) {
+        List entityList = pathDao.getBuriPathByDataID(dataID);
+        List result = convEntytyToBuriPath(entityList);
+        return result;
+    }
+    
     public BuriPath getBuriPathByID(long pathID) {
         BuriPathEntityDto dto = pathDao.getBuriPath(pathID);
         BuriPath path = new BuriPath(dto.getPathName(),dto.getRealPathName(),dto.getPathID(),dto.getPathType());
@@ -43,8 +49,13 @@ public class BuriPathUtilImpl implements BuriPathUtil {
     }
     
     public List getBuriPathFromPathName(BuriPath srcPath) {
-        List result = new ArrayList();
         List entityList = pathDao.getBuriPathFromPath(srcPath.getPlainName(),srcPath.getPathType());
+        List result = convEntytyToBuriPath(entityList);
+        return result;
+    }
+    
+    protected List convEntytyToBuriPath(List entityList) {
+        List result = new ArrayList();
         Iterator ite = entityList.iterator();
         while(ite.hasNext()) {
             BuriPathEntityDto dto = (BuriPathEntityDto)ite.next();

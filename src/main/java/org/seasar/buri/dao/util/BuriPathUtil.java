@@ -10,6 +10,7 @@ import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.util.packages.BuriExecProcess;
 
 public interface BuriPathUtil {
+    List getPathListByDataId(long dataID);
     BuriPath getBuriPathByID(long pathID);
     BuriPath getBuriPathFromRealPath(BuriPath srcPath);
     List getBuriPathFromPathName(BuriPath srcPath);

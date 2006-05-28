@@ -5,6 +5,8 @@
 package org.seasar.buri.dao.util.impl;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import jp.starlogic.util.datetime.DateUtil;
 
@@ -182,9 +184,21 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     }
     
     public void abortBranch(DataAccessFactory factory,BuriSystemContext sysContext,BranchWalker walker) {
-        assert walker.getBranchID() != 0;
-        undoLogUtil.addUndoLog(0,walker.getBranchID());
-        stateDao.updateAbortByBranchID(walker.getBranchID());
+        abortParentBranchID(walker.getParentBranchID(),factory,sysContext);
+    }
+    
+    protected void abortParentBranchID(long parentBranchId,DataAccessFactory factory,BuriSystemContext sysContext) {
+        if(parentBranchId==0) {
+            return;
+        }
+        List childs = branchDao.getBranchByParentID(parentBranchId);
+        Iterator ite = childs.iterator();
+        while(ite.hasNext()) {
+            BuriBranchEntityDto child = (BuriBranchEntityDto)ite.next();
+            abortParentBranchID(child.getBranchID(),factory,sysContext);
+        }
+        undoLogUtil.addUndoLog(0,parentBranchId);
+        stateDao.updateAbortByBranchID(parentBranchId);
     }
     
     public long countNoProcessedSiblingStatus(DataAccessFactory factory,BuriSystemContext sysContext,BranchWalker walker) {
