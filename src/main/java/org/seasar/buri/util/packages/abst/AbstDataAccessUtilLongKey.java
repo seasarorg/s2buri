@@ -69,7 +69,7 @@ public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil imple
         Map context = new HashMap();
         context.put("data",data);
         Script scriptEngine = getScriptEngine();
-        Object result = scriptEngine.run(execScript,context);
+        Object result = scriptEngine.run(execScript,null,context);
         return result;
         
     }

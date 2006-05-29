@@ -41,7 +41,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "@System@out.println(\"äJén\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         wakanagoTest_wp1_act1_next(sysContext,walker);
     }
@@ -63,7 +63,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "#data.abc = \"abc\"\n@System@out.println(\"setp1\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         wakanagoTest_wp1_act2_next(sysContext,walker);
     }
@@ -84,7 +84,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "@System@out.println(\"Stop1\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         exitFlow(sysContext,walker);
         return;
@@ -112,7 +112,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "@System@out.println(\"Step2\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         
         wakanagoTest_wp1_act4_next(sysContext,walker);
@@ -187,7 +187,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "@System@out.println(\"Stop2\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         exitFlow(sysContext,walker);
         return;
@@ -216,7 +216,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "@System@out.println(\"èIóπ\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         exitFlow(sysContext,walker);
         return;
@@ -243,7 +243,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         {
             Script script = scriptFactory.getScript("ognl");
             String scriptStr = "@System@out.println(\"Stop2-1\")";
-            script.run(scriptStr,sysContext.getUserContext());
+            script.run(scriptStr,null,sysContext.getUserContext());
         }
         exitFlow(sysContext,walker);
         return;

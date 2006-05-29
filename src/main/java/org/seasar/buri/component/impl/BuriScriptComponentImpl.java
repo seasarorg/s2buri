@@ -13,7 +13,7 @@ import org.seasar.buri.oouo.internal.structure.BuriToolType;
 
 public class BuriScriptComponentImpl implements BuriComponent {
 
-    public String getBuriExecuteSource(BuriToolType tool) {
+    public String getBuriExecuteSource(String tgtObjName,BuriToolType tool) {
         StringBuffer buffer = new StringBuffer();
 
         Iterator ite = tool.getExtendedAttribute().iterator();
@@ -24,7 +24,7 @@ public class BuriScriptComponentImpl implements BuriComponent {
             script = convertTextToSource(script);
             buffer.append("    Script script = scriptFactory.getScript(\"").append(scriptName).append("\");\n");
             buffer.append("    String scriptStr = \"").append(script).append("\";\n");
-            buffer.append("    script.run(scriptStr,sysContext.getUserContext());\n\n");
+            buffer.append("    script.run(scriptStr,").append(tgtObjName).append(",sysContext.getUserContext());\n\n");
         }
         
         return buffer.toString();

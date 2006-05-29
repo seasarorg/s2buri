@@ -29,6 +29,7 @@ import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
+import org.seasar.framework.container.S2Container;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 
@@ -38,6 +39,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected BuriCompiler buriCompiler;
     protected List activitySelector = new ArrayList();
     protected List processSelector = new ArrayList();
+    protected S2Container container;
     
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
         readWorkFlowFromResource(workFlowName,resourceName,new DefaultParticipantProvider());
@@ -72,7 +74,15 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         return context;
     }
     
+    private void setupSystemContext(BuriSystemContext sysContext) {
+        if(sysContext.getContainer()==null) {
+            sysContext.setContainer(container.getRoot());
+        }
+    }
+
+    
     public Object execute(BuriSystemContext sysContext) {
+        setupSystemContext(sysContext);
         BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
         BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj,sysContext);
         updateSystemContext(sysContext,wp);
@@ -208,6 +218,12 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
     public void setBuriCompiler(BuriCompiler buriCompiler) {
         this.buriCompiler = buriCompiler;
+    }
+    public S2Container getContainer() {
+        return container;
+    }
+    public void setContainer(S2Container container) {
+        this.container = container;
     }
 
 }

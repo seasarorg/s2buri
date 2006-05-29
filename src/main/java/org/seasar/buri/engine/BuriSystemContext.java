@@ -7,6 +7,8 @@ package org.seasar.buri.engine;
 import java.util.HashMap;
 import java.util.Stack;
 
+import org.seasar.framework.container.S2Container;
+
 public class BuriSystemContext extends HashMap {
     
     private static final long serialVersionUID = 1L;
@@ -21,8 +23,14 @@ public class BuriSystemContext extends HashMap {
     private long buriExecMode = RELEASED;
     public static long UNDER_TEST = 1;
     public static long RELEASED = 0;
-    
+    private S2Container container;
 
+    public S2Container getContainer() {
+        return container;
+    }
+    public void setContainer(S2Container container) {
+        this.container = container;
+    }
     public BuriUserContext getUserContext() {
         return (BuriUserContext)super.get("userContext");
     }

@@ -15,14 +15,14 @@ import org.seasar.framework.container.S2Container;
 public class BuriComponentUtilImpl implements BuriComponentUtil {
     private S2Container container;
 
-    public String getJavaProcessCode(BuriToolType toolType,BuriActivityType actType) {
+    public String getJavaProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType) {
         BuriWorkflowProcessType processType = actType.getWorkflowProcess(); 
         if( processType == null) {
             processType = actType.getActivitySet().getProcessType();
         }
         BuriApplicationType appType = processType.getApplicationById(toolType.getId());
         BuriComponent component = (BuriComponent)container.getComponent(appType.getName());
-        String source = component.getBuriExecuteSource(toolType);
+        String source = component.getBuriExecuteSource(tgtObjName,toolType);
         return source;
     }
     

@@ -50,7 +50,7 @@ public void ${activityId}_start(BuriSystemContext sysContext,BranchWalker walker
 public void ${activityId}_process(BuriSystemContext sysContext,BranchWalker walker) {
 	<#list activity.getTools() as tool>
     {
-    	<#assign script = buriComponentUtil.getJavaProcessCode(tool,activity)>
+    	<#assign script = buriComponentUtil.getJavaProcessCode("sysContext.getContainer()",tool,activity)>
     	${script}
     }
     </#list>

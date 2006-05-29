@@ -8,6 +8,6 @@ import org.seasar.buri.oouo.internal.structure.BuriActivityType;
 import org.seasar.buri.oouo.internal.structure.BuriToolType;
 
 public interface BuriComponentUtil {
-    String getJavaProcessCode(BuriToolType toolType,BuriActivityType actType);
+    String getJavaProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType);
     String convScriptToJavaString(String script);
 }
