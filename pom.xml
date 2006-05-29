@@ -44,7 +44,7 @@
     <dependency>
       <groupId>org.seasar.coffee</groupId>
       <artifactId>s2-coffee-script</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.2.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>janino</groupId>
