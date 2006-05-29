@@ -17,10 +17,15 @@ import org.seasar.buri.engine.BuriUserContext;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.WakanagoEngine;
 import org.seasar.buri.engine.selector.BuriActivitySelector;
+import org.seasar.buri.engine.selector.BuriProcessSelector;
 import org.seasar.buri.exception.select.BuriActivitySelectException;
 import org.seasar.buri.exception.select.BuriManySelectActivityException;
+import org.seasar.buri.exception.select.BuriManySelectProcessException;
+import org.seasar.buri.exception.select.BuriNotSelectProcessException;
 import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
+import org.seasar.buri.exception.select.BuriProcessSelectException;
 import org.seasar.buri.oouo.internal.structure.BuriActivityType;
+import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
@@ -44,6 +49,10 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         roleMap.put(packageId,provider);
     }
     
+    public void addProcessSelector(BuriProcessSelector selector) {
+        processSelector.add(selector);
+    }
+    
     public void addActivitySelector(BuriActivitySelector selector) {
         activitySelector.add(selector);
     }
@@ -65,8 +74,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     
     public Object execute(BuriSystemContext sysContext) {
         BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
-        BuriExecProcess wp = (BuriExecProcess)selectProcess(wPackageObj,sysContext);
+        BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj,sysContext);
         updateSystemContext(sysContext,wp);
+        wp = selectProcess(wPackageObj,sysContext);
         execActivity(wp,sysContext);
         return null;
     }
@@ -118,8 +128,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         throw new BuriActivitySelectException(callPath,provider);
     }
     
-    public BuriExecProcess selectProcess(BuriExePackages wPackageObj,BuriSystemContext sysContext) {
-        //TODO Selector‚ðŽg‚¤‚æ‚¤‚É‘‚«Š·‚¦‚éB‚»‚ÌŽž‚É‘å•C³‚Ì—\Š´
+    public BuriExecProcess selectProcessNoDataAccess(BuriExePackages wPackageObj,BuriSystemContext sysContext) {
         BuriExecProcess wp = (BuriExecProcess)wPackageObj.getProcess(sysContext.getCallPath());
         BuriPath callPath = sysContext.getCallPath();
         String processId = ClassUtil.getShortClassName(wp.getClass());
@@ -127,6 +136,45 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         sysContext.setCallPath(callPath);
         return wp;
     }
+    
+    public BuriExecProcess selectProcess(BuriExePackages wPackageObj,BuriSystemContext sysContext) {
+        List pros = new ArrayList();
+        Iterator ite = processSelector.iterator();
+        while(ite.hasNext()) {
+            BuriProcessSelector selector = (BuriProcessSelector)ite.next();
+            int nextAct = selector.select(pros,sysContext,wPackageObj);
+            if(nextAct == BuriProcessSelector.SELECT_FINAL) {
+                break;
+            }
+            if(nextAct == BuriProcessSelector.SELECT_ERROR) {
+                errorProcessSelect(pros,sysContext,wPackageObj);
+            }
+        }
+        return selectProcessFinal(pros,sysContext,wPackageObj);
+    }
+    
+    protected BuriExecProcess selectProcessFinal(List pros,BuriSystemContext systemContext,BuriExePackages wPackageObj) {
+        if(pros.size() != 1) {
+            errorProcessSelect(pros,systemContext,wPackageObj);
+        }
+        BuriWorkflowProcessType procType = (BuriWorkflowProcessType)pros.get(0);
+        BuriPath callPath = systemContext.getCallPath().setWorkflowProcess(procType);
+        return wPackageObj.getProcess(callPath);
+    }
+    
+    protected void errorProcessSelect(List proces,BuriSystemContext systemContext,BuriExePackages wPackageObj) {
+        BuriPath callPath = systemContext.getCallPath();
+        String pakageID = callPath.getWorkflowPackage();
+        ParticipantProvider provider = (ParticipantProvider)roleMap.get(pakageID);
+        if(proces.size()==0) {
+            throw new BuriNotSelectProcessException(callPath);
+        }
+        if(proces.size() > 1) {
+            throw new BuriManySelectProcessException(callPath);
+        }
+        throw new BuriProcessSelectException(callPath,provider);
+    }
+    
     
     public BuriExePackages selectPackage(BuriSystemContext sysContext) {
         String packageName = sysContext.getCallPath().getWorkflowPackage();

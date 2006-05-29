@@ -30,6 +30,9 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl {
             return;
         }
         String pathName = sysContext.getCallPath().getPlainName() + ".%";
+        if(sysContext.getCallPath().getActivityName().size() > 0) {
+            pathName = sysContext.getCallPath().getPlainName();
+        }
         BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(data.getClass().getName(),longKey,manyKey,pathName,sysContext.getCallPath().getPathType());
         finalSetup(dto,sysContext);
     }

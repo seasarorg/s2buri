@@ -27,6 +27,11 @@
 			<arg><component class="org.seasar.buri.engine.selector.activityImpl.StartActivitySelector">
 				</component></arg>
 		</initMethod>
+		
+		<initMethod name="addProcessSelector">
+			<arg><component class="org.seasar.buri.engine.selector.processImpl.DirectProcessSelector">
+				</component></arg>
+		</initMethod>
 	</component>
 
 
