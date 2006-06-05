@@ -12,6 +12,8 @@ CREATE TABLE BuriStateUser (
 					INCREMENT BY 1),
        StateID              INTEGER  ,
        BuriUserID           INTEGER  ,
+       insertDate           TIMESTAMP NOT NULL,
+       deleteDate           TIMESTAMP NOT NULL,
        PRIMARY KEY (StateUserID)
 );
 
@@ -305,6 +307,7 @@ from
 where
 	BuriPathData.StateID = BuriStateUser.StateID
 	and BuriUser.BuriUserID = BuriStateUser.BuriUserID
+	and BuriStateUser.deleteDate > CURRENT_TIMESTAMP
 ;
 
 

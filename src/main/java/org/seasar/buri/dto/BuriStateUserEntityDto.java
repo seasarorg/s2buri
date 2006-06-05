@@ -4,6 +4,10 @@
  */
 package org.seasar.buri.dto;
 
+import java.util.Date;
+
+import jp.starlogic.util.datetime.DateUtil;
+
 public class BuriStateUserEntityDto {
     public static final String TABLE = "BuriStateUser";
 
@@ -11,6 +15,8 @@ public class BuriStateUserEntityDto {
     private long stateUserID;
     private Long stateID;
     private Long buriUserID;
+    private Date insertDate = new Date();
+    private Date deleteDate = DateUtil.getSQLMaxDate();
 
     public BuriStateUserEntityDto() {
     }
@@ -39,11 +45,29 @@ public class BuriStateUserEntityDto {
         this.stateUserID = stateUserID;
     }
 
+    public Date getDeleteDate() {
+        return deleteDate;
+    }
+
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
+    }
+
+    public Date getInsertDate() {
+        return insertDate;
+    }
+
+    public void setInsertDate(Date insertDate) {
+        this.insertDate = insertDate;
+    }
+
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/stateUserID=").append(stateUserID);
         buff.append("/stateID=").append(stateID);
         buff.append("/buriUserID=").append(buriUserID);
+        buff.append("/insertDate=").append(insertDate);
+        buff.append("/deleteDate=").append(deleteDate);
         buff.append("]");
         return buff.toString();
     }

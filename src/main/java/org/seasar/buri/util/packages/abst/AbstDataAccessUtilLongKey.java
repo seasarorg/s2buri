@@ -49,7 +49,7 @@ public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil imple
         Iterator ite = keyVals.iterator();
         while (ite.hasNext()) {
             Object oneKey = (Object) ite.next();
-            Object oneResult = getDataFromDto(oneKey);
+            Object oneResult = getObjectFromKey((Long)oneKey);
             result.add(oneResult);
         }
         return result;

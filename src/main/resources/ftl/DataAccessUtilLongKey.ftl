@@ -52,8 +52,7 @@ public int delete(Object data) {
     return deleteData(data,execScript);
 }
 
-public Object getDataFromDto(Object keyVal) {
-    ${fieldType.getId()} dto = new ${fieldType.getId()}();
+public Object getDataFromDto(Object dto) {
 	<#assign script = buriComponentUtil.convScriptToJavaString(fieldType.getSelect())>
     String execScript = "${script}";
     return runScript(dto,execScript);
