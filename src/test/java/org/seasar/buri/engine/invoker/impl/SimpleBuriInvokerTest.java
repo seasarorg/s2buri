@@ -12,7 +12,6 @@ import org.seasar.buri.dto.FurnitureItemDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.invoker.SimpleBuriInvoker;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.container.S2Container;
 
 
 public class SimpleBuriInvokerTest extends S2TestCase {
