@@ -92,8 +92,8 @@ public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory{
 
     public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
         PreprocessAccessUtil result = null;
-        if( dataAccess.containsKey(tgtClass) ) {
-            result = (PreprocessAccessUtil)filterAccess.get(tgtClass);
+        if( preprocess.containsKey(tgtClass) ) {
+            result = (PreprocessAccessUtil)preprocess.get(tgtClass);
         } else {
             result = getChildPreprocessAccessUtil(tgtClass);
         }

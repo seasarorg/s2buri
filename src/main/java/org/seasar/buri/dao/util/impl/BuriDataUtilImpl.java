@@ -28,6 +28,45 @@ public class BuriDataUtilImpl implements BuriDataUtil{
     private BuriIDListDao idListDao;
     private BuriPathDataDao pathDataDao;
     
+    public long countByPathAndDatas(String pathName,List dataList,DataAccessFactory factory,BuriSystemContext sysContext) {
+        if(dataList != null && dataList.size() == 0) {
+            return 0;
+        }
+        Class tgtClass = dataList.get(0).getClass();
+        DataAccessUtil util = factory.getDataAccessUtil(tgtClass);
+        if(util instanceof DataAccessUtilLongKey) {
+            return countByPathAndDatasPkeyNum(pathName,dataList,(DataAccessUtilLongKey)util,sysContext);
+        } else {
+            return countByPathAndDatasPkeyVal(pathName,dataList,(DataAccessUtilManyKey)util,sysContext);
+        }
+    }
+    
+    protected long countByPathAndDatasPkeyNum(String pathName,List dataList,DataAccessUtilLongKey util,BuriSystemContext sysContext) {
+        List longList = new ArrayList();
+        String className = dataList.get(0).getClass().getName();
+        Iterator ite = dataList.iterator();
+        while(ite.hasNext()) {
+            Object data = ite.next();
+            Long key = util.getKey(data);
+            longList.add(key);
+        }
+        long count = pathDataDao.getCountByPathKeys(className,longList,null,pathName,sysContext.getCallPath().getPathType());
+        return count;
+    }
+    
+    protected long countByPathAndDatasPkeyVal(String pathName,List dataList,DataAccessUtilManyKey util,BuriSystemContext sysContext) {
+        List strList = new ArrayList();
+        String className = dataList.get(0).getClass().getName();
+        Iterator ite = dataList.iterator();
+        while(ite.hasNext()) {
+            Object data = ite.next();
+            String key = util.getKey(data);
+            strList.add(key);
+        }
+        long count = pathDataDao.getCountByPathKeys(className,null,strList,pathName,sysContext.getCallPath().getPathType());
+        return count;
+    }
+    
     public List getBuriPathByDto(Object dto,DataAccessFactory factory,BuriSystemContext sysContext) {
         String className = dto.getClass().getName();
         Long pathType = sysContext.getCallPath().getPathType();

@@ -18,4 +18,5 @@ public interface BuriDataUtil {
     long getBuriDataId(DataAccessFactory factory,BuriSystemContext sysContext);
     void updateBuriData(DataAccessFactory factory,BuriSystemContext sysContext);
     Object getBuriData(long dataId,DataAccessFactory factory);
+    long countByPathAndDatas(String pathName,List dataList,DataAccessFactory factory,BuriSystemContext sysContext);
 }

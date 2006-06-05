@@ -49,7 +49,7 @@ public class WakanagoSampleTest extends S2TestCase {
         long start = System.currentTimeMillis();
         BuriUserContext userContext = engine.createUserContext(dto,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
-        engine.execute(sysContext);
+        engine.execute(sysContext,null);
         
         assertEquals(startStateCount+1 , stateDao.getNoProcessBuriState().size());
         assertEquals(startStateCount+1 , stateDao.getAllBuriState().size());
@@ -60,7 +60,7 @@ public class WakanagoSampleTest extends S2TestCase {
         assertEquals(data.getValue(),"2");
         System.out.println(sysContext.getUserContext());
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.Stop1",userContext);
-        engine.execute(sysContext);
+        engine.execute(sysContext,null);
 
         assertEquals(startStateCount+1 , stateDao.getNoProcessBuriState().size());
         assertEquals(startStateCount+2 , stateDao.getAllBuriState().size());
@@ -68,7 +68,7 @@ public class WakanagoSampleTest extends S2TestCase {
         assertEquals(startBranchCount+1 , branchDao.getAllBuriBranch().size());
         
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.Stop2",userContext);
-        engine.execute(sysContext);
+        engine.execute(sysContext,null);
         
         assertEquals(startStateCount+1 , stateDao.getNoProcessBuriState().size());
         assertEquals(startStateCount+3 , stateDao.getAllBuriState().size());
@@ -96,14 +96,14 @@ public class WakanagoSampleTest extends S2TestCase {
         List dataList = dataUtil.getDtoListByPathName("wakanagoTest.ワカナゴテスト.Stop1",(DataAccessFactory)process,sysContext);
         long startCount = dataList.size();
         
-        engine.execute(sysContext);
+        engine.execute(sysContext,null);
         
         dataList = dataUtil.getDtoListByPathName("wakanagoTest.ワカナゴテスト.Stop1",(DataAccessFactory)process,sysContext);
         assertEquals( startCount+1,dataList.size());
         
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.Stop1",userContext);
         sysContext.setTgtClass(BuriTestINTDto.class);
-        engine.execute(sysContext);
+        engine.execute(sysContext,null);
         
         dataList = dataUtil.getDtoListByPathName("wakanagoTest.ワカナゴテスト.Stop1",(DataAccessFactory)process,sysContext);
         assertEquals( startCount,dataList.size());

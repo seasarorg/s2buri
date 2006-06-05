@@ -36,4 +36,19 @@ public class DefaultParticipantProvider implements ParticipantProvider {
         return new ArrayList();
     }
 
+    public boolean hasRoleUser(Object userData, Object argData, String roleName) {
+        // TODO 自動生成されたメソッド・スタブ
+        return false;
+    }
+
+    public BuriRole getSingleUser(Object userData, Object argData, String roleName) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
+
+    public List getUser(Object userData, Object argData, String roleName) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
+
 }

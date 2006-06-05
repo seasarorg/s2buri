@@ -29,6 +29,7 @@ import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
+import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
@@ -40,6 +41,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected List activitySelector = new ArrayList();
     protected List processSelector = new ArrayList();
     protected S2Container container;
+    protected ScriptFactory scriptFactory;
     
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
         readWorkFlowFromResource(workFlowName,resourceName,new DefaultParticipantProvider());
@@ -48,6 +50,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         BuriExePackages exePackages = buriCompiler.CompileResource(workFlowName,provider);
         String packageId = exePackages.getBuriPackageType().getId();
         packageObjs.put(packageId,exePackages);
+        packageObjs.put(resourceName,exePackages);
         roleMap.put(packageId,provider);
     }
     
@@ -81,14 +84,22 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
 
     
-    public Object execute(BuriSystemContext sysContext) {
+    public Object execute(BuriSystemContext sysContext,String resultScript) {
         setupSystemContext(sysContext);
         BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
         BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj,sysContext);
         updateSystemContext(sysContext,wp);
         wp = selectProcess(wPackageObj,sysContext);
         execActivity(wp,sysContext);
-        return null;
+        return getResultObj(sysContext,resultScript);
+    }
+    
+    protected Object getResultObj(BuriSystemContext sysContext,String resultScript) {
+        if(StringUtil.isEmpty(resultScript)) {
+            return null;
+        }
+        Object result = scriptFactory.getDefaultScript().eval(null,resultScript,sysContext.getUserContext());
+        return result;
     }
     
     protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp) {

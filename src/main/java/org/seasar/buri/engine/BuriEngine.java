@@ -4,6 +4,6 @@
  */
 package org.seasar.buri.engine;
 
-public interface BuriEngine {
+public interface BuriEngine extends WakanagoEngine{
 
 }

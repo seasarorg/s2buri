@@ -8,6 +8,9 @@
 	<component name="BuriInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
 		<initMethod name="add"><arg>traceInterceptor</arg></initMethod>
 	</component>
+	
+	<component class="org.seasar.buri.engine.invoker.impl.SimpleBuriInvokerImpl">
+	</component>
 
 	<component class="org.seasar.buri.engine.impl.BuriSimpleEngineImpl">
 		<!--
@@ -60,6 +63,8 @@
 	</component>
 	<component class="org.seasar.buri.compiler.wakanago.DataFieldCompilerImpl">
 	</component>
+	<component class="org.seasar.buri.compiler.util.impl.DataAccessCompileUtilImpl">
+	</component>
 
 	<component class="org.seasar.buri.util.packages.abst.AbstDataAccessUtilManyKey" instance="outer" >
 	</component>
@@ -67,6 +72,9 @@
 	</component>
 
 
+
+	<component class="org.seasar.buri.util.packages.abst.AbstPreprocessAccessUtil" instance="outer" >
+	</component>
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExePackages" instance="outer" >
 		<aspect>BuriInterceptorChain</aspect>
 		<property name="dataAccessFactory">
