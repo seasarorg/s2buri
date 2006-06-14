@@ -10,6 +10,7 @@ import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
+import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
@@ -21,31 +22,33 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
     private BuriDataUtil dataUtil;
 
     public void toNextStatus(String path, Object data) {
-        toNextStatusAction(path, container, data, null, null);
+        toNextStatusAction(path, null, data, null, null);
     }
 
     public Object toNextStatus(String path, Object data, String resultExp) {
-        return toNextStatusAction(path, container, data, null, resultExp);
+        return toNextStatusAction(path, null, data, null, resultExp);
     }
 
-    public Object toNextStatusAction(String path, Object data, Object action, String resultExp) {
-        return toNextStatusAction(path, container, data, action, resultExp);
+    public void toNextStatusAction(String path, Object data, String action) {
+        toNextStatusAction(path, null, data, action, null);
     }
 
-    public void toNextStatus(String path, S2Container container, Object data) {
-        toNextStatusAction(path, container, data, null, null);
-    }
-
-    public Object toNextStatus(String path, S2Container container, Object data, String resultExp) {
-        return toNextStatusAction(path, container, data, null, resultExp);
-    }
-
-    public Object toNextStatusAction(String path, S2Container container, Object data, Object action, String resultExp) {
-        BuriUserContext userContext = engine.createUserContext(data,null,action);
+    public Object toNextStatus(String path, Object data, BuriProcessorInfo info) {
+        BuriUserContext userContext = engine.createUserContext(data,null,info.getAction());
+        userContext.putAll(info.getContext());
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
-        systemContext.setContainer(container);
-        Object result = engine.execute(systemContext,resultExp);
+        S2Container cont = info.getContainer() == null ? container : info.getContainer();
+        systemContext.setContainer(cont);
+        Object result = engine.execute(systemContext,info.getResultExp());
         return result;
+    }
+
+    protected Object toNextStatusAction(String path, S2Container container, Object data, Object action, String resultExp) {
+        BuriProcessorInfo info = new BuriProcessorInfo();
+        info.setAction(action);
+        info.setContainer(container);
+        info.setResultExp(resultExp);
+        return toNextStatus(path, data, info);
     }
 
     public List getDataListFromPath(String path,Class tgtClass) {

@@ -6,16 +6,11 @@ package org.seasar.buri.engine.processor;
 
 import java.util.List;
 
-import org.seasar.framework.container.S2Container;
-
 public interface SimpleBuriProcessor {
     void toNextStatus(String path, Object data);
     Object toNextStatus(String path, Object data,String resultExp);
-    Object toNextStatusAction(String path, Object data,Object action,String resultExp);
-
-    void toNextStatus(String path, S2Container container,Object data);
-    Object toNextStatus(String path, S2Container container,Object data,String resultExp);
-    Object toNextStatusAction(String path, S2Container container,Object data,Object action,String resultExp);
+    void toNextStatusAction(String path, Object data,String action);
+    Object toNextStatus(String path, Object data,BuriProcessorInfo info);
 
 //    Object invokeNoUpdate(String path, Object data);
 //    Object invokeNoUpdate(String path, Object data,String context);

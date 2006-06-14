@@ -29,28 +29,10 @@ import org.seasar.framework.container.S2Container;
  */
 public interface StandardBuriProcessor {
     void toNextStatus(String path, Object data, Object userData);
-    Object toNextStatus(String path, Object data, Object userData,String context);
-
-    void toNextStatusAction(String path, Object data,Object action, Object userData);
-    Object toNextStatusAction(String path, Object data,Object action, Object userData,String context);
-
-    void toNextStatus(S2Container container,String path, Object data, Object userData);
-    Object toNextStatus(S2Container container,String path, Object data, Object userData,String context);
-
-    void toNextStatusAction(S2Container container,String path, Object data,Object action, Object userData);
-    Object toNextStatusAction(S2Container container,String path, Object data,Object action, Object userData,String context);
-//
-//    void invokeNoUpdate(String path, Object data, Object userData);
-//    Object invokeNoUpdate(String path, Object data, Object userData,String context);
-//
-//    void invokeActionNoUpdate(String path, Object data,Object action, Object userData);
-//    Object invokeActionNoUpdate(String path, Object data,Object action, Object userData,String context);
-//
-//    void invokeNoUpdate(String path, S2Container container,Object data, Object userData);
-//    Object invokeNoUpdate(String path, S2Container container,Object data, Object userData,String context);
-//
-//    void invokeActionNoUpdate(String path, S2Container container,Object data,Object action, Object userData);
-//    Object invokeActionNoUpdate(String path, S2Container container,Object data,Object action, Object userData,String context);
+    Object toNextStatus(String path, Object data, Object userData,String resultExp);
+    void toNextStatusAction(String path, Object data, Object userData,Object action);
+    
+    Object toNextStatus(String path, Object data, Object userData,BuriProcessorInfo info);
 
 
 //    List findDataList(String path, Object userData,Object dto);
