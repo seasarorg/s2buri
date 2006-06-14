@@ -21,6 +21,8 @@ public interface BuriStateUserDao {
     public String getBuriStateFromDto_ARGS = "dto";
     public List getBuriStateFromDto(BuriStateUserEntityDto dto);
 
+    public void insertEntityList(List dtos);
+
     public void insert(BuriStateUserEntityDto dto);
     
     public void update(BuriStateUserEntityDto dto);

@@ -2,7 +2,7 @@
  * çÏê¨ì˙: 2006/05/30
  *
  */
-package org.seasar.buri.engine.invoker.impl;
+package org.seasar.buri.engine.processor.impl;
 
 import java.util.List;
 
@@ -10,37 +10,37 @@ import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
-import org.seasar.buri.engine.invoker.SimpleBuriInvoker;
+import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 import org.seasar.framework.container.S2Container;
 
-public class SimpleBuriInvokerImpl implements SimpleBuriInvoker {
+public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
     private BuriEngine engine;
     private S2Container container;
     private BuriDataUtil dataUtil;
 
-    public void invoke(String path, Object data) {
-        invoke(path, container, data, null, null);
+    public void toNextStatus(String path, Object data) {
+        toNextStatusAction(path, container, data, null, null);
     }
 
-    public Object invoke(String path, Object data, String resultExp) {
-        return invoke(path, container, data, null, resultExp);
+    public Object toNextStatus(String path, Object data, String resultExp) {
+        return toNextStatusAction(path, container, data, null, resultExp);
     }
 
-    public Object invoke(String path, Object data, Object action, String resultExp) {
-        return invoke(path, container, data, action, resultExp);
+    public Object toNextStatusAction(String path, Object data, Object action, String resultExp) {
+        return toNextStatusAction(path, container, data, action, resultExp);
     }
 
-    public void invoke(String path, S2Container container, Object data) {
-        invoke(path, container, data, null, null);
+    public void toNextStatus(String path, S2Container container, Object data) {
+        toNextStatusAction(path, container, data, null, null);
     }
 
-    public Object invoke(String path, S2Container container, Object data, String resultExp) {
-        return invoke(path, container, data, null, resultExp);
+    public Object toNextStatus(String path, S2Container container, Object data, String resultExp) {
+        return toNextStatusAction(path, container, data, null, resultExp);
     }
 
-    public Object invoke(String path, S2Container container, Object data, Object action, String resultExp) {
+    public Object toNextStatusAction(String path, S2Container container, Object data, Object action, String resultExp) {
         BuriUserContext userContext = engine.createUserContext(data,null,action);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setContainer(container);

@@ -9,7 +9,7 @@
 		<initMethod name="add"><arg>traceInterceptor</arg></initMethod>
 	</component>
 	
-	<component class="org.seasar.buri.engine.invoker.impl.SimpleBuriInvokerImpl">
+	<component class="org.seasar.buri.engine.processor.impl.SimpleBuriProcessorImpl">
 	</component>
 
 	<component class="org.seasar.buri.engine.impl.BuriSimpleEngineImpl">

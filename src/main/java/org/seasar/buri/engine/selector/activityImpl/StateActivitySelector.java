@@ -6,6 +6,7 @@ package org.seasar.buri.engine.selector.activityImpl;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.dao.util.BuriPathUtil;
@@ -20,7 +21,7 @@ public class StateActivitySelector extends AbstractBuriActivitySelector {
     private BuriDataUtil dataUtil;
     private BuriPathUtil pathUtil;
 
-    protected List getActivityList(List activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
+    protected Set getActivityList(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
         long dataID = dataUtil.getBuriDataId((DataAccessFactory)execProcess,systemContext);
         List pathList = pathUtil.getPathListByDataId(dataID);
         Iterator ite = pathList.iterator();
@@ -33,10 +34,10 @@ public class StateActivitySelector extends AbstractBuriActivitySelector {
         return activitys;
     }
 
-    protected boolean checkCanActivitySelect(List activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        if(activitys.size() != 0) {
-            return false;
-        }
+    protected boolean checkCanActivitySelect(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
+//        if(activitys.size() != 0) {
+//            return false;
+//        }
         if(systemContext.getCallPath().getActivityName().size() > 0) {
             return false;
         }

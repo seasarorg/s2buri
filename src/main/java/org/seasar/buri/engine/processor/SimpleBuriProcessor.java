@@ -2,20 +2,20 @@
  * çÏê¨ì˙: 2005/08/18
  *
  */
-package org.seasar.buri.engine.invoker;
+package org.seasar.buri.engine.processor;
 
 import java.util.List;
 
 import org.seasar.framework.container.S2Container;
 
-public interface SimpleBuriInvoker {
-    void invoke(String path, Object data);
-    Object invoke(String path, Object data,String resultExp);
-    Object invoke(String path, Object data,Object action,String resultExp);
+public interface SimpleBuriProcessor {
+    void toNextStatus(String path, Object data);
+    Object toNextStatus(String path, Object data,String resultExp);
+    Object toNextStatusAction(String path, Object data,Object action,String resultExp);
 
-    void invoke(String path, S2Container container,Object data);
-    Object invoke(String path, S2Container container,Object data,String resultExp);
-    Object invoke(String path, S2Container container,Object data,Object action,String resultExp);
+    void toNextStatus(String path, S2Container container,Object data);
+    Object toNextStatus(String path, S2Container container,Object data,String resultExp);
+    Object toNextStatusAction(String path, S2Container container,Object data,Object action,String resultExp);
 
 //    Object invokeNoUpdate(String path, Object data);
 //    Object invokeNoUpdate(String path, Object data,String context);

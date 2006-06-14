@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Package Id="petition" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="petition" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
 <PackageHeader>
 <XPDLVersion>1.0</XPDLVersion>
 <Vendor>Together</Vendor>
@@ -9,7 +9,7 @@
 <ConformanceClass GraphConformance="NON_BLOCKED"/>
 <Participants>
 <Participant Id="petition_Par1" Name="申請者">
-<ParticipantType Type="SYSTEM"/>
+<ParticipantType Type="ROLE"/>
 </Participant>
 <Participant Id="petition_Par13" Name=",一般社員,">
 <ParticipantType Type="ROLE"/>
@@ -93,9 +93,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par13"/>
-<ExtendedAttribute Name="XOffset" Value="140"/>
-<ExtendedAttribute Name="YOffset" Value="60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="140,60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par13"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act2" Name="承認待ち">
@@ -121,9 +120,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="470"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par2"/>
 <ExtendedAttribute Name="NOJOIN"/>
 </ExtendedAttributes>
 </Activity>
@@ -139,9 +137,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="600"/>
-<ExtendedAttribute Name="YOffset" Value="20"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="600,20"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act4" Name="差し戻し">
@@ -156,9 +153,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="600"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="600,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act6" Name="差し戻し済み">
@@ -184,9 +180,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="1050"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1050,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act8" Name="再申請">
@@ -200,10 +195,19 @@
 <FinishMode>
 <Automatic/>
 </FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="petition_Wor1_tra1"/>
+<TransitionRef Id="petition_Wor1_Tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="470"/>
-<ExtendedAttribute Name="YOffset" Value="20"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,20"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act9" Name="申請終了">
@@ -223,9 +227,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="1210"/>
-<ExtendedAttribute Name="YOffset" Value="110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1210,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act10" Name="申請中">
@@ -249,9 +252,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="360"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par1"/>
 <ExtendedAttribute Name="NOJOIN"/>
 </ExtendedAttributes>
 </Activity>
@@ -278,9 +280,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par8"/>
-<ExtendedAttribute Name="XOffset" Value="600"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="600,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par8"/>
 <ExtendedAttribute Name="NOJOIN"/>
 </ExtendedAttributes>
 </Activity>
@@ -296,9 +297,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par8"/>
-<ExtendedAttribute Name="XOffset" Value="750"/>
-<ExtendedAttribute Name="YOffset" Value="70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="750,70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par8"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act13" Name="承認">
@@ -323,9 +323,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par8"/>
-<ExtendedAttribute Name="XOffset" Value="740"/>
-<ExtendedAttribute Name="YOffset" Value="10"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,10"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par8"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act14" Name="差し戻し">
@@ -340,9 +339,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="900"/>
-<ExtendedAttribute Name="YOffset" Value="70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="900,70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act16" Name="承認待ち">
@@ -367,9 +365,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="750"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="750,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act15" Name="承認">
@@ -384,9 +381,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="900"/>
-<ExtendedAttribute Name="YOffset" Value="10"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="900,10"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act17" Name="承認待ち">
@@ -411,9 +407,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par4"/>
-<ExtendedAttribute Name="XOffset" Value="900"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="900,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par4"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act19" Name="差し戻し">
@@ -428,9 +423,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par4"/>
-<ExtendedAttribute Name="XOffset" Value="1050"/>
-<ExtendedAttribute Name="YOffset" Value="70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1050,70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par4"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act18" Name="承認">
@@ -445,9 +439,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par4"/>
-<ExtendedAttribute Name="XOffset" Value="1050"/>
-<ExtendedAttribute Name="YOffset" Value="10"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1050,10"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par4"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act23" Name="Generic">
@@ -467,9 +460,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="1050"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1050,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act24" Name="祝承認">
@@ -489,9 +481,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par4"/>
-<ExtendedAttribute Name="XOffset" Value="1210"/>
-<ExtendedAttribute Name="YOffset" Value="80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1210,80"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par4"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act25" Name="承認済み">
@@ -506,9 +497,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="1210"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1210,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par1"/>
 <ExtendedAttribute Name="XORJOIN"/>
 </ExtendedAttributes>
 </Activity>
@@ -534,9 +524,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par4"/>
-<ExtendedAttribute Name="XOffset" Value="140"/>
-<ExtendedAttribute Name="YOffset" Value="40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="140,40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par4"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act5" Name="申請">
@@ -561,9 +550,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par2"/>
-<ExtendedAttribute Name="XOffset" Value="140"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="140,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par2"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act21" Name="申請">
@@ -588,9 +576,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par3"/>
-<ExtendedAttribute Name="XOffset" Value="140"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="140,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par3"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="petition_Wor1_Act20" Name="申請">
@@ -615,9 +602,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="petition_Par8"/>
-<ExtendedAttribute Name="XOffset" Value="140"/>
-<ExtendedAttribute Name="YOffset" Value="30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="140,30"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="petition_Par8"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
@@ -625,194 +611,199 @@
 <Transition From="petition_Wor1_Act2" Id="petition_Wor1_Tra1" To="petition_Wor1_Act3">
 <Condition Type="CONDITION">#action=="approve"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act2" Id="petition_Wor1_Tra2" To="petition_Wor1_Act4">
 <Condition Type="CONDITION">#action=="returning"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act1" Id="petition_Wor1_Tra3" To="petition_Wor1_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act4" Id="petition_Wor1_Tra4" To="petition_Wor1_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act6" Id="petition_Wor1_Tra5" To="petition_Wor1_Act8">
 <Condition Type="CONDITION">$action == "retry"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act6" Id="petition_Wor1_Tra6" To="petition_Wor1_Act9">
 <Condition Type="CONDITION">#action == "abort"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act1" Id="petition_Wor1_Tra7" To="petition_Wor1_Act10">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act10" Id="petition_Wor1_Tra8" To="petition_Wor1_Act9">
 <Condition Type="CONDITION">#action == "abort"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act8" Id="petition_Wor1_Tra9" To="petition_Wor1_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act11" Id="petition_Wor1_Tra11" To="petition_Wor1_Act13">
 <Condition Type="CONDITION">#action=="approve"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act11" Id="petition_Wor1_Tra12" To="petition_Wor1_Act12">
 <Condition Type="CONDITION">#action=="returning"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act3" Id="petition_Wor1_Tra13" To="petition_Wor1_Act11">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act12" Id="petition_Wor1_Tra14" To="petition_Wor1_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act16" Id="petition_Wor1_Tra17" To="petition_Wor1_Act14">
 <Condition Type="CONDITION">#action=="returning"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act16" Id="petition_Wor1_Tra16" To="petition_Wor1_Act15">
 <Condition Type="CONDITION">#action=="approve"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act13" Id="petition_Wor1_Tra18" To="petition_Wor1_Act16">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act17" Id="petition_Wor1_Tra21" To="petition_Wor1_Act19">
 <Condition Type="CONDITION">#action=="returning"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act17" Id="petition_Wor1_Tra20" To="petition_Wor1_Act18">
 <Condition Type="CONDITION">#action=="approve"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act15" Id="petition_Wor1_Tra22" To="petition_Wor1_Act24">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act13" Id="petition_Wor1_Tra27" To="petition_Wor1_Act17">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act19" Id="petition_Wor1_Tra28" To="petition_Wor1_Act23">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act14" Id="petition_Wor1_Tra29" To="petition_Wor1_Act23">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act23" Id="petition_Wor1_Tra30" To="petition_Wor1_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act18" Id="petition_Wor1_Tra31" To="petition_Wor1_Act24">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act24" Id="petition_Wor1_Tra33" To="petition_Wor1_Act25">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act20" Id="petition_Wor1_Tra26" To="petition_Wor1_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act5" Id="petition_Wor1_Tra15" To="petition_Wor1_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act22" Id="petition_Wor1_Tra24" To="petition_Wor1_Act11">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act21" Id="petition_Wor1_Tra25" To="petition_Wor1_Act11">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act22" Id="petition_Wor1_Tra34" To="petition_Wor1_Act10">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act21" Id="petition_Wor1_Tra35" To="petition_Wor1_Act10">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act20" Id="petition_Wor1_Tra36" To="petition_Wor1_Act10">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="petition_Wor1_Act5" Id="petition_Wor1_Tra37" To="petition_Wor1_Act10">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="petition_Wor1_Act8" Id="petition_Wor1_tra1" To="petition_Wor1_Act11">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="petition_Par4;petition_Wor1_Act22;51;40;NOROUTING"/>
-<ExtendedAttribute Name="StartOfWorkflow" Value="petition_Par13;petition_Wor1_Act1;60;60;NOROUTING"/>
-<ExtendedAttribute Name="StartOfWorkflow" Value="petition_Par8;petition_Wor1_Act20;60;30;NOROUTING"/>
-<ExtendedAttribute Name="StartOfWorkflow" Value="petition_Par2;petition_Wor1_Act5;60;50;NOROUTING"/>
-<ExtendedAttribute Name="StartOfWorkflow" Value="petition_Par3;petition_Wor1_Act21;60;30;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="petition_Par1;petition_Wor1_Act25;1350;40;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="petition_Par1;petition_Wor1_Act9;1350;110;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="petition_Par4;petition_Par3;petition_Par8;petition_Par2;petition_Par13;petition_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par1,CONNECTING_ACTIVITY_ID=petition_Wor1_Act9,X_OFFSET=1361,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par1,CONNECTING_ACTIVITY_ID=petition_Wor1_Act25,X_OFFSET=1361,Y_OFFSET=51,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par3,CONNECTING_ACTIVITY_ID=petition_Wor1_Act21,X_OFFSET=71,Y_OFFSET=41,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par2,CONNECTING_ACTIVITY_ID=petition_Wor1_Act5,X_OFFSET=71,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par8,CONNECTING_ACTIVITY_ID=petition_Wor1_Act20,X_OFFSET=71,Y_OFFSET=41,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par13,CONNECTING_ACTIVITY_ID=petition_Wor1_Act1,X_OFFSET=71,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=petition_Par4,CONNECTING_ACTIVITY_ID=petition_Wor1_Act22,X_OFFSET=62,Y_OFFSET=51,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="petition_Par4;petition_Par3;petition_Par8;petition_Par2;petition_Par13;petition_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 </WorkflowProcesses>
 <ExtendedAttributes>
-<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
-<ExtendedAttribute Name="Version" Value="1.4.2"/>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
 </ExtendedAttributes>
 </Package>

@@ -2,7 +2,7 @@
  * ì¬“ú: 2005/08/18
  *
  */
-package org.seasar.buri.engine.invoker.impl;
+package org.seasar.buri.engine.processor.impl;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -10,16 +10,16 @@ import java.util.List;
 
 import org.seasar.buri.dto.FurnitureItemDto;
 import org.seasar.buri.engine.BuriEngine;
-import org.seasar.buri.engine.invoker.SimpleBuriInvoker;
+import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.extension.unit.S2TestCase;
 
 
-public class SimpleBuriInvokerTest extends S2TestCase {
+public class SimpleBuriProcessorTest extends S2TestCase {
     private String PATH = "WakanagoCompile.dicon";
     private BuriEngine buriEngine;
-    private SimpleBuriInvoker invoker_;
+    private SimpleBuriProcessor invoker_;
     
-    public SimpleBuriInvokerTest(String arg0) {
+    public SimpleBuriProcessorTest(String arg0) {
         super(arg0);
     }
     
@@ -41,7 +41,7 @@ public class SimpleBuriInvokerTest extends S2TestCase {
         buyItemDto.setAcquisition(new Date());
         
         long start = Calendar.getInstance().getTimeInMillis();
-        invoker_.invoke("‘YŠÇ—.”õ•iŠÇ—",buyItemDto);
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",buyItemDto);
         long end = Calendar.getInstance().getTimeInMillis();
         System.out.println(buyItemDto.toString() + " time =" + (end-start)+"ms");
 
@@ -52,7 +52,7 @@ public class SimpleBuriInvokerTest extends S2TestCase {
         leaseItemDto.setAcquisition(new Date());        
         
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.invoke("‘YŠÇ—.”õ•iŠÇ—",leaseItemDto);
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",leaseItemDto);
         end = Calendar.getInstance().getTimeInMillis();
         System.out.println(leaseItemDto.toString() + " time =" + (end-start)+"ms");
 
@@ -66,12 +66,12 @@ public class SimpleBuriInvokerTest extends S2TestCase {
         
 
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.invoke("‘YŠÇ—.”õ•iŠÇ—",new Long(buyItemDto.getFurnitureID()));
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",new Long(buyItemDto.getFurnitureID()));
         end = Calendar.getInstance().getTimeInMillis();
         System.out.println("‘YŠÇ—.”õ•iŠÇ— ="+(end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.invoke("‘YŠÇ—.”õ•iŠÇ—",new Long(leaseItemDto.getFurnitureID()));
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",new Long(leaseItemDto.getFurnitureID()));
         end = Calendar.getInstance().getTimeInMillis();
         System.out.println("‘YŠÇ—.”õ•iŠÇ— ="+(end-start)+"ms");
 

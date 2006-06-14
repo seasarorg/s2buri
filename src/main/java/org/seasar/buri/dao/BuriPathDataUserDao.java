@@ -12,6 +12,9 @@ public interface BuriPathDataUserDao {
     public Class BEAN = BuriPathDataUserEntityDto.class;
 
 
+    public String getCountByPathKeysAndUser_ARGS = "dataType,pathName,pathType,userID";
+    public long getCountByPathKeysAndUser(String className,List longList,List strList,String pathName,Long pathType,Long userID);
+
     public String getListByPathNameAndUser_ARGS = "dataType,pathName,pathType,userID";
     public List getListByPathNameAndUser(String className,String pathName,Long pathType,Long userID);
 }

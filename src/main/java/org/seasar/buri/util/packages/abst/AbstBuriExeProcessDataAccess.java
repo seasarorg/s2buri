@@ -14,26 +14,26 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
     private BuriStateUtil stateUtil;
 
     public BranchWalker readBranchWalker(BuriSystemContext sysContext) {
-        BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
+        BranchWalker walker = getStateUtil().loadBranchWalker(sysContext);
         return walker;
     }
     
     protected BranchWalker setupStatus(String actId,BuriSystemContext sysContext,BranchWalker walker) {
         BranchWalker startWalker = walker.moveNext(getActivityNameById(actId),actId);
-        long statusID = stateUtil.loadStatus(this,sysContext,startWalker);
+        long statusID = getStateUtil().loadStatus(this,sysContext,startWalker);
         sysContext.setStatusID(new Long(statusID));
-        BranchWalker loadWalker = stateUtil.loadBranchWalker(sysContext);
+        BranchWalker loadWalker = getStateUtil().loadBranchWalker(sysContext);
         return loadWalker;
     }
     
     protected void exitFlow(BuriSystemContext sysContext,BranchWalker walker) {
-        stateUtil.saveBranch(walker,this,sysContext);
-        long statusId = stateUtil.saveStatus(this,sysContext,walker);
+        getStateUtil().saveBranch(walker,this,sysContext);
+        long statusId = getStateUtil().saveStatus(this,sysContext,walker);
         sysContext.setStatusID(new Long(statusId));
     }
     
     protected void restartActivity(BuriSystemContext sysContext,BranchWalker walker) {
-        stateUtil.processed(this,sysContext,walker);
+        getStateUtil().processed(this,sysContext,walker);
     }
     
     protected void noSelectActivity(BuriSystemContext sysContext,BranchWalker walker) {
@@ -58,23 +58,23 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
     
     
     protected BranchWalker splitAndPreprocess(BuriSystemContext sysContext,BranchWalker walker) {
-        stateUtil.saveBranch(walker,this,sysContext);
+        getStateUtil().saveBranch(walker,this,sysContext);
         return walker;
     }
     
     protected BranchWalker getSplitAndWalker(BuriSystemContext sysContext,BranchWalker walker,BranchWalker parentBranch) {
-        BranchWalker child = stateUtil.branchChild(walker,this,sysContext);
+        BranchWalker child = getStateUtil().branchChild(walker,this,sysContext);
         return child;
     }
     
     protected void joinXorFlow(BuriSystemContext sysContext,BranchWalker walker,String nextName,String nextId) {
         if(walker.getParentBranchID()!=0) {
-            stateUtil.abortBranch(this,sysContext,walker);
+            getStateUtil().abortBranch(this,sysContext,walker);
         }
     }
     
     protected boolean joinAndFlow(BuriSystemContext sysContext,BranchWalker walker,String nextName,String nextId) {
-        long count = stateUtil.countNoProcessedSiblingStatus(this,sysContext,walker);
+        long count = getStateUtil().countNoProcessedSiblingStatus(this,sysContext,walker);
         if(count==0) {
             return true;
         }

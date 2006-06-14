@@ -6,9 +6,11 @@ package org.seasar.buri.engine.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.seasar.buri.compiler.BuriCompiler;
 import org.seasar.buri.engine.BuriPath;
@@ -73,6 +75,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     public BuriSystemContext createSystemContext(String buriPath,BuriUserContext userContext) {
         BuriSystemContext context = new BuriSystemContext();
         context.setCallPath(new BuriPath(buriPath));
+        userContext.setCallPath(context.getCallPath());
         context.setUserContext(userContext);
         return context;
     }
@@ -88,7 +91,8 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         setupSystemContext(sysContext);
         BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
         BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj,sysContext);
-        updateSystemContext(sysContext,wp);
+        updateSystemContext(sysContext,wp,wPackageObj);
+        updateUserInfo(sysContext,wp,wPackageObj);
         wp = selectProcess(wPackageObj,sysContext);
         execActivity(wp,sysContext);
         return getResultObj(sysContext,resultScript);
@@ -102,8 +106,19 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         return result;
     }
     
-    protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp) {
-        
+    protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
+    }
+    
+    protected void updateUserInfo(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
+        ParticipantProvider provider = wPackageObj.getParticipantProvider();
+        Object userData = sysContext.getUserContext().getUserData();
+        if(userData == null && provider == null) {
+            return;
+        }
+        Long userIDNum = provider.getUserIDNum(userData);
+        String userIDVal = provider.getUserIDString(userData);
+        sysContext.setUserPkeyNum(userIDNum);
+        sysContext.setUserPkeyVal(userIDVal);
     }
     
     protected void execActivity(BuriExecProcess wp,BuriSystemContext sysContext) {
@@ -113,7 +128,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
     
     protected String selectActivityId(BuriExecProcess wp,BuriSystemContext sysContext) {
-        List acts = new ArrayList();
+        Set acts = new HashSet();
         Iterator ite = activitySelector.iterator();
         while(ite.hasNext()) {
             BuriActivitySelector selector = (BuriActivitySelector)ite.next();
@@ -128,15 +143,15 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         return selectActivityFinal(acts,sysContext,wp);
     }
     
-    protected String selectActivityFinal(List acts,BuriSystemContext systemContext,BuriExecProcess wp) {
+    protected String selectActivityFinal(Set acts,BuriSystemContext systemContext,BuriExecProcess wp) {
         if(acts.size() != 1) {
             errorActivitySelect(acts,systemContext,wp);
         }
-        BuriActivityType actType = (BuriActivityType)acts.get(0);
+        BuriActivityType actType = (BuriActivityType)(acts.toArray()[0]);
         return actType.getId();
     }
     
-    protected void errorActivitySelect(List acts,BuriSystemContext systemContext,BuriExecProcess wp) {
+    protected void errorActivitySelect(Set acts,BuriSystemContext systemContext,BuriExecProcess wp) {
         BuriPath callPath = systemContext.getCallPath();
         String pakageID = callPath.getWorkflowPackage();
         ParticipantProvider provider = (ParticipantProvider)roleMap.get(pakageID);

@@ -18,6 +18,8 @@ public class BuriSystemContext extends HashMap {
     private Stack pathStack;
     private Long dataID;
     private Long userID;
+    private Long userPkeyNum;
+    private String userPkeyVal;
     private Long statusID;
     private Long BTID;
     private long buriExecMode = RELEASED;
@@ -86,6 +88,18 @@ public class BuriSystemContext extends HashMap {
     public void setTgtClass(Class tgtClass) {
         this.tgtClass = tgtClass;
     }
+    public Long getUserPkeyNum() {
+        return userPkeyNum;
+    }
+    public void setUserPkeyNum(Long userPkeyNum) {
+        this.userPkeyNum = userPkeyNum;
+    }
+    public String getUserPkeyVal() {
+        return userPkeyVal;
+    }
+    public void setUserPkeyVal(String userPkeyVal) {
+        this.userPkeyVal = userPkeyVal;
+    }
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append(super.toString());
@@ -93,6 +107,8 @@ public class BuriSystemContext extends HashMap {
         buff.append("/pathStack=").append(pathStack);
         buff.append("/dataID=").append(dataID);
         buff.append("/userID=").append(userID);
+        buff.append("/userPkeyNum=").append(userPkeyNum);
+        buff.append("/userPkeyVal=").append(userPkeyVal);
         buff.append("/statusID=").append(statusID);
         buff.append("/BTID=").append(BTID);
         buff.append("/buriExecMode=").append(buriExecMode);

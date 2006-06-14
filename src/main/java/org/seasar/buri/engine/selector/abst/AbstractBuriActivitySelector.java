@@ -4,18 +4,18 @@
  */
 package org.seasar.buri.engine.selector.abst;
 
-import java.util.List;
+import java.util.Set;
 
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.selector.BuriActivitySelector;
 import org.seasar.buri.util.packages.BuriExecProcess;
 
 public abstract class AbstractBuriActivitySelector implements BuriActivitySelector {
-    public int select(List activitys, BuriSystemContext systemContext,BuriExecProcess execProcess) {
+    public int select(Set activitys, BuriSystemContext systemContext,BuriExecProcess execProcess) {
         if( ! checkCanActivitySelect(activitys, systemContext,execProcess)) {
             return SELECT_NEXT;
         }
-        List acts = getActivityList(activitys, systemContext,execProcess);
+        Set acts = getActivityList(activitys, systemContext,execProcess);
         activitys.addAll(acts);
         return getDefaultResultType();
     }
@@ -24,8 +24,8 @@ public abstract class AbstractBuriActivitySelector implements BuriActivitySelect
         return SELECT_NEXT;
     }
     
-    protected abstract List getActivityList(List activitys, BuriSystemContext systemContext,BuriExecProcess execProcess);
+    protected abstract Set getActivityList(Set activitys, BuriSystemContext systemContext,BuriExecProcess execProcess);
     
-    protected abstract boolean checkCanActivitySelect(List activitys, BuriSystemContext systemContext,BuriExecProcess execProcess);
+    protected abstract boolean checkCanActivitySelect(Set activitys, BuriSystemContext systemContext,BuriExecProcess execProcess);
 
 }

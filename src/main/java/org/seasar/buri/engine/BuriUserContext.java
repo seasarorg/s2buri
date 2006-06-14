@@ -28,5 +28,10 @@ public class BuriUserContext extends HashMap{
     public void setAction(Object data) {
         super.put("action",data);
     }
-    
+    public void setCallPath(BuriPath callPath) {
+        super.put("callPath",callPath);
+    }
+    public BuriPath getCallPath() {
+        return (BuriPath)super.get("callPath");
+    }
 }

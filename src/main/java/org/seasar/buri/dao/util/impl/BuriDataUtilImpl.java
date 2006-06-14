@@ -50,7 +50,12 @@ public class BuriDataUtilImpl implements BuriDataUtil{
             Long key = util.getKey(data);
             longList.add(key);
         }
-        long count = pathDataDao.getCountByPathKeys(className,longList,null,pathName,sysContext.getCallPath().getPathType());
+        long count = countByPathKeys(className,longList,null,pathName,sysContext);
+        return count;
+    }
+    
+    protected long countByPathKeys(String className,List longList,List strList,String pathName,BuriSystemContext sysContext) {
+        long count = pathDataDao.getCountByPathKeys(className,longList,strList,pathName,sysContext.getCallPath().getPathType());
         return count;
     }
     
@@ -63,7 +68,7 @@ public class BuriDataUtilImpl implements BuriDataUtil{
             String key = util.getKey(data);
             strList.add(key);
         }
-        long count = pathDataDao.getCountByPathKeys(className,null,strList,pathName,sysContext.getCallPath().getPathType());
+        long count = countByPathKeys(className,null,strList,pathName,sysContext);
         return count;
     }
     
@@ -107,9 +112,7 @@ public class BuriDataUtilImpl implements BuriDataUtil{
     }
     
     protected List getDataDtoList(String pathName,DataAccessUtilLongKey dataUtil,BuriSystemContext sysContext) {
-        String className = sysContext.getTgtClass().getName();
-        Long pathType = sysContext.getCallPath().getPathType();
-        List infoList = pathDataDao.getListByPathName(className,pathName,pathType);
+        List infoList = getDataInfoListFromPathName(pathName,sysContext);
         Iterator ite = infoList.iterator();
         List result = new ArrayList();
         while(ite.hasNext()) {
@@ -119,10 +122,15 @@ public class BuriDataUtilImpl implements BuriDataUtil{
         return result;
     }
     
-    protected List getManyDataDtoList(String pathName,DataAccessUtilManyKey dataUtil,BuriSystemContext sysContext) {
+    protected List getDataInfoListFromPathName(String pathName,BuriSystemContext sysContext) {
         String className = sysContext.getTgtClass().getName();
         Long pathType = sysContext.getCallPath().getPathType();
         List infoList = pathDataDao.getListByPathName(className,pathName,pathType);
+        return infoList;
+    }
+    
+    protected List getManyDataDtoList(String pathName,DataAccessUtilManyKey dataUtil,BuriSystemContext sysContext) {
+        List infoList = getDataInfoListFromPathName(pathName,sysContext);
         Iterator ite = infoList.iterator();
         List result = new ArrayList();
         while(ite.hasNext()) {

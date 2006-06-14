@@ -11,6 +11,7 @@ import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
+import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
@@ -20,7 +21,8 @@ import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngine{
     private BuriPathDataDao pathDataDao;
     
-    protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp) {
+    protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
+        super.updateSystemContext(sysContext,wp,wPackageObj);
         BuriDataAccessFactory factory = (BuriDataAccessFactory)wp;
         preprocessData(factory,sysContext.getUserContext());
         Object data = sysContext.getUserContext().getData();

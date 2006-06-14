@@ -4,11 +4,11 @@
  */
 package org.seasar.buri.engine.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.buri.engine.BuriRole;
+import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
+import org.seasar.buri.engine.RoleInfo;
 
 public class DefaultParticipantProvider implements ParticipantProvider {
 
@@ -24,29 +24,16 @@ public class DefaultParticipantProvider implements ParticipantProvider {
         return null;
     }
 
-    public boolean hasRoleUser(Object userData, String roleType) {
-        return true;
-    }
-
-    public BuriRole getSingleUser(Object userData, String roleType) {
-        return new BuriRole();
-    }
-
-    public List getUser(Object userData, String roleType) {
-        return new ArrayList();
-    }
-
-    public boolean hasRoleUser(Object userData, Object argData, String roleName) {
-        // TODO 自動生成されたメソッド・スタブ
+    public boolean hasRoleUser(ParticipantContext context) {
         return false;
     }
 
-    public BuriRole getSingleUser(Object userData, Object argData, String roleName) {
+    public RoleInfo getSingleUser(ParticipantContext context) {
         // TODO 自動生成されたメソッド・スタブ
         return null;
     }
 
-    public List getUser(Object userData, Object argData, String roleName) {
+    public List getUser(ParticipantContext context) {
         // TODO 自動生成されたメソッド・スタブ
         return null;
     }

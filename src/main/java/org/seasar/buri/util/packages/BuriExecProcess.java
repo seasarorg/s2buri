@@ -13,6 +13,7 @@ public interface BuriExecProcess {
     void entryActivity(String actId,BuriSystemContext sysContext,BranchWalker walker);
     
     void setBuriExePackages(BuriExePackages packages);
+    BuriExePackages getBuriExePackages();
     
     BranchWalker readBranchWalker(BuriSystemContext sysContext);
     BuriWorkflowProcessType getBuriWorkflowProcessType();
