@@ -12,6 +12,14 @@ import org.seasar.buri.util.packages.BuriExecProcess;
 public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
     private BuriUserUtil userUtil;
     
+    
+    public void setupUserID(BuriSystemContext sysContext) {
+        BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
+        BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj,sysContext);
+        updateUserInfo(sysContext,wp,wPackageObj);
+        
+    }
+    
     protected void updateUserInfo(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
         super.updateUserInfo(sysContext,wp,wPackageObj);
         if(sysContext.getUserPkeyNum() == null && sysContext.getUserPkeyVal() == null) {

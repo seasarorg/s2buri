@@ -16,7 +16,7 @@ public class BuriPathDataUserEntityDto {
     private String dataType;
     private long dataID;
     private long stateID;
-    private long userID;
+    private long buriUserID;
     private String userIDVal;
     private Long userIDNum;
     
@@ -74,11 +74,11 @@ public class BuriPathDataUserEntityDto {
     public void setStateID(long stateID) {
         this.stateID = stateID;
     }
-    public long getUserID() {
-        return userID;
+    public long getBuriUserID() {
+        return buriUserID;
     }
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setBuriUserID(long userID) {
+        this.buriUserID = userID;
     }
     public Long getUserIDNum() {
         return userIDNum;
@@ -103,7 +103,7 @@ public class BuriPathDataUserEntityDto {
         buff.append("/dataType=").append(dataType);
         buff.append("/dataID=").append(dataID);
         buff.append("/stateID=").append(stateID);
-        buff.append("/userID=").append(userID);
+        buff.append("/buriUserID=").append(buriUserID);
         buff.append("/userIDNum=").append(userIDNum);
         buff.append("/userIDVal=").append(userIDVal);
         buff.append("]");

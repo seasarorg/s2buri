@@ -34,27 +34,13 @@ public interface StandardBuriProcessor {
     
     Object toNextStatus(String path, Object data, Object userData,BuriProcessorInfo info);
 
-
-//    List findDataList(String path, Object userData,Object dto);
-//    List getDataListFromPathAndUser(String path, Object userData);
-//    List getDataIDFromPathAndUser(String path, Object userData);
-    List getDataListFromPath(String path, Object userData);
-    List getDataIDFromPath(String path, Object userData);
-    List getPathFromData(String path, Object data, Object userData);
-
-//    List findDataList(String path, Object userData,Object dto, S2Container container);
-//    List getDataListFromPathAndUser(String path, Object userData, S2Container container);
-//    List getDataIDFromPathAndUser(String path, Object userData, S2Container container);
-    List getDataListFromPath(String path, Object userData, S2Container container);
-    List getDataIDFromPath(String path, Object userData, S2Container container);
-    List getPathFromData(String path, Object data, Object userData, S2Container container);
-
-    List getDataListFromPathAndUserOnly(String path, Object userData);
-    List getDataIDFromPathAndUserOnly(String path, Object userData);
-
-    List getDataListFromPathAndUserOnly(String path, Object userData, S2Container container);
-    List getDataIDFromPathAndUserOnly(String path, Object userData, S2Container container);
+    List getDataListFromPath(String path, Object userData,Class tgtClass);
+    List getDataIDFromPath(String path, Object userData,Class tgtClass);
+    List getPathFromData(String path, Object data, Object userData,Class tgtClass);
     long countByPathAndDatas(String path, List datas,Object userData);
-    long countByPathAndDatas(String path, List datas,Object userData, S2Container container);
 
+    List getDataListFromPath(String path, Object userData,Class tgtClass,S2Container container);
+    List getDataIDFromPath(String path, Object userData,Class tgtClass,S2Container container);
+    List getPathFromData(String path, Object data, Object userData,Class tgtClass,S2Container container);
+    long countByPathAndDatas(String path, List datas,Object userData,S2Container container);
 }

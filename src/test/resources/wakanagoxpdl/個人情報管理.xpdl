@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="newpkg" Name="個人情報保護" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2006-06-12 14:14:47</Created>
+</PackageHeader>
+<Participants>
+<Participant Id="newpkg_par1" Name="個人情報保護担当">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="newpkg_par2" Name="業務委託業者">
+<ParticipantType Type="ORGANIZATIONAL_UNIT"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="OgnlInvoker"/>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess Id="newpkg_wp1" Name="個人情報管理">
+<ProcessHeader>
+<Created>2006-06-12 14:16:42</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="newpkg_wp1_act1" Name="開示依頼">
+<Implementation>
+<Tool Id="OgnlInvoker"/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="118,57"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act2" Name="開示承認待ち">
+<Implementation>
+<Tool Id="OgnlInvoker"/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="240,57"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act3" Name="情報破棄確認待ち">
+<Implementation>
+<Tool Id="OgnlInvoker"/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="501,40"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act4" Name="開示承認">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="newpkg_wp1_tra3"/>
+<TransitionRef Id="newpkg_wp1_tra5"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="344,58"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act5" Name="情報破棄">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="474,16"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act6" Name="情報返却">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="573,70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act7" Name="情報返却確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="654,108"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act31" Name="情報破棄確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="630,36"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act71" Name="情報返却確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="768,107"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="newpkg_wp1_act1" Id="newpkg_wp1_tra1" To="newpkg_wp1_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act2" Id="newpkg_wp1_tra2" To="newpkg_wp1_act4">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act4" Id="newpkg_wp1_tra3" To="newpkg_wp1_act5">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act5" Id="newpkg_wp1_tra4" To="newpkg_wp1_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act4" Id="newpkg_wp1_tra5" To="newpkg_wp1_act6">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act6" Id="newpkg_wp1_tra6" To="newpkg_wp1_act7">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act3" Id="newpkg_wp1_tra7" To="newpkg_wp1_act31">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act7" Id="newpkg_wp1_tra8" To="newpkg_wp1_act71">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="newpkg_par1;newpkg_par2"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="newpkg_wp11" Name="DBアクセス管理">
+<ProcessHeader>
+<Created>2006-06-12 14:16:42</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="newpkg_wp1_act1" Name="アクセス許可依頼">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="118,57"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act2" Name="許可承認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="240,57"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act3" Name="確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="592,65"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act4" Name="アクセス承認">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="344,58"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act5" Name="アクセス終了連絡">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="531,59"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act6" Name="アクセス終了確認">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="746,61"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="newpkg_wp1_act1" Id="newpkg_wp11_tra1" To="newpkg_wp1_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act2" Id="newpkg_wp11_tra2" To="newpkg_wp1_act4">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act4" Id="newpkg_wp11_tra3" To="newpkg_wp1_act5">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act5" Id="newpkg_wp11_tra4" To="newpkg_wp1_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act3" Id="newpkg_wp11_tra5" To="newpkg_wp1_act6">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="newpkg_par1;newpkg_par2"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="newpkg_wp12" Name="個人直接情報管理">
+<ProcessHeader>
+<Created>2006-06-12 14:16:42</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="newpkg_wp1_act1" Name="個人情報取得">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="153,51"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act2" Name="取得確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="206,54"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act3" Name="情報破棄確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="592,65"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act5" Name="情報破棄">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="491,54"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp1_act6" Name="情報破棄確認">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="746,61"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp12_act1" Name="個人情報取得許可">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="newpkg_wp12_tra6"/>
+<TransitionRef Id="newpkg_wp12_tra5"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="325,52"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="newpkg_wp12_act2" Name="個人情報保持連絡">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>newpkg_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="337,149"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="newpkg_wp1_act1" Id="newpkg_wp12_tra1" To="newpkg_wp1_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act2" Id="newpkg_wp12_tra2" To="newpkg_wp12_act1">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act5" Id="newpkg_wp12_tra3" To="newpkg_wp1_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp1_act3" Id="newpkg_wp12_tra4" To="newpkg_wp1_act6">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp12_act1" Id="newpkg_wp12_tra5" To="newpkg_wp1_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp12_act1" Id="newpkg_wp12_tra6" To="newpkg_wp12_act2">
+<Condition Type="EXCEPTION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="339,276"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="newpkg_wp12_act2" Id="newpkg_wp12_tra7" To="newpkg_wp12_act1">
+<Condition Type="EXCEPTION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="411,278"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="newpkg_par1;newpkg_par2"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+</ExtendedAttributes>
+</Package>

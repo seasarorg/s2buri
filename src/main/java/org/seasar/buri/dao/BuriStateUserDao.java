@@ -18,8 +18,8 @@ public interface BuriStateUserDao {
     
     public long getNewBuriStateUserID();
 
-    public String getBuriStateFromDto_ARGS = "dto";
-    public List getBuriStateFromDto(BuriStateUserEntityDto dto);
+//    public String getBuriStateFromDto_ARGS = "dto";
+//    public List getBuriStateFromDto(BuriStateUserEntityDto dto);
 
     public void insertEntityList(List dtos);
 

@@ -51,3 +51,13 @@ ALTER TABLE BuriTestMany ADD PRIMARY KEY
 	TestID02
 );
 
+DROP TABLE BuriTestUser;
+
+CREATE TABLE BuriTestUser (
+       UserID              INTEGER NOT NULL ,
+       UserName VARCHAR(100) NOT NULL,
+	   RoleName	VARCHAR(100) NOT NULL,
+	   ParentUserID		INTEGER,
+       PRIMARY KEY (UserID)
+);
+	

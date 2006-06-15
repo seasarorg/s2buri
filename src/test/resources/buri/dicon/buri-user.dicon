@@ -5,6 +5,10 @@
 	<!-- ぶり利用者編集必須のdicon -->
 	
 	<!-- 書き換えが必要 -->
+	<include path="example/org/seasar/buri/dicon/alldao.dicon"/>
 	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+	<component name="StdTestParticipantProvider" class="org.seasar.buri.engine.processor.impl.StdTestParticipantProvider">
+		<aspect>aop.traceInterceptor</aspect>
+	</component>
 	
 </components>

@@ -20,6 +20,7 @@ import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.RoleInfo;
 import org.seasar.buri.oouo.internal.structure.BuriActivityType;
+import org.seasar.buri.oouo.internal.structure.BuriParticipantType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
@@ -103,7 +104,9 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         BuriExecProcess process = (BuriExecProcess)factory;
         String actId = (String)walker.getNowPath().getActivityId().get(0);
         BuriActivityType actType =  process.getBuriWorkflowProcessType().getActivityById(actId);
-        String roleName = actType.getRoleName();
+        String roleID = actType.getRoleName();
+        BuriParticipantType participantType = process.getBuriWorkflowProcessType().getRolesById(roleID);
+        String roleName = participantType.getName();
         return roleName;
     }
     

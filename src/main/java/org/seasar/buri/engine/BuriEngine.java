@@ -5,5 +5,5 @@
 package org.seasar.buri.engine;
 
 public interface BuriEngine extends WakanagoEngine{
-
+    void setupUserID(BuriSystemContext sysContext);
 }

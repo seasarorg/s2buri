@@ -21,6 +21,10 @@ import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngine{
     private BuriPathDataDao pathDataDao;
     
+    public void setupUserID(BuriSystemContext sysContext) {
+        
+    }
+    
     protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
         super.updateSystemContext(sysContext,wp,wPackageObj);
         BuriDataAccessFactory factory = (BuriDataAccessFactory)wp;
