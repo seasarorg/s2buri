@@ -83,6 +83,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
         if(actType.isFinishModeManual()) {
             mode = "_restart";
         }
+        sysContext.setStartRoleName(actType.getRoleName());
         walker = setupStatus(actId,sysContext,walker);
         execActivity(actId,mode,sysContext,walker);
     }

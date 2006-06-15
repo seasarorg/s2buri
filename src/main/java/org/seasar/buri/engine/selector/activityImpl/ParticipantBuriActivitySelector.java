@@ -12,7 +12,6 @@ import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.selector.abst.AbstractBuriActivitySelector;
 import org.seasar.buri.oouo.internal.structure.BuriActivityType;
-import org.seasar.buri.oouo.internal.structure.BuriParticipantType;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 
@@ -25,9 +24,8 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
         ParticipantProvider provider = packages.getParticipantProvider();
         while(ite.hasNext()) {
             BuriActivityType actType = (BuriActivityType)ite.next();
-            String roleID = actType.getRoleName();
-            BuriParticipantType participantType = execProcess.getBuriWorkflowProcessType().getRolesById(roleID);
-            boolean inRole = provider.isUserInRole(systemContext.getUserContext().getUserData(),participantType.getName());
+            String roleName = actType.getRoleName();
+            boolean inRole = provider.isUserInRole(systemContext.getUserContext().getUserData(),roleName);
             if(inRole) {
                 result.add(actType);
             }

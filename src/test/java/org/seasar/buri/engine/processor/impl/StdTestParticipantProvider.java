@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.seasar.buri.dao.BuriTestUserDao;
 import org.seasar.buri.dto.BuriTestUserDto;
+import org.seasar.buri.engine.BuriParticipantContext;
 import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.RoleInfo;
@@ -58,6 +59,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     }
 
     public List getUser(ParticipantContext context) {
+        BuriParticipantContext buriContext = (BuriParticipantContext)context;
         Long idNum = context.getActionUserIdNum();
         String roleName = context.getParticipantName();
         // 上の方を探す
@@ -67,8 +69,8 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                 //一段下を探す
                 roleList = userDao.getUserListByUserID(idNum,roleName);
             }
-            if(roleList.size()==0 && roleName.equals("下っ端")) {
-                //もう一段下を探す
+            if(roleList.size()==0 && roleName.equals("下っ端") && buriContext.getStartRoleName().equals("一番上")) {
+                //一番上と下っ端が対象の場合もう一段下を探す
                 List mannaka = userDao.getUserListByParentUserID(idNum,"真ん中");
                 Iterator ite = mannaka.iterator();
                 while(ite.hasNext()) {
