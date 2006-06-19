@@ -12,6 +12,7 @@ import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.processor.StandardBuriProcessor;
 import org.seasar.buri.exception.select.BuriManySelectActivityException;
+import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
 import org.seasar.extension.unit.S2TestCase;
 
 import example.org.seasar.buri.dao.ItemDao;
@@ -134,7 +135,7 @@ public class StandardBuriProcessor02Test extends S2TestCase {
         try {
             processor.toNextStatus("stdTest.Test02.Šæ’£‚Á‚Ä‚é‚Æ‚±‚ë",itemDto1,user3Dto);
             fail();
-        } catch(BuriManySelectActivityException ex) {
+        } catch(BuriNotSelectedActivityException ex) {
             assertTrue(true);
         }
     }

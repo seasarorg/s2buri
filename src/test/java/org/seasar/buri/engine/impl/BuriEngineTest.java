@@ -87,13 +87,13 @@ public class BuriEngineTest extends S2TestCase {
         System.out.println("buriEngine.execute");
         
         userContext = engine.createUserContext(testDto,null,null);
-        sysContext = engine.createSystemContext("basicTest.test02.start",userContext);
+        sysContext = engine.createSystemContext("basicTest.test02.stopThis",userContext);
         sysContext.setTgtClass(BuriTestINTDto.class);
         stateSize = stateDao_.getAllBuriState().size();
         engine.execute(sysContext,null);
         
         assertTrue(testDto.getTestID() != 0);
-        assertEquals(stateSize+1,stateDao_.getAllBuriState().size());
+        assertEquals(stateSize,stateDao_.getAllBuriState().size());
 
     }
     

@@ -90,10 +90,14 @@ public void ${activityId}_next(BuriSystemContext sysContext,BranchWalker walker)
 				<#assign conditionType = oneTrans.getCondition() >
 				<#assign transType = conditionType.getType() >
 				<#if transType == "CONDITION" >
+					<#if conditionType.getCondition()?length != 0 >
     oneResult = conditionCheck("${oneTrans.getId()}","${conditionType.getCondition()?j_string}",sysContext,walker);
     if(oneResult.booleanValue()) {
         results.add("${oneTrans.getTo()}");
     }
+    				<#else>
+    results.add("${oneTrans.getTo()}");
+					</#if>
     			</#if>
 				<#if transType == "EXCEPTION" >
 	if(sysContext.getException() != null) {

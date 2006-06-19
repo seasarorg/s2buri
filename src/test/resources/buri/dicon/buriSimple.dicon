@@ -30,6 +30,10 @@
 			<arg><component class="org.seasar.buri.engine.selector.activityImpl.StartActivitySelector">
 				</component></arg>
 		</initMethod>
+		<initMethod name="addActivitySelector">
+			<arg><component class="org.seasar.buri.engine.selector.activityImpl.BuriActivityPathFilter">
+				</component></arg>
+		</initMethod>
 		
 		<initMethod name="addProcessSelector">
 			<arg><component class="org.seasar.buri.engine.selector.processImpl.DirectProcessSelector">
