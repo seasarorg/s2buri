@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Package Id="basicTest" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="basicTest" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
 <PackageHeader>
 <XPDLVersion>1.0</XPDLVersion>
 <Vendor>Together</Vendor>
@@ -48,16 +48,15 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="250"/>
-<ExtendedAttribute Name="YOffset" Value="60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="250,60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor1_Act1;100;60;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor1_Act1;530;70;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor1_Act1,X_OFFSET=541,Y_OFFSET=81,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor1_Act1,X_OFFSET=111,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor2" Name="test02">
@@ -78,9 +77,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="180"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor2_Act2" Name="stopThis">
@@ -95,9 +93,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="310"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor2_Act3" Name="finish">
@@ -112,28 +109,27 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="460"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="460,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor2_Act1" Id="basicTest_Wor2_Tra2" To="basicTest_Wor2_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor2_Act2" Id="basicTest_Wor2_Tra3" To="basicTest_Wor2_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor2_Act1;100;50;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor2_Act3;570;50;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor2_Act3,X_OFFSET=581,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor2_Act1,X_OFFSET=111,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor4" Name="test03">
@@ -164,9 +160,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="150"/>
-<ExtendedAttribute Name="YOffset" Value="100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="150,100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor4_Act2" Name="stop1">
@@ -181,9 +176,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="310"/>
-<ExtendedAttribute Name="YOffset" Value="70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor4_Act3" Name="stop2">
@@ -198,29 +192,28 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="310"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor4_Act1" Id="basicTest_Wor4_Tra2" To="basicTest_Wor4_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor4_Act1" Id="basicTest_Wor4_Tra4" To="basicTest_Wor4_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor4_Act1;70;100;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor4_Act2;460;70;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor4_Act3;460;160;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor4_Act3,X_OFFSET=471,Y_OFFSET=171,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor4_Act2,X_OFFSET=471,Y_OFFSET=81,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor4_Act1,X_OFFSET=81,Y_OFFSET=111,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor5" Name="test04">
@@ -251,9 +244,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="180"/>
-<ExtendedAttribute Name="YOffset" Value="110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor5_Act2" Name="continue1">
@@ -268,9 +260,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="320"/>
-<ExtendedAttribute Name="YOffset" Value="60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="320,60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor5_Act3" Name="continue2">
@@ -285,9 +276,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="320"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="320,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor5_Act6" Name="end">
@@ -307,38 +297,37 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="470"/>
-<ExtendedAttribute Name="YOffset" Value="110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor5_Act1" Id="basicTest_Wor5_Tra1" To="basicTest_Wor5_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor5_Act1" Id="basicTest_Wor5_Tra3" To="basicTest_Wor5_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor5_Act2" Id="basicTest_Wor5_Tra7" To="basicTest_Wor5_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor5_Act3" Id="basicTest_Wor5_Tra8" To="basicTest_Wor5_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor5_Act1;80;110;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor5_Act6;610;110;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor5_Act6,X_OFFSET=621,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor5_Act1,X_OFFSET=91,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor6" Name="test05">
@@ -369,9 +358,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="200"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act2" Name="分岐1">
@@ -386,9 +374,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="360"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act3" Name="分岐2">
@@ -413,9 +400,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="360"/>
-<ExtendedAttribute Name="YOffset" Value="240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act4" Name="のーど１">
@@ -430,9 +416,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="560"/>
-<ExtendedAttribute Name="YOffset" Value="210"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,210"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act5" Name="のーど2">
@@ -447,9 +432,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="560"/>
-<ExtendedAttribute Name="YOffset" Value="330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act6" Name="分岐終了">
@@ -469,9 +453,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="740"/>
-<ExtendedAttribute Name="YOffset" Value="270"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,270"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act7" Name="分岐完了">
@@ -491,9 +474,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="890"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="890,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act8" Name="終了">
@@ -508,63 +490,62 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="1060"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1060,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra1" To="basicTest_Wor6_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act2" Id="basicTest_Wor6_Tra2" To="basicTest_Wor6_Act7">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra3" To="basicTest_Wor6_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra4" To="basicTest_Wor6_Act4">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra5" To="basicTest_Wor6_Act5">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act5" Id="basicTest_Wor6_Tra6" To="basicTest_Wor6_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act4" Id="basicTest_Wor6_Tra7" To="basicTest_Wor6_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act6" Id="basicTest_Wor6_Tra8" To="basicTest_Wor6_Act7">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act7" Id="basicTest_Wor6_Tra9" To="basicTest_Wor6_Act8">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor6_Act1;80;160;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor6_Act8;1200;120;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act8,X_OFFSET=1211,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act1,X_OFFSET=91,Y_OFFSET=171,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor7" Name="test06">
@@ -595,9 +576,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="200"/>
-<ExtendedAttribute Name="YOffset" Value="160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act2" Name="分岐1">
@@ -612,9 +592,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="360"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act3" Name="分岐2">
@@ -639,9 +618,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="360"/>
-<ExtendedAttribute Name="YOffset" Value="240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act4" Name="のーど１">
@@ -656,9 +634,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="560"/>
-<ExtendedAttribute Name="YOffset" Value="210"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,210"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act5" Name="のーど2">
@@ -673,9 +650,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="560"/>
-<ExtendedAttribute Name="YOffset" Value="330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act6" Name="分岐終了">
@@ -695,9 +671,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="740"/>
-<ExtendedAttribute Name="YOffset" Value="270"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,270"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act7" Name="分岐完了">
@@ -717,9 +692,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="890"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="890,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor6_Act8" Name="終了">
@@ -734,63 +708,62 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="1060"/>
-<ExtendedAttribute Name="YOffset" Value="120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1060,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra1" To="basicTest_Wor6_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act2" Id="basicTest_Wor6_Tra2" To="basicTest_Wor6_Act7">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra3" To="basicTest_Wor6_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra4" To="basicTest_Wor6_Act4">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra5" To="basicTest_Wor6_Act5">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act5" Id="basicTest_Wor6_Tra6" To="basicTest_Wor6_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act4" Id="basicTest_Wor6_Tra7" To="basicTest_Wor6_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act6" Id="basicTest_Wor6_Tra8" To="basicTest_Wor6_Act7">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor6_Act7" Id="basicTest_Wor6_Tra9" To="basicTest_Wor6_Act8">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor6_Act1;80;160;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor6_Act8;1200;120;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act8,X_OFFSET=1211,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act1,X_OFFSET=91,Y_OFFSET=171,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor9" Name="test07">
@@ -821,9 +794,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="270"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="270,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act2" Name="FM1">
@@ -838,9 +810,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="420"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="420,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act3" Name="FM2">
@@ -855,9 +826,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="420"/>
-<ExtendedAttribute Name="YOffset" Value="130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="420,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act4" Name="fm11">
@@ -872,9 +842,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="570"/>
-<ExtendedAttribute Name="YOffset" Value="50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="570,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act5" Name="fm21">
@@ -889,9 +858,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="580"/>
-<ExtendedAttribute Name="YOffset" Value="130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="580,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act6" Name="JAND1">
@@ -911,9 +879,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="730"/>
-<ExtendedAttribute Name="YOffset" Value="90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="730,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act7" Name="SAND-AND2">
@@ -938,9 +905,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="280"/>
-<ExtendedAttribute Name="YOffset" Value="280"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="280,280"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act8" Name="FM3">
@@ -955,9 +921,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="430"/>
-<ExtendedAttribute Name="YOffset" Value="250"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="430,250"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act9" Name="Generic">
@@ -972,9 +937,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="590"/>
-<ExtendedAttribute Name="YOffset" Value="250"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="590,250"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act10" Name="FM4">
@@ -989,9 +953,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="430"/>
-<ExtendedAttribute Name="YOffset" Value="320"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="430,320"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act11" Name="Generic">
@@ -1006,9 +969,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="590"/>
-<ExtendedAttribute Name="YOffset" Value="320"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="590,320"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act12" Name="JAND2">
@@ -1028,9 +990,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="740"/>
-<ExtendedAttribute Name="YOffset" Value="280"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,280"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act13" Name="SAND">
@@ -1055,9 +1016,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="170"/>
-<ExtendedAttribute Name="YOffset" Value="180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor9_Act14" Name="JAND-AND">
@@ -1077,98 +1037,97 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="860"/>
-<ExtendedAttribute Name="YOffset" Value="170"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="860,170"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor9_Act1" Id="basicTest_Wor9_Tra1" To="basicTest_Wor9_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act2" Id="basicTest_Wor9_Tra2" To="basicTest_Wor9_Act4">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act4" Id="basicTest_Wor9_Tra3" To="basicTest_Wor9_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act1" Id="basicTest_Wor9_Tra4" To="basicTest_Wor9_Act3">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act3" Id="basicTest_Wor9_Tra5" To="basicTest_Wor9_Act5">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act5" Id="basicTest_Wor9_Tra6" To="basicTest_Wor9_Act6">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act13" Id="basicTest_Wor9_Tra7" To="basicTest_Wor9_Act7">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act7" Id="basicTest_Wor9_Tra8" To="basicTest_Wor9_Act8">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act8" Id="basicTest_Wor9_Tra9" To="basicTest_Wor9_Act9">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act9" Id="basicTest_Wor9_Tra10" To="basicTest_Wor9_Act12">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act12" Id="basicTest_Wor9_Tra11" To="basicTest_Wor9_Act14">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act7" Id="basicTest_Wor9_Tra12" To="basicTest_Wor9_Act10">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act10" Id="basicTest_Wor9_Tra13" To="basicTest_Wor9_Act11">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act11" Id="basicTest_Wor9_Tra14" To="basicTest_Wor9_Act12">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act13" Id="basicTest_Wor9_Tra15" To="basicTest_Wor9_Act1">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor9_Act6" Id="basicTest_Wor9_Tra16" To="basicTest_Wor9_Act14">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor9_Act13;80;180;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor9_Act14;1020;170;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor9_Act14,X_OFFSET=1031,Y_OFFSET=181,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor9_Act13,X_OFFSET=91,Y_OFFSET=191,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 <WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor10" Name="test08">
@@ -1189,9 +1148,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="180"/>
-<ExtendedAttribute Name="YOffset" Value="150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor10_Act2" Name="loop1">
@@ -1217,9 +1175,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="330"/>
-<ExtendedAttribute Name="YOffset" Value="150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="330,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor10_Act5" Name="end">
@@ -1234,9 +1191,8 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="680"/>
-<ExtendedAttribute Name="YOffset" Value="150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="680,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor10_Act7" Name="loop1next">
@@ -1251,9 +1207,8 @@
 <Manual/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="330"/>
-<ExtendedAttribute Name="YOffset" Value="40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="330,40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor10_Act8" Name="loop2">
@@ -1279,9 +1234,8 @@
 </TransitionRestriction>
 </TransitionRestrictions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="540"/>
-<ExtendedAttribute Name="YOffset" Value="150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="540,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="basicTest_Wor10_Act9" Name="loop2auto">
@@ -1296,66 +1250,257 @@
 <Automatic/>
 </FinishMode>
 <ExtendedAttributes>
-<ExtendedAttribute Name="ParticipantID" Value="basicTest_Par1"/>
-<ExtendedAttribute Name="XOffset" Value="540"/>
-<ExtendedAttribute Name="YOffset" Value="40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="540,40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </Activity>
 </Activities>
 <Transitions>
 <Transition From="basicTest_Wor10_Act1" Id="basicTest_Wor10_Tra1" To="basicTest_Wor10_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor10_Act2" Id="basicTest_Wor10_Tra9" To="basicTest_Wor10_Act7">
 <Condition Type="CONDITION">#action == "loop"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
-<ExtendedAttribute Name="BreakPoint" Value="420;120;1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="420,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor10_Act7" Id="basicTest_Wor10_Tra10" To="basicTest_Wor10_Act2">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
-<ExtendedAttribute Name="BreakPoint" Value="320;120;1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="320,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor10_Act2" Id="basicTest_Wor10_Tra15" To="basicTest_Wor10_Act8">
 <Condition Type="CONDITION">#action == null</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor10_Act9" Id="basicTest_Wor10_Tra22" To="basicTest_Wor10_Act8">
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
-<ExtendedAttribute Name="BreakPoint" Value="530;110;1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="530,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor10_Act8" Id="basicTest_Wor10_Tra23" To="basicTest_Wor10_Act9">
 <Condition Type="CONDITION">#action == "ENTERLOOP"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
-<ExtendedAttribute Name="BreakPoint" Value="630;110;1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="630,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="basicTest_Wor10_Act8" Id="basicTest_Wor10_Tra24" To="basicTest_Wor10_Act5">
 <Condition Type="CONDITION">#action == "EXITLOOP"</Condition>
 <ExtendedAttributes>
-<ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
 </Transitions>
 <ExtendedAttributes>
-<ExtendedAttribute Name="StartOfWorkflow" Value="basicTest_Par1;basicTest_Wor10_Act1;90;150;NOROUTING"/>
-<ExtendedAttribute Name="EndOfWorkflow" Value="basicTest_Par1;basicTest_Wor10_Act5;810;150;NOROUTING"/>
-<ExtendedAttribute Name="ParticipantVisualOrder" Value="basicTest_Par1;"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor10_Act5,X_OFFSET=821,Y_OFFSET=161,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor10_Act1,X_OFFSET=101,Y_OFFSET=161,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp1" Name="test09">
+<ProcessHeader>
+<Created>2006-06-19 16:50:43</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp1_act1" Name="Start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp1_tra1"/>
+<TransitionRef Id="basicTest_wp1_tra2"/>
+<TransitionRef Id="basicTest_wp1_tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="135,141"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp1_act2" Name="A">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;A&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="317,45"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp1_act3" Name="B">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;B&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="321,142"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp1_act4" Name="other">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;no hit&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="321,251"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp1_act1" Id="basicTest_wp1_tra1" To="basicTest_wp1_act2">
+<Condition Type="CONDITION">#action == "A"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp1_act1" Id="basicTest_wp1_tra2" To="basicTest_wp1_act3">
+<Condition Type="CONDITION">#action == "B"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp1_act1" Id="basicTest_wp1_tra3" To="basicTest_wp1_act4">
+<Condition Type="OTHERWISE"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp2" Name="test10">
+<ProcessHeader>
+<Created>2006-06-19 17:33:47</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp2_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="178,70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp2_act2" Name="isNullPointerException">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#action.length()"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp2_tra2"/>
+<TransitionRef Id="basicTest_wp2_tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="427,68"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp2_act3" Name="nomalEnd">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;notNull&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="655,70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp2_act4" Name="ExceptionEnd">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;null&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="427,173"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp2_act1" Id="basicTest_wp2_tra1" To="basicTest_wp2_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp2_act2" Id="basicTest_wp2_tra2" To="basicTest_wp2_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp2_act2" Id="basicTest_wp2_tra3" To="basicTest_wp2_act4">
+<Condition Type="EXCEPTION">java.lang.NullPointerException</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
 </WorkflowProcesses>
 <ExtendedAttributes>
-<ExtendedAttribute Name="MadeBy" Value="JaWE"/>
-<ExtendedAttribute Name="Version" Value="1.4.2"/>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
 </ExtendedAttributes>
 </Package>

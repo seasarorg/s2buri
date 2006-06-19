@@ -27,6 +27,7 @@ public class BuriSystemContext extends HashMap {
     public static long RELEASED = 0;
     private S2Container container;
     private String startRoleName;
+    private RuntimeException ex;
 
     public S2Container getContainer() {
         return container;
@@ -107,6 +108,12 @@ public class BuriSystemContext extends HashMap {
     public void setStartRoleName(String startRoleName) {
         this.startRoleName = startRoleName;
     }
+    public RuntimeException getException() {
+        return ex;
+    }
+    public void setException(RuntimeException ex) {
+        this.ex = ex;
+    }
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append(super.toString());
@@ -121,6 +128,7 @@ public class BuriSystemContext extends HashMap {
         buff.append("/buriExecMode=").append(buriExecMode);
         buff.append("/tgtClass=").append(tgtClass);
         buff.append("/startRoleName=").append(startRoleName);
+        buff.append("/ex=").append(ex);
         buff.append("]");
         return buff.toString();
     }

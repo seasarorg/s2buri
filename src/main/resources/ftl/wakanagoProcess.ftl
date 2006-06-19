@@ -57,10 +57,12 @@ public void ${activityId}_start(BuriSystemContext sysContext,BranchWalker walker
 
 public void ${activityId}_process(BuriSystemContext sysContext,BranchWalker walker) {
 	<#list activity.getTools() as tool>
-    {
-    	<#assign script = buriComponentUtil.getJavaProcessCode("sysContext.getContainer()",tool,activity)>
-    	${script}
-    }
+	try {
+	    	<#assign script = buriComponentUtil.getJavaProcessCode("sysContext.getContainer()",tool,activity)>
+	    	${script}
+	} catch(RuntimeException ex) {
+		sysContext.setException(ex);
+	}
     </#list>
     <#if activity.isFinishModeManual()>
     exitFlow(sysContext,walker);
@@ -80,17 +82,50 @@ public void ${activityId}_next(BuriSystemContext sysContext,BranchWalker walker)
     <#else>
     List results = new ArrayList();
     Boolean oneResult;
+    String othrewise = null;
+    String toException = null;
     
     	<#list transition as oneTrans>
 			<#if oneTrans.hasCondition() >
-    oneResult = conditionCheck("${oneTrans.getId()}","${oneTrans.getConditionStr()?j_string}",sysContext,walker);
+				<#assign conditionType = oneTrans.getCondition() >
+				<#assign transType = conditionType.getType() >
+				<#if transType == "CONDITION" >
+    oneResult = conditionCheck("${oneTrans.getId()}","${conditionType.getCondition()?j_string}",sysContext,walker);
     if(oneResult.booleanValue()) {
         results.add("${oneTrans.getTo()}");
     }
+    			</#if>
+				<#if transType == "EXCEPTION" >
+	if(sysContext.getException() != null) {
+		Throwable ex = sysContext.getException();
+		if(ex instanceof org.seasar.coffee.script.exception.ScriptExecuteException) {
+			ex = ex.getCause();
+		}
+		if(ex instanceof ${conditionType.getCondition()}) {
+ 	        toException = "${oneTrans.getTo()}";
+		}
+	}
+    			</#if>
+    			<#if transType == "OTHERWISE" >
+    othrewise = "${oneTrans.getTo()}";
+    			</#if>
     		<#else>
     results.add("${oneTrans.getTo()}");
     		</#if>
     	</#list>
+	if( results.size()==0 && othrewise != null) {
+		results.add(othrewise);
+	}
+	
+	if(sysContext.getException() != null) {
+		if(toException != null) {
+			results.clear();
+			results.add(toException);
+		} else {
+			throw sysContext.getException();
+		}
+	}
+	
     results = filterNextActivity(sysContext,walker,results);
     
     if(results.size() == 0) {

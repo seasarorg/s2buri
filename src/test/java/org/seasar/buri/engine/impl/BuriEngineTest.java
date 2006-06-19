@@ -424,5 +424,60 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
     
     }
+
     
+    public void test09Tx() {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,"A");
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test09.Start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        assertEquals(userContext.get("result"),"A");
+        
+        
+        testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        userContext = engine.createUserContext(testDto,null,"D");
+        sysContext = engine.createSystemContext("basicTest.test09.Start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        assertEquals(userContext.get("result"),"no hit");
+        
+    }
+    
+    
+    public void test10Tx() {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,"A");
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test10.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        assertEquals(userContext.get("result"),"notNull");
+        
+        
+        testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        userContext = engine.createUserContext(testDto,null,null);
+        sysContext = engine.createSystemContext("basicTest.test10.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        assertEquals(userContext.get("result"),"null");
+        
+    }
 }
