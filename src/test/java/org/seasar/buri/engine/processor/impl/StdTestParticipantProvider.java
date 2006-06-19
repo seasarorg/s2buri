@@ -79,6 +79,27 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                     roleList.addAll(tmpList);
                 }
             }
+            if(roleList.size()==0 && roleName.equals("真ん中") && buriContext.getStartRoleName().equals("下っ端")) {
+                List selfData = userDao.getUserListByUserID(idNum,"下っ端");
+                Iterator ite = selfData.iterator();
+                while(ite.hasNext()) {
+                    BuriTestUserDto dto = (BuriTestUserDto)ite.next();
+                    List tmpList = userDao.getUserListByUserID(dto.getParentUserID(),roleName);
+                    roleList.addAll(tmpList);
+                }
+                
+            }
+            if(roleList.size()==0 && roleName.equals("一番上") && buriContext.getStartRoleName().equals("真ん中")) {
+                List selfData = userDao.getUserListByUserID(idNum,"真ん中");
+                Iterator ite = selfData.iterator();
+                while(ite.hasNext()) {
+                    BuriTestUserDto dto = (BuriTestUserDto)ite.next();
+                    List tmpList = userDao.getUserListByUserID(dto.getParentUserID(),roleName);
+                    roleList.addAll(tmpList);
+                }
+                
+            }
+            
         }
         List result = new ArrayList();
         Iterator ite = roleList.iterator();
@@ -87,6 +108,12 @@ public class StdTestParticipantProvider implements ParticipantProvider {
             RoleInfo roleInfo = new RoleInfo();
             roleInfo.setIdNum(this.getUserIDNum(dto));
             roleInfo.setIdVar(this.getUserIDString(dto));
+            result.add(roleInfo);
+        }
+        if(result.size()==0) {
+            RoleInfo roleInfo = new RoleInfo();
+            roleInfo.setIdNum(null);
+            roleInfo.setIdVar("無関係");
             result.add(roleInfo);
         }
         return result;

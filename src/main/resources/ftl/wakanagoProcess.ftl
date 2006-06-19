@@ -33,15 +33,23 @@ public void ${activityId}_start(BuriSystemContext sysContext,BranchWalker walker
 	<#assign transition = process.getRefToTransition(activityId)>
 	//${transition?size}
 	<#if transition?size gt 1>
-	    <#if activity.isJoinAnd()>
+		<#if activity.isNoJoin()>
+		<#else>
+		    <#if activity.isJoinAnd()>
     boolean canExec = joinAndFlow(sysContext,walker,"${activity.getName()}","${activityId}");
     if(canExec == false) {
     	return;
     }
-    	<#else>
+    		<#else>
     joinXorFlow(sysContext,walker,"${activity.getName()}","${activityId}");
+    		</#if>
     	</#if>
     </#if>
+	<#if transition?size == 1>
+		<#if activity.isXorJoin()>
+    joinXorFlow(sysContext,walker,"${activity.getName()}","${activityId}");
+		</#if>
+	</#if>
     walker = walker.moveNext("${activity.getName()}","${activityId}");
     startActivity(sysContext,walker);
     ${activityId}_process(sysContext,walker);

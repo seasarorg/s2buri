@@ -359,7 +359,7 @@
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="309,41"/>
-<ExtendedAttribute Name="NOJOIN"/>
+<ExtendedAttribute Name="NOXORJOIN"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="stdTest_wp2_act4" Name="確認待ち">
@@ -456,14 +456,10 @@
 <No/>
 </Implementation>
 <Performer>stdTest_par2</Performer>
-<TransitionRestrictions>
-<TransitionRestriction>
-<Join Type="XOR"/>
-</TransitionRestriction>
-</TransitionRestrictions>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="564,7"/>
+<ExtendedAttribute Name="XORJOIN"/>
 </ExtendedAttributes>
 </Activity>
 <Activity Id="stdTest_wp2_act11" Name="確認、NG">
@@ -557,7 +553,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="stdTest_wp2_act4" Id="stdTest_wp2_tra8" To="stdTest_wp2_act11">
-<Condition Type="CONDITION"/>
+<Condition Type="CONDITION">#action == "NG"</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
@@ -569,7 +565,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="stdTest_wp2_act4" Id="stdTest_wp2_tra10" To="stdTest_wp2_act10">
-<Condition Type="CONDITION"/>
+<Condition Type="CONDITION">#action == "OK"</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
@@ -593,12 +589,6 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="stdTest_wp2_act6" Id="stdTest_wp2_tra14" To="stdTest_wp2_act14">
-<Condition Type="CONDITION"/>
-<ExtendedAttributes>
-<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
-</ExtendedAttributes>
-</Transition>
-<Transition From="stdTest_wp2_act14" Id="stdTest_wp2_tra15" To="stdTest_wp2_act10">
 <Condition Type="CONDITION"/>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>

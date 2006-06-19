@@ -35,12 +35,6 @@ public class StateActivitySelector extends AbstractBuriActivitySelector {
     }
 
     protected boolean checkCanActivitySelect(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
-//        if(activitys.size() != 0) {
-//            return false;
-//        }
-        if(systemContext.getCallPath().getActivityName().size() > 0) {
-            return false;
-        }
         return true;
     }
 

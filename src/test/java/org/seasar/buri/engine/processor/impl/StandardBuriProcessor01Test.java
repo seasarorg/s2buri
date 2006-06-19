@@ -220,7 +220,12 @@ public class StandardBuriProcessor01Test extends S2TestCase {
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
         
+        processor.toNextStatus("stdTest.Test01.ï‘êMë“Çø",itemDto1,user1Dto);
         
+        
+        dataList = processor.getDataListFromPath("stdTest.Test01.ï‘êMë“Çø",user3Dto,ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(dataList.size(),2);
         
     }
 

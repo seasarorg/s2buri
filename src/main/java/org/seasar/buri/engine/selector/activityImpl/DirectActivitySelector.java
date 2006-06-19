@@ -25,9 +25,6 @@ public class DirectActivitySelector extends AbstractBuriActivitySelector {
     }
 
     protected boolean checkCanActivitySelect(Set activitys, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-//        if(activitys.size() != 0) {
-//            return false;
-//        }
         List activityIds = systemContext.getCallPath().getRealPath().getActivity();
         if(activityIds.size() == 0) {
             return false;
