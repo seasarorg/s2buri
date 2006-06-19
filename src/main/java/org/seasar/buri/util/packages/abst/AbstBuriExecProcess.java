@@ -33,7 +33,6 @@ import org.seasar.framework.util.ClassUtil;
 public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAccessFactory{
 //    private static Logger logger = Logger.getLogger(AbstBuriExecProcess.class);
     protected ScriptFactory scriptFactory;
-    protected Script conditionScript;
     protected S2Container container;
     protected BuriWorkflowProcessType process;
     protected InterceptorChain actionInterceptor = new InterceptorChain();
@@ -41,6 +40,10 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     
     protected BuriExePackages buriExePackages;
     protected BuriDataAccessFactory dataAccessFactory;
+    
+    protected Script getConditionScript() {
+        return scriptFactory.getScript(buriExePackages.getConditionExpressionType());
+    }
     
     public void setup(BuriWorkflowProcessType process) {
         this.process = process;

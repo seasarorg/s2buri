@@ -16,4 +16,12 @@ public interface BuriExePackages {
     
     void setParticipantProvider(ParticipantProvider provider);
     ParticipantProvider getParticipantProvider();
+    
+    String getConditionExpressionType();
+    String getDataAccessScriptType();
+    String getDefaultExpressionType();
+    String getPkeyExpressionType();
+    String getPreprocessScriptType();
+    
+    
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import org.seasar.buri.dto.BuriTestINTDto;
 import org.seasar.buri.util.packages.abst.AbstDataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
-import org.seasar.coffee.script.Script;
 
 public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto extends AbstDataAccessUtilLongKey implements DataAccessUtilLongKey {
 
@@ -25,8 +24,7 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto extends AbstDat
 
     public Object getObjectFromKey(Long keyObj) {
         BuriTestINTDto dto = new BuriTestINTDto();
-        Script scriptEngine = scriptFactory.getScript("ognl");
-        scriptEngine.setVal(dto,"testID",keyObj,null);
+        pkeyExpressionScript.setVal(dto,"testID",keyObj,null);
         return getDataFromDto(dto);
     }
 
@@ -42,7 +40,7 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto extends AbstDat
     }
     
     public boolean hasAvailableKey(Object keyVal) {
-        Object evalResult = scriptFactory.getScript("ognl").eval(keyVal,"testID != 0",null);
+        Object evalResult = pkeyExpressionScript.eval(keyVal,"testID != 0",null);
         return ((Boolean)evalResult).booleanValue();
     }
 

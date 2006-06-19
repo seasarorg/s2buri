@@ -1,7 +1,7 @@
 package org.seasar.buri.dto;
 
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class BuriDataPathHistoryEntityDto {
 	public static final String TABLE = "BuriDataPathHistory";

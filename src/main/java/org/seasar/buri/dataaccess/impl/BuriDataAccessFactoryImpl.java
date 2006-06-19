@@ -10,9 +10,9 @@ import java.util.Map;
 
 import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
+import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
-import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.FilterAccessUtil;
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 

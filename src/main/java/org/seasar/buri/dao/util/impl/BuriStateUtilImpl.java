@@ -164,7 +164,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
         stateDto.setAbortDate(DateUtil.getSQLMaxDate());
         stateDto.setProcessDate(DateUtil.getSQLMaxDate());
-        stateDto.setAutoRunTime(DateUtil.getSQLMaxDate());
+        stateDto.setAutoRunTime(DateUtil.getSQLMaxDate()); //TODO Limit‚©‚çŽæ“¾‚·‚é
         return stateDto;
     }
     

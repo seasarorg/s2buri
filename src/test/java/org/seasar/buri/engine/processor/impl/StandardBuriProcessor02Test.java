@@ -11,7 +11,6 @@ import org.seasar.buri.dto.BuriTestUserDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.processor.StandardBuriProcessor;
-import org.seasar.buri.exception.select.BuriManySelectActivityException;
 import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
 import org.seasar.extension.unit.S2TestCase;
 

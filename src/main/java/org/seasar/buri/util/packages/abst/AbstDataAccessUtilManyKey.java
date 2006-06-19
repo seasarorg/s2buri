@@ -6,7 +6,6 @@ package org.seasar.buri.util.packages.abst;
 
 import org.seasar.buri.common.util.StringUtil;
 import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
-import org.seasar.coffee.script.Script;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -14,11 +13,10 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 public abstract class AbstDataAccessUtilManyKey extends AbstDataAccessUtil implements DataAccessUtilManyKey {
     
     protected String getKey(Object key,String params[]) {
-        Script scriptEngine = scriptFactory.getScript("ognl");
         StringBuffer buff = new StringBuffer();
         String oneKey;
         for(int i=0 ; i < params.length ; i++) {
-            oneKey = scriptEngine.eval(key,params[i],null).toString();
+            oneKey = pkeyExpressionScript.eval(key,params[i],null).toString();
             buff.append(params[i]).append("=").append(oneKey).append("\n");
         }
         return buff.toString();
@@ -43,9 +41,8 @@ public abstract class AbstDataAccessUtilManyKey extends AbstDataAccessUtil imple
     
     protected boolean hasPkey(Object data,String condition[]) {
         boolean result = true;
-        Script onglScript = scriptFactory.getScript("ognl");
         for(int i=0 ; i < condition.length ; i++) {
-            Object evalResult = onglScript.eval(data,condition[i],null);
+            Object evalResult = pkeyExpressionScript.eval(data,condition[i],null);
             assert evalResult instanceof Boolean;
             if( ! ((Boolean)evalResult).booleanValue()) {
                 result = false;

@@ -19,7 +19,6 @@ import org.seasar.coffee.script.Script;
 public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     
     public void setup(BuriWorkflowProcessType process) {
-        conditionScript = scriptFactory.getScript("ognl");
         super.setup(process);
     }
     
@@ -163,14 +162,14 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     }
     
     public Boolean wakanagoTest_wp1_tra3_condition(BuriSystemContext sysContext,BranchWalker walker) {
-        Object result = conditionScript.eval(null,"#data.val == 1",sysContext.getUserContext());
+        Object result = getConditionScript().eval(null,"#data.val == 1",sysContext.getUserContext());
         if(result instanceof Boolean) {
             return (Boolean)result;
         } return null; //TODO —áŠO‚É’u‚«Š·‚¦‚é
     }
     
     public Boolean wakanagoTest_wp1_tra6_condition(BuriSystemContext sysContext,BranchWalker walker) {
-        Object result = conditionScript.eval(null,"#data.val == 2",sysContext.getUserContext());
+        Object result = getConditionScript().eval(null,"#data.val == 2",sysContext.getUserContext());
         assert result instanceof Boolean;
         return (Boolean)result;
     }

@@ -21,8 +21,7 @@ public Long getKey(Object key) {
 
 public Object getObjectFromKey(Long keyObj) {
     ${fieldType.getId()} dto = new ${fieldType.getId()}();
-    Script scriptEngine = scriptFactory.getScript("ognl");
-    scriptEngine.setVal(dto,"${pkey}",keyObj,null);
+    pkeyExpressionScript.setVal(dto,"${pkey}",keyObj,null);
     return getDataFromDto(dto);
 }
 
@@ -41,7 +40,7 @@ public Object Store(Object data) {
     
 public boolean hasAvailableKey(Object keyVal) {
 	<#assign script = buriComponentUtil.convScriptToJavaString(condition)>
-    Object evalResult = scriptFactory.getScript("ognl").eval(keyVal,"${script}",null);
+    Object evalResult = pkeyExpressionScript.eval(keyVal,"${script}",null);
     return ((Boolean)evalResult).booleanValue();
 }
 

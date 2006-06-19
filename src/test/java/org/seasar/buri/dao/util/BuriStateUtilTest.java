@@ -15,7 +15,6 @@ import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
 import org.seasar.buri.engine.WakanagoEngine;
-import org.seasar.buri.engine.impl.WakanagoEngineImpl;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.extension.unit.S2TestCase;
 

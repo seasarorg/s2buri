@@ -12,14 +12,10 @@ import java.util.Map;
 
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.Script;
-import org.seasar.coffee.script.ScriptFactory;
 
 public abstract class AbstDataAccessUtil implements DataAccessUtil {
-    protected ScriptFactory scriptFactory;
-    
-    protected Script getScriptEngine() {
-        return scriptFactory.getDefaultScript();
-    }
+    protected Script dataAccessScript;
+    protected Script pkeyExpressionScript;
     
     protected List getDataList(List keyVals,String execScript) {
         if(execScript.length() == 0) {
@@ -54,18 +50,25 @@ public abstract class AbstDataAccessUtil implements DataAccessUtil {
     protected Object runScript(Object data,String execScript) {
         Map context = new HashMap();
         context.put("data",data);
-        Script scriptEngine = getScriptEngine();
-        Object result = scriptEngine.run(execScript,null,context);
+        Object result = dataAccessScript.run(execScript,null,context);
         return result;
         
     }
 
-    public ScriptFactory getScriptFactory() {
-        return scriptFactory;
+    public Script getDataAccessScript() {
+        return dataAccessScript;
     }
 
-    public void setScriptFactory(ScriptFactory scriptFactory) {
-        this.scriptFactory = scriptFactory;
+    public void setDataAccessScript(Script dataAccessScript) {
+        this.dataAccessScript = dataAccessScript;
+    }
+
+    public Script getPkeyExpressionScript() {
+        return pkeyExpressionScript;
+    }
+
+    public void setPkeyExpressionScript(Script pkeyExpressionScript) {
+        this.pkeyExpressionScript = pkeyExpressionScript;
     }
     
 }

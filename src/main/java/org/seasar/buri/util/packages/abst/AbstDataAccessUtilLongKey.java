@@ -11,19 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
-import org.seasar.coffee.script.Script;
-import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
 public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil implements DataAccessUtilLongKey {
-    protected ScriptFactory scriptFactory;
     private PropertyDesc pkeyPropertyDesc;
-    
-    protected Script getScriptEngine() {
-        return scriptFactory.getDefaultScript();
-    }
     
     protected Long getLongPkey(Object target,String prop) {
         if(pkeyPropertyDesc==null) {
@@ -68,18 +61,9 @@ public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil imple
     protected Object runScript(Object data,String execScript) {
         Map context = new HashMap();
         context.put("data",data);
-        Script scriptEngine = getScriptEngine();
-        Object result = scriptEngine.run(execScript,null,context);
+        Object result = dataAccessScript.run(execScript,null,context);
         return result;
         
-    }
-
-    public ScriptFactory getScriptFactory() {
-        return scriptFactory;
-    }
-
-    public void setScriptFactory(ScriptFactory scriptFactory) {
-        this.scriptFactory = scriptFactory;
     }
     
 }

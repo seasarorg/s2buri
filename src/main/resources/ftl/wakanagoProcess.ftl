@@ -12,7 +12,6 @@ import org.seasar.coffee.script.Script;
 
 
 public void setup(BuriWorkflowProcessType process) {
-    conditionScript = scriptFactory.getScript("ognl");
     super.setup(process);
 }
 
@@ -173,7 +172,7 @@ public Boolean ${oneTrans.getId()}(BuriUserContext context,String condition) {
 }
 
 public Object ${oneTrans.getId()}_condition(BuriSystemContext sysContext,BranchWalker walker) {
-    Object result = conditionScript.eval(null,"${oneTrans.getConditionStr()?j_string}",sysContext.getUserContext());
+    Object result = getConditionScript().eval(null,"${oneTrans.getConditionStr()?j_string}",sysContext.getUserContext());
     return result;
 }
 		</#if>

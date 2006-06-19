@@ -17,9 +17,9 @@ import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
+import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
-import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.FilterAccessUtil;
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 import org.seasar.framework.container.S2Container;
@@ -39,6 +39,53 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
     protected S2Container container;
     protected BuriDataAccessFactory dataAccessFactory;
     
+    protected String conditionExpressionType = "ognl";
+    protected String pkeyExpressionType = "ognl";
+    protected String dataAccessScriptType = "ognl";
+    protected String defaultExpressionType = "ognl";
+    protected String preprocessScriptType = "ognl";
+    
+    
+    public String getPreprocessScriptType() {
+        return preprocessScriptType;
+    }
+
+    public void setPreprocessScriptType(String preprocessScriptType) {
+        this.preprocessScriptType = preprocessScriptType;
+    }
+
+    public String getConditionExpressionType() {
+        return conditionExpressionType;
+    }
+
+    public void setConditionExpressionType(String conditionExpressionType) {
+        this.conditionExpressionType = conditionExpressionType;
+    }
+
+    public String getDataAccessScriptType() {
+        return dataAccessScriptType;
+    }
+
+    public void setDataAccessScriptType(String dataAccessScriptType) {
+        this.dataAccessScriptType = dataAccessScriptType;
+    }
+
+    public String getDefaultExpressionType() {
+        return defaultExpressionType;
+    }
+
+    public void setDefaultExpressionType(String defaultExpressionType) {
+        this.defaultExpressionType = defaultExpressionType;
+    }
+
+    public String getPkeyExpressionType() {
+        return pkeyExpressionType;
+    }
+
+    public void setPkeyExpressionType(String pkeyExpressionType) {
+        this.pkeyExpressionType = pkeyExpressionType;
+    }
+
     public void setup(BuriPackageType buriPackage) {
         this.buriPackage = buriPackage;
 //        setupApplication();

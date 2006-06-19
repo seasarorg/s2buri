@@ -4,12 +4,7 @@
  */
 package org.seasar.buri.sample.packages.wakanagoTest;
 
-import org.seasar.buri.engine.BuriSystemContext;
-import org.seasar.buri.oouo.internal.structure.BuriPackageType;
-import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.abst.AbstBuriExePackages;
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.util.StringUtil;
 
 public class wakanagoTest extends AbstBuriExePackages{
     /*

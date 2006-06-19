@@ -16,8 +16,12 @@ import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
 import org.seasar.buri.oouo.internal.structure.BuriPackageType;
 import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
+import org.seasar.buri.util.packages.BuriExePackages;
+import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.buri.util.packages.abst.AbstPreprocessAccessUtil;
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
+import org.seasar.coffee.script.Script;
+import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
@@ -26,6 +30,7 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
     
     private DataAccessCompileUtil dataAccessCompileUtil;
 
+    private ScriptFactory scriptFactory;
     private S2Container container;
     private BasicCompler compler;
     private String preprocessTemplateName ="ftl/Preprocess.ftl";
@@ -50,6 +55,15 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
         PreprocessAccessUtil util = compile(fieldType,process,buriPackage);
         Class clazz = ClassUtil.forName(className);
         factory.setPreprocessAccessUtil(clazz,util);
+        BuriExePackages exePackage = null;
+        if(factory instanceof BuriExePackages) {
+            exePackage = (BuriExePackages)factory;
+        } else {
+            BuriExecProcess execProc = (BuriExecProcess)factory;
+            exePackage = execProc.getBuriExePackages();
+        }
+        Script preprocessScript = scriptFactory.getScript(exePackage.getPreprocessScriptType());
+        util.setPreprocessScript(preprocessScript);
     }
     
     protected PreprocessAccessUtil compile(BuriDataFieldType fieldType,BuriWorkflowProcessType process,BuriPackageType buriPackage) {
@@ -125,6 +139,14 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
 
     public void setPreprocessTemplateName(String preprocessTemplateName) {
         this.preprocessTemplateName = preprocessTemplateName;
+    }
+
+    public ScriptFactory getScriptFactory() {
+        return scriptFactory;
+    }
+
+    public void setScriptFactory(ScriptFactory scriptFactory) {
+        this.scriptFactory = scriptFactory;
     }
 
 }

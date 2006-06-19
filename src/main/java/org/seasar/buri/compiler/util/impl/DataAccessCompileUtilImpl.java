@@ -12,11 +12,15 @@ import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
 import org.seasar.buri.oouo.internal.structure.BuriPackageType;
 import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
+import org.seasar.buri.util.packages.BuriExePackages;
+import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.buri.util.packages.abst.AbstDataAccessUtilLongKey;
 import org.seasar.buri.util.packages.abst.AbstDataAccessUtilManyKey;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
+import org.seasar.coffee.script.Script;
+import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -25,6 +29,7 @@ import org.seasar.framework.util.ClassUtil;
 
 public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
 
+    private ScriptFactory scriptFactory;
     private S2Container container;
     private BasicCompler compler;
     private String longKeyTemplateName ="ftl/DataAccessUtilLongKey.ftl";
@@ -33,6 +38,17 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     public void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
         Class clazz = ClassUtil.forName(className);
         DataAccessUtil accessUtil = compileDataAccess(fieldType,buriPackage,process);
+        BuriExePackages exePackage = null;
+        if(factory instanceof BuriExePackages) {
+            exePackage = (BuriExePackages)factory;
+        } else {
+            BuriExecProcess execProc = (BuriExecProcess)factory;
+            exePackage = execProc.getBuriExePackages();
+        }
+        Script dataAccessScript = scriptFactory.getScript(exePackage.getDataAccessScriptType());
+        Script pkeyExpressionScript = scriptFactory.getScript(exePackage.getPkeyExpressionType());
+        accessUtil.setDataAccessScript(dataAccessScript);
+        accessUtil.setPkeyExpressionScript(pkeyExpressionScript);
         if(accessUtil instanceof DataAccessUtilLongKey) {
             factory.setDataAccessUtil(clazz,(DataAccessUtilLongKey)accessUtil);
         } else {
@@ -138,6 +154,14 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
 
     public void setManyKeyTemplateName(String manyKeyTemplateName) {
         this.manyKeyTemplateName = manyKeyTemplateName;
+    }
+
+    public ScriptFactory getScriptFactory() {
+        return scriptFactory;
+    }
+
+    public void setScriptFactory(ScriptFactory scriptFactory) {
+        this.scriptFactory = scriptFactory;
     }
 
 }

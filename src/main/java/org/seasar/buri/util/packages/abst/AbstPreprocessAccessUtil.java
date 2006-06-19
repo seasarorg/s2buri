@@ -9,30 +9,24 @@ import java.util.Map;
 
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 import org.seasar.coffee.script.Script;
-import org.seasar.coffee.script.ScriptFactory;
 
 public abstract class AbstPreprocessAccessUtil implements PreprocessAccessUtil {
-    protected ScriptFactory scriptFactory;
+    protected Script preprocessScript;
     
-    protected Script getScriptEngine() {
-        return scriptFactory.getDefaultScript();
-    }
-
     protected Object runScript(Object data,String execScript) {
         Map context = new HashMap();
         context.put("data",data);
-        Script scriptEngine = getScriptEngine();
-        Object result = scriptEngine.run(execScript,null,context);
+        Object result = preprocessScript.run(execScript,null,context);
         return result;
         
     }
 
-    public ScriptFactory getScriptFactory() {
-        return scriptFactory;
+    public Script getPreprocessScript() {
+        return preprocessScript;
     }
 
-    public void setScriptFactory(ScriptFactory scriptFactory) {
-        this.scriptFactory = scriptFactory;
+    public void setPreprocessScript(Script preprocessScript) {
+        this.preprocessScript = preprocessScript;
     }
 
 }
