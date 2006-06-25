@@ -56,6 +56,13 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         roleMap.put(packageId,provider);
     }
     
+    public boolean hasPackage(String packageName) {
+        if(packageObjs.containsKey(packageName)) {
+            return true;
+        }
+        return false;
+    }
+    
     public void addProcessSelector(BuriProcessSelector selector) {
         processSelector.add(selector);
     }

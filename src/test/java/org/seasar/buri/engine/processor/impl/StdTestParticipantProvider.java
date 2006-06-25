@@ -29,6 +29,11 @@ public class StdTestParticipantProvider implements ParticipantProvider {
         return false;
     }
 
+    public Object getUserData(Long userIDNum, String userIDString) {
+        BuriTestUserDto dto = userDao.getBuriTestUser(userIDNum.longValue());
+        return dto;
+    }
+
     public String getUserIDString(Object userData) {
         if(userData==null) {
             return "–³ŠÖŒW";

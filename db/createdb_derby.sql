@@ -275,6 +275,7 @@ select
 	,BuriData.dataType as dataType
 	,BuriData.dataID as dataID
 	,BuriState.StateID as StateID
+	,BuriState.autoRunTime as autoRunTime
 from
 	BuriPath
 	,BuriState
@@ -297,6 +298,7 @@ select
 	,BuriPathData.dataType as dataType
 	,BuriPathData.dataID as dataID
 	,BuriPathData.StateID as StateID
+	,BuriPathData.autoRunTime as autoRunTime
 	,BuriUser.BuriUserID as BuriUserID
 	,BuriUser.UserIDVal as UserIDVal
 	,BuriUser.UserIDNum as UserIDNum

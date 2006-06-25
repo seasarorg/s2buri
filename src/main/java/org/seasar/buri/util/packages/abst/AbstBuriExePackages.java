@@ -44,8 +44,17 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
     protected String dataAccessScriptType = "ognl";
     protected String defaultExpressionType = "ognl";
     protected String preprocessScriptType = "ognl";
+    protected String timeLimitExpressionType = "ognl";
     
     
+    public String getTimeLimitExpressionType() {
+        return timeLimitExpressionType;
+    }
+
+    public void setTimeLimitExpressionType(String timeLimitExpressionType) {
+        this.timeLimitExpressionType = timeLimitExpressionType;
+    }
+
     public String getPreprocessScriptType() {
         return preprocessScriptType;
     }

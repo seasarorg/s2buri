@@ -63,6 +63,18 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         return resutlt;
     }
     
+    public Object getUserData(DataAccessFactory factory,long userID,Long userIDNum,String userIDStr) {
+        if(userIDNum == null && userIDStr == null) {
+            BuriUserEntityDto userDto = userDao.getBuriUser(userID);
+            userIDNum = userDto.getUserIDNum();
+            userIDStr = userDto.getUserIDVal();
+        }
+        BuriExePackages packages = getBuriExePackages(factory);
+        ParticipantProvider provider = packages.getParticipantProvider();
+        Object result = provider.getUserData(userIDNum,userIDStr);
+        return result;
+    }
+    
     public List getTgtRoleInfoList(DataAccessFactory factory,BuriSystemContext sysContext,BranchWalker walker) {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();

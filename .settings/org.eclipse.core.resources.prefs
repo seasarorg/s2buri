@@ -1,8 +1,9 @@
-#Wed May 24 10:33:45 JST 2006
+#Tue Jun 20 21:21:40 JST 2006
 eclipse.preferences.version=1
 encoding//src/test/java/org/seasar/buri/dao/util/wakanagoUtils.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/buri-share.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/buri-user.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buriBase.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/buriSimple.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/buriStandard.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/wakanago.dicon=UTF-8

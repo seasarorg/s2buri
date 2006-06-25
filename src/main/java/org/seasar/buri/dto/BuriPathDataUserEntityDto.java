@@ -4,6 +4,8 @@
  */
 package org.seasar.buri.dto;
 
+import java.util.Date;
+
 public class BuriPathDataUserEntityDto {
     public static final String TABLE = "BuriPathDataUser";
 
@@ -19,6 +21,7 @@ public class BuriPathDataUserEntityDto {
     private long buriUserID;
     private String userIDVal;
     private Long userIDNum;
+    private Date autoRunTime;
     
     public long getDataID() {
         return dataID;
@@ -92,6 +95,12 @@ public class BuriPathDataUserEntityDto {
     public void setUserIDVal(String userIDVal) {
         this.userIDVal = userIDVal;
     }
+    public Date getAutoRunTime() {
+        return autoRunTime;
+    }
+    public void setAutoRunTime(Date autoRunTime) {
+        this.autoRunTime = autoRunTime;
+    }
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/pathID=").append(pathID);
@@ -103,6 +112,7 @@ public class BuriPathDataUserEntityDto {
         buff.append("/dataType=").append(dataType);
         buff.append("/dataID=").append(dataID);
         buff.append("/stateID=").append(stateID);
+        buff.append("/autoRunTime=").append(autoRunTime);
         buff.append("/buriUserID=").append(buriUserID);
         buff.append("/userIDNum=").append(userIDNum);
         buff.append("/userIDVal=").append(userIDVal);

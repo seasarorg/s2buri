@@ -38,4 +38,9 @@ public class DefaultParticipantProvider implements ParticipantProvider {
         return null;
     }
 
+    public Object getUserData(Long userIDNum, String userIDString) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
+
 }

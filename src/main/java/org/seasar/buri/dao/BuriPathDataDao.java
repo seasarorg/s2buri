@@ -25,4 +25,8 @@ public interface BuriPathDataDao {
     
     public String getDtoByPathKeys_ARGS = "dataType,pkeyNums,pkeyVals,pathName,pathType";
     public long getCountByPathKeys(String className,List pkeyNums,List pkeyVals,String pathName,Long pathType);
+    
+    public String getTimeOrverState_QUERY = "autoRunTime < CURRENT_TIMESTAMP";
+    public List getTimeOrverState();
+    
 }

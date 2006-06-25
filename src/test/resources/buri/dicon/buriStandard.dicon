@@ -12,7 +12,7 @@
 	<component class="org.seasar.buri.engine.processor.impl.StandardBuriProcessorImpl">
 	</component>
 
-	<component class="org.seasar.buri.engine.impl.BuriStandardEngineImpl">
+	<component name="BuriStandardEngine" class="org.seasar.buri.engine.impl.BuriStandardEngineImpl">
 		<!--
 		<initMethod>
 		#self.readWorkFlowFromResource("sample.xpdl")

@@ -4,6 +4,8 @@
  */
 package org.seasar.buri.dto;
 
+import java.util.Date;
+
 public class BuriPathDataEntityDto {
     public static final String TABLE = "BuriPathData";
     
@@ -14,6 +16,7 @@ public class BuriPathDataEntityDto {
     private Long pkeyNum;
     private String pkeyVal;
     private String dataType;
+    private Date autoRunTime;
     private long dataID;
     private long stateID;
     
@@ -71,6 +74,12 @@ public class BuriPathDataEntityDto {
     public void setStateID(long stateID) {
         this.stateID = stateID;
     }
+    public Date getAutoRunTime() {
+        return autoRunTime;
+    }
+    public void setAutoRunTime(Date autoRunTime) {
+        this.autoRunTime = autoRunTime;
+    }
     
     
     public String toString() {
@@ -84,6 +93,7 @@ public class BuriPathDataEntityDto {
         buff.append("/dataType=").append(dataType);
         buff.append("/dataID=").append(dataID);
         buff.append("/stateID=").append(stateID);
+        buff.append("/autoRunTime=").append(autoRunTime);
         buff.append("]");
         return buff.toString();
     }

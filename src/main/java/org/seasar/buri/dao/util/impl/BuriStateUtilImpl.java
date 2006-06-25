@@ -20,9 +20,18 @@ import org.seasar.buri.dao.util.BuriUndoLogUtil;
 import org.seasar.buri.dto.BuriBranchEntityDto;
 import org.seasar.buri.dto.BuriStateEntityDto;
 import org.seasar.buri.engine.BuriPath;
+import org.seasar.buri.engine.BuriRealPath;
 import org.seasar.buri.engine.BuriSystemContext;
+import org.seasar.buri.exception.IllegalArgumentRuntimeException;
+import org.seasar.buri.oouo.internal.structure.BuriActivityType;
+import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
+import org.seasar.buri.util.packages.BuriExePackages;
+import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
+import org.seasar.coffee.script.Script;
+import org.seasar.coffee.script.ScriptFactory;
+import org.seasar.framework.util.StringUtil;
 
 public class BuriStateUtilImpl implements BuriStateUtil {
     private BuriDataUtil dataUtil;
@@ -31,6 +40,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     private BuriBranchDao branchDao;
     private BuriUndoLogUtil undoLogUtil;
     private BTIDUtil btidUtil;
+    private ScriptFactory scriptFactory;
     
     public BranchWalker createBranchWalker(BuriSystemContext sysContext) {
         BranchWalker walker = new BranchWalker();
@@ -164,8 +174,49 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
         stateDto.setAbortDate(DateUtil.getSQLMaxDate());
         stateDto.setProcessDate(DateUtil.getSQLMaxDate());
-        stateDto.setAutoRunTime(DateUtil.getSQLMaxDate()); //TODO Limit‚©‚çŽæ“¾‚·‚é
+        setupAutoRunTime(stateDto,factory,sysContext,walker);
         return stateDto;
+    }
+    
+    protected void setupAutoRunTime(BuriStateEntityDto stateDto,DataAccessFactory factory,BuriSystemContext sysContext,BranchWalker walker) {
+        Date setupDate = DateUtil.getSQLMaxDate();
+        BuriExePackages exePackages = getBuriExePackages(factory);
+        if(exePackages != null) {
+            Script exScript = scriptFactory.getScript(exePackages.getTimeLimitExpressionType());
+            String limit = getLimit(exePackages,walker);
+            setupDate = getLimitDate(limit,exScript,sysContext,walker);
+        }
+        stateDto.setAutoRunTime(setupDate);
+    }
+    
+    protected Date getLimitDate(String limit,Script exScript,BuriSystemContext sysContext,BranchWalker walker) {
+        if( ! StringUtil.isEmpty(limit)) {
+            Object obj = exScript.eval(null,limit,sysContext.getUserContext());
+            if(obj instanceof Date) {
+                return (Date)obj;
+            } else {
+                throw new IllegalArgumentRuntimeException("EBRI0007",new Object[]{walker.getNowPath(),obj});
+            }
+        }
+        return null;
+    }
+    
+    protected BuriExePackages getBuriExePackages(DataAccessFactory factory) {
+        BuriExePackages exePackages = null;
+        if(factory instanceof BuriExecProcess) {
+            exePackages = ((BuriExecProcess)factory).getBuriExePackages();
+        } else if(factory instanceof BuriExePackages) {
+            exePackages = (BuriExePackages)factory;
+        }
+        return exePackages;
+    }
+    
+    protected String getLimit(BuriExePackages exePackages,BranchWalker walker) {
+        BuriRealPath nowRealPath = walker.getNowPath().getRealPath();
+        BuriWorkflowProcessType processType = exePackages.getBuriPackageType().getProcessById(nowRealPath.getWorkflowProcess());
+        BuriActivityType actType = processType.getActivityById(nowRealPath.getActivity().get(0).toString());
+        String limit = actType.getLimit();
+        return limit;
     }
     
     public void processed(DataAccessFactory factory,BuriSystemContext sysContext,BranchWalker walker) {
@@ -253,6 +304,14 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
     public void setBtidUtil(BTIDUtil btidUtil) {
         this.btidUtil = btidUtil;
+    }
+
+    public ScriptFactory getScriptFactory() {
+        return scriptFactory;
+    }
+
+    public void setScriptFactory(ScriptFactory scriptFactory) {
+        this.scriptFactory = scriptFactory;
     }
     
 }

@@ -17,5 +17,5 @@ public interface WakanagoEngine {
     
     void readWorkFlowFromResource(String workFlowName,String resourceName);
     void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider);
-    
+    boolean hasPackage(String packageName);
 }

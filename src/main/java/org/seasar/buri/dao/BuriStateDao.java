@@ -14,13 +14,7 @@ public interface BuriStateDao {
     public List getNoProcessBuriState();
 
 	public String getBuriState_ARGS = "StateID";
-	public BuriStateEntityDto getBuriState(long StateID);
-    
-    
-    
-    public String getTimeOrverState_QUERY = "processDate > CURRENT_TIMESTAMP and autoRunTime < CURRENT_TIMESTAMP";
-    public List getTimeOrverState();
-    
+	public BuriStateEntityDto getBuriState(long StateID);    
     
     
     public String updateProceesByStateID_ARGS = "StateID";
@@ -41,25 +35,6 @@ public interface BuriStateDao {
     public String getBuriStateByPathAndData_QUERY = "pathID = /*pathID*/0 and dataID = /*dataID*/0 and processDate > CURRENT_TIMESTAMP ";
     public String getBuriStateByPathAndData_ARGS = "pathID,dataID";
     public BuriStateEntityDto getBuriStateByPathAndData(long pathID,long dataID);
-    
-//    public String getAllBuriStateByPathAndData_QUERY = "pathID = /*pathID*/0 and dataID = /*dataID*/0 order by processDate DESC";
-//    public String getAllBuriStateByPathAndData_ARGS = "pathID,dataID";
-//    public BuriStateEntityDto getAllBuriStateByPathAndData(long pathID,long dataID);
-//    
-//    public String searchPathIDs_ARGS = "pathIDs,dataID";
-//    public int searchPathIDs(List pathIDs,long dataID);
-//    
-//    public String updateAbortByBranchID_ARGS = "branchID,savingStateID";
-//    public void updateAbortByBranchID(long branchID,long savingStateID);
-//    
-//    public String updateProcessedByBranchID_ARGS = "long StateID";
-//    public void updateProcessedByBranchID(long StateID);
-//    
-//    public String countByBranchIDAndNotProcessed_ARGS = "branchID";
-//    public long countByBranchIDAndNotProcessed(long branchID);
-//    
-//    public String countByPathAndDatas_ARGS = "pathID,pathList";
-//    public long countByPathAndDatas(long pathID,List pathList);
     
     public long getNewBuriStateID();
     

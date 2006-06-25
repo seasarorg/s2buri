@@ -22,6 +22,7 @@ public interface BuriExePackages {
     String getDefaultExpressionType();
     String getPkeyExpressionType();
     String getPreprocessScriptType();
+    String getTimeLimitExpressionType();
     
     
 }
