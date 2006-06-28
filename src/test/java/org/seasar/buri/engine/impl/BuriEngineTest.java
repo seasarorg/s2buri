@@ -7,8 +7,11 @@ package org.seasar.buri.engine.impl;
 import java.util.Collection;
 import java.util.List;
 
+import org.seasar.buri.dao.BuriPathDao;
 import org.seasar.buri.dao.BuriStateDao;
 import org.seasar.buri.dao.util.BuriDataUtil;
+import org.seasar.buri.dto.BuriPathEntityDto;
+import org.seasar.buri.dto.BuriStateEntityDto;
 import org.seasar.buri.dto.BuriTestINTDto;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
@@ -22,6 +25,7 @@ import org.seasar.extension.unit.S2TestCase;
 
 public class BuriEngineTest extends S2TestCase {
     private BuriStateDao stateDao_;
+    private BuriPathDao pathDao;
     private BuriDataUtil dataUtil;
     private BuriTimerService timerService;
 
@@ -502,7 +506,11 @@ public class BuriEngineTest extends S2TestCase {
         timerService.execute();
         
         List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(preState.size(),postState.size());
         System.out.println(postState);
+        BuriStateEntityDto stateDto = (BuriStateEntityDto)postState.get(0);
+        BuriPathEntityDto dto = pathDao.getBuriPath(stateDto.getPathID().longValue());
+        assertEquals(dto.getPathName(),"basicTest.test11.timeOrver");
     }
     
 }
