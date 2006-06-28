@@ -11,6 +11,9 @@ import org.seasar.buri.dto.BuriPathDataUserEntityDto;
 public interface BuriPathDataUserDao {
     public Class BEAN = BuriPathDataUserEntityDto.class;
 
+    
+    public String getDto_ARGS = "stateID";
+    public BuriPathDataUserEntityDto getDto(long stateID);
 
     public String getTimeOrverByState_QUERY = "autoRunTime < CURRENT_TIMESTAMP and stateID = /*stateID*/1";
     public String getTimeOrverByState_ARGS = "stateID";

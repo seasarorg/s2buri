@@ -5,6 +5,7 @@
 package org.seasar.buri.engine.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.seasar.buri.dao.BuriStateDao;
 import org.seasar.buri.dao.util.BuriDataUtil;
@@ -13,6 +14,7 @@ import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
 import org.seasar.buri.engine.WakanagoEngine;
+import org.seasar.buri.engine.service.impl.BuriTimerService;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
@@ -21,6 +23,7 @@ import org.seasar.extension.unit.S2TestCase;
 public class BuriEngineTest extends S2TestCase {
     private BuriStateDao stateDao_;
     private BuriDataUtil dataUtil;
+    private BuriTimerService timerService;
 
     public BuriEngineTest(String arg0) {
         super(arg0);
@@ -28,7 +31,7 @@ public class BuriEngineTest extends S2TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        include("WakanagoCompile.dicon");
+        include("buri/dicon/buriTimer.dicon");
     }
 
     public void test01Tx() {
@@ -480,4 +483,26 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(userContext.get("result"),"null");
         
     }
+    
+    
+    public void test11Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test11.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        List preState = stateDao_.getNoProcessBuriState();
+        Thread.sleep(3000);
+        timerService.execute();
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        System.out.println(postState);
+    }
+    
 }

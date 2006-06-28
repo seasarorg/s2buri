@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.dao.util.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -194,6 +195,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
             Object obj = exScript.eval(null,limit,sysContext.getUserContext());
             if(obj instanceof Date) {
                 return (Date)obj;
+            } else if(obj instanceof Calendar) {
+                return ((Calendar)obj).getTime();
             } else {
                 throw new IllegalArgumentRuntimeException("EBRI0007",new Object[]{walker.getNowPath(),obj});
             }

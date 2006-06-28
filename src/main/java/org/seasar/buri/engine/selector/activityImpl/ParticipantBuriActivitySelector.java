@@ -25,7 +25,8 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
         while(ite.hasNext()) {
             BuriActivityType actType = (BuriActivityType)ite.next();
             String roleName = actType.getRoleName();
-            boolean inRole = provider.isUserInRole(systemContext.getUserContext().getUserData(),roleName);
+            String roleType = actType.getRoleType();
+            boolean inRole = provider.isUserInRole(systemContext.getUserContext().getUserData(),roleName,roleType);
             if(inRole) {
                 result.add(actType);
             }

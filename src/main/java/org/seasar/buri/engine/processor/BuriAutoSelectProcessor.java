@@ -6,9 +6,14 @@ package org.seasar.buri.engine.processor;
 
 import java.util.List;
 
+import org.seasar.coffee.dataaccess.DataAccessFactory;
 import org.seasar.framework.container.S2Container;
 
 public interface BuriAutoSelectProcessor {
+    boolean isStdProcessor(String buriPath);
+    boolean isSimpleProcessor(String buriPath);
+    DataAccessFactory getDataAccessFactory(String buriPath);
+    
     void toNextStatus(String path, Object data, Object userData);
     Object toNextStatus(String path, Object data, Object userData,String resultExp);
     void toNextStatusAction(String path, Object data, Object userData,Object action);

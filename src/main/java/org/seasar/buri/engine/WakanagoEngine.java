@@ -12,6 +12,7 @@ public interface WakanagoEngine {
     BuriSystemContext createSystemContext(String buriPath,BuriUserContext userContext);
     Object execute(BuriSystemContext sysContext,String resultScript);
     
+    BuriExecProcess selectDirectProcess(BuriPath path);
     BuriExePackages selectPackage(BuriSystemContext sysContext);
     BuriExecProcess selectProcess(BuriExePackages wPackageObj,BuriSystemContext sysContext);
     

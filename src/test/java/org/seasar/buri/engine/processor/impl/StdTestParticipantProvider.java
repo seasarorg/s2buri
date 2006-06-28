@@ -18,7 +18,7 @@ import org.seasar.buri.engine.RoleInfo;
 public class StdTestParticipantProvider implements ParticipantProvider {
     private BuriTestUserDao userDao;
 
-    public boolean isUserInRole(Object userData, String participantName) {
+    public boolean isUserInRole(Object userData, String participantName, String participantType) {
         if(userData==null && participantName.equalsIgnoreCase("–³ŠÖŒW")) {
             return true;
         }
@@ -34,14 +34,14 @@ public class StdTestParticipantProvider implements ParticipantProvider {
         return dto;
     }
 
-    public String getUserIDString(Object userData) {
+    public String getUserIDString(Object userData, String participantType) {
         if(userData==null) {
             return "–³ŠÖŒW";
         }
         return null;
     }
 
-    public Long getUserIDNum(Object userData) {
+    public Long getUserIDNum(Object userData, String participantType) {
         if(userData==null) {
             return null;
         }
@@ -111,8 +111,8 @@ public class StdTestParticipantProvider implements ParticipantProvider {
         while(ite.hasNext()) {
             BuriTestUserDto dto = (BuriTestUserDto)ite.next();
             RoleInfo roleInfo = new RoleInfo();
-            roleInfo.setIdNum(this.getUserIDNum(dto));
-            roleInfo.setIdVar(this.getUserIDString(dto));
+            roleInfo.setIdNum(this.getUserIDNum(dto,context.getParticipantType()));
+            roleInfo.setIdVar(this.getUserIDString(dto,context.getParticipantType()));
             result.add(roleInfo);
         }
         if(result.size()==0) {

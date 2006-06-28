@@ -122,10 +122,37 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         if(userData == null && provider == null) {
             return;
         }
-        Long userIDNum = provider.getUserIDNum(userData);
-        String userIDVal = provider.getUserIDString(userData);
-        sysContext.setUserPkeyNum(userIDNum);
-        sysContext.setUserPkeyVal(userIDVal);
+        if(sysContext.getCallPath().getActivityName().size() == 1) {
+            List acts = wp.getBuriWorkflowProcessType().getActivityByName(sysContext.getCallPath().getActivityName().get(0).toString());
+            updateUserKeysFromActivitys(sysContext,userData,acts,provider);
+        }
+    }
+    
+    protected void updateUserKeysFromActivitys(BuriSystemContext sysContext,Object userData,List acts,ParticipantProvider provider) {
+        String roleType = null;
+        if(acts.size() > 0) {
+            roleType = roleTypeSelector(acts);
+        }
+        if(roleType != null) {
+            Long userIDNum = provider.getUserIDNum(userData,roleType);
+            String userIDVal = provider.getUserIDString(userData,roleType);
+            sysContext.setUserPkeyNum(userIDNum);
+            sysContext.setUserPkeyVal(userIDVal);
+        }
+    }
+    
+    protected String roleTypeSelector(List acts) {
+        Iterator ite = acts.iterator();
+        String roleType = ((BuriActivityType)ite.next()).getRoleType();
+        while(ite.hasNext()) {
+            BuriActivityType actType = (BuriActivityType)ite.next();
+            if( ! roleType.equals(actType.getRoleType())) {
+                roleType = null;
+                break;
+            }
+            
+        }
+        return roleType;
     }
     
     protected void execActivity(BuriExecProcess wp,BuriSystemContext sysContext) {
@@ -178,6 +205,11 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         callPath = callPath.setWorkflowProcess(callPath.getWorkflowProcess(),processId);
         sysContext.setCallPath(callPath);
         return wp;
+    }
+    
+    public BuriExecProcess selectDirectProcess(BuriPath path) {
+        BuriExePackages wPackageObj = (BuriExePackages)packageObjs.get(path.getWorkflowPackage());
+        return wPackageObj.getProcess(path); //TODO Direct‚ª•K—v
     }
     
     public BuriExecProcess selectProcess(BuriExePackages wPackageObj,BuriSystemContext sysContext) {

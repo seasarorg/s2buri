@@ -1498,6 +1498,122 @@
 <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp3" Name="test11">
+<ProcessHeader>
+<Created>2006-06-28 12:53:30</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp3_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="127,66"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act2" Name="setupTimer">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#ReClaim = @jp.starlogic.util.datetime.UtilCalendar@getInstance()&#10;//#ReClaim.addDayOfMonth(7)&#10;// 本来なら7日後とかにするんだけど、テストなので・・・&#10;#ReClaim.addSecond(2)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="284,66"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act3" Name="waitTimer">
+<Limit>#ReClaim</Limit>
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp3_tra3"/>
+<TransitionRef Id="basicTest_wp3_tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="425,68"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act4" Name="end">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;end&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="617,73"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act5" Name="timeOrver">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;timeorver&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="623,167"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp3_act1" Id="basicTest_wp3_tra1" To="basicTest_wp3_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp3_act2" Id="basicTest_wp3_tra2" To="basicTest_wp3_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp3_act3" Id="basicTest_wp3_tra3" To="basicTest_wp3_act4">
+<Condition Type="CONDITION">#autoAction==null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp3_act3" Id="basicTest_wp3_tra4" To="basicTest_wp3_act5">
+<Condition Type="CONDITION">#autoAction==true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
 </WorkflowProcesses>
 <ExtendedAttributes>
 <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>

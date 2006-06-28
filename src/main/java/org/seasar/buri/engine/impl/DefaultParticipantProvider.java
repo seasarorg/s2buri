@@ -12,19 +12,28 @@ import org.seasar.buri.engine.RoleInfo;
 
 public class DefaultParticipantProvider implements ParticipantProvider {
 
-    public boolean isUserInRole(Object userData, String participantName) {
-        return true;
+    public boolean isUserInRole(Object userData, String participantName, String participantType) {
+        // TODO 自動生成されたメソッド・スタブ
+        return false;
     }
 
-    public String getUserIDString(Object userData) {
+    public String getUserIDString(Object userData, String participantType) {
+        // TODO 自動生成されたメソッド・スタブ
         return null;
     }
 
-    public Long getUserIDNum(Object userData) {
+    public Long getUserIDNum(Object userData, String participantType) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
+
+    public Object getUserData(Long userIDNum, String userIDString) {
+        // TODO 自動生成されたメソッド・スタブ
         return null;
     }
 
     public boolean hasRoleUser(ParticipantContext context) {
+        // TODO 自動生成されたメソッド・スタブ
         return false;
     }
 
@@ -38,9 +47,5 @@ public class DefaultParticipantProvider implements ParticipantProvider {
         return null;
     }
 
-    public Object getUserData(Long userIDNum, String userIDString) {
-        // TODO 自動生成されたメソッド・スタブ
-        return null;
-    }
 
 }

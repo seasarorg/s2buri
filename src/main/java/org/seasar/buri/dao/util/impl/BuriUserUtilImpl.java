@@ -79,10 +79,12 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
         String roleName = getRoleName(factory,walker);
+        String roleType = getRoleName(factory,walker);
         Object argData = sysContext.getUserContext().getData();
         
         BuriParticipantContext pc = new BuriParticipantContext();
         pc.setParticipantName(roleName);
+        pc.setParticipantType(roleType);
         pc.setStartRoleName(sysContext.getStartRoleName());
         pc.setSystemContext(sysContext);
         pc.setUserContext(sysContext.getUserContext());
@@ -103,14 +105,22 @@ public class BuriUserUtilImpl implements BuriUserUtil {
             pc.setInsertUserIdNum(userDto.getUserIDNum());
             pc.setInsertUserIdVal(userDto.getUserIDVal());
         }
-        pc.setActionUserIdNum(provider.getUserIDNum(userData));
-        pc.setActionUserIdVal(provider.getUserIDString(userData));
+        pc.setActionUserIdNum(provider.getUserIDNum(userData,pc.getParticipantType()));
+        pc.setActionUserIdVal(provider.getUserIDString(userData,pc.getParticipantType()));
     }
     
     protected BuriExePackages getBuriExePackages(DataAccessFactory factory) {
         BuriExecProcess process = (BuriExecProcess)factory;
         BuriExePackages packages = process.getBuriExePackages();
         return packages;
+    }
+    
+    protected String getRoleType(DataAccessFactory factory,BranchWalker walker) {
+        BuriExecProcess process = (BuriExecProcess)factory;
+        String actId = (String)walker.getNowPath().getActivityId().get(0);
+        BuriActivityType actType =  process.getBuriWorkflowProcessType().getActivityById(actId);
+        String roleType = actType.getRoleType();
+        return roleType;
     }
     
     protected String getRoleName(DataAccessFactory factory,BranchWalker walker) {

@@ -14,6 +14,7 @@ import org.seasar.buri.engine.processor.BuriAutoSelectProcessor;
 import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.buri.engine.processor.StandardBuriProcessor;
+import org.seasar.coffee.dataaccess.DataAccessFactory;
 import org.seasar.framework.container.S2Container;
 
 public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
@@ -131,6 +132,18 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
             return true;
         }
         return false;
+    }
+    
+    public DataAccessFactory getDataAccessFactory(String buriPath) {
+        DataAccessFactory accessFactory = null;
+        BuriPath path = new BuriPath(buriPath);
+        if(isStdProcessor(buriPath)) {
+            accessFactory = (DataAccessFactory)standardEngine.selectDirectProcess(path);
+        }
+        if(isSimpleProcessor(buriPath)) {
+            accessFactory = (DataAccessFactory)simpleEngine.selectDirectProcess(path);
+        }
+        return accessFactory;
     }
     
     public boolean isSimpleProcessor(String buriPath) {
