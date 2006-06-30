@@ -9,6 +9,7 @@ import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.abst.AbstBuriExecProcess;
 import org.seasar.coffee.script.Script;
+import org.seasar.framework.log.Logger;
 
 
 public void setup(BuriWorkflowProcessType process) {
@@ -61,14 +62,30 @@ public void ${activityId}_process(BuriSystemContext sysContext,BranchWalker walk
 	    	${script}
 	} catch(RuntimeException ex) {
 		sysContext.setException(ex);
+		getLogger(this).log(ex);
 	}
     </#list>
     <#if activity.isFinishModeManual()>
+	if(sysContext.getException() != null) {
+		throw sysContext.getException();
+	}
     exitFlow(sysContext,walker);
     return;
     <#else>
     ${activityId}_next(sysContext,walker);
     </#if>
+}
+
+public void ${activityId}_afterProcess(BuriSystemContext sysContext,BranchWalker walker) {
+	<#list activity.getTools() as tool>
+	try {
+	    	<#assign script = buriComponentUtil.getJavaAfterProcessCode("sysContext.getContainer()",tool,activity)>
+	    	${script}
+	} catch(RuntimeException ex) {
+		getLogger(this).log(ex);
+		throw ex;
+	}
+    </#list>
 }
 
 public void ${activityId}_next(BuriSystemContext sysContext,BranchWalker walker) {

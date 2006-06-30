@@ -38,7 +38,7 @@ public class BuriStateUtilTest extends S2TestCase {
         dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
@@ -49,7 +49,7 @@ public class BuriStateUtilTest extends S2TestCase {
         assertTrue(walker.getBranchID() != 0);
         
         BuriPath callPath = walker.getNowPath();
-        userContext = engine.createUserContext(dto,null,null);
+        userContext = engine.createUserContext(dto,null,null,null);
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         sysContext.setStatusID(new Long(statusID));// 本当はAbstractで処理する
         walker = stateUtil.loadBranchWalker(sysContext);
@@ -85,10 +85,10 @@ public class BuriStateUtilTest extends S2TestCase {
         dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
-        userContext = engine.createUserContext(dto,null,null);
+        userContext = engine.createUserContext(dto,null,null,null);
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
@@ -116,10 +116,10 @@ public class BuriStateUtilTest extends S2TestCase {
         dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
-        userContext = engine.createUserContext(dto,null,null);
+        userContext = engine.createUserContext(dto,null,null,null);
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
@@ -171,10 +171,10 @@ public class BuriStateUtilTest extends S2TestCase {
         dto.setValue("hoge");
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
-        userContext = engine.createUserContext(dto,null,null);
+        userContext = engine.createUserContext(dto,null,null,null);
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);

@@ -30,6 +30,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
         getStateUtil().saveBranch(walker,this,sysContext);
         long statusId = getStateUtil().saveStatus(this,sysContext,walker);
         sysContext.setStatusID(new Long(statusId));
+        super.exitFlow(sysContext,walker);
     }
     
     protected void restartActivity(BuriSystemContext sysContext,BranchWalker walker) {

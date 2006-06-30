@@ -4,7 +4,9 @@
  */
 package org.seasar.buri.engine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 import org.seasar.framework.container.S2Container;
@@ -28,6 +30,8 @@ public class BuriSystemContext extends HashMap {
     private S2Container container;
     private String startRoleName;
     private RuntimeException ex;
+    private List actNames;
+    private List afterCallMethods = new ArrayList();
 
     public S2Container getContainer() {
         return container;
@@ -114,6 +118,21 @@ public class BuriSystemContext extends HashMap {
     public void setException(RuntimeException ex) {
         this.ex = ex;
     }
+    public List getActNames() {
+        return actNames;
+    }
+    public void setActNames(List actNames) {
+        this.actNames = actNames;
+    }
+    public List getAfterCallMethods() {
+        return afterCallMethods;
+    }
+    public void setAfterCallMethods(List afterCallMethods) {
+        this.afterCallMethods = afterCallMethods;
+    }
+    public void addAfterCallMethods(String afterCallName) {
+        this.afterCallMethods.add(afterCallName);
+    }
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append(super.toString());
@@ -128,6 +147,8 @@ public class BuriSystemContext extends HashMap {
         buff.append("/buriExecMode=").append(buriExecMode);
         buff.append("/tgtClass=").append(tgtClass);
         buff.append("/startRoleName=").append(startRoleName);
+        buff.append("/actNames=").append(actNames);
+        buff.append("/afterCallMethods=").append(afterCallMethods);
         buff.append("/ex=").append(ex);
         buff.append("]");
         return buff.toString();

@@ -16,7 +16,7 @@
 <ParticipantType Type="ROLE"/>
 </Participant>
 <Participant Id="BTS_par4" Name="Issue担当者">
-<ParticipantType Type="ROLE"/>
+<ParticipantType Type="HUMAN"/>
 </Participant>
 </Participants>
 <Applications>

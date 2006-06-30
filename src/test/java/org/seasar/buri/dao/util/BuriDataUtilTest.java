@@ -35,7 +35,7 @@ public class BuriDataUtilTest extends S2TestCase {
         BuriTestINTDto dto = new BuriTestINTDto();
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
 
         
@@ -47,7 +47,7 @@ public class BuriDataUtilTest extends S2TestCase {
         
         dataUtil.updateBuriData(dataAccessFactory,sysContext);
         
-        userContext = engine.createUserContext(dto,null,null);
+        userContext = engine.createUserContext(dto,null,null,null);
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         
         long saveId = dataUtil.getBuriDataId(dataAccessFactory,sysContext);

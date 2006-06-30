@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.engine.processor.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.seasar.buri.dao.util.BuriDataUtil;
@@ -42,21 +43,40 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
     }
 
     public Object toNextStatus(String path, Object data, Object userData,BuriProcessorInfo info) {
-        BuriUserContext userContext = engine.createUserContext(data,userData,info.getAction());
-        userContext.putAll(info.getContext());
+        if(data instanceof List) {
+            return toNextStatusList(path, (List) data, userData,info);
+        } else {
+            return toNextStatusOne(path, data, userData,info);
+        }
+    }
+    
+    public Object toNextStatusOne(String path, Object data, Object userData,BuriProcessorInfo info) {
+        BuriUserContext userContext = engine.createUserContext(data,userData,info.getAction(),info.getContext());
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         S2Container cont = info.getContainer() == null ? getRootContainer() : info.getContainer();
         systemContext.setContainer(cont);
+        systemContext.setActNames(info.getActNames());
         Object result = engine.execute(systemContext,info.getResultExp());
         return result;
     }
+    
+    public Object toNextStatusList(String path, List datas, Object userData,BuriProcessorInfo info) {
+        Object result = null;
+        Iterator ite = datas.iterator();
+        while(ite.hasNext()) {
+            Object data = ite.next();
+            result = toNextStatusOne(path, data, userData,info);
+        }
+        return result;
+    }
+    
 
     public List getDataListFromPath(String path, Object userData, Class tgtClass) {
         return getDataListFromPath(path, userData,tgtClass, getRootContainer());
     }
 
     public List getDataListFromPath(String path, Object userData,Class tgtClass, S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(null,userData,null);
+        BuriUserContext userContext = engine.createUserContext(null,userData,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setTgtClass(tgtClass);
         systemContext.setContainer(container);
@@ -71,7 +91,7 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
     }
 
     public List getDataIDFromPath(String path, Object userData, Class tgtClass,S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(null,userData,null);
+        BuriUserContext userContext = engine.createUserContext(null,userData,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setTgtClass(tgtClass);
         systemContext.setContainer(container);
@@ -86,7 +106,7 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
     }
 
     public List getPathFromData(String path, Object data, Object userData,Class tgtClass, S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(data,userData,null);
+        BuriUserContext userContext = engine.createUserContext(data,userData,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setContainer(container);
         engine.setupUserID(systemContext);
@@ -100,7 +120,7 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
     }
 
     public long countByPathAndDatas(String path, List datas, Object userData,S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(null,userData,null);
+        BuriUserContext userContext = engine.createUserContext(null,userData,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setContainer(container);
         engine.setupUserID(systemContext);

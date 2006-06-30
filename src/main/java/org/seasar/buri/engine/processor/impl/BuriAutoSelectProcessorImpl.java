@@ -46,13 +46,13 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
     }
 
     public Object toNextStatus(String path, Object data, Object userData,BuriProcessorInfo info) {
-        BuriEngine engine = getEngine(path);
-        BuriUserContext userContext = engine.createUserContext(data,userData,info.getAction());
-        userContext.putAll(info.getContext());
-        BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
-        S2Container cont = info.getContainer() == null ? getRootContainer() : info.getContainer();
-        systemContext.setContainer(cont);
-        Object result = engine.execute(systemContext,info.getResultExp());
+        Object result = null;
+        if(isStdProcessor(path)) {
+            result = standardProcessor.toNextStatus(path, data, userData,info);
+        }
+        if(isSimpleProcessor(path)) {
+            result = simpleProcessor.toNextStatus(path, data, info);
+        }
         return result;
     }
     

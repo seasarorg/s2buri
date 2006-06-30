@@ -17,17 +17,27 @@ public class BuriActivityPathFilter extends AbstractBuriActivitySelector {
 
     protected Set getActivityList(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
         Set result = new HashSet();
-        String actName = systemContext.getCallPath().getActivityName().get(0).toString();
+        Set acts = actNameListToSet(systemContext);
         Iterator ite = activitys.iterator();
         while(ite.hasNext()) {
             BuriActivityType actType = (BuriActivityType)ite.next();
             String tgtName = actType.getName();
-            if(tgtName.equals(actName)) {
+            if(acts.contains(tgtName)) {
                 result.add(actType);
             }
         }
         activitys.clear();
         return result;
+    }
+    
+    protected Set actNameListToSet(BuriSystemContext systemContext) {
+        Set acts = new HashSet();
+        if(systemContext.getActNames() == null || systemContext.getActNames().size() == 0) {
+            acts.add(systemContext.getCallPath().getActivityName().get(0));
+        } else {
+            acts.addAll(systemContext.getActNames());
+        }
+        return acts;
     }
 
     protected boolean checkCanActivitySelect(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {

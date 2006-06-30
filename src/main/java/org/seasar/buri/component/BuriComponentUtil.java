@@ -9,5 +9,6 @@ import org.seasar.buri.oouo.internal.structure.BuriToolType;
 
 public interface BuriComponentUtil {
     String getJavaProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType);
+    String getJavaAfterProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType);
     String convScriptToJavaString(String script);
 }

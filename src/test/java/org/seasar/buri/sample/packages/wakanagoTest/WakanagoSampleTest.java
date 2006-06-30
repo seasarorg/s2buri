@@ -47,7 +47,7 @@ public class WakanagoSampleTest extends S2TestCase {
         long startBranchCount = branchDao.getAllBuriBranch().size();
 
         long start = System.currentTimeMillis();
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         engine.execute(sysContext,null);
         
@@ -87,7 +87,7 @@ public class WakanagoSampleTest extends S2TestCase {
         BuriTestINTDto dto = new BuriTestINTDto();
         dto.setValue("hoge");
         
-        BuriUserContext userContext = engine.createUserContext(dto,null,null);
+        BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
         sysContext.setTgtClass(BuriTestINTDto.class);
         

@@ -46,7 +46,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected ScriptFactory scriptFactory;
     
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
-        readWorkFlowFromResource(workFlowName,resourceName,new DefaultParticipantProvider());
+        readWorkFlowFromResource(workFlowName,resourceName,null);
     }
     public void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
         BuriExePackages exePackages = buriCompiler.CompileResource(workFlowName,provider);
@@ -71,8 +71,11 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         activitySelector.add(selector);
     }
 
-    public BuriUserContext createUserContext(Object data,Object userData,Object action) {
+    public BuriUserContext createUserContext(Object data,Object userData,Object action,Map addContext) {
         BuriUserContext context = new BuriUserContext();
+        if(addContext != null) {
+            context.putAll(addContext);
+        }
         context.setData(data);
         context.setUserData(userData);
         context.setAction(action);
@@ -289,6 +292,12 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
     public void setContainer(S2Container container) {
         this.container = container;
+    }
+    public ScriptFactory getScriptFactory() {
+        return scriptFactory;
+    }
+    public void setScriptFactory(ScriptFactory scriptFactory) {
+        this.scriptFactory = scriptFactory;
     }
 
 }

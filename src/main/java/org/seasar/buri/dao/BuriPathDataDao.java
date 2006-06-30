@@ -23,7 +23,7 @@ public interface BuriPathDataDao {
     public String getDtoByPathKey_ARGS = "dataType,pkeyNum,pkeyVal,pathName,pathType";
     public BuriPathDataEntityDto getDtoByPathKey(String className,Long pkeyNum,String pkeyVal,String pathName,Long pathType);
     
-    public String getDtoByPathKeys_ARGS = "dataType,pkeyNums,pkeyVals,pathName,pathType";
+    public String getCountByPathKeys_ARGS = "dataType,pkeyNums,pkeyVals,pathName,pathType";
     public long getCountByPathKeys(String className,List pkeyNums,List pkeyVals,String pathName,Long pathType);
     
     public String getTimeOrverState_QUERY = "autoRunTime < CURRENT_TIMESTAMP";

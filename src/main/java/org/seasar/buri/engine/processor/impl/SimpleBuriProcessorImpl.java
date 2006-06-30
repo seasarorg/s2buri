@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.engine.processor.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.seasar.buri.dao.util.BuriDataUtil;
@@ -34,12 +35,30 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
     }
 
     public Object toNextStatus(String path, Object data, BuriProcessorInfo info) {
-        BuriUserContext userContext = engine.createUserContext(data,null,info.getAction());
-        userContext.putAll(info.getContext());
+        if(data instanceof List) {
+            return toNextStatusList(path, (List) data, info);
+        } else {
+            return toNextStatusOne(path, data, info);
+        }
+    }
+    
+    public Object toNextStatusOne(String path, Object data, BuriProcessorInfo info) {
+        BuriUserContext userContext = engine.createUserContext(data,null,info.getAction(),info.getContext());
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         S2Container cont = info.getContainer() == null ? getRootContainer() : info.getContainer();
         systemContext.setContainer(cont);
+        systemContext.setActNames(info.getActNames());
         Object result = engine.execute(systemContext,info.getResultExp());
+        return result;
+    }
+    
+    public Object toNextStatusList(String path, List datas, BuriProcessorInfo info) {
+        Object result = null;
+        Iterator ite = datas.iterator();
+        while(ite.hasNext()) {
+            Object data = ite.next();
+            result = toNextStatusOne(path, data, info);
+        }
         return result;
     }
 
@@ -56,7 +75,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         return getDataListFromPath(path,tgtClass, getRootContainer());
     }
     public List getDataListFromPath(String path,Class tgtClass, S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(null,null,null);
+        BuriUserContext userContext = engine.createUserContext(null,null,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setTgtClass(tgtClass);
         systemContext.setContainer(container);
@@ -69,7 +88,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         return getDataIDFromPath(path,tgtClass, getRootContainer());
     }
     public List getDataIDFromPath(String path,Class tgtClass, S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(null,null,null);
+        BuriUserContext userContext = engine.createUserContext(null,null,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setTgtClass(tgtClass);
         systemContext.setContainer(container);
@@ -82,7 +101,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         return getPathFromData(path, data, getRootContainer());
     }
     public List getPathFromData(String path, Object data, S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(data,null,null);
+        BuriUserContext userContext = engine.createUserContext(data,null,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setContainer(container);
         BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(systemContext.getCallPath());
@@ -94,7 +113,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         return countByPathAndDatas(path, datas, getRootContainer());
     }
     public long countByPathAndDatas(String path, List datas, S2Container container) {
-        BuriUserContext userContext = engine.createUserContext(null,null,null);
+        BuriUserContext userContext = engine.createUserContext(null,null,null,null);
         BuriSystemContext systemContext = engine.createSystemContext(path,userContext);
         systemContext.setContainer(container);
         BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(systemContext.getCallPath());

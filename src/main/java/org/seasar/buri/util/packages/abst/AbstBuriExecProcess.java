@@ -5,6 +5,7 @@
 package org.seasar.buri.util.packages.abst;
 
 import java.lang.reflect.Method;
+import java.util.Iterator;
 import java.util.List;
 
 import org.aopalliance.intercept.MethodInterceptor;
@@ -28,10 +29,11 @@ import org.seasar.coffee.script.Script;
 import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.aop.interceptors.InterceptorChain;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.ClassUtil;
 
 public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAccessFactory{
-//    private static Logger logger = Logger.getLogger(AbstBuriExecProcess.class);
+    protected static Logger logger = Logger.getLogger(AbstBuriExecProcess.class);
     protected ScriptFactory scriptFactory;
     protected S2Container container;
     protected BuriWorkflowProcessType process;
@@ -43,6 +45,11 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     
     protected Script getConditionScript() {
         return scriptFactory.getScript(buriExePackages.getConditionExpressionType());
+    }
+    
+    protected Logger getLogger(Object self) {
+        logger = Logger.getLogger(self.getClass());
+        return logger;
     }
     
     public void setup(BuriWorkflowProcessType process) {
@@ -178,7 +185,11 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     }
     
     protected void exitFlow(BuriSystemContext sysContext,BranchWalker walker) {
-        
+        Iterator ite = sysContext.getAfterCallMethods().iterator();
+        while(ite.hasNext()) {
+            String actId = ite.next().toString();
+            execActivity(actId,"_afterProcess",sysContext,walker);
+        }
     }
     
     protected List filterNextActivity(BuriSystemContext sysContext,BranchWalker walker,List nextActIDs) {

@@ -8,8 +8,10 @@ import org.seasar.buri.component.BuriComponent;
 import org.seasar.buri.component.BuriComponentUtil;
 import org.seasar.buri.oouo.internal.structure.BuriActivityType;
 import org.seasar.buri.oouo.internal.structure.BuriApplicationType;
+import org.seasar.buri.oouo.internal.structure.BuriExtendedAttributeType;
 import org.seasar.buri.oouo.internal.structure.BuriToolType;
 import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
+import org.seasar.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
 import org.seasar.framework.container.S2Container;
 
 public class BuriComponentUtilImpl implements BuriComponentUtil {
@@ -21,10 +23,29 @@ public class BuriComponentUtilImpl implements BuriComponentUtil {
             processType = actType.getActivitySet().getProcessType();
         }
         BuriApplicationType appType = processType.getApplicationById(toolType.getId());
+        BuriExtendedAttributeType attriType = ExtentedAttributeUtil.getExtendedAttribute(appType.getExtendedAttributeList(),"after");
+        if( attriType != null) {
+            return "sysContext.addAfterCallMethods(\"" + actType.getId() + "\");";
+        }
         BuriComponent component = (BuriComponent)container.getComponent(appType.getName());
         String source = component.getBuriExecuteSource(tgtObjName,toolType);
         return source;
     }
+    
+    public String getJavaAfterProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType) {
+        BuriWorkflowProcessType processType = actType.getWorkflowProcess(); 
+        if( processType == null) {
+            processType = actType.getActivitySet().getProcessType();
+        }
+        BuriApplicationType appType = processType.getApplicationById(toolType.getId());
+        if(ExtentedAttributeUtil.getExtendedAttribute(appType.getExtendedAttributeList(),"after") != null) {
+            BuriComponent component = (BuriComponent)container.getComponent(appType.getName());
+            String source = component.getBuriExecuteSource(tgtObjName,toolType);
+            return source;
+        }
+        return "";
+    }
+    
     
     public String convScriptToJavaString(String text) {
         if(text==null) {
