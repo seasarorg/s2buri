@@ -455,19 +455,6 @@
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
-<Activity Id="order_Wor2_Act7" Name="商品未揃い">
-<Route/>
-<StartMode>
-<Automatic/>
-</StartMode>
-<FinishMode>
-<Automatic/>
-</FinishMode>
-<ExtendedAttributes>
-<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,30"/>
-<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
-</ExtendedAttributes>
-</Activity>
 <Activity Id="order_Wor2_Act8" Name="出荷準備中">
 <Implementation>
 <Tool Id="order_App1" Type="APPLICATION">
@@ -520,6 +507,16 @@
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
 </ExtendedAttributes>
 </Activity>
+<Activity Id="order_Wor2_act1" Name="商品未揃い">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>order_Par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="order_Par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="455,18"/>
+</ExtendedAttributes>
+</Activity>
 </Activities>
 <Transitions>
 <Transition From="order_Wor2_Act1" Id="order_Wor2_Tra1" To="order_Wor2_Act2">
@@ -537,7 +534,7 @@
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
-<Transition From="order_Wor2_Act7" Id="order_Wor2_Tra17" To="order_Wor2_Act9">
+<Transition From="order_Wor2_act1" Id="order_Wor2_Tra17" To="order_Wor2_Act9">
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
@@ -548,7 +545,7 @@
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
 </ExtendedAttributes>
 </Transition>
-<Transition From="order_Wor2_Act8" Id="order_Wor2_Tra32" To="order_Wor2_Act7">
+<Transition From="order_Wor2_Act8" Id="order_Wor2_Tra32" To="order_Wor2_act1">
 <Condition Type="CONDITION">#countDatas &lt; #data.items.size() &amp;&amp; #action == null</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>

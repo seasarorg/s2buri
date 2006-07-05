@@ -31,4 +31,58 @@
 		</initMethod>
 	</component>
 	
+	<component class="org.seasar.buri.compiler.util.impl.BuriDataFieldCompilePreprocessorImpl">
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.ClassDefCheckRule">
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.PkeyAccessorProcRule">
+				<property name="propName">"pkey"</property>
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">
+				<property name="propName">"Insert"</property>
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">
+				<property name="propName">"Update"</property>
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">
+				<property name="propName">"Select"</property>
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">
+				<property name="propName">"Delete"</property>
+				<property name="failCheckPass">true</property>
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">
+				<property name="propName">"SelectMany"</property>
+				<property name="failCheckPass">true</property>
+			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessCheckRule">
+			</component></arg>
+		</initMethod>
+		
+		<initMethod name="addPreprocessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.ClassDefCheckRule">
+			</component></arg>
+		</initMethod>
+		<initMethod name="addPreprocessRules">
+			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">
+				<property name="propName">"Preprocess"</property>
+			</component></arg>
+		</initMethod>
+		
+	</component>
+	
 </components>

@@ -4,13 +4,16 @@
  */
 package org.seasar.buri.compiler.wakanago;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import jp.starlogic.common.janino.util.BasicCompileInfo;
 import jp.starlogic.common.janino.util.BasicCompler;
 
 import org.seasar.buri.compiler.DataFieldCompiler;
+import org.seasar.buri.compiler.util.BuriDataFieldCompilePreprocessor;
 import org.seasar.buri.compiler.util.DataAccessCompileUtil;
 import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
@@ -34,6 +37,7 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
     private S2Container container;
     private BasicCompler compler;
     private String preprocessTemplateName ="ftl/Preprocess.ftl";
+    private BuriDataFieldCompilePreprocessor bdfcp;
     
     
     public void compileAndSetting(BuriDataAccessFactory factory,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
@@ -42,6 +46,7 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
         while(ite.hasNext()) {
             String className = (String)ite.next();
             BuriDataFieldType fieldType = (BuriDataFieldType)dataField.get(className);
+            fieldType = bdfcp.preprocess(fieldType);
             if(dataAccessCompileUtil.isDataAccessUtil(fieldType)) {
                 dataAccessCompileUtil.setupDataAccessUtil(factory,className,fieldType,buriPackage,process);
             }
@@ -108,7 +113,7 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
         }
         return dataField;
     }
-
+    
     public BasicCompler getCompler() {
         return compler;
     }
@@ -147,6 +152,14 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
 
     public void setScriptFactory(ScriptFactory scriptFactory) {
         this.scriptFactory = scriptFactory;
+    }
+
+    public BuriDataFieldCompilePreprocessor getBdfcp() {
+        return bdfcp;
+    }
+
+    public void setBdfcp(BuriDataFieldCompilePreprocessor bdfcp) {
+        this.bdfcp = bdfcp;
     }
 
 }

@@ -512,5 +512,262 @@ public class BuriEngineTest extends S2TestCase {
         BuriPathEntityDto dto = pathDao.getBuriPath(stateDto.getPathID().longValue());
         assertEquals(dto.getPathName(),"basicTest.test11.timeOrver");
     }
+
+    
+    
+    public void test12_1Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test12.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.ANDbranch");
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.ANDbranch",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test12.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.State1",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.State2",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.end");
+        
+        
+    }
+    
+    public void test12_2Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test12.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.ANDbranch");
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.ANDbranch",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test12.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.State1",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,"loop",null);
+        sysContext = engine.createSystemContext("basicTest.test12.State2",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.ReEntry");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.ReEntry",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.ANDbranch");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.ANDbranch",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test12.State2");
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.State1",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test12.State2",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test12.end");
+        
+        
+    }
+    
+    public void test13_1Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test13.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.ANDbranch");
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test13.ANDbranch",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        System.out.println(postState);
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.State1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test13.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test13.State1",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.end");
+        
+        
+    }
+    
+    
+    public void test13_2Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test13.start",userContext);
+
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.ANDbranch");
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test13.ANDbranch",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.State1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test13.State2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,"loop",null);
+        sysContext = engine.createSystemContext("basicTest.test13.State2",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.ReEntry");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test13.ReEntry",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.ANDbranch");
+        
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test13.ANDbranch",userContext);
+
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.State1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test13.State2");
+        
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test13.State1",userContext);
+
+        engine.execute(sysContext,null);
+                
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test13.end");
+        
+        
+    }
+    
+    protected String getPathName(Object postData) {
+        System.out.println(postData);
+        BuriStateEntityDto stateDto = (BuriStateEntityDto)postData;
+        BuriPathEntityDto dto = pathDao.getBuriPath(stateDto.getPathID().longValue());
+        return dto.getPathName();
+    }
     
 }
