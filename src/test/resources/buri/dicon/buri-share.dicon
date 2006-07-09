@@ -21,6 +21,8 @@
 	</component>
 	<component name="AfterOgnlInvoker" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
 	</component>
+	<component class="org.seasar.buri.common.util.ClassDefUtilImpl">
+	</component>
 
 	
 	<component class="jp.starlogic.common.janino.util.impl.BasicComplerImpl">

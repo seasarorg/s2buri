@@ -51,13 +51,6 @@
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="orderTitleID,orderTitleID != 0"/>
-<ExtendedAttribute Name="insert" Value="OrderInfoDao&#10;OrderInfoDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="OrderInfoDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="OrderInfoDao.getOrderInfo(#data.orderTitleID)"/>
-<ExtendedAttribute Name="delete" Value="OrderInfoDao.delete(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderTitleDto" IsArray="FALSE">
 <DataType>
@@ -78,13 +71,6 @@
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="shippingID,shippingID != 0"/>
-<ExtendedAttribute Name="insert" Value="ShippingSetDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="ShippingSetDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="ShippingSetDao.getShippingSetDto(#data.shippingID)"/>
-<ExtendedAttribute Name="delete" Value="ShippingSetDao.delete(#data)"/>
-</ExtendedAttributes>
 </DataField>
 </DataFields>
 <WorkflowProcesses>
