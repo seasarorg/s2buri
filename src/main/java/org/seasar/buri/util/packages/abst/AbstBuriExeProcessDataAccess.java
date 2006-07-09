@@ -4,14 +4,32 @@
  */
 package org.seasar.buri.util.packages.abst;
 
+import org.seasar.buri.compiler.DataFieldCompiler;
 import org.seasar.buri.dao.util.BuriStateUtil;
+import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.exception.select.BuriManySelectActivityException;
 import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
+import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
+import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
+import org.seasar.coffee.dataaccess.DataAccessFactory;
+import org.seasar.coffee.dataaccess.DataAccessUtil;
+import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
+import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
+import org.seasar.coffee.dataaccess.FilterAccessUtil;
+import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 
-public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
+public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements BuriDataAccessFactory{
     private BuriStateUtil stateUtil;
+    protected BuriDataAccessFactory dataAccessFactory;
+    private DataFieldCompiler dataFieldCompiler;
+    
+    public void setup(BuriWorkflowProcessType process) {
+        super.setup(process);
+        DataAccessFactory rootFactory = (DataAccessFactory)container.getComponent("rootDataAccessFactory");
+        rootFactory.addChildFactory(process.getId(),this);
+    }
 
     public BranchWalker readBranchWalker(BuriSystemContext sysContext) {
         BranchWalker walker = getStateUtil().loadBranchWalker(sysContext);
@@ -81,6 +99,47 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
         }
         return false;
     }
+
+    public void setDataAccessUtil(Class tgtClass, DataAccessUtilLongKey utilLongKey) {
+        dataAccessFactory.setDataAccessUtil(tgtClass, utilLongKey);
+    }
+
+    public void setDataAccessUtil(Class tgtClass, DataAccessUtilManyKey utilManyKey) {
+        dataAccessFactory.setDataAccessUtil(tgtClass, utilManyKey);
+    }
+
+    public void setFilterAccessUtil(Class tgtClass, FilterAccessUtil accessUtil) {
+        dataAccessFactory.setFilterAccessUtil(tgtClass, accessUtil);
+    }
+
+    public void setPreprocessAccessUtil(Class tgtClass, PreprocessAccessUtil accessUtil) {
+        dataAccessFactory.setPreprocessAccessUtil(tgtClass, accessUtil);
+    }
+
+    public void addChildFactory(String key, DataAccessFactory factory) {
+        dataAccessFactory.addChildFactory(key, factory);
+    }
+
+    public DataAccessUtil getDataAccessUtil(Class tgtClass) {
+        DataAccessUtil util = dataAccessFactory.getDataAccessUtil(tgtClass);
+        if(util == null) {
+            BuriDataFieldType fieldType = new BuriDataFieldType();
+            fieldType.setId(tgtClass.getName());
+            dataFieldCompiler.compileAndSettingOne(fieldType,(BuriDataAccessFactory)this,getBuriExePackages().getBuriPackageType(),this.getBuriWorkflowProcessType());
+        }
+        return dataAccessFactory.getDataAccessUtil(tgtClass);
+    }
+
+    public FilterAccessUtil getFilterAccessUtil(Class tgtClass) {
+        return dataAccessFactory.getFilterAccessUtil(tgtClass);
+    }
+
+    public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
+        return dataAccessFactory.getPreprocessAccessUtil(tgtClass);
+    }
+
+
+    
     
     public BuriStateUtil getStateUtil() {
         return stateUtil;
@@ -88,6 +147,22 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess {
 
     public void setStateUtil(BuriStateUtil stateUtil) {
         this.stateUtil = stateUtil;
+    }
+
+    public BuriDataAccessFactory getDataAccessFactory() {
+        return dataAccessFactory;
+    }
+
+    public void setDataAccessFactory(BuriDataAccessFactory dataAccessFactory) {
+        this.dataAccessFactory = dataAccessFactory;
+    }
+
+    public DataFieldCompiler getDataFieldCompiler() {
+        return dataFieldCompiler;
+    }
+
+    public void setDataFieldCompiler(DataFieldCompiler dataFieldCompiler) {
+        this.dataFieldCompiler = dataFieldCompiler;
     }
 
     

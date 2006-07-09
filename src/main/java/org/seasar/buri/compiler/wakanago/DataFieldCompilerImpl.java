@@ -44,13 +44,18 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
         while(ite.hasNext()) {
             String className = (String)ite.next();
             BuriDataFieldType fieldType = (BuriDataFieldType)dataField.get(className);
-            fieldType = bdfcp.preprocess(fieldType);
-            if(dataAccessCompileUtil.isDataAccessUtil(fieldType)) {
-                dataAccessCompileUtil.setupDataAccessUtil(factory,className,fieldType,buriPackage,process);
-            }
-            if(isPreProcessUtil(fieldType)) {
-                setupPreprocessUtil(factory,className,fieldType,process,buriPackage);
-            }
+            compileAndSettingOne(fieldType,factory,buriPackage,process);
+        }
+    }
+    
+    public void compileAndSettingOne(BuriDataFieldType fieldType,BuriDataAccessFactory factory,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
+        String className = fieldType.getId();
+        fieldType = bdfcp.preprocess(fieldType);
+        if(dataAccessCompileUtil.isDataAccessUtil(fieldType)) {
+            dataAccessCompileUtil.setupDataAccessUtil(factory,className,fieldType,buriPackage,process);
+        }
+        if(isPreProcessUtil(fieldType)) {
+            setupPreprocessUtil(factory,className,fieldType,process,buriPackage);
         }
     }
     

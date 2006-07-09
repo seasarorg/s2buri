@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.seasar.buri.aop.impl.BuriMethodInvocation;
-import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
@@ -19,12 +18,6 @@ import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
-import org.seasar.coffee.dataaccess.DataAccessFactory;
-import org.seasar.coffee.dataaccess.DataAccessUtil;
-import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
-import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
-import org.seasar.coffee.dataaccess.FilterAccessUtil;
-import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 import org.seasar.coffee.script.Script;
 import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.aop.interceptors.InterceptorChain;
@@ -32,7 +25,7 @@ import org.seasar.framework.container.S2Container;
 import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.ClassUtil;
 
-public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAccessFactory{
+public abstract class AbstBuriExecProcess implements BuriExecProcess {
     protected static Logger logger = Logger.getLogger(AbstBuriExecProcess.class);
     protected ScriptFactory scriptFactory;
     protected S2Container container;
@@ -41,7 +34,6 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     protected InterceptorChain conditionInterceptor = new InterceptorChain();
     
     protected BuriExePackages buriExePackages;
-    protected BuriDataAccessFactory dataAccessFactory;
     
     protected Script getConditionScript() {
         return scriptFactory.getScript(buriExePackages.getConditionExpressionType());
@@ -54,8 +46,6 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     
     public void setup(BuriWorkflowProcessType process) {
         this.process = process;
-        DataAccessFactory rootFactory = (DataAccessFactory)container.getComponent("rootDataAccessFactory");
-        rootFactory.addChildFactory(process.getId(),this);
     }
     
     public BuriWorkflowProcessType getBuriWorkflowProcessType() {
@@ -233,39 +223,6 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     }
 
     
-
-    public void setDataAccessUtil(Class tgtClass, DataAccessUtilLongKey utilLongKey) {
-        dataAccessFactory.setDataAccessUtil(tgtClass, utilLongKey);
-    }
-
-    public void setDataAccessUtil(Class tgtClass, DataAccessUtilManyKey utilManyKey) {
-        dataAccessFactory.setDataAccessUtil(tgtClass, utilManyKey);
-    }
-
-    public void setFilterAccessUtil(Class tgtClass, FilterAccessUtil accessUtil) {
-        dataAccessFactory.setFilterAccessUtil(tgtClass, accessUtil);
-    }
-
-    public void setPreprocessAccessUtil(Class tgtClass, PreprocessAccessUtil accessUtil) {
-        dataAccessFactory.setPreprocessAccessUtil(tgtClass, accessUtil);
-    }
-
-    public void addChildFactory(String key, DataAccessFactory factory) {
-        dataAccessFactory.addChildFactory(key, factory);
-    }
-
-    public DataAccessUtil getDataAccessUtil(Class tgtClass) {
-        return dataAccessFactory.getDataAccessUtil(tgtClass);
-    }
-
-    public FilterAccessUtil getFilterAccessUtil(Class tgtClass) {
-        return dataAccessFactory.getFilterAccessUtil(tgtClass);
-    }
-
-    public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
-        return dataAccessFactory.getPreprocessAccessUtil(tgtClass);
-    }
-
     
     
     public void addProcessAOP(MethodInterceptor interceptor) {
@@ -303,15 +260,5 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess ,BuriDataAc
     public void setBuriExePackages(BuriExePackages buriExePackages) {
         this.buriExePackages = buriExePackages;
     }
-
-    public BuriDataAccessFactory getDataAccessFactory() {
-        return dataAccessFactory;
-    }
-
-    public void setDataAccessFactory(BuriDataAccessFactory dataAccessFactory) {
-        this.dataAccessFactory = dataAccessFactory;
-    }
-
-    
 
 }

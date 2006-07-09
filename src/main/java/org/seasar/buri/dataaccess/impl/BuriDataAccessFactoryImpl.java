@@ -43,11 +43,17 @@ public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory{
     }
 
     public DataAccessUtil getDataAccessUtil(Class tgtClass) {
+        DataAccessUtil result = getInnerDataAccessUtil(tgtClass);
+        if( result == null ) {
+            result = getChildDataAccessUtil(tgtClass);
+        }
+        return result;
+    }
+    
+    protected DataAccessUtil getInnerDataAccessUtil(Class tgtClass) {
         DataAccessUtil result = null;
         if( dataAccess.containsKey(tgtClass) ) {
             result = (DataAccessUtil)dataAccess.get(tgtClass);
-        } else {
-            result = getChildDataAccessUtil(tgtClass);
         }
         return result;
     }

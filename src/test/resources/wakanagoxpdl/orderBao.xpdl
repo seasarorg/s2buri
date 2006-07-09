@@ -26,53 +26,6 @@
 </ExtendedAttributes>
 </Application>
 </Applications>
-<DataFields>
-<DataField Id="example.org.seasar.buri.dto.BillDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.CustomerDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.ItemDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.OrderDetailDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.OrderTitleDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.ShippingDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.ShippingItemDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-<DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
-<DataType>
-<BasicType Type="STRING"/>
-</DataType>
-</DataField>
-</DataFields>
 <WorkflowProcesses>
 <WorkflowProcess AccessLevel="PUBLIC" Id="order_Wor1" Name="注文">
 <ProcessHeader DurationUnit="D">
