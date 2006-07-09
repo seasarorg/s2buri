@@ -61,6 +61,7 @@
 <ExtendedAttribute Name="insert" Value="FurnitureItemDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="FurnitureItemDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="FurnitureItemDao.getFurnitureItem(#data.furnitureID)"/>
+<ExtendedAttribute Name="delete" Value="FurnitureItemDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

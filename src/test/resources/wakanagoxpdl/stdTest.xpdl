@@ -29,6 +29,7 @@
 <ExtendedAttribute Name="insert" Value="ItemDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="ItemDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="ItemDao.getItem(#data.itemID)"/>
+<ExtendedAttribute Name="delete" Value="ItemDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

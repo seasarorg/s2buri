@@ -31,49 +31,21 @@
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="billID,billID != 0"/>
-<ExtendedAttribute Name="insert" Value="BillDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="BillDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="BillDao.getBill(#data.billID)"/>
-<ExtendedAttribute Name="selectMany" Value="BillDao.getBillByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.CustomerDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="customerID,customerID != 0"/>
-<ExtendedAttribute Name="insert" Value="CustomerDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="CustomerDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="CustomerDao.getCustomer(#data.customerID)"/>
-<ExtendedAttribute Name="selectMany" Value="CustomerDao.getCustomerByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ItemDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="ItemID,ItemID != 0"/>
-<ExtendedAttribute Name="insert" Value="ItemDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="ItemDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="ItemDao.getItem(#data.itemID)"/>
-<ExtendedAttribute Name="selectMany" Value="ItemDao.getItemByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderDetailDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="orderDetailID,orderDetailID != 0"/>
-<ExtendedAttribute Name="insert" Value="OrderDetailDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="OrderDetailDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="OrderDetailDao.getOrderDetail(#data.orderDetailID)"/>
-<ExtendedAttribute Name="selectMany" Value="OrderDetailDao.getOrderDetailByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
 <DataType>
@@ -84,43 +56,23 @@
 <ExtendedAttribute Name="insert" Value="OrderInfoDao&#10;OrderInfoDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="OrderInfoDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="OrderInfoDao.getOrderInfo(#data.orderTitleID)"/>
+<ExtendedAttribute Name="delete" Value="OrderInfoDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderTitleDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="orderTitleID,orderTitleID != 0"/>
-<ExtendedAttribute Name="insert" Value="OrderTitleDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="OrderTitleDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="OrderTitleDao.getOrderTitle(#data.orderTitleID)"/>
-<ExtendedAttribute Name="selectMany" Value="OrderTitleDao.getOrderTitleByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ShippingDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="shippingID,shippingID != 0"/>
-<ExtendedAttribute Name="insert" Value="ShippingDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="ShippingDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="ShippingDao.getShipping(#data.shippingID)"/>
-<ExtendedAttribute Name="selectMany" Value="ShippingDao.getShippingByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ShippingItemDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
-<ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="shippingItemID,shippingItemID != 0"/>
-<ExtendedAttribute Name="insert" Value="ShippingItemDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="ShippingItemDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="ShippingItemDao.getShippingItem(#data.shippingItemID)"/>
-<ExtendedAttribute Name="selectMany" Value="ShippingItemDao.getShippingItemByIds(#data)"/>
-</ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
 <DataType>
@@ -131,6 +83,7 @@
 <ExtendedAttribute Name="insert" Value="ShippingSetDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="ShippingSetDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="ShippingSetDao.getShippingSetDto(#data.shippingID)"/>
+<ExtendedAttribute Name="delete" Value="ShippingSetDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

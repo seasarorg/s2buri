@@ -235,6 +235,9 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
                     return true;
                 }
             }
+            if(dap.getRequiredRule(src)){
+                return true;
+            }
         }
         return result;
     }

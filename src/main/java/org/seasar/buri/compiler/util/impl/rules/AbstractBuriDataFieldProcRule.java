@@ -11,6 +11,7 @@ import org.seasar.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
 
 public abstract class AbstractBuriDataFieldProcRule implements BuriDataFieldProcRule {
     private String keyName;
+    private boolean requiredRule = false;
     
     public String getKeyName() {
         return keyName;
@@ -18,6 +19,14 @@ public abstract class AbstractBuriDataFieldProcRule implements BuriDataFieldProc
 
     public void setKeyName(String keyName) {
         this.keyName = keyName;
+    }
+    
+    public boolean getRequiredRule(BuriDataFieldType src) {
+        return requiredRule;
+    }
+
+    public void setRequiredRule(boolean requiredRule) {
+        this.requiredRule = requiredRule;
     }
 
     public boolean fstCheckProcess(BuriDataFieldType src) {

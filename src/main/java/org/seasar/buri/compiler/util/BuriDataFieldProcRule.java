@@ -9,6 +9,7 @@ import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
 public interface BuriDataFieldProcRule {
 
     String getKeyName();
+    boolean getRequiredRule(BuriDataFieldType src);
     
     // ˆ—‘O‚ÉŒÄ‚Ñ‚¾‚·Btrue‚ğ•Ô‚µ‚½‚çprocess‚Ì‘ÎÛ‚Æ‚µ‚Äˆµ‚¤
     boolean fstCheckProcess(BuriDataFieldType src);

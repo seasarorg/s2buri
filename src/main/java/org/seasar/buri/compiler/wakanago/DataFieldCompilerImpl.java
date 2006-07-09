@@ -4,9 +4,7 @@
  */
 package org.seasar.buri.compiler.wakanago;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import jp.starlogic.common.janino.util.BasicCompileInfo;

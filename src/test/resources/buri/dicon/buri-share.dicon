@@ -8,6 +8,13 @@
 	<include path="buri/dicon/allDao.dicon"/>
 	<include path="aop.dicon"/>
 	
+	<component class="org.seasar.buri.common.util.BuriConfigurationImpl">
+	<!--
+		<initMethod>#self.addValue("DtoPackageName","org.seasar.buri.dto")</initMethod>
+		<initMethod>#self.addValue("DaoPackageName","org.seasar.buri.dao")</initMethod>
+	-->
+	</component>
+	
 	<component name="rootDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
 	</component>
 	<component name="OgnlInvoker" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
@@ -31,10 +38,14 @@
 		</initMethod>
 	</component>
 	
+	<component name="ClassDefCheckRule" class="org.seasar.buri.compiler.util.impl.rules.ClassDefCheckRule">
+	</component>
+	<component name="S2DaoToDataAccessRule" class="org.seasar.buri.compiler.util.impl.rules.S2DaoToDataAccessRule">
+	</component>
+	
 	<component class="org.seasar.buri.compiler.util.impl.BuriDataFieldCompilePreprocessorImpl">
 		<initMethod name="addDataAccessRules">
-			<arg><component class="org.seasar.buri.compiler.util.impl.rules.ClassDefCheckRule">
-			</component></arg>
+			<arg>ClassDefCheckRule</arg>
 		</initMethod>
 		<initMethod name="addDataAccessRules">
 			<arg><component class="org.seasar.buri.compiler.util.impl.rules.PkeyAccessorProcRule">
@@ -72,10 +83,12 @@
 			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessCheckRule">
 			</component></arg>
 		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg>S2DaoToDataAccessRule</arg>
+		</initMethod>
 		
 		<initMethod name="addPreprocessRules">
-			<arg><component class="org.seasar.buri.compiler.util.impl.rules.ClassDefCheckRule">
-			</component></arg>
+			<arg>ClassDefCheckRule</arg>
 		</initMethod>
 		<initMethod name="addPreprocessRules">
 			<arg><component class="org.seasar.buri.compiler.util.impl.rules.DataAccessorProcRule">

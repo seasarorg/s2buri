@@ -24,6 +24,7 @@
 <ExtendedAttribute Name="insert" Value="OrderInfoDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="OrderInfoDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="OrderInfoDao.getOrderInfo(#data.orderTitleID)"/>
+<ExtendedAttribute Name="delete" Value="OrderInfoDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

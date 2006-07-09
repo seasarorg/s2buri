@@ -32,6 +32,7 @@
 <ExtendedAttribute Name="insert" Value="ShippingSetDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="ShippingSetDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="ShippingSetDao.getShippingSetDto(#data.shippingID)"/>
+<ExtendedAttribute Name="delete" Value="ShippingSetDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ShippingItemDto" IsArray="FALSE">
@@ -44,6 +45,7 @@
 <ExtendedAttribute Name="update" Value="ShippingItemDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="ShippingItemDao.getShippingItem(#data.shippingItemID)"/>
 <ExtendedAttribute Name="selectMany" Value="ShippingItemDao.getShippingItemByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="ShippingItemDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ShippingDto" IsArray="FALSE">
@@ -56,6 +58,7 @@
 <ExtendedAttribute Name="update" Value="ShippingDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="ShippingDao.getShipping(#data.shippingID)"/>
 <ExtendedAttribute Name="selectMany" Value="ShippingDao.getShippingByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="ShippingDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderTitleDto" IsArray="FALSE">
@@ -68,6 +71,7 @@
 <ExtendedAttribute Name="update" Value="OrderTitleDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="OrderTitleDao.getOrderTitle(#data.orderTitleID)"/>
 <ExtendedAttribute Name="selectMany" Value="OrderTitleDao.getOrderTitleByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="OrderTitleDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
@@ -79,6 +83,7 @@
 <ExtendedAttribute Name="insert" Value="OrderInfoDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="OrderInfoDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="OrderInfoDao.getOrderInfo(#data.orderTitleID)"/>
+<ExtendedAttribute Name="delete" Value="OrderInfoDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.OrderDetailDto" IsArray="FALSE">
@@ -91,6 +96,7 @@
 <ExtendedAttribute Name="update" Value="OrderDetailDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="OrderDetailDao.getOrderDetail(#data.orderDetailID)"/>
 <ExtendedAttribute Name="selectMany" Value="OrderDetailDao.getOrderDetailByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="OrderDetailDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.ItemDto" IsArray="FALSE">
@@ -103,6 +109,7 @@
 <ExtendedAttribute Name="update" Value="ItemDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="ItemDao.getItem(#data.itemID)"/>
 <ExtendedAttribute Name="selectMany" Value="ItemDao.getItemByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="ItemDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.CustomerDto" IsArray="FALSE">
@@ -115,6 +122,7 @@
 <ExtendedAttribute Name="update" Value="CustomerDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="CustomerDao.getCustomer(#data.customerID)"/>
 <ExtendedAttribute Name="selectMany" Value="CustomerDao.getCustomerByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="CustomerDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="example.org.seasar.buri.dto.BillDto" IsArray="FALSE">
@@ -127,6 +135,7 @@
 <ExtendedAttribute Name="update" Value="BillDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="BillDao.getBill(#data.billID)"/>
 <ExtendedAttribute Name="selectMany" Value="BillDao.getBillByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="BillDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
@@ -893,6 +902,6 @@
 </WorkflowProcesses>
 <ExtendedAttributes>
 <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
-<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-1-C-20060130-1601"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
 </ExtendedAttributes>
 </Package>
