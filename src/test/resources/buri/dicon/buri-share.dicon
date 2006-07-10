@@ -14,6 +14,21 @@
 		<initMethod>#self.addValue("DaoPackageName","org.seasar.buri.dao")</initMethod>
 	-->
 	</component>
+
+	<component class="org.seasar.buri.common.delayloader.impl.DelayLoaderImpl">
+	</component>
+	<component name="BuriFileLoadInterceptor" class="org.seasar.buri.common.delayloader.interceptor.FileLoadInterceptor">
+		<property name="keyNo">1</property>
+		<property name="afterCallLoader">"#self.setupDelayLoad(#arg[1])"</property>
+	</component>
+	<component name="BuriResourceLoadInterceptor" class="org.seasar.buri.common.delayloader.interceptor.ResourceLoadInterceptor">
+		<property name="keyNo">1</property>
+		<property name="afterCallLoader">"#self.setupDelayLoad(#arg[1])"</property>
+	</component>
+	<component name="BuriExecuteInterceptor" class="org.seasar.buri.common.delayloader.interceptor.ExecuteInterceptor">
+		<property name="keyOgnl">"#arg[0].getCallPath().getWorkflowPackage()"</property>
+	</component>
+
 	
 	<component name="rootDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
 	</component>

@@ -56,6 +56,10 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         roleMap.put(packageId,provider);
     }
     
+    public void setupDelayLoad(String resourceName) {
+        packageObjs.put(resourceName,null);
+    }
+    
     public boolean hasPackage(String packageName) {
         if(packageObjs.containsKey(packageName)) {
             return true;

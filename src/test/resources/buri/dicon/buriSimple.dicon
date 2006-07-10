@@ -39,6 +39,11 @@
 			<arg><component class="org.seasar.buri.engine.selector.processImpl.DirectProcessSelector">
 				</component></arg>
 		</initMethod>
+		
+		<!-- 遅延ロード用　遅延ロードさせたいときはここのコメントを外す-->
+		<aspect pointcut="execute,selectPackage">BuriExecuteInterceptor</aspect>
+		<aspect pointcut="readWorkFlowFromResource">BuriResourceLoadInterceptor</aspect>
+		<!-- -->
 	</component>
 
 
@@ -54,7 +59,7 @@
 	<component class="org.seasar.buri.dao.util.impl.BTIDUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
-	<component class="org.seasar.buri.dao.util.impl.BuriUndoLogUtilImpl">
+	<component class="org.seasar.buri.dao.util.impl.BuriUndoLogUtilNoImpl">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 

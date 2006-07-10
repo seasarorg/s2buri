@@ -8,8 +8,6 @@ import java.util.List;
 
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.BuriPath;
-import org.seasar.buri.engine.BuriSystemContext;
-import org.seasar.buri.engine.BuriUserContext;
 import org.seasar.buri.engine.processor.BuriAutoSelectProcessor;
 import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;

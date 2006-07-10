@@ -33,4 +33,12 @@ public class BTIDUtilImpl implements BTIDUtil {
         Long val = new Long(btid);
         btidLocal.set(val);
     }
+
+    public BuriTransactionDao getBtDao() {
+        return btDao;
+    }
+
+    public void setBtDao(BuriTransactionDao btDao) {
+        this.btDao = btDao;
+    }
 }
