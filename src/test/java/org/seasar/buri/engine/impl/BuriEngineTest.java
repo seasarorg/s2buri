@@ -65,6 +65,8 @@ public class BuriEngineTest extends S2TestCase {
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("basicTest.test02.start",userContext);
         sysContext.setTgtClass(BuriTestINTDto.class);
+        BuriExePackages packages = engine.selectPackage(sysContext);
+        BuriExecProcess process =  packages.getProcess(sysContext.getCallPath());
 
         int stateSize = stateDao_.getAllBuriState().size();
         engine.execute(sysContext,null);
@@ -72,8 +74,6 @@ public class BuriEngineTest extends S2TestCase {
         assertTrue(testDto.getTestID() != 0);
         assertEquals(stateSize+1,stateDao_.getNoProcessBuriState().size());
         
-        BuriExePackages packages = engine.selectPackage(sysContext);
-        BuriExecProcess process =  packages.getProcess(sysContext.getCallPath());
         System.out.println("buriEngine.getStatePathListByData");
         
         Collection pathList = dataUtil.getBuriPathByDto(testDto,(DataAccessFactory)process,sysContext);

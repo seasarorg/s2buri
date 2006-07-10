@@ -57,6 +57,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
     
     public void setupDelayLoad(String resourceName) {
+        if(packageObjs.containsKey(resourceName)) {
+            return;
+        }
         packageObjs.put(resourceName,null);
     }
     
