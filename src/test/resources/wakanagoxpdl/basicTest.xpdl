@@ -2007,6 +2007,128 @@
 <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp5" Name="test14">
+<ProcessHeader>
+<Created>2006-07-15 17:21:18</Created>
+<ValidFrom>2001-01-01 00:00:00</ValidFrom>
+<ValidTo>2006-07-15 17:21:18</ValidTo>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp5_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,62"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act3" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="506,61"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act2" Name="stop">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#flow=1"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="340,61"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp5_act1" Id="basicTest_wp5_tra1" To="basicTest_wp5_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp5_act2" Id="basicTest_wp5_tra2" To="basicTest_wp5_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp51" Name="test14">
+<ProcessHeader>
+<Created>2006-07-15 17:21:18</Created>
+<ValidFrom>2006-07-15 17:21:18</ValidFrom>
+<ValidTo>2050-01-01 00:00:00</ValidTo>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp5_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,62"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act3" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="506,61"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act2" Name="stop">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#flow=2"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="340,61"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp5_act1" Id="basicTest_wp5_tra1" To="basicTest_wp5_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp5_act2" Id="basicTest_wp5_tra2" To="basicTest_wp5_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
 </WorkflowProcesses>
 <ExtendedAttributes>
 <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>

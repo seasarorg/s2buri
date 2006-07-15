@@ -39,6 +39,10 @@
 			<arg><component class="org.seasar.buri.engine.selector.processImpl.DirectProcessSelector">
 				</component></arg>
 		</initMethod>
+		<initMethod name="addProcessSelector">
+			<arg><component class="org.seasar.buri.engine.selector.processImpl.DateProcessSelector">
+				</component></arg>
+		</initMethod>
 		
 		<!-- 遅延ロード用　遅延ロードさせたいときはここのコメントを外す
 		<aspect pointcut="execute,selectPackage">BuriExecuteInterceptor</aspect>

@@ -7,6 +7,8 @@ package org.seasar.buri.engine.impl;
 import java.util.Collection;
 import java.util.List;
 
+import jp.starlogic.util.datetime.UtilCalendar;
+
 import org.seasar.buri.dao.BuriPathDao;
 import org.seasar.buri.dao.BuriStateDao;
 import org.seasar.buri.dao.util.BuriDataUtil;
@@ -18,6 +20,7 @@ import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
 import org.seasar.buri.engine.WakanagoEngine;
 import org.seasar.buri.engine.service.impl.BuriTimerService;
+import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
@@ -759,6 +762,58 @@ public class BuriEngineTest extends S2TestCase {
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(1,postState.size());
         assertEquals(getPathName(postState.get(0)),"basicTest.test13.end");
+        
+        
+    }
+    
+    public void test14_1Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test14.start",userContext);
+        
+        BuriExePackages packages = engine.selectPackage(sysContext);
+        BuriWorkflowProcessType process = packages.getBuriPackageType().getProcessById("basicTest_wp5");
+        UtilCalendar calendar = (UtilCalendar)UtilCalendar.getInstance(); 
+        calendar.addSecond(-5);
+        process.setValidTo(calendar.getTime());
+
+        process = packages.getBuriPackageType().getProcessById("basicTest_wp51");
+        process.setValidFrom(calendar.getTime());
+        
+        Object result = engine.execute(sysContext,"#flow");
+        Integer flowID = (Integer)result;
+        assertEquals(new Integer(1),flowID);
+        
+        
+    }
+    
+    public void test14_2Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test14.start",userContext);
+        
+        BuriExePackages packages = engine.selectPackage(sysContext);
+        BuriWorkflowProcessType process = packages.getBuriPackageType().getProcessById("basicTest_wp5");
+        UtilCalendar calendar = (UtilCalendar)UtilCalendar.getInstance(); 
+        calendar.addSecond(5);
+        process.setValidTo(calendar.getTime());
+
+        process = packages.getBuriPackageType().getProcessById("basicTest_wp51");
+        process.setValidFrom(calendar.getTime());
+        
+        Object result = engine.execute(sysContext,"#flow");
+        Integer flowID = (Integer)result;
+        assertEquals(new Integer(1),flowID);
         
         
     }

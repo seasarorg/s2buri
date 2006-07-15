@@ -16,6 +16,11 @@ public class DirectProcessSelector extends AbstractBuriProcessSelector {
         if(procs.size() > 0) {
             return false;
         }
+        String processName = systemContext.getCallPath().getWorkflowProcess();
+        List tgts = exePackages.getBuriPackageType().getProcessByName(processName);
+        if(tgts.size() > 1) {
+            return false;
+        }
         return true;
     }
 
