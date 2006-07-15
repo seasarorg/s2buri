@@ -50,7 +50,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
     public boolean isUserInRole(Object userData, String participantName, String participantType) {
         BuriExcelPrtiPrvidrRootDto rootDto = getRootDto();
         BuriExcelPrtiPrvidrItemDto itemDto = new BuriExcelPrtiPrvidrItemDto();
-        itemDto.setId(getUserIDString(userData, participantType));
+        itemDto.setId(getUserIDNum(userData, participantType));
         itemDto.setName(getUserIDString(userData, participantType));
         itemDto = (BuriExcelPrtiPrvidrItemDto)rootDto.getHierarchy().get(itemDto.getItemKey());
         if(itemDto == null) {
@@ -64,6 +64,9 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
 
     public String getUserIDString(Object userData, String participantType) {
         BuriExcelPrtiPrvidrRootDto dto = getRootDto();
+        if(dto.getConvName() == null) {
+            return null;
+        }
         Map context = new HashMap();
         context.put("userData",userData);
         ScriptProcessor processor = new ScriptProcessor();
@@ -73,6 +76,9 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
 
     public Long getUserIDNum(Object userData, String participantType) {
         BuriExcelPrtiPrvidrRootDto dto = getRootDto();
+        if(dto.getConvId() == null) {
+            return null;
+        }
         Map context = new HashMap();
         context.put("userData",userData);
         ScriptProcessor processor = new ScriptProcessor();
@@ -98,13 +104,28 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         return true;
     }
     
+    protected Long getContextUserIDNum(ParticipantContext context) {
+        if(context.getActionUserIdNum() != null) {
+            return context.getActionUserIdNum();
+        }
+        return new Long(0);
+    }
+    
+    protected String getContextUserIDVal(ParticipantContext context) {
+        if(context.getActionUserIdVal() != null) {
+            return context.getActionUserIdVal();
+        }
+        return "";
+    }
+    
     protected List findParticipantName(ParticipantContext context) {
         List result = new ArrayList();
         BuriExcelPrtiPrvidrRootDto rootDto = getRootDto();
         BuriExcelPrtiPrvidrItemDto itemDto = new BuriExcelPrtiPrvidrItemDto();
-        itemDto.setId(context.getActionUserIdNum().toString());
-        itemDto.setName(context.getActionUserIdVal());
-        itemDto = (BuriExcelPrtiPrvidrItemDto)rootDto.getHierarchy().get(itemDto.getItemKey());
+        itemDto.setId(getContextUserIDNum(context));
+        itemDto.setName(getContextUserIDVal(context));
+        String itemKey = itemDto.getItemKey();
+        itemDto = (BuriExcelPrtiPrvidrItemDto)rootDto.getHierarchy().get(itemKey);
         if(itemDto == null) {
             return result;
         }
@@ -154,7 +175,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         while(ite.hasNext()) {
             BuriExcelPrtiPrvidrItemDto itemDto = (BuriExcelPrtiPrvidrItemDto)ite.next();
             RoleInfo info = new RoleInfo();
-            info.setIdNum(new Long(itemDto.getId()));
+            info.setIdNum(itemDto.getId());
             info.setIdVar(itemDto.getName());
             result.add(info);
         }

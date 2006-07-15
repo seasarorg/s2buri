@@ -50,7 +50,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
             mode = checkMode(contents,mode);
             switch (mode) {
             case 1:
-                parseLimit(dto,sheet,i);
+                parseValid(dto,sheet,i);
                 break;
             case 2:
                 parseConvert(dto,sheet,i);
@@ -91,7 +91,15 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
     
     protected void setupLeftItem(BuriExcelPrtiPrvidrRootDto dto,BuriExcelPrtiPrvidrHedDto hedDto,BuriExcelPrtiPrvidrItemDto item) {
         if( hedDto.getSeq() > 0) {
-            BuriExcelPrtiPrvidrItemDto left = (BuriExcelPrtiPrvidrItemDto)dto.getHierList().get(hedDto.getSeq()-1);
+            BuriExcelPrtiPrvidrItemDto left;
+            if(hedDto.getSeq() > dto.getHierList().size()) {
+                left = (BuriExcelPrtiPrvidrItemDto)dto.getHierList().get(dto.getHierList().size()-1);
+                for(int i=dto.getHierList().size()-1; i < hedDto.getSeq()-1 ; i++) {
+                    dto.getHierList().add(left);
+                }
+            } else {
+                left = (BuriExcelPrtiPrvidrItemDto)dto.getHierList().get(hedDto.getSeq()-1);
+            }
             left.getRights().add(item);
             item.getLefts().add(left);
         }
@@ -111,7 +119,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
             return null;
         }
         BuriExcelPrtiPrvidrItemDto item = new BuriExcelPrtiPrvidrItemDto();
-        item.setId(id);
+        item.setId(new Long(id));
         item.setName(name);
         if(dto.getHierarchy().containsKey(item.getItemKey())) {
             item = (BuriExcelPrtiPrvidrItemDto)dto.getHierarchy().get(item.getItemKey());
@@ -163,7 +171,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
         }
     }
     
-    protected void parseLimit(BuriExcelPrtiPrvidrRootDto dto,Sheet sheet,int row) {
+    protected void parseValid(BuriExcelPrtiPrvidrRootDto dto,Sheet sheet,int row) {
         Cell cell = sheet.getCell(2,row);
         if(StringUtil.isEmpty(cell.getContents())) {
             return;
@@ -179,7 +187,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
     
     protected int checkMode(String contents,int nowMode) {
         int mode = nowMode;
-        if(contents.equalsIgnoreCase("limit")) {
+        if(contents.equalsIgnoreCase("valid")) {
             mode = 1;
         } else if(contents.equalsIgnoreCase("convert")) {
             mode = 2;

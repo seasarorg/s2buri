@@ -8,17 +8,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BuriExcelPrtiPrvidrItemDto {
-    private String id;
-    private String name;
+    private Long id = new Long(0);
+    private String name="";
     private Set roles = new HashSet();
     
     private Set lefts = new HashSet();
     private Set rights = new HashSet();
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public Set getLefts() {
