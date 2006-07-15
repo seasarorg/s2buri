@@ -141,7 +141,6 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
             assert ! StringUtil.isEmpty(name);
             List list = (List)buriPackage.getProcessByName(name);
             assert list != null;
-            assert list.size() == 1 : "processName‚É“¯–¼‚ğ”­Œ©II –¢‘Î‰";
             process = (BuriWorkflowProcessType)list.get(0);
         }
         return process.getId();
