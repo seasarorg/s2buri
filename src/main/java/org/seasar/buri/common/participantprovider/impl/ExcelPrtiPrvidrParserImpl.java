@@ -113,7 +113,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
         item.setId(itemID);
         String name = getNameColItemDto(hedDto,sheet,row);
         item.setName(name);
-        if(itemID ==null && name==null) {
+        if(itemID ==null && StringUtil.isEmpty(name)) {
             return null;
         }
         if(dto.getHierarchy().containsKey(item.getItemKey())) {

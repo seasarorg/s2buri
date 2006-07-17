@@ -36,6 +36,7 @@ public class StandardBuriProcessor02Test extends S2TestCase {
     
     public void test01Tx() {
         readXlsWriteDb("StdTestData.xls");
+        participantProvider = (ParticipantProvider)getComponent("StdTestParticipantProvider");
         buriEngine.readWorkFlowFromResource("wakanagoxpdl/stdTest.xpdl","stdTest",participantProvider);
         
         ItemDto itemDto1 = itemDao.getItem(1);
@@ -108,6 +109,7 @@ public class StandardBuriProcessor02Test extends S2TestCase {
     
     public void test02Tx() {
         readXlsWriteDb("StdTestData.xls");
+        participantProvider = (ParticipantProvider)getComponent("StdTestParticipantProvider");
         buriEngine.readWorkFlowFromResource("wakanagoxpdl/stdTest.xpdl","stdTest",participantProvider);
         
         ItemDto itemDto1 = itemDao.getItem(1);

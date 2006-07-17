@@ -46,6 +46,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected List processSelector = new ArrayList();
     protected S2Container container;
     protected ScriptFactory scriptFactory;
+    protected boolean finSetup = false;
     
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
         readFromResource(workFlowName,resourceName,null);
@@ -63,11 +64,15 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
     
     public void setupBuriEngineConfig(BuriEngineConfig engineConfig) {
+        if(finSetup) {
+            return;
+        }
         Iterator ite = engineConfig.getResourceConfigs().iterator();
         while(ite.hasNext()) {
             BuriConfigDto dto = (BuriConfigDto)ite.next();
             readWorkFlowFromResource(dto.getFileName(),dto.getPackageName(),dto.getProvider());
         }
+        finSetup = true;
     }
     
     public void setupDelayLoad(String resourceName) {
