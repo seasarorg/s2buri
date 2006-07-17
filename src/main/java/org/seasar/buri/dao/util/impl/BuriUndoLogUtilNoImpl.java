@@ -14,7 +14,6 @@ public class BuriUndoLogUtilNoImpl implements BuriUndoLogUtil {
     
     
     public void addUndoLog(long stateID,long branchID) {
-        undoDao.addUndoLog(stateID,0,btidUtil.getCurrentBTID());
     }
 
 

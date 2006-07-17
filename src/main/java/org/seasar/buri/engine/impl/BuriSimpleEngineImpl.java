@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.engine.impl;
 
+import org.seasar.buri.compiler.BuriCompiler;
 import org.seasar.buri.dao.BuriPathDataDao;
 import org.seasar.buri.dataaccess.BuriDataAccessFactory;
 import org.seasar.buri.dto.BuriPathDataEntityDto;
@@ -11,6 +12,7 @@ import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
+import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
@@ -23,6 +25,12 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
     
     public void setupUserID(BuriSystemContext sysContext) {
         
+    }
+    
+    public void readWorkFlowFromResource(String workFlowName,String resourceName) {
+        readFromResource(workFlowName,resourceName,null);
+    }
+    public void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
     }
     
     protected void updateSystemContext(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
@@ -82,6 +90,13 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
 
     public void setPathDataDao(BuriPathDataDao pathDataDao) {
         this.pathDataDao = pathDataDao;
+    }
+
+    public BuriCompiler getBuriCompiler() {
+        return buriCompiler;
+    }
+    public void setBuriCompiler(BuriCompiler buriCompiler) {
+        this.buriCompiler = buriCompiler;
     }
 
 }

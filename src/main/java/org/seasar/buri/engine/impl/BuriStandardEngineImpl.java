@@ -4,14 +4,21 @@
  */
 package org.seasar.buri.engine.impl;
 
+import org.seasar.buri.compiler.BuriCompiler;
 import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.engine.BuriSystemContext;
+import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 
 public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
     private BuriUserUtil userUtil;
     
+    public void readWorkFlowFromResource(String workFlowName,String resourceName) {
+    }
+    public void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
+        readFromResource(workFlowName,resourceName,provider);
+    }
     
     public void setupUserID(BuriSystemContext sysContext) {
         BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
@@ -34,6 +41,13 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
     }
     public void setUserUtil(BuriUserUtil userUtil) {
         this.userUtil = userUtil;
+    }
+
+    public BuriCompiler getBuriCompiler() {
+        return buriCompiler;
+    }
+    public void setBuriCompiler(BuriCompiler buriCompiler) {
+        this.buriCompiler = buriCompiler;
     }
 
 }

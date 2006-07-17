@@ -24,7 +24,7 @@
 <Activities>
 <Activity Id="newpkg_wp1_act1" Name="開示依頼">
 <Implementation>
-<Tool Id="OgnlInvoker"/>
+<No/>
 </Implementation>
 <Performer>newpkg_par2</Performer>
 <ExtendedAttributes>
@@ -34,9 +34,12 @@
 </Activity>
 <Activity Id="newpkg_wp1_act2" Name="開示承認待ち">
 <Implementation>
-<Tool Id="OgnlInvoker"/>
+<No/>
 </Implementation>
 <Performer>newpkg_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="240,57"/>
@@ -44,9 +47,12 @@
 </Activity>
 <Activity Id="newpkg_wp1_act3" Name="情報破棄確認待ち">
 <Implementation>
-<Tool Id="OgnlInvoker"/>
+<No/>
 </Implementation>
 <Performer>newpkg_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="501,40"/>
@@ -57,6 +63,9 @@
 <No/>
 </Implementation>
 <Performer>newpkg_par2</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
 <TransitionRestrictions>
 <TransitionRestriction>
 <Split Type="XOR">
@@ -97,26 +106,35 @@
 <No/>
 </Implementation>
 <Performer>newpkg_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="654,108"/>
 </ExtendedAttributes>
 </Activity>
-<Activity Id="newpkg_wp1_act31" Name="情報破棄確認待ち">
+<Activity Id="newpkg_wp1_act31" Name="情報破棄確認済み">
 <Implementation>
 <No/>
 </Implementation>
 <Performer>newpkg_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="630,36"/>
 </ExtendedAttributes>
 </Activity>
-<Activity Id="newpkg_wp1_act71" Name="情報返却確認待ち">
+<Activity Id="newpkg_wp1_act71" Name="情報返却確認済み">
 <Implementation>
 <No/>
 </Implementation>
 <Performer>newpkg_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="newpkg_par1"/>
 <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="768,107"/>
@@ -137,7 +155,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="newpkg_wp1_act4" Id="newpkg_wp1_tra3" To="newpkg_wp1_act5">
-<Condition Type="CONDITION"/>
+<Condition Type="CONDITION">#action == "drop"</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
@@ -149,7 +167,7 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="newpkg_wp1_act4" Id="newpkg_wp1_tra5" To="newpkg_wp1_act6">
-<Condition Type="CONDITION"/>
+<Condition Type="CONDITION">#action == "return"</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
@@ -397,14 +415,14 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="newpkg_wp12_act1" Id="newpkg_wp12_tra6" To="newpkg_wp12_act2">
-<Condition Type="EXCEPTION"/>
+<Condition Type="CONDITION"/>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="339,276"/>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="newpkg_wp12_act2" Id="newpkg_wp12_tra7" To="newpkg_wp12_act1">
-<Condition Type="EXCEPTION"/>
+<Condition Type="CONDITION"/>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="411,278"/>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>

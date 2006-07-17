@@ -12,6 +12,7 @@ import jxl.Cell;
 import jxl.DateCell;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.biff.EmptyCell;
 
 import org.seasar.buri.common.participantprovider.ExcelPrtiPrvidrParser;
 import org.seasar.buri.common.util.ExcelIOUtil;
@@ -106,26 +107,47 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
     }
     
     protected BuriExcelPrtiPrvidrItemDto getBuriExcelPrtiPrvidrItemDto(BuriExcelPrtiPrvidrRootDto dto,BuriExcelPrtiPrvidrHedDto hedDto,Sheet sheet,int row) {
-        int idCol = hedDto.getIdPos();
-        Cell idCell = sheet.getCell(idCol,row);
-        if(idCell.getContents().equalsIgnoreCase("id")) {
-            return null;
-        }
-        int nameCol = hedDto.getNamePos();
-        Cell nameCell = sheet.getCell(nameCol,row);
-        String id = idCell.getContents();
-        String name = nameCell.getContents();
-        if((id+name).length() == 0) {
-            return null;
-        }
         BuriExcelPrtiPrvidrItemDto item = new BuriExcelPrtiPrvidrItemDto();
-        item.setId(new Long(id));
+        
+        Long itemID = getIdColItemDto(hedDto,sheet,row);
+        item.setId(itemID);
+        String name = getNameColItemDto(hedDto,sheet,row);
         item.setName(name);
+        if(itemID ==null && name==null) {
+            return null;
+        }
         if(dto.getHierarchy().containsKey(item.getItemKey())) {
             item = (BuriExcelPrtiPrvidrItemDto)dto.getHierarchy().get(item.getItemKey());
         }
         item.getRoles().add(hedDto.getRoleName());
         return item;
+    }
+    
+    protected String getNameColItemDto(BuriExcelPrtiPrvidrHedDto hedDto,Sheet sheet,int row) {
+        int nameCol = hedDto.getNamePos();
+        Cell nameCell = sheet.getCell(nameCol,row);
+        String name = null;
+        if(! (nameCell instanceof EmptyCell)) {
+            name = nameCell.getContents();
+        }
+        return name;
+    }
+    
+    protected Long getIdColItemDto(BuriExcelPrtiPrvidrHedDto hedDto,Sheet sheet,int row) {
+        int idCol = hedDto.getIdPos();
+        Cell idCell = sheet.getCell(idCol,row);
+        String id = null;
+        if(! (idCell instanceof EmptyCell)) {
+            id = idCell.getContents();
+            if(StringUtil.isEmpty(id)) {
+                return null;
+            }
+            if(id.equalsIgnoreCase("id")) {
+                return null;
+            }
+            return new Long(id);
+        }
+        return null;
     }
     
     protected void parseContentHed(BuriExcelPrtiPrvidrRootDto dto,Sheet sheet,int row) {

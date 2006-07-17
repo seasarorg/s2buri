@@ -23,5 +23,12 @@
 	<component name="ShippingItemBao" class="org.seasar.buri.bao.ShippingItemBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
+
+	<component name="PrivacyInfoManagementBao" class="org.seasar.buri.bao.PrivacyInfoManagementBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+	
+	<component name="buriUser" class="org.seasar.buri.dto.BuriTestUserDto">
+	</component>
 	
 </components>

@@ -105,17 +105,11 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
     }
     
     protected Long getContextUserIDNum(ParticipantContext context) {
-        if(context.getActionUserIdNum() != null) {
-            return context.getActionUserIdNum();
-        }
-        return new Long(0);
+        return context.getActionUserIdNum();
     }
     
     protected String getContextUserIDVal(ParticipantContext context) {
-        if(context.getActionUserIdVal() != null) {
-            return context.getActionUserIdVal();
-        }
-        return "";
+        return context.getActionUserIdVal();
     }
     
     protected List findParticipantName(ParticipantContext context) {

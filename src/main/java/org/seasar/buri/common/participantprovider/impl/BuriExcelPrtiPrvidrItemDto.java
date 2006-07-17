@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BuriExcelPrtiPrvidrItemDto {
-    private Long id = new Long(0);
-    private String name="";
+    private Long id;
+    private String name;
     private Set roles = new HashSet();
     
     private Set lefts = new HashSet();

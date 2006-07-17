@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.seasar.buri.compiler.BuriCompiler;
+import org.seasar.buri.engine.BuriConfigDto;
+import org.seasar.buri.engine.BuriEngineConfig;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
@@ -46,14 +48,26 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected ScriptFactory scriptFactory;
     
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
-        readWorkFlowFromResource(workFlowName,resourceName,null);
+        readFromResource(workFlowName,resourceName,null);
     }
     public void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
+        readFromResource(workFlowName,resourceName,provider);
+    }
+    
+    public void readFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
         BuriExePackages exePackages = buriCompiler.CompileResource(workFlowName,provider);
         String packageId = exePackages.getBuriPackageType().getId();
         packageObjs.put(packageId,exePackages);
         packageObjs.put(resourceName,exePackages);
         roleMap.put(packageId,provider);
+    }
+    
+    public void setupBuriEngineConfig(BuriEngineConfig engineConfig) {
+        Iterator ite = engineConfig.getResourceConfigs().iterator();
+        while(ite.hasNext()) {
+            BuriConfigDto dto = (BuriConfigDto)ite.next();
+            readWorkFlowFromResource(dto.getFileName(),dto.getPackageName(),dto.getProvider());
+        }
     }
     
     public void setupDelayLoad(String resourceName) {

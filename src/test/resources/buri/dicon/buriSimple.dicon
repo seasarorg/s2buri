@@ -44,6 +44,10 @@
 				</component></arg>
 		</initMethod>
 		
+		<initMethod name="setupBuriEngineConfig">
+			<arg>BuriEngineConfig</arg>
+		</initMethod>
+		
 		<!-- 遅延ロード用　遅延ロードさせたいときはここのコメントを外す
 		<aspect pointcut="execute,selectPackage">BuriExecuteInterceptor</aspect>
 		<aspect pointcut="readWorkFlowFromResource">BuriResourceLoadInterceptor</aspect>
