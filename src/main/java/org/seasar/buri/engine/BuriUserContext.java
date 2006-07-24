@@ -23,7 +23,11 @@ public class BuriUserContext extends HashMap{
         super.put("UserData",data);
     }
     public String getAction() {
-        return super.get("action").toString();
+    	Object action = super.get("action");
+    	if(action == null) {
+        	return null;
+    	}
+        return action.toString();
     }
     public void setAction(Object data) {
         super.put("action",data);

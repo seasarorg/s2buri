@@ -9,10 +9,11 @@ public class BuriDataPathHistoryEntityDto {
 	public static final String historyID_ID = "sequence, sequenceName=BurihistoryID";
 	private long historyID;
 	private Long pathID;
+	private String pathName;
 	private Long dataID;
     private String action;
     private Long buriUserID;
-    private long BTID;
+    private long BTID = 0;
 	private Date insertDate = new Timestamp((new Date()).getTime());
 
 	public BuriDataPathHistoryEntityDto() {
@@ -74,9 +75,18 @@ public class BuriDataPathHistoryEntityDto {
         this.buriUserID = buriUserID;
     }
 
-    public String toString() {
+    public String getPathName() {
+		return pathName;
+	}
+
+	public void setPathName(String pathName) {
+		this.pathName = pathName;
+	}
+
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/historyID=").append(historyID);
+		buff.append("/pathName=").append(pathName);
 		buff.append("/pathID=").append(pathID);
 		buff.append("/dataID=").append(dataID);
         buff.append("/action=").append(action);

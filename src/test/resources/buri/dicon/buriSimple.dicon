@@ -8,6 +8,9 @@
 	<component name="BuriInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
 		<initMethod name="add"><arg>traceInterceptor</arg></initMethod>
 	</component>
+	<component name="BuriRecorderInterceptor" class="org.seasar.buri.engine.interceptor.BuriRecorderInterceptor">
+	</component>
+
 	
 	<component class="org.seasar.buri.engine.processor.impl.SimpleBuriProcessorImpl">
 	</component>
@@ -103,6 +106,9 @@
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExeProcessDataAccess" instance="outer" >
 		<aspect>BuriInterceptorChain</aspect>
 		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
+		<!--
+		<initMethod name="addProcessAOP"><arg>BuriRecorderInterceptor</arg></initMethod>
+		-->
 		<initMethod name="addConditonAOP"><arg>traceInterceptor</arg></initMethod>
 		<property name="buriExePackages">null</property>
 		<property name="dataAccessFactory">

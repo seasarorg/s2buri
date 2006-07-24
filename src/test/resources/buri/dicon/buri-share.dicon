@@ -14,7 +14,7 @@
 		<initMethod>#self.addValue("DaoPackageName","org.seasar.buri.dao")</initMethod>
 	-->
 	</component>
-
+	
 	<component class="org.seasar.buri.common.delayloader.impl.DelayLoaderImpl">
 	</component>
 	<component name="BuriFileLoadInterceptor" class="org.seasar.buri.common.delayloader.interceptor.FileLoadInterceptor">

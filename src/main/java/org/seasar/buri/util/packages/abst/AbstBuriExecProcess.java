@@ -5,6 +5,7 @@
 package org.seasar.buri.util.packages.abst;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     protected S2Container container;
     protected BuriWorkflowProcessType process;
     protected InterceptorChain actionInterceptor = new InterceptorChain();
+    protected List actionInterceptors = new ArrayList();
     protected InterceptorChain conditionInterceptor = new InterceptorChain();
     
     protected BuriExePackages buriExePackages;
@@ -112,7 +114,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         Object result = null;
         BuriMethodInvocation invocation = createBuriMethodInvocation(invokeInfo);
         try{
-            result = invokeInfo.interceptorChain.invoke(invocation);
+            result = invocation.proceed(); //invokeInfo.interceptorChain.invoke(invocation);
         } catch(Throwable th) {
             if(th instanceof RuntimeException) {
                 throw (RuntimeException)th;
@@ -144,7 +146,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     private BuriMethodInvocation createBuriMethodInvocation(MethodInvokeInfo invokeInfo) {
         Method method = ClassUtil.getMethod(this.getClass(),invokeInfo.methodName+invokeInfo.mode,invokeInfo.methodArgType);
         Method dummyMethod = ClassUtil.getMethod(this.getClass(),invokeInfo.methodName,invokeInfo.dummyMethodArgType);
-        BuriMethodInvocation invocation = new BuriMethodInvocation();
+        BuriMethodInvocation invocation = new BuriMethodInvocation(actionInterceptors);
         invocation.setArguments(invokeInfo.dummyArgs);
         invocation.setMethod(dummyMethod);
         invocation.setThisObject(this);
@@ -227,6 +229,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     
     public void addProcessAOP(MethodInterceptor interceptor) {
         actionInterceptor.add(interceptor);
+        actionInterceptors.add(interceptor);
     }
     
     public void addConditonAOP(MethodInterceptor interceptor) {

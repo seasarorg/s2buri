@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.seasar.buri.dao.BuriDataPathHistoryDao;
 import org.seasar.buri.dto.FurnitureItemDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
@@ -18,6 +19,7 @@ public class SimpleBuriProcessorTest extends S2TestCase {
     private String PATH = "WakanagoCompile.dicon";
     private BuriEngine buriEngine;
     private SimpleBuriProcessor invoker_;
+    private BuriDataPathHistoryDao historyDao;
     
     public SimpleBuriProcessorTest(String arg0) {
         super(arg0);
@@ -96,6 +98,8 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         System.out.println(datas);
         assertEquals(datas.size(),0);
 //        }
+        List history = historyDao.getAllBuriDataPathHistory();
+        System.out.println(history);
     }
     
 
