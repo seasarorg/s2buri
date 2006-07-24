@@ -21,7 +21,6 @@ import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.script.Script;
 import org.seasar.coffee.script.ScriptFactory;
-import org.seasar.framework.aop.interceptors.InterceptorChain;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.ClassUtil;
@@ -31,9 +30,8 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     protected ScriptFactory scriptFactory;
     protected S2Container container;
     protected BuriWorkflowProcessType process;
-    protected InterceptorChain actionInterceptor = new InterceptorChain();
     protected List actionInterceptors = new ArrayList();
-    protected InterceptorChain conditionInterceptor = new InterceptorChain();
+    protected List conditionInterceptors = new ArrayList();
     
     protected BuriExePackages buriExePackages;
     
@@ -106,7 +104,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         invokeInfo.dummyMethodArgType = new Class[]{BuriUserContext.class,BuriPath.class};
         invokeInfo.methodName = actId;
         invokeInfo.mode = mode;
-        invokeInfo.interceptorChain = actionInterceptor;
+        invokeInfo.interceptors = actionInterceptors;
         runThisMethodName(invokeInfo);
     }
     
@@ -137,7 +135,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         
         invokeInfo.methodName = methodName;
         invokeInfo.mode = "_condition";
-        invokeInfo.interceptorChain = conditionInterceptor;
+        invokeInfo.interceptors = conditionInterceptors;
         Object result = runThisMethodName(invokeInfo);
         assert result instanceof Boolean: methodName + "‚Ì–ß‚è’l‚ªBooleanˆÈŠO‚Å‚·(" + result + ")";
         return (Boolean)result;
@@ -146,7 +144,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     private BuriMethodInvocation createBuriMethodInvocation(MethodInvokeInfo invokeInfo) {
         Method method = ClassUtil.getMethod(this.getClass(),invokeInfo.methodName+invokeInfo.mode,invokeInfo.methodArgType);
         Method dummyMethod = ClassUtil.getMethod(this.getClass(),invokeInfo.methodName,invokeInfo.dummyMethodArgType);
-        BuriMethodInvocation invocation = new BuriMethodInvocation(actionInterceptors);
+        BuriMethodInvocation invocation = new BuriMethodInvocation(invokeInfo.interceptors);
         invocation.setArguments(invokeInfo.dummyArgs);
         invocation.setMethod(dummyMethod);
         invocation.setThisObject(this);
@@ -165,7 +163,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         public Object dummyArgs[];
         public Class methodArgType[];
         public Object args[];
-        public InterceptorChain interceptorChain;
+        public List interceptors;
     }
     
     protected void startActivity(BuriSystemContext sysContext,BranchWalker walker) {
@@ -228,12 +226,11 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     
     
     public void addProcessAOP(MethodInterceptor interceptor) {
-        actionInterceptor.add(interceptor);
         actionInterceptors.add(interceptor);
     }
     
     public void addConditonAOP(MethodInterceptor interceptor) {
-        conditionInterceptor.add(interceptor);
+        conditionInterceptors.add(interceptor);
     }
 
     
