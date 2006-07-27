@@ -818,6 +818,245 @@ public class BuriEngineTest extends S2TestCase {
         
     }
     
+    public void test15_1Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test15.start",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.branch");
+
+        
+        userContext = engine.createUserContext(testDto,null,"",null);
+        sysContext = engine.createSystemContext("basicTest.test15.branch",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        
+        
+        
+        userContext = engine.createUserContext(testDto,null,"xor",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc2",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
+        
+    }
+    
+    public void test15_2Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test15.start",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.branch");
+
+        
+        userContext = engine.createUserContext(testDto,null,"",null);
+        sysContext = engine.createSystemContext("basicTest.test15.branch",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        
+        
+        
+        userContext = engine.createUserContext(testDto,null,"and",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc2",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        
+        
+        
+        userContext = engine.createUserContext(testDto,null,"and",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc1",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
+        
+    }
+    
+    public void test15_3Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test15.start",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.branch");
+
+        
+        userContext = engine.createUserContext(testDto,null,"",null);
+        sysContext = engine.createSystemContext("basicTest.test15.branch",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        
+        
+        
+        userContext = engine.createUserContext(testDto,null,"and",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc2",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        
+        
+        testDto.setValue("retry");
+        userContext = engine.createUserContext(testDto,null,"xor",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc1",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.toRetry");
+        
+    }
+    
+    public void test15_4Tx() throws InterruptedException {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test15.start",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.branch");
+
+        
+        userContext = engine.createUserContext(testDto,null,"",null);
+        sysContext = engine.createSystemContext("basicTest.test15.branch",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        
+        
+        
+        userContext = engine.createUserContext(testDto,null,"and",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc2",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        
+        
+        testDto.setValue("retry");
+        userContext = engine.createUserContext(testDto,null,"xor",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc1",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.toRetry");
+        
+        
+        
+        testDto.setValue("testValue");
+        userContext = engine.createUserContext(testDto,null,"",null);
+        sysContext = engine.createSystemContext("basicTest.test15.toRetry",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.branch");
+        
+        
+        userContext = engine.createUserContext(testDto,null,"",null);
+        sysContext = engine.createSystemContext("basicTest.test15.branch",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(2,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
+        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,"and",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc1",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc2");
+        
+        
+        userContext = engine.createUserContext(testDto,null,"and",null);
+        sysContext = engine.createSystemContext("basicTest.test15.proc2",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
+        
+        
+        
+    }
+
+
     protected String getPathName(Object postData) {
         System.out.println(postData);
         BuriStateEntityDto stateDto = (BuriStateEntityDto)postData;
