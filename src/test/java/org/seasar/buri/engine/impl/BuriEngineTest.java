@@ -5,6 +5,7 @@
 package org.seasar.buri.engine.impl;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import jp.starlogic.util.datetime.UtilCalendar;
@@ -541,8 +542,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test12.State2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test12.State1");
+        paths.add("basicTest.test12.State2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         userContext = engine.createUserContext(testDto,null,null,null);
@@ -590,8 +594,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test12.State2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test12.State1");
+        paths.add("basicTest.test12.State2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         userContext = engine.createUserContext(testDto,null,null,null);
@@ -631,8 +638,10 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test12.State1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test12.State2");
+        paths.add("basicTest.test12.State1");
+        paths.add("basicTest.test12.State2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test12.State1",userContext);
@@ -680,8 +689,11 @@ public class BuriEngineTest extends S2TestCase {
         postState = stateDao_.getNoProcessBuriState();
         System.out.println(postState);
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test13.State1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test13.State2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test13.State1");
+        paths.add("basicTest.test13.State2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         userContext = engine.createUserContext(testDto,null,null,null);
@@ -720,8 +732,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test13.State1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test13.State2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test13.State1");
+        paths.add("basicTest.test13.State2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         userContext = engine.createUserContext(testDto,null,"loop",null);
@@ -751,8 +766,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test13.State1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test13.State2");
+        paths = new HashSet();
+        paths.add("basicTest.test13.State1");
+        paths.add("basicTest.test13.State2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test13.State1",userContext);
@@ -842,8 +860,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test15.proc1");
+        paths.add("basicTest.test15.proc2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         
@@ -882,8 +903,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test15.proc1");
+        paths.add("basicTest.test15.proc2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         
@@ -933,8 +957,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test15.proc1");
+        paths.add("basicTest.test15.proc2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         
@@ -984,8 +1011,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        HashSet paths = new HashSet();
+        paths.add("basicTest.test15.proc1");
+        paths.add("basicTest.test15.proc2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         
@@ -1029,8 +1059,11 @@ public class BuriEngineTest extends S2TestCase {
         
         postState = stateDao_.getNoProcessBuriState();
         assertEquals(2,postState.size());
-        assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
-        assertEquals(getPathName(postState.get(1)),"basicTest.test15.proc2");
+        paths = new HashSet();
+        paths.add("basicTest.test15.proc1");
+        paths.add("basicTest.test15.proc2");
+        assertTrue(paths.contains(getPathName(postState.get(0))));
+        assertTrue(paths.contains(getPathName(postState.get(1))));
         
         
         userContext = engine.createUserContext(testDto,null,"and",null);

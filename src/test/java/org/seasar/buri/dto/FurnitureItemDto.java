@@ -9,7 +9,7 @@ import java.util.Date;
 public class FurnitureItemDto {
     public static final String TABLE = "FurnitureItem";
 
-    public static final String furnitureID_ID = "sequence, sequenceName=FurnitureID";
+    public static final String furnitureID_ID = "sequence, sequenceName=FurnitureItemID";
     private long FurnitureID;
     private String Type;
     private String Name;

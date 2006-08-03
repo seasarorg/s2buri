@@ -32,6 +32,7 @@
 		<property name="user">"xxx"</property>
 		<property name="password">"xxx"</property>
 	</component>
+	-->
 
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
@@ -44,8 +45,8 @@
 		<property name="user">"buri"</property>
 		<property name="password">"buriburi"</property>
 	</component>
-	-->
 
+	<!--
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">
@@ -55,6 +56,7 @@
 			"jdbc:derby:db/buri;create=true"
 		</property>
 	</component>
+	-->
 
 
 	<component name="connectionPool"

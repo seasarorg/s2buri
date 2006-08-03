@@ -6,7 +6,7 @@ import java.util.Date;
 public class BuriDataPathHistoryEntityDto {
 	public static final String TABLE = "BuriDataPathHistory";
 
-	public static final String historyID_ID = "sequence, sequenceName=BurihistoryID";
+	public static final String historyID_ID = "sequence, sequenceName=BuriDataPathHistoryID";
 	private long historyID;
 	private Long pathID;
 	private String pathName;

@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.dao.util;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -73,16 +74,27 @@ public class BuriDataUtilTest extends S2TestCase {
         path = new BuriPath("pkg.prces.act");
         List pathList = pathUtil.getBuriPathFromPathName(path);
         
+        
+        HashSet plains = new HashSet();
+        plains.add("rpkg.rproces.ract");
+        plains.add("rpkg.rproces.ract2");
+        
         Iterator ite = pathList.iterator();
         path = (BuriPath)ite.next();
         assertEquals(path.getPlainName(),"pkg.prces.act");
-        assertEquals(path.getRealPath().getPlainName(),"rpkg.rproces.ract");
+//        assertEquals(path.getRealPath().getPlainName(),"rpkg.rproces.ract");
+        assertTrue(plains.contains(path.getRealPath().getPlainName()));
         assertTrue(realPath.getBuriPathID() != 0);
-            
+        plains.remove(path.getRealPath().getPlainName());
+        
         path = (BuriPath)ite.next();
         assertEquals(path.getPlainName(),"pkg.prces.act");
-        assertEquals(path.getRealPath().getPlainName(),"rpkg.rproces.ract2");
+//        assertEquals(path.getRealPath().getPlainName(),"rpkg.rproces.ract2");
+        assertTrue(plains.contains(path.getRealPath().getPlainName()));
         assertTrue(realPath.getBuriPathID() != 0);
+        plains.remove(path.getRealPath().getPlainName());
+        
+        assertTrue(plains.size()==0);
         
         path = new BuriPath("pkg.prces.act","rpkg.rproces.ract");
         realPath = pathUtil.getBuriPathFromRealPath(path);

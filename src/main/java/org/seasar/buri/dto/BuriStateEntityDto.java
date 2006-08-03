@@ -8,7 +8,7 @@ public class BuriStateEntityDto {
 	public static final String TABLE = "BuriState";
 
 //	public static final String stateID_ID = "assigned";;
-    public static final String stateID_ID = "sequence, sequenceName=BuriStatusID";
+    public static final String stateID_ID = "sequence, sequenceName=BuriStateID";
 	private long stateID;
 	private Long pathID;
 	private Long dataID;

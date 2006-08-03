@@ -25,7 +25,11 @@ public class BuriStateUserUtilImpl extends BuriStateUtilImpl implements BuriStat
         List users = userUtil.getTgtRoleInfoList(factory,sysContext,walker);
         List userIds = userUtil.convUserIDListFromRoleInfos(users);
         List entitys = getEntityList(new Long(stateID),userIds);
-        stateUserDao.insertEntityList(entitys);
+        Iterator ite = entitys.iterator();
+        while(ite.hasNext()) {
+        	BuriStateUserEntityDto dto = (BuriStateUserEntityDto)ite.next();
+        	stateUserDao.insert(dto);
+        }
         return stateID;
     }
     

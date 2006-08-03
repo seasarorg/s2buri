@@ -57,9 +57,9 @@ public class BuriStateUtilTest extends S2TestCase {
         assertTrue(walker.getBranchID() != 0);
         
         BuriStateEntityDto stateDto = stateDao.getBuriState(statusID);
-        assertEquals(stateDto.getProcessDate().getTime(), DateUtil.getSQLMaxDate().getTime() );
+        assertEquals(stateDto.getProcessDate().getTime() /10, DateUtil.getSQLMaxDate().getTime() /10);
         assertEquals(stateDto.getAbortDate().getTime() / 1000 , DateUtil.getSQLMaxDate().getTime() / 1000 );
-        assertEquals(stateDto.getAutoRunTime().getTime(), DateUtil.getSQLMaxDate().getTime() );
+        assertEquals(stateDto.getAutoRunTime().getTime() /10, DateUtil.getSQLMaxDate().getTime() /10);
         assertTrue(stateDto.getDataID().longValue() != 0);
         assertTrue(stateDto.getPathID().longValue() != 0);
         assertTrue(stateDto.getBranchID().longValue() != 0);
@@ -68,9 +68,9 @@ public class BuriStateUtilTest extends S2TestCase {
         stateUtil.processed(dataAccessFactory,sysContext,walker);
         
         stateDto = stateDao.getBuriState(statusID);
-        assertFalse(stateDto.getProcessDate().getTime() == DateUtil.getSQLMaxDate().getTime() );
+        assertFalse((stateDto.getProcessDate().getTime()/10) == (DateUtil.getSQLMaxDate().getTime()/10) );
         assertEquals(stateDto.getAbortDate().getTime() / 1000, DateUtil.getSQLMaxDate().getTime() / 1000 );
-        assertEquals(stateDto.getAutoRunTime().getTime(), DateUtil.getSQLMaxDate().getTime() );
+        assertEquals(stateDto.getAutoRunTime().getTime()/10, DateUtil.getSQLMaxDate().getTime() /10);
         assertTrue(stateDto.getDataID().longValue() != 0);
         assertTrue(stateDto.getPathID().longValue() != 0);
         assertTrue(stateDto.getBranchID().longValue() != 0);
@@ -102,9 +102,9 @@ public class BuriStateUtilTest extends S2TestCase {
         stateUtil.abortStatus(dataAccessFactory,sysContext,walker);
         
         BuriStateEntityDto stateDto = stateDao.getBuriState(statusID);
-        assertFalse(stateDto.getProcessDate().getTime() == DateUtil.getSQLMaxDate().getTime() );
+        assertFalse((stateDto.getProcessDate().getTime()/10) == (DateUtil.getSQLMaxDate().getTime()/10) );
         assertFalse((stateDto.getAbortDate().getTime() / 1000) == (DateUtil.getSQLMaxDate().getTime() / 1000) );
-        assertEquals(stateDto.getAutoRunTime().getTime(), DateUtil.getSQLMaxDate().getTime() );
+        assertEquals(stateDto.getAutoRunTime().getTime()/10, DateUtil.getSQLMaxDate().getTime() /10);
         assertTrue(stateDto.getDataID().longValue() != 0);
         assertTrue(stateDto.getPathID().longValue() != 0);
         
