@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>ExcelベースのParticipantProvider</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body35.html">s2-buriリファレンス</A>
+:<A HREF="body49.html">ユーザ権限とActivity</A>
+:</DIV><BR><BR>
+<H1>ExcelベースのParticipantProvider</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body51.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body53.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ぶりは権限の上下関係をExcelに記述するとそれをParticipantProviderの内容として処理する機能をぶりは標準で持っています。<BR>
+これによりRDB等で難しいSQLを一行も書くことなく権限付きのフロー制御が簡単にできるようになります<BR>
+<BR>
+Excelのファイルに含まれているシートすべてを解析しますが、指定のフォーマットでないと判断したときやそもそもデータがない場合には無視します。<BR>
+<BR>
+A列はvalid,convert,typeを記述します。ぶりはこれの位置を探しながら自動的に処理します。<BR>
+<BR>
+validはオプションで、fromとtoで権限情報が有効な期間を指定します。これで特定の日付より有効にするという事が可能です。from,to共に省略可能です。その場合は最小値、最大値が自動的に設定されます<BR>
+<BR>
+convertはuserDataからIdやnameの情報の取得、idとNameからユーザのオブジェクトの取得をします。<BR>
+IDやnameを取得するときは#userDataでユーザのデータが取得できます。<BR>
+<BR>
+typeは権限の構造を記述する部分です。<BR>
+一番上に権限名を並べて<BR>
+その下にid,nameの列を作ります。権限名の位置とid,nameというデータを探して処理しているのでcommentみたいな列を作ってそこに任意のコメントを設定するという事も可能です。<BR>
+その下からは実際に権限構造を記述します<BR>
+<BR>
+convertやtypeのにnameが無くても動作します。
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body49.html">ユーザ権限とActivity に戻る</A></SPAN>
+</BODY></HTML>

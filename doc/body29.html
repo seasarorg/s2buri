@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>Baoを準備する</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body19.html">s2-buriチュートリアル</A>
+:<A HREF="body27.html">s2-buriを使っての実行およびデータの取得</A>
+:<A HREF="body28.html">準備する</A>
+:</DIV><BR><BR>
+<H1>Baoを準備する</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body28.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body30.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+buriにアクセスするためのinterfaceを定義します<BR>
+<BR>
+public interface FurnitureManagementBao {<BR>
+    public static String PROCESS = "資産管理.備品管理";<BR>
+<BR>
+    public static BuriConvert CONVERTER[] = new BuriConvert[]{<BR>
+        new BuriConvert(Long.class,"FurnitureItemDao.getFurnitureItem(#data)")<BR>
+    };<BR>
+    <BR>
+    public static String getNowUse_ACTIVITY = "利用中";<BR>
+    public List getNowUse();<BR>
+    <BR>
+    public static String findNowUse_ACTIVITY = "利用中";<BR>
+    public List findNowUse(FurnitureItemDto findDto);<BR>
+    <BR>
+    public static String getEndDepreciation_ACTIVITY = "償却期間終了";<BR>
+    public List getEndDepreciation();<BR>
+    <BR>
+    public static String getEndLease_ACTIVITY = "リース終了";<BR>
+    public List getEndLease();<BR>
+    <BR>
+    public static String enterItem_ACTIVITY = "備品登録";<BR>
+    public void enterItem(FurnitureItemDto dto);<BR>
+<BR>
+    public static String timeorverItem_ACTIVITY = "利用中";<BR>
+    public void timeorverItem(long itemID);<BR>
+}<BR>
+<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body28.html">準備する に戻る</A></SPAN>
+</BODY></HTML>

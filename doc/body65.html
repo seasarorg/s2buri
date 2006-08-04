@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>ParticipantProvider</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body35.html">s2-buriリファレンス</A>
+:<A HREF="body53.html">Java</A>
+:</DIV><BR><BR>
+<H1>ParticipantProvider</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body64.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body66.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ParticipantProviderは「userData」と「XPDLのParticipant」の相互チェックの<BR>
+ために必要なクラス。<BR>
+ParticipantProviderインタフェースをimplementsする。<BR>
+<BR>
+必要なメソッドは<BR>
+<BR>
+boolean isUserInRole(Object userData,String participantName,String participantType);<BR>
+userDataがXPDLで指定したparticipantNameに一致しているかをチェックする<BR>
+<BR>
+String getUserIDString(Object userData,String participantType);<BR>
+userDataから文字列のIDを取得する。文字列のIDが無いときはnullを返す<BR>
+<BR>
+Long getUserIDNum(Object userData,String participantType);<BR>
+userDataからLong型のIDを取得する。Long型のIDが無いときはnullを返す<BR>
+<BR>
+Object getUserData(Long userIDNum,String userIDString);<BR>
+上記二つのメソッドの戻り値からuserDataを再現する。<BR>
+<BR>
+boolean hasRoleUser(ParticipantContext context);<BR>
+ある権限のユーザが存在しているかどうかを確認する。<BR>
+その時に使う情報はParticipantContextから取得可能です。<BR>
+ぶりの場合にはBuriParticipantContextが渡されます<BR>
+<BR>
+RoleInfo getSingleUser(ParticipantContext context);<BR>
+ある権限の特定のユーザを取得する。RoleInfoはUserIDStringとUserIDNumが組み合わされたものです。<BR>
+<BR>
+List getUser(ParticipantContext context);<BR>
+ある権限の特定のユーザの一覧を取得する。リストの中身はRoleInfoです<BR>
+<BR>
+<BR>
+buri2.dicon上に追加登録してreadWorkFlowFromResourceの3番目の引数に設定することで利用可能になります。<BR>
+<BR>
+これらのコーディングディレクトリサーバ等を使用しないと意外と難易度の高いコードになると思います。それをなるべく軽減するためにExcelベースのParticipantProviderをぶりのライブラリとして提供しています。<BR>
+権限情報が小規模で複雑さがそれほど無い場合にはExcelベースのParticipantProviderを選択することをお勧めします<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body53.html">Java に戻る</A></SPAN>
+</BODY></HTML>
