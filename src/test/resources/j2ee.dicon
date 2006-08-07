@@ -37,6 +37,17 @@
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">
+			"org.apache.derby.jdbc.EmbeddedDriver"
+		</property>
+		<property name="URL">
+			"jdbc:derby:db/buri;create=true"
+		</property>
+	</component>
+
+	<!--
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
 			"org.postgresql.Driver"
 		</property>
 		<property name="URL">
@@ -44,17 +55,6 @@
 		</property>
 		<property name="user">"buri"</property>
 		<property name="password">"buriburi"</property>
-	</component>
-
-	<!--
-	<component name="xaDataSource"
-		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
-		<property name="driverClassName">
-			"org.apache.derby.jdbc.EmbeddedDriver"
-		</property>
-		<property name="URL">
-			"jdbc:derby:db/buri;create=true"
-		</property>
 	</component>
 	-->
 
