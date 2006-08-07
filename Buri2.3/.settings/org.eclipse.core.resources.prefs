@@ -1,0 +1,14 @@
+#Mon Jul 17 19:41:47 JST 2006
+eclipse.preferences.version=1
+encoding//src/test/java/org/seasar/buri/dao/util/wakanagoUtils.dicon=UTF-8
+encoding//src/test/resources/ExcelBaseParticipantProvider/ExcelBase.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/StdTestPP.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/bao.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buri-share.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buri-user.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buriBase.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buriSimple.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buriStandard.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/buriTimer.dicon=UTF-8
+encoding//src/test/resources/buri/dicon/wakanago.dicon=UTF-8
+encoding//src/test/resources/example/org/seasar/buri/test/baotest.dicon=UTF-8

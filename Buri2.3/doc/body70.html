@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>AOP</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body35.html">s2-buriリファレンス</A>
+:</DIV><BR><BR>
+<H1>AOP</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body69.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body71.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ぶり2.3系からはS2AOP準拠のinterceptorなら何でもActivityとConditionに設定できるようになりました。<BR>
+BuriExeProcess#addProcessAOP(traceInterceptor)<BR>
+BuriExeProcess#addConditonAOP(traceInterceptor)<BR>
+こんな感じ<BR>
+これを使えばtraceInterceptorじゃなくてS2Javelinとかも設定できます。<BR>
+実はS2Javelinでフローの流れが判るとすごく嬉しいなぁと思ったのでその為に新たに作った機能です(笑)<BR>
+ちなみに表示は<BR>
+パッケージ名.Activity名(userContext,path)<BR>
+みたいな感じで表示されます。(2.3系を動かすと出るのでわかると思います)<BR>
+パッケージ名.Activity名は両方ともIDが使われるので対策としてpathで日本語のパスが付いてます。<BR>
+<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body35.html">s2-buriリファレンス に戻る</A></SPAN>
+</BODY></HTML>

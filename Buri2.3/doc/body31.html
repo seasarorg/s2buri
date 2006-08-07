@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>フローを実行する</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body19.html">s2-buriチュートリアル</A>
+:<A HREF="body27.html">s2-buriを使っての実行およびデータの取得</A>
+:</DIV><BR><BR>
+<H1>フローを実行する</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body30.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body32.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+まずはDtoを準備します<BR>
+<BR>
+FurnitureItemDto buyItemDto = new FurnitureItemDto();<BR>
+buyItemDto.setName("T45_001");<BR>
+buyItemDto.setType("PC");<BR>
+buyItemDto.setAcquisitionTypeBuy();<BR>
+buyItemDto.setAcquisition(new Date());<BR>
+<BR>
+実行用のメソッドを追加します<BR>
+fmBao_.enterItem(buyItemDto);<BR>
+<BR>
+これだけでさっき書いたフローの備品登録が呼びだされ、利用中として保持されます。<BR>
+<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body27.html">s2-buriを使っての実行およびデータの取得 に戻る</A></SPAN>
+</BODY></HTML>

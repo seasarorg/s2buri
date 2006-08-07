@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<!-- ぶり利用者編集必須のdicon -->
+	
+	<!-- 書き換えが必要 -->
+	<!-- ここからはテスト用なので実際は削除する -->
+	<include path="example/org/seasar/buri/dicon/alldao.dicon"/>
+	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+	<include path="buri/dicon/StdTestPP.dicon"/>
+	<!-- ここまではテスト用なので実際は削除する -->
+	
+	
+	<component name="BuriEngineConfig" class="org.seasar.buri.engine.impl.BuriEngineConfigImpl">
+		<!-- ParticipantProviderを使う場合はここに記述する。引数はResourceのファイル名,パッケージ名,ParticipantProvider -->
+		<!--
+		<initMethod name="addResourceConfig">
+			<arg>"wakanagoxpdl/個人情報管理.xpdl"</arg>
+			<arg>"個人情報管理"</arg>
+			<arg>ExcelBaseParticipantProvider</arg>
+		</initMethod>
+		-->
+		<!-- ここからはテスト用なので実際は削除する -->
+		<initMethod name="addResourceConfig">
+			<arg>"wakanagoxpdl/個人情報管理.xpdl"</arg>
+			<arg>"個人情報管理"</arg>
+			<arg>ExcelBaseParticipantProvider</arg>
+		</initMethod>
+		<!-- ここまではテスト用なので実際は削除する -->
+	</component>
+	
+	<component name="ExcelBaseParticipantProvider" class="org.seasar.buri.common.participantprovider.impl.ExcelBaseParticipantProvider">
+		<!-- ExcelBaseParticipantProviderを使う場合はここに記述する。引数はファイル名 -->
+		<!--
+		<initMethod>#self.loadFromFile("")</initMethod>
+		-->
+		<!--
+		<initMethod>#self.loadFromResource("")</initMethod>
+		-->
+		<!-- ここからはテスト用なので実際は削除する -->
+		<initMethod>#self.loadFromResource("ExcelBaseParticipantProvider/個人情報管理.xls")</initMethod>
+		<!-- ここまではテスト用なので実際は削除する -->
+	</component>
+	
+	<component class="org.seasar.buri.common.participantprovider.impl.ExcelPrtiPrvidrParserImpl">
+	</component>
+	
+</components>

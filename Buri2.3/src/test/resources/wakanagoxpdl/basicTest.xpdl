@@ -1,0 +1,2394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="basicTest" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2005-07-25 18:17:47</Created>
+</PackageHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<ConformanceClass GraphConformance="NON_BLOCKED"/>
+<Participants>
+<Participant Id="basicTest_Par1" Name="test">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="basicTest_App1" Name="OgnlInvoker"/>
+</Applications>
+<DataFields>
+<DataField Id="org.seasar.buri.dto.BuriTestINTDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="testID,testID != 0"/>
+<ExtendedAttribute Name="insert" Value="BuriTestINTDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="BuriTestINTDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="BuriTestINTDao.getBuriTestINT(#data.testID)"/>
+<ExtendedAttribute Name="selectMany" Value="BuriTestINTDao.getBuriTestINTByIds(#data)"/>
+<ExtendedAttribute Name="delete" Value="BuriTestINTDao.delete(#data)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<WorkflowProcesses>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor1" Name="test01">
+<ProcessHeader DurationUnit="D">
+<Created>2005-07-25 18:21:35</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor1_Act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="250,60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor1_Act1,X_OFFSET=541,Y_OFFSET=81,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor1_Act1,X_OFFSET=111,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor2" Name="test02">
+<ProcessHeader DurationUnit="D">
+<Created>2005-07-26 09:14:56</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor2_Act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor2_Act2" Name="stopThis">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor2_Act3" Name="finish">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="460,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor2_Act1" Id="basicTest_Wor2_Tra2" To="basicTest_Wor2_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor2_Act2" Id="basicTest_Wor2_Tra3" To="basicTest_Wor2_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor2_Act3,X_OFFSET=581,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor2_Act1,X_OFFSET=111,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor4" Name="test03">
+<ProcessHeader DurationUnit="D">
+<Created>2005-07-26 14:17:27</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor4_Act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor4_Tra2"/>
+<TransitionRef Id="basicTest_Wor4_Tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="150,100"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor4_Act2" Name="stop1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,70"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor4_Act3" Name="stop2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor4_Act1" Id="basicTest_Wor4_Tra2" To="basicTest_Wor4_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor4_Act1" Id="basicTest_Wor4_Tra4" To="basicTest_Wor4_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor4_Act3,X_OFFSET=471,Y_OFFSET=171,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor4_Act2,X_OFFSET=471,Y_OFFSET=81,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor4_Act1,X_OFFSET=81,Y_OFFSET=111,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor5" Name="test04">
+<ProcessHeader DurationUnit="D">
+<Created>2005-08-09 15:24:22</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor5_Act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor5_Tra3"/>
+<TransitionRef Id="basicTest_Wor5_Tra1"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor5_Act2" Name="continue1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="320,60"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor5_Act3" Name="continue2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="320,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor5_Act6" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor5_Act1" Id="basicTest_Wor5_Tra1" To="basicTest_Wor5_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor5_Act1" Id="basicTest_Wor5_Tra3" To="basicTest_Wor5_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor5_Act2" Id="basicTest_Wor5_Tra7" To="basicTest_Wor5_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor5_Act3" Id="basicTest_Wor5_Tra8" To="basicTest_Wor5_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor5_Act6,X_OFFSET=621,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor5_Act1,X_OFFSET=91,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor6" Name="test05">
+<ProcessHeader DurationUnit="D">
+<Created>2005-08-09 18:06:02</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor6_Act1" Name="開始">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor6_Tra3"/>
+<TransitionRef Id="basicTest_Wor6_Tra1"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act2" Name="分岐1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act3" Name="分岐2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor6_Tra5"/>
+<TransitionRef Id="basicTest_Wor6_Tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act4" Name="のーど１">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,210"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act5" Name="のーど2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act6" Name="分岐終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,270"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act7" Name="分岐完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="890,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act8" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1060,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra1" To="basicTest_Wor6_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act2" Id="basicTest_Wor6_Tra2" To="basicTest_Wor6_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra3" To="basicTest_Wor6_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra4" To="basicTest_Wor6_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra5" To="basicTest_Wor6_Act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act5" Id="basicTest_Wor6_Tra6" To="basicTest_Wor6_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act4" Id="basicTest_Wor6_Tra7" To="basicTest_Wor6_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act6" Id="basicTest_Wor6_Tra8" To="basicTest_Wor6_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act7" Id="basicTest_Wor6_Tra9" To="basicTest_Wor6_Act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act8,X_OFFSET=1211,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act1,X_OFFSET=91,Y_OFFSET=171,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor7" Name="test06">
+<ProcessHeader DurationUnit="D">
+<Created>2005-08-09 18:06:02</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor6_Act1" Name="開始">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor6_Tra3"/>
+<TransitionRef Id="basicTest_Wor6_Tra1"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,160"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act2" Name="分岐1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act3" Name="分岐2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor6_Tra5"/>
+<TransitionRef Id="basicTest_Wor6_Tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,240"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act4" Name="のーど１">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,210"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act5" Name="のーど2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="560,330"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act6" Name="分岐終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,270"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act7" Name="分岐完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="890,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor6_Act8" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1060,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra1" To="basicTest_Wor6_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act2" Id="basicTest_Wor6_Tra2" To="basicTest_Wor6_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act1" Id="basicTest_Wor6_Tra3" To="basicTest_Wor6_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra4" To="basicTest_Wor6_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act3" Id="basicTest_Wor6_Tra5" To="basicTest_Wor6_Act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act5" Id="basicTest_Wor6_Tra6" To="basicTest_Wor6_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act4" Id="basicTest_Wor6_Tra7" To="basicTest_Wor6_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act6" Id="basicTest_Wor6_Tra8" To="basicTest_Wor6_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor6_Act7" Id="basicTest_Wor6_Tra9" To="basicTest_Wor6_Act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act8,X_OFFSET=1211,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor6_Act1,X_OFFSET=91,Y_OFFSET=171,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor9" Name="test07">
+<ProcessHeader DurationUnit="D">
+<Created>2005-08-10 14:47:16</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor9_Act1" Name="SAND-AND1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor9_Tra1"/>
+<TransitionRef Id="basicTest_Wor9_Tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="270,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act2" Name="FM1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="420,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act3" Name="FM2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="420,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act4" Name="fm11">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="570,50"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act5" Name="fm21">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="580,130"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act6" Name="JAND1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="730,90"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act7" Name="SAND-AND2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor9_Tra12"/>
+<TransitionRef Id="basicTest_Wor9_Tra8"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="280,280"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act8" Name="FM3">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="430,250"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act9" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="590,250"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act10" Name="FM4">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="430,320"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act11" Name="Generic">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="590,320"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act12" Name="JAND2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="740,280"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act13" Name="SAND">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor9_Tra7"/>
+<TransitionRef Id="basicTest_Wor9_Tra15"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor9_Act14" Name="JAND-AND">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="860,170"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor9_Act1" Id="basicTest_Wor9_Tra1" To="basicTest_Wor9_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act2" Id="basicTest_Wor9_Tra2" To="basicTest_Wor9_Act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act4" Id="basicTest_Wor9_Tra3" To="basicTest_Wor9_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act1" Id="basicTest_Wor9_Tra4" To="basicTest_Wor9_Act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act3" Id="basicTest_Wor9_Tra5" To="basicTest_Wor9_Act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act5" Id="basicTest_Wor9_Tra6" To="basicTest_Wor9_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act13" Id="basicTest_Wor9_Tra7" To="basicTest_Wor9_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act7" Id="basicTest_Wor9_Tra8" To="basicTest_Wor9_Act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act8" Id="basicTest_Wor9_Tra9" To="basicTest_Wor9_Act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act9" Id="basicTest_Wor9_Tra10" To="basicTest_Wor9_Act12">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act12" Id="basicTest_Wor9_Tra11" To="basicTest_Wor9_Act14">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act7" Id="basicTest_Wor9_Tra12" To="basicTest_Wor9_Act10">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act10" Id="basicTest_Wor9_Tra13" To="basicTest_Wor9_Act11">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act11" Id="basicTest_Wor9_Tra14" To="basicTest_Wor9_Act12">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act13" Id="basicTest_Wor9_Tra15" To="basicTest_Wor9_Act1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor9_Act6" Id="basicTest_Wor9_Tra16" To="basicTest_Wor9_Act14">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor9_Act14,X_OFFSET=1031,Y_OFFSET=181,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor9_Act13,X_OFFSET=91,Y_OFFSET=191,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="basicTest_Wor10" Name="test08">
+<ProcessHeader DurationUnit="D">
+<Created>2005-12-01 16:39:39</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<Activities>
+<Activity Id="basicTest_Wor10_Act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="180,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor10_Act2" Name="loop1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor10_Tra9"/>
+<TransitionRef Id="basicTest_Wor10_Tra15"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="330,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor10_Act5" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="680,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor10_Act7" Name="loop1next">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="330,40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor10_Act8" Name="loop2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_Wor10_Tra23"/>
+<TransitionRef Id="basicTest_Wor10_Tra24"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="540,150"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_Wor10_Act9" Name="loop2auto">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="540,40"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_Wor10_Act1" Id="basicTest_Wor10_Tra1" To="basicTest_Wor10_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor10_Act2" Id="basicTest_Wor10_Tra9" To="basicTest_Wor10_Act7">
+<Condition Type="CONDITION">#action == "loop"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="420,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor10_Act7" Id="basicTest_Wor10_Tra10" To="basicTest_Wor10_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="320,120"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor10_Act2" Id="basicTest_Wor10_Tra15" To="basicTest_Wor10_Act8">
+<Condition Type="CONDITION">#action == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor10_Act9" Id="basicTest_Wor10_Tra22" To="basicTest_Wor10_Act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="530,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor10_Act8" Id="basicTest_Wor10_Tra23" To="basicTest_Wor10_Act9">
+<Condition Type="CONDITION">#action == "ENTERLOOP"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_BREAK_POINTS" Value="630,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_Wor10_Act8" Id="basicTest_Wor10_Tra24" To="basicTest_Wor10_Act5">
+<Condition Type="CONDITION">#action == "EXITLOOP"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor10_Act5,X_OFFSET=821,Y_OFFSET=161,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=basicTest_Par1,CONNECTING_ACTIVITY_ID=basicTest_Wor10_Act1,X_OFFSET=101,Y_OFFSET=161,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp1" Name="test09">
+<ProcessHeader>
+<Created>2006-06-19 16:50:43</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp1_act1" Name="Start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp1_tra1"/>
+<TransitionRef Id="basicTest_wp1_tra2"/>
+<TransitionRef Id="basicTest_wp1_tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="135,141"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp1_act2" Name="A">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;A&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="317,45"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp1_act3" Name="B">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;B&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="321,142"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp1_act4" Name="other">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;no hit&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="321,251"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp1_act1" Id="basicTest_wp1_tra1" To="basicTest_wp1_act2">
+<Condition Type="CONDITION">#action == "A"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp1_act1" Id="basicTest_wp1_tra2" To="basicTest_wp1_act3">
+<Condition Type="CONDITION">#action == "B"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp1_act1" Id="basicTest_wp1_tra3" To="basicTest_wp1_act4">
+<Condition Type="OTHERWISE"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp2" Name="test10">
+<ProcessHeader>
+<Created>2006-06-19 17:33:47</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp2_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="178,70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp2_act2" Name="isNullPointerException">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#action.length()"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp2_tra2"/>
+<TransitionRef Id="basicTest_wp2_tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="427,68"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp2_act3" Name="nomalEnd">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;notNull&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="655,70"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp2_act4" Name="ExceptionEnd">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;null&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="427,173"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp2_act1" Id="basicTest_wp2_tra1" To="basicTest_wp2_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp2_act2" Id="basicTest_wp2_tra2" To="basicTest_wp2_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp2_act2" Id="basicTest_wp2_tra3" To="basicTest_wp2_act4">
+<Condition Type="EXCEPTION">java.lang.NullPointerException</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp3" Name="test11">
+<ProcessHeader>
+<Created>2006-06-28 12:53:30</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp3_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="127,66"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act2" Name="setupTimer">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#ReClaim = @jp.starlogic.util.datetime.UtilCalendar@getInstance()&#10;//#ReClaim.addDayOfMonth(7)&#10;// 本来なら7日後とかにするんだけど、テストなので・・・&#10;#ReClaim.addSecond(2)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="284,66"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act3" Name="waitTimer">
+<Limit>#ReClaim</Limit>
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp3_tra3"/>
+<TransitionRef Id="basicTest_wp3_tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="425,68"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act4" Name="end">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;end&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="617,73"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp3_act5" Name="timeOrver">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#result = &quot;timeorver&quot;"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="623,167"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp3_act1" Id="basicTest_wp3_tra1" To="basicTest_wp3_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp3_act2" Id="basicTest_wp3_tra2" To="basicTest_wp3_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp3_act3" Id="basicTest_wp3_tra3" To="basicTest_wp3_act4">
+<Condition Type="CONDITION">#autoAction==null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp3_act3" Id="basicTest_wp3_tra4" To="basicTest_wp3_act5">
+<Condition Type="CONDITION">#autoAction==true</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp4" Name="test12">
+<ProcessHeader>
+<Created>2006-06-30 19:40:15</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp4_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="74,165"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act2" Name="ANDbranch">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp4_tra3"/>
+<TransitionRef Id="basicTest_wp4_tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="333,165"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act3" Name="State1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="474,121"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act4" Name="State2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="475,227"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act5" Name="ANDJoin">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp4_tra6"/>
+<TransitionRef Id="basicTest_wp4_tra5"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="652,159"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act6" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="838,158"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act7" Name="Loop">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="660,22"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act8" Name="ReEntry">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="232,14"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act9" Name="dummy">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="199,168"/>
+<ExtendedAttribute Name="NOXORJOIN"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp4_act1" Id="basicTest_wp4_tra1" To="basicTest_wp4_act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act9" Id="basicTest_wp4_tra2" To="basicTest_wp4_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act2" Id="basicTest_wp4_tra3" To="basicTest_wp4_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act3" Id="basicTest_wp4_tra4" To="basicTest_wp4_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act5" Id="basicTest_wp4_tra5" To="basicTest_wp4_act6">
+<Condition Type="CONDITION">#action == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act5" Id="basicTest_wp4_tra6" To="basicTest_wp4_act7">
+<Condition Type="CONDITION">#action == "loop"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act7" Id="basicTest_wp4_tra7" To="basicTest_wp4_act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act8" Id="basicTest_wp4_tra8" To="basicTest_wp4_act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act2" Id="basicTest_wp4_tra9" To="basicTest_wp4_act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act4" Id="basicTest_wp4_tra10" To="basicTest_wp4_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp41" Name="test13">
+<ProcessHeader>
+<Created>2006-06-30 19:40:15</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp4_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="74,165"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act2" Name="ANDbranch">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp4_tra3"/>
+<TransitionRef Id="basicTest_wp4_tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="333,165"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act3" Name="State1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="474,121"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act4" Name="State2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="475,227"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act5" Name="XORJoin">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp4_tra6"/>
+<TransitionRef Id="basicTest_wp4_tra5"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="652,159"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act6" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="838,158"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act7" Name="Loop">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="660,22"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act8" Name="ReEntry">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="232,14"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp4_act9" Name="dummy">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="199,168"/>
+<ExtendedAttribute Name="NOXORJOIN"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp4_act1" Id="basicTest_wp4_tra1" To="basicTest_wp4_act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act9" Id="basicTest_wp4_tra2" To="basicTest_wp4_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act2" Id="basicTest_wp4_tra3" To="basicTest_wp4_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act3" Id="basicTest_wp4_tra4" To="basicTest_wp4_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act5" Id="basicTest_wp4_tra5" To="basicTest_wp4_act6">
+<Condition Type="CONDITION">#action == null</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act5" Id="basicTest_wp4_tra6" To="basicTest_wp4_act7">
+<Condition Type="CONDITION">#action == "loop"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act7" Id="basicTest_wp4_tra7" To="basicTest_wp4_act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act8" Id="basicTest_wp4_tra8" To="basicTest_wp4_act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act2" Id="basicTest_wp4_tra9" To="basicTest_wp4_act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp4_act4" Id="basicTest_wp4_tra10" To="basicTest_wp4_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp5" Name="test14">
+<ProcessHeader>
+<Created>2006-07-15 17:21:18</Created>
+<ValidFrom>2001-01-01 00:00:00</ValidFrom>
+<ValidTo>2006-07-15 17:21:18</ValidTo>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp5_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,62"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act3" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="506,61"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act2" Name="stop">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#flow=1"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="340,61"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp5_act1" Id="basicTest_wp5_tra1" To="basicTest_wp5_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp5_act2" Id="basicTest_wp5_tra2" To="basicTest_wp5_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp51" Name="test14">
+<ProcessHeader>
+<Created>2006-07-15 17:21:18</Created>
+<ValidFrom>2006-07-15 17:21:18</ValidFrom>
+<ValidTo>2050-01-01 00:00:00</ValidTo>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp5_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="170,62"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act3" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="506,61"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp5_act2" Name="stop">
+<Implementation>
+<Tool Id="basicTest_App1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="#flow=2"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="340,61"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp5_act1" Id="basicTest_wp5_tra1" To="basicTest_wp5_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp5_act2" Id="basicTest_wp5_tra2" To="basicTest_wp5_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="basicTest_wp6" Name="test15">
+<ProcessHeader>
+<Created>2006-07-27 11:46:42</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="basicTest_wp6_act1" Name="start">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="60,136"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act2" Name="retry">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="166,134"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act3" Name="branch">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp6_tra6"/>
+<TransitionRef Id="basicTest_wp6_tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="155,50"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act4" Name="proc1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp6_tra4"/>
+<TransitionRef Id="basicTest_wp6_tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="327,9"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act5" Name="and">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="AND"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp6_tra5"/>
+<TransitionRef Id="basicTest_wp6_tra12"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="483,10"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act6" Name="proc2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp6_tra7"/>
+<TransitionRef Id="basicTest_wp6_tra8"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="329,122"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act7" Name="xor">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="basicTest_wp6_tra11"/>
+<TransitionRef Id="basicTest_wp6_tra10"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="489,129"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act8" Name="end">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="597,56"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="basicTest_wp6_act9" Name="toRetry">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>basicTest_Par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="basicTest_Par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="327,228"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="basicTest_wp6_act1" Id="basicTest_wp6_tra1" To="basicTest_wp6_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act2" Id="basicTest_wp6_tra2" To="basicTest_wp6_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act3" Id="basicTest_wp6_tra3" To="basicTest_wp6_act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act4" Id="basicTest_wp6_tra4" To="basicTest_wp6_act5">
+<Condition Type="CONDITION">#action == "and"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act5" Id="basicTest_wp6_tra5" To="basicTest_wp6_act8">
+<Condition Type="OTHERWISE"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act3" Id="basicTest_wp6_tra6" To="basicTest_wp6_act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act6" Id="basicTest_wp6_tra7" To="basicTest_wp6_act7">
+<Condition Type="CONDITION">#action == "xor"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act6" Id="basicTest_wp6_tra8" To="basicTest_wp6_act5">
+<Condition Type="CONDITION">#action == "and"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act4" Id="basicTest_wp6_tra9" To="basicTest_wp6_act7">
+<Condition Type="CONDITION">#action == "xor"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act7" Id="basicTest_wp6_tra10" To="basicTest_wp6_act8">
+<Condition Type="OTHERWISE"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act7" Id="basicTest_wp6_tra11" To="basicTest_wp6_act9">
+<Condition Type="CONDITION">#data.value == "retry"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act5" Id="basicTest_wp6_tra12" To="basicTest_wp6_act9">
+<Condition Type="CONDITION">#data.value == "retry"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="basicTest_wp6_act9" Id="basicTest_wp6_tra13" To="basicTest_wp6_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="basicTest_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+</ExtendedAttributes>
+</Package>
