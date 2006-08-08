@@ -2,33 +2,33 @@
 
 1 ˆê”Êî•ñ
 
-1-1 s2-buriŠT—v
+1-1 buriŠT—v
 
-s2-buri‚Í‚Ü‚±‚½‚ñ‚É‚æ‚Á‚ÄŠJ”­A’ñ‹ŸAƒTƒ|[ƒg‚ªs‚í‚ê‚Ä‚¢‚Ü‚·B
-s2-buri‚ÌWebƒTƒCƒg(http://s2buri.sandbox.seasar.org/)‚É‚Ís2-buri‚ÉŠÖ‚·‚éÅVî•ñ‚ªŒfÚ‚³‚ê‚Ä‚¢‚Ü‚·B
-s2-buri‚Ì¤—pƒTƒ|[ƒg‚ÍŠ”Ž®‰ïŽÐƒXƒ^[ƒƒWƒbƒN‚ªGFlow‚Æ‚¢‚¤–¼‘O‚ÅƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚·B
+buri‚Í‚Ü‚±‚½‚ñ‚É‚æ‚Á‚ÄŠJ”­A’ñ‹ŸAƒTƒ|[ƒg‚ªs‚í‚ê‚Ä‚¢‚Ü‚·B
+buri‚ÌWebƒTƒCƒg(http://s2buri.sandbox.seasar.org/)‚É‚Íburi‚ÉŠÖ‚·‚éÅVî•ñ‚ªŒfÚ‚³‚ê‚Ä‚¢‚Ü‚·B
+buri‚Ì¤—pƒTƒ|[ƒg‚ÍŠ”Ž®‰ïŽÐƒXƒ^[ƒƒWƒbƒN‚ªGFlow‚Æ‚¢‚¤–¼‘O‚ÅƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚·B
 http://www.starlogic.jp/GFLOW/index.html
 
 
 Ð‰î
 
-s2-buri‚Í‹Æ–±ƒtƒ[ŽÀsƒc[ƒ‹‚Å‚ ‚éB
+buri‚Í‹Æ–±ƒtƒ[ŽÀsƒc[ƒ‹‚Å‚ ‚éB
 
-‹Æ–±ƒtƒ[ŽÀsƒc[ƒ‹‚Í‹Æ–±ƒtƒ[‚ðŠÇ—‚·‚éƒc[ƒ‹‚Å‚ ‚éB‹Æ–±ƒtƒ[‚ÍŠÈ’P‚Èƒ}ƒXƒƒ“‰æ–Ê‚©‚ç•¡ŽG‚È”FØŒnƒVƒXƒeƒ€‚Ü‚Å—lX‚Èƒ‚ƒm‚ª‚ ‚éBƒ[ƒNƒtƒ[‚ðˆµ‚¤‚É‚Ís2-buri‚Ì—l‚Èƒ‰ƒCƒuƒ‰ƒŠ‚ðŽg‚¤‚±‚Æ‚ÅŽÀ‘•‚ðŠÈ—ª‰»‚µA‹Æ–±ƒtƒ[‚ÉŠÖ‚·‚éŽd—l•ÏX‚É‹­‚­‚·‚é‚±‚Æ‚ªo—ˆ‚éB
+‹Æ–±ƒtƒ[ŽÀsƒc[ƒ‹‚Í‹Æ–±ƒtƒ[‚ðŠÇ—‚·‚éƒc[ƒ‹‚Å‚ ‚éB‹Æ–±ƒtƒ[‚ÍŠÈ’P‚Èƒ}ƒXƒƒ“‰æ–Ê‚©‚ç•¡ŽG‚È”FØŒnƒVƒXƒeƒ€‚Ü‚Å—lX‚Èƒ‚ƒm‚ª‚ ‚éBƒ[ƒNƒtƒ[‚ðˆµ‚¤‚É‚Íburi‚Ì—l‚Èƒ‰ƒCƒuƒ‰ƒŠ‚ðŽg‚¤‚±‚Æ‚ÅŽÀ‘•‚ðŠÈ—ª‰»‚µA‹Æ–±ƒtƒ[‚ÉŠÖ‚·‚éŽd—l•ÏX‚É‹­‚­‚·‚é‚±‚Æ‚ªo—ˆ‚éB
 
-1-1-1 s2-buri‚Ì—ðŽj
+1-1-1 buri‚Ì—ðŽj
 
-“–‰‚Í’Pƒ‚Èƒtƒ[‚Ì‚Ý‚ð‘ÎÛ‚Éƒnƒ}ƒ`‚ðì‚è‚Ü‚µ‚½B‚µ‚©‚µA‚¢‚­‚Â‚©‚ÌŽÀ‘•‚ð‚µ‚Ä‚Ý‚½Œ‹‰ÊAƒnƒ}ƒ`‚ÉŒˆ’è“I‚ÉŒ‡‚¯‚Ä‚¢‚é‹@”\‚ª‚ ‚é‚Æ‚¢‚¤Œ‹˜_‚ÉŽŠ‚è‚Ü‚µ‚½B‚±‚ê‚ç”½È“_‚ðŒ³‚ÉA‚ ‚½‚ç‚µ‚­s2-buri‚ðŠJ”­‚·‚é‚±‚Æ‚É‚È‚è‚Ü‚µ‚½B
+“–‰‚Í’Pƒ‚Èƒtƒ[‚Ì‚Ý‚ð‘ÎÛ‚Éƒnƒ}ƒ`‚ðì‚è‚Ü‚µ‚½B‚µ‚©‚µA‚¢‚­‚Â‚©‚ÌŽÀ‘•‚ð‚µ‚Ä‚Ý‚½Œ‹‰ÊAƒnƒ}ƒ`‚ÉŒˆ’è“I‚ÉŒ‡‚¯‚Ä‚¢‚é‹@”\‚ª‚ ‚é‚Æ‚¢‚¤Œ‹˜_‚ÉŽŠ‚è‚Ü‚µ‚½B‚±‚ê‚ç”½È“_‚ðŒ³‚ÉA‚ ‚½‚ç‚µ‚­buri‚ðŠJ”­‚·‚é‚±‚Æ‚É‚È‚è‚Ü‚µ‚½B
 
-s2-buri‚Ì–¼‘O‚Ì—R—ˆ‚ÍAŒ³Xƒ[ƒNƒtƒ[ƒGƒ“ƒWƒ“(Enhydra Shark)‚ðSeasar(DIContainer)ã‚Å“®ì‚³‚¹‚éŽ–‚ð–Ú“I‚ÉŽL‘åª(Shark DICon)‚ðì‚é˜b‚ªAƒ[ƒNƒtƒ[ƒGƒ“ƒWƒ“‚ðŽg‚í‚¸‚É‚»‚ÌƒGƒfƒBƒ^(JaWE)‚¾‚¯—¬—p‚µ‚ÄV‚µ‚¢FlowEngine‚ðŠJ”­‚·‚éŽ–‚ð–Ú“I‚Éu‚Ô‚è‘åª(’ÊÌ:b8n)v‚ðƒXƒ^[ƒg‚³‚¹‚½‚Ì‚ª‚«‚Á‚©‚¯‚Å‚»‚ÌŒ‹‰Ê¶‚Ü‚ê‚½‚Ì‚ªAuƒnƒ}ƒ`v‚Å‚·
+buri‚Ì–¼‘O‚Ì—R—ˆ‚ÍAŒ³Xƒ[ƒNƒtƒ[ƒGƒ“ƒWƒ“(Enhydra Shark)‚ðSeasar(DIContainer)ã‚Å“®ì‚³‚¹‚éŽ–‚ð–Ú“I‚ÉŽL‘åª(Shark DICon)‚ðì‚é˜b‚ªAƒ[ƒNƒtƒ[ƒGƒ“ƒWƒ“‚ðŽg‚í‚¸‚É‚»‚ÌƒGƒfƒBƒ^(JaWE)‚¾‚¯—¬—p‚µ‚ÄV‚µ‚¢FlowEngine‚ðŠJ”­‚·‚éŽ–‚ð–Ú“I‚Éu‚Ô‚è‘åª(’ÊÌ:b8n)v‚ðƒXƒ^[ƒg‚³‚¹‚½‚Ì‚ª‚«‚Á‚©‚¯‚Å‚»‚ÌŒ‹‰Ê¶‚Ü‚ê‚½‚Ì‚ªAuƒnƒ}ƒ`v‚Å‚·
 
-‚»‚Ìƒnƒ}ƒ`‚Ìƒtƒ‹ƒXƒNƒ‰ƒbƒ`‚Å‚Ìƒo[ƒWƒ‡ƒ“ƒAƒbƒv”Å‚ªs2-buri 0.2.0‚É‚È‚è‚Ü‚µ‚½B
+‚»‚Ìƒnƒ}ƒ`‚Ìƒtƒ‹ƒXƒNƒ‰ƒbƒ`‚Å‚Ìƒo[ƒWƒ‡ƒ“ƒAƒbƒv”Å‚ªburi 0.2.0‚É‚È‚è‚Ü‚µ‚½B
 
 ‚»‚ÌŒã‚Ì‚Ô‚è‚É‘Î‚µ‚Ä‚ÌƒŠƒNƒGƒXƒg‚â‚‘¬‰»ˆÄ“™‚ðŒ³‚É‘å•‚É‰ü—Ç‚³‚êV‚½‚É0.3.0‚ªŠJ”­‚³‚ê‚Ü‚µ‚½B
 
-1-1-2 s2-buri‚ÌŽå‚È‹@”\
+1-1-2 buri‚ÌŽå‚È‹@”\
 
-s2-buri‚Ìd—v‚È“Á’¥‚Ìˆê•”‚ðˆÈ‰º‚Åà–¾‚µ‚Ü‚·
+buri‚Ìd—v‚È“Á’¥‚Ìˆê•”‚ðˆÈ‰º‚Åà–¾‚µ‚Ü‚·
 
 E‚Ù‚Æ‚ñ‚Ç‚Ìƒ[ƒNƒtƒ[ƒpƒ^[ƒ“‚É‘Î‰ž‰Â”\
 Eƒf[ƒ^‚Æƒtƒ[‚ð‘Î‚É‚µ‚Ä•Û‘¶‚ª‰Â”\
@@ -43,14 +43,14 @@ s2-buri‚Ìd—v‚È“Á’¥‚Ìˆê•”‚ðˆÈ‰º‚Åà–¾‚µ‚Ü‚·
 EExcel‚Éƒ‹[ƒ‹‚ð‹Lq‚·‚é‚¾‚¯‚Ìƒ‹[ƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‚ð“‹Ú
 E‚ ‚éó‘Ô‚É‚ ‚éƒf[ƒ^‚ðSQL‚ðŽg‚Á‚Ä–â‚¢‡‚í‚¹‚ª‰Â”\
 
-1-2 s2-buri‚ÌƒTƒ|[ƒg‚Æƒ‰ƒCƒZƒ“ƒX
+1-2 buri‚ÌƒTƒ|[ƒg‚Æƒ‰ƒCƒZƒ“ƒX
 
 1-2-1 StarLogic‚É‚æ‚Á‚Ä’ñ‹Ÿ‚³‚ê‚éƒTƒ|[ƒg
 
 Š”Ž®‰ïŽÐƒXƒ^[ƒƒWƒbƒN‚Å¤—pƒTƒ|[ƒg‚ð’ñ‹Ÿ‚µ‚Ä‚¢‚Ü‚·
 Ú‚µ‚­‚Íinfo@starlogic.jp‚Ü‚Å
 
-1-2-2 s2-buri‚ÅŽg—p‚³‚ê‚Ä‚¢‚éƒ‰ƒCƒuƒ‰ƒŠ‚Æƒ‰ƒCƒZƒ“ƒX
+1-2-2 buri‚ÅŽg—p‚³‚ê‚Ä‚¢‚éƒ‰ƒCƒuƒ‰ƒŠ‚Æƒ‰ƒCƒZƒ“ƒX
 
 •K{F
 seasar2	Apache License, Version 2.0
@@ -69,8 +69,8 @@ janino	2.4.3ˆÈã
 	http://www.janino.net/@New BSD License
 
 
-s2-buri“ÆŽ©‚Ìjar(”z•zƒtƒ@ƒCƒ‹‚É€”õÏ‚Ý)
-s2-buri-x.x.x.jar
+buri“ÆŽ©‚Ìjar(”z•zƒtƒ@ƒCƒ‹‚É€”õÏ‚Ý)
+buri-x.x.x.jar
 
 
 ‹@”\•Ê‚É•K—v‚Èjar
@@ -86,7 +86,7 @@ Apache Derby	10.1.1.0ˆÈã	 Apache License, Version 2.0
 
 Maven—p‚Épom.xml‚ð€”õ‚µ‚Ä‚¢‚Ü‚·B
 
-1-2-3 s2-buriƒ‰ƒCƒZƒ“ƒX
+1-2-3 buriƒ‰ƒCƒZƒ“ƒX
 
 Seasar2‚Æ“¯‚¶Apache License, Version 2.0‚Å‚·B
 
@@ -876,12 +876,12 @@ EXHIBIT A.
    See the License for the specific language governing permissions and
    limitations under the License.
 
-1-3 s2-buri‚Ìî•ñŒ¹
+1-3 buri‚Ìî•ñŒ¹
 
 ‚Ô‚èƒvƒƒWƒFƒNƒg‚Å‚ÍŠJ”­ŽÒ‚âƒ†[ƒU‚Ì‹——£‚ðk‚ß‚é‚½‚ß‚ÉSNS‚ðì‚Á‚Ä‚¢‚Ü‚·B
 makotan @ gmail.comˆ¶‚ÉSNS‚É“ü‚è‚½‚¢‚Æ‚¢‚¤ƒ[ƒ‹‚ð‘—‚Á‚Ä‚­‚¾‚³‚¢(ŠÈ’P‚Å—Ç‚¢‚Å‚·)
 
-2 s2-buri‚ÌƒCƒ“ƒXƒg[ƒ‹
+2 buri‚ÌƒCƒ“ƒXƒg[ƒ‹
 
 2-1 ƒVƒXƒeƒ€—vŒ
 
@@ -904,7 +904,18 @@ Maven2‚Å‚ÍDerby“™‚ÌƒeƒXƒg—pjar‚Í’Ç‰Á‚³‚ê‚Ü‚¹‚ñ‚Ì‚Å•K—v‚É‰ž‚¶‚Ä‚Ô‚è‚Ìpom.xml‚ðŒ©‚
 
 Zip‚Å”z•z‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ð‰ð“€‚µ‚Ä‚­‚¾‚³‚¢
 
-libƒtƒHƒ‹ƒ_‚Ì‚·‚×‚Ä‚ªCLASSPATH‚É•K—v‚Å‚·B
+Maven2‚ÆEclipseã‚ÅŽg‚¤ê‡‚ÍEclipse‚ÌMaven2 plug-in‚ª•K—v‚Å‚·B
+http://maven.apache.org/
+http://m2eclipse.codehaus.org/
+Maven2‚ÉŠÖ‚µ‚Ä‚Í
+http://wiki.fdiary.net/maven2/?CookBook
+‚±‚±‚ðŒ©‚È‚ª‚çÝ’è‚µ‚Ä‚­‚¾‚³‚¢
+
+
+ƒvƒƒWƒFƒNƒg‚ðimport‚µ‚ÄApom.xml‚ð‘I‚ñ‚ÅŽÀsAmaven2 build‚ÅGoles‚Éinstall‚Æ‚·‚é‚Æ•K—v‚Èjar‚ªŽæ“¾‚³‚ê‚éƒnƒY‚Å‚·B
+Å‰‚Ìˆê‰ñ‚Í‚©‚È‚èŽžŠÔ‚ª‚©‚©‚é‚ÆŽv‚¤‚Ì‚Å‰ä–‚µ‚Ä‘Ò‚Á‚Ä‚­‚¾‚³‚¢
+‚à‚µãŽè‚­“®‚©‚È‚¢‚Æ‚«‚ÍML‚©SNS‚©Blog“™‚Åó‹µ‚ð‹³‚¦‚Ä‚­‚¾‚³‚¢m(__)m
+
 Seasar‚Ìƒo[ƒWƒ‡ƒ“‚ªŒÃ‚¢ê‡‚Íƒo[ƒWƒ‡ƒ“ƒAƒbƒv‚µ‚Ä‚àŠî–{“I‚É‚Í“®ì‚µ‚Ü‚·B
 
 src/test/resourcesƒtƒHƒ‹ƒ_‚Ìburi.diconƒtƒHƒ‹ƒ_‚Ìdiconƒtƒ@ƒCƒ‹‚ª‚Ô‚è‚Ì“®ì‚É•K—v‚Èƒtƒ@ƒCƒ‹ŒQ‚Å‚·B
@@ -912,8 +923,8 @@ src/test/resourcesƒtƒHƒ‹ƒ_‚Ìburi.diconƒtƒHƒ‹ƒ_‚Ìdiconƒtƒ@ƒCƒ‹‚ª‚Ô‚è‚Ì“®ì‚É•K—v‚
 
 log4j.properties‚ÍSample‚Æ‚µ‚Ä’ñ‹Ÿ‚µ‚Ä‚¢‚Ü‚·B
 
-dbƒtƒHƒ‹ƒ_‚É‚ ‚é
-createdb_derby.sql‚Ås2-buri‚É•K—v‚Èƒe[ƒuƒ‹‚ðì¬‚µ‚Ä‚­‚¾‚³‚¢B
+‚à‚µV‹K‚ÉDB‚ðì‚é•K—v‚ª‚ ‚éê‡‚ÍdbƒtƒHƒ‹ƒ_‚É‚ ‚écreatedb_derby.sql‚Åburi‚É•K—v‚Èƒe[ƒuƒ‹‚ðì¬‚µ‚Ä‚­‚¾‚³‚¢B
+‚½‚¾‚µAzipƒtƒ@ƒCƒ‹‚Ì’†‚ÌdbƒtƒHƒ‹ƒ_‚Ì“à—e‚ÍŠù‚Éƒe[ƒuƒ‹‚ðì¬Ï‚Ý‚Ìó‹µ‚É‚È‚Á‚Ä‚¢‚Ü‚·B
 
 ‚à‚µAUnitTest‚ð“®‚©‚µ‚½‚¢ê‡‚ÍunitTestTable_derby.sql‚Åƒe[ƒuƒ‹‚ðì¬‚µ‚Ä‚­‚¾‚³‚¢
 
@@ -921,19 +932,19 @@ createdb_derby.sql‚Ås2-buri‚É•K—v‚Èƒe[ƒuƒ‹‚ðì¬‚µ‚Ä‚­‚¾‚³‚¢B
 
 •K—v‚É‰ž‚¶‚Ä’Ç‰Á‚·‚é
 
-2-3-1 s2-buri‚Ì“üŽè•û–@
+2-3-1 buri‚Ì“üŽè•û–@
 
 http://www.seasar.org
 ‚©‚ç‚Ç‚¤‚¼
 
-3 s2-buriƒ`ƒ…[ƒgƒŠƒAƒ‹
+3 buriƒ`ƒ…[ƒgƒŠƒAƒ‹
 
 3-1 XPDL‚Ìì¬‚¨‚æ‚ÑŽg—p
 
 3-1-1 ŽÀsŠÂ‹«‚ð€”õ‚·‚é
 
 ŠJ”­ŠÂ‹«‚ÅŽÀs—p‚Ì€”õ‚ð‚µ‚Ä‚­‚¾‚³‚¢
-”s2-buri‚ÌƒCƒ“ƒXƒg[ƒ‹‚ðŽQÆ
+”buri‚ÌƒCƒ“ƒXƒg[ƒ‹‚ðŽQÆ
 
 ‚±‚±‚ÅŽg‚¤DB‚Ì€–Ú“™‚ÉŠÖ‚µ‚Ä‚ÍUnitTest—p‚Ì€–Ú‚Æ‘S‚­“¯‚¶‚Å‚·B
 
@@ -990,7 +1001,7 @@ FurnitureManagement.xpdl‚Ì—l‚ÉGeneric Activity‚ð•À‚×‚ÄTransition‚Å‚Â‚È‚¢‚Å‚¢‚«‚Ü
 ŠúŠÔI—¹‚©‚çƒŠ[ƒXI—¹‚ÖŒü‚©‚¤Transition‚ð‘I‘ð‚µ‚ÄACondition‚ÌExpression‚É#data.isLease() == true‚ð‘I‘ð‚µ‚Ü‚·
 ‚±‚ê‚Åƒtƒ[‚Í€”õ‚ªo—ˆ‚½‚Ì‚ÅAŠJ”­ŠÂ‹«‚ÌCLASSPATHã‚É”z’u‚µ‚Ü‚·B
 
-3-2 s2-buri‚ðŽg‚Á‚Ä‚ÌŽÀs‚¨‚æ‚Ñƒf[ƒ^‚ÌŽæ“¾
+3-2 buri‚ðŽg‚Á‚Ä‚ÌŽÀs‚¨‚æ‚Ñƒf[ƒ^‚ÌŽæ“¾
 
 ‚±‚±‚©‚ç‚ÍŠJ”­ŠÂ‹«‚Å‘€ì‚µ‚Ä‚¢‚«‚Ü‚·
 
@@ -1126,14 +1137,14 @@ datas = fmBao_.getEndDepreciation();
 System.out.println(datas);
 
 
-‚±‚Ì‚æ‚¤‚És2-buri‚Å‚ÍŠÈ’P‚ÈŒÄ‚Ño‚µ‚ÆXDPL‚É‚æ‚éƒtƒ[‚Ì‹Lq‚¾‚¯‚Åƒ[ƒNƒtƒ[‚ðŠÈ’P‚ÉŽÀs‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+‚±‚Ì‚æ‚¤‚Éburi‚Å‚ÍŠÈ’P‚ÈŒÄ‚Ño‚µ‚ÆXDPL‚É‚æ‚éƒtƒ[‚Ì‹Lq‚¾‚¯‚Åƒ[ƒNƒtƒ[‚ðŠÈ’P‚ÉŽÀs‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
 
 X‚É‘å‚«‚Èƒtƒ[‚ðŒ©‚Ä‚Ý‚½‚¢ê‡‚ÍtestƒtƒHƒ‹ƒ_‚Ìpetition.xpdl‚âorderBao.xpdl‚ðŽQl‚É‚µ‚Ä‚­‚¾‚³‚¢
 —Ç‚­‚ ‚è‚ª‚¿‚Èƒ[ƒNƒtƒ[‚Ìˆê•”‚ð‘‚¢‚Ä‚Ü‚·B
 
 3-3 Žw’èŽž‚ÉŽ©“®“I‚Éƒtƒ[‚ðŽÀs
 
-s2-buri‚Å‚ÍŽw’èŽž‚Éƒtƒ[‚ðŽ©“®ŽÀs‚·‚é‹@”\‚ª‚ ‚è‚Ü‚·B
+buri‚Å‚ÍŽw’èŽž‚Éƒtƒ[‚ðŽ©“®ŽÀs‚·‚é‹@”\‚ª‚ ‚è‚Ü‚·B
 app.dicon“™‚ÉserviceManager.dicon‚ðinclude‚µ‚Ü‚·
 Activity‚ÌƒvƒƒpƒeƒB[‚ÌLimit‚ÉCalendarŒ^‚ð•Ô‚·OGNLŽ®‚ðÝ’è‚µ‚Ä‚­‚¾‚³‚¢
 ‚»‚Ì“úŽž‚É‚È‚Á‚½‚Æ‚«‚ÉŽ©“®“I‚ÉŽÀs‚µ‚Ü‚·
@@ -1141,7 +1152,7 @@ Activity‚ÌƒvƒƒpƒeƒB[‚ÌLimit‚ÉCalendarŒ^‚ð•Ô‚·OGNLŽ®‚ðÝ’è‚µ‚Ä‚­‚¾‚³‚¢
 Ž©“®ŽÀsŽž‚É‚ÍContext‚Ì#autoAction‚Étrue‚ª“ü‚è‚Ü‚·B
 ’Êí#autoAction‚Ínull‚Å‚·B
 
-4 s2-buriƒŠƒtƒ@ƒŒƒ“ƒX
+4 buriƒŠƒtƒ@ƒŒƒ“ƒX
 
 4-1 XPDL
 
@@ -1307,10 +1318,10 @@ Activity‚Ìˆ—‚ð’Ç‰Á‚·‚é‚Æ‚±‚ë
 
 4-2 ƒ†[ƒUŒ ŒÀ‚ÆActivity
 
-s2-buri‚Å‚ÍŒ ŒÀ‚É‚æ‚Á‚ÄŽg‚¦‚é‹@”\‚ð§ŒÀ‚µ‚½‚èAŒ ŒÀ‚É‚æ‚Á‚Ä“®ì‚ð•ÏX‚·‚éê‡‚É‚±‚±‚ÉŒ ŒÀ‚Ìˆê——‚ð‹Lq‚µ‚Ü‚·B
-s2-buri‚Ì•W€“I‚ÈInvoker‚Í‚±‚ÌŒ ŒÀ‚ð”FŽ¯‚µ‚Ä“KØ‚ÈActivity‚ðŽÀs‚·‚é‚±‚Æ‚ª‰Â”\‚Å‚·B
+buri‚Å‚ÍŒ ŒÀ‚É‚æ‚Á‚ÄŽg‚¦‚é‹@”\‚ð§ŒÀ‚µ‚½‚èAŒ ŒÀ‚É‚æ‚Á‚Ä“®ì‚ð•ÏX‚·‚éê‡‚É‚±‚±‚ÉŒ ŒÀ‚Ìˆê——‚ð‹Lq‚µ‚Ü‚·B
+buri‚Ì•W€“I‚ÈInvoker‚Í‚±‚ÌŒ ŒÀ‚ð”FŽ¯‚µ‚Ä“KØ‚ÈActivity‚ðŽÀs‚·‚é‚±‚Æ‚ª‰Â”\‚Å‚·B
 
-‚±‚±‚Å‚Í‚»‚Ìˆ×‚Ì€”õ‚ÌŽè‡‚ÆAs2-buri‚ª‚Ç‚¤‚â‚Á‚ÄActivity‚ð’T‚·‚©‚É‚Â‚¢‚Äà–¾‚µ‚Ü‚·B
+‚±‚±‚Å‚Í‚»‚Ìˆ×‚Ì€”õ‚ÌŽè‡‚ÆAburi‚ª‚Ç‚¤‚â‚Á‚ÄActivity‚ð’T‚·‚©‚É‚Â‚¢‚Äà–¾‚µ‚Ü‚·B
 
 4-2-1 Šî–{“I‚È€”õ
 
@@ -1371,7 +1382,7 @@ convert‚âtype‚Ì‚Éname‚ª–³‚­‚Ä‚à“®ì‚µ‚Ü‚·B
 4-3-1 Bao
 
 Bao‚Æ‚ÍBusinessLogic Access Object‚Ì—ª‚Å‚·
-S2Dao‚Ì—l‚Éinterface‚ð’è‹`‚µ‚ÄAOP‚ðÝ’è‚·‚é‚¾‚¯‚Ås2-buri‚ÌŽ‚Â‚·‚×‚Ä‚Ì‹@”\‚ªŠÈ’P‚É—˜—p‚Å‚«‚Ü‚·B
+S2Dao‚Ì—l‚Éinterface‚ð’è‹`‚µ‚ÄAOP‚ðÝ’è‚·‚é‚¾‚¯‚Åburi‚ÌŽ‚Â‚·‚×‚Ä‚Ì‹@”\‚ªŠÈ’P‚É—˜—p‚Å‚«‚Ü‚·B
 ‰¼‚ÉXPDL‚ª–¢ŽÀ‘•‚Å‚àS2‚Ìƒ‚ƒbƒN‹@”\‚ðŽg‚Á‚Äƒ‚ƒbƒN‚Æ‚µ‚Ä“®ì‚³‚¹‚é‚±‚Æ‚ào—ˆ‚Ü‚·B
 
 ƒfƒtƒHƒ‹ƒg‚Å‚Í’è”ƒAƒmƒe[ƒVƒ‡ƒ“‚Ì‚Ý‚Å‚·‚ªAƒRƒ~ƒbƒ^‚É‚æ‚èTigerƒAƒmƒe[ƒVƒ‡ƒ“‚àƒTƒ|[ƒg‚³‚ê‚é‚ÆŽv‚¢‚Ü‚·
