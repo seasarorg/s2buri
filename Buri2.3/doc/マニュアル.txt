@@ -912,9 +912,16 @@ http://wiki.fdiary.net/maven2/?CookBook
 ここを見ながら設定してください
 
 
-プロジェクトをimportして、pom.xmlを選んで実行、maven2 buildでGolesにinstallとすると必要なjarが取得されるハズです。
+pluginを設定した後プロジェクトをimportすると必要なjarが取得されるハズです。
 最初の一回はかなり時間がかかると思うので我慢して待ってください
 もし上手く動かないときはMLかSNSかBlog等で状況を教えてくださいm(__)m
+
+
+手作業でJarを設定する場合には
+・S2本体
+・S2-Dao
+・buriのlibファイルにあるjar
+が必要です
 
 Seasarのバージョンが古い場合はバージョンアップしても基本的には動作します。
 
