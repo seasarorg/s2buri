@@ -109,4 +109,12 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>scp://www.seasar.org/home/groups/sandbox/s2buri/maven/maven2</url>
+    </repository>
+  </distributionManagement>
 </project>
