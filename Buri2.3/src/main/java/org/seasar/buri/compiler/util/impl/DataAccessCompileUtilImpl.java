@@ -36,24 +36,42 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     private String manyKeyTemplateName ="ftl/DataAccessUtilManyKey.ftl";
     
     public void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
+    	String processID = "";
+    	if(process != null) {
+    		processID = process.getId();
+    	}
+    	setupDataAccessUtil(factory,className,fieldType,buriPackage.getId(),processID);
+    }
+    
+    public void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,String packageId,String processId) {
         Class clazz = ClassUtil.forName(className);
-        DataAccessUtil accessUtil = compileDataAccess(fieldType,buriPackage,process);
+        DataAccessUtil accessUtil = compileDataAccess(fieldType,processId,packageId);
         BuriExePackages exePackage = null;
         if(factory instanceof BuriExePackages) {
             exePackage = (BuriExePackages)factory;
-        } else {
+        } else if(factory instanceof BuriExecProcess){
             BuriExecProcess execProc = (BuriExecProcess)factory;
             exePackage = execProc.getBuriExePackages();
         }
-        Script dataAccessScript = scriptFactory.getScript(exePackage.getDataAccessScriptType());
-        Script pkeyExpressionScript = scriptFactory.getScript(exePackage.getPkeyExpressionType());
-        accessUtil.setDataAccessScript(dataAccessScript);
-        accessUtil.setPkeyExpressionScript(pkeyExpressionScript);
+        scriptSetup(exePackage,accessUtil);
         if(accessUtil instanceof DataAccessUtilLongKey) {
             factory.setDataAccessUtil(clazz,(DataAccessUtilLongKey)accessUtil);
         } else {
             factory.setDataAccessUtil(clazz,(DataAccessUtilManyKey)accessUtil);
         }
+    }
+    
+    protected void scriptSetup(BuriExePackages exePackage,DataAccessUtil accessUtil) {
+        String dasName = "ognl";
+        String pkesName = "ognl";
+        if(exePackage != null) {
+            dasName = exePackage.getDataAccessScriptType();
+            pkesName = exePackage.getPkeyExpressionType();
+        }
+        Script dataAccessScript = scriptFactory.getScript(dasName);
+        Script pkeyExpressionScript = scriptFactory.getScript(pkesName);
+        accessUtil.setDataAccessScript(dataAccessScript);
+        accessUtil.setPkeyExpressionScript(pkeyExpressionScript);
     }
     
     public boolean isDataAccessUtil(BuriDataFieldType fieldType) {
@@ -64,7 +82,11 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     }
     
     public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
-        String createClassName = getDataAccessClassName(fieldType,process,buriPackage);
+        return compileDataAccess(fieldType,process.getId(),buriPackage.getId());
+    }
+    
+    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType,String processId,String packageId) {
+        String createClassName = getDataAccessClassName(fieldType,processId,packageId);
         if(isUseLongKeyType(fieldType)) {
             DataAccessUtilLongKey dataAccessUtil = comileDataAccessUtilLongKey(fieldType,createClassName);
             return dataAccessUtil;
@@ -74,13 +96,12 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
         }
     }
     
-    private String getDataAccessClassName(BuriDataFieldType fieldType,BuriWorkflowProcessType process,BuriPackageType buriPackage) {
-        String baseClassName = "" + buriPackage.getId() ;
+    private String getDataAccessClassName(BuriDataFieldType fieldType,String processId,String packageId) {
         String lastClassName = fieldType.getId().replaceAll("\\.","_")+ "_DataAccessUtil";
-        if(process!=null) {
-            return  baseClassName + "." + process.getId() + "_" + lastClassName;
+        if(processId!=null) {
+            return  packageId + "." + processId + "_" + lastClassName;
         }
-        return baseClassName + "." + buriPackage.getId() + "_" + lastClassName;
+        return packageId + "." + processId + "_" + lastClassName;
     }
     
     private DataAccessUtilLongKey comileDataAccessUtilLongKey(BuriDataFieldType fieldType,String createClassName) {

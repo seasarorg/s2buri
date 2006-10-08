@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.engine.impl;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ import org.seasar.buri.exception.select.BuriNotSelectProcessException;
 import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
 import org.seasar.buri.exception.select.BuriProcessSelectException;
 import org.seasar.buri.oouo.internal.structure.BuriActivityType;
+import org.seasar.buri.oouo.internal.structure.BuriPackageType;
 import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.buri.util.packages.BuriExePackages;
@@ -51,12 +53,38 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     public void readWorkFlowFromResource(String workFlowName,String resourceName) {
         readFromResource(workFlowName,resourceName,null);
     }
+    public void readWorkFlowFromInputStream(InputStream workFlowIs,String resourceName) {
+    	readFromInputStream(workFlowIs,resourceName,null);
+    }
+    public void readWorkFlowFromBuriPackageType(BuriPackageType buriPackage,String resourceName) {
+    	readFromBuriPackageType(buriPackage,resourceName,null);
+    }
     public void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
         readFromResource(workFlowName,resourceName,provider);
+    }
+    public void readWorkFlowFromInputStream(InputStream workFlowIs,String resourceName,ParticipantProvider provider) {
+    	readFromInputStream(workFlowIs,resourceName,provider);
+    }
+    public void readWorkFlowFromBuriPackageType(BuriPackageType buriPackage,String resourceName,ParticipantProvider provider) {
+    	readFromBuriPackageType(buriPackage,resourceName,provider);
     }
     
     public void readFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
         BuriExePackages exePackages = buriCompiler.CompileResource(workFlowName,provider);
+        readFromBuriExePackages(exePackages,resourceName,provider);
+    }
+    
+    public void readFromInputStream(InputStream workFlowIs,String resourceName,ParticipantProvider provider) {
+        BuriExePackages exePackages = buriCompiler.CompileInputStream(workFlowIs,provider);
+        readFromBuriExePackages(exePackages,resourceName,provider);
+    }
+    
+    public void readFromBuriPackageType(BuriPackageType buriPackage,String resourceName,ParticipantProvider provider) {
+        BuriExePackages exePackages = buriCompiler.CompileObject(buriPackage, provider);
+        readFromBuriExePackages(exePackages,resourceName,provider);
+    }
+    
+    protected void readFromBuriExePackages(BuriExePackages exePackages,String resourceName,ParticipantProvider provider) {
         String packageId = exePackages.getBuriPackageType().getId();
         packageObjs.put(packageId,exePackages);
         packageObjs.put(resourceName,exePackages);

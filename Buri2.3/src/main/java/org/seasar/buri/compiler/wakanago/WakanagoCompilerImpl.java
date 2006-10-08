@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.compiler.wakanago;
 
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -27,6 +28,16 @@ public class WakanagoCompilerImpl implements BuriCompiler {
     private CompileProcess compileProcess;
     private CompilePackage compilePackage;
     
+    public BuriExePackages CompileInputStream(InputStream workFlowIs,ParticipantProvider provider) {
+        logger.info("読み込み開始");
+        Object data = oouoReader.readInputStream(workFlowIs);
+        assert data instanceof BuriPackageType;
+        logger.info("コンパイル開始");
+        BuriExePackages result = Compile((BuriPackageType)data,provider);
+        logger.info("コンパイル終了");
+        return result;
+    }
+    
     public BuriExePackages CompileResource(String src,ParticipantProvider provider) {
         logger.info(src + "読み込み開始");
         Object data = oouoReader.readResource(src);
@@ -44,6 +55,13 @@ public class WakanagoCompilerImpl implements BuriCompiler {
         logger.info(src + "コンパイル開始");
         BuriExePackages result = Compile((BuriPackageType)data,provider);
         logger.info(src + "コンパイル終了");
+        return result;
+    }
+    
+    public BuriExePackages CompileObject(BuriPackageType buriPackage,ParticipantProvider provider) {
+        logger.info("コンパイル開始");
+        BuriExePackages result = Compile(buriPackage,provider);
+        logger.info("コンパイル終了");
         return result;
     }
     

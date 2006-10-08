@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.seasar.buri</groupId>
   <artifactId>s2-buri</artifactId>
-  <version>0.3.0</version>
+  <version>0.3.1-SNAPSHOT</version>
   <description></description>
   <build>
     <defaultGoal>validate</defaultGoal>
@@ -48,7 +48,7 @@
     <dependency>
       <groupId>org.seasar.coffee</groupId>
       <artifactId>s2-coffee</artifactId>
-      <version>0.2.0</version>
+      <version>0.2.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>janino</groupId>

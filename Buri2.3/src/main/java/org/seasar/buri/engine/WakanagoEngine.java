@@ -4,8 +4,10 @@
  */
 package org.seasar.buri.engine;
 
+import java.io.InputStream;
 import java.util.Map;
 
+import org.seasar.buri.oouo.internal.structure.BuriPackageType;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 
@@ -19,6 +21,10 @@ public interface WakanagoEngine {
     BuriExecProcess selectProcess(BuriExePackages wPackageObj,BuriSystemContext sysContext);
     
     void readWorkFlowFromResource(String workFlowName,String resourceName);
+    void readWorkFlowFromInputStream(InputStream workFlowIs,String resourceName);
+    void readWorkFlowFromBuriPackageType(BuriPackageType buriPackage,String resourceName);
     void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider);
+    void readWorkFlowFromInputStream(InputStream workFlowIs,String resourceName,ParticipantProvider provider);
+    void readWorkFlowFromBuriPackageType(BuriPackageType buriPackage,String resourceName,ParticipantProvider provider);
     boolean hasPackage(String packageName);
 }
