@@ -27,10 +27,10 @@
 			"oracle.jdbc.driver.OracleDriver"
 		</property>
 		<property name="URL">
-			"jdbc:oracle:thin:@xxx:1521:xxx"
+			"jdbc:oracle:thin:@192.168.0.7:1521:orcl"
 		</property>
-		<property name="user">"xxx"</property>
-		<property name="password">"xxx"</property>
+		<property name="user">"buri"</property>
+		<property name="password">"buri"</property>
 	</component>
 	-->
 
