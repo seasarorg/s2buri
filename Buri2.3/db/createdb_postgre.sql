@@ -14,8 +14,6 @@ CREATE TABLE BuriStateUser (
        PRIMARY KEY (StateUserID)
 );
 
-DROP INDEX XIF1BuriStateUser;
-DROP INDEX XIF2BuriStateUser;
 
 CREATE INDEX XIF1BuriStateUser ON BuriStateUser(StateID);
 CREATE INDEX XIF2BuriStateUser ON BuriStateUser(BuriUserID);
@@ -45,12 +43,6 @@ CREATE TABLE BuriState (
        versionNo            INTEGER NOT NULL,
        PRIMARY KEY (StateID)
 );
-
-DROP INDEX XIF1BuriState;
-DROP INDEX XIF2BuriState;
-DROP INDEX XIF4BuriState;
-DROP INDEX XIF5BuriState;
-DROP INDEX XIF6BuriState;
 
 CREATE INDEX XIF1BuriState ON BuriState(PathID);
 CREATE INDEX XIF2BuriState ON BuriState(DataID);
@@ -86,8 +78,6 @@ CREATE TABLE BuriStateUndoLog (
        PRIMARY KEY (StateUndoLogID)
 );
 
-DROP INDEX XIF1BuriStateUndoLog;
-
 CREATE INDEX XIF1BuriStateUndoLog ON BuriStateUndoLog(StateID);
 
 
@@ -107,8 +97,6 @@ CREATE TABLE BuriTransaction (
        PRIMARY KEY (Btid)
 	
 );
-
-DROP INDEX XIF1BuriTransaction;
 
 CREATE INDEX XIF1BuriTransaction ON BuriTransaction(Btid);
 
@@ -131,10 +119,6 @@ CREATE TABLE BuriBranch (
        versionNo            INTEGER NOT NULL,
        PRIMARY KEY (BranchID)
 );
-
-DROP INDEX XIF1BuriBranch;
-DROP INDEX XIF2BuriBranch;
-DROP INDEX XIF3BuriBranch;
 
 CREATE INDEX XIF1BuriBranch ON BuriBranch(PathID);
 CREATE INDEX XIF2BuriBranch ON BuriBranch(parentBranchID);
@@ -161,9 +145,6 @@ CREATE TABLE BuriDataPathHistory (
        PRIMARY KEY (historyID)
 );
 
-DROP INDEX XIF3BuriDataPathHi;
-DROP INDEX XIF4BuriDataPathHi;
-
 CREATE INDEX XIF3BuriDataPathHi ON BuriDataPathHistory(PathID);
 CREATE INDEX XIF4BuriDataPathHi ON BuriDataPathHistory(DataID);
 
@@ -185,10 +166,6 @@ CREATE TABLE BuriData (
        InsertUserID         INTEGER  ,
        PRIMARY KEY (DataID)
 );
-
-DROP INDEX XIF1BuriData;
-DROP INDEX XIE1BuriData;
-DROP INDEX XIE2BuriData;
 
 CREATE INDEX XIF1BuriData ON BuriData(InsertUserID);
 CREATE INDEX XIE1BuriData ON BuriData(pkeyVal,dataType);
@@ -212,11 +189,6 @@ CREATE TABLE BuriPath (
        PRIMARY KEY (PathID)
 );
 
-DROP INDEX XIE0BuriPath;
-DROP INDEX XIE1BuriPath;
-DROP INDEX XIE2BuriPath;
-DROP INDEX XIE3BuriPath;
-
 CREATE INDEX XIE0BuriPath ON BuriPath(PathID);
 CREATE INDEX XIE1BuriPath ON BuriPath(PathName);
 CREATE INDEX XIE2BuriPath ON BuriPath(RealPathName);
@@ -238,8 +210,6 @@ CREATE TABLE BuriUser (
        UserIDNum            INTEGER,
        PRIMARY KEY (BuriUserID)
 );
-
-DROP INDEX XIE2BuriUser;
 
 CREATE INDEX XIE2BuriUser ON BuriUser(UserIDVal,UserIDNum);
 

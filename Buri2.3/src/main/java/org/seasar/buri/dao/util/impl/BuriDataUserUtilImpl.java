@@ -23,7 +23,11 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUt
     }
 
     protected List getDataInfoListFromPathName(String pathName,BuriSystemContext sysContext) {
-        String className = sysContext.getTgtClass().getName();
+    	// String className = sysContext.getTgtClass().getName();
+    	String className = null;
+    	if (sysContext.getTgtClass() != null) {
+    		className = sysContext.getTgtClass().getName();
+    	}
         Long pathType = sysContext.getCallPath().getPathType();
         List infoList = pathDataUserDao.getListByPathNameAndUser(className,pathName,pathType,sysContext.getUserID());
         return infoList;

@@ -123,10 +123,14 @@ public class BuriDataUtilImpl implements BuriDataUtil{
     }
     
     protected List getDataInfoListFromPathName(String pathName,BuriSystemContext sysContext) {
-        String className = sysContext.getTgtClass().getName();
-        Long pathType = sysContext.getCallPath().getPathType();
-        List infoList = pathDataDao.getListByPathName(className,pathName,pathType);
-        return infoList;
+    	// String className = sysContext.getTgtClass().getName();
+    	String className = null;
+    	if (sysContext.getTgtClass() != null) {
+    		className = sysContext.getTgtClass().getName();
+    	}
+    	Long pathType = sysContext.getCallPath().getPathType();
+    	List infoList = pathDataDao.getListByPathName(className, pathName,pathType);
+    	return infoList;
     }
     
     protected List getManyDataDtoList(String pathName,DataAccessUtilManyKey dataUtil,BuriSystemContext sysContext) {
