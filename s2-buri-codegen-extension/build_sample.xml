@@ -1,0 +1,34 @@
+<project name="CodeGen-Sample" default="gen" basedir=".">
+
+	<property name="lib.dir" location="lib"/>
+
+    <path id="ant.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement location="dicon"/>
+    </path>
+    <!-- =================================
+          target: gen
+         ================================= -->
+    <target name="gen" depends="clean" description="--> generate sources">
+        <java classname="org.seasar.codegen.ant.AntCodeGenMain"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m"
+            >
+          <arg value="dicon"/>
+          <arg value="test/codegen.csv"/>
+          <arg value="target/gen"/>
+          <arg value="fm/java"/>
+          <arg value="org.seasar.codegen.sample"/>
+          <classpath refid="ant.classpath" />
+        </java>
+    </target>
+
+    <target name="clean">
+         <delete dir="target">
+         </delete>
+    </target>
+
+</project>

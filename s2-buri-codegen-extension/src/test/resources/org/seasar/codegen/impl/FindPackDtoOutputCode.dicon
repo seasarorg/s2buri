@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="org/seasar/codegen/impl/LoadFile.dicon"/>
+	<component class="org.seasar.codegen.impl.ParentDtoOutputCodeImpl" >
+		<property name="packageName">"org.seasar"</property>
+		<property name="defaultDir">"FindDto"</property>
+		<property name="templateFileName">"findPackDto.ftl"</property>
+		<initMethod>#self.addRootObjct("Typeconvert",typeconvert)</initMethod>
+	</component>
+	<component name="typeconvert" class="org.seasar.codegen.impl.util.ThroughHashMap">
+		<initMethod>#self.put("long","Long")</initMethod>
+		<initMethod>#self.put("boolean","Boolean")</initMethod>
+	</component>
+</components>

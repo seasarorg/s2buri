@@ -1,0 +1,29 @@
+テーブル 名前,物理プロパティ 名前,カラム 名前,カラム データタイプ,カラム NULLオプション,カラム = PK(Y/N),カラム = FK(Y/N),デフォルト デフォルト,親リレーションシップ タイプ,親リレーションシップ NULLオプション,親テーブル 名前,移行カラム 名前,移行カラム 名前,移行カラム 名前,親リレーションシップ カーディナリティ,子リレーションシップ タイプ,子テーブル 名前,子リレーションシップ NULLオプション,子リレーションシップ カーディナリティ
+BuriBranch,Branch,BranchID,BIGINT,NOT NULL,Yes,No,,非依存,NULLを許可する,BuriData,DataID,DataID,DataID,0または1対0または1以上,非依存,BuriBranch,NULLを許可する,0または1対0または1以上
+BuriBranch,,parentBranchID,BIGINT,NULL,No,Yes,,非依存,NULLを許可する,BuriBranch,parentBranchID,parentBranchID,parentBranchID,0または1対0または1以上,非依存,BuriState,NULLを許可する,0または1対0または1以上
+BuriBranch,,PathID,BIGINT,NULL,No,Yes,,非依存,NULLを許可する,BuriPath,PathID,PathID,PathID,0または1対0または1以上,,,,
+BuriBranch,,DataID,BIGINT,NULL,No,Yes,,,,,,,,,,,,
+BuriBranch,,processDate,DATE,NULL,No,No,,,,,,,,,,,,
+BuriBranch,,versionNo,BIGINT,NOT NULL,No,No,,,,,,,,,,,,
+BuriData,Data,DataID,BIGINT,NOT NULL,Yes,No,,,,,,,,,非依存,BuriBranch,NULLを許可する,0または1対0または1以上
+BuriData,,pkeyVal,VARCHAR(250),NULL,No,No,,,,,,,,,非依存,BuriState,NULLを許可する,0または1対0または1以上
+BuriData,,pkeyNum,BIGINT,NULL,No,No,,,,,,,,,非依存,BuriDataPathHistory,NULLを許可する,0または1対0または1以上
+BuriData,,dataType,VARCHAR(200),NOT NULL,No,No,,,,,,,,,,,,
+BuriDataPathHistory,DataPathHistory,historyID,BIGINT,NOT NULL,Yes,No,,非依存,NULLを許可する,BuriData,DataID,DataID,DataID,0または1対0または1以上,,,,
+BuriDataPathHistory,,PathID,BIGINT,NULL,No,Yes,,非依存,NULLを許可する,BuriPath,PathID,PathID,PathID,0または1対0または1以上,,,,
+BuriDataPathHistory,,DataID,BIGINT,NULL,No,Yes,,,,,,,,,,,,
+BuriDataPathHistory,,UserIDVal,VARCHAR(20),NULL,No,No,,,,,,,,,,,,
+BuriDataPathHistory,,UserIDNum,INTEGER,NULL,No,No,,,,,,,,,,,,
+BuriDataPathHistory,,insertDate,DATE,NOT NULL,No,No,,,,,,,,,,,,
+BuriPath,BuriPath,PathID,BIGINT,NOT NULL,Yes,No,,,,,,,,,非依存,BuriBranch,NULLを許可する,0または1対0または1以上
+BuriPath,,PathName,VARCHAR(100),NOT NULL,No,No,,,,,,,,,非依存,BuriState,NULLを許可する,0または1対0または1以上
+BuriPath,,RealPathName,VARCHAR(100),NOT NULL,No,No,,,,,,,,,非依存,BuriDataPathHistory,NULLを許可する,0または1対0または1以上
+BuriState,State,StateID,BIGINT,NOT NULL,Yes,No,,非依存,NULLを許可する,BuriBranch,BranchID,BranchID,BranchID,0または1対0または1以上,,,,
+BuriState,,PathID,BIGINT,NULL,No,Yes,,非依存,NULLを許可する,BuriData,DataID,DataID,DataID,0または1対0または1以上,,,,
+BuriState,,DataID,BIGINT,NULL,No,Yes,,非依存,NULLを許可する,BuriPath,PathID,PathID,PathID,0または1対0または1以上,,,,
+BuriState,,BranchID,BIGINT,NULL,No,Yes,,,,,,,,,,,,
+BuriState,,UserIDVal,VARCHAR(20),NULL,No,No,,,,,,,,,,,,
+BuriState,,UserIDNum,INTEGER,NULL,No,No,,,,,,,,,,,,
+BuriState,,insertDate,DATE,NOT NULL,No,No,,,,,,,,,,,,
+BuriState,,processDate,DATE,NULL,No,No,,,,,,,,,,,,
+BuriState,,versionNo,BIGINT,NOT NULL,No,No,,,,,,,,,,,,

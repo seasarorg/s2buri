@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<component class="org.seasar.codegen.element.util.PostgreSQLDataTypeSelectUtil" >
+	</component>
+	<!--
+	<component class="org.seasar.codegen.element.util.OracleDataTypeSelectUtil" >
+	</component>
+	<component class="org.seasar.codegen.element.util.DB2DataTypeSelectUtil" >
+	</component>
+	-->
+	<component class="org.seasar.codegen.element.util.JavaDataTypeSelectUtil">
+	</component>
+	<component class="org.seasar.codegen.impl.ERWinCSVImportCodeData" >
+	</component>
+</components>
