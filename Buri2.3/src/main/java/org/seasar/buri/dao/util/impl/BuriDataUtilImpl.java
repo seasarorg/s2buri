@@ -138,7 +138,7 @@ public class BuriDataUtilImpl implements BuriDataUtil{
         Iterator ite = infoList.iterator();
         List result = new ArrayList();
         while(ite.hasNext()) {
-            BuriPathDataUserEntityDto dto = (BuriPathDataUserEntityDto)ite.next();
+        	BuriPathDataEntityDto dto = (BuriPathDataEntityDto)ite.next();
             Object data = dataUtil.getObjectFromKey(dto.getPkeyVal());
             result.add(data);
         }

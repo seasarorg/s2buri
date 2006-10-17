@@ -4,12 +4,15 @@
  */
 package org.seasar.buri.engine.processor.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.seasar.buri.dao.BuriDataPathHistoryDao;
+import org.seasar.buri.dao.FurnitureItemDao;
 import org.seasar.buri.dto.FurnitureItemDto;
+import org.seasar.buri.dto.FurnitureItemFindDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.extension.unit.S2TestCase;
@@ -20,6 +23,7 @@ public class SimpleBuriProcessorTest extends S2TestCase {
     private BuriEngine buriEngine;
     private SimpleBuriProcessor invoker_;
     private BuriDataPathHistoryDao historyDao;
+    private FurnitureItemDao itemDao;
     
     public SimpleBuriProcessorTest(String arg0) {
         super(arg0);
@@ -65,7 +69,12 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         System.out.println(datas);
         assertEquals(datas.size(),2);
         
-        
+        FurnitureItemFindDto findDto = new FurnitureItemFindDto();
+        findDto.setType("PC");
+        List pathNames = new ArrayList();
+        pathNames.add("‘YŠÇ—.”õ•iŠÇ—.—˜—p’†");
+        datas = itemDao.find(findDto, pathNames);
+        assertEquals(datas.size(),2);
 
         start = Calendar.getInstance().getTimeInMillis();
         invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",new Long(buyItemDto.getFurnitureID()));

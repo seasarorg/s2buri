@@ -1,51 +1,55 @@
-/*
- * çÏê¨ì˙: 2006/06/14
- *
- */
 package org.seasar.buri.dto;
 
+
 public class BuriTestUserDto {
-    public static final String TABLE = "BuriTestUser";
+	public static final String TABLE = "BuriTestUser";
 
-    // public static final String UserID_ID = "sequence,sequenceName=BuriTestUserID";
-    private long UserID;
+	public static final String userID_ID = "sequence, sequenceName=userID";
+	private long userID;
+	private String userName = "";
+	private String roleName = "";
+	private int parentUserID;
+	
+	public long getUserID() {
+		return userID;
+	}
 
-    private String UserName;
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
 
-    private String RoleName;
+	public String getUserName() {
+		return userName;
+	}
 
-    private Long ParentUserID;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public Long getParentUserID() {
-        return ParentUserID;
-    }
+	public String getRoleName() {
+		return roleName;
+	}
 
-    public void setParentUserID(Long parentUserID) {
-        ParentUserID = parentUserID;
-    }
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
-    public String getRoleName() {
-        return RoleName;
-    }
+	public int getParentUserID() {
+		return parentUserID;
+	}
 
-    public void setRoleName(String roleName) {
-        RoleName = roleName;
-    }
+	public void setParentUserID(int parentUserID) {
+		this.parentUserID = parentUserID;
+	}
 
-    public long getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(long userID) {
-        UserID = userID;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String userName) {
-        UserName = userName;
-    }
-
+	public String toString() {
+		StringBuffer buff = new StringBuffer("[");
+		buff.append("/userID=").append(userID);
+		buff.append("/userName=").append(userName);
+		buff.append("/roleName=").append(roleName);
+		buff.append("/parentUserID=").append(parentUserID);
+		buff.append("]");
+		return buff.toString();
+	}
+	
 }

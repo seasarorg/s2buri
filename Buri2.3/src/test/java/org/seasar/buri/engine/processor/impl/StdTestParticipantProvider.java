@@ -30,7 +30,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     }
 
     public Object getUserData(Long userIDNum, String userIDString) {
-        BuriTestUserDto dto = userDao.getBuriTestUser(userIDNum.longValue());
+        BuriTestUserDto dto = userDao.getBuriTestUser(userIDNum.intValue());
         return dto;
     }
 
@@ -89,7 +89,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                 Iterator ite = selfData.iterator();
                 while(ite.hasNext()) {
                     BuriTestUserDto dto = (BuriTestUserDto)ite.next();
-                    List tmpList = userDao.getUserListByUserID(dto.getParentUserID(),roleName);
+                    List tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()),roleName);
                     roleList.addAll(tmpList);
                 }
                 
@@ -99,7 +99,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                 Iterator ite = selfData.iterator();
                 while(ite.hasNext()) {
                     BuriTestUserDto dto = (BuriTestUserDto)ite.next();
-                    List tmpList = userDao.getUserListByUserID(dto.getParentUserID(),roleName);
+                    List tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()),roleName);
                     roleList.addAll(tmpList);
                 }
                 

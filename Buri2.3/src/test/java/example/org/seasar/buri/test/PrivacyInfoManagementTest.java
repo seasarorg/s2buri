@@ -65,7 +65,7 @@ public class PrivacyInfoManagementTest extends S2TestCase {
     }
     
     private void setupBuriTestUser(long userID) {
-        BuriTestUserDto testUserDto = userDao.getBuriTestUser(userID);
+        BuriTestUserDto testUserDto = userDao.getBuriTestUser((int)userID);
         userDto.setUserID(testUserDto.getUserID());
         userDto.setUserName(testUserDto.getUserName());
     }

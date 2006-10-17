@@ -1,31 +1,35 @@
-/*
- * çÏê¨ì˙: 2005/08/18
- *
- */
 package org.seasar.buri.dao;
 
 import java.util.List;
 
 import org.seasar.buri.dto.FurnitureItemDto;
-
+import org.seasar.buri.dto.FurnitureItemFindDto;
 
 public interface FurnitureItemDao {
     public Class BEAN = FurnitureItemDto.class;
-    
+
     public List getAllFurnitureItem();
 
-    public String getFurnitureItem_ARGS = "FurnitureID";
-    public FurnitureItemDto getFurnitureItem(String furnitureID);
+    public String getFurnitureItem_QUERY = "furnitureID = ?";
+    public FurnitureItemDto getFurnitureItem(long furnitureID);
 
-    public String getByIdAndDto_ARGS = "testIDs,dto";
-    public String getByIdAndDto_QUERY = "FurnitureID in /*testIds*/(1) /*IF dto.Type != null*/and Type = /*dto.Type*/'hoge' /*END*/ /*IF dto.Name != null*/and Name = /*dto.Name*/'hoge' /*END*/ /*IF dto.acquisitionType != 0*/and acquisitionType = /*dto.acquisitionType*/1 /*END*/";
-    public List getByIdAndDto(List testIds,FurnitureItemDto dto);
+    public String getFurnitureItemByIds_ARGS = "furnitureIDs";
+    public String getFurnitureItemByIds_QUERY = "furnitureID in /*furnitureIDs*/(1)";
+    public List getFurnitureItemByIds(List furnitureIDs);
+    
+    public String find_ARGS = "dto,paths";
+    public List find(FurnitureItemFindDto dto,List paths);
+    
+    public String findAndUser_ARGS = "dto,paths,userIDs";
+    public List findAndUser(FurnitureItemFindDto dto,List paths,List userIDs);
+
+    //public String soleMatch_ARGS = "dto";
+    //public FurnitureItemDto soleMatch(FurnitureItemFindDto dto);
     
     public void insert(FurnitureItemDto dto);
     
     public void update(FurnitureItemDto dto);
     
     public void delete(FurnitureItemDto dto);
-    
-    
 }
+

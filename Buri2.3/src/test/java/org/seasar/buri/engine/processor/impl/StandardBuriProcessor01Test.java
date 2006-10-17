@@ -4,9 +4,11 @@
  */
 package org.seasar.buri.engine.processor.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.seasar.buri.dao.BuriTestUserDao;
+import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.dto.BuriTestUserDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.ParticipantProvider;
@@ -15,6 +17,7 @@ import org.seasar.extension.unit.S2TestCase;
 
 import example.org.seasar.buri.dao.ItemDao;
 import example.org.seasar.buri.dto.ItemDto;
+import example.org.seasar.buri.dto.ItemFindDto;
 
 public class StandardBuriProcessor01Test extends S2TestCase {
     private String PATH = "buri/dicon/buriStandard.dicon";
@@ -23,6 +26,8 @@ public class StandardBuriProcessor01Test extends S2TestCase {
     private BuriTestUserDao userDao;
     private ItemDao itemDao;
     private ParticipantProvider participantProvider;
+    private BuriUserUtil buriUserUtil;
+
     
     public StandardBuriProcessor01Test(String arg0) {
         super(arg0);
@@ -39,6 +44,9 @@ public class StandardBuriProcessor01Test extends S2TestCase {
         participantProvider = (ParticipantProvider)getComponent("StdTestParticipantProvider");
         buriEngine.readWorkFlowFromResource("wakanagoxpdl/stdTest.xpdl","stdTest",participantProvider);
         
+        ItemFindDto findDto = new ItemFindDto();
+        List userList = new ArrayList();
+        List pathList = new ArrayList();
         ItemDto itemDto1 = itemDao.getItem(1);
         BuriTestUserDto userDto = null;
         
@@ -58,6 +66,19 @@ public class StandardBuriProcessor01Test extends S2TestCase {
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
         
+        Long userID = participantProvider.getUserIDNum(user3Dto, null);
+        long userKey = buriUserUtil.convertUserID(userID, null);
+        userList.add(new Long(userKey));
+        pathList.add("stdTest.Test01.éÛïtçœÇ›");
+        findDto.setItemName_matchFront("PS");
+        dataList = itemDao.findAndUser(findDto, pathList, userList);
+        assertEquals(dataList.size(),1);
+        userList.clear();
+        userID = participantProvider.getUserIDNum(user2Dto, null);
+        userKey = buriUserUtil.convertUserID(userID, null);
+        userList.add(new Long(userKey));
+        dataList = itemDao.findAndUser(findDto, pathList, userList);
+        assertEquals(dataList.size(),0);
         
         ItemDto itemDto2 = itemDao.getItem(2);
         userDto = null;
