@@ -3,6 +3,9 @@
 	<property name="lib.dir" location="lib"/>
 
     <path id="ant.classpath">
+    	<!-- 開発中に必要だっただけ。普通は要らないはず
+        <pathelement location="target/classes"/>
+        -->
         <fileset dir="${lib.dir}">
             <include name="*.jar" />
         </fileset>
@@ -18,8 +21,22 @@
             maxmemory="128m"
             >
           <arg value="dicon"/>
+          <arg value="java/"/>
           <arg value="test/codegen.csv"/>
-          <arg value="target/gen"/>
+          <arg value="target/gen/java"/>
+          <arg value="fm/java"/>
+          <arg value="org.seasar.codegen.sample"/>
+          <classpath refid="ant.classpath" />
+        </java>
+        <java classname="org.seasar.codegen.ant.AntCodeGenMain"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m"
+            >
+          <arg value="dicon"/>
+          <arg value="resource/"/>
+          <arg value="test/codegen.csv"/>
+          <arg value="target/gen/resource"/>
           <arg value="fm/java"/>
           <arg value="org.seasar.codegen.sample"/>
           <classpath refid="ant.classpath" />
@@ -27,7 +44,7 @@
     </target>
 
     <target name="clean">
-         <delete dir="target">
+         <delete dir="target/gen">
          </delete>
     </target>
 
