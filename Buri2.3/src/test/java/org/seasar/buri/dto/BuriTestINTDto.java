@@ -4,7 +4,7 @@ package org.seasar.buri.dto;
 public class BuriTestINTDto {
 	public static final String TABLE = "BuriTestINT";
 
-	public static final String testID_ID = "sequence, sequenceName=testID";
+	public static final String testID_ID = "sequence, sequenceName=BuriTestINTID";
 	private long testID;
 	private String value = "";
 	private int versionNo;

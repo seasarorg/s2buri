@@ -4,7 +4,7 @@ package org.seasar.buri.dto;
 public class BuriTestUserDto {
 	public static final String TABLE = "BuriTestUser";
 
-	public static final String userID_ID = "sequence, sequenceName=userID";
+	public static final String userID_ID = "sequence, sequenceName=BuriTestUserID";
 	private long userID;
 	private String userName = "";
 	private String roleName = "";

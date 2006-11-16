@@ -5,7 +5,7 @@ import java.util.Date;
 public class FurnitureItemDto {
 	public static final String TABLE = "FurnitureItem";
 
-	public static final String furnitureID_ID = "sequence, sequenceName=furnitureID";
+	public static final String furnitureID_ID = "sequence, sequenceName=FurnitureItemID";
 	private long furnitureID;
 	private String type = "";
 	private String name = "";
