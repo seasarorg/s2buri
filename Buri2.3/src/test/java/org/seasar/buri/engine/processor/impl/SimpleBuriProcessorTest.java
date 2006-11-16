@@ -14,6 +14,7 @@ import org.seasar.buri.dao.FurnitureItemDao;
 import org.seasar.buri.dto.FurnitureItemDto;
 import org.seasar.buri.dto.FurnitureItemFindDto;
 import org.seasar.buri.engine.BuriEngine;
+import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -107,6 +108,109 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         System.out.println(datas);
         assertEquals(datas.size(),0);
 //        }
+        List history = historyDao.getAllBuriDataPathHistory();
+        System.out.println(history);
+    }
+    
+    
+    public void testSimpleTest2Tx() {
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/FurnitureManagement.xpdl","‘YŠÇ—");
+        List datas;
+        FurnitureItemDto buyItemDto = new FurnitureItemDto();
+        buyItemDto.setName("T45_001");
+        buyItemDto.setType("PC");
+        buyItemDto.setAcquisitionTypeBuy();
+        buyItemDto.setAcquisition(new Date());
+        
+        long start = Calendar.getInstance().getTimeInMillis();
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",buyItemDto);
+        long end = Calendar.getInstance().getTimeInMillis();
+        System.out.println(buyItemDto.toString() + " time =" + (end-start)+"ms");
+
+        FurnitureItemDto leaseItemDto = new FurnitureItemDto();
+        leaseItemDto.setName("T45_002");
+        leaseItemDto.setType("PC");
+        leaseItemDto.setAcquisitionTypeLease();
+        leaseItemDto.setAcquisition(new Date());        
+        
+        start = Calendar.getInstance().getTimeInMillis();
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",leaseItemDto);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println(leaseItemDto.toString() + " time =" + (end-start)+"ms");
+
+        start = Calendar.getInstance().getTimeInMillis();
+        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†",FurnitureItemDto.class);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†".toString() + " time =" + (end-start)+"ms");
+        System.out.println(datas);
+        assertEquals(datas.size(),2);
+        
+        FurnitureItemFindDto findDto = new FurnitureItemFindDto();
+        findDto.setType("PC");
+        List pathNames = new ArrayList();
+        pathNames.add("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†");
+        datas = itemDao.find(findDto, pathNames);
+        assertEquals(datas.size(),2);
+
+        start = Calendar.getInstance().getTimeInMillis();
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(buyItemDto.getFurnitureID()));
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+
+        start = Calendar.getInstance().getTimeInMillis();
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(leaseItemDto.getFurnitureID()));
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+        
+        findDto = new FurnitureItemFindDto();
+        findDto.setType("PC");
+        pathNames = new ArrayList();
+        pathNames.add("‘YŠÇ—.”õ•iŠÇ—2.ŠúŠÔI—¹");
+        datas = itemDao.find(findDto, pathNames);
+        assertEquals(datas.size(),2);
+
+        start = Calendar.getInstance().getTimeInMillis();
+        BuriProcessorInfo info = new BuriProcessorInfo();
+        info.put("action2", "buy");
+        info.setAction(null);
+        info.setContainer(null);
+        info.setResultExp(null);
+        info.setActNames(null);
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(buyItemDto.getFurnitureID()),info);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+
+        start = Calendar.getInstance().getTimeInMillis();
+        info = new BuriProcessorInfo();
+        info.put("action2", "lease");
+        info.setAction(null);
+        info.setContainer(null);
+        info.setResultExp(null);
+        info.setActNames(null);        
+        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(leaseItemDto.getFurnitureID()),info);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+
+        start = Calendar.getInstance().getTimeInMillis();
+        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.‹pŠúŠÔI—¹",FurnitureItemDto.class);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.‹pŠúŠÔI—¹".toString() + " time =" + (end-start)+"ms");
+        System.out.println(datas);
+        assertEquals(datas.size(),1);
+
+        start = Calendar.getInstance().getTimeInMillis();
+        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.ƒŠ[ƒXI—¹",FurnitureItemDto.class);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.ƒŠ[ƒXI—¹".toString() + " time =" + (end-start)+"ms");
+        System.out.println(datas);
+        assertEquals(datas.size(),1);
+
+        start = Calendar.getInstance().getTimeInMillis();
+        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†",FurnitureItemDto.class);
+        end = Calendar.getInstance().getTimeInMillis();
+        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†".toString() + " time =" + (end-start)+"ms");
+        System.out.println(datas);
+        assertEquals(datas.size(),0);
         List history = historyDao.getAllBuriDataPathHistory();
         System.out.println(history);
     }

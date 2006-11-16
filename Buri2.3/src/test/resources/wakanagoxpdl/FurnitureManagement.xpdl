@@ -215,6 +215,190 @@
 <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="FurnitureManagement_Par1"/>
 </ExtendedAttributes>
 </WorkflowProcess>
+<WorkflowProcess AccessLevel="PUBLIC" Id="FurnitureManagement_Wor11" Name="備品管理2">
+<ProcessHeader DurationUnit="D">
+<Created>2005-08-18 17:11:41</Created>
+</ProcessHeader>
+<RedefinableHeader PublicationStatus="UNDER_TEST"/>
+<DataFields>
+<DataField Id="java.lang.Long" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="preprocess" Value="FurnitureItemDao.getFurnitureItem(#data)"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<Activities>
+<Activity Id="FurnitureManagement_Wor1_Act1" Name="備品登録">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="140,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="FurnitureManagement_Wor1_Act2" Name="利用中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="FurnitureManagement_Wor1_Act3" Name="償却期間終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="650,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="FurnitureManagement_Wor1_Act4" Name="リース終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="650,180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="FurnitureManagement_Wor1_Act5" Name="返却済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="790,180"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="FurnitureManagement_Wor1_Act6" Name="廃棄処分済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="790,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="FurnitureManagement_Wor1_Act7" Name="期間終了">
+<Implementation>
+<Tool Id="FurnitureManagement_App1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="//#data = BuriDataDaoUtil.getDtoFromDataKey(#callPath)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>FurnitureManagement_Par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="FurnitureManagement_Wor1_Tra2"/>
+<TransitionRef Id="FurnitureManagement_Wor1_Tra4"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="430,110"/>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="FurnitureManagement_Wor1_Act1" Id="FurnitureManagement_Wor1_Tra1" To="FurnitureManagement_Wor1_Act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="FurnitureManagement_Wor1_Act7" Id="FurnitureManagement_Wor1_Tra2" To="FurnitureManagement_Wor1_Act3">
+<Condition Type="CONDITION">#action2 == "buy"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="FurnitureManagement_Wor1_Act3" Id="FurnitureManagement_Wor1_Tra3" To="FurnitureManagement_Wor1_Act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="FurnitureManagement_Wor1_Act7" Id="FurnitureManagement_Wor1_Tra4" To="FurnitureManagement_Wor1_Act4">
+<Condition Type="CONDITION">#action2 == "lease"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="FurnitureManagement_Wor1_Act4" Id="FurnitureManagement_Wor1_Tra5" To="FurnitureManagement_Wor1_Act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="FurnitureManagement_Wor1_Act2" Id="FurnitureManagement_Wor1_Tra14" To="FurnitureManagement_Wor1_Act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=FurnitureManagement_Par1,CONNECTING_ACTIVITY_ID=FurnitureManagement_Wor1_Act6,X_OFFSET=931,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=FurnitureManagement_Par1,CONNECTING_ACTIVITY_ID=FurnitureManagement_Wor1_Act5,X_OFFSET=931,Y_OFFSET=191,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=FurnitureManagement_Par1,CONNECTING_ACTIVITY_ID=FurnitureManagement_Wor1_Act1,X_OFFSET=81,Y_OFFSET=121,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="FurnitureManagement_Par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
 </WorkflowProcesses>
 <ExtendedAttributes>
 <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>

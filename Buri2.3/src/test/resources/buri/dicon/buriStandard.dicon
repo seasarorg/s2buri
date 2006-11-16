@@ -112,7 +112,6 @@
 		<property name="participantProvider">null</property>
 	</component>
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExeProcessDataAccess" instance="outer" >
-		<aspect>BuriInterceptorChain</aspect>
 		<aspect>BuriRecorderInterceptor</aspect>
 		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
 		<!--
