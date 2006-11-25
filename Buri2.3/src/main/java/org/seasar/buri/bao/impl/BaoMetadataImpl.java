@@ -22,6 +22,11 @@ public class BaoMetadataImpl implements BaoMetadata {
     
     private HashMap metadatas = new HashMap();
     
+    public void dispose() {
+    	metadatas.clear();
+    	converter.clear();
+    }
+    
     public BaoFunctionMetadata getMetadata(MethodInvocation invoke) {
         BaoFunctionMetadata funcMetadata = null;
         synchronized (metadatas) {

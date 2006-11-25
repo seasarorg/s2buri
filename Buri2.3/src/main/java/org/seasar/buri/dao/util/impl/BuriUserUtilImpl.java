@@ -30,6 +30,10 @@ public class BuriUserUtilImpl implements BuriUserUtil {
     private BuriUserDao userDao;
     private Map userIDCache = new HashMap();
     
+    public void dispose() {
+    	userIDCache.clear();
+    }
+    
     public long convertUserID(Long userIDNum,String userIDVal) {
         String userIDKey = ""+userIDNum+"/"+userIDVal;
         if(userIDCache.containsKey(userIDKey)) {

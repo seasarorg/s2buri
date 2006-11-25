@@ -40,6 +40,10 @@ public class BaoMetadataFactoryImpl implements BaoMetadataFactory {
     private static final String USERINFO = "USERINFO";
     private static final String GLBLCONVERTER = "CONVERTER";
     private static final String TARGETDTO = "TARGETDTO";
+    
+    public void dispose() {
+    	metadatas.clear();
+    }
 
     public BaoMetadata getBaoMetadata(MethodInvocation invoke) {
         BaoMetadata metadata = null;
