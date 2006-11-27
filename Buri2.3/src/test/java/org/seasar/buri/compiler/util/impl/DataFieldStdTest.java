@@ -131,6 +131,21 @@ public class DataFieldStdTest extends S2TestCase {
         assertEquals(dst.getSelectMany(),"BuriTestINTDao.getBuriTestINTByIds(#data)");
     }
     
+    public void testDataFieldType09() {
+        BuriDataFieldType dft = new BuriDataFieldType();
+        dft.setId("org.seasar.buri.dto.BuriTestINTDto");
+        
+        BuriDataFieldType dst = bdfcp.preprocess(dft);
+
+        System.out.println(dst.getKeys().toString());
+        assertEquals(dst.getKeys().toString(),"{testID=testID != 0}");
+        assertEquals(dst.getInsert(),"BuriTestINTDao.insert(#data)");
+        assertEquals(dst.getUpdate(),"BuriTestINTDao.update(#data)");
+        assertEquals(dst.getSelect(),"BuriTestINTDao.getBuriTestINT(#data.testID)");
+        assertEquals(dst.getDelete(),"BuriTestINTDao.delete(#data)");
+        assertEquals(dst.getSelectMany(),"BuriTestINTDao.getBuriTestINTByIds(#data)");
+    }
+    
     
     private void setBuriDataFieldType(BuriDataFieldType dft,String name,String val) {
         BuriExtendedAttributeType beat = new BuriExtendedAttributeType();

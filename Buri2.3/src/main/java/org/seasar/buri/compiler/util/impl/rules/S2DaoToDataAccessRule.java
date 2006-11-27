@@ -259,15 +259,20 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     protected String getDaoName(BuriDataFieldType src,String dtoClassName) {
         String dao = null;
         String shtName = createDaoName(src,dtoClassName);
+        String shtName2 = shtName.substring(0, 1).toLowerCase() + shtName.substring(1);
         if(container.getRoot().hasComponentDef(shtName)) {
             dao = shtName;
+        } else if(container.getRoot().hasComponentDef(shtName2)) {
+            dao = shtName2;
         } else {
-            dao = findDaoClass(shtName);
+            dao = findDaoClass(shtName,dtoClassName);
         }
         return dao;
     }
     
-    protected String findDaoClass(String shtName) {
+    
+    
+    protected String findDaoClass(String shtName,String dtoClassName) {
         String dao = null;
         List daoPackageName = configuration.getValList("DaoPackageName");
         Iterator ite = daoPackageName.iterator();
@@ -279,8 +284,23 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
                 break;
             }
         }
+        /*
+        if(dao == null) {
+        	dao = genarateDaoClass(shtName,dtoClassName);
+        }
+        */
         return dao;
     }
+    
+    /*
+    protected String genarateDaoClass(String shtName,String dtoClassName) {
+        Class tgtClass = ClassUtil.forName(dtoClassName);
+        String packageName = tgtClass.getPackage().getName();
+        packageName = packageName.replaceAll("dto","dao") + "." + shtName;
+        packageName = classNameToDao(packageName);
+        return packageName;
+    }
+    */
     
     protected String classNameToDao(String fullName) {
         String dao = null;
