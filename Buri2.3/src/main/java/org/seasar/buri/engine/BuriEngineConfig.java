@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/16
+ * ä½œæˆæ—¥: 2006/07/16
  *
  */
 package org.seasar.buri.engine;

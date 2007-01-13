@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2005/11/29
+ * ä½œæˆæ—¥: 2005/11/29
  *
  */
 package example.org.seasar.buri.test;
@@ -36,14 +36,14 @@ public class BaoTest extends S2TestCase {
     private ShippingBao shippingBao;
     private ShippingItemBao shippingItemBao;
 
-    private CustomerDto ‹q1;
-    private CustomerDto ‹q2;
+    private CustomerDto å®¢1;
+    private CustomerDto å®¢2;
     
-    private ItemDto ¤•i1;
-    private ItemDto ¤•i2;
-    private ItemDto ¤•i3;
-    private ItemDto ¤•i4;
-    private ItemDto ¤•i5;
+    private ItemDto å•†å“1;
+    private ItemDto å•†å“2;
+    private ItemDto å•†å“3;
+    private ItemDto å•†å“4;
+    private ItemDto å•†å“5;
     
     public BaoTest(String arg0) {
         super(arg0);
@@ -55,9 +55,9 @@ public class BaoTest extends S2TestCase {
     }
     
     public void testNomalOrderTx() {
-        // –{“–‚Íburi2.dicon‚É‘‚­‚à‚Ì
+        // æœ¬å½“ã¯buri2.diconã«æ›¸ãã‚‚ã®
         BuriEngine buriEngine = (BuriEngine)getComponent("BuriSimpleEngine");
-        buriEngine.readWorkFlowFromResource("wakanagoxpdl/orderBao.xpdl","’•¶ŠÇ—");
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/orderBao.xpdl","æ³¨æ–‡ç®¡ç†");
 
         customerSetup();
         itemSetup();
@@ -169,9 +169,9 @@ public class BaoTest extends S2TestCase {
     }
     
     public void testCancelSuccessOrderTx() {
-        // –{“–‚Íburi2.dicon‚É‘‚­‚à‚Ì
+        // æœ¬å½“ã¯buri2.diconã«æ›¸ãã‚‚ã®
         BuriEngine buriEngine = (BuriEngine)getComponent("BuriSimpleEngine");
-        buriEngine.readWorkFlowFromResource("wakanagoxpdl/orderBao.xpdl","’•¶ŠÇ—");
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/orderBao.xpdl","æ³¨æ–‡ç®¡ç†");
 
         customerSetup();
         itemSetup();
@@ -232,9 +232,9 @@ public class BaoTest extends S2TestCase {
     }    
     
     public void testInvokeExceptionOrderTx() {
-        // –{“–‚Íburi2.dicon‚É‘‚­‚à‚Ì
+        // æœ¬å½“ã¯buri2.diconã«æ›¸ãã‚‚ã®
         BuriEngine buriEngine = (BuriEngine)getComponent("BuriSimpleEngine");
-        buriEngine.readWorkFlowFromResource("wakanagoxpdl/orderBao.xpdl","’•¶ŠÇ—");
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/orderBao.xpdl","æ³¨æ–‡ç®¡ç†");
 
         customerSetup();
         itemSetup();
@@ -303,17 +303,17 @@ public class BaoTest extends S2TestCase {
     
     protected OrderInfoDto orderSetup1() {
         OrderInfoDto dto = new OrderInfoDto();
-        dto.setCustomerID(‹q1.getCustomerID());
+        dto.setCustomerID(å®¢1.getCustomerID());
         dto.setOrderDate(new Date());
         dto.setStatus(new Integer(0));
         
         OrderDetailDto detailDto = new OrderDetailDto();
-        detailDto.setItemID(¤•i2.getItemID());
+        detailDto.setItemID(å•†å“2.getItemID());
         detailDto.setOrderCount(1);
         dto.getOrderDetail().add(detailDto);
         
         detailDto = new OrderDetailDto();
-        detailDto.setItemID(¤•i3.getItemID());
+        detailDto.setItemID(å•†å“3.getItemID());
         detailDto.setOrderCount(2);
         dto.getOrderDetail().add(detailDto);
         return dto;
@@ -321,17 +321,17 @@ public class BaoTest extends S2TestCase {
     
     protected OrderInfoDto orderSetup2() {
         OrderInfoDto dto = new OrderInfoDto();
-        dto.setCustomerID(‹q1.getCustomerID());
+        dto.setCustomerID(å®¢1.getCustomerID());
         dto.setOrderDate(new Date());
         dto.setStatus(new Integer(0));
 
         OrderDetailDto detailDto = new OrderDetailDto();
-        detailDto.setItemID(¤•i4.getItemID());
+        detailDto.setItemID(å•†å“4.getItemID());
         detailDto.setOrderCount(2);
         dto.getOrderDetail().add(detailDto);
         
         detailDto = new OrderDetailDto();
-        detailDto.setItemID(¤•i5.getItemID());
+        detailDto.setItemID(å•†å“5.getItemID());
         detailDto.setOrderCount(1);
         dto.getOrderDetail().add(detailDto);
         return dto;
@@ -339,46 +339,46 @@ public class BaoTest extends S2TestCase {
     
     protected OrderInfoDto orderSetup3() {
         OrderInfoDto dto = new OrderInfoDto();
-        dto.setCustomerID(‹q2.getCustomerID());
+        dto.setCustomerID(å®¢2.getCustomerID());
         dto.setOrderDate(new Date());
         dto.setStatus(new Integer(0));
 
         OrderDetailDto detailDto = new OrderDetailDto();
-        detailDto.setItemID(¤•i1.getItemID());
+        detailDto.setItemID(å•†å“1.getItemID());
         detailDto.setOrderCount(5);
         dto.getOrderDetail().add(detailDto);
         return dto;
     }
     
     protected void itemSetup() {
-        ¤•i1 = new ItemDto();
-        ¤•i1.setItemName("PS1");
-        ¤•i1.setPrice(19800);
-        itemDao.insert(¤•i1);
-        ¤•i2 = new ItemDto();
-        ¤•i2.setItemName("PS2");
-        ¤•i2.setPrice(19800);
-        itemDao.insert(¤•i2);
-        ¤•i3 = new ItemDto();
-        ¤•i3.setItemName("PS3");
-        ¤•i3.setPrice(19800);
-        itemDao.insert(¤•i3);
-        ¤•i4 = new ItemDto();
-        ¤•i4.setItemName("PS4");
-        ¤•i4.setPrice(19800);
-        itemDao.insert(¤•i4);
-        ¤•i5 = new ItemDto();
-        ¤•i5.setItemName("PS5");
-        ¤•i5.setPrice(19800);
-        itemDao.insert(¤•i5);
+        å•†å“1 = new ItemDto();
+        å•†å“1.setItemName("PS1");
+        å•†å“1.setPrice(19800);
+        itemDao.insert(å•†å“1);
+        å•†å“2 = new ItemDto();
+        å•†å“2.setItemName("PS2");
+        å•†å“2.setPrice(19800);
+        itemDao.insert(å•†å“2);
+        å•†å“3 = new ItemDto();
+        å•†å“3.setItemName("PS3");
+        å•†å“3.setPrice(19800);
+        itemDao.insert(å•†å“3);
+        å•†å“4 = new ItemDto();
+        å•†å“4.setItemName("PS4");
+        å•†å“4.setPrice(19800);
+        itemDao.insert(å•†å“4);
+        å•†å“5 = new ItemDto();
+        å•†å“5.setItemName("PS5");
+        å•†å“5.setPrice(19800);
+        itemDao.insert(å•†å“5);
     }
     protected void customerSetup() {
-        ‹q1 = new CustomerDto();
-        ‹q1.setCustomerName("‹q‚P‚¾‚æ");
-        customerDao.insert(‹q1);
-        ‹q2 = new CustomerDto();
-        ‹q2.setCustomerName("‹q‚Q‚¶‚á");
-        customerDao.insert(‹q2);
+        å®¢1 = new CustomerDto();
+        å®¢1.setCustomerName("å®¢ï¼‘ã ã‚ˆ");
+        customerDao.insert(å®¢1);
+        å®¢2 = new CustomerDto();
+        å®¢2.setCustomerName("å®¢ï¼’ã˜ã‚ƒ");
+        customerDao.insert(å®¢2);
     }
     
 }

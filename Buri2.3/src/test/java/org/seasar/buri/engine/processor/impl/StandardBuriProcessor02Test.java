@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/06/19
+ * ä½œæˆæ—¥: 2006/06/19
  *
  */
 package org.seasar.buri.engine.processor.impl;
@@ -44,64 +44,64 @@ public class StandardBuriProcessor02Test extends S2TestCase {
         BuriTestUserDto user1Dto = userDao.getBuriTestUser(1);
         BuriTestUserDto user2Dto = userDao.getBuriTestUser(2);
         BuriTestUserDto user3Dto = userDao.getBuriTestUser(3);
-        processor.toNextStatus("stdTest.Test02.w¦",itemDto1,user1Dto);
-        List dataList = processor.getDataListFromPath("stdTest.Test02.w¦–¢ˆ—",user2Dto,ItemDto.class);
+        processor.toNextStatus("stdTest.Test02.æŒ‡ç¤º",itemDto1,user1Dto);
+        List dataList = processor.getDataListFromPath("stdTest.Test02.æŒ‡ç¤ºæœªå‡¦ç†",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
         
-        processor.toNextStatus("stdTest.Test02.w¦–¢ˆ—",itemDto1,user2Dto);
-        dataList = processor.getDataListFromPath("stdTest.Test02.w¦–¢ˆ—",user2Dto,ItemDto.class);
+        processor.toNextStatus("stdTest.Test02.æŒ‡ç¤ºæœªå‡¦ç†",itemDto1,user2Dto);
+        dataList = processor.getDataListFromPath("stdTest.Test02.æŒ‡ç¤ºæœªå‡¦ç†",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚éU‚è",user2Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹æŒ¯ã‚Š",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
-        dataList = processor.getDataListFromPath("stdTest.Test02.–¢ˆ—",user3Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.æœªå‡¦ç†",user3Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
         
         
-        processor.toNextStatus("stdTest.Test02.–¢ˆ—",itemDto1,user3Dto);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚é‚Æ‚±‚ë",user3Dto,ItemDto.class);
+        processor.toNextStatus("stdTest.Test02.æœªå‡¦ç†",itemDto1,user3Dto);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹ã¨ã“ã‚",user3Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
-        dataList = processor.getDataListFromPath("stdTest.Test02.–¢ˆ—",user3Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.æœªå‡¦ç†",user3Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚éU‚è",user2Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹æŒ¯ã‚Š",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
         
         
-        processor.toNextStatus("stdTest.Test02.Šæ’£‚Á‚Ä‚é‚Æ‚±‚ë",itemDto1,user3Dto);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚é‚Æ‚±‚ë",user3Dto,ItemDto.class);
+        processor.toNextStatus("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹ã¨ã“ã‚",itemDto1,user3Dto);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹ã¨ã“ã‚",user3Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šm”F‘Ò‚¿",user2Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.ç¢ºèªå¾…ã¡",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚éU‚è",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        
-        processor.toNextStatusAction("stdTest.Test02.Šm”F‘Ò‚¿",itemDto1,user2Dto,"OK");
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šm”F‘Ò‚¿",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚éU‚è",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.•ñŠm”F‘O",user1Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹æŒ¯ã‚Š",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
         
         
-        processor.toNextStatusAction("stdTest.Test02.•ñŠm”F‘O",itemDto1,user1Dto,"OK");
-        dataList = processor.getDataListFromPath("stdTest.Test02.•ñŠm”F‘O",user1Dto,ItemDto.class);
+        processor.toNextStatusAction("stdTest.Test02.ç¢ºèªå¾…ã¡",itemDto1,user2Dto,"OK");
+        dataList = processor.getDataListFromPath("stdTest.Test02.ç¢ºèªå¾…ã¡",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.•ñŠm”F",user1Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹æŒ¯ã‚Š",user2Dto,ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(dataList.size(),0);
+        dataList = processor.getDataListFromPath("stdTest.Test02.å ±å‘Šç¢ºèªå‰",user1Dto,ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(dataList.size(),1);
+        
+        
+        processor.toNextStatusAction("stdTest.Test02.å ±å‘Šç¢ºèªå‰",itemDto1,user1Dto,"OK");
+        dataList = processor.getDataListFromPath("stdTest.Test02.å ±å‘Šç¢ºèªå‰",user1Dto,ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(dataList.size(),0);
+        dataList = processor.getDataListFromPath("stdTest.Test02.å ±å‘Šç¢ºèª",user1Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
     }
@@ -117,24 +117,24 @@ public class StandardBuriProcessor02Test extends S2TestCase {
         BuriTestUserDto user1Dto = userDao.getBuriTestUser(1);
         BuriTestUserDto user2Dto = userDao.getBuriTestUser(2);
         BuriTestUserDto user3Dto = userDao.getBuriTestUser(3);
-        processor.toNextStatus("stdTest.Test02.w¦",itemDto1,user1Dto);
-        List dataList = processor.getDataListFromPath("stdTest.Test02.w¦–¢ˆ—",user2Dto,ItemDto.class);
+        processor.toNextStatus("stdTest.Test02.æŒ‡ç¤º",itemDto1,user1Dto);
+        List dataList = processor.getDataListFromPath("stdTest.Test02.æŒ‡ç¤ºæœªå‡¦ç†",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
         
-        processor.toNextStatus("stdTest.Test02.w¦–¢ˆ—",itemDto1,user2Dto);
-        dataList = processor.getDataListFromPath("stdTest.Test02.w¦–¢ˆ—",user2Dto,ItemDto.class);
+        processor.toNextStatus("stdTest.Test02.æŒ‡ç¤ºæœªå‡¦ç†",itemDto1,user2Dto);
+        dataList = processor.getDataListFromPath("stdTest.Test02.æŒ‡ç¤ºæœªå‡¦ç†",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),0);
-        dataList = processor.getDataListFromPath("stdTest.Test02.Šæ’£‚Á‚Ä‚éU‚è",user2Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹æŒ¯ã‚Š",user2Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
-        dataList = processor.getDataListFromPath("stdTest.Test02.–¢ˆ—",user3Dto,ItemDto.class);
+        dataList = processor.getDataListFromPath("stdTest.Test02.æœªå‡¦ç†",user3Dto,ItemDto.class);
         System.out.println(dataList);
         assertEquals(dataList.size(),1);
         
         try {
-            processor.toNextStatus("stdTest.Test02.Šæ’£‚Á‚Ä‚é‚Æ‚±‚ë",itemDto1,user3Dto);
+            processor.toNextStatus("stdTest.Test02.é ‘å¼µã£ã¦ã‚‹ã¨ã“ã‚",itemDto1,user3Dto);
             fail();
         } catch(BuriNotSelectedActivityException ex) {
             assertTrue(true);

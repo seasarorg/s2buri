@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/08
+ * ä½œæˆæ—¥: 2006/05/08
  *
  */
 package org.seasar.buri.dao.util;

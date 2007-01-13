@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/03/26
+ * ä½œæˆæ—¥: 2006/03/26
  *
  */
 package org.seasar.buri.engine.impl;
@@ -263,7 +263,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     
     public BuriExecProcess selectDirectProcess(BuriPath path) {
         BuriExePackages wPackageObj = (BuriExePackages)packageObjs.get(path.getWorkflowPackage());
-        return wPackageObj.getProcess(path); //TODO Direct‚ª•K—v
+        return wPackageObj.getProcess(path); //TODO DirectãŒå¿…è¦
     }
     
     public BuriExecProcess selectProcess(BuriExePackages wPackageObj,BuriSystemContext sysContext) {

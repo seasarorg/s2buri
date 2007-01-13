@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/04/03
+ * ä½œæˆæ—¥: 2006/04/03
  *
  */
 package org.seasar.buri.component;

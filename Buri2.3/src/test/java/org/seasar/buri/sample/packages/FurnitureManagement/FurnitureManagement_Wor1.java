@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/03/21
+ * ä½œæˆæ—¥: 2006/03/21
  *
  */
 package org.seasar.buri.sample.packages.FurnitureManagement;
@@ -20,20 +20,20 @@ public class FurnitureManagement_Wor1 extends AbstBuriExecProcess{
 //        super.setup();
         BuriPath path;
 
-        path = new BuriPath("”õ•iŠÇ—.”õ•iŠÇ—.”õ•i“o˜^","”õ•iŠÇ—.FurnitureManagement_Wor1.FurnitureManagement_Wor1_Act1");
+        path = new BuriPath("å‚™å“ç®¡ç†.å‚™å“ç®¡ç†.å‚™å“ç™»éŒ²","å‚™å“ç®¡ç†.FurnitureManagement_Wor1.FurnitureManagement_Wor1_Act1");
         path.setBuriPathID(100);
         pathToBuriPath.put("FurnitureManagement_Wor1_Act1",path);
-        nameToBuriPath.put("”õ•i“o˜^",path);
+        nameToBuriPath.put("å‚™å“ç™»éŒ²",path);
         idToBuriPath.put(new Long(100),path);
 
-        path = new BuriPath("”õ•iŠÇ—.”õ•iŠÇ—.—˜—p’†","”õ•iŠÇ—.FurnitureManagement_Wor1.FurnitureManagement_Wor1_Act2");
+        path = new BuriPath("å‚™å“ç®¡ç†.å‚™å“ç®¡ç†.åˆ©ç”¨ä¸­","å‚™å“ç®¡ç†.FurnitureManagement_Wor1.FurnitureManagement_Wor1_Act2");
         path.setBuriPathID(101);
         pathToBuriPath.put("FurnitureManagement_Wor1_Act2",path);
-        nameToBuriPath.put("—˜—p’†",path);
+        nameToBuriPath.put("åˆ©ç”¨ä¸­",path);
         idToBuriPath.put(new Long(101),path);
     }
     
-    // ”õ•i“o˜^
+    // å‚™å“ç™»éŒ²
     public void FurnitureManagement_Wor1_Act1_Start(BuriSystemContext context) {
         FurnitureManagement_Wor1_Act1_Process(context);
         FurnitureManagement_Wor1_Act1_Restart(context);
@@ -67,11 +67,11 @@ public class FurnitureManagement_Wor1 extends AbstBuriExecProcess{
     }
 
     public BuriPath FurnitureManagement_Wor1_Act1_UpdatePath(BuriPath path) {
-//        return path.changePath("”õ•i“o˜^","FurnitureManagement_Wor1_Act1");
+//        return path.changePath("å‚™å“ç™»éŒ²","FurnitureManagement_Wor1_Act1");
         return null;
     }
 
-//    —˜—p’†
+//    åˆ©ç”¨ä¸­
     public void FurnitureManagement_Wor1_Act2_Start(BuriSystemContext context) {
         FurnitureManagement_Wor1_Act2_Process(context);
         FurnitureManagement_Wor1_Act2_Pause(context);
@@ -101,27 +101,27 @@ public class FurnitureManagement_Wor1 extends AbstBuriExecProcess{
         
     }
 
-//    ŠúŠÔI—¹
+//    æœŸé–“çµ‚äº†
     public void FurnitureManagement_Wor1_Act7() {
         
     }
 
-//    ž‹pŠúŠÔI—¹
+//    å„Ÿå´æœŸé–“çµ‚äº†
     public void FurnitureManagement_Wor1_Act3() {
         
     }
 
-//    ƒŠ[ƒXI—¹
+//    ãƒªãƒ¼ã‚¹çµ‚äº†
     public void FurnitureManagement_Wor1_Act4() {
         
     }
 
-//    •Ô‹pÏ‚Ý
+//    è¿”å´æ¸ˆã¿
     public void FurnitureManagement_Wor1_Act5() {
         
     }
 
-//    ”pŠüˆ•ªÏ‚Ý
+//    å»ƒæ£„å‡¦åˆ†æ¸ˆã¿
     public void FurnitureManagement_Wor1_Act6() {
         
     }

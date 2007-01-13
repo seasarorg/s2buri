@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/01/03
+ * ä½œæˆæ—¥: 2006/01/03
  *
  */
 package org.seasar.buri.bao;
@@ -11,24 +11,24 @@ import example.org.seasar.buri.dto.ShippingSetDto;
 
 public interface BillBao {
     public static Class TARGETDTO = BillDto.class;
-    public static String PROCESS = "’•¶ŠÇ—.¿‹";
+    public static String PROCESS = "æ³¨æ–‡ç®¡ç†.è«‹æ±‚";
     
-    public static String getBillWaiting_ACTIVITY = "¿‹ì‹Æ";
+    public static String getBillWaiting_ACTIVITY = "è«‹æ±‚ä½œæ¥­";
     public List getBillWaiting();
     
-    public static String getReBill_ACTIVITY = "Ä¿‹€”õ";
+    public static String getReBill_ACTIVITY = "å†è«‹æ±‚æº–å‚™";
     public List getReBill();
     
-    public static String getEndBill_ACTIVITY = "¿‹I—¹";
+    public static String getEndBill_ACTIVITY = "è«‹æ±‚çµ‚äº†";
     public List getEndBill();
     
-    public static String enterBill_ACTIVITY = "¿‹ˆË—Š";
+    public static String enterBill_ACTIVITY = "è«‹æ±‚ä¾é ¼";
     public void enterBill(ShippingSetDto dto);
     
-    public static String bill_ACTIVITY = "¿‹ì‹Æ";
+    public static String bill_ACTIVITY = "è«‹æ±‚ä½œæ¥­";
     public void bill(BillDto dto);
     
-    public static String checkPayment_ACTIVITY = "Ä¿‹€”õ";
+    public static String checkPayment_ACTIVITY = "å†è«‹æ±‚æº–å‚™";
     public void checkPayment(BillDto dto);
 
 }

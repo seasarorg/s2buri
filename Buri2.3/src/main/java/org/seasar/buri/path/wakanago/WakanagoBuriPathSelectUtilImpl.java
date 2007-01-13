@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/04/02
+ * ä½œæˆæ—¥: 2006/04/02
  *
  */
 package org.seasar.buri.path.wakanago;
@@ -29,25 +29,25 @@ public class WakanagoBuriPathSelectUtilImpl implements BuriPathSelectUtil {
             pathList.addAll(pathNameList);
         }
         List result = new ArrayList();
-        //TODO PATH‚ğì‚é
+        //TODO PATHã‚’ä½œã‚‹
         return result;
     }
     
     protected List getProcessToActivityNameList(String pathName,BuriWorkflowProcessType process,List activityList,int pos,BuriSystemContext sysContext) {
         List result = new ArrayList();
-        //TODO ğŒ‚ÍÀ‘•ƒNƒ‰ƒX‚É”C‚¹‚é
+        //TODO æ¡ä»¶ã¯å®Ÿè£…ã‚¯ãƒ©ã‚¹ã«ä»»ã›ã‚‹
         if(activityList == null || pos == activityList.size()) {
             result.add(pathName);
             return result;
         }
         String actName = (String)activityList.get(pos);
-        List actList = process.getActivityByName(actName); //TODO æ“¾‚ÍÀ‘•ƒNƒ‰ƒX‚É”C‚¹‚é
+        List actList = process.getActivityByName(actName); //TODO å–å¾—ã¯å®Ÿè£…ã‚¯ãƒ©ã‚¹ã«ä»»ã›ã‚‹
         Iterator ite = actList.iterator();
         while(ite.hasNext()) {
             BuriActivityType actType = (BuriActivityType)ite.next();
             actType = filterBuriActivityType(actType,sysContext);
             if(actType==null) continue;
-            //TODO XPDL‚ÍƒvƒƒZƒX‚ÌÄ‘I‘ğ‚Æ‚©ğŒ‚É‚æ‚Á‚ÄFX‚ ‚é‚Ì‚ÅÄ‹Aˆ—‚ğ‘‚­‚Ì‚ğ‰„Šú
+            //TODO XPDLã¯ãƒ—ãƒ­ã‚»ã‚¹ã®å†é¸æŠã¨ã‹æ¡ä»¶ã«ã‚ˆã£ã¦è‰²ã€…ã‚ã‚‹ã®ã§å†å¸°å‡¦ç†ã‚’æ›¸ãã®ã‚’å»¶æœŸ
             result.add(pathName + "." + actType.getName());
         }
         return result;

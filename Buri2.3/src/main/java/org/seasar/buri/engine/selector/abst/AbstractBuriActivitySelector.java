@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/23
+ * ä½œæˆæ—¥: 2006/05/23
  *
  */
 package org.seasar.buri.engine.selector.abst;

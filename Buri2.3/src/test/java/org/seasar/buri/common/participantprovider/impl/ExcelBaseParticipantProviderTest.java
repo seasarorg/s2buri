@@ -1,5 +1,5 @@
 /*
- * çÏê¨ì˙: 2006/07/12
+ * ‰ΩúÊàêÊó•: 2006/07/12
  *
  */
 package org.seasar.buri.common.participantprovider.impl;
@@ -35,7 +35,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertEquals(val,"A");
         
         ParticipantContext context = new ParticipantContext();
-        context.setParticipantName("éxé–");
+        context.setParticipantName("ÊîØÁ§æ");
         context.setActionUserIdNum(new Long(1));
         context.setActionUserIdVal("A");
         List userList = provider.getUser(context);
@@ -44,7 +44,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,5));
         
         context = new ParticipantContext();
-        context.setParticipantName("éxìX");
+        context.setParticipantName("ÊîØÂ∫ó");
         context.setActionUserIdNum(new Long(1));
         context.setActionUserIdVal("A");
         userList = provider.getUser(context);
@@ -55,7 +55,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,6));
         
         context = new ParticipantContext();
-        context.setParticipantName("ñ{é–ïîèê");
+        context.setParticipantName("Êú¨Á§æÈÉ®ÁΩ≤");
         context.setActionUserIdNum(new Long(9));
         context.setActionUserIdVal("I");
         userList = provider.getUser(context);
@@ -71,7 +71,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertNotNull(userData);
         
         ParticipantContext context = new ParticipantContext();
-        context.setParticipantName("éxé–");
+        context.setParticipantName("ÊîØÁ§æ");
         context.setActionUserIdNum(new Long(1));
         context.setActionUserIdVal("A");
         List userList = provider.getUser(context);
@@ -82,7 +82,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,5));
         
         context = new ParticipantContext();
-        context.setParticipantName("éxìX");
+        context.setParticipantName("ÊîØÂ∫ó");
         context.setActionUserIdNum(new Long(1));
         context.setActionUserIdVal("A");
         userList = provider.getUser(context);
@@ -96,7 +96,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,6));
         
         context = new ParticipantContext();
-        context.setParticipantName("ñ{é–ïîèê");
+        context.setParticipantName("Êú¨Á§æÈÉ®ÁΩ≤");
         context.setActionUserIdNum(new Long(9));
         context.setActionUserIdVal("I");
         userList = provider.getUser(context);
@@ -118,7 +118,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertNull(val);
         
         ParticipantContext context = new ParticipantContext();
-        context.setParticipantName("éxé–");
+        context.setParticipantName("ÊîØÁ§æ");
         context.setActionUserIdNum(new Long(1));
         List userList = provider.getUser(context);
         assertEquals(userList.size(),2);
@@ -127,7 +127,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,5));
         
         context = new ParticipantContext();
-        context.setParticipantName("éxìX");
+        context.setParticipantName("ÊîØÂ∫ó");
         context.setActionUserIdNum(new Long(1));
         userList = provider.getUser(context);
         assertEquals(userList.size(),3);
@@ -137,7 +137,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,6));
         
         context = new ParticipantContext();
-        context.setParticipantName("ñ{é–ïîèê");
+        context.setParticipantName("Êú¨Á§æÈÉ®ÁΩ≤");
         context.setActionUserIdNum(new Long(9));
         userList = provider.getUser(context);
         assertEquals(userList.size(),1);
@@ -157,7 +157,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertEquals(val,"A");
         
         ParticipantContext context = new ParticipantContext();
-        context.setParticipantName("éxé–");
+        context.setParticipantName("ÊîØÁ§æ");
         context.setActionUserIdNum(new Long(1));
         context.setActionUserIdVal("A");
         List userList = provider.getUser(context);
@@ -165,7 +165,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,5));
         
         context = new ParticipantContext();
-        context.setParticipantName("éxìX");
+        context.setParticipantName("ÊîØÂ∫ó");
         context.setActionUserIdNum(new Long(1));
         context.setActionUserIdVal("A");
         userList = provider.getUser(context);

@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/15
+ * ä½œæˆæ—¥: 2006/07/15
  *
  */
 package org.seasar.buri.engine.selector.processImpl;

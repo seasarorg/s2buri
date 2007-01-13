@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/06/19
+ * ä½œæˆæ—¥: 2006/06/19
  *
  */
 package org.seasar.buri.engine.selector.activityImpl;

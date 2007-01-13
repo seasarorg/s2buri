@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/04/03
+ * ä½œæˆæ—¥: 2006/04/03
  *
  */
 package org.seasar.buri.component.impl;
@@ -31,12 +31,12 @@ public class BuriScriptComponentImpl implements BuriComponent {
     }
 
     public Set appendImportName(BuriToolType tool) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 
     public String setupSource() {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 

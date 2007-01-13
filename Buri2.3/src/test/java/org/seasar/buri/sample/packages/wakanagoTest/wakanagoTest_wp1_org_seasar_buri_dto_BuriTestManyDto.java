@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/05
+ * ä½œæˆæ—¥: 2006/05/05
  *
  */
 package org.seasar.buri.sample.packages.wakanagoTest;

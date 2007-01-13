@@ -1,5 +1,5 @@
 /*
- * �쐬��: 2005/08/26
+ * 作成日: 2005/08/26
  *
  */
 package org.seasar.buri.engine.processor;
@@ -9,18 +9,18 @@ import java.util.List;
 import org.seasar.framework.container.S2Container;
 
 /**
- * �Ԃ�̕W���I�Ȏ��s�ƃf�[�^�̎擾�Ɋ֌W����API�̃Z�b�g
- * ���[�U�̌����ɂ���ē����ύX����ꍇ�͂���API���g��
+ * ぶりの標準的な実行とデータの取得に関係するAPIのセット
+ * ユーザの権限によって動作を変更する場合はこのAPIを使う
  * 
- * invoke �ʏ��Invoke
- * context ���s�̌��ʂƂ��Ēl���擾�������ꍇ�̂��߂�OGNL��
- * ����ɉ����ă��\�b�h�̌��œ��삪�ω�����
+ * invoke 通常のInvoke
+ * context 実行の結果として値を取得したい場合のためのOGNL式
+ * これに加えてメソッドの後ろで動作が変化する
  * 
- * Action action�t����Invoke
- * NoUpdate data��Update���Ȃ�Invoke
+ * Action action付きのInvoke
+ * NoUpdate dataをUpdateしないInvoke
  * 
- * data��action��XPDL�ł�#��t����#data,#action�݂����Ɉ���
- * ���Ƃ͒ʏ��OGNL��������
+ * dataとactionはXPDLでは#を付けて#data,#actionみたいに扱う
+ * あとは通常のOGNL式を書く
  * 
  * 
  * 

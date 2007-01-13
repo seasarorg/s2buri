@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
 	"http://www.seasar.org/dtd/components21.dtd">
 <components namespace="j2ee">
@@ -63,8 +63,8 @@
 		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
 		<property name="timeout">600</property>
 		<property name="maxPoolSize">10</property>
-		<!-- JTAƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ªŠJn‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÉƒRƒlƒNƒVƒ‡ƒ“‚ğ
-		     æ“¾‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚É‚ÍŸ‚ÌƒvƒƒpƒeƒB‚ğfalse‚É‚µ‚Ä‚­‚¾‚³‚¢D-->
+		<!-- JTAãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒé–‹å§‹ã•ã‚Œã¦ã„ãªã„å ´åˆã«ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’
+		     å–å¾—ã§ããªã„ã‚ˆã†ã«ã™ã‚‹ã«ã¯æ¬¡ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’falseã«ã—ã¦ãã ã•ã„ï¼-->
 		<property name="allowLocalTx">true</property>
 		<destroyMethod name="close"/>
 	</component>

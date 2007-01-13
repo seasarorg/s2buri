@@ -1,5 +1,5 @@
 /*
- * �쐬��: 2006/05/10
+ * 作成日: 2006/05/10
  *
  */
 package org.seasar.buri.dao.util.impl;
@@ -118,7 +118,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         walker.setNowPath(path);
         walker.setParentPath(sysContext.getCallPath());
         BuriBranchEntityDto branchDto = branchDao.select(stateDto.getBranchID().longValue());
-        if(branchDto != null) { // �{���͏�Ԃƈꏏ�ɕۑ����Ă���͂��Ȃ̂ŕs�v�ȃn�Y
+        if(branchDto != null) { // 本当は状態と一緒に保存しているはずなので不要なハズ
             assert branchDto != null;
             assert branchDto.getParentBranchID() != null;
             walker.setParentBranchID(branchDto.getParentBranchID().longValue());

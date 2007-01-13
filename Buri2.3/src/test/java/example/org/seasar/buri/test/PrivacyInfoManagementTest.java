@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/17
+ * ä½œæˆæ—¥: 2006/07/17
  *
  */
 package example.org.seasar.buri.test;

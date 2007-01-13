@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2005/11/29
+ * ä½œæˆæ—¥: 2005/11/29
  *
  */
 package example.org.seasar.buri.dao.util;

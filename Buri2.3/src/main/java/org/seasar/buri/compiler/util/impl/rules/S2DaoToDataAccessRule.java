@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/06
+ * ä½œæˆæ—¥: 2006/07/06
  *
  */
 package org.seasar.buri.compiler.util.impl.rules;
@@ -47,7 +47,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         if( ! hasName(src,"update")) {
             return true;
         }
-//TODO ‚»‚Ì‚¤‚¿‘S•”‚É—LŒø‰»‚·‚é ‚Ô‚è‚É‚Í•K{‚¶‚á‚È‚¢‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg’†EEE
+//TODO ãã®ã†ã¡å…¨éƒ¨ã«æœ‰åŠ¹åŒ–ã™ã‚‹ ã¶ã‚Šã«ã¯å¿…é ˆã˜ã‚ƒãªã„ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆä¸­ãƒ»ãƒ»ãƒ»
         if( ! hasName(src,"delete")) {
             return true;
         }

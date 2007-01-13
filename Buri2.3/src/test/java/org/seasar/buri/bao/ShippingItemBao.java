@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/01/03
+ * ä½œæˆæ—¥: 2006/01/03
  *
  */
 package org.seasar.buri.bao;
@@ -9,31 +9,31 @@ import java.util.List;
 import example.org.seasar.buri.dto.ShippingItemDto;
 
 public interface ShippingItemBao {
-    public static String PROCESS = "’•¶ŠÇ—.o‰×Ú×";
+    public static String PROCESS = "æ³¨æ–‡ç®¡ç†.å‡ºè·è©³ç´°";
     public static Class TARGETDTO = ShippingItemDto.class;
     
     
-    public static String getItemWaiting_ACTIVITY = "¤•i€”õ’†";
+    public static String getItemWaiting_ACTIVITY = "å•†å“æº–å‚™ä¸­";
     public List getItemWaiting();
     
-    public static String getEndShipping_ACTIVITY = "¤•i€”õŠ®—¹";
+    public static String getEndShipping_ACTIVITY = "å•†å“æº–å‚™å®Œäº†";
     public List getEndShipping();
     
-    public static String getCancel_ACTIVITY = "cancelÏ‚İ";
+    public static String getCancel_ACTIVITY = "cancelæ¸ˆã¿";
     public List getCancel();
     
-    public static String getEndShippingCount_ACTIVITY = "¤•i€”õŠ®—¹";
+    public static String getEndShippingCount_ACTIVITY = "å•†å“æº–å‚™å®Œäº†";
     public static String getEndShippingCount_ARGS = "datas";
     public long getEndShippingCount(List datas);
     
-    public static String startShipping_ACTIVITY = "¤•i€”õŠJn";
+    public static String startShipping_ACTIVITY = "å•†å“æº–å‚™é–‹å§‹";
     public void startShipping(ShippingItemDto dto);
     public void startShipping(List dtos);
 
-    public static String endShipping_ACTIVITY = "¤•i€”õ’†";
+    public static String endShipping_ACTIVITY = "å•†å“æº–å‚™ä¸­";
     public void endShipping(ShippingItemDto dto);
 
-    public static String cancel_ACTIVITY = "¤•i€”õ’†";
+    public static String cancel_ACTIVITY = "å•†å“æº–å‚™ä¸­";
     public static String cancel_ACTION = "cancel";
     public void cancel(ShippingItemDto dto);
     public void cancel(List dtos);

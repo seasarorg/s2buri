@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/06/14
+ * ä½œæˆæ—¥: 2006/06/14
  *
  */
 package org.seasar.buri.engine.processor.impl;
@@ -19,7 +19,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     private BuriTestUserDao userDao;
 
     public boolean isUserInRole(Object userData, String participantName, String participantType) {
-        if(userData==null && participantName.equalsIgnoreCase("–³ŠÖŒW")) {
+        if(userData==null && participantName.equalsIgnoreCase("ç„¡é–¢ä¿‚")) {
             return true;
         }
         BuriTestUserDto dto = (BuriTestUserDto)userData;
@@ -36,7 +36,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
 
     public String getUserIDString(Object userData, String participantType) {
         if(userData==null) {
-            return "–³ŠÖŒW";
+            return "ç„¡é–¢ä¿‚";
         }
         return null;
     }
@@ -59,7 +59,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     }
 
     public RoleInfo getSingleUser(ParticipantContext context) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 
@@ -67,16 +67,16 @@ public class StdTestParticipantProvider implements ParticipantProvider {
         BuriParticipantContext buriContext = (BuriParticipantContext)context;
         Long idNum = context.getActionUserIdNum();
         String roleName = context.getParticipantName();
-        // ã‚Ì•û‚ğ’T‚·
+        // ä¸Šã®æ–¹ã‚’æ¢ã™
         List roleList = userDao.getUserListByParentUserID(idNum,roleName);
-        if(! roleName.equals("–³ŠÖŒW")) {
+        if(! roleName.equals("ç„¡é–¢ä¿‚")) {
             if(roleList.size()==0) {
-                //ˆê’i‰º‚ğ’T‚·
+                //ä¸€æ®µä¸‹ã‚’æ¢ã™
                 roleList = userDao.getUserListByUserID(idNum,roleName);
             }
-            if(roleList.size()==0 && roleName.equals("‰º‚Á’[") && buriContext.getStartRoleName().equals("ˆê”Ôã")) {
-                //ˆê”Ôã‚Æ‰º‚Á’[‚ª‘ÎÛ‚Ìê‡‚à‚¤ˆê’i‰º‚ğ’T‚·
-                List mannaka = userDao.getUserListByParentUserID(idNum,"^‚ñ’†");
+            if(roleList.size()==0 && roleName.equals("ä¸‹ã£ç«¯") && buriContext.getStartRoleName().equals("ä¸€ç•ªä¸Š")) {
+                //ä¸€ç•ªä¸Šã¨ä¸‹ã£ç«¯ãŒå¯¾è±¡ã®å ´åˆã‚‚ã†ä¸€æ®µä¸‹ã‚’æ¢ã™
+                List mannaka = userDao.getUserListByParentUserID(idNum,"çœŸã‚“ä¸­");
                 Iterator ite = mannaka.iterator();
                 while(ite.hasNext()) {
                     BuriTestUserDto dto = (BuriTestUserDto)ite.next();
@@ -84,8 +84,8 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                     roleList.addAll(tmpList);
                 }
             }
-            if(roleList.size()==0 && roleName.equals("^‚ñ’†") && buriContext.getStartRoleName().equals("‰º‚Á’[")) {
-                List selfData = userDao.getUserListByUserID(idNum,"‰º‚Á’[");
+            if(roleList.size()==0 && roleName.equals("çœŸã‚“ä¸­") && buriContext.getStartRoleName().equals("ä¸‹ã£ç«¯")) {
+                List selfData = userDao.getUserListByUserID(idNum,"ä¸‹ã£ç«¯");
                 Iterator ite = selfData.iterator();
                 while(ite.hasNext()) {
                     BuriTestUserDto dto = (BuriTestUserDto)ite.next();
@@ -94,8 +94,8 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                 }
                 
             }
-            if(roleList.size()==0 && roleName.equals("ˆê”Ôã") && buriContext.getStartRoleName().equals("^‚ñ’†")) {
-                List selfData = userDao.getUserListByUserID(idNum,"^‚ñ’†");
+            if(roleList.size()==0 && roleName.equals("ä¸€ç•ªä¸Š") && buriContext.getStartRoleName().equals("çœŸã‚“ä¸­")) {
+                List selfData = userDao.getUserListByUserID(idNum,"çœŸã‚“ä¸­");
                 Iterator ite = selfData.iterator();
                 while(ite.hasNext()) {
                     BuriTestUserDto dto = (BuriTestUserDto)ite.next();
@@ -118,7 +118,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
         if(result.size()==0) {
             RoleInfo roleInfo = new RoleInfo();
             roleInfo.setIdNum(null);
-            roleInfo.setIdVar("–³ŠÖŒW");
+            roleInfo.setIdVar("ç„¡é–¢ä¿‚");
             result.add(roleInfo);
         }
         return result;

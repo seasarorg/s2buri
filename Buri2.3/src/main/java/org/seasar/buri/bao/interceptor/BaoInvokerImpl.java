@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/01/02
+ * ä½œæˆæ—¥: 2006/01/02
  *
  */
 package org.seasar.buri.bao.interceptor;

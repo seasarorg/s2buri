@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/04/01
+ * ä½œæˆæ—¥: 2006/04/01
  *
  */
 package org.seasar.buri.engine.impl;
@@ -13,37 +13,37 @@ import org.seasar.buri.engine.RoleInfo;
 public class DefaultParticipantProvider implements ParticipantProvider {
 
     public boolean isUserInRole(Object userData, String participantName, String participantType) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return false;
     }
 
     public String getUserIDString(Object userData, String participantType) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 
     public Long getUserIDNum(Object userData, String participantType) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 
     public Object getUserData(Long userIDNum, String userIDString) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 
     public boolean hasRoleUser(ParticipantContext context) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return false;
     }
 
     public RoleInfo getSingleUser(ParticipantContext context) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 
     public List getUser(ParticipantContext context) {
-        // TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+        // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
         return null;
     }
 

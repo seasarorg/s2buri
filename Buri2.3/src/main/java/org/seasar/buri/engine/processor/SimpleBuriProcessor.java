@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2005/08/18
+ * ä½œæˆæ—¥: 2005/08/18
  *
  */
 package org.seasar.buri.engine.processor;

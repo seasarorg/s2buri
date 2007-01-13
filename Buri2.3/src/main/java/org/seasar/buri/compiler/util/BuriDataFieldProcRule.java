@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/04
+ * ä½œæˆæ—¥: 2006/07/04
  *
  */
 package org.seasar.buri.compiler.util;
@@ -11,17 +11,17 @@ public interface BuriDataFieldProcRule {
     String getKeyName();
     boolean getRequiredRule(BuriDataFieldType src);
     
-    // ˆ—‘O‚ÉŒÄ‚Ñ‚¾‚·Btrue‚ğ•Ô‚µ‚½‚çprocess‚Ì‘ÎÛ‚Æ‚µ‚Äˆµ‚¤
+    // å‡¦ç†å‰ã«å‘¼ã³ã ã™ã€‚trueã‚’è¿”ã—ãŸã‚‰processã®å¯¾è±¡ã¨ã—ã¦æ‰±ã†
     boolean fstCheckProcess(BuriDataFieldType src);
     
-    //ˆ—‚ğ‚·‚é‚Æ‚±‚ëB‰½‚ç‚©‚Ì——R‚ÅÄ“xŒÄ‚Ñ‚¾‚·•K—v‚ª‚ ‚éê‡‚Ítrue‚ğ•Ô‚·
-    //‚·‚×‚Ä‚ªfalse‚¾‚Á‚½‚çˆ—I—¹‚ÆŒ©‚È‚·
+    //å‡¦ç†ã‚’ã™ã‚‹ã¨ã“ã‚ã€‚ä½•ã‚‰ã‹ã®ç†ç”±ã§å†åº¦å‘¼ã³ã ã™å¿…è¦ãŒã‚ã‚‹å ´åˆã¯trueã‚’è¿”ã™
+    //ã™ã¹ã¦ãŒfalseã ã£ãŸã‚‰å‡¦ç†çµ‚äº†ã¨è¦‹ãªã™
     boolean process(BuriDataFieldType src);
     
-    //ˆê’Ê‚è‚Ìˆ—‚ªI‚í‚Á‚½‚çŒ‹‰Ê‚Æˆê‚ÉŒÄ‚Ñ‚¾‚·BÄ“xprocess‚ğ‚·‚é•K—v‚ª‚ ‚ê‚Îtrue‚ğ•Ô‚·
+    //ä¸€é€šã‚Šã®å‡¦ç†ãŒçµ‚ã‚ã£ãŸã‚‰çµæœã¨ä¸€ç·’ã«å‘¼ã³ã ã™ã€‚å†åº¦processã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚Œã°trueã‚’è¿”ã™
     boolean afterCheck(BuriDataFieldType src,boolean totalResult);
     
-    //ÅŒã‚Éƒ`ƒFƒbƒN‚µ‚Ä–â‘è‚ª‚ ‚ê‚Î—áŠO‚ğ”­¶‚³‚¹‚½‚è‚·‚é‚Æ‚±‚ë
+    //æœ€å¾Œã«ãƒã‚§ãƒƒã‚¯ã—ã¦å•é¡ŒãŒã‚ã‚Œã°ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ãŸã‚Šã™ã‚‹ã¨ã“ã‚
     void finishCheck(BuriDataFieldType src);
 
 }

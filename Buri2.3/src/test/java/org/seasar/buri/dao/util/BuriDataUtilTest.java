@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/09
+ * ä½œæˆæ—¥: 2006/05/09
  *
  */
 package org.seasar.buri.dao.util;
@@ -37,7 +37,7 @@ public class BuriDataUtilTest extends S2TestCase {
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
 
         
         long dataId = dataUtil.getBuriDataId(dataAccessFactory,sysContext);
@@ -49,7 +49,7 @@ public class BuriDataUtilTest extends S2TestCase {
         dataUtil.updateBuriData(dataAccessFactory,sysContext);
         
         userContext = engine.createUserContext(dto,null,null,null);
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         long saveId = dataUtil.getBuriDataId(dataAccessFactory,sysContext);
         assertEquals(dataId,saveId);

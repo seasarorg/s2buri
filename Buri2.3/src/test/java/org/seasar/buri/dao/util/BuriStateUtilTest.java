@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/10
+ * ä½œæˆæ—¥: 2006/05/10
  *
  */
 package org.seasar.buri.dao.util;
@@ -39,10 +39,10 @@ public class BuriStateUtilTest extends S2TestCase {
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
-        walker = walker.moveNext("ŠJn","wakanagoTest_wp1_act1");
+        walker = walker.moveNext("é–‹å§‹","wakanagoTest_wp1_act1");
         stateUtil.saveBranch(walker,dataAccessFactory,sysContext);
         long statusID = stateUtil.saveStatus(dataAccessFactory,sysContext,walker);
         assertTrue(statusID != 0);
@@ -50,8 +50,8 @@ public class BuriStateUtilTest extends S2TestCase {
         
         BuriPath callPath = walker.getNowPath();
         userContext = engine.createUserContext(dto,null,null,null);
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
-        sysContext.setStatusID(new Long(statusID));// –{“–‚ÍAbstract‚Åˆ—‚·‚é
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
+        sysContext.setStatusID(new Long(statusID));// æœ¬å½“ã¯Abstractã§å‡¦ç†ã™ã‚‹
         walker = stateUtil.loadBranchWalker(sysContext);
         assertTrue(walker != null);
         assertTrue(walker.getBranchID() != 0);
@@ -86,18 +86,18 @@ public class BuriStateUtilTest extends S2TestCase {
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         userContext = engine.createUserContext(dto,null,null,null);
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
         walker.setParentPath(sysContext.getCallPath());
-        walker = walker.moveNext("ŠJn","wakanagoTest_wp1_act1");
+        walker = walker.moveNext("é–‹å§‹","wakanagoTest_wp1_act1");
         stateUtil.saveBranch(walker,dataAccessFactory,sysContext);
         long statusID = stateUtil.saveStatus(dataAccessFactory,sysContext,walker);
         assertTrue(statusID != 0);
-        sysContext.setStatusID(new Long(statusID));// –{“–‚ÍAbstract‚Åˆ—‚·‚é
+        sysContext.setStatusID(new Long(statusID));// æœ¬å½“ã¯Abstractã§å‡¦ç†ã™ã‚‹
         
         stateUtil.abortStatus(dataAccessFactory,sysContext,walker);
         
@@ -117,22 +117,22 @@ public class BuriStateUtilTest extends S2TestCase {
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         userContext = engine.createUserContext(dto,null,null,null);
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
         walker.setParentPath(sysContext.getCallPath());
-        walker = walker.moveNext("ŠJn","wakanagoTest_wp1_act1");
+        walker = walker.moveNext("é–‹å§‹","wakanagoTest_wp1_act1");
         stateUtil.saveBranch(walker,dataAccessFactory,sysContext);
         long statusID = stateUtil.saveStatus(dataAccessFactory,sysContext,walker);
         assertTrue(statusID != 0);
-        sysContext.setStatusID(new Long(statusID));// –{“–‚ÍAbstract‚Åˆ—‚·‚é
+        sysContext.setStatusID(new Long(statusID));// æœ¬å½“ã¯Abstractã§å‡¦ç†ã™ã‚‹
         assertEquals(branchDao.getAllBuriBranch().size(),startSize+1);
         
         BranchWalker child1 = stateUtil.branchChild(walker,dataAccessFactory,sysContext);
-        child1 = child1.moveNext("•ªŠò1","wakanagoTest_wp1_act2");
+        child1 = child1.moveNext("åˆ†å²1","wakanagoTest_wp1_act2");
         assertEquals(branchDao.getAllBuriBranch().size(),startSize+1);
         assertEquals(child1.getParentBranchID(),walker.getBranchID());
         assertEquals(child1.getBranchID(),0);
@@ -142,7 +142,7 @@ public class BuriStateUtilTest extends S2TestCase {
         
         
         BranchWalker child2 = stateUtil.branchChild(walker,dataAccessFactory,sysContext);
-        child2 = child2.moveNext("•ªŠò2","wakanagoTest_wp1_act3");
+        child2 = child2.moveNext("åˆ†å²2","wakanagoTest_wp1_act3");
         assertEquals(branchDao.getAllBuriBranch().size(),startSize+2);
         assertEquals(child2.getParentBranchID(),walker.getBranchID());
         assertEquals(child2.getBranchID(),0);
@@ -153,13 +153,13 @@ public class BuriStateUtilTest extends S2TestCase {
         long count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory,sysContext,child2);
         assertEquals(2,count);
         
-        sysContext.setStatusID(new Long(child1StateID));// –{“–‚ÍAbstract‚Åˆ—‚·‚é
+        sysContext.setStatusID(new Long(child1StateID));// æœ¬å½“ã¯Abstractã§å‡¦ç†ã™ã‚‹
         stateUtil.processed(dataAccessFactory,sysContext,child1);
         BuriStateEntityDto stateDto = stateDao.getBuriState(child1StateID);
         count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory,sysContext,child1);
         assertEquals(1,count);
         
-        sysContext.setStatusID(new Long(child2StateID));// –{“–‚ÍAbstract‚Åˆ—‚·‚é
+        sysContext.setStatusID(new Long(child2StateID));// æœ¬å½“ã¯Abstractã§å‡¦ç†ã™ã‚‹
         stateUtil.abortStatus(dataAccessFactory,sysContext,child2);
         count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory,sysContext,child2);
         assertEquals(0,count);
@@ -172,22 +172,22 @@ public class BuriStateUtilTest extends S2TestCase {
         engine.readWorkFlowFromResource("wakanagoxpdl/wakanagoTest.xpdl","wakanagoTest");
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)getComponent("rootDataAccessFactory");
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         userContext = engine.createUserContext(dto,null,null,null);
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         
         BranchWalker walker = stateUtil.loadBranchWalker(sysContext);
         walker.setParentPath(sysContext.getCallPath());
-        walker = walker.moveNext("ŠJn","wakanagoTest_wp1_act1");
+        walker = walker.moveNext("é–‹å§‹","wakanagoTest_wp1_act1");
         stateUtil.saveBranch(walker,dataAccessFactory,sysContext);
         long statusID = stateUtil.saveStatus(dataAccessFactory,sysContext,walker);
         assertTrue(statusID != 0);
-        sysContext.setStatusID(new Long(statusID));// –{“–‚ÍAbstract‚Åˆ—‚·‚é
+        sysContext.setStatusID(new Long(statusID));// æœ¬å½“ã¯Abstractã§å‡¦ç†ã™ã‚‹
         assertEquals(branchDao.getAllBuriBranch().size(),startSize+1);
         
         BranchWalker child1 = stateUtil.branchChild(walker,dataAccessFactory,sysContext);
-        child1 = child1.moveNext("•ªŠò1","wakanagoTest_wp1_act2");
+        child1 = child1.moveNext("åˆ†å²1","wakanagoTest_wp1_act2");
         assertEquals(branchDao.getAllBuriBranch().size(),startSize+1);
         assertEquals(child1.getParentBranchID(),walker.getBranchID());
         assertEquals(child1.getBranchID(),0);
@@ -197,7 +197,7 @@ public class BuriStateUtilTest extends S2TestCase {
         
         
         BranchWalker child2 = stateUtil.branchChild(walker,dataAccessFactory,sysContext);
-        child2 = child2.moveNext("•ªŠò2","wakanagoTest_wp1_act3");
+        child2 = child2.moveNext("åˆ†å²2","wakanagoTest_wp1_act3");
         assertEquals(branchDao.getAllBuriBranch().size(),startSize+2);
         assertEquals(child2.getParentBranchID(),walker.getBranchID());
         assertEquals(child2.getBranchID(),0);

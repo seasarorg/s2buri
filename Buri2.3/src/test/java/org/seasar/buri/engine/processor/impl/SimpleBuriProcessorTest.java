@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2005/08/18
+ * ä½œæˆæ—¥: 2005/08/18
  *
  */
 package org.seasar.buri.engine.processor.impl;
@@ -38,7 +38,7 @@ public class SimpleBuriProcessorTest extends S2TestCase {
     
     
     public void testSimpleTestTx() {
-        buriEngine.readWorkFlowFromResource("wakanagoxpdl/FurnitureManagement.xpdl","‘YŠÇ—");
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/FurnitureManagement.xpdl","è³‡ç”£ç®¡ç†");
 //        for(int i=0 ; i < 3 ; i++) {
         List datas;
         FurnitureItemDto buyItemDto = new FurnitureItemDto();
@@ -48,7 +48,7 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         buyItemDto.setAcquisition(new Date());
         
         long start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",buyItemDto);
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†",buyItemDto);
         long end = Calendar.getInstance().getTimeInMillis();
         System.out.println(buyItemDto.toString() + " time =" + (end-start)+"ms");
 
@@ -59,52 +59,52 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         leaseItemDto.setAcquisition(new Date());        
         
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",leaseItemDto);
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†",leaseItemDto);
         end = Calendar.getInstance().getTimeInMillis();
         System.out.println(leaseItemDto.toString() + " time =" + (end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—.—˜—p’†",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.åˆ©ç”¨ä¸­",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—.—˜—p’†".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.åˆ©ç”¨ä¸­".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),2);
         
         FurnitureItemFindDto findDto = new FurnitureItemFindDto();
         findDto.setType("PC");
         List pathNames = new ArrayList();
-        pathNames.add("‘YŠÇ—.”õ•iŠÇ—.—˜—p’†");
+        pathNames.add("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.åˆ©ç”¨ä¸­");
         datas = itemDao.find(findDto, pathNames);
         assertEquals(datas.size(),2);
 
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",new Long(buyItemDto.getFurnitureID()));
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†",new Long(buyItemDto.getFurnitureID()));
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ— ="+(end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç† ="+(end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—",new Long(leaseItemDto.getFurnitureID()));
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†",new Long(leaseItemDto.getFurnitureID()));
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ— ="+(end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç† ="+(end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—.‹pŠúŠÔI—¹",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.å„Ÿå´æœŸé–“çµ‚äº†",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—.‹pŠúŠÔI—¹".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.å„Ÿå´æœŸé–“çµ‚äº†".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),1);
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—.ƒŠ[ƒXI—¹",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.ãƒªãƒ¼ã‚¹çµ‚äº†",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—.ƒŠ[ƒXI—¹".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.ãƒªãƒ¼ã‚¹çµ‚äº†".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),1);
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—.—˜—p’†",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.åˆ©ç”¨ä¸­",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—.—˜—p’†".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†.åˆ©ç”¨ä¸­".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),0);
 //        }
@@ -114,7 +114,7 @@ public class SimpleBuriProcessorTest extends S2TestCase {
     
     
     public void testSimpleTest2Tx() {
-        buriEngine.readWorkFlowFromResource("wakanagoxpdl/FurnitureManagement.xpdl","‘YŠÇ—");
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/FurnitureManagement.xpdl","è³‡ç”£ç®¡ç†");
         List datas;
         FurnitureItemDto buyItemDto = new FurnitureItemDto();
         buyItemDto.setName("T45_001");
@@ -123,7 +123,7 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         buyItemDto.setAcquisition(new Date());
         
         long start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",buyItemDto);
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2",buyItemDto);
         long end = Calendar.getInstance().getTimeInMillis();
         System.out.println(buyItemDto.toString() + " time =" + (end-start)+"ms");
 
@@ -134,38 +134,38 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         leaseItemDto.setAcquisition(new Date());        
         
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",leaseItemDto);
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2",leaseItemDto);
         end = Calendar.getInstance().getTimeInMillis();
         System.out.println(leaseItemDto.toString() + " time =" + (end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.åˆ©ç”¨ä¸­",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.åˆ©ç”¨ä¸­".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),2);
         
         FurnitureItemFindDto findDto = new FurnitureItemFindDto();
         findDto.setType("PC");
         List pathNames = new ArrayList();
-        pathNames.add("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†");
+        pathNames.add("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.åˆ©ç”¨ä¸­");
         datas = itemDao.find(findDto, pathNames);
         assertEquals(datas.size(),2);
 
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(buyItemDto.getFurnitureID()));
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2",new Long(buyItemDto.getFurnitureID()));
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2 ="+(end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(leaseItemDto.getFurnitureID()));
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2",new Long(leaseItemDto.getFurnitureID()));
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2 ="+(end-start)+"ms");
         
         findDto = new FurnitureItemFindDto();
         findDto.setType("PC");
         pathNames = new ArrayList();
-        pathNames.add("‘YŠÇ—.”õ•iŠÇ—2.ŠúŠÔI—¹");
+        pathNames.add("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.æœŸé–“çµ‚äº†");
         datas = itemDao.find(findDto, pathNames);
         assertEquals(datas.size(),2);
 
@@ -176,9 +176,9 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         info.setContainer(null);
         info.setResultExp(null);
         info.setActNames(null);
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(buyItemDto.getFurnitureID()),info);
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2",new Long(buyItemDto.getFurnitureID()),info);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2 ="+(end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
         info = new BuriProcessorInfo();
@@ -187,28 +187,28 @@ public class SimpleBuriProcessorTest extends S2TestCase {
         info.setContainer(null);
         info.setResultExp(null);
         info.setActNames(null);        
-        invoker_.toNextStatus("‘YŠÇ—.”õ•iŠÇ—2",new Long(leaseItemDto.getFurnitureID()),info);
+        invoker_.toNextStatus("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2",new Long(leaseItemDto.getFurnitureID()),info);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2 ="+(end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2 ="+(end-start)+"ms");
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.‹pŠúŠÔI—¹",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.å„Ÿå´æœŸé–“çµ‚äº†",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.‹pŠúŠÔI—¹".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.å„Ÿå´æœŸé–“çµ‚äº†".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),1);
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.ƒŠ[ƒXI—¹",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.ãƒªãƒ¼ã‚¹çµ‚äº†",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.ƒŠ[ƒXI—¹".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.ãƒªãƒ¼ã‚¹çµ‚äº†".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),1);
 
         start = Calendar.getInstance().getTimeInMillis();
-        datas = invoker_.getDataListFromPath("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†",FurnitureItemDto.class);
+        datas = invoker_.getDataListFromPath("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.åˆ©ç”¨ä¸­",FurnitureItemDto.class);
         end = Calendar.getInstance().getTimeInMillis();
-        System.out.println("‘YŠÇ—.”õ•iŠÇ—2.—˜—p’†".toString() + " time =" + (end-start)+"ms");
+        System.out.println("è³‡ç”£ç®¡ç†.å‚™å“ç®¡ç†2.åˆ©ç”¨ä¸­".toString() + " time =" + (end-start)+"ms");
         System.out.println(datas);
         assertEquals(datas.size(),0);
         List history = historyDao.getAllBuriDataPathHistory();

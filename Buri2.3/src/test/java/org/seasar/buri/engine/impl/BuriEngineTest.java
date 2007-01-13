@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/22
+ * ä½œæˆæ—¥: 2006/05/22
  *
  */
 package org.seasar.buri.engine.impl;
@@ -163,7 +163,7 @@ public class BuriEngineTest extends S2TestCase {
         testDto.setValue("testValue");
 
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test05.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test05.é–‹å§‹",userContext);
         
         int stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -172,7 +172,7 @@ public class BuriEngineTest extends S2TestCase {
         assertTrue(testDto.getTestID() != 0);
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test05.•ªŠò2",userContext);
+        sysContext = engine.createSystemContext("basicTest.test05.åˆ†å²2",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -180,7 +180,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize+1,stateDao_.getNoProcessBuriState().size());
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test05.‚Ì[‚Ç‚P",userContext);
+        sysContext = engine.createSystemContext("basicTest.test05.ã®ãƒ¼ã©ï¼‘",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -190,7 +190,7 @@ public class BuriEngineTest extends S2TestCase {
     
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test05.•ªŠòI—¹",userContext);
+        sysContext = engine.createSystemContext("basicTest.test05.åˆ†å²çµ‚äº†",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -208,7 +208,7 @@ public class BuriEngineTest extends S2TestCase {
         testDto.setValue("testValue");
 
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test05.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test05.é–‹å§‹",userContext);
         
         int stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -218,7 +218,7 @@ public class BuriEngineTest extends S2TestCase {
 
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test05.•ªŠò2",userContext);
+        sysContext = engine.createSystemContext("basicTest.test05.åˆ†å²2",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -226,7 +226,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize+1,stateDao_.getNoProcessBuriState().size());
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test05.•ªŠò1",userContext);
+        sysContext = engine.createSystemContext("basicTest.test05.åˆ†å²1",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -241,7 +241,7 @@ public class BuriEngineTest extends S2TestCase {
         testDto.setValue("testValue");
 
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test06.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test06.é–‹å§‹",userContext);
         
         int stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -251,7 +251,7 @@ public class BuriEngineTest extends S2TestCase {
 
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test06.•ªŠò2",userContext);
+        sysContext = engine.createSystemContext("basicTest.test06.åˆ†å²2",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -259,7 +259,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize+1,stateDao_.getNoProcessBuriState().size());
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test06.‚Ì[‚Ç‚P",userContext);
+        sysContext = engine.createSystemContext("basicTest.test06.ã®ãƒ¼ã©ï¼‘",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -267,7 +267,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test06.‚Ì[‚Ç2",userContext);
+        sysContext = engine.createSystemContext("basicTest.test06.ã®ãƒ¼ã©2",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -275,7 +275,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test06.•ªŠò1",userContext);
+        sysContext = engine.createSystemContext("basicTest.test06.åˆ†å²1",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -284,7 +284,7 @@ public class BuriEngineTest extends S2TestCase {
     
 
         userContext = engine.createUserContext(testDto,null,null,null);
-        sysContext = engine.createSystemContext("basicTest.test06.•ªŠòI—¹",userContext);
+        sysContext = engine.createSystemContext("basicTest.test06.åˆ†å²çµ‚äº†",userContext);
         
         stateSize = stateDao_.getNoProcessBuriState().size();
         engine.execute(sysContext,null);
@@ -347,7 +347,7 @@ public class BuriEngineTest extends S2TestCase {
         BuriTestINTDto testDto = new BuriTestINTDto();
         testDto.setValue("testValue");
 
-        //Å‰‚ÌÀs
+        //æœ€åˆã®å®Ÿè¡Œ
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -357,7 +357,7 @@ public class BuriEngineTest extends S2TestCase {
         assertTrue(testDto.getTestID() != 0);
         assertEquals(stateSize+1,stateDao_.getNoProcessBuriState().size());
 
-        //ƒ‹[ƒv‚És‚­
+        //ãƒ«ãƒ¼ãƒ—ã«è¡Œã
         userContext = engine.createUserContext(testDto,null,"loop",null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -367,7 +367,7 @@ public class BuriEngineTest extends S2TestCase {
         assertTrue(testDto.getTestID() != 0);
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
     
-        //ƒ‹[ƒv‚©‚ç’Eo‚·‚é
+        //ãƒ«ãƒ¼ãƒ—ã‹ã‚‰è„±å‡ºã™ã‚‹
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -376,7 +376,7 @@ public class BuriEngineTest extends S2TestCase {
         
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
 
-        //ƒ‹[ƒv‚És‚­ ‚à‚¤ˆê‰ñII
+        //ãƒ«ãƒ¼ãƒ—ã«è¡Œã ã‚‚ã†ä¸€å›ï¼ï¼
         userContext = engine.createUserContext(testDto,null,"loop",null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -386,7 +386,7 @@ public class BuriEngineTest extends S2TestCase {
         assertTrue(testDto.getTestID() != 0);
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
     
-        //ƒ‹[ƒv‚©‚ç’Eo‚·‚é ‚à‚¤ˆê‰ñII
+        //ãƒ«ãƒ¼ãƒ—ã‹ã‚‰è„±å‡ºã™ã‚‹ ã‚‚ã†ä¸€å›ï¼ï¼
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -396,7 +396,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
         
         
-        //Ÿ‚Ìƒ‹[ƒv‚Ö
+        //æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã¸
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -406,7 +406,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
 
 
-        //2”Ô–Ú‚Ìƒ‹[ƒv‚És‚­A‚Å‚à‘¦–ß‚Á‚Ä‚­‚é
+        //2ç•ªç›®ã®ãƒ«ãƒ¼ãƒ—ã«è¡Œãã€ã§ã‚‚å³æˆ»ã£ã¦ãã‚‹
         userContext = engine.createUserContext(testDto,null,"ENTERLOOP",null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -415,7 +415,7 @@ public class BuriEngineTest extends S2TestCase {
         
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
 
-        //2”Ô–Ú‚Ìƒ‹[ƒv‚És‚­A‚Å‚à‘¦–ß‚Á‚Ä‚­‚é@‚à‚¤ˆê‰ñII
+        //2ç•ªç›®ã®ãƒ«ãƒ¼ãƒ—ã«è¡Œãã€ã§ã‚‚å³æˆ»ã£ã¦ãã‚‹ã€€ã‚‚ã†ä¸€å›ï¼ï¼
         userContext = engine.createUserContext(testDto,null,"ENTERLOOP",null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         
@@ -425,7 +425,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
     
 
-        //2”Ô–Ú‚Ìƒ‹[ƒv‚àI‚í‚è
+        //2ç•ªç›®ã®ãƒ«ãƒ¼ãƒ—ã‚‚çµ‚ã‚ã‚Š
         userContext = engine.createUserContext(testDto,null,"EXITLOOP",null);
         sysContext = engine.createSystemContext("basicTest.test08",userContext);
         

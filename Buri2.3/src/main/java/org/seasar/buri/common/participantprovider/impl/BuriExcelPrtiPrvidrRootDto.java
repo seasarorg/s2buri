@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/12
+ * ä½œæˆæ—¥: 2006/07/12
  *
  */
 package org.seasar.buri.common.participantprovider.impl;

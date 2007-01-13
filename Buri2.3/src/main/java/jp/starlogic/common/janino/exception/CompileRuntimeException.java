@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/02/07
+ * ä½œæˆæ—¥: 2006/02/07
  *
  */
 package jp.starlogic.common.janino.exception;

@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/03/26
+ * ä½œæˆæ—¥: 2006/03/26
  *
  */
 package org.seasar.buri.compiler.wakanago;
@@ -29,39 +29,39 @@ public class WakanagoCompilerImpl implements BuriCompiler {
     private CompilePackage compilePackage;
     
     public BuriExePackages CompileInputStream(InputStream workFlowIs,ParticipantProvider provider) {
-        logger.info("“Ç‚İ‚İŠJn");
+        logger.info("èª­ã¿è¾¼ã¿é–‹å§‹");
         Object data = oouoReader.readInputStream(workFlowIs);
         assert data instanceof BuriPackageType;
-        logger.info("ƒRƒ“ƒpƒCƒ‹ŠJn");
+        logger.info("ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«é–‹å§‹");
         BuriExePackages result = Compile((BuriPackageType)data,provider);
-        logger.info("ƒRƒ“ƒpƒCƒ‹I—¹");
+        logger.info("ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«çµ‚äº†");
         return result;
     }
     
     public BuriExePackages CompileResource(String src,ParticipantProvider provider) {
-        logger.info(src + "“Ç‚İ‚İŠJn");
+        logger.info(src + "èª­ã¿è¾¼ã¿é–‹å§‹");
         Object data = oouoReader.readResource(src);
         assert data instanceof BuriPackageType;
-        logger.info(src + "ƒRƒ“ƒpƒCƒ‹ŠJn");
+        logger.info(src + "ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«é–‹å§‹");
         BuriExePackages result = Compile((BuriPackageType)data,provider);
-        logger.info(src + "ƒRƒ“ƒpƒCƒ‹I—¹");
+        logger.info(src + "ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«çµ‚äº†");
         return result;
     }
 
     public BuriExePackages CompileFile(String src,ParticipantProvider provider) {
-        logger.info(src + "“Ç‚İ‚İŠJn");
+        logger.info(src + "èª­ã¿è¾¼ã¿é–‹å§‹");
         Object data = oouoReader.readFile(src);
         assert data instanceof BuriPackageType;
-        logger.info(src + "ƒRƒ“ƒpƒCƒ‹ŠJn");
+        logger.info(src + "ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«é–‹å§‹");
         BuriExePackages result = Compile((BuriPackageType)data,provider);
-        logger.info(src + "ƒRƒ“ƒpƒCƒ‹I—¹");
+        logger.info(src + "ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«çµ‚äº†");
         return result;
     }
     
     public BuriExePackages CompileObject(BuriPackageType buriPackage,ParticipantProvider provider) {
-        logger.info("ƒRƒ“ƒpƒCƒ‹ŠJn");
+        logger.info("ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«é–‹å§‹");
         BuriExePackages result = Compile(buriPackage,provider);
-        logger.info("ƒRƒ“ƒpƒCƒ‹I—¹");
+        logger.info("ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«çµ‚äº†");
         return result;
     }
     

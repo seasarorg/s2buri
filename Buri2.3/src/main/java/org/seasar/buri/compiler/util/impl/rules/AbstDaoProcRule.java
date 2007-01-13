@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/04
+ * ä½œæˆæ—¥: 2006/07/04
  *
  */
 package org.seasar.buri.compiler.util.impl.rules;

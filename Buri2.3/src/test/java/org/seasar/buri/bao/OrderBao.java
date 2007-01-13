@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/01/03
+ * ä½œæˆæ—¥: 2006/01/03
  *
  */
 package org.seasar.buri.bao;
@@ -12,34 +12,34 @@ import example.org.seasar.buri.dto.OrderInfoDto;
 
 public interface OrderBao {
     public static Class TARGETDTO = OrderInfoDto.class;
-    public static String PROCESS = "’•¶ŠÇ—.’•¶";
+    public static String PROCESS = "æ³¨æ–‡ç®¡ç†.æ³¨æ–‡";
 
     public static BuriConvert CONVERTER[] = new BuriConvert[]{
         new BuriConvert(Long.class,"OrderInfoDao.getOrderInfo(#data)")
     };
 
-    public static String getUnderWork_ACTIVITY = "o‰×ì‹Æ’†";
+    public static String getUnderWork_ACTIVITY = "å‡ºè·ä½œæ¥­ä¸­";
     public List getUnderWork();
     
-    public static String getEndShipping_ACTIVITY = "o‰×I—¹";
+    public static String getEndShipping_ACTIVITY = "å‡ºè·çµ‚äº†";
     public List getEndShipping();
 
-    public static String getOrderEnd_ACTIVITY = "I—¹";
+    public static String getOrderEnd_ACTIVITY = "çµ‚äº†";
     public List getOrderEnd();
 
-    public static String getOrderCancelEnd_ACTIVITY = "ƒLƒƒƒ“ƒZƒ‹I—¹";
+    public static String getOrderCancelEnd_ACTIVITY = "ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†";
     public List getOrderCancelEnd();
     
-    public static String order_ACTIVITY = "’•¶";
+    public static String order_ACTIVITY = "æ³¨æ–‡";
     public void order(OrderInfoDto dto);
 
-    public static String endShipping_ACTIVITY = "o‰×ì‹Æ’†";
+    public static String endShipping_ACTIVITY = "å‡ºè·ä½œæ¥­ä¸­";
     public void endShipping(long orderID);
     
-    public static String endBill_ACTIVITY = "o‰×I—¹";
+    public static String endBill_ACTIVITY = "å‡ºè·çµ‚äº†";
     public void endBill(long orderID);
     
-    public static String cancel_ACTIVITY = "o‰×ì‹Æ’†,o‰×I—¹";
+    public static String cancel_ACTIVITY = "å‡ºè·ä½œæ¥­ä¸­,å‡ºè·çµ‚äº†";
     public static String cancel_ACTION = "cancel";
     public static String cancel_RESULT = "#cancelStatus";
     public String cancel(long orderID);

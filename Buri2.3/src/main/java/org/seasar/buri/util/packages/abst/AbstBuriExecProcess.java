@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/03/21
+ * ä½œæˆæ—¥: 2006/03/21
  *
  */
 package org.seasar.buri.util.packages.abst;
@@ -137,7 +137,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         invokeInfo.mode = "_condition";
         invokeInfo.interceptors = conditionInterceptors;
         Object result = runThisMethodName(invokeInfo);
-        assert result instanceof Boolean: methodName + "‚Ì–ß‚è’l‚ªBooleanˆÈŠO‚Å‚·(" + result + ")";
+        assert result instanceof Boolean: methodName + "ã®æˆ»ã‚Šå€¤ãŒBooleanä»¥å¤–ã§ã™(" + result + ")";
         return (Boolean)result;
     }
     

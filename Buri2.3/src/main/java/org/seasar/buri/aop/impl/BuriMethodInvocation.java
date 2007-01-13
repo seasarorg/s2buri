@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/04/05
+ * ä½œæˆæ—¥: 2006/04/05
  *
  */
 package org.seasar.buri.aop.impl;

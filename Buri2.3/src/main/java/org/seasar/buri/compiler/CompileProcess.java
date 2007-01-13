@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/02
+ * ä½œæˆæ—¥: 2006/05/02
  *
  */
 package org.seasar.buri.compiler;

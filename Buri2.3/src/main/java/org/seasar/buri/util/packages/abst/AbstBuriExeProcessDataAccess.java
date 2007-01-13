@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/05/06
+ * ä½œæˆæ—¥: 2006/05/06
  *
  */
 package org.seasar.buri.util.packages.abst;

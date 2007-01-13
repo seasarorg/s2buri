@@ -1,5 +1,5 @@
 /*
- * çÏê¨ì˙: 2006/03/28
+ * ‰ΩúÊàêÊó•: 2006/03/28
  *
  */
 package org.seasar.buri.sample.packages.wakanagoTest;
@@ -24,14 +24,14 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     
     
     
-    //äJén
+    //ÈñãÂßã
     
     public void wakanagoTest_wp1_act1(BuriUserContext context,BuriPath nowPath) {
         
     }
     
     public void wakanagoTest_wp1_act1_start(BuriSystemContext sysContext,BranchWalker walker) {
-        walker = walker.moveNext("äJén","wakanagoTest_wp1_act1");
+        walker = walker.moveNext("ÈñãÂßã","wakanagoTest_wp1_act1");
         startActivity(sysContext,walker);
         wakanagoTest_wp1_act1_process(sysContext,walker);
     }
@@ -39,7 +39,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     public void wakanagoTest_wp1_act1_process(BuriSystemContext sysContext,BranchWalker walker) {
         {
             Script script = scriptFactory.getScript("ognl");
-            String scriptStr = "@System@out.println(\"äJén\")";
+            String scriptStr = "@System@out.println(\"ÈñãÂßã\")";
             script.run(scriptStr,null,sysContext.getUserContext());
         }
         wakanagoTest_wp1_act1_next(sysContext,walker);
@@ -134,14 +134,14 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         
         if(results.size() == 0) {
             noSelectActivity(sysContext,walker);
-            //ÉGÉâÅ[
+            //„Ç®„É©„Éº
         } else if(results.size() == 1) {
             oneSelectActivitySplitAnd(sysContext,walker);
             oneSelectActivitySplitXor(sysContext,walker);
         } else {
             manySelectActivitySplitAnd(sysContext,walker);
             manySelectActivitySplitXor(sysContext,walker);
-            //XORÇÃéûÉGÉâÅ[
+            //XOR„ÅÆÊôÇ„Ç®„É©„Éº
         }
         
         BranchWalker parentBranch = splitAndPreprocess(sysContext,walker);
@@ -165,7 +165,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
         Object result = getConditionScript().eval(null,"#data.val == 1",sysContext.getUserContext());
         if(result instanceof Boolean) {
             return (Boolean)result;
-        } return null; //TODO ó·äOÇ…íuÇ´ä∑Ç¶ÇÈ
+        } return null; //TODO ‰æãÂ§ñ„Å´ÁΩÆ„ÅçÊèõ„Åà„Çã
     }
     
     public Boolean wakanagoTest_wp1_tra6_condition(BuriSystemContext sysContext,BranchWalker walker) {
@@ -202,11 +202,11 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     }
     
     
-    //èIóπ
+    //ÁµÇ‰∫Ü
     public void wakanagoTest_wp1_act6_start(BuriSystemContext sysContext,BranchWalker walker) {
-        joinXorFlow(sysContext,walker,"èIóπ","wakanagoTest_wp1_act6");
-        joinAndFlow(sysContext,walker,"èIóπ","wakanagoTest_wp1_act6");
-        walker = walker.moveNext("èIóπ","wakanagoTest_wp1_act6");
+        joinXorFlow(sysContext,walker,"ÁµÇ‰∫Ü","wakanagoTest_wp1_act6");
+        joinAndFlow(sysContext,walker,"ÁµÇ‰∫Ü","wakanagoTest_wp1_act6");
+        walker = walker.moveNext("ÁµÇ‰∫Ü","wakanagoTest_wp1_act6");
         startActivity(sysContext,walker);
         wakanagoTest_wp1_act6_process(sysContext,walker);
     }
@@ -214,7 +214,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     public void wakanagoTest_wp1_act6_process(BuriSystemContext sysContext,BranchWalker walker) {
         {
             Script script = scriptFactory.getScript("ognl");
-            String scriptStr = "@System@out.println(\"èIóπ\")";
+            String scriptStr = "@System@out.println(\"ÁµÇ‰∫Ü\")";
             script.run(scriptStr,null,sysContext.getUserContext());
         }
         exitFlow(sysContext,walker);
@@ -226,7 +226,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     }
     
     public void wakanagoTest_wp1_act6_restart(BuriSystemContext sysContext,BranchWalker walker) {
-        walker = walker.moveNext("èIóπ","wakanagoTest_wp1_act6");
+        walker = walker.moveNext("ÁµÇ‰∫Ü","wakanagoTest_wp1_act6");
         wakanagoTest_wp1_act6_next(sysContext,walker);
     }
     

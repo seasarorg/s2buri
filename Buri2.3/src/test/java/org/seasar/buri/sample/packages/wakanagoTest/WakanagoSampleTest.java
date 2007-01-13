@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/03/31
+ * ä½œæˆæ—¥: 2006/03/31
  *
  */
 package org.seasar.buri.sample.packages.wakanagoTest;
@@ -48,7 +48,7 @@ public class WakanagoSampleTest extends S2TestCase {
 
         long start = System.currentTimeMillis();
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         engine.execute(sysContext,null);
         
         assertEquals(startStateCount+1 , stateDao.getNoProcessBuriState().size());
@@ -59,7 +59,7 @@ public class WakanagoSampleTest extends S2TestCase {
         BuriTestINTDto data = (BuriTestINTDto)sysContext.getUserContext().get("data");
         assertEquals(data.getValue(),"2");
         System.out.println(sysContext.getUserContext());
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop1",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop1",userContext);
         engine.execute(sysContext,null);
 
         assertEquals(startStateCount+1 , stateDao.getNoProcessBuriState().size());
@@ -67,7 +67,7 @@ public class WakanagoSampleTest extends S2TestCase {
         assertEquals(startDataCount+1 , dataDao.getAllBuriData().size());
         assertEquals(startBranchCount+1 , branchDao.getAllBuriBranch().size());
         
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop2",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop2",userContext);
         engine.execute(sysContext,null);
         
         assertEquals(startStateCount+1 , stateDao.getNoProcessBuriState().size());
@@ -88,27 +88,27 @@ public class WakanagoSampleTest extends S2TestCase {
         dto.setValue("hoge");
         
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
-        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.ŠJn",userContext);
+        BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.é–‹å§‹",userContext);
         sysContext.setTgtClass(BuriTestINTDto.class);
         
         BuriExePackages packages = engine.selectPackage(sysContext);
         BuriExecProcess process =  packages.getProcess(sysContext.getCallPath());
-        List dataList = dataUtil.getDtoListByPathName("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop1",(DataAccessFactory)process,sysContext);
+        List dataList = dataUtil.getDtoListByPathName("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop1",(DataAccessFactory)process,sysContext);
         long startCount = dataList.size();
         
         engine.execute(sysContext,null);
         
-        dataList = dataUtil.getDtoListByPathName("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop1",(DataAccessFactory)process,sysContext);
+        dataList = dataUtil.getDtoListByPathName("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop1",(DataAccessFactory)process,sysContext);
         assertEquals( startCount+1,dataList.size());
         
-        sysContext = engine.createSystemContext("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop1",userContext);
+        sysContext = engine.createSystemContext("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop1",userContext);
         sysContext.setTgtClass(BuriTestINTDto.class);
         engine.execute(sysContext,null);
         
-        dataList = dataUtil.getDtoListByPathName("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop1",(DataAccessFactory)process,sysContext);
+        dataList = dataUtil.getDtoListByPathName("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop1",(DataAccessFactory)process,sysContext);
         assertEquals( startCount,dataList.size());
         
-        dataList = dataUtil.getDtoListByPathName("wakanagoTest.ƒƒJƒiƒSƒeƒXƒg.Stop2",(DataAccessFactory)process,sysContext);
+        dataList = dataUtil.getDtoListByPathName("wakanagoTest.ãƒ¯ã‚«ãƒŠã‚´ãƒ†ã‚¹ãƒˆ.Stop2",(DataAccessFactory)process,sysContext);
         assertEquals( startCount+1,dataList.size());
         
     }

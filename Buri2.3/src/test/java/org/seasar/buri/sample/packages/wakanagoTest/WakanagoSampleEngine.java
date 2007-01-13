@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/03/31
+ * ä½œæˆæ—¥: 2006/03/31
  *
  */
 package org.seasar.buri.sample.packages.wakanagoTest;
@@ -11,7 +11,7 @@ public class WakanagoSampleEngine extends WakanagoEngineImpl{
     
     
     
-    //TODO ƒRƒ“ƒpƒCƒ‰‚ğì‚Á‚Äprotected‚Ö
+    //TODO ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚’ä½œã£ã¦protectedã¸
     public void addPackage(String packageName,Object packageObj,ParticipantProvider provider) {
         packageObjs.put(packageName,packageObj);
         roleMap.put(packageName,provider);

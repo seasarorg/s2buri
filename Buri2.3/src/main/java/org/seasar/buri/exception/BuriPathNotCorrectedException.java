@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2005/07/01
+ * ä½œæˆæ—¥: 2005/07/01
  *
  */
 package org.seasar.buri.exception;

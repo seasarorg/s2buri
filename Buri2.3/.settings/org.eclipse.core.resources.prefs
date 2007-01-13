@@ -1,5 +1,6 @@
-#Mon Jul 17 19:41:47 JST 2006
+#Sat Jan 13 17:03:17 JST 2007
 eclipse.preferences.version=1
+encoding//src/test/java/example/org/seasar/buri/test/BaoTest.java=UTF-8
 encoding//src/test/java/org/seasar/buri/dao/util/wakanagoUtils.dicon=UTF-8
 encoding//src/test/resources/ExcelBaseParticipantProvider/ExcelBase.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/StdTestPP.dicon=UTF-8
@@ -12,3 +13,5 @@ encoding//src/test/resources/buri/dicon/buriStandard.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/buriTimer.dicon=UTF-8
 encoding//src/test/resources/buri/dicon/wakanago.dicon=UTF-8
 encoding//src/test/resources/example/org/seasar/buri/test/baotest.dicon=UTF-8
+encoding//src/test/resources/j2ee.dicon=UTF-8
+encoding/<project>=UTF-8

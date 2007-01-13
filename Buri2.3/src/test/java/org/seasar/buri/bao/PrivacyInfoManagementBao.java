@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2006/07/17
+ * ä½œæˆæ—¥: 2006/07/17
  *
  */
 package org.seasar.buri.bao;
@@ -10,50 +10,50 @@ import example.org.seasar.buri.dto.ItemDto;
 
 public interface PrivacyInfoManagementBao {
     static Class TARGETDTO = ItemDto.class;
-    static String PROCESS = "ŒÂlî•ñŠÇ—.ŒÂlî•ñŠÇ—";
+    static String PROCESS = "å€‹äººæƒ…å ±ç®¡ç†.å€‹äººæƒ…å ±ç®¡ç†";
     static String USERINFO = "buriUser";
 
     static BuriConvert CONVERTER[] = new BuriConvert[]{
     };
 
-    static String getWaitingIndicationRecognition_ACTIVITY = "ŠJ¦³”F‘Ò‚¿";
+    static String getWaitingIndicationRecognition_ACTIVITY = "é–‹ç¤ºæ‰¿èªå¾…ã¡";
     List getWaitingIndicationRecognition();
     
-    static String getIndicationRecognition_ACTIVITY = "ŠJ¦³”F";
+    static String getIndicationRecognition_ACTIVITY = "é–‹ç¤ºæ‰¿èª";
     List getIndicationRecognition();
     
-    static String getWaitingAbandonmentCheck_ACTIVITY = "î•ñ”jŠüŠm”F‘Ò‚¿";
+    static String getWaitingAbandonmentCheck_ACTIVITY = "æƒ…å ±ç ´æ£„ç¢ºèªå¾…ã¡";
     List getWaitingAbandonmentCheck();
     
-    static String getFinishingAbandonmentCheck_ACTIVITY = "î•ñ”jŠüŠm”FÏ‚İ";
+    static String getFinishingAbandonmentCheck_ACTIVITY = "æƒ…å ±ç ´æ£„ç¢ºèªæ¸ˆã¿";
     List getFinishingAbandonmentCheck();
     
-    static String getWaitingReturnCheck_ACTIVITY = "î•ñ•Ô‹pŠm”F‘Ò‚¿";
+    static String getWaitingReturnCheck_ACTIVITY = "æƒ…å ±è¿”å´ç¢ºèªå¾…ã¡";
     List getWaitingReturnCheck();
     
-    static String getFinishingReturnCheck_ACTIVITY = "î•ñ•Ô‹pŠm”FÏ‚İ";
+    static String getFinishingReturnCheck_ACTIVITY = "æƒ…å ±è¿”å´ç¢ºèªæ¸ˆã¿";
     List getFinishingReturnCheck();
     
     
     
-    static String indicationRequest_ACTIVITY = "ŠJ¦ˆË—Š";
+    static String indicationRequest_ACTIVITY = "é–‹ç¤ºä¾é ¼";
     void indicationRequest(ItemDto dto);
     
-    static String waitingIndicationRecognition_ACTIVITY = "ŠJ¦³”F‘Ò‚¿";
+    static String waitingIndicationRecognition_ACTIVITY = "é–‹ç¤ºæ‰¿èªå¾…ã¡";
     void waitingIndicationRecognition(ItemDto dto);
     
-    static String indicationRecognitionAbandonment_ACTIVITY = "ŠJ¦³”F";
+    static String indicationRecognitionAbandonment_ACTIVITY = "é–‹ç¤ºæ‰¿èª";
     public static String indicationRecognitionAbandonment_ACTION = "drop";
     void indicationRecognitionAbandonment(ItemDto dto);
     
-    static String indicationRecognitionReturn_ACTIVITY = "ŠJ¦³”F";
+    static String indicationRecognitionReturn_ACTIVITY = "é–‹ç¤ºæ‰¿èª";
     public static String indicationRecognitionReturn_ACTION = "return";
     void indicationRecognitionReturn(ItemDto dto);
     
-    static String waitingAbandonmentCheck_ACTIVITY = "î•ñ”jŠüŠm”F‘Ò‚¿";
+    static String waitingAbandonmentCheck_ACTIVITY = "æƒ…å ±ç ´æ£„ç¢ºèªå¾…ã¡";
     void waitingAbandonmentCheck(ItemDto dto);
     
-    static String waitingReturnCheck_ACTIVITY = "î•ñ•Ô‹pŠm”F‘Ò‚¿";
+    static String waitingReturnCheck_ACTIVITY = "æƒ…å ±è¿”å´ç¢ºèªå¾…ã¡";
     void waitingReturnCheck(ItemDto dto);
     
     
