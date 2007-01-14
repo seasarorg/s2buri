@@ -1,5 +1,7 @@
 package org.seasar.buri.dto;
 
+import org.seasar.nadejako.annotation.NakoProperties;
+import org.seasar.nadejako.annotation.NakoProperty;
 
 public class BuriTestINTDto {
 	public static final String TABLE = "BuriTestINT";

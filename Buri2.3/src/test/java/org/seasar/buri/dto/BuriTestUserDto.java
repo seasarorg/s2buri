@@ -1,6 +1,14 @@
 package org.seasar.buri.dto;
 
+import org.seasar.nadejako.annotation.NakoProperties;
+import org.seasar.nadejako.annotation.NakoProperty;
 
+@NakoProperties({
+	@NakoProperty(name="あいでぃー", property="userID"),
+	@NakoProperty(name="ユーザ名", property="userName"),
+	@NakoProperty(name="権限名", property="roleName"),
+	@NakoProperty(name="上司", property="parentUserID")
+	})
 public class BuriTestUserDto {
 	public static final String TABLE = "BuriTestUser";
 

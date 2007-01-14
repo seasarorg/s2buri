@@ -14,6 +14,7 @@ import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.oouo.internal.structure.BuriPackageType;
 import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
+import org.seasar.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
@@ -100,6 +101,7 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
 //        setupApplication();
         variables.putAll(buriPackage.getApplication());
         participant.putAll(buriPackage.getRoleByName());
+        setupExpressionType();
     }
     
     public BuriPackageType getBuriPackageType() {
@@ -129,6 +131,39 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
         return processObj;
     }
     
+    private void setupExpressionType() {
+    	List extAttri = buriPackage.getExtendedAttribute();
+    	String type = ExtentedAttributeUtil.getAttributeVal(extAttri, "conditionExpressionType");
+    	if( ! StringUtil.isEmpty(type)) {
+    		conditionExpressionType = type;
+    	}
+    	
+    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "pkeyExpressionType");
+    	if( ! StringUtil.isEmpty(type)) {
+    		pkeyExpressionType = type;
+    	}
+    	
+    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "dataAccessScriptType");
+    	if( ! StringUtil.isEmpty(type)) {
+    		dataAccessScriptType = type;
+    	}
+    	
+    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "defaultExpressionType");
+    	if( ! StringUtil.isEmpty(type)) {
+    		defaultExpressionType = type;
+    	}
+    	
+    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "preprocessScriptType");
+    	if( ! StringUtil.isEmpty(type)) {
+    		preprocessScriptType = type;
+    	}
+    	
+    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "timeLimitExpressionType");
+    	if( ! StringUtil.isEmpty(type)) {
+    		timeLimitExpressionType = type;
+    	}
+    	
+    }
     
     private String getProcessId(BuriPath path) {
         BuriWorkflowProcessType process = null;

@@ -32,6 +32,8 @@
 	
 	<component name="rootDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
 	</component>
+	<component name="BuriScript" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
+	</component>
 	<component name="OgnlInvoker" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
 	</component>
 	<component name="AfterOgnlInvoker" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">

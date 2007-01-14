@@ -27,6 +27,10 @@
 			<arg>"個人情報管理"</arg>
 			<arg>ExcelBaseParticipantProvider</arg>
 		</initMethod>
+		<initMethod name="addResourceConfig">
+			<arg>"wakanagoxpdl/なでじゃこ.xpdl"</arg>
+			<arg>"なでなで"</arg>
+		</initMethod>
 		<!-- ここまではテスト用なので実際は削除する -->
 	</component>
 	
