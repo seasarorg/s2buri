@@ -30,7 +30,13 @@
 	</component>
 
 	
+	<component name="ScriptDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessScriptFactoryImpl">
+	</component>
 	<component name="rootDataAccessFactory" class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
+		<initMethod name="addChildFactory">
+			<arg>"ScriptDataAccessFactory"</arg>
+			<arg>ScriptDataAccessFactory</arg>
+		</initMethod>
 	</component>
 	<component name="BuriScript" class="org.seasar.buri.component.impl.BuriScriptComponentImpl">
 	</component>

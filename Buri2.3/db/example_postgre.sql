@@ -1,6 +1,4 @@
 
-DROP TABLE Bill;
-
 CREATE TABLE Bill (
        BillID               BIGINT NOT NULL,
        BillDate             TIMESTAMP NOT NULL,
@@ -14,14 +12,11 @@ CREATE INDEX XIF4Bill ON Bill(ShippingID);
 CREATE INDEX XIF5Bill ON Bill(OrderTitleID);
 CREATE INDEX XIF6Bill ON Bill(CustomerID);
 
-DROP SEQUENCE BillID;
 CREATE SEQUENCE BillID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE ShippingItem;
 
 CREATE TABLE ShippingItem (
        OrderDetailID        BIGINT NOT NULL ,
@@ -33,15 +28,11 @@ CREATE TABLE ShippingItem (
 CREATE INDEX XIF1ShippingItem ON ShippingItem(OrderDetailID);
 CREATE INDEX XIF2ShippingItem ON ShippingItem(ShippingID);
 
-
-DROP SEQUENCE ShippingItemID;
 CREATE SEQUENCE ShippingItemID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE Shipping;
 
 CREATE TABLE Shipping (
        ShippingID           BIGINT NOT NULL,
@@ -54,14 +45,11 @@ CREATE TABLE Shipping (
 CREATE INDEX XIF3Shipping ON Shipping(OrderTitleID);
 CREATE INDEX XIF4Shipping ON Shipping(CustomerID);
 
-DROP SEQUENCE ShippingID;
 CREATE SEQUENCE ShippingID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE OrderDetail;
 
 CREATE TABLE OrderDetail (
        OrderDetailID        BIGINT NOT NULL,
@@ -74,14 +62,12 @@ CREATE TABLE OrderDetail (
 CREATE INDEX XIF3OrderDetail ON OrderDetail(ItemID);
 CREATE INDEX XIF4OrderDetail ON OrderDetail(OrderTitleID);
 
-DROP SEQUENCE OrderDetailID;
+
 CREATE SEQUENCE OrderDetailID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE OrderTitle;
 
 CREATE TABLE OrderTitle (
        OrderTitleID         BIGINT NOT NULL,
@@ -93,14 +79,12 @@ CREATE TABLE OrderTitle (
 
 CREATE INDEX XIF2OrderTitle ON OrderTitle(CustomerID);
 
-DROP SEQUENCE OrderTitleID;
+
 CREATE SEQUENCE OrderTitleID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE Item;
 
 CREATE TABLE Item (
        ItemID               BIGINT NOT NULL,
@@ -109,21 +93,20 @@ CREATE TABLE Item (
        PRIMARY KEY (ItemID)
 );
 
-DROP SEQUENCE ItemID;
+
 CREATE SEQUENCE ItemID
  START WITH 1
  INCREMENT BY 1
 ;
 
 
-DROP TABLE Customer;
 
 CREATE TABLE Customer (
        CustomerID           BIGINT NOT NULL,
        CustomerName         VARCHAR(100) NOT NULL
 );
 
-DROP SEQUENCE CustomerID;
+
 CREATE SEQUENCE CustomerID
  START WITH 1
  INCREMENT BY 1

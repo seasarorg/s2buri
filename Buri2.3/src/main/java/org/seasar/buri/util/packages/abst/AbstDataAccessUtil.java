@@ -12,13 +12,14 @@ import java.util.Map;
 
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.Script;
+import org.seasar.framework.util.StringUtil;
 
 public abstract class AbstDataAccessUtil implements DataAccessUtil {
     protected Script dataAccessScript;
     protected Script pkeyExpressionScript;
     
     protected List getDataList(List keyVals,String execScript) {
-        if(execScript.length() == 0) {
+        if(StringUtil.isEmpty(execScript)) {
             return getDataListFromKeys(keyVals);
         }
         Object result = runScript(keyVals,execScript);

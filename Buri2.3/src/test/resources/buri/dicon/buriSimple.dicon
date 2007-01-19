@@ -99,6 +99,10 @@
 		<aspect>BuriInterceptorChain</aspect>
 		<property name="dataAccessFactory">
 			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
+				<initMethod name="addChildFactory">
+					<arg>"ScriptDataAccessFactory"</arg>
+					<arg>ScriptDataAccessFactory</arg>
+				</initMethod>
 			</component>
 		</property>
 		<property name="participantProvider">null</property>

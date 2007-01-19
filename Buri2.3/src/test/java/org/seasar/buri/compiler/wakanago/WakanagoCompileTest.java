@@ -20,7 +20,7 @@ public class WakanagoCompileTest extends S2TestCase {
         include(PATH);
     }
     
-    public void testCompile() {
+    public void testCompileTx() {
         BuriExePackages exePackages = compiler_.CompileResource("wakanagoxpdl/wakanagoTest.xpdl",null);
         assertNotNull(exePackages);
     }

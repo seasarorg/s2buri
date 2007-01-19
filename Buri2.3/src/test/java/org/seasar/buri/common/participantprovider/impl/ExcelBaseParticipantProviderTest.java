@@ -23,7 +23,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         include("ExcelBaseParticipantProvider/ExcelBase.dicon");
     }
 
-    public void test01() {
+    public void test01Tx() {
         provider.loadFromResource("ExcelBaseParticipantProvider/test01.xls");
         Object userData = provider.getUserData(new Long(1),"A");
         assertNotNull(userData);
@@ -65,7 +65,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
     }
     
     
-    public void test02() {
+    public void test02Tx() {
         provider.loadFromResource("ExcelBaseParticipantProvider/test02.xls");
         Object userData = provider.getUserData(new Long(1),"A");
         assertNotNull(userData);
@@ -106,7 +106,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,1));
     }
     
-    public void test03() {
+    public void test03Tx() {
         provider.loadFromResource("ExcelBaseParticipantProvider/test03.xls");
         
         Object userData = provider.getUserData(new Long(1),null);
@@ -145,7 +145,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
         assertTrue(hasUserIdNum(userList,7));
         
     }
-    public void test04() {
+    public void test04Tx() {
         provider.loadFromResource("ExcelBaseParticipantProvider/test04.xls");
         Object userData = provider.getUserData(new Long(1),"A");
         assertNotNull(userData);

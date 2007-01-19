@@ -1,9 +1,3 @@
-drop view BuriPathDataUser;
-
-drop view BuriPathData;
-
-
-DROP TABLE BuriStateUser;
 
 CREATE TABLE BuriStateUser (
        StateUserID          INTEGER NOT NULL,
@@ -18,15 +12,11 @@ CREATE TABLE BuriStateUser (
 CREATE INDEX XIF1BuriStateUser ON BuriStateUser(StateID);
 CREATE INDEX XIF2BuriStateUser ON BuriStateUser(BuriUserID);
 
-
-DROP SEQUENCE BuriStateUserID;
 CREATE SEQUENCE BuriStateUserID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriState;
 
 CREATE TABLE BuriState (
        StateID              INTEGER NOT NULL,
@@ -50,15 +40,11 @@ CREATE INDEX XIF4BuriState ON BuriState(BranchID);
 CREATE INDEX XIF5BuriState ON BuriState(processDate);
 CREATE INDEX XIF6BuriState ON BuriState(autoRunTime);
 
-
-DROP SEQUENCE BuriStateID;
 CREATE SEQUENCE BuriStateID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriStateUndoLog;
 
 CREATE TABLE BuriStateUndoLog (
        StateUndoLogID       INTEGER NOT NULL,
@@ -80,15 +66,11 @@ CREATE TABLE BuriStateUndoLog (
 
 CREATE INDEX XIF1BuriStateUndoLog ON BuriStateUndoLog(StateID);
 
-
-DROP SEQUENCE BuriStateUndoLogID;
 CREATE SEQUENCE BuriStateUndoLogID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriTransaction;
 
 CREATE TABLE BuriTransaction (
        Btid                 INTEGER NOT NULL,
@@ -100,14 +82,11 @@ CREATE TABLE BuriTransaction (
 
 CREATE INDEX XIF1BuriTransaction ON BuriTransaction(Btid);
 
-DROP SEQUENCE BuriTransactionID;
 CREATE SEQUENCE BuriTransactionID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriBranch;
 
 CREATE TABLE BuriBranch (
        BranchID             INTEGER NOT NULL,
@@ -124,14 +103,11 @@ CREATE INDEX XIF1BuriBranch ON BuriBranch(PathID);
 CREATE INDEX XIF2BuriBranch ON BuriBranch(parentBranchID);
 CREATE INDEX XIF3BuriBranch ON BuriBranch(DataID);
 
-DROP SEQUENCE BuriBranchID;
 CREATE SEQUENCE BuriBranchID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriDataPathHistory;
 
 CREATE TABLE BuriDataPathHistory (
        historyID            INTEGER NOT NULL,
@@ -149,14 +125,11 @@ CREATE INDEX XIF3BuriDataPathHi ON BuriDataPathHistory(PathID);
 CREATE INDEX XIF4BuriDataPathHi ON BuriDataPathHistory(DataID);
 
 
-DROP SEQUENCE BuriDataPathHistoryID;
 CREATE SEQUENCE BuriDataPathHistoryID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriData;
 
 CREATE TABLE BuriData (
        DataID               INTEGER NOT NULL,
@@ -171,15 +144,11 @@ CREATE INDEX XIF1BuriData ON BuriData(InsertUserID);
 CREATE INDEX XIE1BuriData ON BuriData(pkeyVal,dataType);
 CREATE INDEX XIE2BuriData ON BuriData(pkeyNum,dataType);
 
-
-DROP SEQUENCE BuriDataID;
 CREATE SEQUENCE BuriDataID
  START WITH 1
  INCREMENT BY 1
 ;
 
-
-DROP TABLE BuriPath;
 
 CREATE TABLE BuriPath (
        PathID               INTEGER NOT NULL,
@@ -194,15 +163,12 @@ CREATE INDEX XIE1BuriPath ON BuriPath(PathName);
 CREATE INDEX XIE2BuriPath ON BuriPath(RealPathName);
 CREATE INDEX XIE3BuriPath ON BuriPath(pathType);
 
-DROP SEQUENCE BuriPathID;
 CREATE SEQUENCE BuriPathID
  START WITH 1
  INCREMENT BY 1
 ;
 
 
-
-DROP TABLE BuriUser;
 
 CREATE TABLE BuriUser (
        BuriUserID           INTEGER NOT NULL,
@@ -213,7 +179,6 @@ CREATE TABLE BuriUser (
 
 CREATE INDEX XIE2BuriUser ON BuriUser(UserIDVal,UserIDNum);
 
-DROP SEQUENCE BuriUserID;
 CREATE SEQUENCE BuriUserID
  START WITH 1
  INCREMENT BY 1

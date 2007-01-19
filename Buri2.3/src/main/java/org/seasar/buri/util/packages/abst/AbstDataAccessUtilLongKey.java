@@ -14,22 +14,20 @@ import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.framework.util.StringUtil;
 
 public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil implements DataAccessUtilLongKey {
-    private PropertyDesc pkeyPropertyDesc;
     
     protected Long getLongPkey(Object target,String prop) {
-        if(pkeyPropertyDesc==null) {
-            BeanDesc beanDesc = BeanDescFactory.getBeanDesc(target.getClass());
-            pkeyPropertyDesc = beanDesc.getPropertyDesc(prop);
-        }
+        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(target.getClass());
+        PropertyDesc pkeyPropertyDesc = beanDesc.getPropertyDesc(prop);
         Object result = pkeyPropertyDesc.getValue(target);
         assert result instanceof Long;
         return (Long)result;
     }
 
     protected List getDataList(List keyVals,String execScript) {
-        if(execScript.length() == 0) {
+        if(StringUtil.isEmpty(execScript)) {
             return getDataListFromKeys(keyVals);
         }
         Object result = runScript(keyVals,execScript);
@@ -61,7 +59,7 @@ public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil imple
     protected Object runScript(Object data,String execScript) {
         Map context = new HashMap();
         context.put("data",data);
-        Object result = dataAccessScript.run(execScript,null,context);
+        Object result = getDataAccessScript().run(execScript,null,context);
         return result;
         
     }
