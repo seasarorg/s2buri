@@ -1,15 +1,11 @@
 package org.seasar.buri.engine.processor.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.seasar.buri.dao.BuriTestUserDao;
 import org.seasar.buri.dto.BuriTestUserDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.container.S2Container;
 
 public class NadejyakoBuriTest extends S2TestCase {
     private String PATH = "buri/dicon/buriSimple.dicon";
@@ -24,6 +20,10 @@ public class NadejyakoBuriTest extends S2TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
         include(PATH);
+	}
+	
+	public void testDummy() {
+		
 	}
 	
 	// BuriTestUserDtoを使うとDerbyでエラーになるのでちょっとテスト延期
