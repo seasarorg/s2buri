@@ -1,7 +1,8 @@
 package org.seasar.buri.engine.processor.impl;
 
-import org.seasar.buri.dao.BuriTestUserDao;
-import org.seasar.buri.dto.BuriTestUserDto;
+import java.util.Date;
+
+import org.seasar.buri.dto.FurnitureItemDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.SimpleBuriProcessor;
@@ -11,7 +12,6 @@ public class NadejyakoBuriTest extends S2TestCase {
     private String PATH = "buri/dicon/buriSimple.dicon";
     private BuriEngine buriEngine;
     private SimpleBuriProcessor invoker_;
-    private BuriTestUserDao dao;
 
 	public NadejyakoBuriTest(String name) {
 		super(name);
@@ -21,27 +21,22 @@ public class NadejyakoBuriTest extends S2TestCase {
 		super.setUp();
         include(PATH);
 	}
-	
-	public void testDummy() {
-		
-	}
-	
-	// BuriTestUserDtoを使うとDerbyでエラーになるのでちょっとテスト延期
-	public void te1stなでじゃこをぶりから呼んでみるTx() {
+	public void testなでじゃこをぶりから呼んでみるTx() {
         buriEngine.readWorkFlowFromResource("wakanagoxpdl/なでじゃこ.xpdl","なでなで");
         
-        BuriTestUserDto userDto = new BuriTestUserDto();
-        
-        userDto.setUserName("えすかふぇ");
-//        userDto.setParentUserID(10);
+        FurnitureItemDto itemDto = new FurnitureItemDto();
+        itemDto.setType("サーバ");
+        itemDto.setName("PS3");
+        itemDto.setAcquisition(new Date());
+        itemDto.setAcquisitionType(1);
         
         BuriProcessorInfo info = new BuriProcessorInfo();
-        info.put("利用者", userDto);
-        info.put("上司無し", new Integer(0));
+        info.put("備品", itemDto);
+        info.put("リース", new Integer(1));
         
-        invoker_.toNextStatus("なでなで.なでじゃこてすと.開始", userDto,info);
+        invoker_.toNextStatus("なでなで.なでじゃこてすと.開始", itemDto,info);
 		
-        System.out.println(userDto);
+        System.out.println(itemDto);
         
 	}
 

@@ -2,6 +2,16 @@ package org.seasar.buri.dto;
 
 import java.util.Date;
 
+import org.seasar.nadejako.annotation.NakoProperties;
+import org.seasar.nadejako.annotation.NakoProperty;
+
+@NakoProperties({
+	@NakoProperty(name="あいでぃー", property="furnitureID"),
+	@NakoProperty(name="種類", property="type"),
+	@NakoProperty(name="名前", property="name"),
+	@NakoProperty(name="取得日", property="acquisition"),
+	@NakoProperty(name="取得タイプ", property="acquisitionType")
+	})
 public class FurnitureItemDto {
 	public static final String TABLE = "FurnitureItem";
 

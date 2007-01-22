@@ -33,7 +33,7 @@
 <Implementation>
 <Tool Id="nade_app1">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#利用者"/>
+<ExtendedAttribute Name="ognl" Value="#備品"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -57,7 +57,7 @@
 <Implementation>
 <Tool Id="nade_app1">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#利用者&#10;#利用者.roleName = &quot;大ボス&quot;"/>
+<ExtendedAttribute Name="ognl" Value="#備品.type = &quot;リース&quot; + #備品.type&#10;#備品"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -91,13 +91,13 @@
 </ExtendedAttributes>
 </Transition>
 <Transition From="nade_wp1_act5" Id="nade_wp1_tra2" To="nade_wp1_act7">
-<Condition Type="CONDITION">利用者の上司と上司無しが同じ</Condition>
+<Condition Type="CONDITION">備品の種類とリースが同じ</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
 </Transition>
 <Transition From="nade_wp1_act5" Id="nade_wp1_tra3" To="nade_wp1_act8">
-<Condition Type="CONDITION">利用者の上司と上司無しが等しくない</Condition>
+<Condition Type="CONDITION">備品の種類とリースが等しくない</Condition>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
 </ExtendedAttributes>
