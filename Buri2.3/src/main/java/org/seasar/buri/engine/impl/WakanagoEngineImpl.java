@@ -98,7 +98,11 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         Iterator ite = engineConfig.getResourceConfigs().iterator();
         while(ite.hasNext()) {
             BuriConfigDto dto = (BuriConfigDto)ite.next();
-            readWorkFlowFromResource(dto.getFileName(),dto.getPackageName(),dto.getProvider());
+            if(dto.getProvider()==null) {
+            	readWorkFlowFromResource(dto.getFileName(),dto.getPackageName());
+            } else {
+            	readWorkFlowFromResource(dto.getFileName(),dto.getPackageName(),dto.getProvider());
+            }
         }
         finSetup = true;
     }
