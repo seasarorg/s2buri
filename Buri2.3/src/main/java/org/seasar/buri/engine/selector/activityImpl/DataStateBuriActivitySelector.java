@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.engine.selector.activityImpl;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -17,24 +18,43 @@ import org.seasar.buri.oouo.internal.structure.BuriActivityType;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 
-public class StateActivitySelector extends AbstractBuriActivitySelector {
+/**
+ * 登録済みのデータが現在所属しているアクティビティ群を選択します。
+ * <p>
+ * 分岐フローによって1つのデータが複数アクティビティにデータが所属する場合には、
+ * 複数のアクティビティが選択されます。
+ * </p>
+ * <p>
+ * 呼び出されれば常に適用されます。
+ * </p>
+ * 
+ * @author $Author$
+ */
+public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector {
+
     private BuriDataUtil dataUtil;
     private BuriPathUtil pathUtil;
 
-    protected Set getActivityList(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        long dataID = dataUtil.getBuriDataId((DataAccessFactory)execProcess,systemContext);
+    @Override
+    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext,
+            BuriExecProcess execProcess) {
+        Set<BuriActivityType> result = new HashSet<BuriActivityType>();
+        long dataID = dataUtil.getBuriDataId((DataAccessFactory) execProcess, systemContext);
         List pathList = pathUtil.getPathListByDataId(dataID);
         Iterator ite = pathList.iterator();
-        while(ite.hasNext()) {
-            BuriPath path = (BuriPath)ite.next();
+        while (ite.hasNext()) {
+            BuriPath path = (BuriPath) ite.next();
             String actID = path.getActivityId().get(0).toString();
             BuriActivityType act = execProcess.getBuriWorkflowProcessType().getActivityById(actID);
-            activitys.add(act);
+            result.add(act);
         }
-        return activitys;
+        activities.clear();
+        activities.addAll(result);
     }
 
-    protected boolean checkCanActivitySelect(Set activitys,BuriSystemContext systemContext, BuriExecProcess execProcess) {
+    @Override
+    protected boolean isTarget(Set<BuriActivityType> activitys, BuriSystemContext systemContext,
+            BuriExecProcess execProcess) {
         return true;
     }
 

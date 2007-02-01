@@ -13,14 +13,24 @@ import org.seasar.buri.dto.BuriTestUserDto;
 import org.seasar.buri.engine.BuriEngine;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.processor.StandardBuriProcessor;
+import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
 import org.seasar.extension.unit.S2TestCase;
 
 import example.org.seasar.buri.dao.ItemDao;
 import example.org.seasar.buri.dto.ItemDto;
 import example.org.seasar.buri.dto.ItemFindDto;
 
+/**
+ * {@link StandardBuriProcessor}のテスト。
+ * <p>
+ * <code>wakanagoxpdl/stdTest.xpdl</code>の<code>test01</code>プロセスを対象とする。
+ * </p>
+ * @author $Author$
+ */
 public class StandardBuriProcessor01Test extends S2TestCase {
-    private String PATH = "buri/dicon/buriStandard.dicon";
+
+    private static final String PATH = "buri/dicon/buriStandard.dicon";
+
     private BuriEngine buriEngine;
     private StandardBuriProcessor processor;
     private BuriTestUserDao userDao;
@@ -28,227 +38,213 @@ public class StandardBuriProcessor01Test extends S2TestCase {
     private ParticipantProvider participantProvider;
     private BuriUserUtil buriUserUtil;
 
-    
-    public StandardBuriProcessor01Test(String arg0) {
-        super(arg0);
+    public StandardBuriProcessor01Test(String name) {
+        super(name);
     }
-    
+
+    @Override
     protected void setUp() throws Exception {
         super.setUp();
         include(PATH);
-        
     }
-    
+
     public void test01Tx() {
         readXlsWriteDb("StdTestData.xls");
-        participantProvider = (ParticipantProvider)getComponent("StdTestParticipantProvider");
-        buriEngine.readWorkFlowFromResource("wakanagoxpdl/stdTest.xpdl","stdTest",participantProvider);
-        
-        ItemFindDto findDto = new ItemFindDto();
-        List userList = new ArrayList();
-        List pathList = new ArrayList();
-        ItemDto itemDto1 = itemDao.getItem(1);
-        BuriTestUserDto userDto = null;
-        
-        processor.toNextStatus("stdTest.Test01",itemDto1,userDto);
-        BuriTestUserDto user3Dto = userDao.getBuriTestUser(3);
-        List dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        BuriTestUserDto user2Dto = userDao.getBuriTestUser(2);
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        BuriTestUserDto user1Dto = userDao.getBuriTestUser(1);
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user1Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        Long userID = participantProvider.getUserIDNum(user3Dto, null);
-        long userKey = buriUserUtil.convertUserID(userID, null);
-        userList.add(new Long(userKey));
-        pathList.add("stdTest.Test01.受付済み");
-        findDto.setItemName_matchFront("PS");
-        dataList = itemDao.findAndUser(findDto, pathList, userList);
-        assertEquals(dataList.size(),1);
-        userList.clear();
-        userID = participantProvider.getUserIDNum(user2Dto, null);
-        userKey = buriUserUtil.convertUserID(userID, null);
-        userList.add(new Long(userKey));
-        dataList = itemDao.findAndUser(findDto, pathList, userList);
-        assertEquals(dataList.size(),0);
-        
-        ItemDto itemDto2 = itemDao.getItem(2);
-        userDto = null;
-        
-        processor.toNextStatus("stdTest.Test01",itemDto2,userDto);
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user1Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        
-        ItemDto itemDto3 = itemDao.getItem(3);
-        userDto = null;
-        
-        processor.toNextStatus("stdTest.Test01",itemDto3,userDto);
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user1Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        processor.toNextStatus("stdTest.Test01.受付済み",itemDto1,user3Dto);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user1Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        processor.toNextStatus("stdTest.Test01.受付済み",itemDto2,user2Dto);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user3Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user2Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user1Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user1Dto,ItemDto.class);
-        System.out.println(dataList);
-        assertEquals(dataList.size(),0);
+        participantProvider = (ParticipantProvider) getComponent("StdTestParticipantProvider");
+        buriEngine.readWorkFlowFromResource("wakanagoxpdl/stdTest.xpdl", "stdTest",
+            participantProvider);
 
-        
-        processor.toNextStatus("stdTest.Test01.受付済み",itemDto3,user1Dto);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user3Dto,ItemDto.class);
+        BuriTestUserDto 無関係ユーザ = null;
+        BuriTestUserDto 下っ端ユーザ = userDao.getBuriTestUser(3);
+        BuriTestUserDto 真ん中ユーザ = userDao.getBuriTestUser(2);
+        BuriTestUserDto 一番上ユーザ = userDao.getBuriTestUser(1);
+
+        ItemDto 安い商品 = itemDao.getItem(1);
+        ItemDto やや高い商品 = itemDao.getItem(2);
+        ItemDto とても高い商品 = itemDao.getItem(3);
+
+        processor.toNextStatus("stdTest.Test01", 安い商品, 無関係ユーザ);
+
+        List dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user3Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 真ん中ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user2Dto,ItemDto.class);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 一番上ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user2Dto,ItemDto.class);
+        assertEquals(0, dataList.size());
+
+        { // 検索をしてみる。
+            ItemFindDto findDto = new ItemFindDto();
+            findDto.setItemName_matchFront("PS");
+
+            List<String> pathList = new ArrayList<String>();
+            pathList.add("stdTest.Test01.受付済み");
+
+            List<Long> userList = new ArrayList<Long>();
+            Long userID = participantProvider.getUserIDNum(下っ端ユーザ, null);
+            long userKey = buriUserUtil.convertUserID(userID, null);
+            userList.add(new Long(userKey));
+            dataList = itemDao.findAndUser(findDto, pathList, userList);
+            assertEquals(1, dataList.size());
+
+            userList.clear();
+            userID = participantProvider.getUserIDNum(真ん中ユーザ, null);
+            userKey = buriUserUtil.convertUserID(userID, null);
+            userList.add(new Long(userKey));
+            dataList = itemDao.findAndUser(findDto, pathList, userList);
+            assertEquals(0, dataList.size());
+        }
+
+        processor.toNextStatus("stdTest.Test01", やや高い商品, 無関係ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み",user1Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 真ん中ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user1Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 一番上ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        
-        
-        
-        processor.toNextStatus("stdTest.Test01.処理中",itemDto1,user3Dto);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user3Dto,ItemDto.class);
+        assertEquals(0, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01", とても高い商品, 無関係ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち",user3Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 真ん中ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user2Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 一番上ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user1Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.受付済み", 安い商品, 下っ端ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        processor.toNextStatus("stdTest.Test01.処理中",itemDto2,user2Dto);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user3Dto,ItemDto.class);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち",user3Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 真ん中ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),2);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user2Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 一番上ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user1Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.受付済み", やや高い商品, 真ん中ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),1);
-        
-        
-        processor.toNextStatus("stdTest.Test01.処理中",itemDto3,user1Dto);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user3Dto,ItemDto.class);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 下っ端ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち",user3Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 真ん中ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),3);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user2Dto,ItemDto.class);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 真ん中ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.処理中",user1Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 一番上ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),0);
-        
-        processor.toNextStatus("stdTest.Test01.返信待ち",itemDto1,user1Dto);
-        
-        
-        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち",user3Dto,ItemDto.class);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 一番上ユーザ, ItemDto.class);
         System.out.println(dataList);
-        assertEquals(dataList.size(),2);
-        
+        assertEquals(0, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.受付済み", とても高い商品, 一番上ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 真ん中ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 真ん中ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.受付済み", 一番上ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 一番上ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.処理中", 安い商品, 下っ端ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 真ん中ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 一番上ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.処理中", やや高い商品, 真ん中ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(2, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 真ん中ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 一番上ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.処理中", とても高い商品, 一番上ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(3, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 真ん中ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.処理中", 一番上ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(0, dataList.size());
+
+        processor.toNextStatus("stdTest.Test01.返信待ち", 安い商品, 下っ端ユーザ);
+
+        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(2, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.終了", 無関係ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
+
+        // 返信待ちを進められるのは下っ端ユーザだけ
+        try {
+            processor.toNextStatus("stdTest.Test01.返信待ち", とても高い商品, 一番上ユーザ);
+            fail();
+        } catch (BuriNotSelectedActivityException e) {
+        }
+        dataList = processor.getDataListFromPath("stdTest.Test01.返信待ち", 下っ端ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(2, dataList.size());
+        dataList = processor.getDataListFromPath("stdTest.Test01.終了", 無関係ユーザ, ItemDto.class);
+        System.out.println(dataList);
+        assertEquals(1, dataList.size());
     }
 
 }

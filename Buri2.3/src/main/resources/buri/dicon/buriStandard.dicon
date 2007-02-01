@@ -22,19 +22,19 @@
 		</initMethod>
 		-->
 		<initMethod name="addActivitySelector">
-			<arg><component class="org.seasar.buri.engine.selector.activityImpl.StateActivitySelector">
+			<arg><component class="org.seasar.buri.engine.selector.activityImpl.DataStateBuriActivitySelector">
 				</component></arg>
 		</initMethod>
 		<initMethod name="addActivitySelector">
-			<arg><component class="org.seasar.buri.engine.selector.activityImpl.DirectActivitySelector">
+			<arg><component class="org.seasar.buri.engine.selector.activityImpl.DirectSingleBuriActivitySelector">
 				</component></arg>
 		</initMethod>
 		<initMethod name="addActivitySelector">
-			<arg><component class="org.seasar.buri.engine.selector.activityImpl.StartActivitySelector">
+			<arg><component class="org.seasar.buri.engine.selector.activityImpl.StartBuriActivitySelector">
 				</component></arg>
 		</initMethod>
 		<initMethod name="addActivitySelector">
-			<arg><component class="org.seasar.buri.engine.selector.activityImpl.BuriActivityPathFilter">
+			<arg><component class="org.seasar.buri.engine.selector.activityImpl.DirectMultiBuriActivitySelector">
 				</component></arg>
 		</initMethod>
 		<initMethod name="addActivitySelector">
