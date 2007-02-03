@@ -39,11 +39,11 @@
 		</initMethod>
 		
 		<initMethod name="addProcessSelector">
-			<arg><component class="org.seasar.buri.engine.selector.processImpl.DirectProcessSelector">
+			<arg><component class="org.seasar.buri.engine.selector.processImpl.DirectSingleBuriProcessSelector">
 				</component></arg>
 		</initMethod>
 		<initMethod name="addProcessSelector">
-			<arg><component class="org.seasar.buri.engine.selector.processImpl.DateProcessSelector">
+			<arg><component class="org.seasar.buri.engine.selector.processImpl.ValidDateBuriProcessSelector">
 				</component></arg>
 		</initMethod>
 		

@@ -7,12 +7,37 @@ package org.seasar.buri.engine.selector;
 import java.util.List;
 
 import org.seasar.buri.engine.BuriSystemContext;
+import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.buri.util.packages.BuriExePackages;
 
+/**
+ * 実行対象のプロセスを選択するためのインターフェースです。
+ * 
+ * @author $Author$
+ */
 public interface BuriProcessSelector {
+
+    /** 選択に失敗したことを示します。 */
     final static int SELECT_ERROR = -1;
+
+    /** 選択に成功し、続けて他のセレクタを実行する必要がないことを示します。 */
     final static int SELECT_FINAL = 0;
+
+    /** 選択に成功し、続けて他のセレクタを実行することを示します。 */
     final static int SELECT_NEXT = 1;
-    int select(List procs,BuriSystemContext systemContext,BuriExePackages exePackages);
+
+    /**
+     * 実行対象のプロセスを選択します。
+     * <p>
+     * 本メソッドを実行することにより第1引数のプロセス群が増減します。
+     * </p>
+     * 
+     * @param processes
+     * @param systemContext
+     * @param exePackages
+     * @return
+     */
+    int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext,
+            BuriExePackages exePackages);
 
 }
