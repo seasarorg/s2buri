@@ -12,40 +12,52 @@ import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 
 public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
+
     private BuriUserUtil userUtil;
-    
-    public void readWorkFlowFromResource(String workFlowName,String resourceName) {
+
+    @Override
+    public void readWorkFlowFromResource(String workFlowName, String resourceName) {
     }
-    public void readWorkFlowFromResource(String workFlowName,String resourceName,ParticipantProvider provider) {
-        readFromResource(workFlowName,resourceName,provider);
+
+    @Override
+    public void readWorkFlowFromResource(String workFlowName, String resourceName,
+            ParticipantProvider provider) {
+        readFromResource(workFlowName, resourceName, provider);
     }
-    
+
+    @Override
     public void setupUserID(BuriSystemContext sysContext) {
-        BuriExePackages wPackageObj = (BuriExePackages)selectPackage(sysContext);
-        BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj,sysContext);
-        updateUserInfo(sysContext,wp,wPackageObj);
-        
+        BuriExePackages wPackageObj = (BuriExePackages) selectPackage(sysContext);
+        BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj, sysContext);
+        updateUserInfo(sysContext, wp, wPackageObj);
     }
-    
-    protected void updateUserInfo(BuriSystemContext sysContext,BuriExecProcess wp,BuriExePackages wPackageObj) {
-        super.updateUserInfo(sysContext,wp,wPackageObj);
-        if(sysContext.getUserPkeyNum() == null && sysContext.getUserPkeyVal() == null) {
+
+    @Override
+    protected void updateUserInfo(BuriSystemContext sysContext, BuriExecProcess wp,
+            BuriExePackages wPackageObj) {
+        super.updateUserInfo(sysContext, wp, wPackageObj);
+        if (sysContext.getAppUserIDNumber() == null && sysContext.getAppUserIdString() == null) {
             return;
         }
-        long userID = userUtil.convertUserID(sysContext.getUserPkeyNum(),sysContext.getUserPkeyVal());
-        sysContext.setUserID(new Long(userID));
+        long userID = userUtil.convertBuriUserID(sysContext.getAppUserIDNumber(), sysContext
+            .getAppUserIdString());
+        sysContext.setBuriUserID(new Long(userID));
     }
-    
+
     public BuriUserUtil getUserUtil() {
         return userUtil;
     }
+
     public void setUserUtil(BuriUserUtil userUtil) {
         this.userUtil = userUtil;
     }
 
+    @Override
     public BuriCompiler getBuriCompiler() {
         return buriCompiler;
     }
+
+    @Override
     public void setBuriCompiler(BuriCompiler buriCompiler) {
         this.buriCompiler = buriCompiler;
     }

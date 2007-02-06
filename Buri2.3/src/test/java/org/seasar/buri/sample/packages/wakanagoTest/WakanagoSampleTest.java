@@ -89,7 +89,7 @@ public class WakanagoSampleTest extends S2TestCase {
         
         BuriUserContext userContext = engine.createUserContext(dto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始",userContext);
-        sysContext.setTgtClass(BuriTestINTDto.class);
+        sysContext.setTargetDtoClass(BuriTestINTDto.class);
         
         BuriExePackages packages = engine.selectPackage(sysContext);
         BuriExecProcess process =  packages.getProcess(sysContext.getCallPath());
@@ -102,7 +102,7 @@ public class WakanagoSampleTest extends S2TestCase {
         assertEquals( startCount+1,dataList.size());
         
         sysContext = engine.createSystemContext("wakanagoTest.ワカナゴテスト.Stop1",userContext);
-        sysContext.setTgtClass(BuriTestINTDto.class);
+        sysContext.setTargetDtoClass(BuriTestINTDto.class);
         engine.execute(sysContext,null);
         
         dataList = dataUtil.getDtoListByPathName("wakanagoTest.ワカナゴテスト.Stop1",(DataAccessFactory)process,sysContext);

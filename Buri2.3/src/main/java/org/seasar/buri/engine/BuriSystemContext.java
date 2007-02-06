@@ -5,153 +5,274 @@
 package org.seasar.buri.engine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Stack;
 
 import org.seasar.framework.container.S2Container;
 
-public class BuriSystemContext extends HashMap {
-    
-    private static final long serialVersionUID = 1L;
-    
-    private Class tgtClass;
-    private BuriPath callPath;
-    private Stack pathStack;
-    private Long dataID;
-    private Long userID;
-    private Long userPkeyNum;
-    private String userPkeyVal;
-    private Long statusID;
-    private Long BTID;
-    private long buriExecMode = RELEASED;
-    public static long UNDER_TEST = 1;
-    public static long RELEASED = 0;
-    private S2Container container;
-    private String startRoleName;
-    private RuntimeException ex;
-    private List actNames;
-    private List afterCallMethods = new ArrayList();
+/**
+ * フローを実行する上で必要なシステムのコンテキスト情報を保持するクラスです。
+ * 
+ * @author $Author$
+ */
+public class BuriSystemContext {
 
+    private static final long serialVersionUID = 1L;
+
+    private BuriUserContext userContext;
+    private Class targetDtoClass;
+    private BuriPath callPath;
+    private Long dataID;
+    private S2Container container;
+    private Long appUserIDNumber;
+    private String appUserIDString;
+    private Long buriUserID;
+    private Long statusID;
+    private String startRoleName;
+    private List<String> activityNames;
+    private List<String> afterCallMethods = new ArrayList<String>();
+    private RuntimeException exception;
+
+    /**
+     * 現在のコンテキスト上でのメインのDIコンテナを返します。
+     * @return
+     */
     public S2Container getContainer() {
         return container;
     }
+
+    /**
+     * 現在のコンテキスト上でのメインのDIコンテナを設定します。
+     * @param container
+     */
     public void setContainer(S2Container container) {
         this.container = container;
     }
+
+    /**
+     * ユーザコンテキストを返します。
+     * @return
+     */
     public BuriUserContext getUserContext() {
-        return (BuriUserContext)super.get("userContext");
+        return userContext;
     }
-    public void setUserContext(BuriUserContext context) {
-        super.put("userContext",context);
+
+    /**
+     * ユーザコンテキストを設定します。
+     * @param userContext
+     */
+    public void setUserContext(BuriUserContext userContext) {
+        this.userContext = userContext;
     }
+
+    /**
+     * 処理対象のアクティビティのパスを返します。
+     * @return
+     */
     public BuriPath getCallPath() {
         return callPath;
     }
+
+    /**
+     * 処理対象のアクティビティのパスを返します。
+     * @return
+     */
     public void setCallPath(BuriPath callPath) {
         this.callPath = callPath;
     }
-    public Stack getPathStack() {
-        return pathStack;
-    }
-    public void setPathStack(Stack pathStack) {
-        this.pathStack = pathStack;
-    }
-    
+
+    /**
+     * 現在のコンテキストで対象としているデータIDを返します。
+     * @return
+     */
     public Long getDataID() {
         return dataID;
     }
+
+    /**
+     * 現在のコンテキストで対象としているデータIDを設定します。
+     * @param dataID
+     */
     public void setDataID(Long dataID) {
         this.dataID = dataID;
     }
-    public Long getUserID() {
-        return userID;
-    }
-    public void setUserID(Long userID) {
-        this.userID = userID;
-    }
+
+    /**
+     * 現在のコンテキストで対象としているデータのステータスIDを返します。
+     * @return
+     */
     public Long getStatusID() {
         return statusID;
     }
+
+    /**
+     * 現在のコンテキストで対象としているデータのステータスIDを設定します。
+     * @param statusID
+     */
     public void setStatusID(Long statusID) {
         this.statusID = statusID;
     }
-    public Long getBTID() {
-        return BTID;
+
+    /**
+     * 現在のコンテキストで対象としているデータのDTOクラス型を返します。
+     * @return
+     */
+    public Class getTargetDtoClass() {
+        return targetDtoClass;
     }
-    public void setBTID(Long btid) {
-        BTID = btid;
+
+    /**
+     * 現在のコンテキストで対象としているデータのDTOクラス型を設定します。
+     * @param targetDtoClass
+     */
+    public void setTargetDtoClass(Class targetClass) {
+        this.targetDtoClass = targetClass;
     }
-    public long getBuriExecMode() {
-        return buriExecMode;
+
+    /**
+     * アプリケーション側で定義されるユーザIDの番号表現を返します。
+     * @return
+     */
+    public Long getAppUserIDNumber() {
+        return appUserIDNumber;
     }
-    public void setBuriExecMode(long buriExecMode) {
-        this.buriExecMode = buriExecMode;
+
+    /**
+     * アプリケーション側で定義されるユーザIDの番号表現を設定します。
+     * @param appUserIDNumber
+     */
+    public void setAppUserIDNumber(Long appUserIDNumber) {
+        this.appUserIDNumber = appUserIDNumber;
     }
-    public Class getTgtClass() {
-        return tgtClass;
+
+    /**
+     * アプリケーション側で定義されるユーザIDの文字列表現を返します。
+     * @return
+     */
+    public String getAppUserIdString() {
+        return appUserIDString;
     }
-    public void setTgtClass(Class tgtClass) {
-        this.tgtClass = tgtClass;
+
+    /**
+     * アプリケーション側で定義されるユーザIDの文字列表現を設定します。
+     * @param appUserIDString
+     */
+    public void setAppUserIDString(String appUserIDString) {
+        this.appUserIDString = appUserIDString;
     }
-    public Long getUserPkeyNum() {
-        return userPkeyNum;
+
+    /**
+     * ぶり側で定義されるユーザIDを返します。
+     * <p>
+     * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。
+     * 本メソッドではこの独自管理上のIDを返します。
+     * </p>
+     * @return
+     */
+    public Long getBuriUserID() {
+        return buriUserID;
     }
-    public void setUserPkeyNum(Long userPkeyNum) {
-        this.userPkeyNum = userPkeyNum;
+
+    /**
+     * ぶり側で定義されるユーザIDを設定します。
+     * <p>
+     * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。
+     * 本メソッドではこの独自管理上のIDを設定します。
+     * </p>
+     * @param buriUserID
+     */
+    public void setBuriUserID(Long buriUserID) {
+        this.buriUserID = buriUserID;
     }
-    public String getUserPkeyVal() {
-        return userPkeyVal;
-    }
-    public void setUserPkeyVal(String userPkeyVal) {
-        this.userPkeyVal = userPkeyVal;
-    }
+
+    /**
+     * 現在のコンテキストで対象としているデータがフロー上に一番最初に投入されたときのロール名を返します。
+     * @return
+     */
     public String getStartRoleName() {
         return startRoleName;
     }
+
+    /**
+     * 現在のコンテキストで対象としているデータがフロー上に一番最初に投入されたときのロール名を設定します。
+     * @param startRoleName
+     */
     public void setStartRoleName(String startRoleName) {
         this.startRoleName = startRoleName;
     }
+
+    /**
+     * 実行時例外を返します。
+     * <p>
+     * {@code WakanagoProcess}での例外処理の実現で使用されます。
+     * </p>
+     * @return
+     */
     public RuntimeException getException() {
-        return ex;
+        return exception;
     }
-    public void setException(RuntimeException ex) {
-        this.ex = ex;
+
+    /**
+     * 実行時例外を設定します。
+     * <p>
+     * {@code WakanagoProcess}での例外処理の実現で使用されます。
+     * </p>
+     * @param exception
+     */
+    public void setException(RuntimeException exception) {
+        this.exception = exception;
     }
-    public List getActNames() {
-        return actNames;
+
+    /**
+     * アクティビティ名群を返します
+     * <p>
+     * BAOのアノテーションで指定したアクティビティ名が含まれます。
+     * </p>
+     * @return
+     */
+    public List<String> getActivityNames() {
+        return activityNames;
     }
-    public void setActNames(List actNames) {
-        this.actNames = actNames;
+
+    /**
+     * アクティビティ名群を設定します。
+     * <p>
+     * BAOのアノテーションで指定したアクティビティ名が含まれます。
+     * </p>
+     * @param activityNames
+     */
+    public void setActivityNames(List<String> actNames) {
+        this.activityNames = actNames;
     }
-    public List getAfterCallMethods() {
+
+    public List<String> getAfterCallMethods() {
         return afterCallMethods;
     }
-    public void setAfterCallMethods(List afterCallMethods) {
+
+    public void setAfterCallMethods(List<String> afterCallMethods) {
         this.afterCallMethods = afterCallMethods;
     }
+
     public void addAfterCallMethods(String afterCallName) {
         this.afterCallMethods.add(afterCallName);
     }
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
-        buff.append(super.toString());
+        buff.append("userContext=").append(userContext);
         buff.append("/callPath=").append(callPath);
-        buff.append("/pathStack=").append(pathStack);
         buff.append("/dataID=").append(dataID);
-        buff.append("/userID=").append(userID);
-        buff.append("/userPkeyNum=").append(userPkeyNum);
-        buff.append("/userPkeyVal=").append(userPkeyVal);
+        buff.append("/buriUserID=").append(buriUserID);
+        buff.append("/appUserIDNumber=").append(appUserIDNumber);
+        buff.append("/appUserIDString=").append(appUserIDString);
         buff.append("/statusID=").append(statusID);
-        buff.append("/BTID=").append(BTID);
-        buff.append("/buriExecMode=").append(buriExecMode);
-        buff.append("/tgtClass=").append(tgtClass);
+        buff.append("/targetDtoClass=").append(targetDtoClass);
         buff.append("/startRoleName=").append(startRoleName);
-        buff.append("/actNames=").append(actNames);
+        buff.append("/activityNames=").append(activityNames);
         buff.append("/afterCallMethods=").append(afterCallMethods);
-        buff.append("/ex=").append(ex);
+        buff.append("/exception=").append(exception);
         buff.append("]");
         return buff.toString();
     }
-    
+
 }

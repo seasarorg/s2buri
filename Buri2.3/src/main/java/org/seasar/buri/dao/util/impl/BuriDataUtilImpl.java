@@ -14,7 +14,6 @@ import org.seasar.buri.dao.BuriPathDataDao;
 import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.dto.BuriDataEntityDto;
 import org.seasar.buri.dto.BuriPathDataEntityDto;
-import org.seasar.buri.dto.BuriPathDataUserEntityDto;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
@@ -23,212 +22,224 @@ import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
 import org.seasar.framework.util.ClassUtil;
 
-public class BuriDataUtilImpl implements BuriDataUtil{
+public class BuriDataUtilImpl implements BuriDataUtil {
+
     private BuriDataDao dataDao;
     private BuriIDListDao idListDao;
     private BuriPathDataDao pathDataDao;
-    
-    public long countByPathAndDatas(String pathName,List dataList,DataAccessFactory factory,BuriSystemContext sysContext) {
-        if(dataList != null && dataList.size() == 0) {
+
+    public long countByPathAndDatas(String pathName, List dataList, DataAccessFactory factory,
+            BuriSystemContext sysContext) {
+        if (dataList != null && dataList.size() == 0) {
             return 0;
         }
         Class tgtClass = dataList.get(0).getClass();
         DataAccessUtil util = factory.getDataAccessUtil(tgtClass);
-        if(util instanceof DataAccessUtilLongKey) {
-            return countByPathAndDatasPkeyNum(pathName,dataList,(DataAccessUtilLongKey)util,sysContext);
+        if (util instanceof DataAccessUtilLongKey) {
+            return countByPathAndDatasPkeyNum(pathName, dataList, (DataAccessUtilLongKey) util,
+                sysContext);
         } else {
-            return countByPathAndDatasPkeyVal(pathName,dataList,(DataAccessUtilManyKey)util,sysContext);
+            return countByPathAndDatasPkeyVal(pathName, dataList, (DataAccessUtilManyKey) util,
+                sysContext);
         }
     }
-    
-    protected long countByPathAndDatasPkeyNum(String pathName,List dataList,DataAccessUtilLongKey util,BuriSystemContext sysContext) {
-        List longList = new ArrayList();
+
+    protected long countByPathAndDatasPkeyNum(String pathName, List dataList,
+            DataAccessUtilLongKey util, BuriSystemContext sysContext) {
+        List<Long> longList = new ArrayList<Long>();
         String className = dataList.get(0).getClass().getName();
         Iterator ite = dataList.iterator();
-        while(ite.hasNext()) {
+        while (ite.hasNext()) {
             Object data = ite.next();
             Long key = util.getKey(data);
             longList.add(key);
         }
-        long count = countByPathKeys(className,longList,null,pathName,sysContext);
+        long count = countByPathKeys(className, longList, null, pathName, sysContext);
         return count;
     }
-    
-    protected long countByPathKeys(String className,List longList,List strList,String pathName,BuriSystemContext sysContext) {
-        long count = pathDataDao.getCountByPathKeys(className,longList,strList,pathName,sysContext.getCallPath().getPathType());
+
+    protected long countByPathKeys(String className, List longList, List strList, String pathName,
+            BuriSystemContext sysContext) {
+        long count = pathDataDao.getCountByPathKeys(className, longList, strList, pathName,
+            sysContext.getCallPath().getPathType());
         return count;
     }
-    
-    protected long countByPathAndDatasPkeyVal(String pathName,List dataList,DataAccessUtilManyKey util,BuriSystemContext sysContext) {
-        List strList = new ArrayList();
+
+    protected long countByPathAndDatasPkeyVal(String pathName, List dataList,
+            DataAccessUtilManyKey util, BuriSystemContext sysContext) {
+        List<String> strList = new ArrayList<String>();
         String className = dataList.get(0).getClass().getName();
         Iterator ite = dataList.iterator();
-        while(ite.hasNext()) {
+        while (ite.hasNext()) {
             Object data = ite.next();
             String key = util.getKey(data);
             strList.add(key);
         }
-        long count = countByPathKeys(className,null,strList,pathName,sysContext);
+        long count = countByPathKeys(className, null, strList, pathName, sysContext);
         return count;
     }
-    
-    public List getBuriPathByDto(Object dto,DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    public List getBuriPathByDto(Object dto, DataAccessFactory factory, BuriSystemContext sysContext) {
         String className = dto.getClass().getName();
         Long pathType = sysContext.getCallPath().getPathType();
         DataAccessUtil util = factory.getDataAccessUtil(dto.getClass());
         List infoList;
-        if(util instanceof DataAccessUtilLongKey) {
-            Long key = ((DataAccessUtilLongKey)util).getKey(dto);
-            infoList = pathDataDao.getListByPkeyNum(className,key,pathType);
+        if (util instanceof DataAccessUtilLongKey) {
+            Long key = ((DataAccessUtilLongKey) util).getKey(dto);
+            infoList = pathDataDao.getListByPkeyNum(className, key, pathType);
         } else {
-            String key = ((DataAccessUtilManyKey)util).getKey(dto);
-            infoList = pathDataDao.getListByPkeyVal(className,key,pathType);
+            String key = ((DataAccessUtilManyKey) util).getKey(dto);
+            infoList = pathDataDao.getListByPkeyVal(className, key, pathType);
         }
         List pathList = convPathDataToBuriPath(infoList);
         return pathList;
     }
-    
+
     protected List convPathDataToBuriPath(List infoList) {
-        List result = new ArrayList();
+        List<BuriPath> result = new ArrayList<BuriPath>();
         Iterator ite = infoList.iterator();
-        while(ite.hasNext()) {
-            BuriPathDataEntityDto dto = (BuriPathDataEntityDto)ite.next();
-            BuriPath path = new BuriPath(dto.getPathName(),dto.getRealPathName(),dto.getPathID());
+        while (ite.hasNext()) {
+            BuriPathDataEntityDto dto = (BuriPathDataEntityDto) ite.next();
+            BuriPath path = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto.getPathID());
             result.add(path);
         }
         return result;
     }
-    
-    public List getIDListByPathName(String pathName,DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    public List getIDListByPathName(String pathName, DataAccessFactory factory,
+            BuriSystemContext sysContext) {
         List result;
-        Class tgtCalss = sysContext.getTgtClass();
+        Class tgtCalss = sysContext.getTargetDtoClass();
         DataAccessUtil util = factory.getDataAccessUtil(tgtCalss);
-        if(util instanceof DataAccessUtilLongKey) {
-            result = getDataDtoList(pathName,(DataAccessUtilLongKey)util,sysContext);
+        if (util instanceof DataAccessUtilLongKey) {
+            result = getDataDtoList(pathName, (DataAccessUtilLongKey) util, sysContext);
         } else {
-            result = getManyDataDtoList(pathName,(DataAccessUtilManyKey)util,sysContext);
+            result = getManyDataDtoList(pathName, (DataAccessUtilManyKey) util, sysContext);
         }
         return result;
     }
-    
-    protected List getDataDtoList(String pathName,DataAccessUtilLongKey dataUtil,BuriSystemContext sysContext) {
-        List infoList = getDataInfoListFromPathName(pathName,sysContext);
+
+    protected List getDataDtoList(String pathName, DataAccessUtilLongKey dataUtil,
+            BuriSystemContext sysContext) {
+        List infoList = getDataInfoListFromPathName(pathName, sysContext);
         Iterator ite = infoList.iterator();
-        List result = new ArrayList();
-        while(ite.hasNext()) {
-            BuriPathDataEntityDto dto = (BuriPathDataEntityDto)ite.next();
+        List<Long> result = new ArrayList<Long>();
+        while (ite.hasNext()) {
+            BuriPathDataEntityDto dto = (BuriPathDataEntityDto) ite.next();
             result.add(dto.getPkeyNum());
         }
         return result;
     }
-    
-    protected List getDataInfoListFromPathName(String pathName,BuriSystemContext sysContext) {
-    	// String className = sysContext.getTgtClass().getName();
-    	String className = null;
-    	if (sysContext.getTgtClass() != null) {
-    		className = sysContext.getTgtClass().getName();
-    	}
-    	Long pathType = sysContext.getCallPath().getPathType();
-    	List infoList = pathDataDao.getListByPathName(className, pathName,pathType);
-    	return infoList;
+
+    protected List getDataInfoListFromPathName(String pathName, BuriSystemContext sysContext) {
+        String className = null;
+        if (sysContext.getTargetDtoClass() != null) {
+            className = sysContext.getTargetDtoClass().getName();
+        }
+        Long pathType = sysContext.getCallPath().getPathType();
+        List infoList = pathDataDao.getListByPathName(className, pathName, pathType);
+        return infoList;
     }
-    
-    protected List getManyDataDtoList(String pathName,DataAccessUtilManyKey dataUtil,BuriSystemContext sysContext) {
-        List infoList = getDataInfoListFromPathName(pathName,sysContext);
+
+    protected List getManyDataDtoList(String pathName, DataAccessUtilManyKey dataUtil,
+            BuriSystemContext sysContext) {
+        List infoList = getDataInfoListFromPathName(pathName, sysContext);
         Iterator ite = infoList.iterator();
-        List result = new ArrayList();
-        while(ite.hasNext()) {
-        	BuriPathDataEntityDto dto = (BuriPathDataEntityDto)ite.next();
+        List<Object> result = new ArrayList<Object>();
+        while (ite.hasNext()) {
+            BuriPathDataEntityDto dto = (BuriPathDataEntityDto) ite.next();
             Object data = dataUtil.getObjectFromKey(dto.getPkeyVal());
             result.add(data);
         }
         return result;
     }
-    
-    public List getDtoListByPathName(String pathName,DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    public List getDtoListByPathName(String pathName, DataAccessFactory factory,
+            BuriSystemContext sysContext) {
         List result = new ArrayList();
-        DataAccessUtil util = factory.getDataAccessUtil(sysContext.getTgtClass());
-        List keys = getIDListByPathName(pathName,factory,sysContext);
-        if(keys.size()==0) {
+        DataAccessUtil util = factory.getDataAccessUtil(sysContext.getTargetDtoClass());
+        List keys = getIDListByPathName(pathName, factory, sysContext);
+        if (keys.size() == 0) {
             return result;
         }
-        if(util instanceof DataAccessUtilLongKey) {
-            result = ((DataAccessUtilLongKey)util).get(keys);
+        if (util instanceof DataAccessUtilLongKey) {
+            result = ((DataAccessUtilLongKey) util).get(keys);
         } else {
-            result = ((DataAccessUtilManyKey)util).get(keys);
+            result = ((DataAccessUtilManyKey) util).get(keys);
         }
         return result;
-        
+
     }
-    
-    protected BuriDataEntityDto getBuriDataDto(Object argDto,DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    protected BuriDataEntityDto getBuriDataDto(Object argDto, DataAccessFactory factory,
+            BuriSystemContext sysContext) {
         BuriDataEntityDto findDto = new BuriDataEntityDto();
-        setupPkey(findDto,argDto,factory);
+        setupPkey(findDto, argDto, factory);
         findDto.setDataType(argDto.getClass().getName());
         List datas = dataDao.getBuridataFromDto(findDto);
         BuriDataEntityDto dto = null;
-        if(datas.size()==0) {
-            findDto.setInsertUserID(sysContext.getUserID());
+        if (datas.size() == 0) {
+            findDto.setInsertUserID(sysContext.getBuriUserID());
             dataDao.insert(findDto);
             dto = findDto;
         } else {
-            dto = (BuriDataEntityDto)datas.get(0);
+            dto = (BuriDataEntityDto) datas.get(0);
         }
         return dto;
     }
-    
-    protected void setupPkey(BuriDataEntityDto dto,Object argDto,DataAccessFactory factory) {
+
+    protected void setupPkey(BuriDataEntityDto dto, Object argDto, DataAccessFactory factory) {
         DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
-        if(util==null) {
-            throw new NullPointerException("DataAccessUtil Not Found TgtClass=" + argDto.getClass().toString() + " / XPDL Miss!(Workflow variables)");
+        if (util == null) {
+            throw new NullPointerException("DataAccessUtil Not Found TgtClass="
+                    + argDto.getClass().toString() + " / XPDL Miss!(Workflow variables)");
         }
-        if(util instanceof DataAccessUtilLongKey) {
-            Long dataID = ((DataAccessUtilLongKey)util).getKey(argDto);
+        if (util instanceof DataAccessUtilLongKey) {
+            Long dataID = ((DataAccessUtilLongKey) util).getKey(argDto);
             dto.setPkeyNum(dataID);
         } else {
-            String dataID = ((DataAccessUtilManyKey)util).getKey(argDto);
+            String dataID = ((DataAccessUtilManyKey) util).getKey(argDto);
             dto.setPkeyVal(dataID);
         }
     }
-    
-    public long getBuriDataId(DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    public long getBuriDataId(DataAccessFactory factory, BuriSystemContext sysContext) {
         Object argDto = sysContext.getUserContext().getData();
-        if(sysContext.getDataID() == null) {
-            BuriDataEntityDto dto = getBuriDataDto(argDto,factory,sysContext);
+        if (sysContext.getDataID() == null) {
+            BuriDataEntityDto dto = getBuriDataDto(argDto, factory, sysContext);
             assert dto != null;
-            sysContext.setDataID(new Long( dto.getDataID() ));
+            sysContext.setDataID(new Long(dto.getDataID()));
         }
         return sysContext.getDataID().longValue();
     }
-    
-    public void storeData(DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    public void storeData(DataAccessFactory factory, BuriSystemContext sysContext) {
         Object argDto = sysContext.getUserContext().getData();
         DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
         util.Store(argDto);
     }
-    
-    public void updateBuriData(DataAccessFactory factory,BuriSystemContext sysContext) {
+
+    public void updateBuriData(DataAccessFactory factory, BuriSystemContext sysContext) {
         Object argDto = sysContext.getUserContext().getData();
-        if(sysContext.getDataID() == null) {
-            BuriDataEntityDto dto = getBuriDataDto(argDto,factory,sysContext);
-            sysContext.setDataID(new Long( dto.getDataID() ));
+        if (sysContext.getDataID() == null) {
+            BuriDataEntityDto dto = getBuriDataDto(argDto, factory, sysContext);
+            sysContext.setDataID(new Long(dto.getDataID()));
         } else {
             BuriDataEntityDto dto = dataDao.getBuriData(sysContext.getDataID().longValue());
-            setupPkey(dto,argDto,factory);
+            setupPkey(dto, argDto, factory);
             dataDao.update(dto);
         }
     }
-    
-    
-    public Object getBuriData(long dataId,DataAccessFactory factory) {
+
+    public Object getBuriData(long dataId, DataAccessFactory factory) {
         Object result = null;
         BuriDataEntityDto dto = dataDao.getBuriData(dataId);
         Class tgtClass = ClassUtil.forName(dto.getDataType());
         DataAccessUtil util = factory.getDataAccessUtil(tgtClass);
-        if(util instanceof DataAccessUtilLongKey) {
-            result = ((DataAccessUtilLongKey)util).getObjectFromKey(dto.getPkeyNum());
+        if (util instanceof DataAccessUtilLongKey) {
+            result = ((DataAccessUtilLongKey) util).getObjectFromKey(dto.getPkeyNum());
         } else {
-            result = ((DataAccessUtilManyKey)util).getObjectFromKey(dto.getPkeyVal());
+            result = ((DataAccessUtilManyKey) util).getObjectFromKey(dto.getPkeyVal());
         }
         return result;
     }

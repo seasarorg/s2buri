@@ -6,7 +6,6 @@ package org.seasar.buri.dao.util.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,66 +25,68 @@ import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 
 public class BuriUserUtilImpl implements BuriUserUtil {
+
     private BuriDataDao dataDao;
     private BuriUserDao userDao;
-    private Map userIDCache = new HashMap();
-    
+    private Map<String, Long> buriUserIDCache = new HashMap<String, Long>();
+
     public void dispose() {
-    	userIDCache.clear();
+        buriUserIDCache.clear();
     }
-    
-    public long convertUserID(Long userIDNum,String userIDVal) {
-        String userIDKey = ""+userIDNum+"/"+userIDVal;
-        if(userIDCache.containsKey(userIDKey)) {
-            Long userID = (Long)userIDCache.get(userIDKey);
-            return userID.longValue();
+
+    public long convertBuriUserID(Long appUserIDNumber, String appUserIDString) {
+        String userIDKey = "" + appUserIDNumber + "/" + appUserIDString;
+        if (buriUserIDCache.containsKey(userIDKey)) {
+            Long buriUserID = buriUserIDCache.get(userIDKey);
+            return buriUserID.longValue();
         }
-        BuriUserEntityDto dto = convertBuriUserEntityDto(userIDNum,userIDVal);
-        userIDCache.put(userIDKey,new Long(dto.getBuriUserID()));
+        BuriUserEntityDto dto = convertBuriUserEntityDto(appUserIDNumber, appUserIDString);
+        buriUserIDCache.put(userIDKey, new Long(dto.getBuriUserID()));
         return dto.getBuriUserID();
     }
-    
-    protected BuriUserEntityDto convertBuriUserEntityDto(Long userIDNum,String userIDVal) {
-        BuriUserEntityDto dto = userDao.getBuriUserFromIds(userIDNum,userIDVal);
-        if(dto == null) {
+
+    protected BuriUserEntityDto convertBuriUserEntityDto(Long appUserIDNumber,
+            String appUserIDString) {
+        BuriUserEntityDto dto = userDao.getBuriUserFromIds(appUserIDNumber, appUserIDString);
+        if (dto == null) {
             dto = new BuriUserEntityDto();
-            dto.setUserIDNum(userIDNum);
-            dto.setUserIDVal(userIDVal);
+            dto.setUserIDNum(appUserIDNumber);
+            dto.setUserIDVal(appUserIDString);
             userDao.insert(dto);
         }
         return dto;
     }
 
-    public List convUserIDListFromRoleInfos(List roleInfos) {
-        List resutlt = new ArrayList();
-        Iterator ite = roleInfos.iterator();
-        while(ite.hasNext()) {
-            RoleInfo role = (RoleInfo)ite.next();
-            long userID = convertUserID(role.getIdNum(),role.getIdVar());
-            resutlt.add(new Long(userID));
+    public List<Long> convertBuriUserIDsFromRoleInfos(List<RoleInfo> roleInfos) {
+        List<Long> resutlt = new ArrayList<Long>();
+        for (RoleInfo role : roleInfos) {
+            long buriUserID = convertBuriUserID(role.getIdNum(), role.getIdVar());
+            resutlt.add(new Long(buriUserID));
         }
         return resutlt;
     }
-    
-    public Object getUserData(DataAccessFactory factory,long userID,Long userIDNum,String userIDStr) {
-        if(userIDNum == null && userIDStr == null) {
-            BuriUserEntityDto userDto = userDao.getBuriUser(userID);
-            userIDNum = userDto.getUserIDNum();
-            userIDStr = userDto.getUserIDVal();
+
+    public Object getUserData(DataAccessFactory factory, long buriUserID, Long appUserIDNumber,
+            String appUserIDString) {
+        if (appUserIDNumber == null && appUserIDString == null) {
+            BuriUserEntityDto userDto = userDao.getBuriUser(buriUserID);
+            appUserIDNumber = userDto.getUserIDNum();
+            appUserIDString = userDto.getUserIDVal();
         }
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
-        Object result = provider.getUserData(userIDNum,userIDStr);
+        Object result = provider.getUserData(appUserIDNumber, appUserIDString);
         return result;
     }
-    
-    public List getTgtRoleInfoList(DataAccessFactory factory,BuriSystemContext sysContext,BranchWalker walker) {
+
+    public List<RoleInfo> getTargetRoleInfos(DataAccessFactory factory,
+            BuriSystemContext sysContext, BranchWalker walker) {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
-        String roleName = getRoleName(factory,walker);
-        String roleType = getRoleName(factory,walker);
+        String roleName = getRoleName(factory, walker);
+        String roleType = getRoleName(factory, walker);
         Object argData = sysContext.getUserContext().getData();
-        
+
         BuriParticipantContext pc = new BuriParticipantContext();
         pc.setParticipantName(roleName);
         pc.setParticipantType(roleType);
@@ -94,47 +95,70 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         pc.setUserContext(sysContext.getUserContext());
         pc.setWalker(walker);
         pc.setData(argData);
-        pc.setProcess((BuriExecProcess)factory);
-        updateBuriParticipantContextUser(pc,sysContext,provider);
-        
-        List users = provider.getUser(pc);
+        pc.setProcess((BuriExecProcess) factory);
+        updateBuriParticipantContextUser(pc, sysContext, provider);
+
+        List<RoleInfo> users = provider.getUser(pc);
         return users;
     }
-    
-    protected void  updateBuriParticipantContextUser(BuriParticipantContext pc,BuriSystemContext sysContext,ParticipantProvider provider) {
+
+    protected void updateBuriParticipantContextUser(BuriParticipantContext pc,
+            BuriSystemContext sysContext, ParticipantProvider provider) {
         Long insertUserID = getInsertUesrID(sysContext);
         Object userData = sysContext.getUserContext().getUserData();
-        if(insertUserID != null) {
+        if (insertUserID != null) {
             BuriUserEntityDto userDto = userDao.getBuriUser(insertUserID.longValue());
             pc.setInsertUserIdNum(userDto.getUserIDNum());
             pc.setInsertUserIdVal(userDto.getUserIDVal());
         }
-        pc.setActionUserIdNum(provider.getUserIDNum(userData,pc.getParticipantType()));
-        pc.setActionUserIdVal(provider.getUserIDString(userData,pc.getParticipantType()));
+        pc.setActionUserIdNum(provider.getUserIDNum(userData, pc.getParticipantType()));
+        pc.setActionUserIdVal(provider.getUserIDString(userData, pc.getParticipantType()));
     }
-    
+
+    /**
+     * {@code BuriExePackages}を取得します。
+     * @param factory
+     * @return
+     */
     protected BuriExePackages getBuriExePackages(DataAccessFactory factory) {
-        BuriExecProcess process = (BuriExecProcess)factory;
+        BuriExecProcess process = (BuriExecProcess) factory;
         BuriExePackages packages = process.getBuriExePackages();
         return packages;
     }
-    
-    protected String getRoleType(DataAccessFactory factory,BranchWalker walker) {
-        BuriExecProcess process = (BuriExecProcess)factory;
-        String actId = (String)walker.getNowPath().getActivityId().get(0);
-        BuriActivityType actType =  process.getBuriWorkflowProcessType().getActivityById(actId);
+
+    /**
+     * データが現在留まっているアクティビティに対応するロール種別を返します。
+     * @param factory
+     * @param walker
+     * @return
+     */
+    protected String getRoleType(DataAccessFactory factory, BranchWalker walker) {
+        BuriExecProcess process = (BuriExecProcess) factory;
+        String actId = (String) walker.getNowPath().getActivityId().get(0);
+        BuriActivityType actType = process.getBuriWorkflowProcessType().getActivityById(actId);
         String roleType = actType.getRoleType();
         return roleType;
     }
-    
-    protected String getRoleName(DataAccessFactory factory,BranchWalker walker) {
-        BuriExecProcess process = (BuriExecProcess)factory;
-        String actId = (String)walker.getNowPath().getActivityId().get(0);
-        BuriActivityType actType =  process.getBuriWorkflowProcessType().getActivityById(actId);
+
+    /**
+     * データが現在留まっているアクティビティに対応するロール名を返します。
+     * @param factory
+     * @param walker
+     * @return
+     */
+    protected String getRoleName(DataAccessFactory factory, BranchWalker walker) {
+        BuriExecProcess process = (BuriExecProcess) factory;
+        String actId = (String) walker.getNowPath().getActivityId().get(0);
+        BuriActivityType actType = process.getBuriWorkflowProcessType().getActivityById(actId);
         String roleName = actType.getRoleName();
         return roleName;
     }
-    
+
+    /**
+     * 最初にデータを追加したユーザIDを返します。
+     * @param sysContext
+     * @return
+     */
     protected Long getInsertUesrID(BuriSystemContext sysContext) {
         BuriDataEntityDto dataEntityDto = dataDao.getBuriData(sysContext.getDataID().longValue());
         Long insertUserID = dataEntityDto.getInsertUserID();
@@ -157,7 +181,7 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         this.userDao = userDao;
     }
 
-    public Map getUserIDCache() {
-        return userIDCache;
+    public Map<String, Long> getBuriUserIDCache() {
+        return buriUserIDCache;
     }
 }

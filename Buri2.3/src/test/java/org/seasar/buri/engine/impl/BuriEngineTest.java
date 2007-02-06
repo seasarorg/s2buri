@@ -68,7 +68,7 @@ public class BuriEngineTest extends S2TestCase {
 
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("basicTest.test02.start",userContext);
-        sysContext.setTgtClass(BuriTestINTDto.class);
+        sysContext.setTargetDtoClass(BuriTestINTDto.class);
         BuriExePackages packages = engine.selectPackage(sysContext);
         BuriExecProcess process =  packages.getProcess(sysContext.getCallPath());
 
@@ -88,7 +88,7 @@ public class BuriEngineTest extends S2TestCase {
         System.out.println("buriEngine.getDataListFromPath");
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test02.start",userContext);
-        sysContext.setTgtClass(BuriTestINTDto.class);
+        sysContext.setTargetDtoClass(BuriTestINTDto.class);
         Collection dataList = dataUtil.getDtoListByPathName("basicTest.test02.stopThis",(DataAccessFactory)process,sysContext);
         
         assertEquals(dataList.size(),1);
@@ -99,7 +99,7 @@ public class BuriEngineTest extends S2TestCase {
         
         userContext = engine.createUserContext(testDto,null,null,null);
         sysContext = engine.createSystemContext("basicTest.test02.stopThis",userContext);
-        sysContext.setTgtClass(BuriTestINTDto.class);
+        sysContext.setTargetDtoClass(BuriTestINTDto.class);
         stateSize = stateDao_.getAllBuriState().size();
         engine.execute(sysContext,null);
         
@@ -116,7 +116,7 @@ public class BuriEngineTest extends S2TestCase {
 
         BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
         BuriSystemContext sysContext = engine.createSystemContext("basicTest.test03.start",userContext);
-        sysContext.setTgtClass(BuriTestINTDto.class);
+        sysContext.setTargetDtoClass(BuriTestINTDto.class);
 //        BuriExePackages packages = engine.selectPackage(sysContext);
 //        BuriExecProcess process =  packages.getProcess(sysContext.getCallPath());
         

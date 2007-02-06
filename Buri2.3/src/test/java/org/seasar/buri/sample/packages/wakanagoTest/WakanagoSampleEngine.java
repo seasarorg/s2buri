@@ -6,15 +6,15 @@ package org.seasar.buri.sample.packages.wakanagoTest;
 
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.impl.WakanagoEngineImpl;
+import org.seasar.buri.util.packages.BuriExePackages;
 
-public class WakanagoSampleEngine extends WakanagoEngineImpl{
-    
-    
-    
+public class WakanagoSampleEngine extends WakanagoEngineImpl {
+
     //TODO コンパイラを作ってprotectedへ
-    public void addPackage(String packageName,Object packageObj,ParticipantProvider provider) {
-        packageObjs.put(packageName,packageObj);
-        roleMap.put(packageName,provider);
+    public void addPackage(String packageName, BuriExePackages packageObj,
+            ParticipantProvider provider) {
+        packageObjs.put(packageName, packageObj);
+        roleMap.put(packageName, provider);
     }
-    
+
 }

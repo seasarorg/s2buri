@@ -84,15 +84,13 @@ public class StandardBuriProcessor01Test extends S2TestCase {
 
             List<Long> userList = new ArrayList<Long>();
             Long userID = participantProvider.getUserIDNum(下っ端ユーザ, null);
-            long userKey = buriUserUtil.convertUserID(userID, null);
-            userList.add(new Long(userKey));
+            userList.add(new Long(buriUserUtil.convertBuriUserID(userID, null)));
             dataList = itemDao.findAndUser(findDto, pathList, userList);
             assertEquals(1, dataList.size());
 
             userList.clear();
             userID = participantProvider.getUserIDNum(真ん中ユーザ, null);
-            userKey = buriUserUtil.convertUserID(userID, null);
-            userList.add(new Long(userKey));
+            userList.add(new Long(buriUserUtil.convertBuriUserID(userID, null)));
             dataList = itemDao.findAndUser(findDto, pathList, userList);
             assertEquals(0, dataList.size());
         }
