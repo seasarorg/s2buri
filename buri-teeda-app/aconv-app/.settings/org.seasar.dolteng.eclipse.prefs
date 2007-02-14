@@ -1,0 +1,12 @@
+#Tue Jan 30 13:07:47 JST 2007
+DaoType=S2Dao
+DefaultDaoPackage=aconv.app.dao
+DefaultDtoPackage=aconv.app.dto
+DefaultEntityPackage=aconv.app.entity
+DefaultResourcePath=/aconv-app/src/main/resources
+DefaultSrcPath=/aconv-app/src/main/java
+DefaultWebPackage=aconv.app.web
+ServletPath=/aconv-app
+WebContentsRoot=/src/main/webapp
+eclipse.preferences.version=1
+prefs.children=aconv-app,

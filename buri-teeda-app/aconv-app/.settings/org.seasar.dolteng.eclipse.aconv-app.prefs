@@ -1,0 +1,9 @@
+#Tue Jan 30 11:11:26 JST 2007
+Charset=UTF-8
+ConnectionName=aconv-app
+ConnectionUrl=jdbc\:postgresql\://localhost/buri
+DriverClass=org.postgresql.Driver
+DriverPath=/C\:/dev/eclipse3.2.1/workspace/aconv-app/src/main/webapp/WEB-INF/lib/postgresql-8.1-404.jdbc3.jar
+Pass=postgresadm
+User=postgresadm
+eclipse.preferences.version=1
