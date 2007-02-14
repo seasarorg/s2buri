@@ -9,6 +9,7 @@ import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.dto.BuriPathDataEntityDto;
 import org.seasar.buri.dto.BuriPathDataUserEntityDto;
+import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.engine.processor.BuriAutoSelectProcessor;
 import org.seasar.buri.engine.processor.BuriProcessorInfo;
 import org.seasar.buri.engine.processor.util.BuriTimerInvoker;
@@ -19,39 +20,42 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
     private BuriDataUtil dataUtil;
     private BuriUserUtil userUtil;
     private BuriPathDataUserDao dataUserDao;
-    
+
     public void invoke(BuriPathDataEntityDto callDto) {
         DataAccessFactory accessFactory = processor.getDataAccessFactory(callDto.getPathName());
         BuriProcessorInfo info = new BuriProcessorInfo();
-        info.put("autoAction",Boolean.TRUE);
-        if(processor.isSimpleProcessor(callDto.getPathName())) {
-            simpleCall(callDto,accessFactory,info);
+        info.put("autoAction", Boolean.TRUE);
+        if (processor.isSimpleProcessor(callDto.getPathName())) {
+            simpleCall(callDto, accessFactory, info);
         }
-        if(processor.isStdProcessor(callDto.getPathName())) {
-            stdCall(callDto,accessFactory,info);
+        if (processor.isStdProcessor(callDto.getPathName())) {
+            stdCall(callDto, accessFactory, info);
         }
     }
-    
-    protected void simpleCall(BuriPathDataEntityDto callDto,DataAccessFactory accessFactory,BuriProcessorInfo info) {
-        Object argDto = getArgDto(callDto,accessFactory);
-        processor.toNextStatus(callDto.getPathName(),argDto,null,info);
+
+    protected void simpleCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory,
+            BuriProcessorInfo info) {
+        Object argDto = getArgDto(callDto, accessFactory);
+        processor.toNextStatus(callDto.getPathName(), argDto, null, info);
     }
-    
-    protected Object getArgDto(BuriPathDataEntityDto callDto,DataAccessFactory accessFactory) {
-        Object argDto = dataUtil.getBuriData(callDto.getDataID(),accessFactory);
+
+    protected Object getArgDto(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory) {
+        Object argDto = dataUtil.getBuriData(callDto.getDataID(), accessFactory);
         return argDto;
     }
-    
-    protected Object getUserData(BuriPathDataEntityDto callDto,DataAccessFactory accessFactory) {
+
+    protected Object getUserData(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory) {
         BuriPathDataUserEntityDto dto = dataUserDao.getDto(callDto.getStateID());
-        Object userData = userUtil.getUserData(accessFactory,dto.getBuriUserID(),dto.getUserIDNum(),dto.getUserIDVal());
+        IdentityInfo appUserId = new IdentityInfo(dto.getUserIDNum(), dto.getUserIDVal());
+        Object userData = userUtil.getUserData(accessFactory, dto.getBuriUserID(), appUserId);
         return userData;
     }
-    
-    protected void stdCall(BuriPathDataEntityDto callDto,DataAccessFactory accessFactory,BuriProcessorInfo info) {
-        Object argDto = getArgDto(callDto,accessFactory);
-        Object userData = getUserData(callDto,accessFactory);
-        processor.toNextStatus(callDto.getPathName(),argDto,userData,info);
+
+    protected void stdCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory,
+            BuriProcessorInfo info) {
+        Object argDto = getArgDto(callDto, accessFactory);
+        Object userData = getUserData(callDto, accessFactory);
+        processor.toNextStatus(callDto.getPathName(), argDto, userData, info);
     }
 
     public BuriPathDataUserDao getDataUserDao() {
@@ -85,7 +89,5 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
     public void setUserUtil(BuriUserUtil userUtil) {
         this.userUtil = userUtil;
     }
-    
-    
-    
+
 }

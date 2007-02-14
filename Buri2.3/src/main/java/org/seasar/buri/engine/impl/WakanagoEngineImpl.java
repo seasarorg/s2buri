@@ -19,6 +19,7 @@ import org.seasar.buri.engine.BuriEngineConfig;
 import org.seasar.buri.engine.BuriPath;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.BuriUserContext;
+import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.WakanagoEngine;
 import org.seasar.buri.engine.selector.BuriActivitySelector;
@@ -43,7 +44,7 @@ import org.seasar.framework.util.StringUtil;
 public class WakanagoEngineImpl implements WakanagoEngine {
 
     protected Map<String, BuriExePackages> packageObjs = new HashMap<String, BuriExePackages>();
-    protected Map<String, ParticipantProvider> roleMap = new HashMap<String, ParticipantProvider>();
+    protected Map<String, ParticipantProvider> appUserIdMap = new HashMap<String, ParticipantProvider>();
     protected BuriCompiler buriCompiler;
     protected List<BuriActivitySelector> activitySelector = new ArrayList<BuriActivitySelector>();
     protected List<BuriProcessSelector> processSelector = new ArrayList<BuriProcessSelector>();
@@ -101,7 +102,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         String packageId = exePackages.getBuriPackageType().getId();
         packageObjs.put(packageId, exePackages);
         packageObjs.put(resourceName, exePackages);
-        roleMap.put(packageId, provider);
+        appUserIdMap.put(packageId, provider);
     }
 
     public void setupBuriEngineConfig(BuriEngineConfig engineConfig) {
@@ -196,39 +197,8 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         if (userData == null && provider == null) {
             return;
         }
-        if (sysContext.getCallPath().getActivityName().size() == 1) {
-            List acts = wp.getBuriWorkflowProcessType().getActivityByName(
-                sysContext.getCallPath().getActivityName().get(0).toString());
-            updateUserKeysFromActivitys(sysContext, userData, acts, provider);
-        }
-    }
-
-    protected void updateUserKeysFromActivitys(BuriSystemContext sysContext, Object userData,
-            List acts, ParticipantProvider provider) {
-        String roleType = null;
-        if (acts.size() > 0) {
-            roleType = roleTypeSelector(acts);
-        }
-        if (roleType != null) {
-            Long userIDNum = provider.getUserIDNum(userData, roleType);
-            String userIDVal = provider.getUserIDString(userData, roleType);
-            sysContext.setAppUserIDNumber(userIDNum);
-            sysContext.setAppUserIDString(userIDVal);
-        }
-    }
-
-    protected String roleTypeSelector(List acts) {
-        Iterator ite = acts.iterator();
-        String roleType = ((BuriActivityType) ite.next()).getRoleType();
-        while (ite.hasNext()) {
-            BuriActivityType actType = (BuriActivityType) ite.next();
-            if (!roleType.equals(actType.getRoleType())) {
-                roleType = null;
-                break;
-            }
-
-        }
-        return roleType;
+        IdentityInfo appUserId = provider.getUserId(userData);
+        sysContext.setAppUserId(appUserId);
     }
 
     protected void execActivity(BuriExecProcess wp, BuriSystemContext sysContext) {
@@ -263,7 +233,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected void errorActivitySelect(Set acts, BuriSystemContext systemContext, BuriExecProcess wp) {
         BuriPath callPath = systemContext.getCallPath();
         String pakageID = callPath.getWorkflowPackage();
-        ParticipantProvider provider = (ParticipantProvider) roleMap.get(pakageID);
+        ParticipantProvider provider = (ParticipantProvider) appUserIdMap.get(pakageID);
         if (acts.size() == 0) {
             throw new BuriNotSelectedActivityException(callPath, provider);
         }
@@ -318,7 +288,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
             BuriExePackages wPackageObj) {
         BuriPath callPath = systemContext.getCallPath();
         String pakageID = callPath.getWorkflowPackage();
-        ParticipantProvider provider = (ParticipantProvider) roleMap.get(pakageID);
+        ParticipantProvider provider = (ParticipantProvider) appUserIdMap.get(pakageID);
         if (proces.size() == 0) {
             throw new BuriNotSelectProcessException(callPath);
         }

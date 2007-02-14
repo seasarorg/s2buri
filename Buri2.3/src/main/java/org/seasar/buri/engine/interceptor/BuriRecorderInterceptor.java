@@ -39,7 +39,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
         dto.setDataID(sysContext.getDataID());
         if (walker.getNowPath() != null) {
             BuriPath realPath = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
-            long pathID = realPath.getBuriPathID();
+            long pathID = realPath.getBuriPathId();
             dto.setPathID(new Long(pathID));
             dto.setPathName(realPath.toString());
         } else {

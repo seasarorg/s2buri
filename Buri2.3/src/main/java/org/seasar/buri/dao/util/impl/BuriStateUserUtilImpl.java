@@ -12,7 +12,7 @@ import org.seasar.buri.dao.util.BuriStateUtil;
 import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.dto.BuriStateUserEntityDto;
 import org.seasar.buri.engine.BuriSystemContext;
-import org.seasar.buri.engine.RoleInfo;
+import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.util.packages.BranchWalker;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 
@@ -25,8 +25,8 @@ public class BuriStateUserUtilImpl extends BuriStateUtilImpl implements BuriStat
     public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext,
             BranchWalker walker) {
         long stateID = super.saveStatus(factory, sysContext, walker);
-        List<RoleInfo> users = userUtil.getTargetRoleInfos(factory, sysContext, walker);
-        List<Long> userIds = userUtil.convertBuriUserIDsFromRoleInfos(users);
+        List<IdentityInfo> users = userUtil.getUserIds(factory, sysContext, walker);
+        List<Long> userIds = userUtil.convertBuriUserIds(users);
         List<BuriStateUserEntityDto> entities = getEntityList(new Long(stateID), userIds);
         for (BuriStateUserEntityDto dto : entities) {
             stateUserDao.insert(dto);

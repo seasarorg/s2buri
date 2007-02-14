@@ -23,8 +23,7 @@ public class BuriSystemContext {
     private BuriPath callPath;
     private Long dataID;
     private S2Container container;
-    private Long appUserIDNumber;
-    private String appUserIDString;
+    private IdentityInfo appUserId;
     private Long buriUserID;
     private Long statusID;
     private String startRoleName;
@@ -129,35 +128,19 @@ public class BuriSystemContext {
     }
 
     /**
-     * アプリケーション側で定義されるユーザIDの番号表現を返します。
+     * アプリケーション側で定義されるユーザIDを返します。
      * @return
      */
-    public Long getAppUserIDNumber() {
-        return appUserIDNumber;
+    public IdentityInfo getAppUserId() {
+        return appUserId;
     }
 
     /**
-     * アプリケーション側で定義されるユーザIDの番号表現を設定します。
-     * @param appUserIDNumber
+     * アプリケーション側で定義されるユーザIDを設定します。
+     * @param appUserID
      */
-    public void setAppUserIDNumber(Long appUserIDNumber) {
-        this.appUserIDNumber = appUserIDNumber;
-    }
-
-    /**
-     * アプリケーション側で定義されるユーザIDの文字列表現を返します。
-     * @return
-     */
-    public String getAppUserIdString() {
-        return appUserIDString;
-    }
-
-    /**
-     * アプリケーション側で定義されるユーザIDの文字列表現を設定します。
-     * @param appUserIDString
-     */
-    public void setAppUserIDString(String appUserIDString) {
-        this.appUserIDString = appUserIDString;
+    public void setAppUserId(IdentityInfo appUserId) {
+        this.appUserId = appUserId;
     }
 
     /**
@@ -263,8 +246,7 @@ public class BuriSystemContext {
         buff.append("/callPath=").append(callPath);
         buff.append("/dataID=").append(dataID);
         buff.append("/buriUserID=").append(buriUserID);
-        buff.append("/appUserIDNumber=").append(appUserIDNumber);
-        buff.append("/appUserIDString=").append(appUserIDString);
+        buff.append("/appUserId=").append(appUserId);
         buff.append("/statusID=").append(statusID);
         buff.append("/targetDtoClass=").append(targetDtoClass);
         buff.append("/startRoleName=").append(startRoleName);

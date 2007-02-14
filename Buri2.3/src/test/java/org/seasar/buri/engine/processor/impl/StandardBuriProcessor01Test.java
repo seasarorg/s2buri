@@ -11,6 +11,7 @@ import org.seasar.buri.dao.BuriTestUserDao;
 import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.dto.BuriTestUserDto;
 import org.seasar.buri.engine.BuriEngine;
+import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.processor.StandardBuriProcessor;
 import org.seasar.buri.exception.select.BuriNotSelectedActivityException;
@@ -83,14 +84,14 @@ public class StandardBuriProcessor01Test extends S2TestCase {
             pathList.add("stdTest.Test01.受付済み");
 
             List<Long> userList = new ArrayList<Long>();
-            Long userID = participantProvider.getUserIDNum(下っ端ユーザ, null);
-            userList.add(new Long(buriUserUtil.convertBuriUserID(userID, null)));
+            IdentityInfo userId = participantProvider.getUserId(下っ端ユーザ);
+            userList.add(new Long(buriUserUtil.convertBuriUserId(userId)));
             dataList = itemDao.findAndUser(findDto, pathList, userList);
             assertEquals(1, dataList.size());
 
             userList.clear();
-            userID = participantProvider.getUserIDNum(真ん中ユーザ, null);
-            userList.add(new Long(buriUserUtil.convertBuriUserID(userID, null)));
+            userId = participantProvider.getUserId(真ん中ユーザ);
+            userList.add(new Long(buriUserUtil.convertBuriUserId(userId)));
             dataList = itemDao.findAndUser(findDto, pathList, userList);
             assertEquals(0, dataList.size());
         }

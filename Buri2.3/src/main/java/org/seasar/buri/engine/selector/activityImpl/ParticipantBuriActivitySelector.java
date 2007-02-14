@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.seasar.buri.engine.BuriSystemContext;
+import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.engine.selector.abst.AbstractBuriActivitySelector;
 import org.seasar.buri.oouo.internal.structure.BuriActivityType;
@@ -35,11 +36,11 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
         BuriExePackages packages = execProcess.getBuriExePackages();
         ParticipantProvider provider = packages.getParticipantProvider();
         for (BuriActivityType actType : activities) {
-            String roleName = actType.getRoleName();
-            String roleType = actType.getRoleType();
-            Object userData = systemContext.getUserContext().getUserData();
-            boolean inRole = provider.isUserInRole(userData, roleName, roleType);
-            if (inRole) {
+            ParticipantContext pc = new ParticipantContext();
+            pc.setParticipantName(actType.getRoleName());
+            pc.setParticipantType(actType.getRoleType());
+            pc.setCurrentUserId(systemContext.getAppUserId());
+            if (provider.hasAuthority(pc)) {
                 result.add(actType);
             }
         }

@@ -8,7 +8,7 @@
 	<!-- ここからはテスト用なので実際は削除する -->
 	<include path="example/org/seasar/buri/dicon/alldao.dicon"/>
 	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
-	<include path="buri/dicon/StdTestPP.dicon"/>
+	<include path="StdTestPP.dicon"/>
 	<!-- ここまではテスト用なので実際は削除する -->
 	
 	

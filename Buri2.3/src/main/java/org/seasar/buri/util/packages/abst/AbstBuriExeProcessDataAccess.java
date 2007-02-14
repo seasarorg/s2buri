@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.util.packages.abst;
 
+import org.seasar.buri.common.util.ClassDefUtil;
 import org.seasar.buri.compiler.DataFieldCompiler;
 import org.seasar.buri.dao.util.BuriStateUtil;
 import org.seasar.buri.dataaccess.BuriDataAccessFactory;
@@ -24,7 +25,8 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     private BuriStateUtil stateUtil;
     protected BuriDataAccessFactory dataAccessFactory;
     private DataFieldCompiler dataFieldCompiler;
-    
+    private ClassDefUtil classDefUtil;
+
     public void setup(BuriWorkflowProcessType process) {
         super.setup(process);
         DataAccessFactory rootFactory = (DataAccessFactory)container.getComponent("rootDataAccessFactory");
@@ -124,7 +126,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
         DataAccessUtil util = dataAccessFactory.getDataAccessUtil(tgtClass);
         if(util == null) {
             BuriDataFieldType fieldType = new BuriDataFieldType();
-            fieldType.setId(tgtClass.getName());
+            fieldType.setId(classDefUtil.getClassName(tgtClass));
             dataFieldCompiler.compileAndSettingOne(fieldType,(BuriDataAccessFactory)this,getBuriExePackages().getBuriPackageType(),this.getBuriWorkflowProcessType());
         }
         return dataAccessFactory.getDataAccessUtil(tgtClass);
@@ -164,6 +166,14 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     public void setDataFieldCompiler(DataFieldCompiler dataFieldCompiler) {
         this.dataFieldCompiler = dataFieldCompiler;
     }
+
+	public ClassDefUtil getClassDefUtil() {
+		return classDefUtil;
+	}
+
+	public void setClassDefUtil(ClassDefUtil classDefUtil) {
+		this.classDefUtil = classDefUtil;
+	}
 
     
 }

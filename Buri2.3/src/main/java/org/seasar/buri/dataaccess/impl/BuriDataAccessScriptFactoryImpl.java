@@ -3,6 +3,7 @@ package org.seasar.buri.dataaccess.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.seasar.buri.common.util.ClassDefUtil;
 import org.seasar.buri.compiler.util.BuriDataFieldCompilePreprocessor;
 import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
@@ -12,14 +13,15 @@ public class BuriDataAccessScriptFactoryImpl extends BuriDataAccessFactoryImpl {
 	private BuriDataFieldCompilePreprocessor preprocessor;
     private Map classToUtil = new HashMap();
     private ScriptFactory scriptFactory;
+    private ClassDefUtil classDefUtil;
 	
 	public DataAccessUtil getDataAccessUtil(Class tgtClass) {
-		String className = tgtClass.getName();
+		String className = classDefUtil.getClassName(tgtClass);
 		if(classToUtil.containsKey(className)) {
 			return (DataAccessUtil)classToUtil.get(className);
 		}
         BuriDataFieldType fieldType = new BuriDataFieldType();
-        fieldType.setId(tgtClass.getName());
+        fieldType.setId(className);
         fieldType = preprocessor.preprocess(fieldType);
         ScriptDataAccessUtilLongKeyImpl dataAccessUtil = new ScriptDataAccessUtilLongKeyImpl(fieldType);
         dataAccessUtil.setScriptFactory(scriptFactory);
@@ -41,6 +43,14 @@ public class BuriDataAccessScriptFactoryImpl extends BuriDataAccessFactoryImpl {
 
 	public void setScriptFactory(ScriptFactory scriptFactory) {
 		this.scriptFactory = scriptFactory;
+	}
+
+	public ClassDefUtil getClassDefUtil() {
+		return classDefUtil;
+	}
+
+	public void setClassDefUtil(ClassDefUtil classDefUtil) {
+		this.classDefUtil = classDefUtil;
 	}
 	
 

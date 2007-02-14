@@ -14,7 +14,7 @@ public class WakanagoSampleEngine extends WakanagoEngineImpl {
     public void addPackage(String packageName, BuriExePackages packageObj,
             ParticipantProvider provider) {
         packageObjs.put(packageName, packageObj);
-        roleMap.put(packageName, provider);
+        appUserIdMap.put(packageName, provider);
     }
 
 }

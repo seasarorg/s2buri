@@ -148,7 +148,8 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     protected boolean isDeleteMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("del")) {
             if(method.getParameterTypes().length == 1) {
-                if(method.getParameterTypes()[0].getName().equals(src.getId())) {
+            	String clazzName = classDefUtil.getClassName(method.getParameterTypes()[0]);
+                if(clazzName.equals(src.getId())) {
                     return true;
                 }
             }
@@ -170,7 +171,8 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     protected boolean isUpdateMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("update")) {
             if(method.getParameterTypes().length == 1) {
-                if(method.getParameterTypes()[0].getName().equals(src.getId())) {
+            	String clazzName = classDefUtil.getClassName(method.getParameterTypes()[0]);
+                if(clazzName.equals(src.getId())) {
                     return true;
                 }
             }
@@ -192,7 +194,8 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     protected boolean isInsertMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("insert")) {
             if(method.getParameterTypes().length == 1) {
-                if(method.getParameterTypes()[0].getName().equals(src.getId())) {
+            	String clazzName = classDefUtil.getClassName(method.getParameterTypes()[0]);
+                if(clazzName.equals(src.getId())) {
                     return true;
                 }
             }
@@ -316,6 +319,10 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     protected String createDaoName(BuriDataFieldType src,String dtoClassName) {
         if(hasName(src,DAOKEY)) {
             return getNameVal(src,DAOKEY);
+        }
+        if(dtoClassName.indexOf("$$") > -1) {
+        	int enhansPos = dtoClassName.indexOf("$$");
+        	dtoClassName = dtoClassName.substring(0,enhansPos);
         }
         Class tgtClass = ClassUtil.forName(dtoClassName);
         String shtName = ClassUtil.getShortClassName(tgtClass);

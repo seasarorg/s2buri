@@ -18,58 +18,75 @@ public class BuriExcelPrtiPrvidrRootDto {
     private String convId;
     private String convName;
     private String convObj;
-    private List hierarchyHed = new ArrayList();
-    private Map hierarchy = new HashMap();
-    private List hierList = new ArrayList();
-    
+    private List<BuriExcelPrtiPrvidrHedDto> hierarchyHed = new ArrayList<BuriExcelPrtiPrvidrHedDto>();
+    private Map<String, BuriExcelPrtiPrvidrItemDto> hierarchy = new HashMap<String, BuriExcelPrtiPrvidrItemDto>();
+    private List<BuriExcelPrtiPrvidrItemDto> hierList = new ArrayList<BuriExcelPrtiPrvidrItemDto>();
+
     public Date getFromDate() {
         return fromDate;
     }
+
     public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
+
     public Date getToDate() {
         return toDate;
     }
+
     public void setToDate(Date toDate) {
         this.toDate = toDate;
     }
+
     public String getConvId() {
         return convId;
     }
+
     public void setConvId(String convId) {
         this.convId = convId;
     }
+
     public String getConvName() {
         return convName;
     }
+
     public void setConvName(String convName) {
         this.convName = convName;
     }
-    public Map getHierarchy() {
+
+    public Map<String, BuriExcelPrtiPrvidrItemDto> getHierarchy() {
         return hierarchy;
     }
-    public void setHierarchy(Map hierarchy) {
+
+    public void setHierarchy(Map<String, BuriExcelPrtiPrvidrItemDto> hierarchy) {
         this.hierarchy = hierarchy;
     }
-    public List getHierList() {
+
+    public List<BuriExcelPrtiPrvidrItemDto> getHierList() {
         return hierList;
     }
-    public void setHierList(List hierList) {
+
+    public void setHierList(List<BuriExcelPrtiPrvidrItemDto> hierList) {
         this.hierList = hierList;
     }
-    public List getHierarchyHed() {
+
+    public List<BuriExcelPrtiPrvidrHedDto> getHierarchyHed() {
         return hierarchyHed;
     }
-    public void setHierarchyHed(List hierarchyHed) {
+
+    public void setHierarchyHed(List<BuriExcelPrtiPrvidrHedDto> hierarchyHed) {
         this.hierarchyHed = hierarchyHed;
     }
+
     public String getConvObj() {
         return convObj;
     }
+
     public void setConvObj(String convObj) {
         this.convObj = convObj;
     }
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("fromDate=").append(fromDate);

@@ -15,162 +15,131 @@ import jp.starlogic.util.datetime.DateUtil;
 
 import org.seasar.buri.common.participantprovider.ExcelPrtiPrvidrParser;
 import org.seasar.buri.common.util.ScriptProcessor;
+import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
-import org.seasar.buri.engine.RoleInfo;
 import org.seasar.framework.container.S2Container;
 
 public class ExcelBaseParticipantProvider implements ParticipantProvider {
-    private List ppList = new ArrayList();
+
+    private List<BuriExcelPrtiPrvidrRootDto> ppList = new ArrayList<BuriExcelPrtiPrvidrRootDto>();
     private ExcelPrtiPrvidrParser parser;
     private S2Container container;
-    
+
     public void loadFromResource(String fileName) {
-        List pps = parser.loadFromResource(fileName);
+        List<BuriExcelPrtiPrvidrRootDto> pps = parser.loadFromResource(fileName);
         ppList.addAll(pps);
     }
-    
+
     public void loadFromFile(String fileName) {
-        List pps = parser.loadFromFile(fileName);
+        List<BuriExcelPrtiPrvidrRootDto> pps = parser.loadFromFile(fileName);
         ppList.addAll(pps);
     }
-    
-    public BuriExcelPrtiPrvidrRootDto getRootDto() {
-        Iterator ite = ppList.iterator();
-        while(ite.hasNext()) {
-            BuriExcelPrtiPrvidrRootDto dto = (BuriExcelPrtiPrvidrRootDto)ite.next();
+
+    private BuriExcelPrtiPrvidrRootDto getRootDto() {
+        Iterator<BuriExcelPrtiPrvidrRootDto> ite = ppList.iterator();
+        while (ite.hasNext()) {
+            BuriExcelPrtiPrvidrRootDto dto = ite.next();
             Date now = new Date();
-            if(DateUtil.compare(dto.getFromDate(),now) <= 0 && DateUtil.compare(now,dto.getToDate()) < 0 ) {
+            if (DateUtil.compare(dto.getFromDate(), now) <= 0
+                    && DateUtil.compare(now, dto.getToDate()) < 0) {
                 return dto;
             }
         }
         return null;
     }
 
-    public boolean isUserInRole(Object userData, String participantName, String participantType) {
+    public IdentityInfo getUserId(Object userData) {
+        IdentityInfo userId = new IdentityInfo();
+        BuriExcelPrtiPrvidrRootDto dto = getRootDto();
+        Map<String, Object> context = new HashMap<String, Object>();
+        context.put("userData", userData);
+        ScriptProcessor processor = new ScriptProcessor();
+        if (dto.getConvId() != null) {
+            Object idObj = processor.getValue(dto.getConvId(), container, context);
+            userId.setIdNumber((Long) idObj);
+        }
+        if (dto.getConvName() != null) {
+            Object nameObj = processor.getValue(dto.getConvName(), container, context);
+            userId.setIdString((String) nameObj);
+        }
+        return userId;
+    }
+
+    public boolean hasAuthority(ParticipantContext context) {
         BuriExcelPrtiPrvidrRootDto rootDto = getRootDto();
-        BuriExcelPrtiPrvidrItemDto itemDto = new BuriExcelPrtiPrvidrItemDto();
-        itemDto.setId(getUserIDNum(userData, participantType));
-        itemDto.setName(getUserIDString(userData, participantType));
-        itemDto = (BuriExcelPrtiPrvidrItemDto)rootDto.getHierarchy().get(itemDto.getItemKey());
-        if(itemDto == null) {
+        BuriExcelPrtiPrvidrItemDto itemDto = rootDto.getHierarchy().get(getItemKey(context));
+        if (itemDto == null) {
             return false;
         }
-        if(itemDto.getRoles().contains(participantName)) {
+        if (itemDto.getRoleNames().contains(context.getParticipantName())) {
             return true;
         }
         return false;
     }
 
-    public String getUserIDString(Object userData, String participantType) {
+    public Object getUserData(IdentityInfo appUserId) {
         BuriExcelPrtiPrvidrRootDto dto = getRootDto();
-        if(dto.getConvName() == null) {
-            return null;
-        }
-        Map context = new HashMap();
-        context.put("userData",userData);
+        Map<String, Object> context = new HashMap<String, Object>();
+        context.put("userIDNum", appUserId.getIdNumber()); // deprecated
+        context.put("userIDVal", appUserId.getIdString()); // deprecated
+        context.put("userIDNumber", appUserId.getIdNumber());
+        context.put("userIDString", appUserId.getIdString());
         ScriptProcessor processor = new ScriptProcessor();
-        Object obj = processor.getValue(dto.getConvName(),container,context);
-        return (String)obj;
-    }
-
-    public Long getUserIDNum(Object userData, String participantType) {
-        BuriExcelPrtiPrvidrRootDto dto = getRootDto();
-        if(dto.getConvId() == null) {
-            return null;
-        }
-        Map context = new HashMap();
-        context.put("userData",userData);
-        ScriptProcessor processor = new ScriptProcessor();
-        Object obj = processor.getValue(dto.getConvId(),container,context);
-        return (Long)obj;
-    }
-
-    public Object getUserData(Long userIDNum, String userIDString) {
-        BuriExcelPrtiPrvidrRootDto dto = getRootDto();
-        Map context = new HashMap();
-        context.put("userIDNum",userIDNum);
-        context.put("userIDVal",userIDString);
-        ScriptProcessor processor = new ScriptProcessor();
-        Object obj = processor.getValue(dto.getConvObj(),container,context);
+        Object obj = processor.getValue(dto.getConvObj(), container, context);
         return obj;
     }
 
-    public boolean hasRoleUser(ParticipantContext context) {
-        List result = findParticipantName(context);
-        if(result.size() == 0) {
-            return false;
-        }
-        return true;
-    }
-    
-    protected Long getContextUserIDNum(ParticipantContext context) {
-        return context.getActionUserIdNum();
-    }
-    
-    protected String getContextUserIDVal(ParticipantContext context) {
-        return context.getActionUserIdVal();
-    }
-    
-    protected List findParticipantName(ParticipantContext context) {
-        List result = new ArrayList();
+    private List<BuriExcelPrtiPrvidrItemDto> findParticipantName(ParticipantContext context) {
         BuriExcelPrtiPrvidrRootDto rootDto = getRootDto();
-        BuriExcelPrtiPrvidrItemDto itemDto = new BuriExcelPrtiPrvidrItemDto();
-        itemDto.setId(getContextUserIDNum(context));
-        itemDto.setName(getContextUserIDVal(context));
-        String itemKey = itemDto.getItemKey();
-        itemDto = (BuriExcelPrtiPrvidrItemDto)rootDto.getHierarchy().get(itemKey);
-        if(itemDto == null) {
-            return result;
+        BuriExcelPrtiPrvidrItemDto itemDto = rootDto.getHierarchy().get(getItemKey(context));
+        if (itemDto == null) {
+            return new ArrayList<BuriExcelPrtiPrvidrItemDto>(0);
         }
-        result = findLeft(itemDto,context.getParticipantName());
-        result.addAll( findRight(itemDto,context.getParticipantName()) );
+        List<BuriExcelPrtiPrvidrItemDto> result = findLeft(itemDto, context.getParticipantName());
+        result.addAll(findRight(itemDto, context.getParticipantName()));
         return result;
     }
-    
-    protected List findLeft(BuriExcelPrtiPrvidrItemDto itemDto,String participantName) {
-        Iterator ite = itemDto.getLefts().iterator();
-        List result = new ArrayList();
-        while(ite.hasNext()) {
-            BuriExcelPrtiPrvidrItemDto leftDto = (BuriExcelPrtiPrvidrItemDto)ite.next();
-            if(leftDto.getRoles().contains(participantName)) {
+
+    private String getItemKey(ParticipantContext context) {
+        IdentityInfo appUserId = context.getCurrentUserId();
+        BuriExcelPrtiPrvidrItemDto itemDtoForKey = new BuriExcelPrtiPrvidrItemDto();
+        itemDtoForKey.setId(appUserId.getIdNumber());
+        itemDtoForKey.setName(appUserId.getIdString());
+        String itemKey = itemDtoForKey.getItemKey();
+        return itemKey;
+    }
+
+    private List<BuriExcelPrtiPrvidrItemDto> findLeft(BuriExcelPrtiPrvidrItemDto itemDto,
+            String participantName) {
+        List<BuriExcelPrtiPrvidrItemDto> result = new ArrayList<BuriExcelPrtiPrvidrItemDto>();
+        for (BuriExcelPrtiPrvidrItemDto leftDto : itemDto.getLefts()) {
+            if (leftDto.getRoleNames().contains(participantName)) {
                 result.add(leftDto);
             }
-            result.addAll(findLeft(leftDto,participantName));
+            result.addAll(findLeft(leftDto, participantName));
         }
         return result;
     }
-    
-    protected List findRight(BuriExcelPrtiPrvidrItemDto itemDto,String participantName) {
-        Iterator ite = itemDto.getRights().iterator();
-        List result = new ArrayList();
-        while(ite.hasNext()) {
-            BuriExcelPrtiPrvidrItemDto rightDto = (BuriExcelPrtiPrvidrItemDto)ite.next();
-            if(rightDto.getRoles().contains(participantName)) {
+
+    private List<BuriExcelPrtiPrvidrItemDto> findRight(BuriExcelPrtiPrvidrItemDto itemDto,
+            String participantName) {
+        List<BuriExcelPrtiPrvidrItemDto> result = new ArrayList<BuriExcelPrtiPrvidrItemDto>();
+        for (BuriExcelPrtiPrvidrItemDto rightDto : itemDto.getRights()) {
+            if (rightDto.getRoleNames().contains(participantName)) {
                 result.add(rightDto);
             }
-            result.addAll(findRight(rightDto,participantName));
+            result.addAll(findRight(rightDto, participantName));
         }
         return result;
     }
 
-    public RoleInfo getSingleUser(ParticipantContext context) {
-        List result = getUser(context);
-        if(result.size() == 0) {
-            return null;
-        }
-        return (RoleInfo)result.get(0);
-    }
-
-    public List getUser(ParticipantContext context) {
-        List partiList = findParticipantName(context);
-        List result = new ArrayList();
-        Iterator ite = partiList.iterator();
-        while(ite.hasNext()) {
-            BuriExcelPrtiPrvidrItemDto itemDto = (BuriExcelPrtiPrvidrItemDto)ite.next();
-            RoleInfo info = new RoleInfo();
-            info.setIdNum(itemDto.getId());
-            info.setIdVar(itemDto.getName());
+    public List<IdentityInfo> getAuthorizedUserIds(ParticipantContext context) {
+        List<IdentityInfo> result = new ArrayList<IdentityInfo>();
+        for (BuriExcelPrtiPrvidrItemDto itemDto : findParticipantName(context)) {
+            IdentityInfo info = new IdentityInfo();
+            info.setIdNumber(itemDto.getId());
+            info.setIdString(itemDto.getName());
             result.add(info);
         }
         return result;
@@ -192,6 +161,4 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         this.parser = parser;
     }
 
-    
-    
 }

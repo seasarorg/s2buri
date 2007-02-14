@@ -6,8 +6,12 @@ package org.seasar.buri.common.participantprovider;
 
 import java.util.List;
 
+import org.seasar.buri.common.participantprovider.impl.BuriExcelPrtiPrvidrRootDto;
+
 public interface ExcelPrtiPrvidrParser {
-    List loadFromResource(String fileName);
-    List loadFromFile(String fileName);
-    
+
+    List<BuriExcelPrtiPrvidrRootDto> loadFromResource(String fileName);
+
+    List<BuriExcelPrtiPrvidrRootDto> loadFromFile(String fileName);
+
 }

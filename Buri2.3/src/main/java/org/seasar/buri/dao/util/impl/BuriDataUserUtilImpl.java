@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.seasar.buri.common.util.ClassDefUtil;
 import org.seasar.buri.dao.BuriPathDataUserDao;
 import org.seasar.buri.dao.util.BuriDataUtil;
 import org.seasar.buri.dto.BuriPathDataUserEntityDto;
@@ -16,6 +17,7 @@ import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 
 public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUtil {
     private BuriPathDataUserDao pathDataUserDao;
+    private ClassDefUtil classDefUtil;
 
     @Override
     protected long countByPathKeys(String className, List longList, List strList, String pathName,
@@ -29,7 +31,7 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUt
     protected List getDataInfoListFromPathName(String pathName, BuriSystemContext sysContext) {
         String className = null;
         if (sysContext.getTargetDtoClass() != null) {
-            className = sysContext.getTargetDtoClass().getName();
+            className = classDefUtil.getClassName(sysContext.getTargetDtoClass());
         }
         Long pathType = sysContext.getCallPath().getPathType();
         List infoList = pathDataUserDao.getListByPathNameAndUser(className, pathName, pathType,
@@ -57,5 +59,13 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUt
     public void setPathDataUserDao(BuriPathDataUserDao pathDataUserDao) {
         this.pathDataUserDao = pathDataUserDao;
     }
+
+	public ClassDefUtil getClassDefUtil() {
+		return classDefUtil;
+	}
+
+	public void setClassDefUtil(ClassDefUtil classDefUtil) {
+		this.classDefUtil = classDefUtil;
+	}
 
 }

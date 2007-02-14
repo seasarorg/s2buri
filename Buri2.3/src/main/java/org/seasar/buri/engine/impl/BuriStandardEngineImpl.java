@@ -7,6 +7,7 @@ package org.seasar.buri.engine.impl;
 import org.seasar.buri.compiler.BuriCompiler;
 import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.engine.BuriSystemContext;
+import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
@@ -36,11 +37,11 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
     protected void updateUserInfo(BuriSystemContext sysContext, BuriExecProcess wp,
             BuriExePackages wPackageObj) {
         super.updateUserInfo(sysContext, wp, wPackageObj);
-        if (sysContext.getAppUserIDNumber() == null && sysContext.getAppUserIdString() == null) {
+        IdentityInfo appUserId = sysContext.getAppUserId();
+        if (appUserId.getIdNumber() == null && appUserId.getIdString() == null) {
             return;
         }
-        long userID = userUtil.convertBuriUserID(sysContext.getAppUserIDNumber(), sysContext
-            .getAppUserIdString());
+        long userID = userUtil.convertBuriUserId(appUserId);
         sysContext.setBuriUserID(new Long(userID));
     }
 

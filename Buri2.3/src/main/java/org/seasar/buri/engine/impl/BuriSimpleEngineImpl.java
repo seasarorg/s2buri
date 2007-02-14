@@ -4,6 +4,7 @@
  */
 package org.seasar.buri.engine.impl;
 
+import org.seasar.buri.common.util.ClassDefUtil;
 import org.seasar.buri.compiler.BuriCompiler;
 import org.seasar.buri.dao.BuriPathDataDao;
 import org.seasar.buri.dataaccess.BuriDataAccessFactory;
@@ -23,6 +24,7 @@ import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngine {
 
     private BuriPathDataDao pathDataDao;
+    private ClassDefUtil classDefUtil;
 
     public void setupUserID(BuriSystemContext sysContext) {
     }
@@ -54,8 +56,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         if (sysContext.getCallPath().getActivityName().size() > 0) {
             pathName = sysContext.getCallPath().getPlainName();
         }
-        BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(data.getClass().getName(), longKey,
-            manyKey, pathName, sysContext.getCallPath().getPathType());
+        BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(classDefUtil.getClassName(data), longKey, manyKey, pathName, sysContext.getCallPath().getPathType());
         finalSetup(dto, sysContext);
     }
 
@@ -110,5 +111,13 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
     public void setBuriCompiler(BuriCompiler buriCompiler) {
         this.buriCompiler = buriCompiler;
     }
+
+	public ClassDefUtil getClassDefUtil() {
+		return classDefUtil;
+	}
+
+	public void setClassDefUtil(ClassDefUtil classDefUtil) {
+		this.classDefUtil = classDefUtil;
+	}
 
 }

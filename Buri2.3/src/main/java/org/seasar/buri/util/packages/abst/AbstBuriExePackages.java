@@ -26,28 +26,27 @@ import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.util.StringUtil;
 
-public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFactory{
+public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFactory {
 
     protected Map applications = new HashMap();
     protected Map variables = new HashMap();
     protected MultiValueMap participant = new MultiValueMap();
-    
+
     protected ParticipantProvider participantProvider;
-    
+
     protected Map buriExecProcessMap = new HashMap();
 
     protected BuriPackageType buriPackage;
     protected S2Container container;
     protected BuriDataAccessFactory dataAccessFactory;
-    
+
     protected String conditionExpressionType = "ognl";
     protected String pkeyExpressionType = "ognl";
     protected String dataAccessScriptType = "ognl";
     protected String defaultExpressionType = "ognl";
     protected String preprocessScriptType = "ognl";
     protected String timeLimitExpressionType = "ognl";
-    
-    
+
     public String getTimeLimitExpressionType() {
         return timeLimitExpressionType;
     }
@@ -98,85 +97,83 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
 
     public void setup(BuriPackageType buriPackage) {
         this.buriPackage = buriPackage;
-//        setupApplication();
+        //        setupApplication();
         variables.putAll(buriPackage.getApplication());
         participant.putAll(buriPackage.getRoleByName());
         setupExpressionType();
     }
-    
+
     public BuriPackageType getBuriPackageType() {
         return buriPackage;
     }
-    
-    
-//    protected void setupApplication() {
-//        Set keys = buriPackage.getApplication().keySet();
-//        Iterator ite = keys.iterator();
-//        while(ite.hasNext()) {
-//            String key = ite.next().toString();
-//            BuriApplicationType app = buriPackage.getApplicationById(key);
-//            applications.put(key,container.getComponent(app.getName()));
-//        }
-//    }
-    
+
+    //    protected void setupApplication() {
+    //        Set keys = buriPackage.getApplication().keySet();
+    //        Iterator ite = keys.iterator();
+    //        while(ite.hasNext()) {
+    //            String key = ite.next().toString();
+    //            BuriApplicationType app = buriPackage.getApplicationById(key);
+    //            applications.put(key,container.getComponent(app.getName()));
+    //        }
+    //    }
 
     public void setProcess(String procID, BuriExecProcess execProcess) {
-        buriExecProcessMap.put(procID,execProcess);
+        buriExecProcessMap.put(procID, execProcess);
     }
-    
+
     public BuriExecProcess getProcess(BuriPath path) {
         String processId = getProcessId(path);
-        assert ! StringUtil.isEmpty(processId);
-        BuriExecProcess processObj = (BuriExecProcess)buriExecProcessMap.get(processId);
+        assert !StringUtil.isEmpty(processId);
+        BuriExecProcess processObj = (BuriExecProcess) buriExecProcessMap.get(processId);
         return processObj;
     }
-    
+
     private void setupExpressionType() {
-    	List extAttri = buriPackage.getExtendedAttribute();
-    	String type = ExtentedAttributeUtil.getAttributeVal(extAttri, "conditionExpressionType");
-    	if( ! StringUtil.isEmpty(type)) {
-    		conditionExpressionType = type;
-    	}
-    	
-    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "pkeyExpressionType");
-    	if( ! StringUtil.isEmpty(type)) {
-    		pkeyExpressionType = type;
-    	}
-    	
-    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "dataAccessScriptType");
-    	if( ! StringUtil.isEmpty(type)) {
-    		dataAccessScriptType = type;
-    	}
-    	
-    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "defaultExpressionType");
-    	if( ! StringUtil.isEmpty(type)) {
-    		defaultExpressionType = type;
-    	}
-    	
-    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "preprocessScriptType");
-    	if( ! StringUtil.isEmpty(type)) {
-    		preprocessScriptType = type;
-    	}
-    	
-    	type = ExtentedAttributeUtil.getAttributeVal(extAttri, "timeLimitExpressionType");
-    	if( ! StringUtil.isEmpty(type)) {
-    		timeLimitExpressionType = type;
-    	}
-    	
+        List extAttri = buriPackage.getExtendedAttribute();
+        String type = ExtentedAttributeUtil.getAttributeVal(extAttri, "conditionExpressionType");
+        if (!StringUtil.isEmpty(type)) {
+            conditionExpressionType = type;
+        }
+
+        type = ExtentedAttributeUtil.getAttributeVal(extAttri, "pkeyExpressionType");
+        if (!StringUtil.isEmpty(type)) {
+            pkeyExpressionType = type;
+        }
+
+        type = ExtentedAttributeUtil.getAttributeVal(extAttri, "dataAccessScriptType");
+        if (!StringUtil.isEmpty(type)) {
+            dataAccessScriptType = type;
+        }
+
+        type = ExtentedAttributeUtil.getAttributeVal(extAttri, "defaultExpressionType");
+        if (!StringUtil.isEmpty(type)) {
+            defaultExpressionType = type;
+        }
+
+        type = ExtentedAttributeUtil.getAttributeVal(extAttri, "preprocessScriptType");
+        if (!StringUtil.isEmpty(type)) {
+            preprocessScriptType = type;
+        }
+
+        type = ExtentedAttributeUtil.getAttributeVal(extAttri, "timeLimitExpressionType");
+        if (!StringUtil.isEmpty(type)) {
+            timeLimitExpressionType = type;
+        }
+
     }
-    
+
     private String getProcessId(BuriPath path) {
         BuriWorkflowProcessType process = null;
-        if(path.getBuriPathID() != 0) {
+        if (path.getBuriPathId() != 0) {
             String id = path.getRealPath().getWorkflowProcess();
-            assert ! StringUtil.isEmpty(id);
+            assert !StringUtil.isEmpty(id);
             process = buriPackage.getProcessById(id);
         } else {
             String name = path.getWorkflowProcess();
-            assert ! StringUtil.isEmpty(name);
-            List list = (List)buriPackage.getProcessByName(name);
+            assert !StringUtil.isEmpty(name);
+            List list = (List) buriPackage.getProcessByName(name);
             assert list != null;
-            process = (BuriWorkflowProcessType)list.get(0);
+            process = (BuriWorkflowProcessType) list.get(0);
         }
         return process.getId();
     }
@@ -231,11 +228,11 @@ public class AbstBuriExePackages implements BuriExePackages ,BuriDataAccessFacto
 
     public void setParticipantProvider(ParticipantProvider provider) {
         participantProvider = provider;
-        
+
     }
 
     public ParticipantProvider getParticipantProvider() {
         return participantProvider;
     }
-    
+
 }
