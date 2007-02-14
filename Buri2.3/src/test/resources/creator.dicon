@@ -15,4 +15,7 @@
 	<component class="org.seasar.framework.container.creator.InterceptorCreator"/>
 	<component class="org.seasar.framework.container.creator.ValidatorCreator"/>
 	<component class="org.seasar.framework.container.creator.ConverterCreator"/>
+	
+	<!-- Bao用 -->
+	<component class="org.seasar.buri.creator.BaoCreator"/>
 </components>
