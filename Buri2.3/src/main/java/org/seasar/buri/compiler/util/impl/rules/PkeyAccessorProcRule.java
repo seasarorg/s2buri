@@ -13,6 +13,8 @@ import org.seasar.framework.message.MessageFormatter;
 
 public class PkeyAccessorProcRule extends DataAccessorProcRule {
     private static Logger logger = Logger.getLogger(PkeyAccessorProcRule.class);
+    private boolean finalCheckPassMode = false;
+    
     protected void setupVal(BuriDataFieldType src,String val) {
         setupPkey(src,val);
     }
@@ -47,9 +49,17 @@ public class PkeyAccessorProcRule extends DataAccessorProcRule {
     }
 
     public void finishCheck(BuriDataFieldType src) {
-        if(src.getKeys().size() == 0) {
+        if(src.getKeys().size() == 0 && finalCheckPassMode) {
             throw new BuriDataFieldErrorException(src.getId(),getKeyName());
         }
     }
+
+	public boolean isFinalCheckPassMode() {
+		return finalCheckPassMode;
+	}
+
+	public void setFinalCheckPassMode(boolean finalCheckPassMode) {
+		this.finalCheckPassMode = finalCheckPassMode;
+	}
 
 }

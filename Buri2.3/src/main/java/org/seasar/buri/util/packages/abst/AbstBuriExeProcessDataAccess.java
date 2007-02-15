@@ -124,12 +124,13 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
 
     public DataAccessUtil getDataAccessUtil(Class tgtClass) {
         DataAccessUtil util = dataAccessFactory.getDataAccessUtil(tgtClass);
-        if(util == null) {
-            BuriDataFieldType fieldType = new BuriDataFieldType();
-            fieldType.setId(classDefUtil.getClassName(tgtClass));
-            dataFieldCompiler.compileAndSettingOne(fieldType,(BuriDataAccessFactory)this,getBuriExePackages().getBuriPackageType(),this.getBuriWorkflowProcessType());
-        }
-        return dataAccessFactory.getDataAccessUtil(tgtClass);
+        return util;
+//        if(util == null) {
+//            BuriDataFieldType fieldType = new BuriDataFieldType();
+//            fieldType.setId(classDefUtil.getClassName(tgtClass));
+//            dataFieldCompiler.compileAndSettingOne(fieldType,(BuriDataAccessFactory)this,getBuriExePackages().getBuriPackageType(),this.getBuriWorkflowProcessType());
+//        }
+//        return dataAccessFactory.getDataAccessUtil(tgtClass);
     }
 
     public FilterAccessUtil getFilterAccessUtil(Class tgtClass) {
