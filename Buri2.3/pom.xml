@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.seasar.buri</groupId>
   <artifactId>s2-buri</artifactId>
-  <version>0.3.1-SNAPSHOT</version>
+  <version>0.3.1</version>
   <description></description>
   <build>
     <defaultGoal>validate</defaultGoal>
@@ -49,17 +49,17 @@
     <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>s2-extension</artifactId>
-      <version>2.4.9</version>
+      <version>2.4.10</version>
     </dependency>
     <dependency>
       <groupId>org.seasar.coffee</groupId>
       <artifactId>s2-coffee-script</artifactId>
-      <version>0.2.1-SNAPSHOT</version>
+      <version>0.2.1</version>
     </dependency>
     <dependency>
       <groupId>org.seasar.coffee</groupId>
       <artifactId>s2-coffee</artifactId>
-      <version>0.2.1-SNAPSHOT</version>
+      <version>0.2.1</version>
     </dependency>
     <dependency>
       <groupId>janino</groupId>
