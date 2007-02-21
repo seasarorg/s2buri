@@ -2,15 +2,22 @@
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
-	<include path="org/seasar/codegen/impl/LoadFile.dicon"/>
-	<component class="org.seasar.codegen.impl.NomalDtoOutputCodeImpl" >
+	<include path="customize/LoadFile.dicon"/>
+	<component class="org.seasar.codegen.impl.ParentDtoOutputCodeImpl" >
 		<property name="packageName">"org.seasar"</property>
 		<property name="defaultDir">"FindDto"</property>
-		<property name="templateFileName">"findDto.ftl"</property>
+		<property name="templateFileName">"findPackDto.ftl"</property>
 		<initMethod>#self.addRootObjct("Typeconvert",typeconvert)</initMethod>
 	</component>
 	<component name="typeconvert" class="org.seasar.codegen.impl.util.ThroughHashMap">
 		<initMethod>#self.put("long","Long")</initMethod>
 		<initMethod>#self.put("boolean","Boolean")</initMethod>
+		<initMethod>#self.put("int","Integer")</initMethod>
+		<initMethod>#self.put("short","Short")</initMethod>
+		<initMethod>#self.put("long","Long")</initMethod>
+		<initMethod>#self.put("float","Float")</initMethod>
+		<initMethod>#self.put("double","Double")</initMethod>
+		<initMethod>#self.put("char","Char")</initMethod>
+		<initMethod>#self.put("byte","Byte")</initMethod>
 	</component>
 </components>

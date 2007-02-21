@@ -7,7 +7,7 @@
 <#macro field table tableName>
 	<#assign primarys=table.primaryKey>
 	<#list table.tableField as tableField>
-	<#assign fieldName=tableName+tableField.fieldName?uncap_first>
+	<#assign fieldName=tableName+tableField.fieldNameForDto?uncap_first>
 	<#assign fieldName=fieldName?uncap_first>
 	<#assign javaTypeName=tableField.dataType.langDataType.className>
 	<#assign javaTypeName=Typeconvert[javaTypeName]>
@@ -36,8 +36,8 @@
 	
 <#macro proerty table tableName>
 	<#list table.tableField as tableField>
-	<#assign propertyName=tableName?cap_first+tableField.fieldName?cap_first>
-	<#assign fieldName=tableName+tableField.fieldName?uncap_first>
+	<#assign propertyName=tableName?cap_first+tableField.fieldNameForDto?cap_first>
+	<#assign fieldName=tableName+tableField.fieldNameForDto?uncap_first>
 	<#assign fieldName=fieldName?uncap_first>
 	<#assign javaTypeName=tableField.dataType.langDataType.className>
 	<#assign javaTypeName=Typeconvert[javaTypeName]>
@@ -98,7 +98,7 @@
 	
 <#macro toString table tableName>
 		<#list table.tableField as tableField>
-		<#assign fieldName=tableName+tableField.fieldName?uncap_first>
+		<#assign fieldName=tableName+tableField.fieldNameForDto?uncap_first>
 		<#assign fieldName=fieldName?uncap_first>
 		<#list findType as findStr>
 		buff.append("/${fieldName}${findStr}=").append(${fieldName}${findStr});

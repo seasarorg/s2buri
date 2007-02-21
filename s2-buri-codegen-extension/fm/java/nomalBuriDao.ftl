@@ -26,6 +26,12 @@ public interface ${table.tableNameForDto?cap_first}Dao {
     public List get${table.tableNameForDto?cap_first}ByIds(List ${primaryField.field.fieldNameForDto?uncap_first}s);
 	</#if>
     
+    public String findBuri_ARGS = "dto,paths";
+    public List findBuri(${table.tableName?cap_first}FindDto dto,List paths);
+    
+    public String findBuriAndUser_ARGS = "dto,paths,userIDs";
+    public List findBuriAndUser(${table.tableName?cap_first}FindDto dto,List paths,List userIDs);
+    
     public String find_ARGS = "dto";
     public List find(${table.tableNameForDto?cap_first}FindDto dto);
 

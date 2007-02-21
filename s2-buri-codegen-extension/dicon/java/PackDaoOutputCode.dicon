@@ -2,10 +2,10 @@
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
-	<include path="org/seasar/codegen/impl/LoadFile.dicon"/>
+	<include path="customize/LoadFile.dicon"/>
 	<component class="org.seasar.codegen.impl.ParentDtoOutputCodeImpl" >
 		<property name="packageName">"org.seasar.codegen"</property>
 		<property name="defaultDir">"Dao"</property>
-		<property name="templateFileName">"packDao.ftl"</property>
+		<property name="templateFileName">"packBuriDao.ftl"</property>
 	</component>
 </components>

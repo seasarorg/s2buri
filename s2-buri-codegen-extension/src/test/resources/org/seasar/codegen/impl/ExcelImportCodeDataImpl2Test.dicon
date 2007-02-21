@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
-	"http://www.seasar.org/dtd/components21.dtd">
-<components>
-	<component class="org.seasar.codegen.impl.ExcelImportCodeDataImpl2"/>
-	<component class="org.seasar.codegen.element.util.JavaDataTypeSelectUtil"/>
-	<component class="org.seasar.codegen.element.util.DB2DataTypeSelectUtil"/>
-</components>

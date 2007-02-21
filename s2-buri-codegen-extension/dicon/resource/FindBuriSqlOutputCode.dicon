@@ -2,12 +2,12 @@
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
-	<include path="org/seasar/codegen/impl/LoadFile.dicon"/>
+	<include path="customize/LoadFile.dicon"/>
 	<component class="org.seasar.codegen.impl.NomalDtoOutputCodeImpl" >
 		<property name="packageName">"org.seasar"</property>
 		<property name="defaultDir">"Dao"</property>
-		<property name="templateFileName">"findSQL.ftl"</property>
-		<property name="fileNameFtl">"${table.tableName?cap_first}Dao_find.sql"</property>
+		<property name="templateFileName">"findBuriSQL.ftl"</property>
+		<property name="fileNameFtl">"${table.tableName?cap_first}Dao_findBuri.sql"</property>
 		<initMethod>#self.addRootObjct("Sample",Sample)</initMethod>
 	</component>
 	<component name="Sample" class="org.seasar.codegen.impl.util.ThroughHashMap">

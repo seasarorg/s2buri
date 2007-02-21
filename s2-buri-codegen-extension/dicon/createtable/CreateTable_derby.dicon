@@ -4,6 +4,8 @@
 <components>
 	<include path="customize/LoadFile.dicon"/>
 	<component class="org.seasar.codegen.impl.NomalDiconOutputCodeImpl" >
-		<property name="packageName">"org.seasar.codegen"</property>
+		<property name="defaultDir">""</property>
+		<property name="templateFileName">"createTable_derby.ftl"</property>
+		<property name="fileNameFtl">"createTable.sql"</property>
 	</component>
 </components>

@@ -8,7 +8,7 @@ import ${package}.finddto.${table.tableNameForDto?cap_first}PackFindDto;
 public interface ${table.tableNameForDto?cap_first}PackDao {
     public Class BEAN = ${table.tableNameForDto?cap_first}PackDto.class;
 
-    public List getAll${table.tableNameForDto?cap_first}();
+    public List<${table.tableNameForDto?cap_first}PackDto> getAll${table.tableNameForDto?cap_first}();
 
 	<#assign primarys=table.primaryKey>
 	<#if primarys?size = 1 >
@@ -24,11 +24,11 @@ public interface ${table.tableNameForDto?cap_first}PackDao {
 	<#assign javaTypeName=primaryField.field.dataType.langDataType.className>
     public String get${table.tableNameForDto?cap_first}ByIds_ARGS = "${primaryField.field.fieldNameForDto?uncap_first}s";
     public String get${table.tableNameForDto?cap_first}ByIds_QUERY = "${primaryField.field.fieldName} in /*${primaryField.field.fieldNameForDto?uncap_first}s*/(1)";
-    public List get${table.tableNameForDto?cap_first}ByIds(List ${primaryField.field.fieldNameForDto?uncap_first}s);
+    public List<${table.tableNameForDto?cap_first}PackDto> get${table.tableNameForDto?cap_first}ByIds(List ${primaryField.field.fieldNameForDto?uncap_first}s);
 	</#if>
     
-    public String find_ARGS = "dto";
-    public List find(${table.tableNameForDto?cap_first}PackFindDto dto);
+    public String find_ARGS = "dto,keys";
+    public List<${table.tableNameForDto?cap_first}PackDto> find(${table.tableNameForDto?cap_first}PackFindDto dto,List keys);
 
     public ${table.tableNameForDto?cap_first}PackDto soleMatch(${table.tableNameForDto?cap_first}PackFindDto dto);
     

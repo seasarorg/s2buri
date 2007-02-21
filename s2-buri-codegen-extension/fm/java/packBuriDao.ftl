@@ -27,6 +27,12 @@ public interface ${table.tableNameForDto?cap_first}PackDao {
     public List get${table.tableNameForDto?cap_first}ByIds(List ${primaryField.field.fieldNameForDto?uncap_first}s);
 	</#if>
     
+    public String find_ARGS = "dto,paths";
+    public List find(${table.tableName?cap_first}FindDto dto,List paths);
+    
+    public String findAndUser_ARGS = "dto,paths,userIDs";
+    public List findAndUser(${table.tableName?cap_first}FindDto dto,List paths,List userIDs);
+    
     public String find_ARGS = "dto";
     public List find(${table.tableNameForDto?cap_first}PackFindDto dto);
 

@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 import org.seasar.buri.common.util.ScriptProcessor;
 
-public class ${table.tableName?cap_first}${defaultDir} {
+public class ${table.tableNameForDto?cap_first}${defaultDir} {
 	public static final String TABLE = "${table.tableName}";
     private ArrayList orderList = new ArrayList();
 	

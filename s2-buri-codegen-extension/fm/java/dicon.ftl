@@ -7,7 +7,7 @@
 
 	<#list tableList as table>
 
-	<component name="${table.tableName?cap_first}Dao" class="${package}.dao.${table.tableName?cap_first}Dao">
+	<component name="${table.tableNameForDto?cap_first}Dao" class="${package}.dao.${table.tableNameForDto?cap_first}Dao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>
@@ -15,7 +15,7 @@
 
 	<#list tableList as table>
 	<#if table.parentTable?size != 0 >
-	<component name="${table.tableName?cap_first}PackDao" class="${package}.dao.${table.tableName?cap_first}PackDao">
+	<component name="${table.tableNameForDto?cap_first}PackDao" class="${package}.dao.${table.tableNameForDto?cap_first}PackDao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>

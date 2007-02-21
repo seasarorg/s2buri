@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+
+<components>
+	<!--
+	<include path="j2ee.dicon"/>
+	入力ファイル名設定 -->
+	<component name="inputFile">"test/codegen.csv"</component>
+	<!--パッケージ名名設定 -->
+	<component name="packageName">"example.org.seasar.buri"</component>
+	<component name="diconDir">"dicon"</component>
+	<component name="path" class="org.seasar.codegen.ant.DirectoryList" >
+		<initMethod name="add">
+			<arg>"java"</arg>
+			<arg>"target/gen/java"</arg>			
+		</initMethod>
+		<initMethod name="add" >
+			<arg>"resource"</arg>
+			<arg>"target/gen/resource"</arg>
+		</initMethod>
+		<initMethod name="add" >
+			<arg>"createtable"</arg>
+			<arg>"target/gen/createtable"</arg>
+		</initMethod>
+	</component>
+	<component name="templateDir">"fm/java"</component>
+
+<!--入力ファイル設定 -->
+
+	<component class="org.seasar.codegen.impl.ERWinCSVImportCodeData" >
+	</component>
+
+<!--
+	<component class="org.seasar.codegen.impl.ExcelImportCodeDataImpl">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.impl.ExcelImportCodeDataImpl2">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.impl.DatabaseImportCodeData">
+		<property name="schemaName">null</property>
+		<initMethod name="addTable">
+			<arg>"EMP4"</arg>
+		</initMethod>
+		<initMethod name="addTable">
+			<arg>"DEPT4"</arg>
+		</initMethod>
+	</component>
+-->
+<!--DBタイプ設定-->
+<!--
+	<component class="org.seasar.codegen.element.util.DB2DataTypeSelectUtil" >
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.element.util.MySQLDataTypeSelectUtilImpl">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.element.util.MaxDBDataTypeSelectUtilImpl">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.element.util.OracleDataTypeSelectUtil">
+	</component>
+-->
+
+	<component class="org.seasar.codegen.element.util.HSQLDBDataTypeSelectUtilImpl">
+	</component>
+
+<!--
+	<component class="org.seasar.codegen.element.util.PostgreSQLDataTypeSelectUtil">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.element.util.DerbyDataTypeSelectUtil">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.element.util.H2DataTypeSelectUtilImpl">
+	</component>
+-->
+<!--
+	<component class="org.seasar.codegen.element.util.SQLServerDataTypeSelectUtilImpl">
+	</component>
+-->
+	<component class="org.seasar.codegen.convert.impl.FKNameChildNameConverterImpl">
+	</component>
+	<component class="org.seasar.codegen.convert.impl.NullConverterImpl">
+	</component>
+	<component class="org.seasar.buri.common.util.template.impl.TextTemplateFreeMakerImpl">
+	</component>
+	<component class="org.seasar.codegen.element.util.JavaDataTypeSelectUtil">
+	</component>
+</components>

@@ -3,9 +3,9 @@
 	<property name="lib.dir" location="lib"/>
 
     <path id="ant.classpath">
-    	<!-- 開発中に必要だっただけ。普通は要らないはず
+    	<!-- 開発中に必要だっただけ。普通は要らないはず-->
         <pathelement location="target/classes"/>
-        -->
+        
         <fileset dir="${lib.dir}">
             <include name="*.jar" />
         </fileset>
