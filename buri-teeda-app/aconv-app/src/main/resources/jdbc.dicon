@@ -20,6 +20,19 @@
 	<component class="org.seasar.extension.jdbc.impl.BooleanToIntStatementFactory"/>
 	-->
 
+	<component name="realPathUtil" class="org.seasar.buri.common.util.RealPathUtil" instance="singleton" />
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
+			"org.h2.Driver"
+        </property>
+        <property name="URL">
+          "jdbc:h2:" + realPathUtil.getAppRootPath() + "/db/buri/buriDB"
+        </property>
+        <property name="user">"buri"</property>
+        <property name="password">"buriburi"</property>
+    </component>
+
 	<!-- for HSQLDB -->
 	<!--
 	<component name="xaDataSource"
@@ -57,6 +70,7 @@
 	-->
 
 	<!-- for PostgreSQL -->
+	<!--
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">
@@ -68,6 +82,7 @@
         <property name="user">"buri"</property>
         <property name="password">"buriburi"</property>
     </component>
+    -->
 
 	<!-- MySQL
 	- MySQL4.0以下でマルチバイト文字を扱う場合には，URL指定の後に，

@@ -100,20 +100,5 @@
 			<arg>baoSupportAspectCustomizer</arg>
 		</initMethod>
 	</component>
-
-		<component name="packSupportAspectCustomizer" class="org.seasar.framework.container.customizer.AspectCustomizer">
-		<initMethod name="addInterceptorName">
-			<arg>"aop.traceInterceptor"</arg>
-		</initMethod>
-		<initMethod name="addInterceptorName">
-			<arg>"j2ee.requiredTx"</arg>
-		</initMethod>
-	</component>
-	<component name="packCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
-		<initMethod name="addCustomizer">
-			<arg>packSupportAspectCustomizer</arg>
-		</initMethod>
-	</component>
-
 	
 </components>
