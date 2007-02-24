@@ -96,7 +96,6 @@
 	<component class="org.seasar.buri.util.packages.abst.AbstPreprocessAccessUtil" instance="outer" >
 	</component>
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExePackages" instance="outer" >
-		<aspect>BuriInterceptorChain</aspect>
 		<property name="dataAccessFactory">
 			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
 				<initMethod name="addChildFactory">
@@ -105,7 +104,6 @@
 				</initMethod>
 			</component>
 		</property>
-		<property name="participantProvider">null</property>
 	</component>
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExeProcessDataAccess" instance="outer" >
 		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
@@ -113,11 +111,11 @@
 		<initMethod name="addProcessAOP"><arg>BuriRecorderInterceptor</arg></initMethod>
 		-->
 		<initMethod name="addConditonAOP"><arg>traceInterceptor</arg></initMethod>
-		<property name="buriExePackages">null</property>
 		<property name="dataAccessFactory">
 			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
 			</component>
 		</property>
+		<property name="buriExePackages">null</property>
 	</component>
 	
 </components>
