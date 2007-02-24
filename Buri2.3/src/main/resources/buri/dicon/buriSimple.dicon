@@ -2,6 +2,7 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
+	<include path="buri/dicon/buri-extension.dicon"/>
 	<include path="buri/dicon/buri-user.dicon"/>
 	<include path="buri/dicon/buri-share.dicon"/>
 
@@ -98,6 +99,10 @@
 	<component class="org.seasar.buri.util.packages.abst.AbstBuriExePackages" instance="outer" >
 		<property name="dataAccessFactory">
 			<component class="org.seasar.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
+				<initMethod name="addChildFactory">
+					<arg>"extensionDAF"</arg>
+					<arg>extensionDAF</arg>
+				</initMethod>
 				<initMethod name="addChildFactory">
 					<arg>"ScriptDataAccessFactory"</arg>
 					<arg>ScriptDataAccessFactory</arg>
