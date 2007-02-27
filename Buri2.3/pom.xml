@@ -125,6 +125,18 @@
       <version>9.2.0.5</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.seasar.nadejako</groupId>
+      <artifactId>nadejako</artifactId>
+      <version>0.7-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seasar.nadejako</groupId>
+      <artifactId>s2-nadejako</artifactId>
+      <version>0.7-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <distributionManagement>
     <repository>
