@@ -52,6 +52,11 @@
       <version>2.4.10</version>
     </dependency>
     <dependency>
+      <groupId>org.seasar.container</groupId>
+      <artifactId>s2-framework</artifactId>
+      <version>2.4.10</version>
+    </dependency>
+    <dependency>
       <groupId>org.seasar.coffee</groupId>
       <artifactId>s2-coffee-script</artifactId>
       <version>0.2.1</version>
@@ -76,6 +81,14 @@
       <artifactId>geronimo-spec-j2ee</artifactId>
       <version>1.4-rc4</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.apache.derby</groupId>
@@ -124,6 +137,14 @@
       <artifactId>ojdbc14</artifactId>
       <version>9.2.0.5</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-ejb_2.1_spec</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.seasar.nadejako</groupId>
