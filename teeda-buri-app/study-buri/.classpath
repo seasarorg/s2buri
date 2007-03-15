@@ -1,0 +1,44 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="src" path="src/main/webapp/view"/>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
+  <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
+  <classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/nadejako/s2-nadejako/0.7-SNAPSHOT/s2-nadejako-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/org/seasar/nadejako/s2-nadejako/0.7-SNAPSHOT/s2-nadejako-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/ognl/ognl/2.6.7/ognl-2.6.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/jstl/1.1.2/jstl-1.1.2.jar" sourcepath="M2_REPO/javax/servlet/jstl/1.1.2/jstl-1.1.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/teeda/teeda-tiger/1.0.6/teeda-tiger-1.0.6.jar" sourcepath="M2_REPO/org/seasar/teeda/teeda-tiger/1.0.6/teeda-tiger-1.0.6-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/poi/poi/2.5.1-final-20040804/poi-2.5.1-final-20040804.jar" sourcepath="M2_REPO/poi/poi/2.5.1-final-20040804/poi-2.5.1-final-20040804-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit-addons/junit-addons/1.4/junit-addons-1.4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/janino/janino/2.4.3/janino-2.4.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/freemarker/freemarker/2.3.6/freemarker-2.3.6.jar" sourcepath="M2_REPO/freemarker/freemarker/2.3.6/freemarker-2.3.6-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/dao/s2-dao/1.0.41-RC1/s2-dao-1.0.41-RC1.jar" sourcepath="M2_REPO/org/seasar/dao/s2-dao/1.0.41-RC1/s2-dao-1.0.41-RC1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar" sourcepath="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2.jar" sourcepath="M2_REPO/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-ejb_2.1_spec/1.0/geronimo-ejb_2.1_spec-1.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/teeda/teeda-ajax/1.0.6/teeda-ajax-1.0.6.jar" sourcepath="M2_REPO/org/seasar/teeda/teeda-ajax/1.0.6/teeda-ajax-1.0.6-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/teeda/teeda-core/1.0.6/teeda-core-1.0.6.jar" sourcepath="M2_REPO/org/seasar/teeda/teeda-core/1.0.6/teeda-core-1.0.6-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/nadejako/nadejako/0.7-SNAPSHOT/nadejako-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/org/seasar/nadejako/nadejako/0.7-SNAPSHOT/nadejako-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/buri/s2-buri/0.3.1/s2-buri-0.3.1.jar" sourcepath="M2_REPO/org/seasar/buri/s2-buri/0.3.1/s2-buri-0.3.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/teeda/teeda-extension/1.0.6/teeda-extension-1.0.6.jar" sourcepath="M2_REPO/org/seasar/teeda/teeda-extension/1.0.6/teeda-extension-1.0.6-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.0/geronimo-jta_1.1_spec-1.0.jar" sourcepath="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.0/geronimo-jta_1.1_spec-1.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/rhino/rhino/1.6r2/rhino-1.6r2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-extension/2.4.11/s2-extension-2.4.11.jar" sourcepath="M2_REPO/org/seasar/container/s2-extension/2.4.11/s2-extension-2.4.11-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.2/junit-3.8.2.jar" sourcepath="M2_REPO/junit/junit/3.8.2/junit-3.8.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/h2database/h2/1.0.20070304/h2-1.0.20070304.jar"/>
+  <classpathentry kind="var" path="M2_REPO/jboss/javassist/3.4.ga/javassist-3.4.ga.jar"/>
+  <classpathentry kind="var" path="M2_REPO/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar" sourcepath="M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-framework/2.4.11/s2-framework-2.4.11.jar" sourcepath="M2_REPO/org/seasar/container/s2-framework/2.4.11/s2-framework-2.4.11-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/coffee/s2-coffee-script/0.2.1/s2-coffee-script-0.2.1.jar" sourcepath="M2_REPO/org/seasar/coffee/s2-coffee-script/0.2.1/s2-coffee-script-0.2.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/dao/s2-dao-tiger/1.0.41-RC1/s2-dao-tiger-1.0.41-RC1.jar" sourcepath="M2_REPO/org/seasar/dao/s2-dao-tiger/1.0.41-RC1/s2-dao-tiger-1.0.41-RC1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-el/commons-el/1.0/commons-el-1.0.jar" sourcepath="M2_REPO/commons-el/commons-el/1.0/commons-el-1.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/coffee/s2-coffee/0.2.1/s2-coffee-0.2.1.jar" sourcepath="M2_REPO/org/seasar/coffee/s2-coffee/0.2.1/s2-coffee-0.2.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/jexcelapi/jxl/2.4.2/jxl-2.4.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-tiger/2.4.11/s2-tiger-2.4.11.jar" sourcepath="M2_REPO/org/seasar/container/s2-tiger/2.4.11/s2-tiger-2.4.11-sources.jar"/>
+</classpath>

@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>注文顧客選択</title>
+<link rel="stylesheet" type="text/css" href="../../css/global.css"/>
+</head>
+<body>
+<script type="text/javascript">
+function setIndex(name) {
+//  alert("hello");
+  var hidden = name.substring(0, name.lastIndexOf(':'));
+  var f = document.customerForm;
+  f.clickCustomerId.value = f[hidden + ':customerId'].value;
+}
+</script>
+	<h3 class="subTitle">注文処理 → 顧客選択</h3>
+	<h4>注文処理を行う顧客のボタンをクリックして下さい。</h4>
+	<form id="customerForm">
+	<span id="allMessage"/>
+	<input type="hidden" id="clickCustomerId"/>
+		<table id="customerGrid">
+			<thead>
+				<tr>
+					<th>顧客名</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td width="100">
+						<span id="customerName">hogehoge</span>
+					</td>
+					<td width="100">
+						<input type="submit" id="doCustomerSelect" value="選択する" onclick="setIndex(this.name)"/>
+					</td>
+					<td>
+						<input type="hidden" id="customerId"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<br/>	
+</body>
+</html>

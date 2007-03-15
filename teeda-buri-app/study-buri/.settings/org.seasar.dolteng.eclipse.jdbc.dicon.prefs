@@ -1,0 +1,9 @@
+#Wed Mar 14 04:44:47 JST 2007
+Charset=UTF-8
+ConnectionName=jdbc.dicon
+ConnectionUrl=jdbc\:h2\:tcp\://localhost\:9092/buriDB
+DriverClass=org.h2.Driver
+DriverPath=/C\:/dev/eclipse3.2.2/workspace/study-buri/src/main/webapp/WEB-INF/lib/h2-1.0.20061217.jar|
+Pass=buriburi
+User=buri
+eclipse.preferences.version=1

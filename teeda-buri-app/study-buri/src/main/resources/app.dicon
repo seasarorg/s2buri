@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="convention.dicon"/>
+	<include path="aop.dicon"/>
+	<include path="app_aop.dicon"/>
+	<include path="teedaExtension.dicon"/>
+	<include path="selectOneConstants.dicon"/>
+	<include path="dbsession.dicon"/>
+	<include path="dao.dicon"/>
+	<include path="dxo.dicon"/>
+	
+	<include path="buri/dicon/bao.dicon"/>
+
+	<component name="orderDataDto" class="example.org.seasar.buri.dto.OrderDataDto" instance="session" />
+
+</components>

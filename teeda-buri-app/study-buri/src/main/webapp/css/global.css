@@ -1,0 +1,23 @@
+th {
+	color:green;
+	text-align:left;
+}
+
+.subtitle {
+	color: red;
+}
+
+.gridHeader {
+}
+.gridTable {
+}
+.gridCell {
+}
+.gridCellEdit {
+}
+.row_odd {
+	background-color: white;
+}
+.row_even {
+	background-color: #FFDEAD;
+}

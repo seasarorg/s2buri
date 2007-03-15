@@ -1,0 +1,28 @@
+<projectDescription>
+  <name>study-buri</name>
+  <comment/>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.maven.ide.eclipse.maven2Builder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.seasar.kijimuna.core.builder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.seasar.kijimuna.core.validator</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.maven.ide.eclipse.maven2Nature</nature>
+    <nature>com.sysdeo.eclipse.tomcat.tomcatnature</nature>
+    <nature>org.seasar.kijimuna.core.nature</nature>
+    <nature>org.seasar.dolteng.eclipse.nature</nature>
+    <nature>org.seasar.diigu.eclipse.diiguNature</nature>
+    <nature>org.seasar.dblauncher.nature</nature>
+  </natures>
+</projectDescription>

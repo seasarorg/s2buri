@@ -1,0 +1,12 @@
+#Wed Mar 14 04:44:47 JST 2007
+DaoType=S2Dao
+DefaultDaoPackage=example.org.seasar.buri.dao
+DefaultDtoPackage=example.org.seasar.buri.dto
+DefaultEntityPackage=example.org.seasar.buri.entity
+DefaultResourcePath=/study-buri/src/main/resources
+DefaultSrcPath=/study-buri/src/main/java
+DefaultWebPackage=example.org.seasar.buri.web
+ServletPath=/study-buri
+WebContentsRoot=/src/main/webapp
+eclipse.preferences.version=1
+prefs.children=jdbc.dicon,
