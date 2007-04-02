@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<component name="Factory" class="org.seasar.coffee.script.impl.ScriptFactoryImpl">
+		<initMethod name="addScript">
+			<arg>"ognl"</arg>
+			<arg>
+				<component class="org.seasar.coffee.script.ognl.impl.OgnlScriptImpl">
+				</component>
+			</arg>
+		</initMethod>
+		<initMethod name="addScript">
+			<arg>"nadejako"</arg>
+			<arg>
+				<component class="org.seasar.coffee.script.nadejako.impl.NadejakoScriptImpl">
+				</component>
+			</arg>
+		</initMethod>
+		<initMethod name="addScript">
+			<arg>"なでじゃこ"</arg>
+			<arg>
+				<component class="org.seasar.coffee.script.nadejako.impl.NadejakoScriptImpl">
+				</component>
+			</arg>
+		</initMethod>
+	</component>
+	<component class="org.seasar.nadejako.adapter.s2.S2Context"/>
+</components>
