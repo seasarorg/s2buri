@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="BTS" Name="BTS" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2006-06-12 10:19:28</Created>
+</PackageHeader>
+<Participants>
+<Participant Id="BTS_par1" Name="システム管理者">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="BTS_par2" Name="開発者">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="BTS_par3" Name="不特定多数">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="BTS_par4" Name="Issue担当者">
+<ParticipantType Type="HUMAN"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="BTS_app1" Name="OgnlInvoker"/>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess Id="BTS_wp1" Name="プロジェクト管理">
+<ProcessHeader>
+<Created>2006-06-12 10:19:50</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="BTS_wp1_act1" Name="案件登録">
+<Implementation>
+<Tool Id="BTS_app1"/>
+</Implementation>
+<Performer>BTS_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="154,51"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp1_act2" Name="案件処理中">
+<Implementation>
+<Tool Id="BTS_app1"/>
+</Implementation>
+<Performer>BTS_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="344,52"/>
+<ExtendedAttribute Name="NOJOIN"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp1_act6" Name="案件終了">
+<Implementation>
+<Tool Id="BTS_app1"/>
+</Implementation>
+<Performer>BTS_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="576,52"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="BTS_wp1_act1" Id="BTS_wp1_tra1" To="BTS_wp1_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp1_act2" Id="BTS_wp1_tra2" To="BTS_wp1_act6">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="BTS_par1;BTS_par2"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="BTS_wp2" Name="Issue登録">
+<ProcessHeader>
+<Created>2006-06-12 15:09:27</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="BTS_wp2_act1" Name="Issue登録">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par3</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="83,75"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act2" Name="未対応Issue">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par3</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="BTS_wp2_tra10"/>
+<TransitionRef Id="BTS_wp2_tra2"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="237,79"/>
+<ExtendedAttribute Name="NOJOIN"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act3" Name="Issue内容確認">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par2</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="BTS_wp2_tra3"/>
+<TransitionRef Id="BTS_wp2_tra6"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="351,55"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act4" Name="再現しない">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par3</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="BTS_wp2_tra4"/>
+<TransitionRef Id="BTS_wp2_tra11"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="476,76"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act5" Name="再現方法登録">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par3</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="360,80"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act6" Name="担当者割り当て">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="501,49"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act7" Name="対応前">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par4</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par4"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="542,28"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act8" Name="対応中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par4</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par4"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="695,26"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act9" Name="完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par4</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par4"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="850,26"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="BTS_wp2_act10" Name="削除済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>BTS_par3</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="BTS_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="368,201"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="BTS_wp2_act1" Id="BTS_wp2_tra1" To="BTS_wp2_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act2" Id="BTS_wp2_tra2" To="BTS_wp2_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act3" Id="BTS_wp2_tra3" To="BTS_wp2_act4">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act4" Id="BTS_wp2_tra4" To="BTS_wp2_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act5" Id="BTS_wp2_tra5" To="BTS_wp2_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act3" Id="BTS_wp2_tra6" To="BTS_wp2_act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act6" Id="BTS_wp2_tra7" To="BTS_wp2_act7">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act7" Id="BTS_wp2_tra8" To="BTS_wp2_act8">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act8" Id="BTS_wp2_tra9" To="BTS_wp2_act9">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act2" Id="BTS_wp2_tra10" To="BTS_wp2_act10">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="BTS_wp2_act4" Id="BTS_wp2_tra11" To="BTS_wp2_act10">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="BTS_par4;BTS_par2;BTS_par3"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+</ExtendedAttributes>
+</Package>
