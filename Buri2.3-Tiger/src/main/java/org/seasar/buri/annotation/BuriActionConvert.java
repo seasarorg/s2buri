@@ -6,9 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface BuriConvert {
-	Class convertClass();
-
+@Target(ElementType.METHOD)
+public @interface BuriActionConvert {
 	String ognl();
 }

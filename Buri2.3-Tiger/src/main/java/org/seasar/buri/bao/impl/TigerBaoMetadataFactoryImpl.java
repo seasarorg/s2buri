@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.buri.annotation.BuriAction;
+import org.seasar.buri.annotation.BuriActionConvert;
 import org.seasar.buri.annotation.BuriActivity;
 import org.seasar.buri.annotation.BuriArgs;
 import org.seasar.buri.annotation.BuriConverter;
@@ -248,9 +249,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         }
     }
     protected void updateActionConverter(BaoInvokeMetadata invokeMetadata,MethodInvocation invoke) {
-    	org.seasar.buri.annotation.BuriConvert converter = getAnnotationByMethod(org.seasar.buri.annotation.BuriConvert.class, invoke);
-    	if(converter != null) {
-    		BuriConvert buriConvert = new BuriConvert(converter.convertClass(),converter.ognl());
+    	BuriActionConvert actionConvert = getAnnotationByMethod(BuriActionConvert.class,invoke);
+    	if(actionConvert != null) {
+    		BuriConvert buriConvert = new BuriConvert(null,actionConvert.ognl());
             invokeMetadata.setBuriConvert(buriConvert);
     		return;
     	}
@@ -263,7 +264,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     protected void updateResult(BaoInvokeMetadata invokeMetadata,MethodInvocation invoke) {
     	BuriResult result = getAnnotationByMethod(BuriResult.class, invoke);
     	if(result != null) {
-    		invokeMetadata.setAction(result.name());
+    		invokeMetadata.setResult(result.name());
     		return;
     	}
     	Object val = getMethodSignatureValue(invoke,RESULT);
