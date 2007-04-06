@@ -2,6 +2,10 @@ drop view BuriPathDataUser;
 
 drop view BuriPathData;
 
+drop view BuriPathHistoryDataUser;
+
+drop view BuriPathHistoryData;
+
 
 DROP TABLE BuriStateUser;
 

@@ -234,4 +234,59 @@ where
 ;
 
 
+create view BuriPathHistoryData as 
+select 
+	BuriPath.pathID as pathID
+	,BuriPath.PathName as PathName
+	,BuriPath.RealPathName as RealPathName
+	,BuriPath.pathType as pathType
+	,BuriData.pkeyNum as pkeyNum
+	,BuriData.pkeyVal as pkeyVal
+	,BuriData.dataType as dataType
+	,BuriData.dataID as dataID
+	,BuriState.StateID as StateID
+	,BuriState.autoRunTime as autoRunTime
+    ,BuriState.insertDate as insertDate
+    ,BuriState.autoRunTime as autoRunTime
+    ,BuriState.processDate as processDate
+    ,BuriState.abortDate as abortDate
+from
+	BuriPath
+	,BuriState
+	,BuriData
+where
+	BuriPath.pathID = BuriState.pathID
+	and BuriData.dataID = BuriState.dataID
+;
+
+
+create view BuriPathHistoryDataUser as 
+select
+	BuriPathData.pathID as pathID
+	,BuriPathData.PathName as PathName
+	,BuriPathData.RealPathName as RealPathName
+	,BuriPathData.pathType as pathType
+	,BuriPathData.pkeyNum as pkeyNum
+	,BuriPathData.pkeyVal as pkeyVal
+	,BuriPathData.dataType as dataType
+	,BuriPathData.dataID as dataID
+	,BuriPathData.StateID as StateID
+	,BuriPathData.autoRunTime as autoRunTime
+    ,BuriPathData.insertDate as insertDate
+    ,BuriPathData.autoRunTime as autoRunTime
+    ,BuriPathData.processDate as processDate
+    ,BuriPathData.abortDate as abortDate
+	,BuriUser.BuriUserID as BuriUserID
+	,BuriUser.UserIDVal as UserIDVal
+	,BuriUser.UserIDNum as UserIDNum
+from
+	BuriPathHistoryData as BuriPathData
+	,BuriStateUser
+	,BuriUser
+where
+	BuriPathData.StateID = BuriStateUser.StateID
+	and BuriUser.BuriUserID = BuriStateUser.BuriUserID
+	and BuriStateUser.deleteDate > CURRENT_TIMESTAMP
+;
+
 	
