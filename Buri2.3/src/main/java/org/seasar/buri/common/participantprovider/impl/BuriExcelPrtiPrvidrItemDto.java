@@ -56,7 +56,7 @@ public class BuriExcelPrtiPrvidrItemDto {
     }
 
     public String getItemKey() {
-        return id + "/" + name;
+        return id + "/" + ((name == null) ? "" : name);
     }
 
     @Override

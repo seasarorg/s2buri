@@ -20,6 +20,11 @@ import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
 import org.seasar.framework.container.S2Container;
 
+/**
+ * Excel上で権限主体に関する設定を一元管理する権限主体プロバイダです。
+ * 
+ * @author $Author$
+ */
 public class ExcelBaseParticipantProvider implements ParticipantProvider {
 
     private List<BuriExcelPrtiPrvidrRootDto> ppList = new ArrayList<BuriExcelPrtiPrvidrRootDto>();
@@ -81,10 +86,12 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
     public Object getUserData(IdentityInfo appUserId) {
         BuriExcelPrtiPrvidrRootDto dto = getRootDto();
         Map<String, Object> context = new HashMap<String, Object>();
-        context.put("userIDNum", appUserId.getIdNumber()); // deprecated
-        context.put("userIDVal", appUserId.getIdString()); // deprecated
-        context.put("userIDNumber", appUserId.getIdNumber());
-        context.put("userIDString", appUserId.getIdString());
+        context.put("userIDNum", appUserId.getIdNumber()); // FIXME:deprecated
+        context.put("userIDVal", appUserId.getIdString()); // FIXME:deprecated
+        context.put("userIDNumber", appUserId.getIdNumber()); // FIXME:deprecated
+        context.put("userIDString", appUserId.getIdString()); // FIXME:deprecated
+        context.put("userIdNumber", appUserId.getIdNumber());
+        context.put("userIdString", appUserId.getIdString());
         ScriptProcessor processor = new ScriptProcessor();
         Object obj = processor.getValue(dto.getConvObj(), container, context);
         return obj;
@@ -102,12 +109,15 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
     }
 
     private String getItemKey(ParticipantContext context) {
+        return getItemDto(context).getItemKey();
+    }
+
+    private BuriExcelPrtiPrvidrItemDto getItemDto(ParticipantContext context) {
         IdentityInfo appUserId = context.getCurrentUserId();
-        BuriExcelPrtiPrvidrItemDto itemDtoForKey = new BuriExcelPrtiPrvidrItemDto();
-        itemDtoForKey.setId(appUserId.getIdNumber());
-        itemDtoForKey.setName(appUserId.getIdString());
-        String itemKey = itemDtoForKey.getItemKey();
-        return itemKey;
+        BuriExcelPrtiPrvidrItemDto itemDto = new BuriExcelPrtiPrvidrItemDto();
+        itemDto.setId(appUserId.getIdNumber());
+        itemDto.setName(appUserId.getIdString());
+        return itemDto;
     }
 
     private List<BuriExcelPrtiPrvidrItemDto> findLeft(BuriExcelPrtiPrvidrItemDto itemDto,
@@ -135,11 +145,17 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
     }
 
     public List<IdentityInfo> getAuthorizedUserIds(ParticipantContext context) {
+        List<BuriExcelPrtiPrvidrItemDto> itemDtos = findParticipantName(context);
+        if (hasAuthority(context)) { // 実行ユーザも適切な権限を持つのであれば追加する
+            itemDtos.add(getItemDto(context));
+        }
         List<IdentityInfo> result = new ArrayList<IdentityInfo>();
-        for (BuriExcelPrtiPrvidrItemDto itemDto : findParticipantName(context)) {
+        for (BuriExcelPrtiPrvidrItemDto itemDto : itemDtos) {
             IdentityInfo info = new IdentityInfo();
             info.setIdNumber(itemDto.getId());
-            info.setIdString(itemDto.getName());
+            if (itemDto.getName() != null && !itemDto.getName().equals("")) { // nameなし対応
+                info.setIdString(itemDto.getName());
+            }
             result.add(info);
         }
         return result;
