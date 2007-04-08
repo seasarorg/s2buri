@@ -8,8 +8,12 @@ public class BuriNoPkeyDefine extends BuriException {
 
     private static final long serialVersionUID = 6208074045680634385L;
     
-    public BuriNoPkeyDefine(Object args) {
-        super("EBRI0014", new Object[]{args}, null);
+    public BuriNoPkeyDefine(String id) {
+        super("EBRI0005", new Object[]{id}, null);
+    }    
+    
+    public BuriNoPkeyDefine(String id,String str) {
+        super("EBRI0006", new Object[]{id,str}, null);
     }    
 
 }

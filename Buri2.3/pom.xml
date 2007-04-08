@@ -137,11 +137,6 @@
       <version>0.2.1</version>
     </dependency>
     <dependency>
-      <groupId>org.seasar.coffee</groupId>
-      <artifactId>s2-coffee</artifactId>
-      <version>0.2.1</version>
-    </dependency>
-    <dependency>
       <groupId>janino</groupId>
       <artifactId>janino</artifactId>
       <version>2.4.3</version>
@@ -232,6 +227,22 @@
       <artifactId>s2-nadejako</artifactId>
       <version>0.7-SNAPSHOT</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.6</version>
+    </dependency>
+    <dependency>
+      <groupId>jexcelapi</groupId>
+      <artifactId>jxl</artifactId>
+      <version>2.4.2</version>
     </dependency>
   </dependencies>
    <distributionManagement>
