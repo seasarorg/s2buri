@@ -348,25 +348,21 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         }
     }
     
-    protected void setupArgs(BaoFunctionMetadata fm,MethodInvocation invoke) {
-    	BuriArgs buriArgs = getAnnotationByMethod(BuriArgs.class, invoke);
-    	if(buriArgs != null) {
-            String[] args = convArgName(buriArgs.name(),invoke);
+    protected void setupArgs(BaoFunctionMetadata fm, MethodInvocation invoke) {
+        if (invoke.getArguments().length == 0) {
+            fm.setArgName(Arrays.asList(new String[0]));
+            return;
+        }
+        BuriArgs buriArgs = getAnnotationByMethod(BuriArgs.class, invoke);
+        if (buriArgs != null) {
+            String[] args = convArgName(buriArgs.name(), invoke);
             fm.setArgName(Arrays.asList(args));
-        } else {
-            if(invoke.getArguments().length == 0) {
-                fm.setArgName(Arrays.asList(new String[0]));
-            }
-        return;
-    	}    	
-    	Object val = getMethodSignatureValue(invoke,ARGS);
-        if(val!=null) {
-            String[] args = convArgName(val.toString(),invoke);
+            return;
+        }
+        Object val = getMethodSignatureValue(invoke, ARGS);
+        if (val != null) {
+            String[] args = convArgName(val.toString(), invoke);
             fm.setArgName(Arrays.asList(args));
-        } else {
-            if(invoke.getArguments().length == 0) {
-                fm.setArgName(Arrays.asList(new String[0]));
-            }
             return;
         }
     }
