@@ -24,6 +24,12 @@ import org.seasar.buri.util.packages.BuriExePackages;
 import org.seasar.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 
+/**
+ * ユーザ情報に関するユーティリティの実装クラスです。
+ * 
+ * @author $Author$
+ * @version $Revision$
+ */
 public class BuriUserUtilImpl implements BuriUserUtil {
 
     private BuriDataDao dataDao;
@@ -40,14 +46,16 @@ public class BuriUserUtilImpl implements BuriUserUtil {
             Long buriUserID = buriUserIDCache.get(userIDKey);
             return buriUserID.longValue();
         }
-        BuriUserEntityDto dto = convertBuriUserEntityDto(appUserId.getIdNumber(), appUserId
-            .getIdString());
+        BuriUserEntityDto dto = convertBuriUserEntityDto(appUserId.getIdNumber(),
+            appUserId.getIdString());
         buriUserIDCache.put(userIDKey, new Long(dto.getBuriUserID()));
         return dto.getBuriUserID();
     }
 
-    private BuriUserEntityDto convertBuriUserEntityDto(Long appUserIDNumber, String appUserIDString) {
-        BuriUserEntityDto dto = userDao.getBuriUserFromIds(appUserIDNumber, appUserIDString);
+    private BuriUserEntityDto convertBuriUserEntityDto(Long appUserIDNumber,
+            String appUserIDString) {
+        BuriUserEntityDto dto = userDao.getBuriUserFromIds(appUserIDNumber,
+            appUserIDString);
         if (dto == null) {
             dto = new BuriUserEntityDto();
             dto.setUserIDNum(appUserIDNumber);
@@ -66,7 +74,8 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         return resutlt;
     }
 
-    public Object getUserData(DataAccessFactory factory, long buriUserID, IdentityInfo appUserId) {
+    public Object getUserData(DataAccessFactory factory, long buriUserID,
+            IdentityInfo appUserId) {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
         if (appUserId.getIdNumber() == null && appUserId.getIdString() == null) {
@@ -77,30 +86,26 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         return provider.getUserData(appUserId);
     }
 
-    public List<IdentityInfo> getUserIds(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public List<IdentityInfo> getUserIds(DataAccessFactory factory,
+            BuriSystemContext sysContext, BranchWalker walker) {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
-        String appUserIdName = getRoleName(factory, walker);
-        String appUserIdType = getRoleName(factory, walker);
-        Object argData = sysContext.getUserContext().getData();
 
         BuriParticipantContext pc = new BuriParticipantContext();
-        pc.setParticipantName(appUserIdName);
-        pc.setParticipantType(appUserIdType);
         pc.setStartRoleName(sysContext.getStartRoleName());
         pc.setSystemContext(sysContext);
         pc.setUserContext(sysContext.getUserContext());
         pc.setWalker(walker);
-        pc.setData(argData);
+        pc.setData(sysContext.getUserContext().getData());
         pc.setProcess((BuriExecProcess) factory);
-        updateBuriParticipantContextUser(pc, sysContext, provider);
+        updateRoleInfo(pc);
+        updateCurrentUserId(pc, sysContext, provider);
 
         List<IdentityInfo> users = provider.getAuthorizedUserIds(pc);
         return users;
     }
 
-    private void updateBuriParticipantContextUser(BuriParticipantContext pc,
+    private void updateCurrentUserId(BuriParticipantContext pc,
             BuriSystemContext sysContext, ParticipantProvider provider) {
         Long insertUserID = getInsertUesrID(sysContext);
         Object userData = sysContext.getUserContext().getUserData();
@@ -127,17 +132,17 @@ public class BuriUserUtilImpl implements BuriUserUtil {
     }
 
     /**
-     * データが現在留まっているアクティビティに対応するロール名を返します。
+     * データが現在留まっているアクティビティに対応するロール名・種別を適用します。
      * @param factory
      * @param walker
      * @return
      */
-    private String getRoleName(DataAccessFactory factory, BranchWalker walker) {
-        BuriExecProcess process = (BuriExecProcess) factory;
-        String actId = (String) walker.getNowPath().getActivityId().get(0);
-        BuriActivityType actType = process.getBuriWorkflowProcessType().getActivityById(actId);
-        String appUserIdName = actType.getRoleName();
-        return appUserIdName;
+    private void updateRoleInfo(BuriParticipantContext pc) {
+        String actId = pc.getWalker().getNowPath().getActivityId().get(0);
+        BuriActivityType actType = pc.getProcess().getBuriWorkflowProcessType()
+            .getActivityById(actId);
+        pc.setParticipantName(actType.getRoleName());
+        pc.setParticipantType(actType.getRoleType());
     }
 
     /**
@@ -146,7 +151,8 @@ public class BuriUserUtilImpl implements BuriUserUtil {
      * @return
      */
     private Long getInsertUesrID(BuriSystemContext sysContext) {
-        BuriDataEntityDto dataEntityDto = dataDao.getBuriData(sysContext.getDataID().longValue());
+        BuriDataEntityDto dataEntityDto = dataDao.getBuriData(sysContext.getDataID()
+            .longValue());
         Long insertUserID = dataEntityDto.getInsertUserID();
         return insertUserID;
     }
