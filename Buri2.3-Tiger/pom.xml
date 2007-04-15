@@ -24,12 +24,14 @@
 		<version>0.3.1</version>
 		<scope>compile</scope>
 	</dependency>
+<!--
 	<dependency>
 		<groupId>org.seasar.coffee</groupId>
 		<artifactId>s2-coffee</artifactId>
 		<version>0.2.1</version>
 		<scope>compile</scope>
 	</dependency>
+-->
 	<dependency>
 		<groupId>org.seasar.coffee</groupId>
 		<artifactId>s2-coffee-script</artifactId>

@@ -12,14 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.aopalliance.intercept.MethodInvocation;
+import org.seasar.buri.annotation.Buri;
 import org.seasar.buri.annotation.BuriAction;
-import org.seasar.buri.annotation.BuriActionConvert;
+import org.seasar.buri.annotation.BuriActionConverter;
 import org.seasar.buri.annotation.BuriActivity;
 import org.seasar.buri.annotation.BuriArgs;
 import org.seasar.buri.annotation.BuriConverter;
-import org.seasar.buri.annotation.BuriProcess;
 import org.seasar.buri.annotation.BuriResult;
-import org.seasar.buri.annotation.BuriTargetDto;
 import org.seasar.buri.annotation.BuriUserInfo;
 import org.seasar.buri.annotation.BuriUserInfoClass;
 import org.seasar.buri.bao.BaoFunctionMetadata;
@@ -109,9 +108,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     }
     
     protected void updateProcess(BaoMetadata metadata,MethodInvocation invoke) {
-    	BuriProcess process = getAnnotationByClass(BuriProcess.class,invoke);
-    	if(process != null) {
-    		metadata.setProcess(process.name());
+    	Buri buri = getAnnotationByClass(Buri.class,invoke);
+    	if(buri != null) {
+    		metadata.setProcess(buri.process());
     		return;
     	}
         Object val = getSignatureValue(invoke,PROCESS);
@@ -125,12 +124,12 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     protected void updateUserInfo(BaoMetadata metadata,MethodInvocation invoke) {
     	BuriUserInfo userInfo = getAnnotationByClass(BuriUserInfo.class,invoke);
     	if(userInfo != null) {
-    		metadata.setUserInfo(userInfo.name());
+    		metadata.setUserInfo(userInfo.value());
     		return;
     	}
     	BuriUserInfoClass userInfoClass = getAnnotationByClass(BuriUserInfoClass.class,invoke);
     	if(userInfoClass != null) {
-    		metadata.setUserInfo(userInfoClass.userInfoClass());
+    		metadata.setUserInfo(userInfoClass.value());
     		return;
     	}
     	Object val = getSignatureValue(invoke,USERINFO);
@@ -148,7 +147,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     protected void updateGlobalConverter(BaoMetadata metadata,MethodInvocation invoke) {
     	BuriConverter converter = getAnnotationByClass(BuriConverter.class,invoke);
     	if(converter != null) {
-            org.seasar.buri.annotation.BuriConvert[] converters = converter.converter();
+            org.seasar.buri.annotation.BuriConversionRule[] converters = converter.value();
             for(int i=0;i < converters.length ; i++) {
             	BuriConvert buriConvert = new BuriConvert(converters[i].convertClass(),converters[i].ognl());
             	String className = classDefUtil.getClassName(converters[i].convertClass());
@@ -168,9 +167,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     }
     
     protected void updateTargetDto(BaoMetadata metadata,MethodInvocation invoke) {
-    	BuriTargetDto targetDto = getAnnotationByClass(BuriTargetDto.class,invoke);
-    	if(targetDto != null) {
-            metadata.setTargetDto(targetDto.dtoClass());
+    	Buri buri = getAnnotationByClass(Buri.class,invoke);
+    	if(buri != null) {
+            metadata.setTargetDto(buri.dtoClass());
             return;
     	}
     	Object val = getSignatureValue(invoke,TARGETDTO);
@@ -239,7 +238,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     protected void updateAction(BaoInvokeMetadata invokeMetadata,MethodInvocation invoke) {
     	BuriAction action = getAnnotationByMethod(BuriAction.class, invoke);
     	if(action != null) {
-    		invokeMetadata.setAction(action.name());
+    		invokeMetadata.setAction(action.value());
     		return;
     	}
     	Object val = getMethodSignatureValue(invoke,ACTION);
@@ -249,9 +248,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         }
     }
     protected void updateActionConverter(BaoInvokeMetadata invokeMetadata,MethodInvocation invoke) {
-    	BuriActionConvert actionConvert = getAnnotationByMethod(BuriActionConvert.class,invoke);
+    	BuriActionConverter actionConvert = getAnnotationByMethod(BuriActionConverter.class,invoke);
     	if(actionConvert != null) {
-    		BuriConvert buriConvert = new BuriConvert(null,actionConvert.ognl());
+    		BuriConvert buriConvert = new BuriConvert(null,actionConvert.value());
             invokeMetadata.setBuriConvert(buriConvert);
     		return;
     	}
@@ -264,7 +263,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     protected void updateResult(BaoInvokeMetadata invokeMetadata,MethodInvocation invoke) {
     	BuriResult result = getAnnotationByMethod(BuriResult.class, invoke);
     	if(result != null) {
-    		invokeMetadata.setResult(result.name());
+    		invokeMetadata.setResult(result.value());
     		return;
     	}
     	Object val = getMethodSignatureValue(invoke,RESULT);
@@ -332,7 +331,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
     protected void setupActivityName(BaoFunctionMetadata funcMetadata,MethodInvocation invoke) {
     	BuriActivity activity = getAnnotationByMethod(BuriActivity.class, invoke);
     	if(activity != null) {
-            String acts[] = activity.name().split(",");
+            String acts[] = activity.value().split(",");
             for(int i=0; i < acts.length ;i++) {
                 funcMetadata.addActivityNames(acts[i]);
             }
@@ -355,7 +354,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         }
         BuriArgs buriArgs = getAnnotationByMethod(BuriArgs.class, invoke);
         if (buriArgs != null) {
-            String[] args = convArgName(buriArgs.name(), invoke);
+            String[] args = convArgName(buriArgs.value(), invoke);
             fm.setArgName(Arrays.asList(args));
             return;
         }
