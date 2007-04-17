@@ -7,6 +7,7 @@ package org.seasar.buri.engine.selector.activityImpl;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.seasar.buri.dao.util.BuriUserUtil;
 import org.seasar.buri.engine.BuriSystemContext;
 import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
@@ -29,9 +30,11 @@ import org.seasar.buri.util.packages.BuriExecProcess;
  */
 public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelector {
 
+    private BuriUserUtil buriUserUtil;
+
     @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected void applyRule(Set<BuriActivityType> activities,
+            BuriSystemContext systemContext, BuriExecProcess execProcess) {
         Set<BuriActivityType> result = new HashSet<BuriActivityType>();
         BuriExePackages packages = execProcess.getBuriExePackages();
         ParticipantProvider provider = packages.getParticipantProvider();
@@ -40,6 +43,8 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
             pc.setParticipantName(actType.getRoleName());
             pc.setParticipantType(actType.getRoleType());
             pc.setCurrentUserId(systemContext.getAppUserId());
+            pc.setData(systemContext.getUserContext().getData());
+            pc.setStartUserId(buriUserUtil.getStartUserId(systemContext));
             if (provider.hasAuthority(pc)) {
                 result.add(actType);
             }
@@ -49,8 +54,8 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
     }
 
     @Override
-    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected boolean isTarget(Set<BuriActivityType> activities,
+            BuriSystemContext systemContext, BuriExecProcess execProcess) {
         if (activities.size() > 0) {
             BuriExePackages packages = execProcess.getBuriExePackages();
             if (packages.getParticipantProvider() != null) {
@@ -58,6 +63,10 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
             }
         }
         return false;
+    }
+
+    public void setBuriUserUtil(BuriUserUtil buriUserUtil) {
+        this.buriUserUtil = buriUserUtil;
     }
 
 }

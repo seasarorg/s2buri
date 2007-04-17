@@ -74,16 +74,22 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         return resutlt;
     }
 
-    public Object getUserData(DataAccessFactory factory, long buriUserID,
+    public Object getUserData(DataAccessFactory factory, long buriUserId,
             IdentityInfo appUserId) {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
         if (appUserId.getIdNumber() == null && appUserId.getIdString() == null) {
-            BuriUserEntityDto userDto = userDao.getBuriUser(buriUserID);
-            appUserId.setIdNumber(userDto.getUserIDNum());
-            appUserId.setIdString(userDto.getUserIDVal());
+            appUserId = convertAppUserId(buriUserId);
         }
         return provider.getUserData(appUserId);
+    }
+
+    private IdentityInfo convertAppUserId(long buriUserId) {
+        BuriUserEntityDto userDto = userDao.getBuriUser(buriUserId);
+        IdentityInfo appUserId = new IdentityInfo();
+        appUserId.setIdNumber(userDto.getUserIDNum());
+        appUserId.setIdString(userDto.getUserIDVal());
+        return appUserId;
     }
 
     public List<IdentityInfo> getUserIds(DataAccessFactory factory,
@@ -98,7 +104,8 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         pc.setWalker(walker);
         pc.setData(sysContext.getUserContext().getData());
         pc.setProcess((BuriExecProcess) factory);
-        updateRoleInfo(pc);
+        updateParticipantInfo(pc);
+        updateStartUserId(pc, sysContext);
         updateCurrentUserId(pc, sysContext, provider);
 
         List<IdentityInfo> users = provider.getAuthorizedUserIds(pc);
@@ -107,17 +114,16 @@ public class BuriUserUtilImpl implements BuriUserUtil {
 
     private void updateCurrentUserId(BuriParticipantContext pc,
             BuriSystemContext sysContext, ParticipantProvider provider) {
-        Long insertUserID = getInsertUesrID(sysContext);
         Object userData = sysContext.getUserContext().getUserData();
-        if (insertUserID != null) {
-            BuriUserEntityDto userDto = userDao.getBuriUser(insertUserID.longValue());
-            IdentityInfo insertUserId = new IdentityInfo();
-            insertUserId.setIdNumber(userDto.getUserIDNum());
-            insertUserId.setIdString(userDto.getUserIDVal());
-            pc.setStartUserId(insertUserId);
-        }
         IdentityInfo appUserId = provider.getUserId(userData);
         pc.setCurrentUserId(appUserId);
+    }
+
+    private void updateStartUserId(BuriParticipantContext pc, BuriSystemContext sysContext) {
+        IdentityInfo startUserId = getStartUserId(sysContext);
+        if (startUserId != null) {
+            pc.setStartUserId(startUserId);
+        }
     }
 
     /**
@@ -133,11 +139,9 @@ public class BuriUserUtilImpl implements BuriUserUtil {
 
     /**
      * データが現在留まっているアクティビティに対応するロール名・種別を適用します。
-     * @param factory
-     * @param walker
-     * @return
+     * @param pc
      */
-    private void updateRoleInfo(BuriParticipantContext pc) {
+    private void updateParticipantInfo(BuriParticipantContext pc) {
         String actId = pc.getWalker().getNowPath().getActivityId().get(0);
         BuriActivityType actType = pc.getProcess().getBuriWorkflowProcessType()
             .getActivityById(actId);
@@ -146,15 +150,17 @@ public class BuriUserUtilImpl implements BuriUserUtil {
     }
 
     /**
-     * 最初にデータを追加したユーザIDを返します。
-     * @param sysContext
-     * @return
+     * (オーバライド)
+     * @see org.seasar.buri.dao.util.BuriUserUtil#getStartUserId(org.seasar.buri.engine.BuriSystemContext)
      */
-    private Long getInsertUesrID(BuriSystemContext sysContext) {
+    public IdentityInfo getStartUserId(BuriSystemContext sysContext) {
         BuriDataEntityDto dataEntityDto = dataDao.getBuriData(sysContext.getDataID()
             .longValue());
-        Long insertUserID = dataEntityDto.getInsertUserID();
-        return insertUserID;
+        Long insertBuriUserId = dataEntityDto.getInsertUserID();
+        if (insertBuriUserId == null) {
+            return null;
+        }
+        return convertAppUserId(insertBuriUserId);
     }
 
     public BuriDataDao getDataDao() {
