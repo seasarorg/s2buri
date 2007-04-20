@@ -6,7 +6,7 @@
 	
 	<component class="org.seasar.buri.common.util.ClassDefUtilImpl">
 	</component>
-	<component class="org.seasar.buri.bao.impl.BaoMetadataFactoryImpl">
+	<component class="org.seasar.buri.bao.impl.TigerBaoMetadataFactoryImpl">
 	</component>
 	<component class="org.seasar.buri.bao.interceptor.BaoInvokerImpl">
 	</component>
