@@ -19,30 +19,30 @@ import example.org.seasar.buri.dto.OrderInfoDto;
 @BuriConverter( { @BuriConversionRule(convertClass = Long.class, ognl = "OrderInfoDao.getOrderInfo(#data)") })
 public interface OrderBao {
 
-	@BuriActivity("出荷作業中")
-	public List getUnderWork();
+    @BuriActivity("出荷作業中")
+    public List getUnderWork();
 
-	@BuriActivity("出荷終了")
-	public List getEndShipping();
+    @BuriActivity("出荷終了")
+    public List getEndShipping();
 
-	@BuriActivity("終了")
-	public List getOrderEnd();
+    @BuriActivity("終了")
+    public List getOrderEnd();
 
-	@BuriActivity("キャンセル終了")
-	public List getOrderCancelEnd();
+    @BuriActivity("キャンセル終了")
+    public List getOrderCancelEnd();
 
-	@BuriActivity("注文")
-	public void order(OrderInfoDto dto);
+    @BuriActivity("注文")
+    public void order(OrderInfoDto dto);
 
-	@BuriActivity("出荷作業中")
-	public void endShipping(long orderID);
+    @BuriActivity("出荷作業中")
+    public void endShipping(long orderID);
 
-	@BuriActivity("出荷終了")
-	public void endBill(long orderID);
+    @BuriActivity("出荷終了")
+    public void endBill(long orderID);
 
-	@BuriActivity("出荷作業中,出荷終了")
-	@BuriAction("cancel")
-	@BuriResult("#cancelStatus")
-	public String cancel(long orderID);
+    @BuriActivity( { "出荷作業中", "出荷終了" })
+    @BuriAction("cancel")
+    @BuriResult("#cancelStatus")
+    public String cancel(long orderID);
 
 }
