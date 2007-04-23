@@ -1,9 +1,9 @@
 package example.org.seasar.buri.web.customer;
 
-import java.util.List;
-
 import example.org.seasar.buri.dao.CustomerDao;
+import example.org.seasar.buri.dto.CustomerDto;
 import example.org.seasar.buri.dto.OrderDataDto;
+import example.org.seasar.buri.dxo.CustomerDxo;
 import example.org.seasar.buri.web.item.ItemSelectPage;
 
 public class CustomerSelectPage {
@@ -16,9 +16,11 @@ public class CustomerSelectPage {
 
 	private int customerIndex;
 
-	private List customerItems;
+	private CustomerDto[] customerItems;
 
 	private String customerName;
+
+	private CustomerDxo customerDxo;
 
 	/**
 	 * 
@@ -49,11 +51,11 @@ public class CustomerSelectPage {
 		this.customerIndex = customerIndex;
 	}
 
-	public List getCustomerItems() {
+	public CustomerDto[] getCustomerItems() {
 		return this.customerItems;
 	}
 
-	public void setCustomerItems(List customerItems) {
+	public void setCustomerItems(CustomerDto[] customerItems) {
 		this.customerItems = customerItems;
 	}
 
@@ -92,7 +94,8 @@ public class CustomerSelectPage {
 	}
 
 	public String prerender() {
-		this.setCustomerItems(getCustomerDao().getAllCustomer());
+		this.setCustomerItems(customerDxo.convert(getCustomerDao()
+				.getAllCustomer()));
 		return null;
 	}
 
@@ -104,4 +107,11 @@ public class CustomerSelectPage {
 		this.orderDataDto = orderDataDto;
 	}
 
+	public void setCustomerDxo(CustomerDxo customerDxo) {
+		this.customerDxo = customerDxo;
+	}
+
+	public CustomerDxo getCustomerDxo() {
+		return this.customerDxo;
+	}
 }

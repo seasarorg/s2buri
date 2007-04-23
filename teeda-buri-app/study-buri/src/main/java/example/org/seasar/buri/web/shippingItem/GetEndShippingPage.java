@@ -77,7 +77,7 @@ public class GetEndShippingPage {
 
 	public String prerender() {
 		this.shippingItemItems = shippingItemDxo.convert(shippingItemBao
-				.getItemWaiting());
+				.getEndShipping());
 		return null;
 	}
 

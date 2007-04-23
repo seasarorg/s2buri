@@ -6,36 +6,31 @@ package example.org.seasar.buri.bao;
 
 import java.util.List;
 
+import org.seasar.buri.annotation.Buri;
+import org.seasar.buri.annotation.BuriActivity;
+
 import example.org.seasar.buri.dto.BillDto;
 import example.org.seasar.buri.dto.ShippingSetDto;
 
+@Buri(process = "注文管理.請求", dtoClass = BillDto.class)
 public interface BillBao {
-	public static Class TARGETDTO = BillDto.class;
 
-	public static String PROCESS = "注文管理.請求";
-
-	public static String getBillWaiting_ACTIVITY = "請求作業";
-
+	@BuriActivity("請求作業")
 	public List getBillWaiting();
 
-	public static String getReBill_ACTIVITY = "再請求準備";
-
+	@BuriActivity("再請求準備")
 	public List getReBill();
 
-	public static String getEndBill_ACTIVITY = "請求終了";
-
+	@BuriActivity("請求終了")
 	public List getEndBill();
 
-	public static String enterBill_ACTIVITY = "請求依頼";
-
+	@BuriActivity("請求依頼")
 	public void enterBill(ShippingSetDto dto);
 
-	public static String bill_ACTIVITY = "請求作業";
-
+	@BuriActivity("請求作業")
 	public void bill(BillDto dto);
 
-	public static String checkPayment_ACTIVITY = "再請求準備";
-
+	@BuriActivity("再請求準備")
 	public void checkPayment(BillDto dto);
 
 }

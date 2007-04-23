@@ -12,7 +12,9 @@
 	<include path="dxo.dicon"/>
 	
 	<include path="buri/dicon/bao.dicon"/>
+<!--
 	<include path="buri/dicon/buriTimer.dicon"/>
+-->
 
 	<component name="orderDataDto" class="example.org.seasar.buri.dto.OrderDataDto" instance="session" />
 

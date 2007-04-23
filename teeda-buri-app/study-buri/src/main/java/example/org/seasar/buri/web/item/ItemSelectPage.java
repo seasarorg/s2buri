@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import example.org.seasar.buri.dao.ItemDao;
-import example.org.seasar.buri.dto.ItemDto;
 import example.org.seasar.buri.dto.OrderDataDto;
+import example.org.seasar.buri.dxo.ItemSelectPageDxo;
 import example.org.seasar.buri.web.order.OrderPage;
 
 public class ItemSelectPage {
@@ -23,6 +23,8 @@ public class ItemSelectPage {
 	private String itemName;
 
 	private long price;
+
+	private ItemSelectPageDxo itemSelectPageDxo;
 
 	/**
 	 * 
@@ -115,17 +117,20 @@ public class ItemSelectPage {
 
 	public String prerender() {
 		if (itemItems == null) {
-			List results = getItemDao().getAllItem();
-			itemItems = new ItemPageListDto[results.size()];
-			for (int i = 0; i < results.size(); i++) {
-				ItemDto dto = (ItemDto) results.get(i);
-				ItemPageListDto listDto = new ItemPageListDto();
-				listDto.setChecks(false);
-				listDto.setItemId(dto.getItemID());
-				listDto.setItemName(dto.getItemName());
-				listDto.setPrice(dto.getPrice());
-				this.itemItems[i] = listDto;
-			}
+			this.itemItems = itemSelectPageDxo.convert(getItemDao()
+					.getAllItem());
+			//
+			// List results = getItemDao().getAllItem();
+			// itemItems = new ItemPageListDto[results.size()];
+			// for (int i = 0; i < results.size(); i++) {
+			// ItemDto dto = (ItemDto) results.get(i);
+			// ItemPageListDto listDto = new ItemPageListDto();
+			// listDto.setChecks(false);
+			// listDto.setItemId(dto.getItemID());
+			// listDto.setItemName(dto.getItemName());
+			// listDto.setPrice(dto.getPrice());
+			// this.itemItems[i] = listDto;
+			// }
 		}
 		return null;
 	}
@@ -136,6 +141,14 @@ public class ItemSelectPage {
 
 	public void setOrderDataDto(OrderDataDto orderDataDto) {
 		this.orderDataDto = orderDataDto;
+	}
+
+	public void setItemSelectPageDxo(ItemSelectPageDxo itemSelectPageDxo) {
+		this.itemSelectPageDxo = itemSelectPageDxo;
+	}
+
+	public ItemSelectPageDxo getItemSelectPageDxo() {
+		return this.itemSelectPageDxo;
 	}
 
 }

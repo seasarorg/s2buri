@@ -94,6 +94,7 @@ public class GetItemWatingPage {
 	}
 
 	public String doEndShippingSelect() {
+		System.out.println("ShippingItemID:=" + clickShippingItemId);
 		shippingItemBao.endShipping(shippingItemDao
 				.getShippingItem(clickShippingItemId));
 		return null;
