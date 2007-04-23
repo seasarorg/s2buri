@@ -1,9 +1,9 @@
 package example.org.seasar.buri.web.shippingItem;
 
-import java.util.List;
-
 import example.org.seasar.buri.bao.ShippingItemBao;
 import example.org.seasar.buri.dao.ShippingItemDao;
+import example.org.seasar.buri.dto.ShippingItemDto;
+import example.org.seasar.buri.dxo.ShippingItemDxo;
 
 public class GetItemWatingPage {
 
@@ -17,9 +17,11 @@ public class GetItemWatingPage {
 
 	private int shippingItemIndex;
 
-	private List shippingItemItems;
+	private ShippingItemDto[] shippingItemItems;
 
 	private long clickShippingItemId;
+
+	private ShippingItemDxo shippingItemDxo;
 
 	/**
 	 * 
@@ -58,11 +60,11 @@ public class GetItemWatingPage {
 		this.shippingItemIndex = shippingItemIndex;
 	}
 
-	public List getShippingItemItems() {
+	public ShippingItemDto[] getShippingItemItems() {
 		return this.shippingItemItems;
 	}
 
-	public void setShippingItemItems(List shippingItemItems) {
+	public void setShippingItemItems(ShippingItemDto[] shippingItemItems) {
 		this.shippingItemItems = shippingItemItems;
 	}
 
@@ -86,13 +88,14 @@ public class GetItemWatingPage {
 	}
 
 	public String prerender() {
-		this.setShippingItemItems(shippingItemBao.getItemWaiting());
+		this.shippingItemItems = shippingItemDxo.convert(shippingItemBao
+				.getItemWaiting());
 		return null;
 	}
 
 	public String doEndShippingSelect() {
-		System.out.println("DoEndShipping:=" + shippingItemIndex);
-		shippingItemBao.endShipping(shippingItemDao.getShippingItem(clickShippingItemId));
+		shippingItemBao.endShipping(shippingItemDao
+				.getShippingItem(clickShippingItemId));
 		return null;
 	}
 
@@ -110,6 +113,14 @@ public class GetItemWatingPage {
 
 	public void setClickShippingItemId(long clickShippingItemId) {
 		this.clickShippingItemId = clickShippingItemId;
+	}
+
+	public void setShippingItemDxo(ShippingItemDxo shippingItemDxo) {
+		this.shippingItemDxo = shippingItemDxo;
+	}
+
+	public ShippingItemDxo getShippingItemDxo() {
+		return this.shippingItemDxo;
 	}
 
 }

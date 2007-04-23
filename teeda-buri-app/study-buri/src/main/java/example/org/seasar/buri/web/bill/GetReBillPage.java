@@ -1,10 +1,11 @@
 package example.org.seasar.buri.web.bill;
 
 import java.util.Date;
-import java.util.List;
 
 import example.org.seasar.buri.bao.BillBao;
 import example.org.seasar.buri.dao.BillDao;
+import example.org.seasar.buri.dto.BillDto;
+import example.org.seasar.buri.dxo.BillDxo;
 
 public class GetReBillPage {
 
@@ -16,7 +17,7 @@ public class GetReBillPage {
 
 	private int billIndex;
 
-	private List billItems;
+	private BillDto[] billItems;
 
 	private long customerID;
 
@@ -25,6 +26,8 @@ public class GetReBillPage {
 	private long shippingID;
 
 	private long clickBillId;
+
+	private BillDxo billDxo;
 
 	/**
 	 * 
@@ -55,11 +58,11 @@ public class GetReBillPage {
 		this.billIndex = billIndex;
 	}
 
-	public List getBillItems() {
+	public BillDto[] getBillItems() {
 		return this.billItems;
 	}
 
-	public void setBillItems(List billItems) {
+	public void setBillItems(BillDto[] billItems) {
 		this.billItems = billItems;
 	}
 
@@ -89,7 +92,7 @@ public class GetReBillPage {
 
 	public String doCheckPayment() {
 		System.out.println("clickBillId:=" + clickBillId);
-		 billBao.checkPayment(billDao.getBill(clickBillId));
+		billBao.checkPayment(billDao.getBill(clickBillId));
 		return null;
 	}
 
@@ -113,7 +116,7 @@ public class GetReBillPage {
 	}
 
 	public String prerender() {
-		this.setBillItems(billBao.getReBill());
+		this.setBillItems(billDxo.convert(billBao.getReBill()));
 		return null;
 	}
 
@@ -131,6 +134,14 @@ public class GetReBillPage {
 
 	public void setClickBillId(long clickBillId) {
 		this.clickBillId = clickBillId;
+	}
+
+	public void setBillDxo(BillDxo billDxo) {
+		this.billDxo = billDxo;
+	}
+
+	public BillDxo getBillDxo() {
+		return this.billDxo;
 	}
 
 }

@@ -24,7 +24,12 @@
 	</component>
 	
 	<component name="daoSupportAspectCustomizer" class="org.seasar.framework.container.customizer.AspectCustomizer">
-		<property name="interceptorName">"dao.interceptor"</property>
+		<initMethod name="addInterceptorName">
+			<arg>"j2ee.requiredTx"</arg>
+		</initMethod>
+		<initMethod name="addInterceptorName">
+			<arg>"dao.interceptor"</arg>
+		</initMethod>
 	</component>
 
 	<component name="daoCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">

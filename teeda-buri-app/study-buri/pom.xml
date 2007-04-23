@@ -24,12 +24,14 @@
 		<version>0.3.1</version>
 		<scope>compile</scope>
 	</dependency>
+<!--
 	<dependency>
 		<groupId>org.seasar.coffee</groupId>
 		<artifactId>s2-coffee</artifactId>
 		<version>0.2.1</version>
 		<scope>compile</scope>
 	</dependency>
+-->
 	<dependency>
 		<groupId>org.seasar.coffee</groupId>
 		<artifactId>s2-coffee-script</artifactId>
@@ -144,6 +146,36 @@
       <version>1.0.20070304</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derby</artifactId>
+      <version>10.1.2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbynet</artifactId>
+      <version>10.1.2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbytools</artifactId>
+      <version>10.1.2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbyclient</artifactId>
+      <version>10.1.2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbyLocale_ja_JP</artifactId>
+      <version>10.1.2.1</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -161,10 +193,10 @@
   			<artifactId>build-helper-maven-plugin</artifactId>
   			<executions>
   				<execution>
-  					<id>add-source</id>
+  					<id>add-test-source</id>
   					<phase>generate-sources</phase>
   					<goals>
-  						<goal>add-source</goal>
+  						<goal>add-test-source</goal>
   					</goals>
   					<configuration>
   						<sources>

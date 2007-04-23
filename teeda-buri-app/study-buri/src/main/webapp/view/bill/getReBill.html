@@ -9,6 +9,7 @@ function setIndex(name) {
   var hidden = name.substring(0, name.lastIndexOf(':'));
   var f = document.billForm;
   f.clickBillId.value = f[hidden + ':billId'].value;
+  alert("請求ID:=" + f.clickBillId.value)
 }
 </script>
 	<h3 class="subTitle">再請求準備分</h3>
@@ -23,6 +24,7 @@ function setIndex(name) {
 					<th>出荷ID</th>
 					<th>注文ID</th>
 					<th>顧客ID</th>
+					<th>請求ID</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -43,6 +45,9 @@ function setIndex(name) {
 					</td>
 					<td width="100">
 						<span id="customerID">1</span>
+					</td>
+					<td width="100">
+						<span id="billId">1</span>
 					</td>
 					<td>
 						<input type="submit" id="doCheckPayment" value="請求完了" onclick="setIndex(this.name)"/>

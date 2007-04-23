@@ -11,6 +11,7 @@ function setIndex(name) {
   var hidden = name.substring(0, name.lastIndexOf(':'));
   var f = document.customerForm;
   f.clickCustomerId.value = f[hidden + ':customerId'].value;
+  alert("顧客ID:=" + f.clickCustomerId.value);
 }
 </script>
 	<h3 class="subTitle">注文処理 → 顧客選択</h3>
@@ -22,6 +23,7 @@ function setIndex(name) {
 			<thead>
 				<tr>
 					<th>顧客名</th>
+					<th>顧客ID</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -30,6 +32,9 @@ function setIndex(name) {
 				<tr>
 					<td width="100">
 						<span id="customerName">hogehoge</span>
+					</td>
+					<td width="100">
+						<span id="customerId">1</span>
 					</td>
 					<td width="100">
 						<input type="submit" id="doCustomerSelect" value="選択する" onclick="setIndex(this.name)"/>

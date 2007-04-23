@@ -1,10 +1,11 @@
 package example.org.seasar.buri.web.bill;
 
 import java.util.Date;
-import java.util.List;
 
 import example.org.seasar.buri.bao.BillBao;
 import example.org.seasar.buri.dao.BillDao;
+import example.org.seasar.buri.dto.BillDto;
+import example.org.seasar.buri.dxo.BillDxo;
 
 public class GetBillWatingPage {
 
@@ -16,7 +17,7 @@ public class GetBillWatingPage {
 
 	private int billIndex;
 
-	private List billItems;
+	private BillDto[] billItems;
 
 	private long customerID;
 
@@ -25,6 +26,8 @@ public class GetBillWatingPage {
 	private long shippingID;
 
 	private long clickBillId;
+
+	private BillDxo billDxo;
 
 	/**
 	 * 
@@ -55,11 +58,11 @@ public class GetBillWatingPage {
 		this.billIndex = billIndex;
 	}
 
-	public List getBillItems() {
+	public BillDto[] getBillItems() {
 		return this.billItems;
 	}
 
-	public void setBillItems(List billItems) {
+	public void setBillItems(BillDto[] billItems) {
 		this.billItems = billItems;
 	}
 
@@ -112,7 +115,7 @@ public class GetBillWatingPage {
 	}
 
 	public String prerender() {
-		this.setBillItems(billBao.getBillWaiting());
+		this.setBillItems(billDxo.convert(billBao.getBillWaiting()));
 		return null;
 	}
 
@@ -130,6 +133,14 @@ public class GetBillWatingPage {
 
 	public void setClickBillId(long clickBillId) {
 		this.clickBillId = clickBillId;
+	}
+
+	public void setBillDxo(BillDxo billDxo) {
+		this.billDxo = billDxo;
+	}
+
+	public BillDxo getBillDxo() {
+		return this.billDxo;
 	}
 
 }

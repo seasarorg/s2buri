@@ -1,10 +1,11 @@
 package example.org.seasar.buri.web.bill;
 
 import java.util.Date;
-import java.util.List;
 
 import example.org.seasar.buri.bao.BillBao;
 import example.org.seasar.buri.dao.BillDao;
+import example.org.seasar.buri.dto.BillDto;
+import example.org.seasar.buri.dxo.BillDxo;
 
 public class GetEndBillPage {
 
@@ -16,13 +17,15 @@ public class GetEndBillPage {
 
 	private int billIndex;
 
-	private List billItems;
+	private BillDto[] billItems;
 
 	private long customerID;
 
 	private long orderTitleID;
 
 	private long shippingID;
+
+	private BillDxo billDxo;
 
 	/**
 	 * 
@@ -53,11 +56,11 @@ public class GetEndBillPage {
 		this.billIndex = billIndex;
 	}
 
-	public List getBillItems() {
+	public BillDto[] getBillItems() {
 		return this.billItems;
 	}
 
-	public void setBillItems(List billItems) {
+	public void setBillItems(BillDto[] billItems) {
 		this.billItems = billItems;
 	}
 
@@ -105,7 +108,7 @@ public class GetEndBillPage {
 	}
 
 	public String prerender() {
-		this.setBillItems(billBao.getEndBill());
+		this.setBillItems(billDxo.convert(billBao.getEndBill()));
 		return null;
 	}
 
@@ -115,6 +118,14 @@ public class GetEndBillPage {
 
 	public void setBillBao(BillBao billBao) {
 		this.billBao = billBao;
+	}
+
+	public void setBillDxo(BillDxo billDxo) {
+		this.billDxo = billDxo;
+	}
+
+	public BillDxo getBillDxo() {
+		return this.billDxo;
 	}
 
 }

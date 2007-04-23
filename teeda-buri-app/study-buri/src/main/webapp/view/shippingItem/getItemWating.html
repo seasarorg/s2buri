@@ -10,6 +10,7 @@ function setIndex(name) {
   var hidden = name.substring(0, name.lastIndexOf(':'));
   var f = document.shippingItemForm;
   f.clickShippingItemId.value = f[hidden + ':shippingItemId'].value;
+  alert("出荷詳細ID:=" + f.clickShippingItemId.value);
 }
 </script>
 	<h3 class="subTitle">出荷作業中(商品準備中)</h3>
@@ -22,6 +23,7 @@ function setIndex(name) {
 					<th>ID</th>
 					<th>注文詳細ID</th>
 					<th>出荷ID</th>
+					<th>出荷詳細ID</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -36,6 +38,9 @@ function setIndex(name) {
 					</td>
 					<td width="100">
 						<span id="shippingId">1</span>
+					</td>
+					<td width="100">
+						<span id="shippingItemId">1</span>
 					</td>
 					<td>
 						<input type="submit" id="doEndShippingSelect" value="出荷準備完了" onclick="setIndex(this.name)"/>
