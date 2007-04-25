@@ -247,7 +247,6 @@ select
 	,BuriState.StateID as StateID
 	,BuriState.autoRunTime as autoRunTime
     ,BuriState.insertDate as insertDate
-    ,BuriState.autoRunTime as autoRunTime
     ,BuriState.processDate as processDate
     ,BuriState.abortDate as abortDate
 from
@@ -273,7 +272,6 @@ select
 	,BuriPathData.StateID as StateID
 	,BuriPathData.autoRunTime as autoRunTime
     ,BuriPathData.insertDate as insertDate
-    ,BuriPathData.autoRunTime as autoRunTime
     ,BuriPathData.processDate as processDate
     ,BuriPathData.abortDate as abortDate
 	,BuriUser.BuriUserID as BuriUserID
