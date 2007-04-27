@@ -62,9 +62,9 @@ public interface BuriUserUtil {
     Object getUserData(DataAccessFactory factory, long buriUserId, IdentityInfo appUserId);
 
     /**
-     * 最初にデータを追加したユーザIDを返します。
+     * フロー上に最初にデータを追加したアプリケーション管理上のユーザIDを返します。
      * @param sysContext
      * @return
      */
-    IdentityInfo getStartUserId(BuriSystemContext sysContext);
+    IdentityInfo getInsertUserId(BuriSystemContext sysContext);
 }

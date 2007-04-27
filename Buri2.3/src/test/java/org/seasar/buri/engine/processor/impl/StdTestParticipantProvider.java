@@ -5,12 +5,10 @@
 package org.seasar.buri.engine.processor.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.seasar.buri.dao.BuriTestUserDao;
 import org.seasar.buri.dto.BuriTestUserDto;
-import org.seasar.buri.engine.BuriParticipantContext;
 import org.seasar.buri.engine.IdentityInfo;
 import org.seasar.buri.engine.ParticipantContext;
 import org.seasar.buri.engine.ParticipantProvider;
@@ -49,66 +47,46 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     }
 
     public List<IdentityInfo> getAuthorizedUserIds(ParticipantContext context) {
-        BuriParticipantContext buriContext = (BuriParticipantContext) context;
-        Long idNum = context.getCurrentUserId().getIdNumber();
+        Long currentUserIdNumber = context.getCurrentUserId().getIdNumber();
         String roleName = context.getParticipantName();
+        String startRoleName = context.getStartRoleName();
+
         // 上の方を探す
-        List roleList = userDao.getUserListByParentUserID(idNum, roleName);
+        List<BuriTestUserDto> roleList = userDao.getUserListByParentUserID(currentUserIdNumber, roleName);
         if (!roleName.equals("無関係")) {
-            if (roleList.size() == 0) {
+            if (roleList.isEmpty()) {
                 //一段下を探す
-                roleList = userDao.getUserListByUserID(idNum, roleName);
+                roleList = userDao.getUserListByUserID(currentUserIdNumber, roleName);
             }
-            if (roleList.size() == 0 && roleName.equals("下っ端")
-                    && buriContext.getStartRoleName().equals("一番上")) {
+            if (roleList.size() == 0 && roleName.equals("下っ端") && startRoleName.equals("一番上")) {
                 //一番上と下っ端が対象の場合もう一段下を探す
-                List mannaka = userDao.getUserListByParentUserID(idNum, "真ん中");
-                Iterator ite = mannaka.iterator();
-                while (ite.hasNext()) {
-                    BuriTestUserDto dto = (BuriTestUserDto) ite.next();
-                    List tmpList = userDao.getUserListByParentUserID(new Long(dto.getUserID()),
-                        roleName);
+                List<BuriTestUserDto> mannaka = userDao.getUserListByParentUserID(currentUserIdNumber, "真ん中");
+                for (BuriTestUserDto dto : mannaka) {
+                    List<BuriTestUserDto> tmpList = userDao.getUserListByParentUserID(new Long(dto.getUserID()), roleName);
                     roleList.addAll(tmpList);
                 }
             }
-            if (roleList.size() == 0 && roleName.equals("真ん中")
-                    && buriContext.getStartRoleName().equals("下っ端")) {
-                List selfData = userDao.getUserListByUserID(idNum, "下っ端");
-                Iterator ite = selfData.iterator();
-                while (ite.hasNext()) {
-                    BuriTestUserDto dto = (BuriTestUserDto) ite.next();
-                    List tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()),
-                        roleName);
+            if (roleList.size() == 0 && roleName.equals("真ん中") && startRoleName.equals("下っ端")) {
+                List<BuriTestUserDto> selfData = userDao.getUserListByUserID(currentUserIdNumber, "下っ端");
+                for (BuriTestUserDto dto : selfData) {
+                    List<BuriTestUserDto> tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()), roleName);
                     roleList.addAll(tmpList);
                 }
-
             }
-            if (roleList.size() == 0 && roleName.equals("一番上")
-                    && buriContext.getStartRoleName().equals("真ん中")) {
-                List selfData = userDao.getUserListByUserID(idNum, "真ん中");
-                Iterator ite = selfData.iterator();
-                while (ite.hasNext()) {
-                    BuriTestUserDto dto = (BuriTestUserDto) ite.next();
-                    List tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()),
-                        roleName);
+            if (roleList.size() == 0 && roleName.equals("一番上") && startRoleName.equals("真ん中")) {
+                List<BuriTestUserDto> selfData = userDao.getUserListByUserID(currentUserIdNumber, "真ん中");
+                for (BuriTestUserDto dto : selfData) {
+                    List<BuriTestUserDto> tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()), roleName);
                     roleList.addAll(tmpList);
                 }
-
             }
-
         }
-        List<IdentityInfo> result = new ArrayList<IdentityInfo>();
-        Iterator ite = roleList.iterator();
-        while (ite.hasNext()) {
-            BuriTestUserDto dto = (BuriTestUserDto) ite.next();
-            IdentityInfo appUserId = getUserId(dto);
-            result.add(appUserId);
+        List<IdentityInfo> result = new ArrayList<IdentityInfo>(roleList.size());
+        for (BuriTestUserDto dto : roleList) {
+            result.add(getUserId(dto));
         }
-        if (result.size() == 0) {
-            IdentityInfo appUserId = new IdentityInfo();
-            appUserId.setIdNumber(null);
-            appUserId.setIdString("無関係");
-            result.add(appUserId);
+        if (result.isEmpty()) {
+            result.add(new IdentityInfo(null, "無関係"));
         }
         return result;
     }

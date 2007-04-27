@@ -33,18 +33,21 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
     private BuriUserUtil buriUserUtil;
 
     @Override
-    protected void applyRule(Set<BuriActivityType> activities,
-            BuriSystemContext systemContext, BuriExecProcess execProcess) {
+    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         Set<BuriActivityType> result = new HashSet<BuriActivityType>();
         BuriExePackages packages = execProcess.getBuriExePackages();
         ParticipantProvider provider = packages.getParticipantProvider();
         for (BuriActivityType actType : activities) {
             ParticipantContext pc = new ParticipantContext();
+            pc.setInsertUserId(buriUserUtil.getInsertUserId(systemContext));
+            pc.setCurrentUserId(systemContext.getAppUserId());
+            pc.setCurrentUserData(systemContext.getUserContext().getUserData());
+            pc.setStartRoleName(systemContext.getStartRoleName());
             pc.setParticipantName(actType.getRoleName());
             pc.setParticipantType(actType.getRoleType());
-            pc.setCurrentUserId(systemContext.getAppUserId());
             pc.setData(systemContext.getUserContext().getData());
-            pc.setStartUserId(buriUserUtil.getStartUserId(systemContext));
+            pc.setProcess(execProcess);
+            pc.setUserContext(systemContext.getUserContext());
             if (provider.hasAuthority(pc)) {
                 result.add(actType);
             }
@@ -54,8 +57,7 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
     }
 
     @Override
-    protected boolean isTarget(Set<BuriActivityType> activities,
-            BuriSystemContext systemContext, BuriExecProcess execProcess) {
+    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         if (activities.size() > 0) {
             BuriExePackages packages = execProcess.getBuriExePackages();
             if (packages.getParticipantProvider() != null) {
