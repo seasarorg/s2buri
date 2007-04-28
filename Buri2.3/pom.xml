@@ -31,7 +31,7 @@
           </execution>
         </executions>
       </plugin>
-      <!-- 
+      <!--
        [SQLを簡単にderbyに流すための暫定手段(by nobeans)]
         下のコメントをはずして、mvn process-test-resourcesを実行するとdb/buri配下にderbyのデータが
         作成されます。既存のデータがあっても大丈夫だと思います。
@@ -144,7 +144,12 @@
     <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao</artifactId>
-      <version>1.0.40</version>
+      <version>1.0.41</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seasar.dao</groupId>
+      <artifactId>s2-dao-tiger</artifactId>
+      <version>1.0.41</version>
     </dependency>
     <dependency>
       <groupId>geronimo-spec</groupId>
