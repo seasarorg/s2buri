@@ -7,11 +7,11 @@ package org.seasar.buri.compiler.util.impl.rules;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
-
 import org.seasar.buri.common.util.BuriConfiguration;
 import org.seasar.buri.common.util.ClassDefUtil;
 import org.seasar.buri.common.util.ClassDefUtilImpl;
 import org.seasar.buri.oouo.internal.structure.BuriDataFieldType;
+import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -22,18 +22,18 @@ import org.seasar.framework.util.StringUtil;
 public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     protected String daoKeyName = "s2dao";
     public final String DAOKEY = "dao";
-    
+
     private BuriConfiguration configuration;
     private S2Container container;
     private ClassDefUtil classDefUtil;
-    
+
     public boolean getRequiredRule(BuriDataFieldType src) {
         if(hasName(src,"preprocess")) {
             return false;
         }
         return true;
     }
-    
+
     public boolean isRequiredNegotiate(BuriDataFieldType src) {
         if(src.getKeys().size() == 0 ) {
             return true;
@@ -53,19 +53,19 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return false;
     }
-    
+
     public boolean fstCheckProcess(BuriDataFieldType src) {
         if( ! isRequiredNegotiate(src)) {
             return false;
         }
         if(src.getCache().containsKey(daoKeyName)) {
-            
+
         } else if(hasName(src,DAOKEY)) {
             src.getCache().put(daoKeyName,getNameVal(src,DAOKEY));
         }
         return true;
     }
-    
+
     public boolean process(BuriDataFieldType src) {
 //        if( ! src.getCache().containsKey(daoKeyName) ) {
 //            return false;
@@ -74,7 +74,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
             return false;
         }
         negotiateDao(src);
-        
+
         src.getCache().put(daoKeyName + "_end",Boolean.TRUE);
         return false;
     }
@@ -86,7 +86,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
             src.getCache().put(daoKeyName,daoName);
             Class daoClass = container.getRoot().getComponentDef(daoName).getComponentClass();
             pkeySetup(src);
-            
+
             if(src.getKeys().size()==1) {
                 String keyName = src.getKeys().keySet().toArray()[0].toString();
                 BeanDesc beanDesc = BeanDescFactory.getBeanDesc(ClassUtil.forName(dtoClassName));
@@ -96,9 +96,9 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
                 findAndSetupAllMethod(src,beanDesc,daoClass);
             }
         }
-        
+
     }
-    
+
     protected void findAndSetupAllMethod(BuriDataFieldType src,BeanDesc beanDesc,Class daoClass) {
         Method methods[] = daoClass.getMethods();
         for(int i=0; i < methods.length ; i++) {
@@ -111,18 +111,18 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
             insertSetup(src,method,methodName,beanDesc);
         }
     }
-    
+
     protected void selectManySetup(BuriDataFieldType src,Method method,String methodName,BeanDesc beanDesc) {
         if( ! StringUtil.isEmpty(src.getSelectMany())) {
             return;
         }
-        
+
         if(isSelectManyMethod(src,method,methodName)) {
             String daoName = src.getCache().get(daoKeyName).toString();
             src.setSelectMany(daoName+"."+methodName+"(#data)");
         }
     }
-    
+
     protected boolean isSelectManyMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("get") || methodName.startsWith("select")) {
             if(method.getParameterTypes().length == 1) {
@@ -133,18 +133,18 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return false;
     }
-    
+
     protected void deleteSetup(BuriDataFieldType src,Method method,String methodName,BeanDesc beanDesc) {
         if( ! StringUtil.isEmpty(src.getDelete())) {
             return;
         }
-        
+
         if(isDeleteMethod(src,method,methodName)) {
             String daoName = src.getCache().get(daoKeyName).toString();
             src.setDelete(daoName+"."+methodName+"(#data)");
         }
     }
-    
+
     protected boolean isDeleteMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("del")) {
             if(method.getParameterTypes().length == 1) {
@@ -156,18 +156,18 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return false;
     }
-    
+
     protected void updateSetup(BuriDataFieldType src,Method method,String methodName,BeanDesc beanDesc) {
         if( ! StringUtil.isEmpty(src.getUpdate())) {
             return;
         }
-        
+
         if(isUpdateMethod(src,method,methodName)) {
             String daoName = src.getCache().get(daoKeyName).toString();
             src.setUpdate(daoName+"."+methodName+"(#data)");
         }
     }
-    
+
     protected boolean isUpdateMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("update")) {
             if(method.getParameterTypes().length == 1) {
@@ -179,18 +179,18 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return false;
     }
-    
+
     protected void insertSetup(BuriDataFieldType src,Method method,String methodName,BeanDesc beanDesc) {
         if( ! StringUtil.isEmpty(src.getInsert())) {
             return;
         }
-        
+
         if(isInsertMethod(src,method,methodName)) {
             String daoName = src.getCache().get(daoKeyName).toString();
             src.setInsert(daoName+"."+methodName+"(#data)");
         }
     }
-    
+
     protected boolean isInsertMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("insert")) {
             if(method.getParameterTypes().length == 1) {
@@ -202,19 +202,19 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return false;
     }
-    
+
     protected void selectSetup(BuriDataFieldType src,Method method,String methodName,BeanDesc beanDesc) {
         if( ! StringUtil.isEmpty(src.getSelect()) ) {
             return;
         }
-        
+
         if(isSelectMethod(src,method,methodName)) {
             String keyName = src.getCache().get(daoKeyName + "_KeyName").toString();
             String daoName = src.getCache().get(daoKeyName).toString();
             src.setSelect(daoName+"."+methodName+"(#data."+keyName+")");
         }
     }
-    
+
     protected boolean isSelectMethod(BuriDataFieldType src,Method method,String methodName) {
         if(methodName.startsWith("get") || methodName.startsWith("select")) {
             if(method.getParameterTypes().length == 1) {
@@ -226,7 +226,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return false;
     }
-    
+
     protected void pkeySetup(BuriDataFieldType src) {
         if(src.getKeys().size() > 0 || hasName(src,"pkey") ) {
             return;
@@ -234,6 +234,20 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         Class tgt = ClassUtil.forName(src.getId());
         BeanDesc bd = BeanDescFactory.getBeanDesc(tgt);
         int propLen = bd.getPropertyDescSize();
+        //s2Dao-Tiger、IDアノテーションチェック
+        for(int i=0; i < propLen ; i++ ) {
+            PropertyDesc pd = bd.getPropertyDesc(i);
+            Method writeMethod = null;
+            if( (writeMethod = pd.getWriteMethod()) != null) {
+                Id id = (Id)writeMethod.getAnnotation(Id.class);
+                if(id != null) {
+                    String condition = createPkeyCondition(pd);
+                    src.getKeys().put(pd.getPropertyName(),condition);
+                    return;
+                }
+            }
+        }
+        //IDアノテーションがない場合、定数アノテーションチェック
         for(int i=0; i < propLen ; i++ ) {
             PropertyDesc pd = bd.getPropertyDesc(i);
             Object sig = classDefUtil.getMethodSignatureValue(tgt,"_ID",pd.getPropertyName());
@@ -243,7 +257,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
             }
         }
     }
-    
+
     protected String createPkeyCondition(PropertyDesc pd) {
         String condition = null;
         String pkeyName = pd.getPropertyName();
@@ -257,8 +271,8 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return condition;
     }
-    
-    
+
+
     protected String getDaoName(BuriDataFieldType src,String dtoClassName) {
         String dao = null;
         String shtName = createDaoName(src,dtoClassName);
@@ -272,9 +286,9 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return dao;
     }
-    
-    
-    
+
+
+
     protected String findDaoClass(String shtName,String dtoClassName) {
         String dao = null;
         List daoPackageName = configuration.getValList("DaoPackageName");
@@ -294,7 +308,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         */
         return dao;
     }
-    
+
     /*
     protected String genarateDaoClass(String shtName,String dtoClassName) {
         Class tgtClass = ClassUtil.forName(dtoClassName);
@@ -304,7 +318,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         return packageName;
     }
     */
-    
+
     protected String classNameToDao(String fullName) {
         String dao = null;
         if(ClassDefUtilImpl.isClassName(fullName)) {
@@ -315,7 +329,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         }
         return dao;
     }
-    
+
     protected String createDaoName(BuriDataFieldType src,String dtoClassName) {
         if(hasName(src,DAOKEY)) {
             return getNameVal(src,DAOKEY);
@@ -355,5 +369,5 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
     public void setClassDefUtil(ClassDefUtil classDefUtil) {
         this.classDefUtil = classDefUtil;
     }
-    
+
 }
