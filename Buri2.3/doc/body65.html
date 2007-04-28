@@ -22,30 +22,21 @@ ParticipantProviderは「userData」と「XPDLのParticipant」の相互チェックの<BR>
 ために必要なクラス。<BR>
 ParticipantProviderインタフェースをimplementsする。<BR>
 <BR>
-必要なメソッドは<BR>
+必要なメソッドは以下の4つです。<BR>
 <BR>
-boolean isUserInRole(Object userData,String participantName,String participantType);<BR>
-userDataがXPDLで指定したparticipantNameに一致しているかをチェックする<BR>
+IdentityInfo getUserId(Object userData);<BR>
+userDataからIdentityInfo型のIDを取得する。<BR>
 <BR>
-String getUserIDString(Object userData,String participantType);<BR>
-userDataから文字列のIDを取得する。文字列のIDが無いときはnullを返す<BR>
+Object getUserData(IdentityInfo appUserId);<BR>
+上記のメソッドの戻り値からuserDataを再現する。<BR>
 <BR>
-Long getUserIDNum(Object userData,String participantType);<BR>
-userDataからLong型のIDを取得する。Long型のIDが無いときはnullを返す<BR>
-<BR>
-Object getUserData(Long userIDNum,String userIDString);<BR>
-上記二つのメソッドの戻り値からuserDataを再現する。<BR>
-<BR>
-boolean hasRoleUser(ParticipantContext context);<BR>
-ある権限のユーザが存在しているかどうかを確認する。<BR>
+boolean hasAuthority(ParticipantContext context);<BR>
+ユーザがアクティビティの実行に必要な権限を持っているかどうかを確認する。<BR>
 その時に使う情報はParticipantContextから取得可能です。<BR>
 ぶりの場合にはBuriParticipantContextが渡されます<BR>
 <BR>
-RoleInfo getSingleUser(ParticipantContext context);<BR>
-ある権限の特定のユーザを取得する。RoleInfoはUserIDStringとUserIDNumが組み合わされたものです。<BR>
-<BR>
-List getUser(ParticipantContext context);<BR>
-ある権限の特定のユーザの一覧を取得する。リストの中身はRoleInfoです<BR>
+List&lt;IdentityInfo&gt; getAuthorizedUserIds(ParticipantContext context);<BR>
+ある権限の特定のユーザの一覧を取得する。<BR>
 <BR>
 <BR>
 buri2.dicon上に追加登録してreadWorkFlowFromResourceの3番目の引数に設定することで利用可能になります。<BR>

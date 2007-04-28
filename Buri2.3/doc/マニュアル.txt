@@ -1551,30 +1551,21 @@ ParticipantProviderは「userData」と「XPDLのParticipant」の相互チェックの
 ために必要なクラス。
 ParticipantProviderインタフェースをimplementsする。
 
-必要なメソッドは
+必要なメソッドは以下の4つです。
 
-boolean isUserInRole(Object userData,String participantName,String participantType);
-userDataがXPDLで指定したparticipantNameに一致しているかをチェックする
+IdentityInfo getUserId(Object userData);
+userDataからIdentityInfo型のIDを取得する。
 
-String getUserIDString(Object userData,String participantType);
-userDataから文字列のIDを取得する。文字列のIDが無いときはnullを返す
+Object getUserData(IdentityInfo appUserId);
+上記のメソッドの戻り値からuserDataを再現する。
 
-Long getUserIDNum(Object userData,String participantType);
-userDataからLong型のIDを取得する。Long型のIDが無いときはnullを返す
-
-Object getUserData(Long userIDNum,String userIDString);
-上記二つのメソッドの戻り値からuserDataを再現する。
-
-boolean hasRoleUser(ParticipantContext context);
-ある権限のユーザが存在しているかどうかを確認する。
+boolean hasAuthority(ParticipantContext context);
+ユーザがアクティビティの実行に必要な権限を持っているかどうかを確認する。
 その時に使う情報はParticipantContextから取得可能です。
 ぶりの場合にはBuriParticipantContextが渡されます
 
-RoleInfo getSingleUser(ParticipantContext context);
-ある権限の特定のユーザを取得する。RoleInfoはUserIDStringとUserIDNumが組み合わされたものです。
-
-List getUser(ParticipantContext context);
-ある権限の特定のユーザの一覧を取得する。リストの中身はRoleInfoです
+List<IdentityInfo> getAuthorizedUserIds(ParticipantContext context);
+ある権限の特定のユーザの一覧を取得する。
 
 
 buri2.dicon上に追加登録してreadWorkFlowFromResourceの3番目の引数に設定することで利用可能になります。
@@ -1663,9 +1654,9 @@ BuriPathDataUser
 ぶり内部のIDを扱うのは意外と大変なのでParticipantProviderで取得できる値で処理することをお勧めします
 
 手順的なヒントは
-・ParticipantProviderのgetSingleUserを作ります
-・RoleInfoを取得します
-・BuriUserUtilのconvUserIDListFromRoleInfosでRoleInfoのListを渡すとIDの一覧が帰ってきます。
+・ParticipantProviderのgetAuthroizedUserIdsを作ります。
+・IdentityInfoを取得します。
+・BuriUserUtilのconvertBuriUserIdsでIdentityInfoのListを渡すとIDの一覧が返ってきます。
 これをSQLでin句に渡すとOKです
 
 4-5 AOP

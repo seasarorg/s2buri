@@ -31,9 +31,9 @@ BuriPathDataUser<BR>
 ぶり内部のIDを扱うのは意外と大変なのでParticipantProviderで取得できる値で処理することをお勧めします<BR>
 <BR>
 手順的なヒントは<BR>
-・ParticipantProviderのgetSingleUserを作ります<BR>
-・RoleInfoを取得します<BR>
-・BuriUserUtilのconvUserIDListFromRoleInfosでRoleInfoのListを渡すとIDの一覧が帰ってきます。<BR>
+・ParticipantProviderのgetAuthroizedUserIdsを作ります<BR>
+・IdentityInfoを取得します<BR>
+・BuriUserUtilのconvertBuriUserIdsでIdentityInfoのListを渡すとIDの一覧が返ってきます。<BR>
 これをSQLでin句に渡すとOKです<BR>
 
 </P></BLOCKQUOTE>
