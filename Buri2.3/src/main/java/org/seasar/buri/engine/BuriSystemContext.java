@@ -26,7 +26,7 @@ public class BuriSystemContext {
     private IdentityInfo appUserId;
     private Long buriUserID;
     private Long statusID;
-    private String startRoleName;
+    private String startParticipantName;
     private List<String> activityNames;
     private List<String> afterCallMethods = new ArrayList<String>();
     private RuntimeException exception;
@@ -168,10 +168,10 @@ public class BuriSystemContext {
     }
 
     /**
-     * 現在のコンテキストで対象としているデータの開始アクティビティのロール名を返します。
+     * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を返します。
      * <p>
      * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが
-     * 所属するスイムレーンのロール名を返します。
+     * 所属するスイムレーンの権限主体名を返します。
      * </p>
      * <p>
      * 「開始アクティビティ」とは以下のアクティビティを指します。
@@ -182,15 +182,15 @@ public class BuriSystemContext {
      * </p>
      * @return
      */
-    public String getStartRoleName() {
-        return startRoleName;
+    public String getStartParticipantName() {
+        return startParticipantName;
     }
 
     /**
-     * 現在のコンテキストで対象としているデータの開始アクティビティのロール名を設定します。
+     * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を設定します。
      * <p>
      * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが
-     * 所属するスイムレーンのロール名を返します。
+     * 所属するスイムレーンの権限主体名を返します。
      * </p>
      * <p>
      * 「開始アクティビティ」とは以下のアクティビティを指します。
@@ -199,10 +199,10 @@ public class BuriSystemContext {
      * <li>既にフロー中にあるデータの場合は、フローを再開させたときの最初のアクティビティ</li>
      * </ul>
      * </p>
-     * @param startRoleName
+     * @param startParticipantName
      */
-    public void setStartRoleName(String startRoleName) {
-        this.startRoleName = startRoleName;
+    public void setStartParticipantName(String startParticipantName) {
+        this.startParticipantName = startParticipantName;
     }
 
     /**
@@ -271,7 +271,7 @@ public class BuriSystemContext {
         buff.append("/appUserId=").append(appUserId);
         buff.append("/statusID=").append(statusID);
         buff.append("/targetDtoClass=").append(targetDtoClass);
-        buff.append("/startRoleName=").append(startRoleName);
+        buff.append("/startParticipantName=").append(startParticipantName);
         buff.append("/activityNames=").append(activityNames);
         buff.append("/afterCallMethods=").append(afterCallMethods);
         buff.append("/exception=").append(exception);

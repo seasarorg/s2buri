@@ -113,7 +113,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
     }
 
     private BuriExcelPrtiPrvidrItemDto getItemDto(ParticipantContext context) {
-        IdentityInfo appUserId = context.getCurrentUserId();
+        IdentityInfo appUserId = context.getUserId();
         BuriExcelPrtiPrvidrItemDto itemDto = new BuriExcelPrtiPrvidrItemDto();
         itemDto.setId(appUserId.getIdNumber());
         itemDto.setName(appUserId.getIdString());

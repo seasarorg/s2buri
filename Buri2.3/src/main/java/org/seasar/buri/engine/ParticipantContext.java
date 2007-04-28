@@ -13,12 +13,13 @@ import org.seasar.buri.util.packages.BuriExecProcess;
  */
 public class ParticipantContext {
 
-    private IdentityInfo insertUserId;
-    private IdentityInfo currentUserId;
-    private Object currentUserData;
-    private String startRoleName;
-
     private Object data;
+
+    private IdentityInfo insertUserId;
+    private IdentityInfo userId;
+    private Object userData;
+
+    private String startParticipantName;
     private String participantName;
     private String participantType;
 
@@ -48,17 +49,17 @@ public class ParticipantContext {
      * 
      * @return
      */
-    public IdentityInfo getCurrentUserId() {
-        return currentUserId;
+    public IdentityInfo getUserId() {
+        return userId;
     }
 
     /**
      * 現在のユーザIDを設定します。
      * 
-     * @param currentAppUserId
+     * @param appUserId
      */
-    public void setCurrentUserId(IdentityInfo currentAppUserId) {
-        this.currentUserId = currentAppUserId;
+    public void setUserId(IdentityInfo appUserId) {
+        this.userId = appUserId;
     }
 
     /**
@@ -66,8 +67,8 @@ public class ParticipantContext {
      * 
      * @return
      */
-    public Object getCurrentUserData() {
-        return currentUserData;
+    public Object getUserData() {
+        return userData;
     }
 
     /**
@@ -75,15 +76,15 @@ public class ParticipantContext {
      * 
      * @param userData
      */
-    public void setCurrentUserData(Object userData) {
-        this.currentUserData = userData;
+    public void setUserData(Object userData) {
+        this.userData = userData;
     }
 
     /**
-     * 現在のコンテキストで対象としているデータの開始アクティビティのロール名を返します。
+     * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を返します。
      * <p>
      * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが
-     * 所属するスイムレーンのロール名を返します。
+     * 所属するスイムレーンの権限主体名を返します。
      * </p>
      * <p>
      * ここでの「開始アクティビティ」とは以下のアクティビティを指します。
@@ -94,15 +95,15 @@ public class ParticipantContext {
      * </p>
      * @return
      */
-    public String getStartRoleName() {
-        return startRoleName;
+    public String getStartParticipantName() {
+        return startParticipantName;
     }
 
     /**
-     * 現在のコンテキストで対象としているデータの開始アクティビティのロール名を設定します。
+     * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を設定します。
      * <p>
      * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが
-     * 所属するスイムレーンのロール名を返します。
+     * 所属するスイムレーンの権限主体名を返します。
      * </p>
      * <p>
      * ここでの「開始アクティビティ」とは以下のアクティビティを指します。
@@ -111,10 +112,10 @@ public class ParticipantContext {
      * <li>既にフロー中にあるデータの場合は、フローを再開させたときの最初のアクティビティ</li>
      * </ul>
      * </p>
-     * @param startRoleName
+     * @param startParticipantName
      */
-    public void setStartRoleName(String startRoleName) {
-        this.startRoleName = startRoleName;
+    public void setStartParticipantName(String startParticipantName) {
+        this.startParticipantName = startParticipantName;
     }
 
     /**
@@ -214,11 +215,11 @@ public class ParticipantContext {
     @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
-        buff.append("insertUserId=").append(insertUserId);
-        buff.append("/currentUserId=").append(currentUserId);
-        buff.append("/currentUserData=").append(currentUserData);
-        buff.append("/startRoleName=").append(startRoleName);
-        buff.append("/data=").append(data);
+        buff.append("data=").append(data);
+        buff.append("/insertUserId=").append(insertUserId);
+        buff.append("/userId=").append(userId);
+        buff.append("/userData=").append(userData);
+        buff.append("/startParticipantName=").append(startParticipantName);
         buff.append("/participantName=").append(participantName);
         buff.append("/participantType=").append(participantType);
         buff.append("/process=").append(process);

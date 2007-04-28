@@ -16,21 +16,24 @@ import jp.starlogic.util.datetime.DateUtil;
 import org.seasar.buri.common.util.MultiValueMap;
 
 public class BuriWorkflowProcessType {
+    
+    private static final String SEP = System.getProperty("line.separator");
+    
     private String id;
     private String name;
-    private Map rolesId = new HashMap();
-    private MultiValueMap rolesName = new MultiValueMap();
-    private Map data = new HashMap();
-    private Map applicationId = new HashMap();
-    private MultiValueMap applicationName = new MultiValueMap();
-    private Map activityById = new HashMap();
-    private MultiValueMap activityByName = new MultiValueMap();
-    private List transition = new ArrayList();
-    private MultiValueMap transitionByFrom = new MultiValueMap();
-    private MultiValueMap transitionByTo = new MultiValueMap();
-    private List startActivitys = new ArrayList();
-    private List ExtentedAttribute = new ArrayList();
-    private Map activitySetId = new HashMap();
+    private Map participantsById = new HashMap();
+    private MultiValueMap participantsByName = new MultiValueMap();
+    private Map datasById = new HashMap();
+    private Map applicationsById = new HashMap();
+    private MultiValueMap applicationsByName = new MultiValueMap();
+    private Map activitiesById = new HashMap();
+    private MultiValueMap activitiesByName = new MultiValueMap();
+    private List transitions = new ArrayList();
+    private MultiValueMap transitionsByFrom = new MultiValueMap();
+    private MultiValueMap transitionsByTo = new MultiValueMap();
+    private List startActivities = new ArrayList();
+    private List extentedAttributes = new ArrayList();
+    private Map activitySetsById = new HashMap();
     private BuriValidFromType fromType;
     private BuriValidToType toType;
     private Date validFrom;
@@ -58,111 +61,111 @@ public class BuriWorkflowProcessType {
         this.name = name;
     }
     
-    public static final String addRoles_ELEMENT = "Participant";
-    public void addRoles(BuriParticipantType participant) {
-        rolesId.put(participant.getId(),participant);
-        rolesName.put(participant.getName(),participant);
+    public static final String addParticipant_ELEMENT = "Participant";
+    public void addParticipant(BuriParticipantType participant) {
+        participantsById.put(participant.getId(),participant);
+        participantsByName.put(participant.getName(),participant);
     }
     
-    public List getRolesByName(String roleName) {
-        return rolesName.get(roleName);
+    public List getParticipantsByName(String participantName) {
+        return participantsByName.get(participantName);
     }
     
-    public BuriParticipantType getRolesById(String roleId) {
-        if(rolesId.containsKey(roleId)) {
-            return (BuriParticipantType)rolesId.get(roleId);
+    public BuriParticipantType getParticipantById(String participantId) {
+        if(participantsById.containsKey(participantId)) {
+            return (BuriParticipantType)participantsById.get(participantId);
         }
-        return packageType.getRolesById(roleId);
+        return packageType.getParticipantById(participantId);
     }
     
     public static final String addApplication_ELEMENT = "Application";
     public void addApplication(BuriApplicationType app) {
-        applicationId.put(app.getId(),app);
-        applicationName.put(app.getName(),app);
+        applicationsById.put(app.getId(),app);
+        applicationsByName.put(app.getName(),app);
     }
     
     public BuriApplicationType getApplicationById(String appId) {
-        if(applicationId.containsKey(appId)) {
-            return (BuriApplicationType)applicationId.get(appId);
+        if(applicationsById.containsKey(appId)) {
+            return (BuriApplicationType)applicationsById.get(appId);
         }
         return packageType.getApplicationById(appId);
     }
     
     public List getApplicationByName(String appName) {
-        return applicationName.get(appName);
+        return applicationsByName.get(appName);
     }
     
     public static final String addDataField_ELEMENT = "DataField";
     public void addDataField(BuriDataFieldType dataField) {
-        data.put(dataField.getId(),dataField);
+        datasById.put(dataField.getId(),dataField);
     }
     
     public BuriDataFieldType getDataFieldById(String dataId) {
-        if(data.containsKey(dataId)) {
-            return (BuriDataFieldType)data.get(dataId);
+        if(datasById.containsKey(dataId)) {
+            return (BuriDataFieldType)datasById.get(dataId);
         }
         return packageType.getDataFieldById(dataId);
     }
     
     public Map getDataField() {
-        return data;
+        return datasById;
     }
     
     public static final String addExtendedAttribute_ELEMENT = "ExtendedAttribute";
     public void addExtendedAttribute(BuriExtendedAttributeType attri) {
-        ExtentedAttribute.add(attri);
+        extentedAttributes.add(attri);
     }
     
     public List getExtentedAttribute() {
-        return ExtentedAttribute;
+        return extentedAttributes;
     }
     
     public static final String addActivity_ELEMENT = "Activity";
     public void addActivity(BuriActivityType act) {
-        activityById.put(act.getId(),act);
-        activityByName.put(act.getName(),act);
+        activitiesById.put(act.getId(),act);
+        activitiesByName.put(act.getName(),act);
     }
     
     public BuriActivityType getActivityById(String actId) {
-        return (BuriActivityType)activityById.get(actId);
+        return (BuriActivityType)activitiesById.get(actId);
     }
     
     public List getActivityByName(String actName) {
-        return activityByName.get(actName);
+        return activitiesByName.get(actName);
     }
     
     public Map getActivityById() {
-        return activityById;
+        return activitiesById;
     }
 
     public static final String addTransition_ELEMENT = "Transition";
     public void addTransition(BuriTransitionType transition) {
-        this.transition.add(transition);
-        transitionByFrom.put(transition.getFrom(),transition);
-        transitionByTo.put(transition.getTo(),transition);
+        this.transitions.add(transition);
+        transitionsByFrom.put(transition.getFrom(),transition);
+        transitionsByTo.put(transition.getTo(),transition);
     }
     
     public List getRefToTransition(String actId) {
-        if(transitionByTo.containsKey(actId)) {
-            return transitionByTo.get(actId);
+        if(transitionsByTo.containsKey(actId)) {
+            return transitionsByTo.get(actId);
         }
         return new ArrayList();
     }
     
     public List getRefFromTransition(String actId) {
-        if(transitionByFrom.containsKey(actId)) {
-            return transitionByFrom.get(actId);
+        if(transitionsByFrom.containsKey(actId)) {
+            return transitionsByFrom.get(actId);
         }
         return new ArrayList();
     }
 
     public static final String addActivitySet_ELEMENT = "ActivitySet";
     public void addActivitySet(BuriActivitySetType activitySet) {
-        activitySetId.put(activitySet.getId(),activitySet);
+        activitySetsById.put(activitySet.getId(),activitySet);
     }
     
     public BuriActivitySetType getActivitySet(String actId) {
-        return (BuriActivitySetType)activitySetId.get(actId);
+        return (BuriActivitySetType)activitySetsById.get(actId);
     }
     
     public static String setupEnd_OOUOFIN = "";
@@ -187,18 +190,18 @@ public class BuriWorkflowProcessType {
     }
     
     protected void updateStartActivites() {
-        List actIds = new ArrayList(activityById.keySet());
-        actIds.removeAll(transitionByTo.keySet());
+        List actIds = new ArrayList(activitiesById.keySet());
+        actIds.removeAll(transitionsByTo.keySet());
         Iterator ite = actIds.iterator();
         while(ite.hasNext()) {
             String id = (String)ite.next();
             BuriActivityType act = getActivityById(id);
-            startActivitys.add(act);
+            startActivities.add(act);
         }
     }
     
     public List getStartActivitys() {
-        return startActivitys;
+        return startActivities;
     }
 
     
@@ -235,28 +238,30 @@ public class BuriWorkflowProcessType {
     public void setValidTo(Date validTo) {
         this.validTo = validTo;
     }
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("  id=").append(id);
         buff.append("/name=").append(name);
-        buff.append("/pathType=").append(pathType).append("\n");
-        buff.append("  -----ROLE ID----------\n");
-        buff.append("  /roles=").append(rolesId).append("\n");
-        buff.append("  -----DATA----------\n");
-        buff.append("  /data=").append(data).append("\n");
-        buff.append("  -----APPLICATION----------\n");
-        buff.append("  /application=").append(applicationId).append("\n");
-        buff.append("  -----ACTIVITY----------\n");
-        buff.append("  /activity=").append(activityById).append("\n");
-        buff.append("  -----ACTIVITY SET----------\n");
-        buff.append("  /activitySetId=").append(activitySetId).append("\n");
-        buff.append("  -----transition----------\n");
-        buff.append("  /transition=").append(transition).append("\n");
-        buff.append("  -----ExtentedAttribute----------\n");
-        buff.append("  /ExtentedAttribute=").append(ExtentedAttribute).append("\n");
-        buff.append("  -----START ACTIVITY----------\n");
-        buff.append("  /").append(startActivitys).append("\n");
-        buff.append("]\n\n");
+        buff.append("/pathType=").append(pathType).append(SEP);
+        buff.append("  -----PARTICIPANT----------").append(SEP);
+        buff.append("  /participants=").append(participantsById).append(SEP);
+        buff.append("  -----DATA----------").append(SEP);
+        buff.append("  /datas=").append(datasById).append(SEP);
+        buff.append("  -----APPLICATION----------").append(SEP);
+        buff.append("  /applications=").append(applicationsById).append(SEP);
+        buff.append("  -----ACTIVITY----------").append(SEP);
+        buff.append("  /activities=").append(activitiesById).append(SEP);
+        buff.append("  -----ACTIVITY SET----------").append(SEP);
+        buff.append("  /activitySets=").append(activitySetsById).append(SEP);
+        buff.append("  -----TRANSITION----------").append(SEP);
+        buff.append("  /transitions=").append(transitions).append(SEP);
+        buff.append("  -----EXTENDED ATTRIBUTE----------").append(SEP);
+        buff.append("  /extentedAttributes=").append(extentedAttributes).append(SEP);
+        buff.append("  -----START ACTIVITY----------").append(SEP);
+        buff.append("  /startActivities=").append(startActivities).append(SEP);
+        buff.append("]");
         return buff.toString();
     }
 

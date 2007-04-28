@@ -36,7 +36,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     }
 
     public boolean hasAuthority(ParticipantContext context) {
-        BuriTestUserDto dto = getUserData(context.getCurrentUserId());
+        BuriTestUserDto dto = getUserData(context.getUserId());
         if (dto == null) {
             return context.getParticipantName().equalsIgnoreCase("無関係");
         }
@@ -47,9 +47,9 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     }
 
     public List<IdentityInfo> getAuthorizedUserIds(ParticipantContext context) {
-        Long currentUserIdNumber = context.getCurrentUserId().getIdNumber();
+        Long currentUserIdNumber = context.getUserId().getIdNumber();
         String roleName = context.getParticipantName();
-        String startRoleName = context.getStartRoleName();
+        String startRoleName = context.getStartParticipantName();
 
         // 上の方を探す
         List<BuriTestUserDto> roleList = userDao.getUserListByParentUserID(currentUserIdNumber, roleName);

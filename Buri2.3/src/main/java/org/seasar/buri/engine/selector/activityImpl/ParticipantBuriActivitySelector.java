@@ -40,11 +40,11 @@ public class ParticipantBuriActivitySelector extends AbstractBuriActivitySelecto
         for (BuriActivityType actType : activities) {
             ParticipantContext pc = new ParticipantContext();
             pc.setInsertUserId(buriUserUtil.getInsertUserId(systemContext));
-            pc.setCurrentUserId(systemContext.getAppUserId());
-            pc.setCurrentUserData(systemContext.getUserContext().getUserData());
-            pc.setStartRoleName(systemContext.getStartRoleName());
-            pc.setParticipantName(actType.getRoleName());
-            pc.setParticipantType(actType.getRoleType());
+            pc.setUserId(systemContext.getAppUserId());
+            pc.setUserData(systemContext.getUserContext().getUserData());
+            pc.setStartParticipantName(systemContext.getStartParticipantName());
+            pc.setParticipantName(actType.getParticipantName());
+            pc.setParticipantType(actType.getParticipantType());
             pc.setData(systemContext.getUserContext().getData());
             pc.setProcess(execProcess);
             pc.setUserContext(systemContext.getUserContext());

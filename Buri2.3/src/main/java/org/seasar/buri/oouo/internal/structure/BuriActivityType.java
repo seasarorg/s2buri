@@ -49,15 +49,14 @@ public class BuriActivityType {
     public BuriPerformerType getPerformer() {
         return performer;
     }
-    public String getRoleName() {
-        BuriParticipantType participantType = process.getRolesById(performer.getId());
-        String roleName = participantType.getName();
-        return roleName;
+    public String getParticipantName() {
+        BuriParticipantType participantType = process.getParticipantById(performer.getId());
+        String participantName = participantType.getName();
+        return participantName;
     }
-    public String getRoleType() {
-        BuriParticipantType participantType = process.getRolesById(performer.getId());
-        String roleType = participantType.getRole();
-        return roleType;
+    public String getParticipantType() {
+        BuriParticipantType participantType = process.getParticipantById(performer.getId());
+        return participantType.getType();
     }
     
     public final static String setPerformer_ELEMENT = "Performer";

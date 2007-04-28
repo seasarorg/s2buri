@@ -95,9 +95,9 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         ParticipantContext pc = new ParticipantContext();
         pc.setInsertUserId(getInsertUserId(sysContext));
         Object userData = sysContext.getUserContext().getUserData();
-        pc.setCurrentUserData(userData);
-        pc.setCurrentUserId(provider.getUserId(userData));
-        pc.setStartRoleName(sysContext.getStartRoleName());
+        pc.setUserData(userData);
+        pc.setUserId(provider.getUserId(userData));
+        pc.setStartParticipantName(sysContext.getStartParticipantName());
         pc.setData(sysContext.getUserContext().getData());
         pc.setProcess((BuriExecProcess) factory);
         pc.setUserContext(sysContext.getUserContext());
@@ -113,14 +113,11 @@ public class BuriUserUtilImpl implements BuriUserUtil {
         return packages;
     }
 
-    /**
-     * データが現在留まっているアクティビティに対応するロール名・種別をParticipantContextに設定します。
-     */
     private void updateParticipantInfo(ParticipantContext pc, BranchWalker walker, BuriExecProcess process) {
         String actId = walker.getNowPath().getActivityId().get(0);
         BuriActivityType actType = process.getBuriWorkflowProcessType().getActivityById(actId);
-        pc.setParticipantName(actType.getRoleName());
-        pc.setParticipantType(actType.getRoleType());
+        pc.setParticipantName(actType.getParticipantName());
+        pc.setParticipantType(actType.getParticipantType());
     }
 
     public IdentityInfo getInsertUserId(BuriSystemContext sysContext) {

@@ -38,7 +38,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ1_ロールA() throws Exception {
         context.setParticipantName("ロールA");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ1));
+        context.setUserId(participantProvider.getUserId(ユーザ1));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(1L, ユーザ1.getLoginName()), ids.get(0));
         assertEquals(1, ids.size()); // 本人も含まれる
@@ -47,7 +47,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ2_ロールA() throws Exception {
         context.setParticipantName("ロールA");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ2));
+        context.setUserId(participantProvider.getUserId(ユーザ2));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(1L, ユーザ1.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -56,7 +56,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ3_ロールA() throws Exception {
         context.setParticipantName("ロールA");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ3));
+        context.setUserId(participantProvider.getUserId(ユーザ3));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(3L, ユーザ3.getLoginName()), ids.get(0));
         assertEquals(1, ids.size()); // 本人も含まれる
@@ -65,7 +65,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ4_ロールA() throws Exception {
         context.setParticipantName("ロールA");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ4));
+        context.setUserId(participantProvider.getUserId(ユーザ4));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(3L, ユーザ3.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -74,7 +74,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ5_ロールA() throws Exception {
         context.setParticipantName("ロールA");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ5));
+        context.setUserId(participantProvider.getUserId(ユーザ5));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(3L, ユーザ3.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -83,7 +83,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ゲスト_ロールA() throws Exception {
         context.setParticipantName("ロールA");
-        context.setCurrentUserId(participantProvider.getUserId(ゲスト));
+        context.setUserId(participantProvider.getUserId(ゲスト));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(0, ids.size());
         System.out.println(ids);
@@ -91,7 +91,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ1_ロールB() throws Exception {
         context.setParticipantName("ロールB");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ1));
+        context.setUserId(participantProvider.getUserId(ユーザ1));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(2L, ユーザ2.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -100,7 +100,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ2_ロールB() throws Exception {
         context.setParticipantName("ロールB");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ2));
+        context.setUserId(participantProvider.getUserId(ユーザ2));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(2L, ユーザ2.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -109,7 +109,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ3_ロールB() throws Exception {
         context.setParticipantName("ロールB");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ3));
+        context.setUserId(participantProvider.getUserId(ユーザ3));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         Set<IdentityInfo> expected = new HashSet<IdentityInfo>();
         expected.add(new IdentityInfo(4L, ユーザ4.getLoginName()));
@@ -123,7 +123,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ4_ロールB() throws Exception {
         context.setParticipantName("ロールB");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ4));
+        context.setUserId(participantProvider.getUserId(ユーザ4));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(4L, ユーザ4.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -132,7 +132,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ユーザ5_ロールB() throws Exception {
         context.setParticipantName("ロールB");
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ5));
+        context.setUserId(participantProvider.getUserId(ユーザ5));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(5L, ユーザ5.getLoginName()), ids.get(0));
         assertEquals(1, ids.size());
@@ -141,7 +141,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_Test e
 
     public void testGetAuthorizedUserIds_ゲスト_ロールB() throws Exception {
         context.setParticipantName("ロールB");
-        context.setCurrentUserId(participantProvider.getUserId(ゲスト));
+        context.setUserId(participantProvider.getUserId(ゲスト));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(0, ids.size());
         System.out.println(ids);

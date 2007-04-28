@@ -99,7 +99,7 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
         this.buriPackage = buriPackage;
         //        setupApplication();
         variables.putAll(buriPackage.getApplication());
-        participant.putAll(buriPackage.getRoleByName());
+        participant.putAll(buriPackage.getParticipantByName());
         setupExpressionType();
     }
 

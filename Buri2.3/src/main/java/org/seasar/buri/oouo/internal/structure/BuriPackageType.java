@@ -13,13 +13,13 @@ import org.seasar.buri.common.util.MultiValueMap;
 
 public class BuriPackageType {
     
-    private Map rolesId = new HashMap();
-    private MultiValueMap rolesName = new MultiValueMap();
-    private Map processId = new HashMap();
+    private Map<String, BuriParticipantType> participantsById = new HashMap<String, BuriParticipantType>();
+    private MultiValueMap participantsByName = new MultiValueMap();
+    private Map<String, BuriWorkflowProcessType> processesById = new HashMap<String, BuriWorkflowProcessType>();
     private MultiValueMap processName = new MultiValueMap();
-    private Map data = new HashMap();
-    private Map application = new HashMap();
-    private List ExtentedAttribute = new ArrayList();
+    private Map<String, BuriDataFieldType> datasById = new HashMap<String, BuriDataFieldType>();
+    private Map<String, BuriApplicationType> applicationsById = new HashMap<String, BuriApplicationType>();
+    private List<BuriExtendedAttributeType> extentedAttributes = new ArrayList<BuriExtendedAttributeType>();
     
     private String id;
     private String name;
@@ -27,27 +27,27 @@ public class BuriPackageType {
     
     public static final String OOUOTHIS = "Package";
     
-    public static final String addRoles_ELEMENT = "Participant";
-    public void addRoles(BuriParticipantType participant) {
-        rolesId.put(participant.getId(),participant);
-        rolesName.put(participant.getName(),participant);
+    public static final String addParticipant_ELEMENT = "Participant";
+    public void addParticipant(BuriParticipantType participant) {
+        participantsById.put(participant.getId(), participant);
+        participantsByName.put(participant.getName(), participant);
     }
     
-    public List getRolesByName(String roleName) {
-        return rolesName.get(roleName);
+    public List getParticipantsByName(String participantName) {
+        return participantsByName.get(participantName);
     }
     
-    public MultiValueMap getRoleByName() {
-        return rolesName;
+    public MultiValueMap getParticipantByName() {
+        return participantsByName;
     }
     
-    public BuriParticipantType getRolesById(String roleId) {
-        return (BuriParticipantType)rolesId.get(roleId);
+    public BuriParticipantType getParticipantById(String participantId) {
+        return participantsById.get(participantId);
     }
     
     public static final String addProcess_ELEMENT = "WorkflowProcess";
     public void addProcess(BuriWorkflowProcessType wkfprocess) {
-        processId.put(wkfprocess.getId(),wkfprocess);
+        processesById.put(wkfprocess.getId(),wkfprocess);
         processName.put(wkfprocess.getName(),wkfprocess);
     }
     
@@ -60,45 +60,45 @@ public class BuriPackageType {
     }
     
     public BuriWorkflowProcessType getProcessById(String id) {
-        return (BuriWorkflowProcessType)processId.get(id);
+        return processesById.get(id);
     }
     
-    public Map getProcessById() {
-        return processId;
+    public Map<String, BuriWorkflowProcessType> getProcessById() {
+        return processesById;
     }
     
     public static final String addApplication_ELEMENT = "Application";
     public void addApplication(BuriApplicationType app) {
-        application.put(app.getId(),app);
+        applicationsById.put(app.getId(),app);
     }
     public BuriApplicationType getApplicationById(String id) {
-        return (BuriApplicationType )application.get(id);
+        return applicationsById.get(id);
     }
     
-    public Map getApplication() {
-        return application;
+    public Map<String, BuriApplicationType> getApplication() {
+        return applicationsById;
     }
     
     public static final String addDataField_ELEMENT = "DataField";
     public void addDataField(BuriDataFieldType dataField) {
-        data.put(dataField.getId(),dataField);
+        datasById.put(dataField.getId(),dataField);
     }
     
     public BuriDataFieldType getDataFieldById(String dataId) {
-        return (BuriDataFieldType)data.get(dataId);
+        return datasById.get(dataId);
     }
     
-    public Map getDataField() {
-        return data;
+    public Map<String, BuriDataFieldType> getDataField() {
+        return datasById;
     }
     
     public static final String addExtendedAttribute_ELEMENT = "ExtendedAttribute";
     public void addExtendedAttribute(BuriExtendedAttributeType attri) {
-        ExtentedAttribute.add(attri);
+        extentedAttributes.add(attri);
     }
     
-    public List getExtendedAttribute() {
-        return ExtentedAttribute;
+    public List<BuriExtendedAttributeType> getExtendedAttribute() {
+        return extentedAttributes;
     }
 
     public String getId() {
@@ -119,21 +119,21 @@ public class BuriPackageType {
         this.name = name;
     }
     
-    
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("id=").append(id);
         buff.append("/name=").append(name).append("\n");
-        buff.append("-----ROLE ID----------\n");
-        buff.append("/roles=").append(rolesId).append("\n");
+        buff.append("-----PARTICIPANT----------\n");
+        buff.append("/participants=").append(participantsById).append("\n");
         buff.append("-----PROCESS----------\n");
-        buff.append("/process=").append(processId).append("\n");
+        buff.append("/processes=").append(processesById).append("\n");
         buff.append("-----DATA----------\n");
-        buff.append("/data=").append(data).append("\n");
+        buff.append("/datas=").append(datasById).append("\n");
         buff.append("-----APPLICATION----------\n");
-        buff.append("/application=").append(application).append("\n");
-        buff.append("-----ExtentedAttribute----------\n");
-        buff.append("/ExtentedAttribute=").append(ExtentedAttribute).append("\n");
+        buff.append("/applications=").append(applicationsById).append("\n");
+        buff.append("-----EXTENDED ATTRIBUTE----------\n");
+        buff.append("/extentedAttributes=").append(extentedAttributes).append("\n");
         buff.append("]");
         return buff.toString();
         

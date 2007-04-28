@@ -35,7 +35,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_階層
 
     public void test直上の部長はだれか_部長本人の場合() throws Exception {
         context.setParticipantName("部長");
-        context.setCurrentUserId(participantProvider.getUserId(ああ部長));
+        context.setUserId(participantProvider.getUserId(ああ部長));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(1L, "ああ部長＠開発部"), ids.get(0));
         assertEquals(1, ids.size()); // 本人も含まれるように*修正*
@@ -44,7 +44,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_階層
 
     public void test直上の部長はだれか_課長の場合() throws Exception {
         context.setParticipantName("部長");
-        context.setCurrentUserId(participantProvider.getUserId(いい課長));
+        context.setUserId(participantProvider.getUserId(いい課長));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(1L, "ああ部長＠開発部"), ids.get(0));
         assertEquals(1, ids.size());
@@ -53,7 +53,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_階層
 
     public void test直上の部長はだれか_平社員の場合() throws Exception {
         context.setParticipantName("部長");
-        context.setCurrentUserId(participantProvider.getUserId(うう君));
+        context.setUserId(participantProvider.getUserId(うう君));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         Set<IdentityInfo> expected = new HashSet<IdentityInfo>();
         expected.add(new IdentityInfo(1L, "ああ部長＠開発部"));
@@ -65,7 +65,7 @@ public class ExcelBaseParticipantProvider_getAuthorizedUserIds_nameあり_階層
 
     public void test直上の部長はだれか_横一列に書いてもOK() throws Exception {
         context.setParticipantName("部長");
-        context.setCurrentUserId(participantProvider.getUserId(るるちゃん));
+        context.setUserId(participantProvider.getUserId(るるちゃん));
         List<IdentityInfo> ids = participantProvider.getAuthorizedUserIds(context);
         assertEquals(new IdentityInfo(10L, "らら部長"), ids.get(0));
         assertEquals(1, ids.size());

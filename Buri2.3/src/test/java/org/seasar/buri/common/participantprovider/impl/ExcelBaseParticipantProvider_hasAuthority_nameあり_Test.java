@@ -31,46 +31,46 @@ public class ExcelBaseParticipantProvider_hasAuthority_nameあり_Test extends S
     public void testロールAが必要とされている場合() throws Exception {
         context.setParticipantName("ロールA");
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ1));
+        context.setUserId(participantProvider.getUserId(ユーザ1));
         assertTrue(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ2));
+        context.setUserId(participantProvider.getUserId(ユーザ2));
         assertFalse(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ3));
+        context.setUserId(participantProvider.getUserId(ユーザ3));
         assertTrue(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ゲスト));
+        context.setUserId(participantProvider.getUserId(ゲスト));
         assertFalse(participantProvider.hasAuthority(context)); // Excel未登録のユーザの場合はfalse
     }
 
     public void testロールBが必要とされている場合() throws Exception {
         context.setParticipantName("ロールB");
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ1));
+        context.setUserId(participantProvider.getUserId(ユーザ1));
         assertFalse(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ2));
+        context.setUserId(participantProvider.getUserId(ユーザ2));
         assertTrue(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ3));
+        context.setUserId(participantProvider.getUserId(ユーザ3));
         assertFalse(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ゲスト));
+        context.setUserId(participantProvider.getUserId(ゲスト));
         assertFalse(participantProvider.hasAuthority(context)); // Excel未登録のユーザの場合はfalse
     }
 
     public void test_nameを指定したExcelを使うときはname指定を省略するとNG() throws Exception {
         context.setParticipantName("ロールA");
 
-        context.setCurrentUserId(new IdentityInfo(1L));
+        context.setUserId(new IdentityInfo(1L));
         assertFalse(participantProvider.hasAuthority(context));
     }
 
     public void test_nameを指定したExcelを使うときはIDNumberとIDStringが矛盾しているとNG() throws Exception {
         context.setParticipantName("ロールA");
 
-        context.setCurrentUserId(new IdentityInfo(1L, "ユーザ2@ロールB"));
+        context.setUserId(new IdentityInfo(1L, "ユーザ2@ロールB"));
         assertFalse(participantProvider.hasAuthority(context));
     }
 

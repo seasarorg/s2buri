@@ -34,7 +34,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         ParticipantContext context = new ParticipantContext();
         context.setParticipantName("支社");
-        context.setCurrentUserId(new IdentityInfo(new Long(1), "A"));
+        context.setUserId(new IdentityInfo(new Long(1), "A"));
         List userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 2);
         assertTrue(hasUserIdNum(userList, 2));
@@ -42,7 +42,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         context = new ParticipantContext();
         context.setParticipantName("支店");
-        context.setCurrentUserId(new IdentityInfo(new Long(1), "A"));
+        context.setUserId(new IdentityInfo(new Long(1), "A"));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 3);
         System.out.println(userList);
@@ -52,7 +52,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         context = new ParticipantContext();
         context.setParticipantName("本社部署");
-        context.setCurrentUserId(new IdentityInfo(new Long(9), "I"));
+        context.setUserId(new IdentityInfo(new Long(9), "I"));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 1);
         System.out.println(userList);
@@ -66,7 +66,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         ParticipantContext context = new ParticipantContext();
         context.setParticipantName("支社");
-        context.setCurrentUserId(new IdentityInfo(new Long(1), "A"));
+        context.setUserId(new IdentityInfo(new Long(1), "A"));
         List userList = provider.getAuthorizedUserIds(context);
         System.out.println(userList);
         assertEquals(userList.size(), 3);
@@ -76,7 +76,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         context = new ParticipantContext();
         context.setParticipantName("支店");
-        context.setCurrentUserId(new IdentityInfo(new Long(1), "A"));
+        context.setUserId(new IdentityInfo(new Long(1), "A"));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 6);
         System.out.println(userList);
@@ -89,7 +89,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         context = new ParticipantContext();
         context.setParticipantName("本社部署");
-        context.setCurrentUserId(new IdentityInfo(new Long(9), "I"));
+        context.setUserId(new IdentityInfo(new Long(9), "I"));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 2);
         System.out.println(userList);
@@ -108,7 +108,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         ParticipantContext context = new ParticipantContext();
         context.setParticipantName("支社");
-        context.setCurrentUserId(new IdentityInfo(new Long(1)));
+        context.setUserId(new IdentityInfo(new Long(1)));
         List userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 2);
         System.out.println(userList);
@@ -117,7 +117,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         context = new ParticipantContext();
         context.setParticipantName("支店");
-        context.setCurrentUserId(new IdentityInfo(new Long(1)));
+        context.setUserId(new IdentityInfo(new Long(1)));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 3);
         System.out.println(userList);
@@ -127,7 +127,7 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         context = new ParticipantContext();
         context.setParticipantName("本社部署");
-        context.setCurrentUserId(new IdentityInfo(new Long(9)));
+        context.setUserId(new IdentityInfo(new Long(9)));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 1);
         System.out.println(userList);
@@ -145,14 +145,14 @@ public class ExcelBaseParticipantProviderTest extends S2TestCase {
 
         ParticipantContext context = new ParticipantContext();
         context.setParticipantName("支社");
-        context.setCurrentUserId(new IdentityInfo(new Long(1), "A"));
+        context.setUserId(new IdentityInfo(new Long(1), "A"));
         List userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 1);
         assertTrue(hasUserIdNum(userList, 5));
 
         context = new ParticipantContext();
         context.setParticipantName("支店");
-        context.setCurrentUserId(new IdentityInfo(new Long(1), "A"));
+        context.setUserId(new IdentityInfo(new Long(1), "A"));
         userList = provider.getAuthorizedUserIds(context);
         assertEquals(userList.size(), 3);
         System.out.println(userList);

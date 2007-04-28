@@ -31,39 +31,39 @@ public class ExcelBaseParticipantProvider_hasAuthority_nameなし_Test extends S
     public void testロールAが必要とされている場合() throws Exception {
         context.setParticipantName("ロールA");
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ1));
+        context.setUserId(participantProvider.getUserId(ユーザ1));
         assertTrue(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ2));
+        context.setUserId(participantProvider.getUserId(ユーザ2));
         assertFalse(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ3));
+        context.setUserId(participantProvider.getUserId(ユーザ3));
         assertTrue(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ゲスト));
+        context.setUserId(participantProvider.getUserId(ゲスト));
         assertFalse(participantProvider.hasAuthority(context)); // Excel未登録のユーザの場合はfalse
     }
 
     public void testロールBが必要とされている場合() throws Exception {
         context.setParticipantName("ロールB");
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ1));
+        context.setUserId(participantProvider.getUserId(ユーザ1));
         assertFalse(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ2));
+        context.setUserId(participantProvider.getUserId(ユーザ2));
         assertTrue(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ユーザ3));
+        context.setUserId(participantProvider.getUserId(ユーザ3));
         assertFalse(participantProvider.hasAuthority(context));
 
-        context.setCurrentUserId(participantProvider.getUserId(ゲスト));
+        context.setUserId(participantProvider.getUserId(ゲスト));
         assertFalse(participantProvider.hasAuthority(context)); // Excel未登録のユーザの場合はfalse
     }
 
     public void test_nameを指定しないExcelを使うときはname指定を省略してOK() throws Exception {
         context.setParticipantName("ロールA");
 
-        context.setCurrentUserId(new IdentityInfo(1L));
+        context.setUserId(new IdentityInfo(1L));
         assertTrue(participantProvider.hasAuthority(context));
     }
 }
