@@ -12,14 +12,14 @@
     </fileSet>
     <fileSet>
       <directory>src</directory>
-      <outputDirectory>/src</outputDirectory>
+      <outputDirectory>/Buri2.3/src</outputDirectory>
       <excludes>
         <exclude>.svn</exclude>
       </excludes>
     </fileSet>
     <fileSet>
       <directory></directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>/Buri2.3</outputDirectory>
       <includes>
         <include>pom.xml</include>
         <include>.classpath</include>
@@ -35,14 +35,14 @@
     </fileSet>
     <fileSet>
       <directory>.settings</directory>
-      <outputDirectory>/.settings</outputDirectory>
+      <outputDirectory>/Buri2.3/.settings</outputDirectory>
       <excludes>
         <exclude>.svn</exclude>
       </excludes>
     </fileSet>
     <fileSet>
       <directory>db</directory>
-      <outputDirectory>/db</outputDirectory>
+      <outputDirectory>/Buri2.3/db</outputDirectory>
       <excludes>
         <exclude>.svn</exclude>
       </excludes>
