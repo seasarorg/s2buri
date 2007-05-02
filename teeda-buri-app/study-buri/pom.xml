@@ -258,7 +258,7 @@
 										<sql driver="${jdbc_driver}" url="${jdbc_dbms}${basedir}${jdbc_url}" userid="${jdbc_userid}" password="${jdbc_password}" onerror="continue">
 											<classpath refid="maven.plugin.classpath"/>
 											<fileset dir="${basedir}">
-												<include name="db/sql/*.sql"/>
+												<include name="db/sql/h2/*.sql"/>
 											</fileset>
 										</sql>
 									</sequential>

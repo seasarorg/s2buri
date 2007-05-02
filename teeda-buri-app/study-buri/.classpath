@@ -45,9 +45,5 @@
 	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-tiger/2.4.11/s2-tiger-2.4.11.jar" sourcepath="M2_REPO/org/seasar/container/s2-tiger/2.4.11/s2-tiger-2.4.11-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.0/geronimo-jta_1.1_spec-1.0.jar" sourcepath="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.0/geronimo-jta_1.1_spec-1.0-sources.jar"/>
-	<classpathentry kind="lib" path="C:/dev/myEclipse/eclipse/plugins/org.apache.derby.core_10.1.2/derby.jar"/>
-	<classpathentry kind="lib" path="C:/dev/myEclipse/eclipse/plugins/org.apache.derby.core_10.1.2/derbyclient.jar"/>
-	<classpathentry kind="lib" path="C:/dev/myEclipse/eclipse/plugins/org.apache.derby.core_10.1.2/derbytools.jar"/>
-	<classpathentry kind="lib" path="C:/dev/myEclipse/eclipse/plugins/org.apache.derby.core_10.1.2/derbynet.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>
