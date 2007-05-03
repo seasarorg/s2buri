@@ -42,10 +42,15 @@
     </fileSet>
     <fileSet>
       <directory>db</directory>
-      <outputDirectory>/Buri2.3/db</outputDirectory>
+      <outputDirectory>/db</outputDirectory>
       <excludes>
         <exclude>.svn</exclude>
+        <exclude>buri/</exclude>
       </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>db/buri</directory>
+      <outputDirectory>/Buri2.3/db/buri</outputDirectory>
     </fileSet>
   </fileSets>
   <dependencySets>
