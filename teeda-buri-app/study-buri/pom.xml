@@ -21,7 +21,7 @@
 	<dependency>
 		<groupId>org.seasar.buri</groupId>
 		<artifactId>s2-buri</artifactId>
-		<version>0.3.1</version>
+		<version>0.3.2</version>
 		<scope>compile</scope>
 	</dependency>
 <!--
@@ -146,6 +146,7 @@
       <version>1.0.20070304</version>
       <scope>compile</scope>
     </dependency>
+<!--
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
@@ -176,6 +177,7 @@
       <version>10.1.2.1</version>
       <scope>compile</scope>
     </dependency>
+-->
   </dependencies>
 
   <build>
@@ -206,6 +208,13 @@
   				</execution>
   			</executions>
   		</plugin>
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptor>src\main\assembly\executable.xml</descriptor>
+        </configuration>
+      </plugin>
   	</plugins>
     <finalName>study-buri</finalName>
     <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
@@ -238,7 +247,7 @@
   		<activation>
   			<property>
   				<name>env</name>
-  				<value>it</value>
+  				<value>h2</value>
   			</property>
   		</activation>
 		<build>
