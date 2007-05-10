@@ -4,6 +4,12 @@
  */
 package org.seasar.buri.oouo.internal.structure;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.seasar.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
+import org.seasar.framework.util.StringUtil;
+
 
 public class BuriTransitionType {
     private String id;
@@ -11,6 +17,7 @@ public class BuriTransitionType {
     private String to;
     private BuriConditionType condition;
     private String conditionStr = "";
+    private List ExtentedAttribute = new ArrayList();
     
     public final static String OOUOTHIS = "Transition";
     
@@ -43,11 +50,20 @@ public class BuriTransitionType {
         this.condition = condition;
     }
     
+    public static final String addExtendedAttribute_ELEMENT = "ExtendedAttribute";
+    public void addExtendedAttribute(BuriExtendedAttributeType attri) {
+        ExtentedAttribute.add(attri);
+    }
+    
+    public List getExtendedAttributeList() {
+        return ExtentedAttribute;
+    }
+    
     public boolean hasCondition() {
-        if(condition == null ) {
-            return false;
+        if( ! StringUtil.isEmpty(conditionStr)) {
+            return true;
         }
-        return true;
+        return false;
     }
     
     public String getConditionStr() {
@@ -56,8 +72,14 @@ public class BuriTransitionType {
 
     public static String setupEnd_OOUOFIN = "";
     public void setupEnd() {
+    	String action = null;
         if(condition != null) {
             conditionStr = condition.getCondition();
+        	action = ExtentedAttributeUtil.getAttributeVal(getExtendedAttributeList(), "action");
+        }
+        if(StringUtil.isEmpty(conditionStr) && action != null) {
+        	conditionStr = "#action == \"" + action + "\"" ;
+        	condition.setCondition(conditionStr);
         }
     }
     

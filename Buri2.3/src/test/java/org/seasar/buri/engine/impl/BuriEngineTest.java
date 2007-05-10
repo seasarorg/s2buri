@@ -1090,6 +1090,24 @@ public class BuriEngineTest extends S2TestCase {
     }
 
 
+    public void test16Tx() {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,"A",null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test16.Start",userContext);
+        
+        engine.execute(sysContext,null);
+        
+        List postState = stateDao_.getNoProcessBuriState();
+        assertEquals(1,postState.size());
+        assertEquals(getPathName(postState.get(0)),"basicTest.test16.end1");
+
+    }
+
     protected String getPathName(Object postData) {
         System.out.println(postData);
         BuriStateEntityDto stateDto = (BuriStateEntityDto)postData;

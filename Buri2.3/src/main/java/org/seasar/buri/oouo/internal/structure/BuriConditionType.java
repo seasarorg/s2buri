@@ -4,9 +4,13 @@
  */
 package org.seasar.buri.oouo.internal.structure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BuriConditionType {
     private String type;
     private String condition="";
+    private List ExtentedAttribute = new ArrayList();
 
     public final static String OOUOTHIS = "Condition";
 
@@ -33,6 +37,15 @@ public class BuriConditionType {
     public final static String setType_ATTRI = "Type";
     public void setType(String type) {
         this.type = type;
+    }
+    
+    public static final String addExtendedAttribute_ELEMENT = "ExtendedAttribute";
+    public void addExtendedAttribute(BuriExtendedAttributeType attri) {
+        ExtentedAttribute.add(attri);
+    }
+    
+    public List getExtendedAttributeList() {
+        return ExtentedAttribute;
     }
 
 
