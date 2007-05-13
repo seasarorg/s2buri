@@ -60,10 +60,10 @@ public class BuriTransitionType {
     }
     
     public boolean hasCondition() {
-        if( ! StringUtil.isEmpty(conditionStr)) {
-            return true;
+        if(condition == null ) {
+            return false;
         }
-        return false;
+        return true;
     }
     
     public String getConditionStr() {
@@ -78,7 +78,9 @@ public class BuriTransitionType {
         	action = ExtentedAttributeUtil.getAttributeVal(getExtendedAttributeList(), "action");
         }
         if(StringUtil.isEmpty(conditionStr) && action != null) {
+        	condition = new BuriConditionType();
         	conditionStr = "#action == \"" + action + "\"" ;
+        	condition.setType("CONDITION");
         	condition.setCondition(conditionStr);
         }
     }
