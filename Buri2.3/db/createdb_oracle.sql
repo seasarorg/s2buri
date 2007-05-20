@@ -6,9 +6,9 @@ drop view BuriPathData;
 DROP TABLE BuriStateUser;
 
 CREATE TABLE BuriStateUser (
-       StateUserID          INTEGER NOT NULL,
-       StateID              INTEGER  ,
-       BuriUserID           INTEGER  ,
+       StateUserID          NUMBER(19,0) NOT NULL,
+       StateID              NUMBER(19,0)  ,
+       BuriUserID           NUMBER(19,0)  ,
        insertDate           TIMESTAMP NOT NULL,
        deleteDate           TIMESTAMP NOT NULL,
        PRIMARY KEY (StateUserID)
@@ -22,19 +22,21 @@ DROP SEQUENCE BuriStateUserID;
 CREATE SEQUENCE BuriStateUserID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriState;
 
 CREATE TABLE BuriState (
-       StateID              INTEGER NOT NULL,
-       PathID               INTEGER  ,
-       DataID               INTEGER  ,
-       BranchID             INTEGER  ,
+       StateID              NUMBER(19,0) NOT NULL,
+       PathID               NUMBER(19,0)  ,
+       DataID               NUMBER(19,0)  ,
+       BranchID             NUMBER(19,0)  ,
        UserIDVal            VARCHAR(20),
-       UserIDNum            INTEGER,
-       Btid                 INTEGER NOT NULL,
+       UserIDNum            NUMBER(19,0),
+       Btid                 NUMBER(19,0) NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
        autoRunTime          TIMESTAMP,
        processDate          TIMESTAMP,
@@ -54,26 +56,28 @@ DROP SEQUENCE BuriStateID;
 CREATE SEQUENCE BuriStateID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriStateUndoLog;
 
 CREATE TABLE BuriStateUndoLog (
-       StateUndoLogID       INTEGER NOT NULL,
-	   StateID				INTEGER NOT NULL,
-       BranchID             INTEGER  ,
-       PathID               INTEGER  ,
-       DataID               INTEGER  ,
+       StateUndoLogID       NUMBER(19,0) NOT NULL,
+	   StateID				NUMBER(19,0) NOT NULL,
+       BranchID             NUMBER(19,0)  ,
+       PathID               NUMBER(19,0)  ,
+       DataID               NUMBER(19,0)  ,
        UserIDVal            VARCHAR(20),
        autoRunTime          TIMESTAMP,
-       UserIDNum            INTEGER,
+       UserIDNum            NUMBER(19,0),
        insertDate           TIMESTAMP NOT NULL,
-       Btid                 INTEGER NOT NULL,
+       Btid                 NUMBER(19,0) NOT NULL,
        processDate          TIMESTAMP,
        abortDate            TIMESTAMP NOT NULL,
        versionNo            INTEGER NOT NULL,
-       createBtid           INTEGER NOT NULL,
+       createBtid           NUMBER(19,0) NOT NULL,
        PRIMARY KEY (StateUndoLogID)
 );
 
@@ -84,13 +88,15 @@ DROP SEQUENCE BuriStateUndoLogID;
 CREATE SEQUENCE BuriStateUndoLogID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriTransaction;
 
 CREATE TABLE BuriTransaction (
-       Btid                 INTEGER NOT NULL,
+       Btid                 NUMBER(19,0) NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
        versionNo            INTEGER NOT NULL,
        PRIMARY KEY (Btid)
@@ -102,16 +108,18 @@ DROP SEQUENCE BuriTransactionID;
 CREATE SEQUENCE BuriTransactionID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriBranch;
 
 CREATE TABLE BuriBranch (
-       BranchID             INTEGER NOT NULL,
-       parentBranchID       INTEGER  ,
-       PathID               INTEGER  ,
-       DataID               INTEGER  ,
+       BranchID             NUMBER(19,0) NOT NULL,
+       parentBranchID       NUMBER(19,0)  ,
+       PathID               NUMBER(19,0)  ,
+       DataID               NUMBER(19,0)  ,
        processDate          TIMESTAMP,
        Btid                 INTEGER NOT NULL,
        versionNo            INTEGER NOT NULL,
@@ -126,19 +134,21 @@ DROP SEQUENCE BuriBranchID;
 CREATE SEQUENCE BuriBranchID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriDataPathHistory;
 
 CREATE TABLE BuriDataPathHistory (
-       historyID            INTEGER NOT NULL,
-       PathID               INTEGER  ,
+       historyID            NUMBER(19,0) NOT NULL,
+       PathID               NUMBER(19,0)  ,
        PathName             VARCHAR(200),
-       DataID               INTEGER  ,
+       DataID               NUMBER(19,0)  ,
        action               VARCHAR(50),
-       BuriUserID           INTEGER,
-       Btid                 INTEGER NOT NULL,
+       BuriUserID           NUMBER(19,0),
+       Btid                 NUMBER(19,0) NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
        PRIMARY KEY (historyID)
 );
@@ -151,17 +161,19 @@ DROP SEQUENCE BuriDataPathHistoryID;
 CREATE SEQUENCE BuriDataPathHistoryID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriData;
 
 CREATE TABLE BuriData (
-       DataID               INTEGER NOT NULL,
+       DataID               NUMBER(19,0) NOT NULL,
        pkeyVal              VARCHAR(250),
-       pkeyNum              INTEGER,
+       pkeyNum              NUMBER(19,0),
        dataType             VARCHAR(200) NOT NULL,
-       InsertUserID         INTEGER  ,
+       InsertUserID         NUMBER(19,0)  ,
        PRIMARY KEY (DataID)
 );
 
@@ -174,13 +186,15 @@ DROP SEQUENCE BuriDataID;
 CREATE SEQUENCE BuriDataID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
 DROP TABLE BuriPath;
 
 CREATE TABLE BuriPath (
-       PathID               INTEGER NOT NULL,
+       PathID               NUMBER(19,0) NOT NULL,
        PathName             VARCHAR(100) NOT NULL,
        RealPathName         VARCHAR(100) NOT NULL,
        pathType             INTEGER,
@@ -195,6 +209,8 @@ DROP SEQUENCE BuriPathID;
 CREATE SEQUENCE BuriPathID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
@@ -202,9 +218,9 @@ CREATE SEQUENCE BuriPathID
 DROP TABLE BuriUser;
 
 CREATE TABLE BuriUser (
-       BuriUserID           INTEGER NOT NULL,
+       BuriUserID           NUMBER(19,0) NOT NULL,
        UserIDVal            VARCHAR(100),
-       UserIDNum            INTEGER,
+       UserIDNum            NUMBER(19,0),
        PRIMARY KEY (BuriUserID)
 );
 
@@ -214,6 +230,8 @@ DROP SEQUENCE BuriUserID;
 CREATE SEQUENCE BuriUserID
  START WITH 1
  INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
 ;
 
 
