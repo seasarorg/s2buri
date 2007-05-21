@@ -23,7 +23,7 @@
 <Application Id="order_App2" Name="AfterOgnlInvoker"/>
 </Applications>
 <DataFields>
-<DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ShippingSetDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -35,7 +35,7 @@
 <ExtendedAttribute Name="delete" Value="ShippingSetDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.ShippingItemDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ShippingItemDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -48,7 +48,7 @@
 <ExtendedAttribute Name="delete" Value="ShippingItemDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.ShippingDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ShippingDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -61,7 +61,7 @@
 <ExtendedAttribute Name="delete" Value="ShippingDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.OrderTitleDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.OrderTitleDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -74,7 +74,7 @@
 <ExtendedAttribute Name="delete" Value="OrderTitleDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.OrderInfoDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -86,7 +86,7 @@
 <ExtendedAttribute Name="delete" Value="OrderInfoDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.OrderDetailDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.OrderDetailDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -99,7 +99,7 @@
 <ExtendedAttribute Name="delete" Value="OrderDetailDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.ItemDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ItemDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -112,7 +112,7 @@
 <ExtendedAttribute Name="delete" Value="ItemDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.CustomerDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.CustomerDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -125,7 +125,7 @@
 <ExtendedAttribute Name="delete" Value="CustomerDao.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
-<DataField Id="example.org.seasar.buri.dto.BillDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.BillDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -362,7 +362,7 @@
 </ProcessHeader>
 <RedefinableHeader PublicationStatus="UNDER_TEST"/>
 <DataFields>
-<DataField Id="example.org.seasar.buri.dto.OrderInfoDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.OrderInfoDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
@@ -617,12 +617,12 @@
 </ProcessHeader>
 <RedefinableHeader PublicationStatus="UNDER_TEST"/>
 <DataFields>
-<DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ShippingSetDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.seasar.buri.dto.BillDto()&#10;#data&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
+<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.escafe.buri.dto.BillDto()&#10;#data&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

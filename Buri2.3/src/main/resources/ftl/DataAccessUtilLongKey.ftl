@@ -1,6 +1,6 @@
 import java.util.List;
 
-import org.seasar.buri.util.packages.abst.AbstDataAccessUtilLongKey;
+import org.escafe.buri.util.packages.abst.AbstDataAccessUtilLongKey;
 import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 import org.seasar.coffee.script.Script;
 

@@ -35,10 +35,10 @@
 		<property name="stopCheckInterval">500</property>
 	</component>
 
-	<component class="org.seasar.buri.engine.processor.util.impl.BuriTimerInvokerImpl">
+	<component class="org.escafe.buri.engine.processor.util.impl.BuriTimerInvokerImpl">
 	</component>
 	
-	<component name="BuriAutoInvokeService" class="org.seasar.buri.engine.service.impl.BuriTimerService">
+	<component name="BuriAutoInvokeService" class="org.escafe.buri.engine.service.impl.BuriTimerService">
 		<property name="runningTime">60000</property>
 		<property name="stopCheckInterval">500</property>
 	</component>

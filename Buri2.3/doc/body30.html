@@ -25,23 +25,23 @@ UnitTestを準備します<BR>
 <include path="buri/dicon/bao.dicon"/><BR>
 配布ファイルに含まれているbao.diconをinclude<BR>
 <BR>
-<include path="org/seasar/buri/dicon/allTestDao.dicon"/><BR>
+<include path="org/escafe/buri/dicon/allTestDao.dicon"/><BR>
 FurnitureManagementのDaoへアクセスするための設定<BR>
 <BR>
-<component class="org.seasar.buri.bao.FurnitureManagementBao"><BR>
+<component class="org.escafe.buri.bao.FurnitureManagementBao"><BR>
 	<aspect>bao.interceptor</aspect><BR>
 </component><BR>
 <BR>
 <BR>
 準備済みのモノは配布ファイルの中の<BR>
-src/test/resources/org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon<BR>
+src/test/resources/org/escafe/buri/bao/test/dicon/FurnitureManagement.dicon<BR>
 ここにあります<BR>
 <BR>
 普通にTestCaseを作り、継承するクラスで<BR>
 S2TestCase<BR>
 を指定します<BR>
 <BR>
-private String PATH = "org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon";<BR>
+private String PATH = "org/escafe/buri/bao/test/dicon/FurnitureManagement.dicon";<BR>
 <BR>
 ここまで準備します<BR>
 private BuriEngine buriEngine_;<BR>
@@ -53,7 +53,7 @@ super(arg0);<BR>
 <BR>
 protected void setUp() throws Exception {<BR>
 super.setUp();<BR>
-include("org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon");<BR>
+include("org/escafe/buri/bao/test/dicon/FurnitureManagement.dicon");<BR>
 }<BR>
 <BR>
 public void testFMBaoTx() {<BR>

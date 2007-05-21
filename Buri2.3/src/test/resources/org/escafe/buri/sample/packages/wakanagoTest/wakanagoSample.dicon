@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="WakanagoCompile.dicon"/>
+	<include path="org/escafe/buri/dicon/allTestDao.dicon"/>
+	
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.WakanagoSampleEngine">
+	</component>
+
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto">
+	</component>
+	
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_dto_BuriTestCHARDto">
+	</component>
+	
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_dto_BuriTestManyDto">
+	</component>
+	
+</components>

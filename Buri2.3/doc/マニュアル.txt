@@ -893,7 +893,7 @@ DBに関しては2006/8/8時点の情報です。S2Daoに対応してるRDBであれば必要に応じて追加
 
 Mavan2を利用する場合は
 repositoryにhttp://maven.seasar.org/maven2を追加して
-groupId:org.seasar.buri
+groupId:org.escafe.buri
 artifactId:s2-buri
 を指定してください
 versionはその時点で使いたいバージョン番号にあわせてください
@@ -960,10 +960,10 @@ http://www.seasar.org
 まずはフロー上で使うDaoとDtoを普通に作って、diconファイルも作ります。
 
 ここで使うSampleはtestフォルダにすべてあります。
-test\org\seasar\buri\
+test\org\escafe\buri\
 
 Daoの名前：FurnitureItemDao
-Dto：org.seasar.buri.dto.FurnitureItemDto
+Dto：org.escafe.buri.dto.FurnitureItemDto
 とします。
 
 3-1-3 XPDLの新規作成および基本的な準備
@@ -1066,23 +1066,23 @@ UnitTestを準備します
 <include path="buri/dicon/bao.dicon"/>
 配布ファイルに含まれているbao.diconをinclude
 
-<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
+<include path="org/escafe/buri/dicon/allTestDao.dicon"/>
 FurnitureManagementのDaoへアクセスするための設定
 
-<component class="org.seasar.buri.bao.FurnitureManagementBao">
+<component class="org.escafe.buri.bao.FurnitureManagementBao">
 	<aspect>bao.interceptor</aspect>
 </component>
 
 
 準備済みのモノは配布ファイルの中の
-src/test/resources/org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon
+src/test/resources/org/escafe/buri/bao/test/dicon/FurnitureManagement.dicon
 ここにあります
 
 普通にTestCaseを作り、継承するクラスで
 S2TestCase
 を指定します
 
-private String PATH = "org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon";
+private String PATH = "org/escafe/buri/bao/test/dicon/FurnitureManagement.dicon";
 
 ここまで準備します
 private BuriEngine buriEngine_;
@@ -1094,7 +1094,7 @@ super(arg0);
 
 protected void setUp() throws Exception {
 super.setUp();
-include("org/seasar/buri/bao/test/dicon/FurnitureManagement.dicon");
+include("org/escafe/buri/bao/test/dicon/FurnitureManagement.dicon");
 }
 
 public void testFMBaoTx() {

@@ -52,7 +52,7 @@
 <Application Id="petition_App1" Name="OgnlInvoker"/>
 </Applications>
 <DataFields>
-<DataField Id="org.seasar.buri.dto.FurnitureItemDto" IsArray="FALSE">
+<DataField Id="org.escafe.buri.dto.FurnitureItemDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>

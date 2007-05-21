@@ -17,5 +17,5 @@
 	<component class="org.seasar.framework.container.creator.ConverterCreator"/>
 	
 	<!-- Bao用 -->
-	<component class="org.seasar.buri.creator.BaoCreator"/>
+	<component class="org.escafe.buri.creator.BaoCreator"/>
 </components>

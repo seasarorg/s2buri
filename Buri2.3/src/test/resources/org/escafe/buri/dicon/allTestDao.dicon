@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="dao.dicon"/>
+	<include path="aop.dicon"/>
+
+	<component name="BuriTestUserDao" class="org.escafe.buri.dao.BuriTestUserDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+
+	<component name="BuriTestCHARDao" class="org.escafe.buri.dao.BuriTestCHARDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+
+	<component name="BuriTestINTDao" class="org.escafe.buri.dao.BuriTestINTDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+
+	<component name="BuriTestManyDao" class="org.escafe.buri.dao.BuriTestManyDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+
+	<component name="FurnitureItemDao" class="org.escafe.buri.dao.FurnitureItemDao">
+		<aspect>aop.traceInterceptor</aspect>
+		<aspect>dao.interceptor</aspect>
+	</component>
+	
+</components>

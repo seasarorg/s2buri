@@ -2,8 +2,8 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
-	<component class="org.seasar.buri.common.participantprovider.impl.ExcelBaseParticipantProvider">
+	<component class="org.escafe.buri.common.participantprovider.impl.ExcelBaseParticipantProvider">
 	</component>
-	<component class="org.seasar.buri.common.participantprovider.impl.ExcelPrtiPrvidrParserImpl">
+	<component class="org.escafe.buri.common.participantprovider.impl.ExcelPrtiPrvidrParserImpl">
 	</component>
 </components>

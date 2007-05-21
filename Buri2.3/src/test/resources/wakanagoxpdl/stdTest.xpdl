@@ -20,7 +20,7 @@
 </Participant>
 </Participants>
 <DataFields>
-<DataField Id="example.org.seasar.buri.dto.ItemDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ItemDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>

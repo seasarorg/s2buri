@@ -2,9 +2,9 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
-	<include path="example/org/seasar/buri/dicon/alldao.dicon"/>
-	<include path="org/seasar/buri/dicon/allTestDao.dicon"/>
-	<component name="StdTestParticipantProvider" class="org.seasar.buri.engine.processor.impl.StdTestParticipantProvider">
+	<include path="example/org/escafe/buri/dicon/alldao.dicon"/>
+	<include path="org/escafe/buri/dicon/allTestDao.dicon"/>
+	<component name="StdTestParticipantProvider" class="org.escafe.buri.engine.processor.impl.StdTestParticipantProvider">
 		<aspect>aop.traceInterceptor</aspect>
 	</component>
 	

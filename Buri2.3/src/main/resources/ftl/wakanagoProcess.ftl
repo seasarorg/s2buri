@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.seasar.buri.engine.BuriPath;
-import org.seasar.buri.engine.BuriUserContext;
-import org.seasar.buri.engine.BuriSystemContext;
-import org.seasar.buri.oouo.internal.structure.BuriWorkflowProcessType;
-import org.seasar.buri.util.packages.BranchWalker;
-import org.seasar.buri.util.packages.abst.AbstBuriExecProcess;
+import org.escafe.buri.engine.BuriPath;
+import org.escafe.buri.engine.BuriUserContext;
+import org.escafe.buri.engine.BuriSystemContext;
+import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
+import org.escafe.buri.util.packages.BranchWalker;
+import org.escafe.buri.util.packages.abst.AbstBuriExecProcess;
 import org.seasar.coffee.script.Script;
 import org.seasar.framework.log.Logger;
 

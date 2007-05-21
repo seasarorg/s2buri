@@ -20,8 +20,8 @@ import org.codehaus.janino.Location;
 import org.codehaus.janino.Scanner;
 import org.codehaus.janino.Parser.ParseException;
 import org.codehaus.janino.Scanner.ScanException;
-import org.seasar.buri.common.util.template.TextTemplate;
-import org.seasar.buri.component.BuriComponentUtil;
+import org.escafe.buri.common.util.template.TextTemplate;
+import org.escafe.buri.component.BuriComponentUtil;
 import org.seasar.framework.exception.IORuntimeException;
 import org.seasar.framework.log.Logger;
 

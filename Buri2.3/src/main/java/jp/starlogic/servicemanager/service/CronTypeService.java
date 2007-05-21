@@ -14,7 +14,7 @@ import jp.starlogic.util.datetime.CalendarUtil;
 import jp.starlogic.util.datetime.DateUtil;
 import jp.starlogic.util.datetime.UtilCalendar;
 
-import org.seasar.buri.common.util.ScriptProcessor;
+import org.escafe.buri.common.util.ScriptProcessor;
 import org.seasar.framework.container.S2Container;
 
 public class CronTypeService extends AbstractCronTypeService {

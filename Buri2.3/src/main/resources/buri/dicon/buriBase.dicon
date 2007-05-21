@@ -5,7 +5,7 @@
 	<include path="buri/dicon/buriSimple.dicon"/>
 	<include path="buri/dicon/buriStandard.dicon"/>
 	
-	<component class="org.seasar.buri.engine.processor.impl.BuriAutoSelectProcessorImpl">
+	<component class="org.escafe.buri.engine.processor.impl.BuriAutoSelectProcessorImpl">
 		<property name="simpleEngine">BuriSimpleEngine</property>
 		<property name="standardEngine">BuriStandardEngine</property>
 	</component>

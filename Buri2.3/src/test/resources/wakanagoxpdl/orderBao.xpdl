@@ -473,12 +473,12 @@
 </ProcessHeader>
 <RedefinableHeader PublicationStatus="UNDER_TEST"/>
 <DataFields>
-<DataField Id="example.org.seasar.buri.dto.ShippingSetDto" IsArray="FALSE">
+<DataField Id="example.org.escafe.buri.dto.ShippingSetDto" IsArray="FALSE">
 <DataType>
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.seasar.buri.dto.BillDto()&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
+<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.escafe.buri.dto.BillDto()&#10;#bill.shippingID = #data.shippingID&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerID = #data.customerID&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
