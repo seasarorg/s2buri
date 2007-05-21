@@ -471,6 +471,7 @@ public class ShippingFindDto {
         return order;
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/shippingID=").append(shippingID);

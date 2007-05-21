@@ -8,8 +8,6 @@ import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.ParticipantProvider;
 import org.escafe.buri.exception.BuriXpdlPathException;
 
-
-
 /**
  * @author makotan
  *
@@ -25,7 +23,7 @@ public class BuriManySelectActivityException extends BuriXpdlPathException {
      * @param messageCode
      * @param path
      */
-    public BuriManySelectActivityException(BuriPath path,ParticipantProvider participant) {
-        super("EBRI0006", path,participant);
+    public BuriManySelectActivityException(BuriPath path, ParticipantProvider participant) {
+        super("EBRI0006", path, participant);
     }
 }

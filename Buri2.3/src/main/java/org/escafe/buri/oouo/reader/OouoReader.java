@@ -8,8 +8,10 @@ import java.io.InputStream;
 
 public interface OouoReader {
     Object readInputStream(InputStream workFlowIs);
+
     Object readResource(String resourceName);
+
     Object readFile(String fileName);
-    
+
     void addRootClass(Class clazz);
 }

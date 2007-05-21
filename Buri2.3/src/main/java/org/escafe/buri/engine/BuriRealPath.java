@@ -83,10 +83,8 @@ public class BuriRealPath {
     @Override
     public int hashCode() {
         int hashCode = 1;
-        hashCode = 31 * hashCode
-                + (workflowPackage == null ? 0 : workflowPackage.hashCode());
-        hashCode = 31 * hashCode
-                + (workflowProcess == null ? 0 : workflowProcess.hashCode());
+        hashCode = 31 * hashCode + (workflowPackage == null ? 0 : workflowPackage.hashCode());
+        hashCode = 31 * hashCode + (workflowProcess == null ? 0 : workflowProcess.hashCode());
         hashCode = 31 * hashCode + (activity == null ? 0 : activity.hashCode());
         hashCode = 31 * hashCode + (pathStr == null ? 0 : pathStr.hashCode());
         return hashCode;

@@ -18,6 +18,7 @@ public class OrderInfoDto extends OrderTitleDto {
         this.orderDetail = orderDetail;
     }
     
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("{");
         buff.append(super.toString());

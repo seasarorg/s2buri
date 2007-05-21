@@ -22,17 +22,17 @@ public class IsNumberUtil {
         numberTypes.add(Byte.class);
         numberTypes.add(Byte.TYPE);
     }
-    
+
     public void dispose() {
-    	numberTypes.clear();
+        numberTypes.clear();
     }
-    
+
     public static boolean isNumberType(Class checkClazz) {
-        if(numberTypes.contains(checkClazz)) {
+        if (numberTypes.contains(checkClazz)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
 }

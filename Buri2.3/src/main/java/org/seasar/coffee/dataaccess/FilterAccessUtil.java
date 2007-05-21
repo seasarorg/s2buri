@@ -7,6 +7,6 @@ package org.seasar.coffee.dataaccess;
 import java.util.List;
 
 public interface FilterAccessUtil {
-    List getResult(List keyList,Object conditionObj);
+    List getResult(List keyList, Object conditionObj);
 
 }

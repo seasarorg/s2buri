@@ -13,22 +13,22 @@ import org.escafe.buri.dto.BuriTransactionEntityDto;
 public class BTIDUtilImpl implements BTIDUtil {
     private BuriTransactionDao btDao;
     private ThreadLocal btidLocal = new ThreadLocal();
-    
+
     public long createBTID() {
         BuriTransactionEntityDto dto = new BuriTransactionEntityDto();
         dto.setInsertDate(new Date());
         btDao.insert(dto);
         return dto.getBTID();
     }
-    
+
     public long getCurrentBTID() {
-        if(btidLocal.get() == null) {
+        if (btidLocal.get() == null) {
             setBTID(0);
         }
-        long result = ((Long)btidLocal.get()).longValue();
+        long result = ((Long) btidLocal.get()).longValue();
         return result;
     }
-    
+
     public void setBTID(long btid) {
         Long val = new Long(btid);
         btidLocal.set(val);

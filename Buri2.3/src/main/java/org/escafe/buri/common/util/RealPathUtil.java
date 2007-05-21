@@ -15,44 +15,53 @@ public class RealPathUtil {
     private boolean modeSetup = false;
     private String rootPath = null;
     private ServletContext context;
+
     //private String pathSeparator = "\\";
-    
+
     public String getFileSpa() {
         return System.getProperty("file.separator");
     }
-    
+
     private void setupMode() {
-        if(modeSetup) return;
+        if (modeSetup) {
+            return;
+        }
         modeSetup = true;
         Throwable throwable = new Throwable();
         StackTraceElement[] stacks = throwable.getStackTrace();
-        for(int i=0;i < stacks.length;i++) {
-            String className = stacks[i].getClassName();
-            if(className.indexOf("TestCase")>=0) {
+        for (StackTraceElement element : stacks) {
+            String className = element.getClassName();
+            if (className.indexOf("TestCase") >= 0) {
                 servletMode = false;
             }
         }
     }
-    
+
     public String getAppRootPath() {
-        if(rootPath!=null) return rootPath;
+        if (rootPath != null) {
+            return rootPath;
+        }
         setupMode();
-        if(servletMode) {
+        if (servletMode) {
             rootPath = context.getRealPath("/") + getFileSpa();
         } else {
             rootPath = System.getProperty("user.dir") + getFileSpa();
         }
         return rootPath;
     }
+
     public ServletContext getContext() {
         return context;
     }
+
     public void setContext(ServletContext context) {
         this.context = context;
     }
+
     public boolean isServletMode() {
         return servletMode;
     }
+
     public void setServletMode(boolean servletMode) {
         this.servletMode = servletMode;
         modeSetup = true;

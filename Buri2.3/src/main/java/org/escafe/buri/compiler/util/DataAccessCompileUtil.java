@@ -11,8 +11,12 @@ import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 
 public interface DataAccessCompileUtil {
-    DataAccessUtil compileDataAccess(BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process);
-    void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process);
-    void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,String packageId,String processId);
+    DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, BuriPackageType buriPackage, BuriWorkflowProcessType process);
+
+    void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, BuriPackageType buriPackage,
+            BuriWorkflowProcessType process);
+
+    void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, String packageId, String processId);
+
     boolean isDataAccessUtil(BuriDataFieldType fieldType);
 }

@@ -10,9 +10,8 @@ public class BuriValidateException extends BuriException {
 
     private static final long serialVersionUID = 1L;
 
-
-    public BuriValidateException(String messageCode,List actList,String actName) {
-        super(messageCode,new Object[]{actList,actName});
+    public BuriValidateException(String messageCode, List actList, String actName) {
+        super(messageCode, new Object[] { actList, actName });
     }
 
 }

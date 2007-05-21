@@ -18,7 +18,7 @@ public class StartupService extends AbstractGetRunService {
     private static Logger logger = Logger.getLogger(StartupService.class);
     private ServiceMonitor monitor;
     private ServiceManager manager;
-    
+
     public boolean canService() {
         return true;
     }
@@ -26,73 +26,74 @@ public class StartupService extends AbstractGetRunService {
     public void execute() {
         List smNames = monitor.getServiceNames();
         Iterator ite = smNames.iterator();
-        while(ite.hasNext()) {
+        while (ite.hasNext()) {
             String smName = ite.next().toString();
             ServiceInfo info = monitor.getServiceInfo(smName);
-            statusUpdate(info,smName);
+            statusUpdate(info, smName);
         }
-        
+
     }
 
-    private void statusUpdate(ServiceInfo info,String smName) {
-        if(info.getStatus() == ServiceMonitor.WAIT) {
-            statusIsWait(info,smName);
-        }else if(info.getStatus() == ServiceMonitor.RUNNING) {
+    private void statusUpdate(ServiceInfo info, String smName) {
+        if (info.getStatus() == ServiceMonitor.WAIT) {
+            statusIsWait(info, smName);
+        } else if (info.getStatus() == ServiceMonitor.RUNNING) {
             statusIsRunning(info);
-        }else if(info.getStatus() == ServiceMonitor.TERMINATE) {
-            statusIsTerminate(info,smName);
+        } else if (info.getStatus() == ServiceMonitor.TERMINATE) {
+            statusIsTerminate(info, smName);
         } else {
             stopCheckAndTerminate(info);
             // 他のパターンではすべて待機
         }
     }
-    
-    protected void statusIsTerminate(ServiceInfo info,String smName) {
-        if(info.getThread().isAlive() == false && info.getOneService().canReExecute() == true) {
+
+    protected void statusIsTerminate(ServiceInfo info, String smName) {
+        if ((info.getThread().isAlive() == false) && (info.getOneService().canReExecute() == true)) {
             manager.executeService(smName);
-            if(logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled()) {
                 logger.debug("statusUpdate reRun" + info);
             }
         }
     }
-    
+
     protected void statusIsRunning(ServiceInfo info) {
-        if(info.getThread().isAlive() == false) {
-            if(logger.isDebugEnabled()) {
+        if (info.getThread().isAlive() == false) {
+            if (logger.isDebugEnabled()) {
                 logger.debug("statusUpdate Thread is dead" + info);
             }
             info.getExecuteService().terminate();
         }
     }
-    
-    protected void statusIsWait(ServiceInfo info,String smName) {
-        if(info.getThread().isAlive()) {
-            logger.fatal("statusUpdate getThread().isAlive()!! "+info);
+
+    protected void statusIsWait(ServiceInfo info, String smName) {
+        if (info.getThread().isAlive()) {
+            logger.fatal("statusUpdate getThread().isAlive()!! " + info);
         } else {
             manager.executeService(smName);
         }
     }
-    
+
     protected void stopCheckAndTerminate(ServiceInfo info) {
-        if(info.getOneService().getStopCheckInterval() <= 0) {
+        if (info.getOneService().getStopCheckInterval() <= 0) {
             return;
         }
         long aliveCheck = getTimeInMillis() - info.getStatusUpdateTime();
-        if(aliveCheck >= info.getOneService().getStopCheckInterval() ) {
+        if (aliveCheck >= info.getOneService().getStopCheckInterval()) {
             info.getExecuteService().terminate();
-            if(logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled()) {
                 logger.debug("statusUpdate TimeOrver" + info);
             }
         }
     }
 
+    @Override
     public void destroyService() {
-        if(logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug("destroyService");
         }
         List smNames = monitor.getServiceNames();
         Iterator ite = smNames.iterator();
-        while(ite.hasNext()) {
+        while (ite.hasNext()) {
             String smName = ite.next().toString();
             ServiceInfo info = monitor.getServiceInfo(smName);
             info.getExecuteService().terminate();
@@ -111,10 +112,12 @@ public class StartupService extends AbstractGetRunService {
         this.manager = manager;
     }
 
+    @Override
     public ServiceMonitor getMonitor() {
         return monitor;
     }
 
+    @Override
     public void setMonitor(ServiceMonitor monitor) {
         this.monitor = monitor;
     }

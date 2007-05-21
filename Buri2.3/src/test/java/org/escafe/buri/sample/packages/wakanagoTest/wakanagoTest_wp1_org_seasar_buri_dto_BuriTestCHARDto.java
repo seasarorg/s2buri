@@ -14,6 +14,7 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestCHARDto extends AbstDa
     private static String params[] = new String[]{"testID"};
     private static String condition[] = new String[]{"testID != \"\""};
 
+    @Override
     protected String[] getConditions() {
         return condition;
     }

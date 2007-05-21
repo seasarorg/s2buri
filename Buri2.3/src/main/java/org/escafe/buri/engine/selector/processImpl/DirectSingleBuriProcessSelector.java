@@ -24,14 +24,12 @@ import org.escafe.buri.util.packages.BuriExePackages;
 public class DirectSingleBuriProcessSelector extends AbstractBuriProcessSelector {
 
     @Override
-    protected boolean isTarget(List<BuriWorkflowProcessType> processes,
-            BuriSystemContext systemContext, BuriExePackages execPackages) {
+    protected boolean isTarget(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         if (processes.size() > 0) {
             return false;
         }
         String processName = systemContext.getCallPath().getWorkflowProcess();
-        List<BuriWorkflowProcessType> targets = execPackages.getBuriPackageType().getProcessByName(
-            processName);
+        List<BuriWorkflowProcessType> targets = execPackages.getBuriPackageType().getProcessByName(processName);
         if (targets.size() > 1) {
             return false;
         }
@@ -39,11 +37,9 @@ public class DirectSingleBuriProcessSelector extends AbstractBuriProcessSelector
     }
 
     @Override
-    protected void applyRule(List<BuriWorkflowProcessType> processes,
-            BuriSystemContext systemContext, BuriExePackages execPackages) {
+    protected void applyRule(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         String processName = systemContext.getCallPath().getWorkflowProcess();
-        List<BuriWorkflowProcessType> result = execPackages.getBuriPackageType().getProcessByName(
-            processName);
+        List<BuriWorkflowProcessType> result = execPackages.getBuriPackageType().getProcessByName(processName);
         processes.clear();
         processes.addAll(result);
     }

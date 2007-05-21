@@ -490,7 +490,8 @@ public class BuriTestUserFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/userID=").append(userID);
 		buff.append("/userID_not=").append(userID_not);

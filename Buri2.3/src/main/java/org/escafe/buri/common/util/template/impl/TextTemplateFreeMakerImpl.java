@@ -26,11 +26,11 @@ import freemarker.template.TemplateException;
 
 public class TextTemplateFreeMakerImpl implements TextTemplate {
     private Configuration configuration = new Configuration();
-    
+
     public TextTemplateFreeMakerImpl() {
-//        configuration.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);  
+        //        configuration.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);  
     }
-    
+
     public String processResource(String resourceName, Object data) {
         URL resource = ResourceUtil.getResource(resourceName);
         try {
@@ -45,7 +45,7 @@ public class TextTemplateFreeMakerImpl implements TextTemplate {
         InputStream is = FileInputStreamUtil.create(file);
         return processInputStream(is, data);
     }
-    
+
     private String processInputStream(InputStream is, Object data) {
         InputStreamReader reader = InputStreamReaderUtil.create(is);
         String templateText = ReaderUtil.readText(reader);
@@ -55,13 +55,13 @@ public class TextTemplateFreeMakerImpl implements TextTemplate {
     public String process(String templateText, Object data) {
         Template template = null;
         try {
-            template = new Template("name", new StringReader(templateText),configuration);
+            template = new Template("name", new StringReader(templateText), configuration);
         } catch (IOException e) {
             throw new IORuntimeException(e);
         }
         StringWriter stringWriter = new StringWriter();
         try {
-            template.process(data,stringWriter);
+            template.process(data, stringWriter);
         } catch (TemplateException e) {
             throw new TemplateRuntimeException(e);
         } catch (IOException e) {

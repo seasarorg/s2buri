@@ -34,7 +34,7 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
 
     protected ParticipantProvider participantProvider;
 
-    protected Map buriExecProcessMap = new HashMap();
+    protected Map<String, BuriExecProcess> buriExecProcessMap = new HashMap<String, BuriExecProcess>();
 
     protected BuriPackageType buriPackage;
     protected S2Container container;
@@ -124,7 +124,7 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
     public BuriExecProcess getProcess(BuriPath path) {
         String processId = getProcessId(path);
         assert !StringUtil.isEmpty(processId);
-        BuriExecProcess processObj = (BuriExecProcess) buriExecProcessMap.get(processId);
+        BuriExecProcess processObj = buriExecProcessMap.get(processId);
         return processObj;
     }
 
@@ -171,7 +171,7 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
         } else {
             String name = path.getWorkflowProcess();
             assert !StringUtil.isEmpty(name);
-            List list = (List) buriPackage.getProcessByName(name);
+            List list = buriPackage.getProcessByName(name);
             assert list != null;
             process = (BuriWorkflowProcessType) list.get(0);
         }

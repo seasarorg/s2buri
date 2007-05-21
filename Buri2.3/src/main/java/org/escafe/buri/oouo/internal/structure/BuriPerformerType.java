@@ -12,16 +12,18 @@ public class BuriPerformerType {
     public String getId() {
         return id;
     }
+
     public final static String setId_OOUOTEXT = "";
+
     public void setId(String id) {
         String con = this.id;
-        if(con==null) {
+        if (con == null) {
             con = "";
         }
         this.id = con + id;
     }
-    
-    
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("id=").append(id);

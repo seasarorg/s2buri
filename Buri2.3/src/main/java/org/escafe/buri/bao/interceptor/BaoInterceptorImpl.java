@@ -26,13 +26,13 @@ public class BaoInterceptorImpl extends AbstractInterceptor {
             return invoke.proceed();
         }
         BaoMetadata baoMetadata = factory.getBaoMetadata(invoke);
-        if(factory.isStatusMetadata(baoMetadata,invoke)) {
-            BaoStatusMetadata statusMetadata = factory.getBaoStatusMetadata(baoMetadata,invoke);
-            Object result = invoker.getDataFromStatus(statusMetadata,invoke);
+        if (factory.isStatusMetadata(baoMetadata, invoke)) {
+            BaoStatusMetadata statusMetadata = factory.getBaoStatusMetadata(baoMetadata, invoke);
+            Object result = invoker.getDataFromStatus(statusMetadata, invoke);
             return result;
         } else {
-            BaoInvokeMetadata invokeMetadata= factory.getBaoInvokeMetadata(baoMetadata,invoke);
-            Object result = invoker.invoke(invokeMetadata,invoke);
+            BaoInvokeMetadata invokeMetadata = factory.getBaoInvokeMetadata(baoMetadata, invoke);
+            Object result = invoker.invoke(invokeMetadata, invoke);
             return result;
         }
     }

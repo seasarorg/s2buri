@@ -24,7 +24,8 @@ public class CustomerDto {
 		this.customerName = customerName;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/customerID=").append(customerID);
 		buff.append("/customerName=").append(customerName);

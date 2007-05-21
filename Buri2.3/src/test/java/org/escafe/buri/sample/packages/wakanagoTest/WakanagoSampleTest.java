@@ -29,6 +29,7 @@ public class WakanagoSampleTest extends S2TestCase {
         super(arg0);
     }
 
+    @Override
     protected void setUp() throws Exception {
         super.setUp();
         include("WakanagoCompile.dicon");

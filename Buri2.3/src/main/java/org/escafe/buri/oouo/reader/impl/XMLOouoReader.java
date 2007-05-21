@@ -30,15 +30,15 @@ public class XMLOouoReader implements OouoReader {
     private Map rootClass = new HashMap();
     private S2Container container;
     private OouoClassDefFactory oouoClassDefFactory;
-    
+
     public void dispose() {
-    	rootClass.clear();
+        rootClass.clear();
     }
-    
+
     public Object readInputStream(InputStream workFlowIs) {
-    	return read(workFlowIs);
+        return read(workFlowIs);
     }
-    
+
     public Object readResource(String resourceName) {
         URL resource = ResourceUtil.getResource(resourceName);
         try {
@@ -53,7 +53,7 @@ public class XMLOouoReader implements OouoReader {
         InputStream is = FileInputStreamUtil.create(file);
         return read(is);
     }
-    
+
     protected Object read(InputStream input) {
         XmlHandler xmlHandler = new XmlHandler();
         xmlHandler.setClassDefFactory(oouoClassDefFactory);
@@ -62,7 +62,7 @@ public class XMLOouoReader implements OouoReader {
         SAXParser parser = null;
         try {
             parser = spfactory.newSAXParser();
-            parser.parse(input,xmlHandler);
+            parser.parse(input, xmlHandler);
         } catch (ParserConfigurationException e) {
             throw new ParserConfigurationRuntimeException(e);
         } catch (SAXException e) {
@@ -70,16 +70,16 @@ public class XMLOouoReader implements OouoReader {
         } catch (IOException e) {
             throw new IORuntimeException(e);
         }
-        
+
         return xmlHandler.getRoot();
     }
 
     public void addRootClass(Class clazz) {
         OouoClassDef classDef = oouoClassDefFactory.create(clazz);
         String rootName = classDef.getElementName();
-//        String rootName = classDefUtil.getMethodSignatureValue(clazz,"ROOTELEMENT",null).toString();
-        rootClass.put(rootName,clazz);
-        
+        //        String rootName = classDefUtil.getMethodSignatureValue(clazz,"ROOTELEMENT",null).toString();
+        rootClass.put(rootName, clazz);
+
     }
 
     public S2Container getContainer() {

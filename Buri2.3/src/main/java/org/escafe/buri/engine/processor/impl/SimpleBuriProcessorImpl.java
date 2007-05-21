@@ -44,8 +44,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
     }
 
     public Object toNextStatusOne(String path, Object data, BuriProcessorInfo info) {
-        BuriUserContext userContext = engine.createUserContext(data, null, info.getAction(), info
-            .getContext());
+        BuriUserContext userContext = engine.createUserContext(data, null, info.getAction(), info.getContext());
         BuriSystemContext systemContext = engine.createSystemContext(path, userContext);
         S2Container cont = info.getContainer() == null ? getRootContainer() : info.getContainer();
         systemContext.setContainer(cont);
@@ -64,8 +63,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         return result;
     }
 
-    protected Object toNextStatusAction(String path, S2Container container, Object data,
-            Object action, String resultExp) {
+    protected Object toNextStatusAction(String path, S2Container container, Object data, Object action, String resultExp) {
         BuriProcessorInfo info = new BuriProcessorInfo();
         info.setAction(action);
         info.setContainer(container);
@@ -82,10 +80,8 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         BuriSystemContext systemContext = engine.createSystemContext(path, userContext);
         systemContext.setTargetDtoClass(tgtClass);
         systemContext.setContainer(container);
-        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(
-            systemContext.getCallPath());
-        List dataList = dataUtil.getDtoListByPathName(path, (DataAccessFactory) execProcess,
-            systemContext);
+        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(systemContext.getCallPath());
+        List dataList = dataUtil.getDtoListByPathName(path, (DataAccessFactory) execProcess, systemContext);
         return dataList;
     }
 
@@ -98,10 +94,8 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         BuriSystemContext systemContext = engine.createSystemContext(path, userContext);
         systemContext.setTargetDtoClass(tgtClass);
         systemContext.setContainer(container);
-        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(
-            systemContext.getCallPath());
-        List dataList = dataUtil.getDtoListByPathName(path, (DataAccessFactory) execProcess,
-            systemContext);
+        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(systemContext.getCallPath());
+        List dataList = dataUtil.getDtoListByPathName(path, (DataAccessFactory) execProcess, systemContext);
         return dataList;
     }
 
@@ -113,10 +107,8 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         BuriUserContext userContext = engine.createUserContext(data, null, null, null);
         BuriSystemContext systemContext = engine.createSystemContext(path, userContext);
         systemContext.setContainer(container);
-        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(
-            systemContext.getCallPath());
-        List pathList = dataUtil.getBuriPathByDto(data, (DataAccessFactory) execProcess,
-            systemContext);
+        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(systemContext.getCallPath());
+        List pathList = dataUtil.getBuriPathByDto(data, (DataAccessFactory) execProcess, systemContext);
         return pathList;
     }
 
@@ -128,10 +120,8 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         BuriUserContext userContext = engine.createUserContext(null, null, null, null);
         BuriSystemContext systemContext = engine.createSystemContext(path, userContext);
         systemContext.setContainer(container);
-        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(
-            systemContext.getCallPath());
-        long count = dataUtil.countByPathAndDatas(path, datas, (DataAccessFactory) execProcess,
-            systemContext);
+        BuriExecProcess execProcess = engine.selectPackage(systemContext).getProcess(systemContext.getCallPath());
+        long count = dataUtil.countByPathAndDatas(path, datas, (DataAccessFactory) execProcess, systemContext);
         return count;
     }
 

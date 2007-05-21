@@ -18,6 +18,7 @@ public class ShippingSetDto extends ShippingDto {
         this.items = items;
     }
     
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("{");
         buff.append(super.toString());

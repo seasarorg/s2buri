@@ -15,17 +15,18 @@ import org.escafe.buri.oouo.internal.structure.BuriDataFieldType;
 public class ClassDefCheckRule extends AbstractBuriDataFieldProcRule {
     private BuriConfiguration configuration;
 
+    @Override
     public boolean process(BuriDataFieldType src) {
         String id = src.getId();
-        if(ClassDefUtilImpl.isClassName(id)) {
+        if (ClassDefUtilImpl.isClassName(id)) {
             return false;
         }
         List packageNames = configuration.getValList("DtoPackageName");
         Iterator ite = packageNames.iterator();
-        while(ite.hasNext()) {
+        while (ite.hasNext()) {
             String packageName = ite.next().toString();
             String fullClassName = packageName + "." + id;
-            if(ClassDefUtilImpl.isClassName(fullClassName)) {
+            if (ClassDefUtilImpl.isClassName(fullClassName)) {
                 src.setId(fullClassName);
                 return false;
             }

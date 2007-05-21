@@ -37,7 +37,6 @@ public interface BuriProcessSelector {
      * @param exePackages
      * @return
      */
-    int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext,
-            BuriExePackages exePackages);
+    int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages exePackages);
 
 }

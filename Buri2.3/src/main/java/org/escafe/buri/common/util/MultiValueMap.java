@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class MultiValueMap {
     private Map inMap = new HashMap();
-    
+
     public int size() {
         return inMap.size();
     }
@@ -51,28 +51,29 @@ public class MultiValueMap {
     }
 
     public List get(Object arg0) {
-        return (List)inMap.get(arg0);
+        return (List) inMap.get(arg0);
     }
 
     public List remove(Object arg0) {
-        return (List)inMap.remove(arg0);
+        return (List) inMap.remove(arg0);
     }
 
     public void put(Object arg0, Object arg1) {
         List valList;
-        if(containsKey(arg0)) {
-            valList = (List)inMap.get(arg0);
+        if (containsKey(arg0)) {
+            valList = (List) inMap.get(arg0);
         } else {
             valList = new ArrayList();
-            inMap.put(arg0,valList);
+            inMap.put(arg0, valList);
         }
         valList.add(arg1);
     }
-    
+
+    @Override
     public String toString() {
         return inMap.toString();
     }
-    
+
     public Map convertMap() {
         return inMap;
     }

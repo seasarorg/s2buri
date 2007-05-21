@@ -18,6 +18,7 @@ import org.seasar.coffee.script.Script;
 
 public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     
+    @Override
     public void setup(BuriWorkflowProcessType process) {
         super.setup(process);
     }

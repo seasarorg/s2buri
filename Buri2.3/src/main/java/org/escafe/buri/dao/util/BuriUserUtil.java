@@ -48,8 +48,7 @@ public interface BuriUserUtil {
      * @param walker
      * @return
      */
-    List<IdentityInfo> getUserIds(DataAccessFactory factory,
-            BuriSystemContext systemContext, BranchWalker walker);
+    List<IdentityInfo> getUserIds(DataAccessFactory factory, BuriSystemContext systemContext, BranchWalker walker);
 
     /**
      * アプリケーション管理上のユーザ情報を返します。

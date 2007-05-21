@@ -6,17 +6,27 @@ package org.escafe.buri.bao;
 
 import java.util.List;
 
-
 public interface BaoFunctionMetadata {
-    List getArgName();
-    void setArgName(List args);
+
+    List<String> getArgName();
+
+    void setArgName(List<String> args);
+
     BaoMetadata getBaoMetadata();
+
     void setActivityName(String activityName);
+
     String getActivityName();
-    List getActivityNames();
-    void setActivityNames(List activityNames);
+
+    List<String> getActivityNames();
+
+    void setActivityNames(List<String> activityNames);
+
     void addActivityNames(String actName);
+
     void setBaoMetadata(BaoMetadata metadata);
-    List getValidateAction();
-    void setValidateAction(List validateAction);
+
+    List<String> getValidateAction();
+
+    void setValidateAction(List<String> validateAction);
 }

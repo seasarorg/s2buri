@@ -21,8 +21,7 @@ public abstract class AbstractBuriActivitySelector implements BuriActivitySelect
     /**
      * @see org.escafe.buri.engine.selector.BuriActivitySelector#select(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
      */
-    public int select(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    public int select(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         if (!isTarget(activities, systemContext, execProcess)) {
             return SELECT_NEXT;
         }
@@ -49,8 +48,7 @@ public abstract class AbstractBuriActivitySelector implements BuriActivitySelect
      * @param systemContext
      * @param execProcess
      */
-    protected abstract void applyRule(Set<BuriActivityType> activities,
-            BuriSystemContext systemContext, BuriExecProcess execProcess);
+    protected abstract void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess);
 
     /**
      * ルールの適用を行う対象かどうか。
@@ -60,7 +58,6 @@ public abstract class AbstractBuriActivitySelector implements BuriActivitySelect
      * @param execProcess
      * @return 実行対象である場合は<code>true</code>。実行対象ではないは<code>false</code>。
      */
-    protected abstract boolean isTarget(Set<BuriActivityType> activities,
-            BuriSystemContext systemContext, BuriExecProcess execProcess);
+    protected abstract boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess);
 
 }

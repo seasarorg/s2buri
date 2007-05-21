@@ -5,7 +5,7 @@
 package jp.starlogic.servicemanager.impl;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,9 @@ import jp.starlogic.servicemanager.ServiceMonitor;
 import org.seasar.framework.container.S2Container;
 
 public class ServiceMonitorImpl implements ServiceMonitor {
-   
-    private Map services = new HashMap();
-    private List keyList = new ArrayList();
+
+    private Map<String, ServiceInfo> services = new HashMap<String, ServiceInfo>();
+    private List<String> keyList = new ArrayList<String>();
     private S2Container container;
 
     public void updateStatus(String serviceName, int status) {
@@ -29,11 +29,11 @@ public class ServiceMonitorImpl implements ServiceMonitor {
     public void updateStatus(String serviceName, int status, Throwable throwable) {
         ServiceInfo info;
         synchronized (this) {
-            if(services.containsKey(serviceName)) {
-                info =(ServiceInfo)services.get(serviceName);
+            if (services.containsKey(serviceName)) {
+                info = services.get(serviceName);
                 info.setStatus(status);
                 info.setLastThrowable(throwable);
-                info.setStatusUpdateTime(GregorianCalendar.getInstance().getTimeInMillis());
+                info.setStatusUpdateTime(Calendar.getInstance().getTimeInMillis());
             }
         }
     }
@@ -51,13 +51,13 @@ public class ServiceMonitorImpl implements ServiceMonitor {
     }
 
     public ServiceInfo getServiceInfo(String serviceName) {
-        ServiceInfo info=null;
+        ServiceInfo info = null;
         synchronized (this) {
-            if( ! services.containsKey(serviceName)) {
+            if (!services.containsKey(serviceName)) {
                 addService(serviceName);
             }
-            if(services.containsKey(serviceName)) {
-                info =(ServiceInfo)((ServiceInfo)services.get(serviceName)).clone();
+            if (services.containsKey(serviceName)) {
+                info = (ServiceInfo) services.get(serviceName).clone();
             }
         }
         return info;
@@ -69,14 +69,14 @@ public class ServiceMonitorImpl implements ServiceMonitor {
         thread = new Thread(info.getExecuteService());
         info.getExecuteService().clear();
         synchronized (this) {
-            info = (ServiceInfo)services.get(serviceName);
+            info = services.get(serviceName);
             info.setThread(thread);
         }
         return thread;
     }
 
     public void addService(String serviceName, OneService oneService) {
-        if(oneService==null) {
+        if (oneService == null) {
             return;
         }
         ServiceInfo info = new ServiceInfo();
@@ -88,22 +88,22 @@ public class ServiceMonitorImpl implements ServiceMonitor {
         info.setOneService(oneService);
         info.setThread(thread);
         synchronized (this) {
-            services.put(serviceName,info);
+            services.put(serviceName, info);
             keyList.add(serviceName);
         }
     }
-    
+
     protected ExecuteService getExecuteService(String serviceName, OneService oneService) {
-        return (ExecuteService)container.getComponent(ExecuteService.class);
+        return (ExecuteService) container.getComponent(ExecuteService.class);
     }
 
     public void addService(String serviceName) {
-        OneService oneService = (OneService)container.getComponent(serviceName);
+        OneService oneService = (OneService) container.getComponent(serviceName);
         addService(serviceName, oneService);
     }
 
-    public List getServiceNames() {
-        List keys = new ArrayList();
+    public List<String> getServiceNames() {
+        List<String> keys = new ArrayList<String>();
         synchronized (this) {
             keys.addAll(keyList);
         }
@@ -121,8 +121,8 @@ public class ServiceMonitorImpl implements ServiceMonitor {
     public void setTerminate(String serviceName, boolean isTerminate) {
         ServiceInfo info;
         synchronized (this) {
-            if(services.containsKey(serviceName)) {
-                info =(ServiceInfo)services.get(serviceName);
+            if (services.containsKey(serviceName)) {
+                info = services.get(serviceName);
                 info.setTerminate(isTerminate);
             }
         }

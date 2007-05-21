@@ -13,26 +13,25 @@ import org.escafe.buri.util.packages.abst.AbstBuriExePackages;
 import org.seasar.framework.container.S2Container;
 
 public class CompilePackageImpl implements CompilePackage {
-//    private static Logger logger = Logger.getLogger(CompilePackageImpl.class);
-    
+    //    private static Logger logger = Logger.getLogger(CompilePackageImpl.class);
+
     private S2Container container;
-    
-    private String packageTemplateName ="ftl/wakanagoPackage.ftl";
+
+    private String packageTemplateName = "ftl/wakanagoPackage.ftl";
     private DataFieldCompiler dataFieldCompiler;
-    
+
     public BuriExePackages compile(BuriPackageType buriPackage) {
         BuriExePackages result = new AbstBuriExePackages();
-        container.injectDependency(result,AbstBuriExePackages.class);
+        container.injectDependency(result, AbstBuriExePackages.class);
         result.setup(buriPackage);
-        compileDataAccess(result,buriPackage);
+        compileDataAccess(result, buriPackage);
         return result;
     }
-    
-    protected void compileDataAccess(BuriExePackages exePackages,BuriPackageType buriPackage) {
-        BuriDataAccessFactory factory = (BuriDataAccessFactory)exePackages;
-        dataFieldCompiler.compileAndSetting(factory,buriPackage,null);
+
+    protected void compileDataAccess(BuriExePackages exePackages, BuriPackageType buriPackage) {
+        BuriDataAccessFactory factory = (BuriDataAccessFactory) exePackages;
+        dataFieldCompiler.compileAndSetting(factory, buriPackage, null);
     }
-    
 
     public S2Container getContainer() {
         return container;
@@ -57,6 +56,5 @@ public class CompilePackageImpl implements CompilePackage {
     public void setDataFieldCompiler(DataFieldCompiler dataFieldCompiler) {
         this.dataFieldCompiler = dataFieldCompiler;
     }
-
 
 }

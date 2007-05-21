@@ -50,21 +50,21 @@ public class ExcelIOUtil {
         }
         return workbook;
     }
-    
-    public static Sheet getSheet(Workbook workbook,Object sheetInfo) {
-        if(sheetInfo instanceof Number) {
-            return getSheet(workbook,((Number)sheetInfo).intValue());
+
+    public static Sheet getSheet(Workbook workbook, Object sheetInfo) {
+        if (sheetInfo instanceof Number) {
+            return getSheet(workbook, ((Number) sheetInfo).intValue());
         } else {
-            return getSheet(workbook,sheetInfo.toString());
+            return getSheet(workbook, sheetInfo.toString());
         }
     }
-    
-    public static Sheet getSheet(Workbook workbook,int sheetNo) {
+
+    public static Sheet getSheet(Workbook workbook, int sheetNo) {
         return workbook.getSheet(sheetNo);
     }
-    
-    public static Sheet getSheet(Workbook workbook,String sheetName) {
+
+    public static Sheet getSheet(Workbook workbook, String sheetName) {
         return workbook.getSheet(sheetName);
     }
-    
+
 }

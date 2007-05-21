@@ -12,25 +12,26 @@ import org.escafe.buri.oouo.internal.structure.BuriDataFieldType;
 import org.seasar.framework.util.ClassUtil;
 
 public class DataAccessCheckRule extends AbstractBuriDataFieldProcRule {
+    @Override
     public void finishCheck(BuriDataFieldType src) {
         String id = src.getId();
-        if( ! ClassDefUtilImpl.isClassName(id)) {
+        if (!ClassDefUtilImpl.isClassName(id)) {
             throw new BuriDataFieldErrorException(id);
         }
-        if(src.getKeys().size() > 0) {
+        if (src.getKeys().size() > 0) {
             checkKeyName(src);
         }
     }
-    
+
     protected void checkKeyName(BuriDataFieldType src) {
         String id = src.getId();
         Class tgtClass = ClassUtil.forName(id);
         Iterator ite = src.getKeys().keySet().iterator();
-        while(ite.hasNext()) {
+        while (ite.hasNext()) {
             String keyVal = ite.next().toString();
-            
-            if( ! ClassDefUtilImpl.hasPropertyName(tgtClass,keyVal)) {
-                throw new BuriDataFieldErrorException(tgtClass,keyVal);
+
+            if (!ClassDefUtilImpl.hasPropertyName(tgtClass, keyVal)) {
+                throw new BuriDataFieldErrorException(tgtClass, keyVal);
             }
         }
     }

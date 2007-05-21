@@ -5,5 +5,5 @@
 package org.escafe.buri.dao.util;
 
 public interface BuriUndoLogUtil {
-    void addUndoLog(long stateID,long branchID);
+    void addUndoLog(long stateID, long branchID);
 }

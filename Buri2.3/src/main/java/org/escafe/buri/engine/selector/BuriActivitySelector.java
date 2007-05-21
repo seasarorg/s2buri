@@ -37,6 +37,5 @@ public interface BuriActivitySelector {
      * @param execProcess
      * @return
      */
-    int select(Set<BuriActivityType> activitys, BuriSystemContext systemContext,
-            BuriExecProcess execProcess);
+    int select(Set<BuriActivityType> activitys, BuriSystemContext systemContext, BuriExecProcess execProcess);
 }

@@ -21,21 +21,20 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
     private BuriEngine simpleEngine;
     private BuriEngine standardEngine;
     private S2Container container;
-    
 
     public void toNextStatus(String path, Object data, Object userData) {
-        toNextStatusAction(path, getRootContainer(), data, userData,null, null);
+        toNextStatusAction(path, getRootContainer(), data, userData, null, null);
     }
 
-    public Object toNextStatus(String path, Object data, Object userData,String resultExp) {
-        return toNextStatusAction(path, getRootContainer(), data, userData,null, resultExp);
+    public Object toNextStatus(String path, Object data, Object userData, String resultExp) {
+        return toNextStatusAction(path, getRootContainer(), data, userData, null, resultExp);
     }
 
-    public void toNextStatusAction(String path, Object data, Object userData,Object action) {
-        toNextStatusAction(path, getRootContainer(), data, userData,action, null);
+    public void toNextStatusAction(String path, Object data, Object userData, Object action) {
+        toNextStatusAction(path, getRootContainer(), data, userData, action, null);
     }
 
-    protected Object toNextStatusAction(String path, S2Container container, Object data, Object userData,Object action, String resultExp) {
+    protected Object toNextStatusAction(String path, S2Container container, Object data, Object userData, Object action, String resultExp) {
         BuriProcessorInfo info = new BuriProcessorInfo();
         info.setAction(action);
         info.setContainer(container);
@@ -43,110 +42,110 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
         return toNextStatus(path, data, userData, info);
     }
 
-    public Object toNextStatus(String path, Object data, Object userData,BuriProcessorInfo info) {
+    public Object toNextStatus(String path, Object data, Object userData, BuriProcessorInfo info) {
         Object result = null;
-        if(isStdProcessor(path)) {
-            result = standardProcessor.toNextStatus(path, data, userData,info);
+        if (isStdProcessor(path)) {
+            result = standardProcessor.toNextStatus(path, data, userData, info);
         }
-        if(isSimpleProcessor(path)) {
+        if (isSimpleProcessor(path)) {
             result = simpleProcessor.toNextStatus(path, data, info);
         }
         return result;
     }
-    
+
     protected BuriEngine getEngine(String buriPath) {
-        if(isStdProcessor(buriPath)) {
+        if (isStdProcessor(buriPath)) {
             return standardEngine;
         }
-        if(isSimpleProcessor(buriPath)) {
+        if (isSimpleProcessor(buriPath)) {
             return simpleEngine;
         }
         return null;
     }
 
     public List getDataListFromPath(String path, Object userData, Class tgtClass) {
-        return getDataListFromPath(path, userData,tgtClass, getRootContainer());
+        return getDataListFromPath(path, userData, tgtClass, getRootContainer());
     }
-    
-    public List getDataListFromPath(String path, Object userData,Class tgtClass, S2Container container) {
+
+    public List getDataListFromPath(String path, Object userData, Class tgtClass, S2Container container) {
         List result = null;
-        if(isStdProcessor(path)) {
-            result = standardProcessor.getDataListFromPath(path, userData,tgtClass, container);
+        if (isStdProcessor(path)) {
+            result = standardProcessor.getDataListFromPath(path, userData, tgtClass, container);
         }
-        if(isSimpleProcessor(path)) {
+        if (isSimpleProcessor(path)) {
             result = simpleProcessor.getDataListFromPath(path, tgtClass, container);
         }
         return result;
     }
 
     public List getDataIDFromPath(String path, Object userData, Class tgtClass) {
-        return getDataIDFromPath(path, userData, tgtClass,getRootContainer());
+        return getDataIDFromPath(path, userData, tgtClass, getRootContainer());
     }
 
-    public List getDataIDFromPath(String path, Object userData, Class tgtClass,S2Container container) {
+    public List getDataIDFromPath(String path, Object userData, Class tgtClass, S2Container container) {
         List result = null;
-        if(isStdProcessor(path)) {
-            result = standardProcessor.getDataIDFromPath(path, userData,tgtClass, container);
+        if (isStdProcessor(path)) {
+            result = standardProcessor.getDataIDFromPath(path, userData, tgtClass, container);
         }
-        if(isSimpleProcessor(path)) {
+        if (isSimpleProcessor(path)) {
             result = simpleProcessor.getDataIDFromPath(path, tgtClass, container);
         }
         return result;
     }
 
-    public List getPathFromData(String path, Object data, Object userData,Class tgtClass) {
-        return getPathFromData(path, data, userData,tgtClass, getRootContainer());
+    public List getPathFromData(String path, Object data, Object userData, Class tgtClass) {
+        return getPathFromData(path, data, userData, tgtClass, getRootContainer());
     }
 
-    public List getPathFromData(String path, Object data, Object userData,Class tgtClass, S2Container container) {
+    public List getPathFromData(String path, Object data, Object userData, Class tgtClass, S2Container container) {
         List result = null;
-        if(isStdProcessor(path)) {
-            result = standardProcessor.getPathFromData(path, data, userData,tgtClass, container);
+        if (isStdProcessor(path)) {
+            result = standardProcessor.getPathFromData(path, data, userData, tgtClass, container);
         }
-        if(isSimpleProcessor(path)) {
+        if (isSimpleProcessor(path)) {
             result = simpleProcessor.getPathFromData(path, tgtClass, container);
         }
         return result;
     }
 
     public long countByPathAndDatas(String path, List datas, Object userData) {
-        return countByPathAndDatas(path, datas, userData,getRootContainer());
+        return countByPathAndDatas(path, datas, userData, getRootContainer());
     }
 
-    public long countByPathAndDatas(String path, List datas, Object userData,S2Container container) {
+    public long countByPathAndDatas(String path, List datas, Object userData, S2Container container) {
         long result = 0;
-        if(isStdProcessor(path)) {
-            result = standardProcessor.countByPathAndDatas(path, datas, userData,container);
+        if (isStdProcessor(path)) {
+            result = standardProcessor.countByPathAndDatas(path, datas, userData, container);
         }
-        if(isSimpleProcessor(path)) {
-            result = simpleProcessor.countByPathAndDatas(path, datas,container);
+        if (isSimpleProcessor(path)) {
+            result = simpleProcessor.countByPathAndDatas(path, datas, container);
         }
         return result;
     }
-    
+
     public boolean isStdProcessor(String buriPath) {
         BuriPath path = new BuriPath(buriPath);
-        if(standardEngine.hasPackage(path.getWorkflowPackage())) {
+        if (standardEngine.hasPackage(path.getWorkflowPackage())) {
             return true;
         }
         return false;
     }
-    
+
     public DataAccessFactory getDataAccessFactory(String buriPath) {
         DataAccessFactory accessFactory = null;
         BuriPath path = new BuriPath(buriPath);
-        if(isStdProcessor(buriPath)) {
-            accessFactory = (DataAccessFactory)standardEngine.selectDirectProcess(path);
+        if (isStdProcessor(buriPath)) {
+            accessFactory = (DataAccessFactory) standardEngine.selectDirectProcess(path);
         }
-        if(isSimpleProcessor(buriPath)) {
-            accessFactory = (DataAccessFactory)simpleEngine.selectDirectProcess(path);
+        if (isSimpleProcessor(buriPath)) {
+            accessFactory = (DataAccessFactory) simpleEngine.selectDirectProcess(path);
         }
         return accessFactory;
     }
-    
+
     public boolean isSimpleProcessor(String buriPath) {
         BuriPath path = new BuriPath(buriPath);
-        if(simpleEngine.hasPackage(path.getWorkflowPackage())) {
+        if (simpleEngine.hasPackage(path.getWorkflowPackage())) {
             return true;
         }
         return false;
@@ -195,6 +194,5 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
     public void setContainer(S2Container container) {
         this.container = container;
     }
-    
-    
+
 }

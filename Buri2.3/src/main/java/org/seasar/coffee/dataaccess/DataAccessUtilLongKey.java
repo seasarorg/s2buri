@@ -6,10 +6,11 @@ package org.seasar.coffee.dataaccess;
 
 import java.util.List;
 
-public interface DataAccessUtilLongKey extends DataAccessUtil{
+public interface DataAccessUtilLongKey extends DataAccessUtil {
     List get(List keyVals);
-    
+
     Long getKey(Object key);
+
     Object getObjectFromKey(Long keyObj);
 
 }

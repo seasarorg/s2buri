@@ -25,8 +25,7 @@ public class BuriPathUtilImpl implements BuriPathUtil {
 
     public BuriPath getBuriPathByID(long pathID) {
         BuriPathEntityDto dto = pathDao.getBuriPath(pathID);
-        BuriPath path = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto.getPathID(), dto
-            .getPathType());
+        BuriPath path = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto.getPathID(), dto.getPathType());
         return path;
     }
 
@@ -50,8 +49,7 @@ public class BuriPathUtilImpl implements BuriPathUtil {
     }
 
     public List getBuriPathFromPathName(BuriPath srcPath) {
-        List entityList = pathDao
-            .getBuriPathFromPath(srcPath.getPlainName(), srcPath.getPathType());
+        List entityList = pathDao.getBuriPathFromPath(srcPath.getPlainName(), srcPath.getPathType());
         List result = convEntytyToBuriPath(entityList);
         return result;
     }
@@ -61,8 +59,7 @@ public class BuriPathUtilImpl implements BuriPathUtil {
         Iterator ite = entityList.iterator();
         while (ite.hasNext()) {
             BuriPathEntityDto dto = (BuriPathEntityDto) ite.next();
-            BuriPath path = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto.getPathID(),
-                dto.getPathType());
+            BuriPath path = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto.getPathID(), dto.getPathType());
             result.add(path);
         }
         return result;

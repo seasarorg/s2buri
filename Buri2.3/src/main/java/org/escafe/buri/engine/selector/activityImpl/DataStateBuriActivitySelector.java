@@ -36,8 +36,7 @@ public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector 
     private BuriPathUtil pathUtil;
 
     @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         Set<BuriActivityType> result = new HashSet<BuriActivityType>();
         long dataID = dataUtil.getBuriDataId((DataAccessFactory) execProcess, systemContext);
         List pathList = pathUtil.getPathListByDataId(dataID);
@@ -53,8 +52,7 @@ public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector 
     }
 
     @Override
-    protected boolean isTarget(Set<BuriActivityType> activitys, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected boolean isTarget(Set<BuriActivityType> activitys, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         return true;
     }
 

@@ -43,6 +43,7 @@ public class ShippingDto {
         this.customerID = customerID;
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/shippingID=").append(shippingID);

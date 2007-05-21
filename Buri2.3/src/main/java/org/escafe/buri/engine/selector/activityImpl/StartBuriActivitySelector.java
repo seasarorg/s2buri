@@ -26,15 +26,13 @@ import org.escafe.buri.util.packages.BuriExecProcess;
 public class StartBuriActivitySelector extends AbstractBuriActivitySelector {
 
     @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         activities.clear();
         activities.addAll(execProcess.getBuriWorkflowProcessType().getStartActivitys());
     }
 
     @Override
-    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         if (!activities.isEmpty()) {
             return false;
         }

@@ -10,7 +10,7 @@ public class OouoSig {
     private String sig;
     private int action;
     private Field field;
-    
+
     public static final int THIS = 64;
     public static final int FIN = 128;
 
@@ -18,7 +18,7 @@ public class OouoSig {
     public static final int ELEMENT = 2;
     public static final int ATTRI = 4;
     public static final int TEXT = 8;
-    
+
     public OouoSig copy(Field tgt) {
         OouoSig sig = new OouoSig();
         sig.sig = this.sig;
@@ -26,16 +26,19 @@ public class OouoSig {
         sig.field = tgt;
         return sig;
     }
-    
+
     public int getAction() {
         return action;
     }
+
     public void setAction(int action) {
         this.action = action;
     }
+
     public String getSig() {
         return sig;
     }
+
     public void setSig(String sig) {
         this.sig = sig;
     }
@@ -47,5 +50,5 @@ public class OouoSig {
     public void setField(Field field) {
         this.field = field;
     }
-    
+
 }

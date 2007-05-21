@@ -9,12 +9,16 @@ import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 
 public interface BuriExecProcess {
     void setup(BuriWorkflowProcessType process);
+
     String selectActivityId(BuriSystemContext sysContext);
-    void entryActivity(String actId,BuriSystemContext sysContext,BranchWalker walker);
-    
+
+    void entryActivity(String actId, BuriSystemContext sysContext, BranchWalker walker);
+
     void setBuriExePackages(BuriExePackages packages);
+
     BuriExePackages getBuriExePackages();
-    
+
     BranchWalker readBranchWalker(BuriSystemContext sysContext);
+
     BuriWorkflowProcessType getBuriWorkflowProcessType();
 }

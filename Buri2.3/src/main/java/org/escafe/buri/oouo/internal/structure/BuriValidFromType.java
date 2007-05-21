@@ -13,15 +13,17 @@ public class BuriValidFromType {
     }
 
     public final static String setFromDate_OOUOTEXT = "";
+
     public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
-    
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/fromDate=").append(fromDate);
         buff.append("]");
         return buff.toString();
     }
-    
+
 }

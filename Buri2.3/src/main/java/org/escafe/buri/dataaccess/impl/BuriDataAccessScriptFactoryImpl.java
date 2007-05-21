@@ -10,16 +10,17 @@ import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.ScriptFactory;
 
 public class BuriDataAccessScriptFactoryImpl extends BuriDataAccessFactoryImpl {
-	private BuriDataFieldCompilePreprocessor preprocessor;
+    private BuriDataFieldCompilePreprocessor preprocessor;
     private Map classToUtil = new HashMap();
     private ScriptFactory scriptFactory;
     private ClassDefUtil classDefUtil;
-	
-	public DataAccessUtil getDataAccessUtil(Class tgtClass) {
-		String className = classDefUtil.getClassName(tgtClass);
-		if(classToUtil.containsKey(className)) {
-			return (DataAccessUtil)classToUtil.get(className);
-		}
+
+    @Override
+    public DataAccessUtil getDataAccessUtil(Class tgtClass) {
+        String className = classDefUtil.getClassName(tgtClass);
+        if (classToUtil.containsKey(className)) {
+            return (DataAccessUtil) classToUtil.get(className);
+        }
         BuriDataFieldType fieldType = new BuriDataFieldType();
         fieldType.setId(className);
         fieldType = preprocessor.preprocess(fieldType);
@@ -29,29 +30,28 @@ public class BuriDataAccessScriptFactoryImpl extends BuriDataAccessFactoryImpl {
         return dataAccessUtil;
     }
 
-	public BuriDataFieldCompilePreprocessor getPreprocessor() {
-		return preprocessor;
-	}
+    public BuriDataFieldCompilePreprocessor getPreprocessor() {
+        return preprocessor;
+    }
 
-	public void setPreprocessor(BuriDataFieldCompilePreprocessor preprocessor) {
-		this.preprocessor = preprocessor;
-	}
+    public void setPreprocessor(BuriDataFieldCompilePreprocessor preprocessor) {
+        this.preprocessor = preprocessor;
+    }
 
-	public ScriptFactory getScriptFactory() {
-		return scriptFactory;
-	}
+    public ScriptFactory getScriptFactory() {
+        return scriptFactory;
+    }
 
-	public void setScriptFactory(ScriptFactory scriptFactory) {
-		this.scriptFactory = scriptFactory;
-	}
+    public void setScriptFactory(ScriptFactory scriptFactory) {
+        this.scriptFactory = scriptFactory;
+    }
 
-	public ClassDefUtil getClassDefUtil() {
-		return classDefUtil;
-	}
+    public ClassDefUtil getClassDefUtil() {
+        return classDefUtil;
+    }
 
-	public void setClassDefUtil(ClassDefUtil classDefUtil) {
-		this.classDefUtil = classDefUtil;
-	}
-	
+    public void setClassDefUtil(ClassDefUtil classDefUtil) {
+        this.classDefUtil = classDefUtil;
+    }
 
 }

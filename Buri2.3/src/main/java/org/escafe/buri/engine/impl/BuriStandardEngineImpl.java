@@ -21,24 +21,22 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
     }
 
     @Override
-    public void readWorkFlowFromResource(String workFlowName, String resourceName,
-            ParticipantProvider provider) {
+    public void readWorkFlowFromResource(String workFlowName, String resourceName, ParticipantProvider provider) {
         readFromResource(workFlowName, resourceName, provider);
     }
 
     @Override
     public void setupUserID(BuriSystemContext sysContext) {
-        BuriExePackages wPackageObj = (BuriExePackages) selectPackage(sysContext);
+        BuriExePackages wPackageObj = selectPackage(sysContext);
         BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj, sysContext);
         updateUserInfo(sysContext, wp, wPackageObj);
     }
 
     @Override
-    protected void updateUserInfo(BuriSystemContext sysContext, BuriExecProcess wp,
-            BuriExePackages wPackageObj) {
+    protected void updateUserInfo(BuriSystemContext sysContext, BuriExecProcess wp, BuriExePackages wPackageObj) {
         super.updateUserInfo(sysContext, wp, wPackageObj);
         IdentityInfo appUserId = sysContext.getAppUserId();
-        if (appUserId.getIdNumber() == null && appUserId.getIdString() == null) {
+        if ((appUserId.getIdNumber() == null) && (appUserId.getIdString() == null)) {
             return;
         }
         long userID = userUtil.convertBuriUserId(appUserId);

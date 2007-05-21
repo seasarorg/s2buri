@@ -52,7 +52,8 @@ public class BillDto {
 		this.customerID = customerID;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/billID=").append(billID);
 		buff.append("/billDate=").append(billDate);

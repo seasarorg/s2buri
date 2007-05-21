@@ -17,43 +17,42 @@ import org.seasar.framework.container.S2Container;
 public class BuriComponentUtilImpl implements BuriComponentUtil {
     private S2Container container;
 
-    public String getJavaProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType) {
-        BuriWorkflowProcessType processType = actType.getWorkflowProcess(); 
-        if( processType == null) {
+    public String getJavaProcessCode(String tgtObjName, BuriToolType toolType, BuriActivityType actType) {
+        BuriWorkflowProcessType processType = actType.getWorkflowProcess();
+        if (processType == null) {
             processType = actType.getActivitySet().getProcessType();
         }
         BuriApplicationType appType = processType.getApplicationById(toolType.getId());
-        BuriExtendedAttributeType attriType = ExtentedAttributeUtil.getExtendedAttribute(appType.getExtendedAttributeList(),"after");
-        if( attriType != null) {
+        BuriExtendedAttributeType attriType = ExtentedAttributeUtil.getExtendedAttribute(appType.getExtendedAttributeList(), "after");
+        if (attriType != null) {
             return "sysContext.addAfterCallMethods(\"" + actType.getId() + "\");";
         }
-        BuriComponent component = (BuriComponent)container.getComponent(appType.getName());
-        String source = component.getBuriExecuteSource(tgtObjName,toolType);
+        BuriComponent component = (BuriComponent) container.getComponent(appType.getName());
+        String source = component.getBuriExecuteSource(tgtObjName, toolType);
         return source;
     }
-    
-    public String getJavaAfterProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType) {
-        BuriWorkflowProcessType processType = actType.getWorkflowProcess(); 
-        if( processType == null) {
+
+    public String getJavaAfterProcessCode(String tgtObjName, BuriToolType toolType, BuriActivityType actType) {
+        BuriWorkflowProcessType processType = actType.getWorkflowProcess();
+        if (processType == null) {
             processType = actType.getActivitySet().getProcessType();
         }
         BuriApplicationType appType = processType.getApplicationById(toolType.getId());
-        if(ExtentedAttributeUtil.getExtendedAttribute(appType.getExtendedAttributeList(),"after") != null) {
-            BuriComponent component = (BuriComponent)container.getComponent(appType.getName());
-            String source = component.getBuriExecuteSource(tgtObjName,toolType);
+        if (ExtentedAttributeUtil.getExtendedAttribute(appType.getExtendedAttributeList(), "after") != null) {
+            BuriComponent component = (BuriComponent) container.getComponent(appType.getName());
+            String source = component.getBuriExecuteSource(tgtObjName, toolType);
             return source;
         }
         return "";
     }
-    
-    
+
     public String convScriptToJavaString(String text) {
-        if(text==null) {
+        if (text == null) {
             return "";
         }
-        text = text.replaceAll("\\\\","\\\\\\\\");
-        text = text.replaceAll("\"","\\\\\"");
-        text = text.replaceAll("\n","\\\\n");
+        text = text.replaceAll("\\\\", "\\\\\\\\");
+        text = text.replaceAll("\"", "\\\\\"");
+        text = text.replaceAll("\n", "\\\\n");
         return text;
     }
 

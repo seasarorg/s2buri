@@ -7,8 +7,6 @@ package org.escafe.buri.exception.select;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.exception.BuriXpdlPathException;
 
-
-
 /**
  * @author makotan
  *

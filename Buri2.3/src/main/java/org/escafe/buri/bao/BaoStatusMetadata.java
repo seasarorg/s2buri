@@ -4,5 +4,5 @@
  */
 package org.escafe.buri.bao;
 
-public interface BaoStatusMetadata extends BaoFunctionMetadata{
+public interface BaoStatusMetadata extends BaoFunctionMetadata {
 }

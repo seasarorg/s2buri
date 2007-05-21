@@ -20,7 +20,7 @@ public class BuriStateUserEntityDto {
 
     public BuriStateUserEntityDto() {
     }
-    
+
     public Long getBuriUserID() {
         return buriUserID;
     }
@@ -61,6 +61,7 @@ public class BuriStateUserEntityDto {
         this.insertDate = insertDate;
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/stateUserID=").append(stateUserID);

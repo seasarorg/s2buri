@@ -22,24 +22,24 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
     public List getFileConfigs() {
         return fileConfigs;
     }
-    
-    public void addResourceConfig(String fileName,String packageName) {
-        addResourceConfig(fileName,packageName,null);
+
+    public void addResourceConfig(String fileName, String packageName) {
+        addResourceConfig(fileName, packageName, null);
     }
-    
-    public void addResourceConfig(String fileName,String packageName,ParticipantProvider provider) {
+
+    public void addResourceConfig(String fileName, String packageName, ParticipantProvider provider) {
         BuriConfigDto dto = new BuriConfigDto();
         dto.setFileName(fileName);
         dto.setPackageName(packageName);
         dto.setProvider(provider);
         resourceConfigs.add(dto);
     }
-    
-    public void addFileConfig(String fileName,String packageName) {
-        addFileConfig(fileName,packageName,null);
+
+    public void addFileConfig(String fileName, String packageName) {
+        addFileConfig(fileName, packageName, null);
     }
-    
-    public void addFileConfig(String fileName,String packageName,ParticipantProvider provider) {
+
+    public void addFileConfig(String fileName, String packageName, ParticipantProvider provider) {
         BuriConfigDto dto = new BuriConfigDto();
         dto.setFileName(fileName);
         dto.setPackageName(packageName);

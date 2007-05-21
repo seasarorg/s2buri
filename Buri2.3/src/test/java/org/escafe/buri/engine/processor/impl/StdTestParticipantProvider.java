@@ -17,7 +17,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
     private BuriTestUserDao userDao;
 
     public BuriTestUserDto getUserData(IdentityInfo appUserId) {
-        if (appUserId == null || appUserId.getIdNumber() == null) {
+        if ((appUserId == null) || (appUserId.getIdNumber() == null)) {
             return null;
         }
         BuriTestUserDto dto = userDao.getBuriTestUser(appUserId.getIdNumber());
@@ -58,7 +58,7 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                 //一段下を探す
                 roleList = userDao.getUserListByUserID(currentUserIdNumber, roleName);
             }
-            if (roleList.size() == 0 && roleName.equals("下っ端") && startRoleName.equals("一番上")) {
+            if ((roleList.size() == 0) && roleName.equals("下っ端") && startRoleName.equals("一番上")) {
                 //一番上と下っ端が対象の場合もう一段下を探す
                 List<BuriTestUserDto> mannaka = userDao.getUserListByParentUserID(currentUserIdNumber, "真ん中");
                 for (BuriTestUserDto dto : mannaka) {
@@ -66,14 +66,14 @@ public class StdTestParticipantProvider implements ParticipantProvider {
                     roleList.addAll(tmpList);
                 }
             }
-            if (roleList.size() == 0 && roleName.equals("真ん中") && startRoleName.equals("下っ端")) {
+            if ((roleList.size() == 0) && roleName.equals("真ん中") && startRoleName.equals("下っ端")) {
                 List<BuriTestUserDto> selfData = userDao.getUserListByUserID(currentUserIdNumber, "下っ端");
                 for (BuriTestUserDto dto : selfData) {
                     List<BuriTestUserDto> tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()), roleName);
                     roleList.addAll(tmpList);
                 }
             }
-            if (roleList.size() == 0 && roleName.equals("一番上") && startRoleName.equals("真ん中")) {
+            if ((roleList.size() == 0) && roleName.equals("一番上") && startRoleName.equals("真ん中")) {
                 List<BuriTestUserDto> selfData = userDao.getUserListByUserID(currentUserIdNumber, "真ん中");
                 for (BuriTestUserDto dto : selfData) {
                     List<BuriTestUserDto> tmpList = userDao.getUserListByUserID(new Long(dto.getParentUserID()), roleName);

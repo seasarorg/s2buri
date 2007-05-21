@@ -13,25 +13,25 @@ import org.escafe.buri.bao.BaoMetadata;
 import org.seasar.framework.util.StringUtil;
 
 public abstract class AbstractBaoMetadata implements BaoFunctionMetadata {
-    private List argName = Arrays.asList(new String[]{"data"});
+    private List<String> argName = Arrays.asList(new String[] { "data" });
     private String activityName = "";
-    private List activityNames = new ArrayList();
+    private List<String> activityNames = new ArrayList<String>();
     private BaoMetadata baoMetadata = null;
-    private List validateAction = new ArrayList();
-    
+    private List<String> validateAction = new ArrayList<String>();
+
     public void setBaoMetadata(BaoMetadata baoMetadata) {
         this.baoMetadata = baoMetadata;
     }
-    
+
     public BaoMetadata getBaoMetadata() {
         return baoMetadata;
     }
 
-    public List getArgName() {
+    public List<String> getArgName() {
         return argName;
     }
 
-    public void setArgName(List argName) {
+    public void setArgName(List<String> argName) {
         this.argName = argName;
     }
 
@@ -39,15 +39,16 @@ public abstract class AbstractBaoMetadata implements BaoFunctionMetadata {
         return activityName;
     }
 
-    public List getActivityNames() {
+    public List<String> getActivityNames() {
         return activityNames;
     }
 
-    public void setActivityNames(List activityNames) {
+    public void setActivityNames(List<String> activityNames) {
         this.activityNames = activityNames;
     }
+
     public void addActivityNames(String actName) {
-        if(StringUtil.isEmpty(activityName)) {
+        if (StringUtil.isEmpty(activityName)) {
             activityName = actName;
         }
         this.activityNames.add(actName);
@@ -57,15 +58,15 @@ public abstract class AbstractBaoMetadata implements BaoFunctionMetadata {
         this.activityName = activityName;
     }
 
-    public List getValidateAction() {
+    public List<String> getValidateAction() {
         return validateAction;
     }
 
-    public void setValidateAction(List validateAction) {
+    public void setValidateAction(List<String> validateAction) {
         this.validateAction = validateAction;
     }
 
-
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("argName=").append(argName);

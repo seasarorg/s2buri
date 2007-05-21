@@ -22,8 +22,7 @@ public class BuriStateUserUtilImpl extends BuriStateUtilImpl implements BuriStat
     private BuriStateUserDao stateUserDao;
 
     @Override
-    public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         long stateID = super.saveStatus(factory, sysContext, walker);
         List<IdentityInfo> users = userUtil.getUserIds(factory, sysContext, walker);
         List<Long> userIds = userUtil.convertBuriUserIds(users);

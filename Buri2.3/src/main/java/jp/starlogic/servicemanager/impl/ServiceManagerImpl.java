@@ -12,24 +12,24 @@ import jp.starlogic.servicemanager.ServiceManager;
 import jp.starlogic.servicemanager.ServiceMonitor;
 import jp.starlogic.servicemanager.ServiceMonitor.ServiceInfo;
 
-public class ServiceManagerImpl implements ServiceManager{
-    private List startupService = new ArrayList();
+public class ServiceManagerImpl implements ServiceManager {
+    private List<String> startupService = new ArrayList<String>();
     private ServiceMonitor monitor;
-    
+
     public void addStartupService(String serviceName) {
         startupService.add(serviceName);
     }
 
     public void startup() {
-        Iterator ite = startupService.iterator();
-        while(ite.hasNext()) {
+        Iterator<String> ite = startupService.iterator();
+        while (ite.hasNext()) {
             executeService(ite.next().toString());
         }
     }
 
     public void terminate() {
-        Iterator ite = startupService.iterator();
-        while(ite.hasNext()) {
+        Iterator<String> ite = startupService.iterator();
+        while (ite.hasNext()) {
             ServiceInfo info = monitor.getServiceInfo(ite.next().toString());
             info.getExecuteService().terminate();
             try {
@@ -43,7 +43,7 @@ public class ServiceManagerImpl implements ServiceManager{
     public void executeService(String serviceName) {
         Thread thread = monitor.getThread(serviceName);
         thread.setPriority(Thread.MAX_PRIORITY);
-        if(thread.isAlive() == false) {
+        if (thread.isAlive() == false) {
             thread.start();
         }
     }

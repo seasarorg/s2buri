@@ -20,10 +20,9 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUt
     private ClassDefUtil classDefUtil;
 
     @Override
-    protected long countByPathKeys(String className, List longList, List strList, String pathName,
-            BuriSystemContext sysContext) {
-        long count = pathDataUserDao.getCountByPathKeysAndUser(className, longList, strList,
-            pathName, sysContext.getCallPath().getPathType(), sysContext.getBuriUserID());
+    protected long countByPathKeys(String className, List longList, List strList, String pathName, BuriSystemContext sysContext) {
+        long count = pathDataUserDao.getCountByPathKeysAndUser(className, longList, strList, pathName, sysContext.getCallPath().getPathType(),
+            sysContext.getBuriUserID());
         return count;
     }
 
@@ -34,14 +33,12 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUt
             className = classDefUtil.getClassName(sysContext.getTargetDtoClass());
         }
         Long pathType = sysContext.getCallPath().getPathType();
-        List infoList = pathDataUserDao.getListByPathNameAndUser(className, pathName, pathType,
-            sysContext.getBuriUserID());
+        List infoList = pathDataUserDao.getListByPathNameAndUser(className, pathName, pathType, sysContext.getBuriUserID());
         return infoList;
     }
 
     @Override
-    protected List getDataDtoList(String pathName, DataAccessUtilLongKey dataUtil,
-            BuriSystemContext sysContext) {
+    protected List getDataDtoList(String pathName, DataAccessUtilLongKey dataUtil, BuriSystemContext sysContext) {
         List infoList = getDataInfoListFromPathName(pathName, sysContext);
         Iterator ite = infoList.iterator();
         List<Long> result = new ArrayList<Long>();
@@ -60,12 +57,12 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements BuriDataUt
         this.pathDataUserDao = pathDataUserDao;
     }
 
-	public ClassDefUtil getClassDefUtil() {
-		return classDefUtil;
-	}
+    public ClassDefUtil getClassDefUtil() {
+        return classDefUtil;
+    }
 
-	public void setClassDefUtil(ClassDefUtil classDefUtil) {
-		this.classDefUtil = classDefUtil;
-	}
+    public void setClassDefUtil(ClassDefUtil classDefUtil) {
+        this.classDefUtil = classDefUtil;
+    }
 
 }

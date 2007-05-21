@@ -28,95 +28,94 @@ import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 
 public class DataFieldCompilerImpl implements DataFieldCompiler {
-    
+
     private DataAccessCompileUtil dataAccessCompileUtil;
 
     private ScriptFactory scriptFactory;
     private S2Container container;
     private BasicCompler compler;
-    private String preprocessTemplateName ="ftl/Preprocess.ftl";
+    private String preprocessTemplateName = "ftl/Preprocess.ftl";
     private BuriDataFieldCompilePreprocessor bdfcp;
-    
-    
-    public void compileAndSetting(BuriDataAccessFactory factory,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
-        Map dataField = getDataField(buriPackage,process);
+
+    public void compileAndSetting(BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process) {
+        Map dataField = getDataField(buriPackage, process);
         Iterator ite = dataField.keySet().iterator();
-        while(ite.hasNext()) {
-            String className = (String)ite.next();
-            BuriDataFieldType fieldType = (BuriDataFieldType)dataField.get(className);
-            compileAndSettingOne(fieldType,factory,buriPackage,process);
+        while (ite.hasNext()) {
+            String className = (String) ite.next();
+            BuriDataFieldType fieldType = (BuriDataFieldType) dataField.get(className);
+            compileAndSettingOne(fieldType, factory, buriPackage, process);
         }
     }
-    
-    public void compileAndSettingOne(BuriDataFieldType fieldType,BuriDataAccessFactory factory,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
+
+    public void compileAndSettingOne(BuriDataFieldType fieldType, BuriDataAccessFactory factory, BuriPackageType buriPackage,
+            BuriWorkflowProcessType process) {
         String className = fieldType.getId();
         fieldType = bdfcp.preprocess(fieldType);
-        if(dataAccessCompileUtil.isDataAccessUtil(fieldType)) {
-            dataAccessCompileUtil.setupDataAccessUtil(factory,className,fieldType,buriPackage,process);
+        if (dataAccessCompileUtil.isDataAccessUtil(fieldType)) {
+            dataAccessCompileUtil.setupDataAccessUtil(factory, className, fieldType, buriPackage, process);
         }
-        if(isPreProcessUtil(fieldType)) {
-            setupPreprocessUtil(factory,className,fieldType,process,buriPackage);
+        if (isPreProcessUtil(fieldType)) {
+            setupPreprocessUtil(factory, className, fieldType, process, buriPackage);
         }
     }
-    
-    protected void setupPreprocessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,BuriWorkflowProcessType process,BuriPackageType buriPackage) {
-        PreprocessAccessUtil util = compile(fieldType,process,buriPackage);
+
+    protected void setupPreprocessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, BuriWorkflowProcessType process,
+            BuriPackageType buriPackage) {
+        PreprocessAccessUtil util = compile(fieldType, process, buriPackage);
         Class clazz = ClassUtil.forName(className);
-        factory.setPreprocessAccessUtil(clazz,util);
+        factory.setPreprocessAccessUtil(clazz, util);
         BuriExePackages exePackage = null;
-        if(factory instanceof BuriExePackages) {
-            exePackage = (BuriExePackages)factory;
+        if (factory instanceof BuriExePackages) {
+            exePackage = (BuriExePackages) factory;
         } else {
-            BuriExecProcess execProc = (BuriExecProcess)factory;
+            BuriExecProcess execProc = (BuriExecProcess) factory;
             exePackage = execProc.getBuriExePackages();
         }
         Script preprocessScript = scriptFactory.getScript(exePackage.getPreprocessScriptType());
         util.setPreprocessScript(preprocessScript);
     }
-    
-    protected PreprocessAccessUtil compile(BuriDataFieldType fieldType,BuriWorkflowProcessType process,BuriPackageType buriPackage) {
-        String createCalssName = getPreprocessClassName(fieldType,process,buriPackage);
+
+    protected PreprocessAccessUtil compile(BuriDataFieldType fieldType, BuriWorkflowProcessType process, BuriPackageType buriPackage) {
+        String createCalssName = getPreprocessClassName(fieldType, process, buriPackage);
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName(createCalssName);
         info.setBaseClass(AbstPreprocessAccessUtil.class);
-        info.setInterfaceClass(new Class[]{});
+        info.setInterfaceClass(new Class[] {});
         info.setBaseObjectName("fieldType");
         info.setBaseObject(fieldType);
         info.setTemplateFileName(preprocessTemplateName);
         Object result = compler.Compile(info);
-        PreprocessAccessUtil preprocessUtil = (PreprocessAccessUtil)result;
-        container.injectDependency(preprocessUtil,AbstPreprocessAccessUtil.class);
+        PreprocessAccessUtil preprocessUtil = (PreprocessAccessUtil) result;
+        container.injectDependency(preprocessUtil, AbstPreprocessAccessUtil.class);
         return preprocessUtil;
     }
-    
-    
-    private String getPreprocessClassName(BuriDataFieldType fieldType,BuriWorkflowProcessType process,BuriPackageType buriPackage) {
-        String baseClassName = "" + buriPackage.getId() ;
-        String lastClassName = fieldType.getId().replaceAll("\\.","_")+ "_Preprocess";
-        if(process!=null) {
-            return  baseClassName + "." + process.getId() + "_" + lastClassName;
+
+    private String getPreprocessClassName(BuriDataFieldType fieldType, BuriWorkflowProcessType process, BuriPackageType buriPackage) {
+        String baseClassName = "" + buriPackage.getId();
+        String lastClassName = fieldType.getId().replaceAll("\\.", "_") + "_Preprocess";
+        if (process != null) {
+            return baseClassName + "." + process.getId() + "_" + lastClassName;
         }
         return baseClassName + "." + buriPackage.getId() + "_" + lastClassName;
     }
-    
+
     protected boolean isPreProcessUtil(BuriDataFieldType fieldType) {
-        if(StringUtil.isEmpty(fieldType.getPreprocess())) {
+        if (StringUtil.isEmpty(fieldType.getPreprocess())) {
             return false;
         }
         return true;
     }
-    
 
-    protected Map getDataField(BuriPackageType buriPackage,BuriWorkflowProcessType process) {
+    protected Map getDataField(BuriPackageType buriPackage, BuriWorkflowProcessType process) {
         Map dataField;
-        if(process==null) {
+        if (process == null) {
             dataField = buriPackage.getDataField();
         } else {
             dataField = process.getDataField();
         }
         return dataField;
     }
-    
+
     public BasicCompler getCompler() {
         return compler;
     }

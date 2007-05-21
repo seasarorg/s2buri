@@ -10,31 +10,31 @@ import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 
 public class BuriDataAccessDummyFactoryImpl implements BuriDataAccessFactory {
 
-	public void addChildFactory(String key, DataAccessFactory factory) {
-	}
+    public void addChildFactory(String key, DataAccessFactory factory) {
+    }
 
-	public void setDataAccessUtil(Class tgtClass,DataAccessUtilLongKey utilLongKey) {
-	}
+    public void setDataAccessUtil(Class tgtClass, DataAccessUtilLongKey utilLongKey) {
+    }
 
-	public void setDataAccessUtil(Class tgtClass,DataAccessUtilManyKey utilManyKey) {
-	}
+    public void setDataAccessUtil(Class tgtClass, DataAccessUtilManyKey utilManyKey) {
+    }
 
-	public void setFilterAccessUtil(Class tgtClass, FilterAccessUtil accessUtil) {
-	}
+    public void setFilterAccessUtil(Class tgtClass, FilterAccessUtil accessUtil) {
+    }
 
-	public void setPreprocessAccessUtil(Class tgtClass,PreprocessAccessUtil accessUtil) {
-	}
+    public void setPreprocessAccessUtil(Class tgtClass, PreprocessAccessUtil accessUtil) {
+    }
 
-	public DataAccessUtil getDataAccessUtil(Class tgtClass) {
-		return null;
-	}
+    public DataAccessUtil getDataAccessUtil(Class tgtClass) {
+        return null;
+    }
 
-	public FilterAccessUtil getFilterAccessUtil(Class tgtClass) {
-		return null;
-	}
+    public FilterAccessUtil getFilterAccessUtil(Class tgtClass) {
+        return null;
+    }
 
-	public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
-		return null;
-	}
+    public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
+        return null;
+    }
 
 }

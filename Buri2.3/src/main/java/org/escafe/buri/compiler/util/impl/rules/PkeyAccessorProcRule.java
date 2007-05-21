@@ -14,52 +14,54 @@ import org.seasar.framework.message.MessageFormatter;
 public class PkeyAccessorProcRule extends DataAccessorProcRule {
     private static Logger logger = Logger.getLogger(PkeyAccessorProcRule.class);
     private boolean finalCheckPassMode = false;
-    
-    protected void setupVal(BuriDataFieldType src,String val) {
-        setupPkey(src,val);
+
+    @Override
+    protected void setupVal(BuriDataFieldType src, String val) {
+        setupPkey(src, val);
     }
 
-    protected void setupPkey(BuriDataFieldType src,String pkey) {
-        if(org.seasar.framework.util.StringUtil.isEmpty(pkey)) {
+    protected void setupPkey(BuriDataFieldType src, String pkey) {
+        if (org.seasar.framework.util.StringUtil.isEmpty(pkey)) {
             throw new BuriNoPkeyDefine(src.getId());
         }
         String pkeys[] = pkey.split("\n");
-        if(pkeys.length==0) {
+        if (pkeys.length == 0) {
             throw new BuriNoPkeyDefine(src.getId());
         }
-        
-        for(int i=0 ; i< pkeys.length ; i++ ) {
-            String onePkey = pkeys[i];
-            setOnePkey(src,onePkey);
+
+        for (String onePkey : pkeys) {
+            setOnePkey(src, onePkey);
         }
     }
-    protected void setOnePkey(BuriDataFieldType src,String onePkey) {
-        String splitStr[] = StringUtil.SplitFastString(onePkey,",");
+
+    protected void setOnePkey(BuriDataFieldType src, String onePkey) {
+        String splitStr[] = StringUtil.SplitFastString(onePkey, ",");
         String keyName = splitStr[0];
         String keyCheck = keyName + "!=0";
-        if(splitStr.length==0) {
+        if (splitStr.length == 0) {
             throw new BuriNoPkeyDefine(src.getId());
-        } else if(splitStr.length==1) {
-            String msg = MessageFormatter.getMessage("IBRI0001",new Object[]{keyName,keyCheck});
+        } else if (splitStr.length == 1) {
+            String msg = MessageFormatter.getMessage("IBRI0001", new Object[] { keyName, keyCheck });
             logger.info(msg);
         } else {
             keyCheck = splitStr[1];
         }
-        src.getKeys().put(keyName,keyCheck);
+        src.getKeys().put(keyName, keyCheck);
     }
 
+    @Override
     public void finishCheck(BuriDataFieldType src) {
-        if(src.getKeys().size() == 0 && finalCheckPassMode) {
-            throw new BuriDataFieldErrorException(src.getId(),getKeyName());
+        if ((src.getKeys().size() == 0) && finalCheckPassMode) {
+            throw new BuriDataFieldErrorException(src.getId(), getKeyName());
         }
     }
 
-	public boolean isFinalCheckPassMode() {
-		return finalCheckPassMode;
-	}
+    public boolean isFinalCheckPassMode() {
+        return finalCheckPassMode;
+    }
 
-	public void setFinalCheckPassMode(boolean finalCheckPassMode) {
-		this.finalCheckPassMode = finalCheckPassMode;
-	}
+    public void setFinalCheckPassMode(boolean finalCheckPassMode) {
+        this.finalCheckPassMode = finalCheckPassMode;
+    }
 
 }

@@ -8,6 +8,7 @@ import org.seasar.coffee.script.Script;
 
 public interface PreprocessAccessUtil {
     Object getTrueData(Object orgData);
+
     void setPreprocessScript(Script preprocessScript);
 
 }

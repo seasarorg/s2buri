@@ -5,100 +5,100 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class BuriStateEntityDto {
-	public static final String TABLE = "BuriState";
+    public static final String TABLE = "BuriState";
 
-//	public static final String stateID_ID = "assigned";;
+    //	public static final String stateID_ID = "assigned";;
     public static final String stateID_ID = "sequence, sequenceName=BuriStateID";
-	private long stateID;
-	private Long pathID;
-	private Long dataID;
-	private Long branchID;
+    private long stateID;
+    private Long pathID;
+    private Long dataID;
+    private Long branchID;
     private String userIDVal = null;
     private Long userIDNum = null;
     private long BTID;
-	private Date insertDate = new Timestamp((new Date()).getTime());
-    private Date autoRunTime = (new GregorianCalendar(9999,11,31,23,59,59)).getTime();
-	private Date processDate = (new GregorianCalendar(9999,11,31,23,59,59)).getTime();
-    private Date abortDate = (new GregorianCalendar(9999,11,31,23,59,59)).getTime();
-	private int versionNo;
+    private Date insertDate = new Timestamp((new Date()).getTime());
+    private Date autoRunTime = (new GregorianCalendar(9999, 11, 31, 23, 59, 59)).getTime();
+    private Date processDate = (new GregorianCalendar(9999, 11, 31, 23, 59, 59)).getTime();
+    private Date abortDate = (new GregorianCalendar(9999, 11, 31, 23, 59, 59)).getTime();
+    private int versionNo;
 
-	public BuriStateEntityDto() {
-	}
-	
-	public long getStateID() {
-		return stateID;
-	}
+    public BuriStateEntityDto() {
+    }
 
-	public void setStateID(long stateID) {
-		this.stateID = stateID;
-	}
-	
-	public Long getPathID() {
-		return pathID;
-	}
+    public long getStateID() {
+        return stateID;
+    }
 
-	public void setPathID(Long pathID) {
-		this.pathID = pathID;
-	}
-	
-	public Long getDataID() {
-		return dataID;
-	}
+    public void setStateID(long stateID) {
+        this.stateID = stateID;
+    }
 
-	public void setDataID(Long dataID) {
-		this.dataID = dataID;
-	}
-	
-	public Long getBranchID() {
-		return branchID;
-	}
+    public Long getPathID() {
+        return pathID;
+    }
 
-	public void setBranchID(Long branchID) {
-		this.branchID = branchID;
-	}
-	
-	public Date getInsertDate() {
-		return insertDate;
-	}
+    public void setPathID(Long pathID) {
+        this.pathID = pathID;
+    }
 
-	public void setInsertDate(Date insertDate) {
-		this.insertDate = insertDate;
-	}
-	
-	public Date getProcessDate() {
-		return processDate;
-	}
+    public Long getDataID() {
+        return dataID;
+    }
 
-	public void setProcessDate(Date processDate) {
-		this.processDate = processDate;
-	}
-	
-	public int getVersionNo() {
-		return versionNo;
-	}
+    public void setDataID(Long dataID) {
+        this.dataID = dataID;
+    }
 
-	public void setVersionNo(int versionNo) {
-		this.versionNo = versionNo;
-	}
-	
+    public Long getBranchID() {
+        return branchID;
+    }
 
-	public String toString() {
-		StringBuffer buff = new StringBuffer("[");
-		buff.append("/stateID=").append(stateID);
-		buff.append("/pathID=").append(pathID);
-		buff.append("/dataID=").append(dataID);
-		buff.append("/branchID=").append(branchID);
+    public void setBranchID(Long branchID) {
+        this.branchID = branchID;
+    }
+
+    public Date getInsertDate() {
+        return insertDate;
+    }
+
+    public void setInsertDate(Date insertDate) {
+        this.insertDate = insertDate;
+    }
+
+    public Date getProcessDate() {
+        return processDate;
+    }
+
+    public void setProcessDate(Date processDate) {
+        this.processDate = processDate;
+    }
+
+    public int getVersionNo() {
+        return versionNo;
+    }
+
+    public void setVersionNo(int versionNo) {
+        this.versionNo = versionNo;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer buff = new StringBuffer("[");
+        buff.append("/stateID=").append(stateID);
+        buff.append("/pathID=").append(pathID);
+        buff.append("/dataID=").append(dataID);
+        buff.append("/branchID=").append(branchID);
         buff.append("/userIDNum=").append(userIDNum);
         buff.append("/userIDVal=").append(userIDVal);
         buff.append("/BTID=").append(BTID);
-		buff.append("/insertDate=").append(insertDate);
-		buff.append("/processDate=").append(processDate);
+        buff.append("/insertDate=").append(insertDate);
+        buff.append("/processDate=").append(processDate);
         buff.append("/autoRunTime=").append(autoRunTime);
         buff.append("/abortDate=").append(abortDate);
-		buff.append("/versionNo=").append(versionNo);
-		buff.append("]");
-		return buff.toString();
-	}
+        buff.append("/versionNo=").append(versionNo);
+        buff.append("]");
+        return buff.toString();
+    }
 
     public Long getUserIDNum() {
         return userIDNum;
@@ -139,6 +139,5 @@ public class BuriStateEntityDto {
     public void setBTID(long btid) {
         BTID = btid;
     }
-	
-	
+
 }

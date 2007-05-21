@@ -53,11 +53,11 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     }
 
     public BranchWalker loadBranchWalker(BuriSystemContext sysContext) {
-        if (sysContext.getStatusID() == null || sysContext.getStatusID().longValue() == 0) {
+        if ((sysContext.getStatusID() == null) || (sysContext.getStatusID().longValue() == 0)) {
             return createBranchWalker(sysContext);
         }
         BuriStateEntityDto stateDto = stateDao.getBuriState(sysContext.getStatusID().longValue());
-        if (stateDto == null || stateDto.getBranchID() == null) {
+        if ((stateDto == null) || (stateDto.getBranchID() == null)) {
             return createBranchWalker(sysContext);
         }
         return loadBranchWalker(sysContext, stateDto);
@@ -72,20 +72,17 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         }
     }
 
-    private BranchWalker loadBranchWalker(BuriSystemContext sysContext,
-            BuriStateEntityDto stateDto, BuriBranchEntityDto branchDto) {
+    private BranchWalker loadBranchWalker(BuriSystemContext sysContext, BuriStateEntityDto stateDto, BuriBranchEntityDto branchDto) {
         BranchWalker walker = new BranchWalker();
         walker.setBranchID(branchDto.getBranchID());
         walker.setParentBranchID(branchDto.getParentBranchID().longValue());
         walker.setParentPath(sysContext.getCallPath().moveUpPath());
-        BuriPath branchPath = pathUtil.getBuriPathFromRealPath(pathUtil.getBuriPathByID(stateDto
-            .getPathID().longValue()));
+        BuriPath branchPath = pathUtil.getBuriPathFromRealPath(pathUtil.getBuriPathByID(stateDto.getPathID().longValue()));
         walker.setNowPath(branchPath);
         return walker;
     }
 
-    public void saveBranch(BranchWalker walker, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
+    public void saveBranch(BranchWalker walker, DataAccessFactory factory, BuriSystemContext sysContext) {
         if (walker.getBranchID() != 0) {
             return;
         }
@@ -98,28 +95,24 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         walker.setBranchID(branchDto.getBranchID());
     }
 
-    public BranchWalker branchChild(BranchWalker parentWalker, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
+    public BranchWalker branchChild(BranchWalker parentWalker, DataAccessFactory factory, BuriSystemContext sysContext) {
         BranchWalker walker = new BranchWalker();
         walker.setParentBranchID(parentWalker.getBranchID());
         walker.setParentPath(parentWalker.getParentPath());
         return walker;
     }
 
-    public BranchWalker getNowPathBranchWalker(DataAccessFactory factory,
-            BuriSystemContext sysContext, BuriPath callPath) {
+    public BranchWalker getNowPathBranchWalker(DataAccessFactory factory, BuriSystemContext sysContext, BuriPath callPath) {
         long dataID = dataUtil.getBuriDataId(factory, sysContext);
         BuriPath path = pathUtil.getBuriPathFromRealPath(callPath);
-        BuriStateEntityDto stateDto = stateDao.getBuriStateByPathAndData(path.getBuriPathId(),
-            dataID);
+        BuriStateEntityDto stateDto = stateDao.getBuriStateByPathAndData(path.getBuriPathId(), dataID);
         if (stateDto == null) {
             return null;
         }
         return getNowPathBranchWalker(path, stateDto, sysContext);
     }
 
-    private BranchWalker getNowPathBranchWalker(BuriPath path, BuriStateEntityDto stateDto,
-            BuriSystemContext sysContext) {
+    private BranchWalker getNowPathBranchWalker(BuriPath path, BuriStateEntityDto stateDto, BuriSystemContext sysContext) {
         BranchWalker walker = new BranchWalker();
         walker.setBranchID(stateDto.getBranchID().longValue());
         walker.setNowPath(path);
@@ -133,8 +126,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         return walker;
     }
 
-    public BranchWalker createBranch(BranchWalker nowWalker, BuriPath parentPath,
-            BuriSystemContext sysContext, String pathName, String PathId) {
+    public BranchWalker createBranch(BranchWalker nowWalker, BuriPath parentPath, BuriSystemContext sysContext, String pathName, String PathId) {
         BuriPath tgtPath = parentPath.moveChildPath(pathName, PathId);
         BuriPath path = pathUtil.getBuriPathFromRealPath(tgtPath);
         BranchWalker walker = new BranchWalker();
@@ -151,8 +143,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         return walker;
     }
 
-    public long loadStatus(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public long loadStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
         long dataID = dataUtil.getBuriDataId(factory, sysContext);
         if (dataID == 0) {
@@ -165,8 +156,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         return 0;
     }
 
-    public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         dataUtil.storeData(factory, sysContext);
         dataUtil.updateBuriData(factory, sysContext);
         BuriStateEntityDto stateDto = createStateDto(factory, sysContext, walker);
@@ -174,8 +164,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         return stateDto.getStateID();
     }
 
-    protected BuriStateEntityDto createStateDto(DataAccessFactory factory,
-            BuriSystemContext sysContext, BranchWalker walker) {
+    protected BuriStateEntityDto createStateDto(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         long dataID = dataUtil.getBuriDataId(factory, sysContext);
         BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
         BuriStateEntityDto stateDto = new BuriStateEntityDto();
@@ -190,8 +179,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         return stateDto;
     }
 
-    protected void setupAutoRunTime(BuriStateEntityDto stateDto, DataAccessFactory factory,
-            BuriSystemContext sysContext, BranchWalker walker) {
+    protected void setupAutoRunTime(BuriStateEntityDto stateDto, DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         Date setupDate = DateUtil.getSQLMaxDate();
         BuriExePackages exePackages = getBuriExePackages(factory);
         if (exePackages != null) {
@@ -202,8 +190,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         stateDto.setAutoRunTime(setupDate);
     }
 
-    protected Date getLimitDate(String limit, Script exScript, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    protected Date getLimitDate(String limit, Script exScript, BuriSystemContext sysContext, BranchWalker walker) {
         if (!StringUtil.isEmpty(limit)) {
             Object obj = exScript.eval(null, limit, sysContext.getUserContext());
             if (obj instanceof Date) {
@@ -211,8 +198,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
             } else if (obj instanceof Calendar) {
                 return ((Calendar) obj).getTime();
             } else {
-                throw new IllegalArgumentRuntimeException("EBRI0007", new Object[] {
-                    walker.getNowPath(), obj });
+                throw new IllegalArgumentRuntimeException("EBRI0007", new Object[] { walker.getNowPath(), obj });
             }
         }
         return null;
@@ -230,24 +216,20 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
     protected String getLimit(BuriExePackages exePackages, BranchWalker walker) {
         BuriRealPath nowRealPath = walker.getNowPath().getRealPath();
-        BuriWorkflowProcessType processType = exePackages.getBuriPackageType().getProcessById(
-            nowRealPath.getWorkflowProcess());
-        BuriActivityType actType = processType.getActivityById(nowRealPath.getActivity().get(0)
-            .toString());
+        BuriWorkflowProcessType processType = exePackages.getBuriPackageType().getProcessById(nowRealPath.getWorkflowProcess());
+        BuriActivityType actType = processType.getActivityById(nowRealPath.getActivity().get(0).toString());
         String limit = actType.getLimit();
         return limit;
     }
 
-    public void processed(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public void processed(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         assert sysContext.getStatusID() != null;
         long stateID = sysContext.getStatusID().longValue();
         undoLogUtil.addUndoLog(stateID, 0);
         stateDao.updateProceesByStateID(stateID);
     }
 
-    public void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         assert sysContext.getStatusID() != null;
         long stateID = sysContext.getStatusID().longValue();
         assert walker.getBranchID() != 0;
@@ -255,13 +237,11 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         stateDao.updateAbortByStateID(stateID);
     }
 
-    public void abortBranch(DataAccessFactory factory, BuriSystemContext sysContext,
-            BranchWalker walker) {
+    public void abortBranch(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         abortParentBranchID(walker.getParentBranchID(), factory, sysContext);
     }
 
-    protected void abortParentBranchID(long parentBranchId, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
+    protected void abortParentBranchID(long parentBranchId, DataAccessFactory factory, BuriSystemContext sysContext) {
         if (parentBranchId == 0) {
             return;
         }
@@ -275,8 +255,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         stateDao.updateAbortByBranchID(parentBranchId);
     }
 
-    public long countNoProcessedSiblingStatus(DataAccessFactory factory,
-            BuriSystemContext sysContext, BranchWalker walker) {
+    public long countNoProcessedSiblingStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         assert walker.getParentBranchID() != 0;
         long count = stateDao.countByBranchIDAndNotProcessed(walker.getParentBranchID());
         return count;

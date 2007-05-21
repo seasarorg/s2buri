@@ -14,6 +14,6 @@ public class ParseRuntimeException extends SRuntimeException {
     private static final long serialVersionUID = 1L;
 
     public ParseRuntimeException(ParseException e) {
-        super("",null,e);
+        super("", null, e);
     }
 }

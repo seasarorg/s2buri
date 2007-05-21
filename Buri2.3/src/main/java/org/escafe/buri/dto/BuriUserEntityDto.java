@@ -14,7 +14,7 @@ public class BuriUserEntityDto {
 
     public BuriUserEntityDto() {
     }
-    
+
     public long getBuriUserID() {
         return buriUserID;
     }
@@ -39,6 +39,7 @@ public class BuriUserEntityDto {
         this.userIDVal = userIDVal;
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/buriUserID=").append(buriUserID);

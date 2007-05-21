@@ -20,48 +20,46 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
 import org.seasar.framework.container.S2Container;
 
 public class CompileProcessImpl implements CompileProcess {
-//    private static Logger logger = Logger.getLogger(CompileProcessImpl.class);
+    //    private static Logger logger = Logger.getLogger(CompileProcessImpl.class);
 
     private S2Container container;
-    
+
     private BasicCompler compler;
 
-    private String processTemplateName ="ftl/wakanagoProcess.ftl";
+    private String processTemplateName = "ftl/wakanagoProcess.ftl";
     private DataFieldCompiler dataFieldCompiler;
 
-
-    public void compile(BuriExePackages result,BuriWorkflowProcessType process,ParticipantProvider provider) {
-        BuriExecProcess exeProcess = compileProcess(process,result.getBuriPackageType(),provider);
-        result.setProcess(process.getId(),exeProcess);
+    public void compile(BuriExePackages result, BuriWorkflowProcessType process, ParticipantProvider provider) {
+        BuriExecProcess exeProcess = compileProcess(process, result.getBuriPackageType(), provider);
+        result.setProcess(process.getId(), exeProcess);
         exeProcess.setBuriExePackages(result);
-        BuriDataAccessFactory accessFactory = (BuriDataAccessFactory)exeProcess;
-        accessFactory.addChildFactory(result.getBuriPackageType().getId(),(DataAccessFactory)result);
-        compileDataAccess(exeProcess,process);
-        BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory)container.getComponent("rootDataAccessFactory");
-        dataAccessFactory.addChildFactory(process.getId(),(BuriDataAccessFactory)exeProcess);
+        BuriDataAccessFactory accessFactory = (BuriDataAccessFactory) exeProcess;
+        accessFactory.addChildFactory(result.getBuriPackageType().getId(), (DataAccessFactory) result);
+        compileDataAccess(exeProcess, process);
+        BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory) container.getComponent("rootDataAccessFactory");
+        dataAccessFactory.addChildFactory(process.getId(), (BuriDataAccessFactory) exeProcess);
     }
-    
-    protected void compileDataAccess(BuriExecProcess exeProcess,BuriWorkflowProcessType process) {
+
+    protected void compileDataAccess(BuriExecProcess exeProcess, BuriWorkflowProcessType process) {
         BuriPackageType buriPackage = process.getPackageType();
-        BuriDataAccessFactory factory = (BuriDataAccessFactory)exeProcess;
-        dataFieldCompiler.compileAndSetting(factory,buriPackage,process);
+        BuriDataAccessFactory factory = (BuriDataAccessFactory) exeProcess;
+        dataFieldCompiler.compileAndSetting(factory, buriPackage, process);
     }
-    
-    protected BuriExecProcess compileProcess(BuriWorkflowProcessType process,BuriPackageType buriPackage,ParticipantProvider provider) {
+
+    protected BuriExecProcess compileProcess(BuriWorkflowProcessType process, BuriPackageType buriPackage, ParticipantProvider provider) {
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName("" + buriPackage.getId() + "." + process.getId());
         info.setBaseClass(getAbstractProcessClass(provider));
-        info.setInterfaceClass(new Class[]{});
+        info.setInterfaceClass(new Class[] {});
         info.setBaseObjectName("process");
         info.setBaseObject(process);
         info.setTemplateFileName(processTemplateName);
-        BuriExecProcess exeProcess = (BuriExecProcess)compler.Compile(info);
-        container.injectDependency(exeProcess,getAbstractProcessClass(provider));
+        BuriExecProcess exeProcess = (BuriExecProcess) compler.Compile(info);
+        container.injectDependency(exeProcess, getAbstractProcessClass(provider));
         exeProcess.setup(process);
         return exeProcess;
     }
-    
-    
+
     protected Class getAbstractProcessClass(ParticipantProvider provider) {
         return AbstBuriExeProcessDataAccess.class;
     }
@@ -89,7 +87,7 @@ public class CompileProcessImpl implements CompileProcess {
     public void setContainer(S2Container container) {
         this.container = container;
     }
-    
+
     public DataFieldCompiler getDataFieldCompiler() {
         return dataFieldCompiler;
     }
@@ -97,5 +95,5 @@ public class CompileProcessImpl implements CompileProcess {
     public void setDataFieldCompiler(DataFieldCompiler dataFieldCompiler) {
         this.dataFieldCompiler = dataFieldCompiler;
     }
-    
+
 }

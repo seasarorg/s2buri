@@ -43,8 +43,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
             dto.setPathID(new Long(pathID));
             dto.setPathName(realPath.toString());
         } else {
-            dto.setPathName(sysContext.getCallPath().toString() + "/"
-                    + bInvo.getCallMethod().getName());
+            dto.setPathName(sysContext.getCallPath().toString() + "/" + bInvo.getCallMethod().getName());
         }
         historyDao.insert(dto);
     }

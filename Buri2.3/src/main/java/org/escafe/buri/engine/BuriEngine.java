@@ -4,6 +4,6 @@
  */
 package org.escafe.buri.engine;
 
-public interface BuriEngine extends WakanagoEngine{
+public interface BuriEngine extends WakanagoEngine {
     void setupUserID(BuriSystemContext sysContext);
 }

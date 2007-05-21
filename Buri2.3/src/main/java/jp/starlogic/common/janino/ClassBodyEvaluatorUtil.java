@@ -21,19 +21,23 @@ import org.seasar.framework.exception.IORuntimeException;
 public class ClassBodyEvaluatorUtil {
 
     public static Object evaluate(String classBody) {
-        return evaluate(classBody,null);
+        return evaluate(classBody, null);
     }
-    public static Object evaluate(String classBody,Class extendedType) {
-        return evaluate(classBody,extendedType,new Class[0]);
+
+    public static Object evaluate(String classBody, Class extendedType) {
+        return evaluate(classBody, extendedType, new Class[0]);
     }
-    public static Object evaluate(String classBody,Class extendedType,Class implementedTypes) {
-        return evaluate(classBody,extendedType,new Class[]{implementedTypes});
+
+    public static Object evaluate(String classBody, Class extendedType, Class implementedTypes) {
+        return evaluate(classBody, extendedType, new Class[] { implementedTypes });
     }
-    public static Object evaluate(String classBody,Class extendedType,Class[] implementedTypes) {
+
+    public static Object evaluate(String classBody, Class extendedType, Class[] implementedTypes) {
         Object data = null;
         try {
             Scanner scanner = new Scanner(null, new StringReader(classBody));
-            data = ClassBodyEvaluator.createFastClassBodyEvaluator(scanner,extendedType.getName()+"$ClassBodyEvaluatorUtil$",extendedType,implementedTypes,null);
+            data = ClassBodyEvaluator.createFastClassBodyEvaluator(scanner, extendedType.getName() + "$ClassBodyEvaluatorUtil$", extendedType,
+                implementedTypes, null);
         } catch (CompileException e) {
             throw new CompileRuntimeException(e);
         } catch (ParseException e) {

@@ -74,7 +74,7 @@ public class BuriUserUtilImpl implements BuriUserUtil {
     public Object getUserData(DataAccessFactory factory, long buriUserId, IdentityInfo appUserId) {
         BuriExePackages packages = getBuriExePackages(factory);
         ParticipantProvider provider = packages.getParticipantProvider();
-        if (appUserId.getIdNumber() == null && appUserId.getIdString() == null) {
+        if ((appUserId.getIdNumber() == null) && (appUserId.getIdString() == null)) {
             appUserId = convertAppUserId(buriUserId);
         }
         return provider.getUserData(appUserId);

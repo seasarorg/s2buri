@@ -21,8 +21,7 @@ public abstract class AbstractBuriProcessSelector implements BuriProcessSelector
     /**
      * @see org.escafe.buri.engine.selector.BuriProcessSelector#select(java.util.List, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExePackages)
      */
-    public int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext,
-            BuriExePackages execPackages) {
+    public int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         if (!isTarget(processes, systemContext, execPackages)) {
             return SELECT_NEXT;
         }
@@ -49,8 +48,7 @@ public abstract class AbstractBuriProcessSelector implements BuriProcessSelector
      * @param systemContext
      * @param execPackages
      */
-    protected abstract boolean isTarget(List<BuriWorkflowProcessType> processes,
-            BuriSystemContext systemContext, BuriExePackages execPackages);
+    protected abstract boolean isTarget(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages);
 
     /**
      * ルールの適用を行う対象かどうか。
@@ -60,7 +58,6 @@ public abstract class AbstractBuriProcessSelector implements BuriProcessSelector
      * @param execPackages
      * @return 実行対象である場合は<code>true</code>。実行対象でない場合は<code>false</code>。
      */
-    protected abstract void applyRule(List<BuriWorkflowProcessType> processes,
-            BuriSystemContext systemContext, BuriExePackages execPackages);
+    protected abstract void applyRule(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages);
 
 }

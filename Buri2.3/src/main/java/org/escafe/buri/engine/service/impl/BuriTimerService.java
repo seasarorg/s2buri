@@ -24,8 +24,8 @@ public class BuriTimerService extends AbstractGetRunService {
     public void execute() {
         List timerOverList = dataDao.getTimeOrverState();
         Iterator ite = timerOverList.iterator();
-        while(ite.hasNext()) {
-            BuriPathDataEntityDto callDto = (BuriPathDataEntityDto)ite.next();
+        while (ite.hasNext()) {
+            BuriPathDataEntityDto callDto = (BuriPathDataEntityDto) ite.next();
             timerInvoker.invoke(callDto);
         }
     }

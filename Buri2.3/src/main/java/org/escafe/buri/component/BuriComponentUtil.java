@@ -8,7 +8,9 @@ import org.escafe.buri.oouo.internal.structure.BuriActivityType;
 import org.escafe.buri.oouo.internal.structure.BuriToolType;
 
 public interface BuriComponentUtil {
-    String getJavaProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType);
-    String getJavaAfterProcessCode(String tgtObjName,BuriToolType toolType,BuriActivityType actType);
+    String getJavaProcessCode(String tgtObjName, BuriToolType toolType, BuriActivityType actType);
+
+    String getJavaAfterProcessCode(String tgtObjName, BuriToolType toolType, BuriActivityType actType);
+
     String convScriptToJavaString(String script);
 }

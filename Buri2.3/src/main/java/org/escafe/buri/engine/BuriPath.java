@@ -93,7 +93,7 @@ public class BuriPath {
     public boolean equals(Object obj) {
         if (obj instanceof BuriPath) {
             BuriPath tgtPath = (BuriPath) obj;
-            if (tgtPath.getBuriPathId() != 0 && this.getBuriPathId() != 0) {
+            if ((tgtPath.getBuriPathId() != 0) && (this.getBuriPathId() != 0)) {
                 if (tgtPath.getBuriPathId() == this.getBuriPathId()) {
                     return true;
                 }

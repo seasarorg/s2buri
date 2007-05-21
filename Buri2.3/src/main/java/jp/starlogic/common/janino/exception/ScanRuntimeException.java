@@ -14,6 +14,6 @@ public class ScanRuntimeException extends SRuntimeException {
     private static final long serialVersionUID = 1L;
 
     public ScanRuntimeException(ScanException e) {
-        super("",null,e);
+        super("", null, e);
     }
 }

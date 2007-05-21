@@ -21,7 +21,7 @@ public class FileLoadInterceptor extends AbstractInterceptor {
     private DelayLoader loader;
     private String afterCallLoader = null;
     private S2Container container;
-    
+
     /**
      * 
      */
@@ -34,13 +34,13 @@ public class FileLoadInterceptor extends AbstractInterceptor {
         info.setTgtKey(key);
         info.setName(resource);
         info.setInvoke(invocation);
-        loader.addFileLoader(invocation.getThis(),info);
-        if( ! StringUtil.isEmpty(afterCallLoader)) {
+        loader.addFileLoader(invocation.getThis(), info);
+        if (!StringUtil.isEmpty(afterCallLoader)) {
             ScriptProcessor processor = new ScriptProcessor();
             Map context = new HashMap();
-            context.put("self",invocation.getThis());
-            context.put("arg",invocation.getArguments());
-            processor.getValue(afterCallLoader,container,context);
+            context.put("self", invocation.getThis());
+            context.put("arg", invocation.getArguments());
+            processor.getValue(afterCallLoader, container, context);
         }
         return null;
     }

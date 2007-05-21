@@ -13,12 +13,12 @@ import org.escafe.buri.oouo.internal.structure.BuriToolType;
 
 public class BuriScriptComponentImpl implements BuriComponent {
 
-    public String getBuriExecuteSource(String tgtObjName,BuriToolType tool) {
+    public String getBuriExecuteSource(String tgtObjName, BuriToolType tool) {
         StringBuffer buffer = new StringBuffer();
 
         Iterator ite = tool.getExtendedAttribute().iterator();
-        while(ite.hasNext()) {
-            BuriExtendedAttributeType attri = (BuriExtendedAttributeType)ite.next();
+        while (ite.hasNext()) {
+            BuriExtendedAttributeType attri = (BuriExtendedAttributeType) ite.next();
             String scriptName = attri.getName();
             String script = attri.getValue();
             script = convertTextToSource(script);
@@ -26,7 +26,7 @@ public class BuriScriptComponentImpl implements BuriComponent {
             buffer.append("    String scriptStr = \"").append(script).append("\";\n");
             buffer.append("    script.run(scriptStr,").append(tgtObjName).append(",sysContext.getUserContext());\n\n");
         }
-        
+
         return buffer.toString();
     }
 
@@ -41,9 +41,9 @@ public class BuriScriptComponentImpl implements BuriComponent {
     }
 
     public String convertTextToSource(String text) {
-        text = text.replaceAll("\\\\","\\\\\\\\");
-        text = text.replaceAll("\"","\\\\\"");
-        text = text.replaceAll("\n","\\\\n");
+        text = text.replaceAll("\\\\", "\\\\\\\\");
+        text = text.replaceAll("\"", "\\\\\"");
+        text = text.replaceAll("\n", "\\\\n");
         return text;
     }
 

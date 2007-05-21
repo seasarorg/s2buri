@@ -50,7 +50,8 @@ public class BuriTestUserDto {
 		this.parentUserID = parentUserID;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/userID=").append(userID);
 		buff.append("/userName=").append(userName);

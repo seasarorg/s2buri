@@ -14,17 +14,17 @@ public interface BuriStateUserDao {
     public List getAllBuriBranch();
 
     public String getBuriStateUser_ARGS = "stateUserID";
-    public BuriStateUserEntityDto getBuriStateUser(long stateUserID);
-    
-    public long getNewBuriStateUserID();
 
+    public BuriStateUserEntityDto getBuriStateUser(long stateUserID);
+
+    public long getNewBuriStateUserID();
 
     public void insertEntityList(List dtos);
 
     public void insert(BuriStateUserEntityDto dto);
-    
+
     public void update(BuriStateUserEntityDto dto);
-    
+
     public void delete(BuriStateUserEntityDto dto);
 
 }

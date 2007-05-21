@@ -5,6 +5,5 @@
 package org.escafe.buri.compiler.util.impl.rules;
 
 public abstract class AbstDaoProcRule extends AbstractBuriDataFieldProcRule {
-    
-    
+
 }

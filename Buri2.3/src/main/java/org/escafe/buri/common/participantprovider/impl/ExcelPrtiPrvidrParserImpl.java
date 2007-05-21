@@ -33,8 +33,8 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
     protected List<BuriExcelPrtiPrvidrRootDto> loadFromWorkbool(Workbook workbook) {
         List<BuriExcelPrtiPrvidrRootDto> ppList = new ArrayList<BuriExcelPrtiPrvidrRootDto>();
         Sheet sheets[] = workbook.getSheets();
-        for (int i = 0; i < sheets.length; i++) {
-            BuriExcelPrtiPrvidrRootDto dto = loadFromSheet(sheets[i]);
+        for (Sheet element : sheets) {
+            BuriExcelPrtiPrvidrRootDto dto = loadFromSheet(element);
             if (dto != null) {
                 ppList.add(dto);
             }
@@ -77,8 +77,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
             Iterator<BuriExcelPrtiPrvidrHedDto> ite = dto.getHierarchyHed().iterator();
             while (ite.hasNext()) {
                 BuriExcelPrtiPrvidrHedDto hedDto = ite.next();
-                BuriExcelPrtiPrvidrItemDto item = getBuriExcelPrtiPrvidrItemDto(dto, hedDto, sheet,
-                    row);
+                BuriExcelPrtiPrvidrItemDto item = getBuriExcelPrtiPrvidrItemDto(dto, hedDto, sheet, row);
                 if (item != null) {
                     setupLeftItem(dto, hedDto, item);
                     dto.getHierList().add(hedDto.getSeq(), item);
@@ -91,8 +90,7 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
         }
     }
 
-    protected void setupLeftItem(BuriExcelPrtiPrvidrRootDto dto, BuriExcelPrtiPrvidrHedDto hedDto,
-            BuriExcelPrtiPrvidrItemDto item) {
+    protected void setupLeftItem(BuriExcelPrtiPrvidrRootDto dto, BuriExcelPrtiPrvidrHedDto hedDto, BuriExcelPrtiPrvidrItemDto item) {
         if (hedDto.getSeq() > 0) {
             BuriExcelPrtiPrvidrItemDto left;
             if (hedDto.getSeq() > dto.getHierList().size()) {
@@ -108,15 +106,15 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
         }
     }
 
-    protected BuriExcelPrtiPrvidrItemDto getBuriExcelPrtiPrvidrItemDto(
-            BuriExcelPrtiPrvidrRootDto dto, BuriExcelPrtiPrvidrHedDto hedDto, Sheet sheet, int row) {
+    protected BuriExcelPrtiPrvidrItemDto getBuriExcelPrtiPrvidrItemDto(BuriExcelPrtiPrvidrRootDto dto, BuriExcelPrtiPrvidrHedDto hedDto, Sheet sheet,
+            int row) {
         BuriExcelPrtiPrvidrItemDto item = new BuriExcelPrtiPrvidrItemDto();
 
         Long itemID = getIdColItemDto(hedDto, sheet, row);
         item.setId(itemID);
         String name = getNameColItemDto(hedDto, sheet, row);
         item.setName(name);
-        if (itemID == null && StringUtil.isEmpty(name)) {
+        if ((itemID == null) && StringUtil.isEmpty(name)) {
             return null;
         }
         if (dto.getHierarchy().containsKey(item.getItemKey())) {

@@ -13,10 +13,12 @@ public class BuriValidToType {
     }
 
     public final static String setToDate_OOUOTEXT = "";
+
     public void setToDate(String toDate) {
         this.toDate = toDate;
     }
-    
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/toDate=").append(toDate);

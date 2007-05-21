@@ -11,8 +11,8 @@ import java.util.Stack;
  *
  */
 public class StackUtil {
-    public static void putAllStack(Stack dstStack,Stack srcStack) {
-        while( ! srcStack.empty()) {
+    public static void putAllStack(Stack dstStack, Stack srcStack) {
+        while (!srcStack.empty()) {
             Object data = srcStack.pop();
             dstStack.push(data);
         }

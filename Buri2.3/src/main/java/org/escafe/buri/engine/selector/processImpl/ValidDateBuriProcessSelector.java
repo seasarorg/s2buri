@@ -43,14 +43,12 @@ import org.seasar.framework.util.StringUtil;
 public class ValidDateBuriProcessSelector extends AbstractBuriProcessSelector {
 
     @Override
-    protected boolean isTarget(List<BuriWorkflowProcessType> processes,
-            BuriSystemContext systemContext, BuriExePackages execPackages) {
+    protected boolean isTarget(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         String realProcsName = systemContext.getCallPath().getWorkflowProcess();
         if (StringUtil.isEmpty(realProcsName)) {
             return false;
         }
-        List<BuriWorkflowProcessType> targets = execPackages.getBuriPackageType().getProcessByName(
-            realProcsName);
+        List<BuriWorkflowProcessType> targets = execPackages.getBuriPackageType().getProcessByName(realProcsName);
         if (targets.size() > 1) {
             return true;
         }
@@ -58,11 +56,9 @@ public class ValidDateBuriProcessSelector extends AbstractBuriProcessSelector {
     }
 
     @Override
-    protected void applyRule(List<BuriWorkflowProcessType> processes,
-            BuriSystemContext systemContext, BuriExePackages execPackages) {
+    protected void applyRule(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         String realProcsName = systemContext.getCallPath().getWorkflowProcess();
-        List<BuriWorkflowProcessType> tgts = execPackages.getBuriPackageType().getProcessByName(
-            realProcsName);
+        List<BuriWorkflowProcessType> tgts = execPackages.getBuriPackageType().getProcessByName(realProcsName);
         List<BuriWorkflowProcessType> result = new ArrayList<BuriWorkflowProcessType>();
         for (BuriWorkflowProcessType process : tgts) {
             if (isInValidDate(process)) {

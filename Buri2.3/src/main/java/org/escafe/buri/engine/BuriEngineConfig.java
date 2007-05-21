@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface BuriEngineConfig {
     List getResourceConfigs();
+
     List getFileConfigs();
 }

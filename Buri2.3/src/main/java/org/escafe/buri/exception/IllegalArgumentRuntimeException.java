@@ -35,8 +35,7 @@ public class IllegalArgumentRuntimeException extends BuriOGNLRuntimeException {
      * @param args
      * @param cause
      */
-    public IllegalArgumentRuntimeException(String messageCode, Object[] args,
-            Throwable cause) {
+    public IllegalArgumentRuntimeException(String messageCode, Object[] args, Throwable cause) {
         super(messageCode, args, cause);
     }
 

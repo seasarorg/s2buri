@@ -35,13 +35,11 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
     }
 
     @Override
-    public void readWorkFlowFromResource(String workFlowName, String resourceName,
-            ParticipantProvider provider) {
+    public void readWorkFlowFromResource(String workFlowName, String resourceName, ParticipantProvider provider) {
     }
 
     @Override
-    protected void updateSystemContext(BuriSystemContext sysContext, BuriExecProcess wp,
-            BuriExePackages wPackageObj) {
+    protected void updateSystemContext(BuriSystemContext sysContext, BuriExecProcess wp, BuriExePackages wPackageObj) {
         super.updateSystemContext(sysContext, wp, wPackageObj);
         BuriDataAccessFactory factory = (BuriDataAccessFactory) wp;
         preprocessData(factory, sysContext.getUserContext());
@@ -49,14 +47,15 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         DataAccessUtil accessUtil = factory.getDataAccessUtil(data.getClass());
         String manyKey = getManyKey(accessUtil, data);
         Long longKey = getLongKey(accessUtil, data);
-        if (manyKey == null && longKey == null) {
+        if ((manyKey == null) && (longKey == null)) {
             return;
         }
         String pathName = sysContext.getCallPath().getPlainName() + ".%";
         if (sysContext.getCallPath().getActivityName().size() > 0) {
             pathName = sysContext.getCallPath().getPlainName();
         }
-        BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(classDefUtil.getClassName(data), longKey, manyKey, pathName, sysContext.getCallPath().getPathType());
+        BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(classDefUtil.getClassName(data), longKey, manyKey, pathName, sysContext.getCallPath()
+            .getPathType());
         finalSetup(dto, sysContext);
     }
 
@@ -64,8 +63,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         if (dto != null) {
             sysContext.setDataID(new Long(dto.getDataID()));
             sysContext.setStatusID(new Long(dto.getStateID()));
-            BuriPath callPath = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto
-                .getPathID(), dto.getPathType());
+            BuriPath callPath = new BuriPath(dto.getPathName(), dto.getRealPathName(), dto.getPathID(), dto.getPathType());
             sysContext.setCallPath(callPath);
         }
     }
@@ -86,8 +84,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
     }
 
     protected void preprocessData(BuriDataAccessFactory factory, BuriUserContext userContext) {
-        PreprocessAccessUtil pre = factory
-            .getPreprocessAccessUtil(userContext.getData().getClass());
+        PreprocessAccessUtil pre = factory.getPreprocessAccessUtil(userContext.getData().getClass());
         if (pre != null) {
             Object trueData = pre.getTrueData(userContext.getData());
             userContext.setData(trueData);
@@ -112,12 +109,12 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         this.buriCompiler = buriCompiler;
     }
 
-	public ClassDefUtil getClassDefUtil() {
-		return classDefUtil;
-	}
+    public ClassDefUtil getClassDefUtil() {
+        return classDefUtil;
+    }
 
-	public void setClassDefUtil(ClassDefUtil classDefUtil) {
-		this.classDefUtil = classDefUtil;
-	}
+    public void setClassDefUtil(ClassDefUtil classDefUtil) {
+        this.classDefUtil = classDefUtil;
+    }
 
 }

@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface BuriConversionRule {
-	Class convertClass();
+    Class convertClass();
 
-	String ognl();
+    String ognl();
 }

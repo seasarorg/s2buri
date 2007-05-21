@@ -14,6 +14,7 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestManyDto extends
     private static String params[] = new String[]{"testID01","testID02"};
     private static String condition[] = new String[]{"testID01 != 0","testID02 != 0"};
 
+    @Override
     protected String[] getConditions() {
         return condition;
     }

@@ -18,29 +18,29 @@ public class BuriMethodInvocation implements S2MethodInvocation {
     private Object[] arguments;
     private Method method;
     private Object thisObject;
-    
+
     private Method callMethod;
     private Object[] callArguments;
     private int interceptorsIndex;
     private final MethodInterceptor[] interceptors;
-    
+
     public BuriMethodInvocation(List interceptors) {
-    	this.interceptors = new MethodInterceptor[interceptors.size()];
-    	Iterator ite = interceptors.iterator();
-    	int count = 0;
-    	while(ite.hasNext()) {
-    		MethodInterceptor interceptor = (MethodInterceptor)ite.next();
-    		this.interceptors[count] = interceptor;
-    		count = count +1;
-    	}
-    	
+        this.interceptors = new MethodInterceptor[interceptors.size()];
+        Iterator ite = interceptors.iterator();
+        int count = 0;
+        while (ite.hasNext()) {
+            MethodInterceptor interceptor = (MethodInterceptor) ite.next();
+            this.interceptors[count] = interceptor;
+            count = count + 1;
+        }
+
     }
 
     public Object proceed() throws Throwable {
         if (interceptorsIndex < interceptors.length) {
             return interceptors[interceptorsIndex++].invoke(this);
         }
-        Object val = MethodUtil.invoke(callMethod,thisObject,callArguments);
+        Object val = MethodUtil.invoke(callMethod, thisObject, callArguments);
         return val;
     }
 

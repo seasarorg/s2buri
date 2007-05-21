@@ -10,9 +10,9 @@ import org.seasar.framework.exception.SRuntimeException;
 public class CompileRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 1L;
-    
+
     public CompileRuntimeException(CompileException ex) {
-        super("",null,ex);
+        super("", null, ex);
     }
 
 }

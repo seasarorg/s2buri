@@ -24,8 +24,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
 public class DirectMultiBuriActivitySelector extends AbstractBuriActivitySelector {
 
     @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
+    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         Set<BuriActivityType> result = new HashSet<BuriActivityType>();
         Set<String> activityNames = getActivityNames(systemContext);
         for (BuriActivityType activityType : activities) {
@@ -39,7 +38,7 @@ public class DirectMultiBuriActivitySelector extends AbstractBuriActivitySelecto
 
     private Set<String> getActivityNames(BuriSystemContext systemContext) {
         Set acts = new HashSet();
-        if (systemContext.getActivityNames() == null || systemContext.getActivityNames().isEmpty()) {
+        if ((systemContext.getActivityNames() == null) || systemContext.getActivityNames().isEmpty()) {
             acts.add(systemContext.getCallPath().getActivityName().get(0));
         } else {
             acts.addAll(systemContext.getActivityNames());
@@ -48,9 +47,8 @@ public class DirectMultiBuriActivitySelector extends AbstractBuriActivitySelecto
     }
 
     @Override
-    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext,
-            BuriExecProcess execProcess) {
-        if (activities.size() > 0 && systemContext.getCallPath().getActivityName().size() > 0) {
+    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
+        if ((activities.size() > 0) && (systemContext.getCallPath().getActivityName().size() > 0)) {
             return true;
         }
         return false;

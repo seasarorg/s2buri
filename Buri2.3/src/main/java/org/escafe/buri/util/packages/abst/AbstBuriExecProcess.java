@@ -30,8 +30,8 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     protected ScriptFactory scriptFactory;
     protected S2Container container;
     protected BuriWorkflowProcessType process;
-    protected List actionInterceptors = new ArrayList();
-    protected List conditionInterceptors = new ArrayList();
+    protected List<MethodInterceptor> actionInterceptors = new ArrayList<MethodInterceptor>();
+    protected List<MethodInterceptor> conditionInterceptors = new ArrayList<MethodInterceptor>();
 
     protected BuriExePackages buriExePackages;
 
@@ -162,7 +162,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         public Object dummyArgs[];
         public Class methodArgType[];
         public Object args[];
-        public List interceptors;
+        public List<MethodInterceptor> interceptors;
     }
 
     protected void startActivity(BuriSystemContext sysContext, BranchWalker walker) {

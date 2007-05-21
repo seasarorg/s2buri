@@ -361,7 +361,8 @@ public class BuriTestINTFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/testID=").append(testID);
 		buff.append("/testID_not=").append(testID_not);

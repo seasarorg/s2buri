@@ -5,7 +5,9 @@
 package org.escafe.buri.common.util.template;
 
 public interface TextTemplate {
-    String process(String templateName,Object data);
-    String processResource(String templateName,Object data);
-    String processFile(String templateName,Object data);
+    String process(String templateName, Object data);
+
+    String processResource(String templateName, Object data);
+
+    String processFile(String templateName, Object data);
 }

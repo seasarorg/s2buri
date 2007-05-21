@@ -361,7 +361,8 @@ public class ItemFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/itemID=").append(itemID);
 		buff.append("/itemID_not=").append(itemID_not);

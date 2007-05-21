@@ -471,6 +471,7 @@ public class OrderTitleFindDto {
         return order;
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/orderTitleID=").append(orderTitleID);

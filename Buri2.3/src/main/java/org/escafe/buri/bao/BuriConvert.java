@@ -7,8 +7,8 @@ package org.escafe.buri.bao;
 public class BuriConvert {
     private Class clazz;
     private String convertOgnl;
-    
-    public BuriConvert(Class clazz,String convertOgnl) {
+
+    public BuriConvert(Class clazz, String convertOgnl) {
         this.clazz = clazz;
         this.convertOgnl = convertOgnl;
     }

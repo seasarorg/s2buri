@@ -22,85 +22,112 @@ public class BuriPathDataUserEntityDto {
     private String userIDVal;
     private Long userIDNum;
     private Date autoRunTime;
-    
+
     public long getDataID() {
         return dataID;
     }
+
     public void setDataID(long dataID) {
         this.dataID = dataID;
     }
+
     public String getDataType() {
         return dataType;
     }
+
     public void setDataType(String dataType) {
         this.dataType = dataType;
     }
+
     public long getPathID() {
         return pathID;
     }
+
     public void setPathID(long pathID) {
         this.pathID = pathID;
     }
+
     public String getPathName() {
         return pathName;
     }
+
     public void setPathName(String pathName) {
         this.pathName = pathName;
     }
+
     public Long getPathType() {
         return pathType;
     }
+
     public void setPathType(Long pathType) {
         this.pathType = pathType;
     }
+
     public Long getPkeyNum() {
         return pkeyNum;
     }
+
     public void setPkeyNum(Long pkeyNum) {
         this.pkeyNum = pkeyNum;
     }
+
     public String getPkeyVal() {
         return pkeyVal;
     }
+
     public void setPkeyVal(String pkeyVal) {
         this.pkeyVal = pkeyVal;
     }
+
     public String getRealPathName() {
         return realPathName;
     }
+
     public void setRealPathName(String realPathName) {
         this.realPathName = realPathName;
     }
+
     public long getStateID() {
         return stateID;
     }
+
     public void setStateID(long stateID) {
         this.stateID = stateID;
     }
+
     public long getBuriUserID() {
         return buriUserID;
     }
+
     public void setBuriUserID(long userID) {
         this.buriUserID = userID;
     }
+
     public Long getUserIDNum() {
         return userIDNum;
     }
+
     public void setUserIDNum(Long userIDNum) {
         this.userIDNum = userIDNum;
     }
+
     public String getUserIDVal() {
         return userIDVal;
     }
+
     public void setUserIDVal(String userIDVal) {
         this.userIDVal = userIDVal;
     }
+
     public Date getAutoRunTime() {
         return autoRunTime;
     }
+
     public void setAutoRunTime(Date autoRunTime) {
         this.autoRunTime = autoRunTime;
     }
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/pathID=").append(pathID);
@@ -119,5 +146,5 @@ public class BuriPathDataUserEntityDto {
         buff.append("]");
         return buff.toString();
     }
-    
+
 }

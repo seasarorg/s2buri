@@ -19,6 +19,7 @@ public class BuriToolType {
     }
 
     public static final String setId_ATTRI = "Id";
+
     public void setId(String id) {
         this.id = id;
     }
@@ -28,19 +29,22 @@ public class BuriToolType {
     }
 
     public static final String setType_ATTRI = "Type";
+
     public void setType(String type) {
         this.type = type;
     }
-    
+
     public static final String addExtendedAttribute_ELEMENT = "ExtendedAttribute";
+
     public void addExtendedAttribute(BuriExtendedAttributeType attri) {
         ExtentedAttribute.add(attri);
     }
-    
+
     public List getExtendedAttribute() {
         return ExtentedAttribute;
     }
-    
+
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("id=").append(id);
@@ -48,6 +52,5 @@ public class BuriToolType {
         buff.append("/ExtentedAttribute=").append(ExtentedAttribute);
         return buff.toString();
     }
-    
-    
+
 }

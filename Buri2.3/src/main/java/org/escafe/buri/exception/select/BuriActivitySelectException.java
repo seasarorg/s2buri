@@ -14,8 +14,8 @@ public class BuriActivitySelectException extends BuriXpdlPathException {
      */
     private static final long serialVersionUID = 1L;
 
-    public BuriActivitySelectException(BuriPath path,ParticipantProvider participant) {
-        super("EBRI0006", path,participant);
+    public BuriActivitySelectException(BuriPath path, ParticipantProvider participant) {
+        super("EBRI0006", path, participant);
     }
 
 }

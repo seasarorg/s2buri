@@ -8,7 +8,7 @@ import org.escafe.buri.bao.BaoStatusMetadata;
 
 public class BaoStatusMetadataImpl extends AbstractBaoMetadata implements BaoStatusMetadata {
     private String buriPathName;
-    
+
     public String getBuriPathName() {
         return buriPathName;
     }
@@ -17,6 +17,7 @@ public class BaoStatusMetadataImpl extends AbstractBaoMetadata implements BaoSta
         this.buriPathName = buriPathName;
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append(super.toString());
@@ -24,7 +25,5 @@ public class BaoStatusMetadataImpl extends AbstractBaoMetadata implements BaoSta
         buff.append("]");
         return buff.toString();
     }
-
-
 
 }

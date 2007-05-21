@@ -46,8 +46,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         while (ite.hasNext()) {
             BuriExcelPrtiPrvidrRootDto dto = ite.next();
             Date now = new Date();
-            if (DateUtil.compare(dto.getFromDate(), now) <= 0
-                    && DateUtil.compare(now, dto.getToDate()) < 0) {
+            if ((DateUtil.compare(dto.getFromDate(), now) <= 0) && (DateUtil.compare(now, dto.getToDate()) < 0)) {
                 return dto;
             }
         }
@@ -120,8 +119,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         return itemDto;
     }
 
-    private List<BuriExcelPrtiPrvidrItemDto> findLeft(BuriExcelPrtiPrvidrItemDto itemDto,
-            String participantName) {
+    private List<BuriExcelPrtiPrvidrItemDto> findLeft(BuriExcelPrtiPrvidrItemDto itemDto, String participantName) {
         List<BuriExcelPrtiPrvidrItemDto> result = new ArrayList<BuriExcelPrtiPrvidrItemDto>();
         for (BuriExcelPrtiPrvidrItemDto leftDto : itemDto.getLefts()) {
             if (leftDto.getRoleNames().contains(participantName)) {
@@ -132,8 +130,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         return result;
     }
 
-    private List<BuriExcelPrtiPrvidrItemDto> findRight(BuriExcelPrtiPrvidrItemDto itemDto,
-            String participantName) {
+    private List<BuriExcelPrtiPrvidrItemDto> findRight(BuriExcelPrtiPrvidrItemDto itemDto, String participantName) {
         List<BuriExcelPrtiPrvidrItemDto> result = new ArrayList<BuriExcelPrtiPrvidrItemDto>();
         for (BuriExcelPrtiPrvidrItemDto rightDto : itemDto.getRights()) {
             if (rightDto.getRoleNames().contains(participantName)) {
@@ -153,7 +150,7 @@ public class ExcelBaseParticipantProvider implements ParticipantProvider {
         for (BuriExcelPrtiPrvidrItemDto itemDto : itemDtos) {
             IdentityInfo info = new IdentityInfo();
             info.setIdNumber(itemDto.getId());
-            if (itemDto.getName() != null && !itemDto.getName().equals("")) { // nameなし対応
+            if ((itemDto.getName() != null) && !itemDto.getName().equals("")) { // nameなし対応
                 info.setIdString(itemDto.getName());
             }
             result.add(info);

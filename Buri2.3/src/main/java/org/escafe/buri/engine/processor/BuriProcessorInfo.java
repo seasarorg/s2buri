@@ -16,42 +16,53 @@ public class BuriProcessorInfo {
     private Map context = new HashMap();
     private String resultExp;
     private List actNames;
-    
+
     public Object getAction() {
         return action;
     }
+
     public void setAction(Object action) {
         this.action = action;
     }
+
     public S2Container getContainer() {
         return container;
     }
+
     public void setContainer(S2Container container) {
         this.container = container;
     }
+
     public String getResultExp() {
         return resultExp;
     }
+
     public void setResultExp(String resultExp) {
         this.resultExp = resultExp;
     }
-    public void put(String key,Object val) {
-        context.put(key,val);
+
+    public void put(String key, Object val) {
+        context.put(key, val);
     }
+
     public void putAll(Map datas) {
         context.putAll(datas);
     }
+
     public Object get(String key) {
         return context.get(key);
     }
+
     public Map getContext() {
         return context;
     }
+
     public List getActNames() {
         return actNames;
     }
+
     public void setActNames(List actNames) {
         this.actNames = actNames;
     }
-    
+
 }

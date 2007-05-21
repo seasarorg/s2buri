@@ -14,20 +14,23 @@ public interface BuriUserDao {
     public List getAllBuriBranch();
 
     public String getBuriUser_ARGS = "buriUserID";
+
     public BuriUserEntityDto getBuriUser(long buriUserID);
-    
+
     public long getNewBuriStateUserID();
 
     public String getBuriUserFromIds_ARGS = "userIDNum,userIDVal";
-    public BuriUserEntityDto getBuriUserFromIds(Long userIDNum,String userIDVal);
-//
-//    public String getBuriUserFromDto_ARGS = "dto";
-//    public List getBuriUserFromDto(BuriUserEntityDto dto);
+
+    public BuriUserEntityDto getBuriUserFromIds(Long userIDNum, String userIDVal);
+
+    //
+    //    public String getBuriUserFromDto_ARGS = "dto";
+    //    public List getBuriUserFromDto(BuriUserEntityDto dto);
 
     public void insert(BuriUserEntityDto dto);
-    
+
     public void update(BuriUserEntityDto dto);
-    
+
     public void delete(BuriUserEntityDto dto);
 
 }

@@ -43,7 +43,8 @@ public class OrderTitleDto {
 		this.status = status;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/orderTitleID=").append(orderTitleID);
 		buff.append("/orderDate=").append(orderDate);

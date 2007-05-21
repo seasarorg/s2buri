@@ -11,7 +11,6 @@ public class BuriBaoException extends BuriException {
         super(messageCode, args, cause);
     }
 
-
     public BuriBaoException(String messageCode, Object[] args) {
         super(messageCode, args);
     }
@@ -19,6 +18,5 @@ public class BuriBaoException extends BuriException {
     public BuriBaoException(String messageCode) {
         super(messageCode);
     }
-
 
 }

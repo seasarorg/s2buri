@@ -84,7 +84,8 @@ public class FurnitureItemDto {
         return acquisitionType == 1;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/furnitureID=").append(furnitureID);
 		buff.append("/type=").append(type);

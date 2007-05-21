@@ -17,6 +17,7 @@ import org.escafe.buri.annotation.BuriAction;
 import org.escafe.buri.annotation.BuriActionConverter;
 import org.escafe.buri.annotation.BuriActivity;
 import org.escafe.buri.annotation.BuriArgs;
+import org.escafe.buri.annotation.BuriConversionRule;
 import org.escafe.buri.annotation.BuriConverter;
 import org.escafe.buri.annotation.BuriResult;
 import org.escafe.buri.annotation.BuriUserInfo;
@@ -38,16 +39,14 @@ import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.StringUtil;
 
 public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
-    private HashMap metadatas = new HashMap();
+
+    private HashMap<Class, BaoMetadata> metadatas = new HashMap<Class, BaoMetadata>();
     private ClassDefUtil classDefUtil;
-    private final static String ARGS = "_ARGS";
-
-    private final static String ACTIVITY = "_ACTIVITY";
-
+    private static final String ARGS = "_ARGS";
+    private static final String ACTIVITY = "_ACTIVITY";
     private static final String ACTION = "_ACTION";
     private static final String ACTCONVERTER = "_CONVERTER";
     private static final String RESULT = "_RESULT";
-
     private static final String PROCESS = "PROCESS";
     private static final String USERINFO = "USERINFO";
     private static final String GLBLCONVERTER = "CONVERTER";
@@ -62,7 +61,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         Class clazz = classDefUtil.getClazz(invoke.getThis());
         synchronized (metadatas) {
             if (metadatas.containsKey(clazz)) {
-                metadata = (BaoMetadata) metadatas.get(clazz);
+                metadata = metadatas.get(clazz);
             } else {
                 metadata = createBaoMetadata(invoke);
                 metadatas.put(clazz, metadata);
@@ -148,9 +147,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         BuriConverter converter = getAnnotationByClass(BuriConverter.class, invoke);
         if (converter != null) {
             org.escafe.buri.annotation.BuriConversionRule[] converters = converter.value();
-            for (int i = 0; i < converters.length; i++) {
-                BuriConvert buriConvert = new BuriConvert(converters[i].convertClass(), converters[i].ognl());
-                String className = classDefUtil.getClassName(converters[i].convertClass());
+            for (BuriConversionRule element : converters) {
+                BuriConvert buriConvert = new BuriConvert(element.convertClass(), element.ognl());
+                String className = classDefUtil.getClassName(element.convertClass());
                 metadata.getConverter().put(className, buriConvert);
             }
             return;
@@ -158,9 +157,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         Object val = getSignatureValue(invoke, GLBLCONVERTER);
         if (val != null) {
             BuriConvert[] converters = (BuriConvert[]) val;
-            for (int i = 0; i < converters.length; i++) {
-                String className = classDefUtil.getClassName(converters[i].getClazz());
-                metadata.getConverter().put(className, converters[i]);
+            for (BuriConvert element : converters) {
+                String className = classDefUtil.getClassName(element.getClazz());
+                metadata.getConverter().put(className, element);
             }
             return;
         }
@@ -322,16 +321,16 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         BuriActivity activity = getAnnotationByMethod(BuriActivity.class, invoke);
         if (activity != null) {
             String acts[] = activity.value();
-            for (int i = 0; i < acts.length; i++) {
-                funcMetadata.addActivityNames(acts[i]);
+            for (String element : acts) {
+                funcMetadata.addActivityNames(element);
             }
             return;
         }
         Object val = getMethodSignatureValue(invoke, ACTIVITY);
         if (val != null) {
             String acts[] = val.toString().split(",");
-            for (int i = 0; i < acts.length; i++) {
-                funcMetadata.addActivityNames(acts[i]);
+            for (String element : acts) {
+                funcMetadata.addActivityNames(element);
             }
             return;
         }

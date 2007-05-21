@@ -4,54 +4,54 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class BuriDataPathHistoryEntityDto {
-	public static final String TABLE = "BuriDataPathHistory";
+    public static final String TABLE = "BuriDataPathHistory";
 
-	public static final String historyID_ID = "sequence, sequenceName=BuriDataPathHistoryID";
-	private long historyID;
-	private Long pathID;
-	private String pathName;
-	private Long dataID;
+    public static final String historyID_ID = "sequence, sequenceName=BuriDataPathHistoryID";
+    private long historyID;
+    private Long pathID;
+    private String pathName;
+    private Long dataID;
     private String action;
     private Long buriUserID;
     private long BTID = 0;
-	private Date insertDate = new Timestamp((new Date()).getTime());
+    private Date insertDate = new Timestamp((new Date()).getTime());
 
-	public BuriDataPathHistoryEntityDto() {
-	}
-	
-	public long getHistoryID() {
-		return historyID;
-	}
+    public BuriDataPathHistoryEntityDto() {
+    }
 
-	public void setHistoryID(long historyID) {
-		this.historyID = historyID;
-	}
-	
-	public Long getPathID() {
-		return pathID;
-	}
+    public long getHistoryID() {
+        return historyID;
+    }
 
-	public void setPathID(Long pathID) {
-		this.pathID = pathID;
-	}
-	
-	public Long getDataID() {
-		return dataID;
-	}
+    public void setHistoryID(long historyID) {
+        this.historyID = historyID;
+    }
 
-	public void setDataID(Long dataID) {
-		this.dataID = dataID;
-	}
-	
-	public Date getInsertDate() {
-		return insertDate;
-	}
+    public Long getPathID() {
+        return pathID;
+    }
 
-	public void setInsertDate(Date insertDate) {
-		this.insertDate = insertDate;
-	}
-	
-	public String getAction() {
+    public void setPathID(Long pathID) {
+        this.pathID = pathID;
+    }
+
+    public Long getDataID() {
+        return dataID;
+    }
+
+    public void setDataID(Long dataID) {
+        this.dataID = dataID;
+    }
+
+    public Date getInsertDate() {
+        return insertDate;
+    }
+
+    public void setInsertDate(Date insertDate) {
+        this.insertDate = insertDate;
+    }
+
+    public String getAction() {
         return action;
     }
 
@@ -76,26 +76,26 @@ public class BuriDataPathHistoryEntityDto {
     }
 
     public String getPathName() {
-		return pathName;
-	}
+        return pathName;
+    }
 
-	public void setPathName(String pathName) {
-		this.pathName = pathName;
-	}
+    public void setPathName(String pathName) {
+        this.pathName = pathName;
+    }
 
-	public String toString() {
-		StringBuffer buff = new StringBuffer("[");
-		buff.append("/historyID=").append(historyID);
-		buff.append("/pathName=").append(pathName);
-		buff.append("/pathID=").append(pathID);
-		buff.append("/dataID=").append(dataID);
+    @Override
+    public String toString() {
+        StringBuffer buff = new StringBuffer("[");
+        buff.append("/historyID=").append(historyID);
+        buff.append("/pathName=").append(pathName);
+        buff.append("/pathID=").append(pathID);
+        buff.append("/dataID=").append(dataID);
         buff.append("/action=").append(action);
         buff.append("/buriUserID=").append(buriUserID);
         buff.append("/BTID=").append(BTID);
-		buff.append("/insertDate=").append(insertDate);
-		buff.append("]");
-		return buff.toString();
-	}
-	
-	
+        buff.append("/insertDate=").append(insertDate);
+        buff.append("]");
+        return buff.toString();
+    }
+
 }

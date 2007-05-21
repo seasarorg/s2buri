@@ -16,7 +16,7 @@ import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
 import org.seasar.coffee.dataaccess.FilterAccessUtil;
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 
-public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory{
+public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory {
     private Map dataAccess = new HashMap();
     private Map filterAccess = new HashMap();
     private Map preprocess = new HashMap();
@@ -44,28 +44,28 @@ public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory{
 
     public DataAccessUtil getDataAccessUtil(Class tgtClass) {
         DataAccessUtil result = getInnerDataAccessUtil(tgtClass);
-        if( result == null ) {
+        if (result == null) {
             result = getChildDataAccessUtil(tgtClass);
         }
         return result;
     }
-    
+
     protected DataAccessUtil getInnerDataAccessUtil(Class tgtClass) {
         DataAccessUtil result = null;
-        if( dataAccess.containsKey(tgtClass) ) {
-            result = (DataAccessUtil)dataAccess.get(tgtClass);
+        if (dataAccess.containsKey(tgtClass)) {
+            result = (DataAccessUtil) dataAccess.get(tgtClass);
         }
         return result;
     }
-    
+
     protected DataAccessUtil getChildDataAccessUtil(Class tgtClass) {
         DataAccessUtil result = null;
         Iterator ite = childFactory.keySet().iterator();
-        while(ite.hasNext()) {
-            String key = (String)ite.next();
-            DataAccessFactory factory = (DataAccessFactory)childFactory.get(key);
+        while (ite.hasNext()) {
+            String key = (String) ite.next();
+            DataAccessFactory factory = (DataAccessFactory) childFactory.get(key);
             result = factory.getDataAccessUtil(tgtClass);
-            if(result != null) {
+            if (result != null) {
                 break;
             }
         }
@@ -74,22 +74,22 @@ public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory{
 
     public FilterAccessUtil getFilterAccessUtil(Class tgtClass) {
         FilterAccessUtil result = null;
-        if( filterAccess.containsKey(tgtClass) ) {
-            result = (FilterAccessUtil)filterAccess.get(tgtClass);
+        if (filterAccess.containsKey(tgtClass)) {
+            result = (FilterAccessUtil) filterAccess.get(tgtClass);
         } else {
             result = getChildFilterAccessUtil(tgtClass);
         }
         return result;
     }
-    
+
     protected FilterAccessUtil getChildFilterAccessUtil(Class tgtClass) {
         FilterAccessUtil result = null;
         Iterator ite = childFactory.keySet().iterator();
-        while(ite.hasNext()) {
-            String key = (String)ite.next();
-            DataAccessFactory factory = (DataAccessFactory)childFactory.get(key);
+        while (ite.hasNext()) {
+            String key = (String) ite.next();
+            DataAccessFactory factory = (DataAccessFactory) childFactory.get(key);
             result = factory.getFilterAccessUtil(tgtClass);
-            if(result != null) {
+            if (result != null) {
                 break;
             }
         }
@@ -98,22 +98,22 @@ public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory{
 
     public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
         PreprocessAccessUtil result = null;
-        if( preprocess.containsKey(tgtClass) ) {
-            result = (PreprocessAccessUtil)preprocess.get(tgtClass);
+        if (preprocess.containsKey(tgtClass)) {
+            result = (PreprocessAccessUtil) preprocess.get(tgtClass);
         } else {
             result = getChildPreprocessAccessUtil(tgtClass);
         }
         return result;
     }
-    
+
     protected PreprocessAccessUtil getChildPreprocessAccessUtil(Class tgtClass) {
         PreprocessAccessUtil result = null;
         Iterator ite = childFactory.keySet().iterator();
-        while(ite.hasNext()) {
-            String key = (String)ite.next();
-            DataAccessFactory factory = (DataAccessFactory)childFactory.get(key);
+        while (ite.hasNext()) {
+            String key = (String) ite.next();
+            DataAccessFactory factory = (DataAccessFactory) childFactory.get(key);
             result = factory.getPreprocessAccessUtil(tgtClass);
-            if(result != null) {
+            if (result != null) {
                 break;
             }
         }

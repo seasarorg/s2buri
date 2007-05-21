@@ -7,8 +7,6 @@ package org.escafe.buri.exception.select;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.exception.BuriXpdlPathException;
 
-
-
 /**
  * @author makotan
  *
@@ -22,8 +20,9 @@ public class BuriManySelectProcessException extends BuriXpdlPathException {
     public BuriManySelectProcessException(BuriPath path) {
         super("EBRI0008", path);
     }
-    public BuriManySelectProcessException(BuriPath path,String target) {
-        super("EBRI0020", path,target);
+
+    public BuriManySelectProcessException(BuriPath path, String target) {
+        super("EBRI0020", path, target);
     }
 
 }

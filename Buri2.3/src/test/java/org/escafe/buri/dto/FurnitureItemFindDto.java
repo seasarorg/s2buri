@@ -683,7 +683,8 @@ public class FurnitureItemFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/furnitureID=").append(furnitureID);
 		buff.append("/furnitureID_not=").append(furnitureID_not);

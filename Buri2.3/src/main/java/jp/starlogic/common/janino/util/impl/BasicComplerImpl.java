@@ -25,51 +25,51 @@ import org.escafe.buri.component.BuriComponentUtil;
 import org.seasar.framework.exception.IORuntimeException;
 import org.seasar.framework.log.Logger;
 
-public class BasicComplerImpl implements BasicCompler{
+public class BasicComplerImpl implements BasicCompler {
     private static Logger logger = Logger.getLogger(BasicComplerImpl.class);
-    
+
     private TextTemplate template;
     private BuriComponentUtil buriComponentUtil;
-    
+
     public Object Compile(BasicCompileInfo info) {
         String src = createSrc(info);
-        Object successObj = compileSrc(src,info);
+        Object successObj = compileSrc(src, info);
         return successObj;
     }
-    
+
     protected String createSrc(BasicCompileInfo info) {
-        HashMap context = new HashMap();
-        context.put(info.getBaseObjectName(),info.getBaseObject());
-        context.put("buriComponentUtil",buriComponentUtil);
-        return template.processResource(info.getTemplateFileName(),context);
+        HashMap<String, Object> context = new HashMap<String, Object>();
+        context.put(info.getBaseObjectName(), info.getBaseObject());
+        context.put("buriComponentUtil", buriComponentUtil);
+        return template.processResource(info.getTemplateFileName(), context);
     }
-    
-    protected Object compileSrc(String src,BasicCompileInfo info) {
+
+    protected Object compileSrc(String src, BasicCompileInfo info) {
         Object data;
         try {
-            if(logger.isDebugEnabled()) {
-                logger.debug("compile "+info.getOutputClassName()+"\n"+src);
+            if (logger.isDebugEnabled()) {
+                logger.debug("compile " + info.getOutputClassName() + "\n" + src);
             }
             Scanner scanner = new Scanner(null, new StringReader(src));
             Class baseClass = info.getBaseClass();
             Class interfaceClass[] = info.getInterfaceClass();
-            data = ClassBodyEvaluator.createFastClassBodyEvaluator(scanner,info.getOutputClassName(),baseClass,interfaceClass,null);
+            data = ClassBodyEvaluator.createFastClassBodyEvaluator(scanner, info.getOutputClassName(), baseClass, interfaceClass, null);
         } catch (CompileException e) {
-            compileProcessError(src,info.getBaseObject(),e.getLocation(),e.getMessage());
+            compileProcessError(src, info.getBaseObject(), e.getLocation(), e.getMessage());
             throw new CompileRuntimeException(e);
         } catch (ParseException e) {
-            compileProcessError(src,info.getBaseObject(),e.getLocation(),e.getMessage());
+            compileProcessError(src, info.getBaseObject(), e.getLocation(), e.getMessage());
             throw new ParseRuntimeException(e);
         } catch (ScanException e) {
-            compileProcessError(src,info.getBaseObject(),e.getLocation(),e.getMessage());
+            compileProcessError(src, info.getBaseObject(), e.getLocation(), e.getMessage());
             throw new ScanRuntimeException(e);
         } catch (IOException e) {
             throw new IORuntimeException(e);
         }
         return data;
     }
-    
-    protected void compileProcessError(String src,Object baseObj,Location location,String message) {
+
+    protected void compileProcessError(String src, Object baseObj, Location location, String message) {
         logger.error(location);
         logger.error(message);
         logger.error(src);
@@ -90,6 +90,5 @@ public class BasicComplerImpl implements BasicCompler{
     public void setTemplate(TextTemplate template) {
         this.template = template;
     }
-    
-    
+
 }

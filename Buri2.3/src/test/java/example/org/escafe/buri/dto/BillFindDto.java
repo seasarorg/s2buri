@@ -424,7 +424,8 @@ public class BillFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/billID=").append(billID);
 		buff.append("/billID_not=").append(billID_not);

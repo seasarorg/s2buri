@@ -14,7 +14,8 @@ public class ArrayUtilTest extends S2TestCase {
 		super(name);
 	}
 
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 	}
 

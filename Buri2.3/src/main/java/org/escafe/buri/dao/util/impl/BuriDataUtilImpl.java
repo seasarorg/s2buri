@@ -31,24 +31,20 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     private BuriPathDataDao pathDataDao;
     private ClassDefUtil classDefUtil = new ClassDefUtilImpl();
 
-    public long countByPathAndDatas(String pathName, List dataList, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
-        if (dataList != null && dataList.size() == 0) {
+    public long countByPathAndDatas(String pathName, List dataList, DataAccessFactory factory, BuriSystemContext sysContext) {
+        if ((dataList != null) && (dataList.size() == 0)) {
             return 0;
         }
         Class tgtClass = dataList.get(0).getClass();
         DataAccessUtil util = factory.getDataAccessUtil(tgtClass);
         if (util instanceof DataAccessUtilLongKey) {
-            return countByPathAndDatasPkeyNum(pathName, dataList, (DataAccessUtilLongKey) util,
-                sysContext);
+            return countByPathAndDatasPkeyNum(pathName, dataList, (DataAccessUtilLongKey) util, sysContext);
         } else {
-            return countByPathAndDatasPkeyVal(pathName, dataList, (DataAccessUtilManyKey) util,
-                sysContext);
+            return countByPathAndDatasPkeyVal(pathName, dataList, (DataAccessUtilManyKey) util, sysContext);
         }
     }
 
-    protected long countByPathAndDatasPkeyNum(String pathName, List dataList,
-            DataAccessUtilLongKey util, BuriSystemContext sysContext) {
+    protected long countByPathAndDatasPkeyNum(String pathName, List dataList, DataAccessUtilLongKey util, BuriSystemContext sysContext) {
         List<Long> longList = new ArrayList<Long>();
         String className = classDefUtil.getClassName(dataList.get(0));
         Iterator ite = dataList.iterator();
@@ -61,15 +57,12 @@ public class BuriDataUtilImpl implements BuriDataUtil {
         return count;
     }
 
-    protected long countByPathKeys(String className, List longList, List strList, String pathName,
-            BuriSystemContext sysContext) {
-        long count = pathDataDao.getCountByPathKeys(className, longList, strList, pathName,
-            sysContext.getCallPath().getPathType());
+    protected long countByPathKeys(String className, List longList, List strList, String pathName, BuriSystemContext sysContext) {
+        long count = pathDataDao.getCountByPathKeys(className, longList, strList, pathName, sysContext.getCallPath().getPathType());
         return count;
     }
 
-    protected long countByPathAndDatasPkeyVal(String pathName, List dataList,
-            DataAccessUtilManyKey util, BuriSystemContext sysContext) {
+    protected long countByPathAndDatasPkeyVal(String pathName, List dataList, DataAccessUtilManyKey util, BuriSystemContext sysContext) {
         List<String> strList = new ArrayList<String>();
         String className = classDefUtil.getClassName(dataList.get(0));
         Iterator ite = dataList.iterator();
@@ -109,8 +102,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
         return result;
     }
 
-    public List getIDListByPathName(String pathName, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
+    public List getIDListByPathName(String pathName, DataAccessFactory factory, BuriSystemContext sysContext) {
         List result;
         Class tgtCalss = sysContext.getTargetDtoClass();
         DataAccessUtil util = factory.getDataAccessUtil(tgtCalss);
@@ -122,8 +114,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
         return result;
     }
 
-    protected List getDataDtoList(String pathName, DataAccessUtilLongKey dataUtil,
-            BuriSystemContext sysContext) {
+    protected List getDataDtoList(String pathName, DataAccessUtilLongKey dataUtil, BuriSystemContext sysContext) {
         List infoList = getDataInfoListFromPathName(pathName, sysContext);
         Iterator ite = infoList.iterator();
         List<Long> result = new ArrayList<Long>();
@@ -137,15 +128,14 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     protected List getDataInfoListFromPathName(String pathName, BuriSystemContext sysContext) {
         String className = null;
         if (sysContext.getTargetDtoClass() != null) {
-        	className = classDefUtil.getClassName(sysContext.getTargetDtoClass());
+            className = classDefUtil.getClassName(sysContext.getTargetDtoClass());
         }
         Long pathType = sysContext.getCallPath().getPathType();
         List infoList = pathDataDao.getListByPathName(className, pathName, pathType);
         return infoList;
     }
 
-    protected List getManyDataDtoList(String pathName, DataAccessUtilManyKey dataUtil,
-            BuriSystemContext sysContext) {
+    protected List getManyDataDtoList(String pathName, DataAccessUtilManyKey dataUtil, BuriSystemContext sysContext) {
         List infoList = getDataInfoListFromPathName(pathName, sysContext);
         Iterator ite = infoList.iterator();
         List<Object> result = new ArrayList<Object>();
@@ -157,8 +147,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
         return result;
     }
 
-    public List getDtoListByPathName(String pathName, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
+    public List getDtoListByPathName(String pathName, DataAccessFactory factory, BuriSystemContext sysContext) {
         List result = new ArrayList();
         DataAccessUtil util = factory.getDataAccessUtil(sysContext.getTargetDtoClass());
         List keys = getIDListByPathName(pathName, factory, sysContext);
@@ -174,8 +163,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
 
     }
 
-    protected BuriDataEntityDto getBuriDataDto(Object argDto, DataAccessFactory factory,
-            BuriSystemContext sysContext) {
+    protected BuriDataEntityDto getBuriDataDto(Object argDto, DataAccessFactory factory, BuriSystemContext sysContext) {
         BuriDataEntityDto findDto = new BuriDataEntityDto();
         setupPkey(findDto, argDto, factory);
         findDto.setDataType(classDefUtil.getClassName(argDto));
@@ -194,8 +182,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     protected void setupPkey(BuriDataEntityDto dto, Object argDto, DataAccessFactory factory) {
         DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
         if (util == null) {
-            throw new NullPointerException("DataAccessUtil Not Found TgtClass="
-                    + argDto.getClass().toString() + " / XPDL Miss!(Workflow variables)");
+            throw new NullPointerException("DataAccessUtil Not Found TgtClass=" + argDto.getClass().toString() + " / XPDL Miss!(Workflow variables)");
         }
         if (util instanceof DataAccessUtilLongKey) {
             Long dataID = ((DataAccessUtilLongKey) util).getKey(argDto);
@@ -270,6 +257,5 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     public void setPathDataDao(BuriPathDataDao pathDataDao) {
         this.pathDataDao = pathDataDao;
     }
-
 
 }

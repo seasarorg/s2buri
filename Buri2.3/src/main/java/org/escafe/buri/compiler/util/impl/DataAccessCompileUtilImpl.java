@@ -32,39 +32,40 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     private ScriptFactory scriptFactory;
     private S2Container container;
     private BasicCompler compler;
-    private String longKeyTemplateName ="ftl/DataAccessUtilLongKey.ftl";
-    private String manyKeyTemplateName ="ftl/DataAccessUtilManyKey.ftl";
-    
-    public void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
-    	String processID = "";
-    	if(process != null) {
-    		processID = process.getId();
-    	}
-    	setupDataAccessUtil(factory,className,fieldType,buriPackage.getId(),processID);
+    private String longKeyTemplateName = "ftl/DataAccessUtilLongKey.ftl";
+    private String manyKeyTemplateName = "ftl/DataAccessUtilManyKey.ftl";
+
+    public void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, BuriPackageType buriPackage,
+            BuriWorkflowProcessType process) {
+        String processID = "";
+        if (process != null) {
+            processID = process.getId();
+        }
+        setupDataAccessUtil(factory, className, fieldType, buriPackage.getId(), processID);
     }
-    
-    public void setupDataAccessUtil(BuriDataAccessFactory factory,String className,BuriDataFieldType fieldType,String packageId,String processId) {
+
+    public void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, String packageId, String processId) {
         Class clazz = ClassUtil.forName(className);
-        DataAccessUtil accessUtil = compileDataAccess(fieldType,processId,packageId);
+        DataAccessUtil accessUtil = compileDataAccess(fieldType, processId, packageId);
         BuriExePackages exePackage = null;
-        if(factory instanceof BuriExePackages) {
-            exePackage = (BuriExePackages)factory;
-        } else if(factory instanceof BuriExecProcess){
-            BuriExecProcess execProc = (BuriExecProcess)factory;
+        if (factory instanceof BuriExePackages) {
+            exePackage = (BuriExePackages) factory;
+        } else if (factory instanceof BuriExecProcess) {
+            BuriExecProcess execProc = (BuriExecProcess) factory;
             exePackage = execProc.getBuriExePackages();
         }
-        scriptSetup(exePackage,accessUtil);
-        if(accessUtil instanceof DataAccessUtilLongKey) {
-            factory.setDataAccessUtil(clazz,(DataAccessUtilLongKey)accessUtil);
+        scriptSetup(exePackage, accessUtil);
+        if (accessUtil instanceof DataAccessUtilLongKey) {
+            factory.setDataAccessUtil(clazz, (DataAccessUtilLongKey) accessUtil);
         } else {
-            factory.setDataAccessUtil(clazz,(DataAccessUtilManyKey)accessUtil);
+            factory.setDataAccessUtil(clazz, (DataAccessUtilManyKey) accessUtil);
         }
     }
-    
-    protected void scriptSetup(BuriExePackages exePackage,DataAccessUtil accessUtil) {
+
+    protected void scriptSetup(BuriExePackages exePackage, DataAccessUtil accessUtil) {
         String dasName = "ognl";
         String pkesName = "ognl";
-        if(exePackage != null) {
+        if (exePackage != null) {
             dasName = exePackage.getDataAccessScriptType();
             pkesName = exePackage.getPkeyExpressionType();
         }
@@ -73,78 +74,78 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
         accessUtil.setDataAccessScript(dataAccessScript);
         accessUtil.setPkeyExpressionScript(pkeyExpressionScript);
     }
-    
+
     public boolean isDataAccessUtil(BuriDataFieldType fieldType) {
-        if(fieldType.getKeys().size() == 0) {
+        if (fieldType.getKeys().size() == 0) {
             return false;
         }
         return true;
     }
-    
-    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType,BuriPackageType buriPackage,BuriWorkflowProcessType process) {
-        return compileDataAccess(fieldType,process.getId(),buriPackage.getId());
+
+    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, BuriPackageType buriPackage, BuriWorkflowProcessType process) {
+        return compileDataAccess(fieldType, process.getId(), buriPackage.getId());
     }
-    
-    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType,String processId,String packageId) {
-        String createClassName = getDataAccessClassName(fieldType,processId,packageId);
-        if(isUseLongKeyType(fieldType)) {
-            DataAccessUtilLongKey dataAccessUtil = comileDataAccessUtilLongKey(fieldType,createClassName);
+
+    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, String processId, String packageId) {
+        String createClassName = getDataAccessClassName(fieldType, processId, packageId);
+        if (isUseLongKeyType(fieldType)) {
+            DataAccessUtilLongKey dataAccessUtil = comileDataAccessUtilLongKey(fieldType, createClassName);
             return dataAccessUtil;
         } else {
-            DataAccessUtilManyKey dataAccessUtil = comileDataAccessUtilManyKey(fieldType,createClassName);
+            DataAccessUtilManyKey dataAccessUtil = comileDataAccessUtilManyKey(fieldType, createClassName);
             return dataAccessUtil;
         }
     }
-    
-    private String getDataAccessClassName(BuriDataFieldType fieldType,String processId,String packageId) {
-        String lastClassName = fieldType.getId().replaceAll("\\.","_")+ "_DataAccessUtil";
-        if(processId!=null) {
-            return  packageId + "." + processId + "_" + lastClassName;
+
+    private String getDataAccessClassName(BuriDataFieldType fieldType, String processId, String packageId) {
+        String lastClassName = fieldType.getId().replaceAll("\\.", "_") + "_DataAccessUtil";
+        if (processId != null) {
+            return packageId + "." + processId + "_" + lastClassName;
         }
         return packageId + "." + processId + "_" + lastClassName;
     }
-    
-    private DataAccessUtilLongKey comileDataAccessUtilLongKey(BuriDataFieldType fieldType,String createClassName) {
+
+    private DataAccessUtilLongKey comileDataAccessUtilLongKey(BuriDataFieldType fieldType, String createClassName) {
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName(createClassName);
         info.setBaseClass(AbstDataAccessUtilLongKey.class);
-        info.setInterfaceClass(new Class[]{});
+        info.setInterfaceClass(new Class[] {});
         info.setBaseObjectName("fieldType");
         info.setBaseObject(fieldType);
         info.setTemplateFileName(longKeyTemplateName);
         Object result = compler.Compile(info);
-        DataAccessUtilLongKey dataAccessUtil = (DataAccessUtilLongKey)result;
-        container.injectDependency(dataAccessUtil,AbstDataAccessUtilLongKey.class);
+        DataAccessUtilLongKey dataAccessUtil = (DataAccessUtilLongKey) result;
+        container.injectDependency(dataAccessUtil, AbstDataAccessUtilLongKey.class);
         return dataAccessUtil;
     }
-    
-    private DataAccessUtilManyKey comileDataAccessUtilManyKey(BuriDataFieldType fieldType,String createClassName) {
+
+    private DataAccessUtilManyKey comileDataAccessUtilManyKey(BuriDataFieldType fieldType, String createClassName) {
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName(createClassName);
         info.setBaseClass(AbstDataAccessUtilManyKey.class);
-        info.setInterfaceClass(new Class[]{});
+        info.setInterfaceClass(new Class[] {});
         info.setBaseObjectName("fieldType");
         info.setBaseObject(fieldType);
         info.setTemplateFileName(manyKeyTemplateName);
         Object result = compler.Compile(info);
-        DataAccessUtilManyKey dataAccessUtil = (DataAccessUtilManyKey)result;
-        container.injectDependency(dataAccessUtil,AbstDataAccessUtilManyKey.class);
+        DataAccessUtilManyKey dataAccessUtil = (DataAccessUtilManyKey) result;
+        container.injectDependency(dataAccessUtil, AbstDataAccessUtilManyKey.class);
         return dataAccessUtil;
     }
-    
+
     private boolean isUseLongKeyType(BuriDataFieldType fieldType) {
-        if(fieldType.getKeys().size() == 1) {
-            String prop = (String)fieldType.getKeys().keySet().toArray()[0];
+        if (fieldType.getKeys().size() == 1) {
+            String prop = (String) fieldType.getKeys().keySet().toArray()[0];
             Class tgtClass = ClassUtil.forName(fieldType.getId());
             BeanDesc beanDesc = BeanDescFactory.getBeanDesc(tgtClass);
             PropertyDesc pkeyPropertyDesc = beanDesc.getPropertyDesc(prop);
-            if(pkeyPropertyDesc.getPropertyType().isAssignableFrom(Long.TYPE)) {
+            if (pkeyPropertyDesc.getPropertyType().isAssignableFrom(Long.TYPE)) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public BasicCompler getCompler() {
         return compler;
     }

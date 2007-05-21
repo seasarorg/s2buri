@@ -72,16 +72,30 @@ public class IdentityInfo {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         final IdentityInfo other = (IdentityInfo) obj;
         if (idNumber == null) {
-            if (other.idNumber != null) return false;
-        } else if (!idNumber.equals(other.idNumber)) return false;
+            if (other.idNumber != null) {
+                return false;
+            }
+        } else if (!idNumber.equals(other.idNumber)) {
+            return false;
+        }
         if (idString == null) {
-            if (other.idString != null) return false;
-        } else if (!idString.equals(other.idString)) return false;
+            if (other.idString != null) {
+                return false;
+            }
+        } else if (!idString.equals(other.idString)) {
+            return false;
+        }
         return true;
     }
 }

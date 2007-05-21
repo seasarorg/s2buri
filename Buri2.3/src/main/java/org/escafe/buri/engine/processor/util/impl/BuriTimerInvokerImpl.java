@@ -33,8 +33,7 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
         }
     }
 
-    protected void simpleCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory,
-            BuriProcessorInfo info) {
+    protected void simpleCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory, BuriProcessorInfo info) {
         Object argDto = getArgDto(callDto, accessFactory);
         processor.toNextStatus(callDto.getPathName(), argDto, null, info);
     }
@@ -51,8 +50,7 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
         return userData;
     }
 
-    protected void stdCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory,
-            BuriProcessorInfo info) {
+    protected void stdCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory, BuriProcessorInfo info) {
         Object argDto = getArgDto(callDto, accessFactory);
         Object userData = getUserData(callDto, accessFactory);
         processor.toNextStatus(callDto.getPathName(), argDto, userData, info);

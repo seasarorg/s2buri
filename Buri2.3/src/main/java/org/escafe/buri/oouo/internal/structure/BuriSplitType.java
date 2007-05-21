@@ -19,31 +19,35 @@ public class BuriSplitType {
     }
 
     public static final String setType_ATTRI = "Type";
+
     public void setType(String type) {
         this.type = type;
     }
-    
+
     public static final String addTransitionRef_ELEMENT = "TransitionRef";
     public static final String addTransitionRef_ATTRI = "Id";
+
     public void addTransitionRef(String ref) {
         transitionRef.add(ref);
     }
-    
+
     public static final String setupEnd_OOUOFIN = "";
+
     public void setupEnd() {
-        if(type.endsWith("AND")) {
+        if (type.endsWith("AND")) {
             isXOR = false;
         }
     }
-    
+
     public boolean isXor() {
         return isXOR;
     }
-    
+
     public boolean isAnd() {
-        return (! isXOR);
+        return (!isXOR);
     }
 
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/type=").append(type);
@@ -51,5 +55,5 @@ public class BuriSplitType {
         buff.append("]");
         return buff.toString();
     }
-    
+
 }

@@ -265,7 +265,8 @@ public class CustomerFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/customerID=").append(customerID);
 		buff.append("/customerID_not=").append(customerID_not);

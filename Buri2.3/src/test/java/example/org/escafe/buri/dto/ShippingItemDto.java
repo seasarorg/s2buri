@@ -33,7 +33,8 @@ public class ShippingItemDto {
 		this.shippingID = shippingID;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/shippingItemID=").append(shippingItemID);
 		buff.append("/orderDetailID=").append(orderDetailID);

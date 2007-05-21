@@ -11,8 +11,11 @@ import org.escafe.buri.oouo.internal.structure.BuriPackageType;
 import org.escafe.buri.util.packages.BuriExePackages;
 
 public interface BuriCompiler {
-    BuriExePackages CompileInputStream(InputStream workFlowIs,ParticipantProvider provider);
-    BuriExePackages CompileResource(String src,ParticipantProvider provider);
-    BuriExePackages CompileFile(String src,ParticipantProvider provider);
-    BuriExePackages CompileObject(BuriPackageType buriPackage,ParticipantProvider provider);
+    BuriExePackages CompileInputStream(InputStream workFlowIs, ParticipantProvider provider);
+
+    BuriExePackages CompileResource(String src, ParticipantProvider provider);
+
+    BuriExePackages CompileFile(String src, ParticipantProvider provider);
+
+    BuriExePackages CompileObject(BuriPackageType buriPackage, ParticipantProvider provider);
 }

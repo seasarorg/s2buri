@@ -7,7 +7,7 @@ package org.escafe.buri.oouo.internal.structure;
 public class BuriExtendedAttributeType {
     private String name;
     private String value;
-    
+
     public static final String OOUOTHIS = "ExtendedAttribute";
 
     public String getName() {
@@ -15,6 +15,7 @@ public class BuriExtendedAttributeType {
     }
 
     public static final String setName_ATTRI = "Name";
+
     public void setName(String name) {
         this.name = name;
     }
@@ -24,10 +25,12 @@ public class BuriExtendedAttributeType {
     }
 
     public static final String setValue_ATTRI = "Value";
+
     public void setValue(String value) {
         this.value = value;
     }
-    
+
+    @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer("[");
         buffer.append("name=").append(name);

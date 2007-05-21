@@ -328,7 +328,8 @@ public class ShippingItemFindDto {
         return order;
     }
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/orderDetailID=").append(orderDetailID);
 		buff.append("/orderDetailID_not=").append(orderDetailID_not);

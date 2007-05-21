@@ -11,13 +11,16 @@ public abstract class AbstractCronTypeService extends AbstractGetRunService {
     private UtilCalendar lastRun = null;
     private UtilCalendar nextRun = null;
 
+    @Override
     public void initService() {
         nextRunUpdate();
     }
-    
+
     public boolean canService() {
-        if(nextRun==null) {return false;}
-        if(DateUtil.compare(UtilCalendar.getInstance(),nextRun) >= 0) {
+        if (nextRun == null) {
+            return false;
+        }
+        if (DateUtil.compare(UtilCalendar.getInstance(), nextRun) >= 0) {
             return true;
         }
         return false;
@@ -29,18 +32,18 @@ public abstract class AbstractCronTypeService extends AbstractGetRunService {
         nextRun = null;
         nextRunUpdate();
     }
-    
+
     protected abstract void executeCron();
-    
+
     public void nextRunUpdate() {
-        if(lastRun==null) {
-            lastRun =  (UtilCalendar)UtilCalendar.getInstance();
+        if (lastRun == null) {
+            lastRun = (UtilCalendar) UtilCalendar.getInstance();
             lastRun.clearMilliSecond();
         }
-        UtilCalendar argCalendar = (UtilCalendar)lastRun.clone();
+        UtilCalendar argCalendar = (UtilCalendar) lastRun.clone();
         nextRun = createNextRunCalender(argCalendar);
     }
-    
+
     protected abstract UtilCalendar createNextRunCalender(UtilCalendar lastRun);
 
     public UtilCalendar getLastRun() {
@@ -58,6 +61,5 @@ public abstract class AbstractCronTypeService extends AbstractGetRunService {
     public void setNextRun(UtilCalendar nextRun) {
         this.nextRun = nextRun;
     }
-    
-    
+
 }

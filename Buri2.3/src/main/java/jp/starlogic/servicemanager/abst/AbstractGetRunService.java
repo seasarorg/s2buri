@@ -10,7 +10,7 @@ import jp.starlogic.servicemanager.ServiceMonitor;
 public abstract class AbstractGetRunService implements OneService {
     private ServiceMonitor monitor;
     private String serviceName;
-    
+
     private long waitTime = 10000;
     private long runningTime = 0;
     private long stopCheckInterval = 60000;
@@ -19,39 +19,37 @@ public abstract class AbstractGetRunService implements OneService {
     public void setServiceMonitor(ServiceMonitor monitor) {
         this.monitor = monitor;
     }
-    
+
     public ServiceMonitor getServiceMonitor() {
         return this.monitor;
     }
 
     public void initService() {
     }
-    
-    
+
     protected void updateStatus() {
         updateStatus(ServiceMonitor.RUNNING);
     }
 
     protected void updateStatus(int status) {
-        monitor.updateStatus(serviceName,status);
-    }
-    
-    protected void updateStatus(Throwable throwable) {
-        updateStatus(ServiceMonitor.TERMINATE,throwable);
-    }
-    
-    protected void updateStatus(int status,Throwable throwable) {
-        monitor.updateStatus(serviceName,status,throwable);
+        monitor.updateStatus(serviceName, status);
     }
 
-    
+    protected void updateStatus(Throwable throwable) {
+        updateStatus(ServiceMonitor.TERMINATE, throwable);
+    }
+
+    protected void updateStatus(int status, Throwable throwable) {
+        monitor.updateStatus(serviceName, status, throwable);
+    }
+
     public void destroyService() {
     }
 
     public void abortProcessed() {
-        
+
     }
-    
+
     public boolean canReExecute() {
         return canReExecute;
     }
