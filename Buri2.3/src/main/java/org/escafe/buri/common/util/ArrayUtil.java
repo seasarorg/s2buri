@@ -17,6 +17,7 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
  *
  */
 public class ArrayUtil {
+
     public static List arrayToList(Object[] datas) {
         ArrayList list = new ArrayList();
         return arrayAppendList(datas, list);
@@ -26,8 +27,8 @@ public class ArrayUtil {
         if (isEmpty(datas)) {
             return toList;
         }
-        for (Object element : datas) {
-            toList.add(element);
+        for (Object data : datas) {
+            toList.add(data);
         }
         return toList;
     }

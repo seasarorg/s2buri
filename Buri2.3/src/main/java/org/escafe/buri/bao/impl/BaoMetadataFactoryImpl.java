@@ -90,9 +90,9 @@ public class BaoMetadataFactoryImpl implements BaoMetadataFactory {
         Object val = getSignatureValue(invoke, GLBLCONVERTER);
         if (val != null) {
             BuriConvert[] converters = (BuriConvert[]) val;
-            for (BuriConvert element : converters) {
-                String className = classDefUtil.getClassName(element.getClazz());
-                metadata.getConverter().put(className, element);
+            for (BuriConvert convert : converters) {
+                String className = classDefUtil.getClassName(convert.getClazz());
+                metadata.getConverter().put(className, convert);
             }
         }
     }
@@ -229,8 +229,8 @@ public class BaoMetadataFactoryImpl implements BaoMetadataFactory {
         Object val = getMethodSignatureValue(invoke, ACTIVITY);
         if (val != null) {
             String acts[] = val.toString().split(",");
-            for (String element : acts) {
-                funcMetadata.addActivityNames(element);
+            for (String act : acts) {
+                funcMetadata.addActivityNames(act);
             }
         }
     }

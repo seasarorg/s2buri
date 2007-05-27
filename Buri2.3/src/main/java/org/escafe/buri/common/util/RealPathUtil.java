@@ -29,8 +29,8 @@ public class RealPathUtil {
         modeSetup = true;
         Throwable throwable = new Throwable();
         StackTraceElement[] stacks = throwable.getStackTrace();
-        for (StackTraceElement element : stacks) {
-            String className = element.getClassName();
+        for (StackTraceElement stack : stacks) {
+            String className = stack.getClassName();
             if (className.indexOf("TestCase") >= 0) {
                 servletMode = false;
             }

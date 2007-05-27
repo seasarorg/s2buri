@@ -81,9 +81,9 @@ public class OouoClassDefImpl implements OouoClassDef {
 
     private void setupMethodNames() {
         Method methods[] = clazz.getMethods();
-        for (Method element : methods) {
-            if (isOouoMethod(element)) {
-                methodMap.put(element.getName(), element);
+        for (Method method : methods) {
+            if (isOouoMethod(method)) {
+                methodMap.put(method.getName(), method);
             }
         }
     }
@@ -121,11 +121,10 @@ public class OouoClassDefImpl implements OouoClassDef {
     }
 
     private void setFinMethod(OouoAccessInfo accessInfo) {
-        //        OouoSig sig = (OouoSig)accessInfo.getSigSet().toArray()[0];
         Method methods[] = clazz.getMethods();
-        for (Method element : methods) {
-            if (element.getName().equals(accessInfo.getTgtName())) {
-                finMethod = element;
+        for (Method method : methods) {
+            if (method.getName().equals(accessInfo.getTgtName())) {
+                finMethod = method;
             }
         }
     }

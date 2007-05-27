@@ -147,9 +147,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         BuriConverter converter = getAnnotationByClass(BuriConverter.class, invoke);
         if (converter != null) {
             org.escafe.buri.annotation.BuriConversionRule[] converters = converter.value();
-            for (BuriConversionRule element : converters) {
-                BuriConvert buriConvert = new BuriConvert(element.convertClass(), element.ognl());
-                String className = classDefUtil.getClassName(element.convertClass());
+            for (BuriConversionRule rule : converters) {
+                BuriConvert buriConvert = new BuriConvert(rule.convertClass(), rule.ognl());
+                String className = classDefUtil.getClassName(rule.convertClass());
                 metadata.getConverter().put(className, buriConvert);
             }
             return;
@@ -157,9 +157,9 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         Object val = getSignatureValue(invoke, GLBLCONVERTER);
         if (val != null) {
             BuriConvert[] converters = (BuriConvert[]) val;
-            for (BuriConvert element : converters) {
-                String className = classDefUtil.getClassName(element.getClazz());
-                metadata.getConverter().put(className, element);
+            for (BuriConvert convert : converters) {
+                String className = classDefUtil.getClassName(convert.getClazz());
+                metadata.getConverter().put(className, convert);
             }
             return;
         }
@@ -321,16 +321,16 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
         BuriActivity activity = getAnnotationByMethod(BuriActivity.class, invoke);
         if (activity != null) {
             String acts[] = activity.value();
-            for (String element : acts) {
-                funcMetadata.addActivityNames(element);
+            for (String act : acts) {
+                funcMetadata.addActivityNames(act);
             }
             return;
         }
         Object val = getMethodSignatureValue(invoke, ACTIVITY);
         if (val != null) {
             String acts[] = val.toString().split(",");
-            for (String element : acts) {
-                funcMetadata.addActivityNames(element);
+            for (String act : acts) {
+                funcMetadata.addActivityNames(act);
             }
             return;
         }

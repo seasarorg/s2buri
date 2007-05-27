@@ -33,8 +33,8 @@ public class ExcelPrtiPrvidrParserImpl implements ExcelPrtiPrvidrParser {
     protected List<BuriExcelPrtiPrvidrRootDto> loadFromWorkbool(Workbook workbook) {
         List<BuriExcelPrtiPrvidrRootDto> ppList = new ArrayList<BuriExcelPrtiPrvidrRootDto>();
         Sheet sheets[] = workbook.getSheets();
-        for (Sheet element : sheets) {
-            BuriExcelPrtiPrvidrRootDto dto = loadFromSheet(element);
+        for (Sheet sheet : sheets) {
+            BuriExcelPrtiPrvidrRootDto dto = loadFromSheet(sheet);
             if (dto != null) {
                 ppList.add(dto);
             }
