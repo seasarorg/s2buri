@@ -15,18 +15,18 @@ public abstract class AbstDataAccessUtilManyKey extends AbstDataAccessUtil imple
     protected String getKey(Object key, String params[]) {
         StringBuffer buff = new StringBuffer();
         String oneKey;
-        for (String element : params) {
-            oneKey = pkeyExpressionScript.eval(key, element, null).toString();
-            buff.append(element).append("=").append(oneKey).append("\n");
+        for (String param : params) {
+            oneKey = pkeyExpressionScript.eval(key, param, null).toString();
+            buff.append(param).append("=").append(oneKey).append("\n");
         }
         return buff.toString();
     }
 
     protected void setStringKeyToObj(Object dto, String keyObj) {
         String vals[] = keyObj.split("\n");
-        for (String element : vals) {
-            if (element.length() > 0) {
-                String keyVal[] = StringUtil.SplitFastString(element, "=");
+        for (String val : vals) {
+            if (val.length() > 0) {
+                String keyVal[] = StringUtil.splitFastString(val, "=");
                 assert keyVal.length == 2;
                 setValueToObject(dto, keyVal[1], keyVal[0]);
             }
@@ -39,10 +39,10 @@ public abstract class AbstDataAccessUtilManyKey extends AbstDataAccessUtil imple
         propertyDesc.setValue(target, val);
     }
 
-    protected boolean hasPkey(Object data, String condition[]) {
+    protected boolean hasPkey(Object data, String conditions[]) {
         boolean result = true;
-        for (String element : condition) {
-            Object evalResult = pkeyExpressionScript.eval(data, element, null);
+        for (String condition : conditions) {
+            Object evalResult = pkeyExpressionScript.eval(data, condition, null);
             assert evalResult instanceof Boolean;
             if (!((Boolean) evalResult).booleanValue()) {
                 result = false;

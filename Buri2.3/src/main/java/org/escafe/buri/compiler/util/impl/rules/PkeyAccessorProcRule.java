@@ -35,7 +35,7 @@ public class PkeyAccessorProcRule extends DataAccessorProcRule {
     }
 
     protected void setOnePkey(BuriDataFieldType src, String onePkey) {
-        String splitStr[] = StringUtil.SplitFastString(onePkey, ",");
+        String splitStr[] = StringUtil.splitFastString(onePkey, ",");
         String keyName = splitStr[0];
         String keyCheck = keyName + "!=0";
         if (splitStr.length == 0) {

@@ -12,28 +12,29 @@ import java.util.List;
  *
  */
 public class StringUtil {
-    public static List convertKanmaSplitString(String kanmaData) {
-        return convertManySplitString(kanmaData, ",");
+
+    public static List<String> convertCommaSplitString(String commaData) {
+        return convertManySplitString(commaData, ",");
     }
 
-    public static List convertLFSplitString(String kanmaData) {
-        return convertManySplitString(kanmaData, "\n");
+    public static List<String> convertLFSplitString(String commaData) {
+        return convertManySplitString(commaData, "\n");
     }
 
-    public static List convertManySplitString(String srcData, String kugiri) {
-        ArrayList splitData = new ArrayList();
+    public static List<String> convertManySplitString(String srcData, String delimiter) {
+        List<String> splitData = new ArrayList<String>();
         if (org.seasar.framework.util.StringUtil.isEmpty(srcData)) {
             return splitData;
         }
-        String[] datax = srcData.split(kugiri);
-        for (String element : datax) {
-            splitData.add(element.trim());
+        String[] datax = srcData.split(delimiter);
+        for (String data : datax) {
+            splitData.add(data.trim());
         }
         return splitData;
     }
 
-    public static String[] SplitFastString(String srcStr, String kugiri) {
-        int splitPos = srcStr.indexOf(kugiri);
+    public static String[] splitFastString(String srcStr, String delimiter) {
+        int splitPos = srcStr.indexOf(delimiter);
         String result[];
         if (splitPos == -1) {
             result = new String[] { srcStr };
