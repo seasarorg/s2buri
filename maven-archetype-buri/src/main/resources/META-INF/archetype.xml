@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype>
+  <id>maven-archetype-buri</id>
+  <encoding>UTF-8</encoding>
+  <sources>
+  </sources>
+  <resources>
+  	<resource>src/main/resources/buri/dicon/buri-user.dicon</resource>
+  	<resource>src/main/resources/buri/dicon/buriTimer.dicon</resource>
+  	<resource>src/main/resources/app.dicon</resource>
+  	<resource>src/main/resources/convention.dicon</resource>
+  	<resource>src/main/resources/creator.dicon</resource>
+  	<resource>src/main/resources/customizer.dicon</resource>
+  	<resource>src/main/resources/env.txt</resource>
+  	<resource>src/main/resources/jdbc.dicon</resource>
+  	<resource>src/main/resources/log4j.properties</resource>
+  	<resource>src/main/resources/s2container.dicon</resource>
+<!--  -->
+  	<resource>db/sql/h2/00_dropdb_h2.sql</resource>
+  	<resource>db/sql/h2/10_createdb_h2.sql</resource>
+  	<resource>db/sql/h2/20_example_drop_h2.sql</resource>
+  	<resource>db/sql/h2/30_example_h2.sql</resource>
+  	<resource>db/sql/h2/40_unitTestTable_drop_h2.sql</resource>
+  	<resource>db/sql/h2/50_unitTestTable_h2.sql</resource>
+<!--  -->
+  </resources>
+  <testSources>
+  </testSources>
+  <testResources>
+  </testResources>
+</archetype>
