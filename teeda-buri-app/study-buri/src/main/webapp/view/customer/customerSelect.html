@@ -7,9 +7,9 @@
 <body>
 <script type="text/javascript">
 function setIndex(name) {
-//  alert("hello");
   var hidden = name.substring(0, name.lastIndexOf(':'));
-  var f = document.customerForm;
+  //var f = document.customerForm;
+  var f = document.getElementById('customerForm');
   f.clickCustomerId.value = f[hidden + ':customerId'].value;
   alert("顧客ID:=" + f.clickCustomerId.value);
 }

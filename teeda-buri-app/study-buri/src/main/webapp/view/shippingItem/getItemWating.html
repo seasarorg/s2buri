@@ -8,7 +8,8 @@
 <script type="text/javascript">
 function setIndex(name) {
   var hidden = name.substring(0, name.lastIndexOf(':'));
-  var f = document.shippingItemForm;
+  //var f = document.shippingItemForm;
+  var f = document.getElementById('shippingItemForm');
   f.clickShippingItemId.value = f[hidden + ':shippingItemId'].value;
   alert("出荷詳細ID:=" + f.clickShippingItemId.value);
 }

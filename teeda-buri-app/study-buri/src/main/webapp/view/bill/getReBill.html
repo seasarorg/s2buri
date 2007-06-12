@@ -7,7 +7,8 @@
 <script type="text/javascript">
 function setIndex(name) {
   var hidden = name.substring(0, name.lastIndexOf(':'));
-  var f = document.billForm;
+  //var f = document.billForm;
+  var f = document.getElementById('billForm');
   f.clickBillId.value = f[hidden + ':billId'].value;
   alert("請求ID:=" + f.clickBillId.value)
 }

@@ -15,6 +15,14 @@
   		<name>The SeasarProject Maven2 Project</name>
   		<url>http://maven.seasar.org/maven2</url>
   	</repository>
+  	<repository>
+  		<id>maven-snapshot.seasar.org</id>
+  		<name>The SeasarProject Maven2 SnapShot Project</name>
+  		<url>http://maven.seasar.org/maven2-snapshot</url>
+		<releases>
+			<enabled>true</enabled>
+		</releases>
+  	</repository>
   </repositories>
 
   <dependencies>
@@ -83,19 +91,19 @@
 	<dependency>
 		<groupId>org.seasar.teeda</groupId>
 		<artifactId>teeda-core</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7</version>
 		<scope>compile</scope>
 	</dependency>
 	<dependency>
 		<groupId>org.seasar.teeda</groupId>
 		<artifactId>teeda-extension</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7</version>
 		<scope>compile</scope>
 	</dependency>
 	<dependency>
 		<groupId>org.seasar.teeda</groupId>
 		<artifactId>teeda-tiger</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7</version>
 		<scope>compile</scope>
 	</dependency>
     <dependency>
@@ -259,8 +267,8 @@
 					<artifactId>maven-antrun-plugin</artifactId>
 					<executions>
 						<execution>
-							<id>prepare-db</id>
-							<phase>pre-integration-test</phase>
+							<id>create-db</id>
+							<phase>validate</phase>
 							<configuration>
 								<tasks>
 									<sequential>
