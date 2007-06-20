@@ -100,6 +100,60 @@
         </executions>
       </plugin>
 -->
+
+<!--  H2 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.0.20070617</version>
+            <scope>test</scope>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <driver>org.h2.Driver</driver>
+          <url>jdbc:h2:db/buri/buri;create=true</url>
+          <autocommit>true</autocommit>
+        </configuration>
+        <executions>
+          <execution>
+            <id>drop-db</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <srcFiles>
+              	<srcFile>${basedir}/db/dropdb_h2.sql</srcFile>
+              	<srcFile>${basedir}/db/example_drop_h2.sql</srcFile>
+              	<srcFile>${basedir}/db/unitTestTable_drop_h2.sql</srcFile>
+              </srcFiles>
+              <onError>continue</onError>
+              <skip>false</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <id>create-db</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <srcFiles>
+              	<srcFile>${basedir}/db/createdb_h2.sql</srcFile>
+              	<srcFile>${basedir}/db/example_h2.sql</srcFile>
+              	<srcFile>${basedir}/db/unitTestTable_h2.sql</srcFile>
+              </srcFiles>
+              <onError>continue</onError>
+              <skip>false</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -115,6 +169,7 @@
      </extension>
    </extensions>
   </build>
+
   <repositories>
     <repository>
       <id>maven.seasar.org</id>
@@ -122,11 +177,25 @@
       <url>http://maven.seasar.org/maven2</url>
     </repository>
     <repository>
+      <id>maven-snapshot.seasar.org</id>
+      <name>The Seasar Foundation Maven2 SnapShot Repository</name>
+      <url>http://maven.seasar.org/maven2-snapshot</url>
+      <releases>
+      	<enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
       <id>dist.codehaus.org</id>
       <name>codehaus Maven2 Repository</name>
       <url>http://dist.codehaus.org/mule/dependencies/maven2/</url>
     </repository>
+    <repository>
+      <id>local</id>
+      <name>Local Maven2 Repository</name>
+      <url>file:repo</url>
+    </repository>
   </repositories>
+
   <dependencies>
     <dependency>
       <groupId>org.seasar.container</groupId>
@@ -256,7 +325,13 @@
       <artifactId>jxl</artifactId>
       <version>2.4.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.0.20070617</version>
+    </dependency>
   </dependencies>
+
    <distributionManagement>
      <repository>
        <uniqueVersion>false</uniqueVersion>
@@ -271,4 +346,5 @@
        <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
      </snapshotRepository>
    </distributionManagement>
+
  </project>
