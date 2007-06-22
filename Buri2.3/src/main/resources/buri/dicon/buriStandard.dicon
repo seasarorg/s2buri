@@ -82,6 +82,9 @@
 	<component class="org.escafe.buri.dao.util.impl.BuriUndoLogUtilNoImpl">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
+	<component class="org.escafe.buri.dao.util.impl.BuriJoinWaitingUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
 
 
 	<component class="org.escafe.buri.compiler.wakanago.WakanagoCompilerImpl">

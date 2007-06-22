@@ -6,6 +6,8 @@ DROP TABLE BuriStateUser;
 
 DROP TABLE BuriState;
 
+DROP TABLE BuriJoinWaiting;
+
 DROP TABLE BuriStateUndoLog;
 
 DROP TABLE BuriTransaction;

@@ -6,6 +6,7 @@ package org.escafe.buri.util.packages.abst;
 
 import org.escafe.buri.common.util.ClassDefUtil;
 import org.escafe.buri.compiler.DataFieldCompiler;
+import org.escafe.buri.dao.util.BuriJoinWaitingUtil;
 import org.escafe.buri.dao.util.BuriStateUtil;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
 import org.escafe.buri.engine.BuriSystemContext;
@@ -25,6 +26,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     protected BuriDataAccessFactory dataAccessFactory;
     private DataFieldCompiler dataFieldCompiler;
     private ClassDefUtil classDefUtil;
+    private BuriJoinWaitingUtil joinWaitingUtil;
 
     @Override
     public void setup(BuriWorkflowProcessType process) {
@@ -109,8 +111,10 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     protected boolean joinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
         long count = getStateUtil().countNoProcessedSiblingStatus(this, sysContext, walker);
         if (count == 0) {
+        	joinWaitingUtil.clearWaiting(sysContext, walker, nextName, nextId);
             return true;
         }
+    	joinWaitingUtil.addWaiting(sysContext, walker, nextName, nextId);
         return false;
     }
 
@@ -184,5 +188,13 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     public void setClassDefUtil(ClassDefUtil classDefUtil) {
         this.classDefUtil = classDefUtil;
     }
+
+	public BuriJoinWaitingUtil getJoinWaitingUtil() {
+		return joinWaitingUtil;
+	}
+
+	public void setJoinWaitingUtil(BuriJoinWaitingUtil joinWaitingUtil) {
+		this.joinWaitingUtil = joinWaitingUtil;
+	}
 
 }

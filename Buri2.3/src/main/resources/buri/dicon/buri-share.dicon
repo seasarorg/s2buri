@@ -47,7 +47,6 @@
 	<component class="org.escafe.buri.common.util.ClassDefUtilImpl">
 	</component>
 
-	
 	<component class="jp.starlogic.common.janino.util.impl.BasicComplerImpl">
 	</component>
 	

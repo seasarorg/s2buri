@@ -47,4 +47,7 @@
 	<component class="org.escafe.buri.dao.BuriIDListDao">
 		<aspect>wakanagoDaoInterceptorChain</aspect>
 	</component>
+	<component class="org.escafe.buri.dao.BuriJoinWaitingDao">
+		<aspect>wakanagoDaoInterceptorChain</aspect>
+	</component>
 </components>
