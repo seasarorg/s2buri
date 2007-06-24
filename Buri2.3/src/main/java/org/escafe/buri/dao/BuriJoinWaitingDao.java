@@ -12,6 +12,9 @@ public interface BuriJoinWaitingDao {
     public String getBuriJoinWaiting_ARGS = "waitingID";
 
     public BuriJoinWaitingEntityDto getBuriJoinWaiting(long waitingID);
+
+    public String getNowWaiting_QUERY = "processDate > CURRENT_TIMESTAMP";
+    public List<BuriJoinWaitingEntityDto> getNowWaiting();
     
     public String updateClearWaitingInfo_ARGS = "branchID";
     public void updateClearWaitingInfo(long branchID);

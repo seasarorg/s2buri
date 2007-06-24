@@ -13,8 +13,6 @@ public class BuriJoinWaitingEntityDto {
     private Long pathID;
     private Long dataID;
     private Long branchID;
-    private String userIDVal = null;
-    private Long userIDNum = null;
     private long BTID;
     private Date insertDate = new Timestamp((new Date()).getTime());
     private Date processDate = (new GregorianCalendar(9999, 11, 31, 23, 59, 59)).getTime();
@@ -87,8 +85,6 @@ public class BuriJoinWaitingEntityDto {
         buff.append("/pathID=").append(pathID);
         buff.append("/dataID=").append(dataID);
         buff.append("/branchID=").append(branchID);
-        buff.append("/userIDNum=").append(userIDNum);
-        buff.append("/userIDVal=").append(userIDVal);
         buff.append("/BTID=").append(BTID);
         buff.append("/insertDate=").append(insertDate);
         buff.append("/processDate=").append(processDate);
@@ -98,21 +94,6 @@ public class BuriJoinWaitingEntityDto {
         return buff.toString();
     }
 
-    public Long getUserIDNum() {
-        return userIDNum;
-    }
-
-    public void setUserIDNum(Long userIDNum) {
-        this.userIDNum = userIDNum;
-    }
-
-    public String getUserIDVal() {
-        return userIDVal;
-    }
-
-    public void setUserIDVal(String userIDVal) {
-        this.userIDVal = userIDVal;
-    }
 
     public Date getAbortDate() {
         return abortDate;

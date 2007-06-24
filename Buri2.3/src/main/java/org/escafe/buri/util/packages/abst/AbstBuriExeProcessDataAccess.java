@@ -104,6 +104,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     protected void joinXorFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
         if (walker.getParentBranchID() != 0) {
             getStateUtil().abortBranch(this, sysContext, walker);
+        	joinWaitingUtil.clearWaiting(this,sysContext, walker, nextName, nextId);
         }
     }
 
@@ -111,10 +112,10 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     protected boolean joinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
         long count = getStateUtil().countNoProcessedSiblingStatus(this, sysContext, walker);
         if (count == 0) {
-        	joinWaitingUtil.clearWaiting(sysContext, walker, nextName, nextId);
+        	joinWaitingUtil.clearWaiting(this,sysContext, walker, nextName, nextId);
             return true;
         }
-    	joinWaitingUtil.addWaiting(sysContext, walker, nextName, nextId);
+    	joinWaitingUtil.addWaiting(this,sysContext, walker, nextName, nextId);
         return false;
     }
 

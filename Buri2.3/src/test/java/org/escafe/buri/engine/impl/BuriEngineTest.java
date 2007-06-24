@@ -10,6 +10,7 @@ import java.util.List;
 
 import jp.starlogic.util.datetime.UtilCalendar;
 
+import org.escafe.buri.dao.BuriJoinWaitingDao;
 import org.escafe.buri.dao.BuriPathDao;
 import org.escafe.buri.dao.BuriStateDao;
 import org.escafe.buri.dao.util.BuriDataUtil;
@@ -32,6 +33,7 @@ public class BuriEngineTest extends S2TestCase {
     private BuriPathDao pathDao;
     private BuriDataUtil dataUtil;
     private BuriTimerService timerService;
+    private BuriJoinWaitingDao waitingDao;
 
     public BuriEngineTest(String arg0) {
         super(arg0);
@@ -877,6 +879,10 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(1,postState.size());
         assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
         
+        List waitings = waitingDao.getNowWaiting();
+        assertEquals(0,waitings.size());
+        
+        
     }
     
     public void test15_2Tx() throws InterruptedException {
@@ -920,6 +926,8 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(1,postState.size());
         assertEquals(getPathName(postState.get(0)),"basicTest.test15.proc1");
         
+        List waitings = waitingDao.getNowWaiting();
+        assertEquals(1,waitings.size());
         
         
         userContext = engine.createUserContext(testDto,null,"and",null);
@@ -931,6 +939,9 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(1,postState.size());
         assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
         
+        waitingDao.getAllBuriState();
+        waitings = waitingDao.getNowWaiting();
+        assertEquals(0,waitings.size());
     }
     
     public void test15_3Tx() throws InterruptedException {

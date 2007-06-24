@@ -1,3 +1,7 @@
+DROP VIEW BuriWaitingPathDataUser;
+
+DROP VIEW BuriWaitingPathData;
+
 DROP VIEW BuriPathDataUser;
 
 DROP VIEW BuriPathData;

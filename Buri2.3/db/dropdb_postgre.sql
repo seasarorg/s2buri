@@ -6,6 +6,9 @@ drop view BuriPathHistoryDataUser;
 
 drop view BuriPathHistoryData;
 
+DROP VIEW BuriWaitingPathDataUser;
+
+DROP VIEW BuriWaitingPathData;
 
 DROP TABLE BuriStateUser;
 
@@ -43,3 +46,12 @@ DROP SEQUENCE BuriPathID;
 DROP TABLE BuriUser;
 
 DROP SEQUENCE BuriUserID;
+
+DROP TABLE BuriWaitingUser;
+
+DROP SEQUENCE BuriWaitingUserID;
+
+DROP TABLE BuriJoinWaiting;
+
+DROP SEQUENCE BuriWaitingID;
+
