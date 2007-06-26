@@ -68,6 +68,68 @@ CREATE INDEX XIF6BuriState ON BuriState
        autoRunTime                       ASC
 );
 
+CREATE TABLE BuriWaitingUser (
+       WaitingUserID          INTEGER NOT NULL,
+       WaitingID              INTEGER  ,
+       BuriUserID           INTEGER  ,
+       insertDate           TIMESTAMP NOT NULL,
+       deleteDate           TIMESTAMP NOT NULL,
+       PRIMARY KEY (WaitingUserID)
+);
+
+CREATE SEQUENCE WaitingUserID
+START WITH 1
+INCREMENT BY 1
+;
+
+CREATE INDEX XIF1BuriWaitingUser ON BuriWaitingUser
+(
+       WaitingID                        ASC
+);
+
+CREATE INDEX XIF2BuriWaitingUser ON BuriWaitingUser
+(
+       BuriUserID                     ASC
+);
+
+
+CREATE TABLE BuriJoinWaiting (
+       WaitingID              INTEGER NOT NULL,
+       PathID               INTEGER  ,
+       DataID               INTEGER  ,
+       BranchID             INTEGER  ,
+       Btid                 INTEGER NOT NULL,
+       insertDate           TIMESTAMP NOT NULL,
+       processDate          TIMESTAMP,
+       abortDate            TIMESTAMP NOT NULL,
+       versionNo            INTEGER NOT NULL,
+       PRIMARY KEY (WaitingID)
+);
+
+CREATE SEQUENCE BuriWaitingID
+START WITH 1
+INCREMENT BY 1
+;
+
+CREATE INDEX XIF1BuriJoinWaiting ON BuriJoinWaiting
+(
+       PathID                         ASC
+);
+
+CREATE INDEX XIF2BuriJoinWaiting ON BuriJoinWaiting
+(
+       DataID                         ASC
+);
+
+CREATE INDEX XIF4BuriJoinWaiting ON BuriJoinWaiting
+(
+       BranchID                       ASC
+);
+
+CREATE INDEX XIF5BuriJoinWaiting ON BuriJoinWaiting
+(
+       processDate                       ASC
+);
 
 CREATE TABLE BuriStateUndoLog (
        StateUndoLogID              INTEGER NOT NULL,
@@ -309,3 +371,48 @@ WHERE
 	and BuriStateUser.deleteDate > CURRENT_TIMESTAMP
 ;
 
+CREATE VIEW BuriWaitingPathData AS
+SELECT
+	BuriPath.pathID AS pathID
+	,BuriPath.PathName AS PathName
+	,BuriPath.RealPathName AS RealPathName
+	,BuriPath.pathType AS pathType
+	,BuriData.pkeyNum AS pkeyNum
+	,BuriData.pkeyVal AS pkeyVal
+	,BuriData.dataType AS dataType
+	,BuriData.dataID AS dataID
+	,BuriJoinWaiting.WaitingID AS WaitingID
+FROM
+	BuriPath
+	,BuriJoinWaiting
+	,BuriData
+WHERE
+	BuriPath.pathID = BuriJoinWaiting.pathID
+	and BuriData.dataID = BuriJoinWaiting.dataID
+	and BuriJoinWaiting.processDate > CURRENT_TIMESTAMP
+;
+
+
+CREATE VIEW BuriWaitingPathDataUser AS
+SELECT
+	BuriWaitingPathData.pathID AS pathID
+	,BuriWaitingPathData.PathName AS PathName
+	,BuriWaitingPathData.RealPathName AS RealPathName
+	,BuriWaitingPathData.pathType AS pathType
+	,BuriWaitingPathData.pkeyNum AS pkeyNum
+	,BuriWaitingPathData.pkeyVal AS pkeyVal
+	,BuriWaitingPathData.dataType AS dataType
+	,BuriWaitingPathData.dataID AS dataID
+	,BuriWaitingPathData.WaitingID AS WaitingID
+	,BuriUser.BuriUserID AS BuriUserID
+	,BuriUser.UserIDVal AS UserIDVal
+	,BuriUser.UserIDNum AS UserIDNum
+FROM
+	BuriWaitingPathData
+	,BuriWaitingUser
+	,BuriUser
+WHERE
+	BuriWaitingPathData.WaitingID = BuriWaitingUser.WaitingID
+	and BuriUser.BuriUserID = BuriWaitingUser.BuriUserID
+	and BuriWaitingUser.deleteDate > CURRENT_TIMESTAMP
+;
