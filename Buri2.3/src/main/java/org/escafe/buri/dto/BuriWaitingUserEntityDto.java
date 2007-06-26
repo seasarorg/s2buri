@@ -11,7 +11,7 @@ import jp.starlogic.util.datetime.DateUtil;
 public class BuriWaitingUserEntityDto {
     public static final String TABLE = "BuriWaitingUser";
 
-    public static final String waitingUserID_ID = "sequence, sequenceName=WaitingUserID";
+    public static final String waitingUserID_ID = "sequence, sequenceName=BuriWaitingUserID";
     private long waitingUserID;
     private Long waitingID;
     private Long buriUserID;
