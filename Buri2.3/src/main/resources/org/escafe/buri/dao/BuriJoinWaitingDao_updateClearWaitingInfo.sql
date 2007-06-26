@@ -5,10 +5,4 @@ set
 	,abortDate = CURRENT_TIMESTAMP
 where
 	processDate > CURRENT_TIMESTAMP
-	and BranchID in ( 
-		select BranchID
-		from BuriBranch
-		where
-			parentBranchID = /*branchID*/1
-		)
-	
+	and BranchID = /*branchID*/1
