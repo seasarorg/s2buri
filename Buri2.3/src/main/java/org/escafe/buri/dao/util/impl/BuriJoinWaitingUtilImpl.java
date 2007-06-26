@@ -20,11 +20,10 @@ public class BuriJoinWaitingUtilImpl implements BuriJoinWaitingUtil{
 	private BuriBranchDao branchDao;
 
 	public void addWaiting(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
-		BuriPath nowPath = walker.getNowPath();
-		BuriPath nextPath = nowPath.moveChildPath(nextName, nextId);
+		BranchWalker nextWalker = walker.moveNext(nextName, nextId);
+		BuriPath nextPath = nextWalker.getNowPath();
 		BuriPath newPath = pathUtil.getBuriPathFromRealPath(nextPath);
 		long pathId = newPath.getBuriPathId();
-		BranchWalker nextWalker = walker.moveNext(nextName, nextId);
 		BuriJoinWaitingEntityDto dto = new BuriJoinWaitingEntityDto();
 		dto.setBranchID(walker.getBranchID());
 		dto.setDataID(sysContext.getDataID());
