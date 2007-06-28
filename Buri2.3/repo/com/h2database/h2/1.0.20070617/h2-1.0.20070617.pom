@@ -1,7 +1,0 @@
-<project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.h2database</groupId>
-  <artifactId>h2</artifactId>
-  <version>1.0.20070617</version>
-  <name>H2 Database</name>
-</project>
