@@ -4,10 +4,10 @@
 <components>
 	<!-- ぶり利用者編集必須のdicon -->
 	
-	<component name="BuriEngineConfig" class="org.seasar.buri.engine.impl.BuriEngineConfigImpl">
+	<component name="BuriEngineConfig" class="org.escafe.buri.engine.impl.BuriEngineConfigImpl">
 		<!-- ParticipantProviderを使う場合はここに記述する。引数はResourceのファイル名,パッケージ名,ParticipantProvider -->
 		<initMethod name="addResourceConfig">
-			<arg>"example/org/seasar/buri/orderBao.xpdl"</arg>
+			<arg>"example/org/escafe/buri/orderBao.xpdl"</arg>
 			<arg>"注文管理"</arg>
 <!--
 			<arg>ExcelBaseParticipantProvider</arg>
@@ -15,7 +15,7 @@
 		</initMethod>
 	</component>
 
-	<component name="ExcelBaseParticipantProvider" class="org.seasar.buri.common.participantprovider.impl.ExcelBaseParticipantProvider">
+	<component name="ExcelBaseParticipantProvider" class="org.escafe.buri.common.participantprovider.impl.ExcelBaseParticipantProvider">
 		<!-- ExcelBaseParticipantProviderを使う場合はここに記述する。引数はファイル名 -->
 		<!--
 		<initMethod>#self.loadFromFile("")</initMethod>
@@ -28,7 +28,7 @@
 		-->
 	</component>
 	
-	<component class="org.seasar.buri.common.participantprovider.impl.ExcelPrtiPrvidrParserImpl">
+	<component class="org.escafe.buri.common.participantprovider.impl.ExcelPrtiPrvidrParserImpl">
 	</component>
 	
 </components>

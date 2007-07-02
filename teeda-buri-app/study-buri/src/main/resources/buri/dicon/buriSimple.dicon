@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="buri/dicon/buri-extension.dicon"/>
+	<include path="buri/dicon/buri-user.dicon"/>
+	<include path="buri/dicon/buri-share.dicon"/>
+
+	<component name="BuriInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<initMethod name="add"><arg>traceInterceptor</arg></initMethod>
+	</component>
+	<component name="BuriRecorderInterceptor" class="org.escafe.buri.engine.interceptor.BuriRecorderInterceptor">
+	</component>
+
+	
+	<component class="org.escafe.buri.engine.processor.impl.SimpleBuriProcessorImpl">
+	</component>
+
+	<component name="BuriSimpleEngine" class="org.escafe.buri.engine.impl.BuriSimpleEngineImpl">
+		<!--
+		<initMethod>
+		#self.readWorkFlowFromResource("sample.xpdl")
+		</initMethod>
+		-->
+		<initMethod name="addActivitySelector">
+			<arg><component class="org.escafe.buri.engine.selector.activityImpl.DataStateBuriActivitySelector">
+				</component></arg>
+		</initMethod>
+		<initMethod name="addActivitySelector">
+			<arg><component class="org.escafe.buri.engine.selector.activityImpl.DirectSingleBuriActivitySelector">
+				</component></arg>
+		</initMethod>
+		<initMethod name="addActivitySelector">
+			<arg><component class="org.escafe.buri.engine.selector.activityImpl.StartBuriActivitySelector">
+				</component></arg>
+		</initMethod>
+		<initMethod name="addActivitySelector">
+			<arg><component class="org.escafe.buri.engine.selector.activityImpl.DirectMultiBuriActivitySelector">
+				</component></arg>
+		</initMethod>
+		
+		<initMethod name="addProcessSelector">
+			<arg><component class="org.escafe.buri.engine.selector.processImpl.DirectSingleBuriProcessSelector">
+				</component></arg>
+		</initMethod>
+		<initMethod name="addProcessSelector">
+			<arg><component class="org.escafe.buri.engine.selector.processImpl.ValidDateBuriProcessSelector">
+				</component></arg>
+		</initMethod>
+		
+		<initMethod name="setupBuriEngineConfig">
+			<arg>BuriEngineConfig</arg>
+		</initMethod>
+		
+		<!-- 遅延ロード用　遅延ロードさせたいときはここのコメントを外す
+		<aspect pointcut="execute,selectPackage">BuriExecuteInterceptor</aspect>
+		<aspect pointcut="readWorkFlowFromResource">BuriResourceLoadInterceptor</aspect>
+		-->
+	</component>
+
+
+	<component class="org.escafe.buri.dao.util.impl.BuriDataUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	<component class="org.escafe.buri.dao.util.impl.BuriPathUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	<component class="org.escafe.buri.dao.util.impl.BuriStateUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	<component class="org.escafe.buri.dao.util.impl.BTIDUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	<component class="org.escafe.buri.dao.util.impl.BuriUndoLogUtilNoImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+	<component class="org.escafe.buri.dao.util.impl.BuriJoinWaitingUtilImpl">
+		<aspect>BuriInterceptorChain</aspect>
+	</component>
+
+
+	<component class="org.escafe.buri.compiler.wakanago.WakanagoCompilerImpl">
+	</component>
+	<component class="org.escafe.buri.compiler.wakanago.CompilePackageImpl">
+	</component>
+	<component class="org.escafe.buri.compiler.wakanago.CompileProcessImpl">
+	</component>
+	<component class="org.escafe.buri.compiler.wakanago.DataFieldCompilerImpl">
+	</component>
+	<component class="org.escafe.buri.compiler.util.impl.DataAccessCompileUtilImpl">
+	</component>
+
+	<component class="org.escafe.buri.util.packages.abst.AbstDataAccessUtilManyKey" instance="outer" >
+	</component>
+	<component class="org.escafe.buri.util.packages.abst.AbstDataAccessUtilLongKey" instance="outer" >
+	</component>
+
+
+
+	<component class="org.escafe.buri.util.packages.abst.AbstPreprocessAccessUtil" instance="outer" >
+	</component>
+	<component class="org.escafe.buri.util.packages.abst.AbstBuriExePackages" instance="outer" >
+		<property name="dataAccessFactory">
+			<component class="org.escafe.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
+				<initMethod name="addChildFactory">
+					<arg>"extensionDAF"</arg>
+					<arg>extensionDAF</arg>
+				</initMethod>
+				<initMethod name="addChildFactory">
+					<arg>"ScriptDataAccessFactory"</arg>
+					<arg>ScriptDataAccessFactory</arg>
+				</initMethod>
+			</component>
+		</property>
+	</component>
+	<component class="org.escafe.buri.util.packages.abst.AbstBuriExeProcessDataAccess" instance="outer" >
+		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
+		<initMethod name="addProcessAOP"><arg>BuriRecorderInterceptor</arg></initMethod>
+		<initMethod name="addConditonAOP"><arg>traceInterceptor</arg></initMethod>
+		<property name="dataAccessFactory">
+			<component class="org.escafe.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
+			</component>
+		</property>
+		<property name="buriExePackages">null</property>
+	</component>
+	
+</components>

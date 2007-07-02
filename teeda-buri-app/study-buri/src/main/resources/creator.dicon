@@ -16,6 +16,6 @@
 	<component class="org.seasar.framework.container.creator.ValidatorCreator"/>
 	<component class="org.seasar.framework.container.creator.ConverterCreator"/>
 	
-	<component class="org.seasar.buri.creator.BaoCreator"/>
+	<component class="org.escafe.buri.creator.BaoCreator"/>
 	
 </components>

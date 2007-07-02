@@ -19,7 +19,7 @@
 	<component class="org.seasar.extension.jdbc.impl.BooleanToIntStatementFactory"/>
 	-->
 
-	<component name="realPathUtil" class="org.seasar.buri.common.util.RealPathUtil" instance="singleton" />
+	<component name="realPathUtil" class="org.escafe.buri.common.util.RealPathUtil" instance="singleton" />
 	<component name="xaDataSource"
 		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
 		<property name="driverClassName">

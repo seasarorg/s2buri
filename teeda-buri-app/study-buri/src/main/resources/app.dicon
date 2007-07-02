@@ -16,6 +16,6 @@
 	<include path="buri/dicon/buriTimer.dicon"/>
 -->
 
-	<component name="orderDataDto" class="example.org.seasar.buri.dto.OrderDataDto" instance="session" />
+	<component name="orderDataDto" class="example.org.escafe.buri.dto.OrderDataDto" instance="session" />
 
 </components>

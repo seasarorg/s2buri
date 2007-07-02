@@ -4,7 +4,7 @@
 <components>
 	<component class="org.seasar.framework.convention.impl.NamingConventionImpl">
 		<initMethod name="addRootPackageName">
-			<arg>"example.org.seasar.buri"</arg>
+			<arg>"example.org.escafe.buri"</arg>
 		</initMethod>
 	</component>
 </components>

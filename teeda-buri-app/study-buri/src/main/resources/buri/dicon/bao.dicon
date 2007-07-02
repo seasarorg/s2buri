@@ -4,12 +4,12 @@
 <components namespace="bao" >
 	<include path="buri/dicon/buriBase.dicon"/>
 	
-	<component class="org.seasar.buri.common.util.ClassDefUtilImpl">
+	<component class="org.escafe.buri.common.util.ClassDefUtilImpl">
 	</component>
-	<component class="org.seasar.buri.bao.impl.TigerBaoMetadataFactoryImpl">
+	<component class="org.escafe.buri.bao.impl.TigerBaoMetadataFactoryImpl">
 	</component>
-	<component class="org.seasar.buri.bao.interceptor.BaoInvokerImpl">
+	<component class="org.escafe.buri.bao.interceptor.BaoInvokerImpl">
 	</component>
-	<component name="interceptor" class="org.seasar.buri.bao.interceptor.BaoInterceptorImpl">
+	<component name="interceptor" class="org.escafe.buri.bao.interceptor.BaoInterceptorImpl">
 	</component>
 </components>
