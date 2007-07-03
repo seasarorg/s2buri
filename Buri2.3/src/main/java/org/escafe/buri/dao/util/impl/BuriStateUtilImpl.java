@@ -239,6 +239,9 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
     public void abortBranch(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         abortParentBranchID(walker.getParentBranchID(), factory, sysContext);
+        BuriBranchEntityDto dto= branchDao.select(walker.getParentBranchID());
+        walker.setBranchID(dto.getBranchID());
+        walker.setParentBranchID(dto.getParentBranchID());
     }
 
     protected void abortParentBranchID(long parentBranchId, DataAccessFactory factory, BuriSystemContext sysContext) {

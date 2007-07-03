@@ -198,7 +198,7 @@ public class BuriEngineTest extends S2TestCase {
         engine.execute(sysContext,null);
         
         stateDao_.getAllBuriState();
-        assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
+        assertEquals(0,stateDao_.getNoProcessBuriState().size());
     
     }
     

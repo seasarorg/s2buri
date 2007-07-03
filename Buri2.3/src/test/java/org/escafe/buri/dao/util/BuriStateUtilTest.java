@@ -207,7 +207,7 @@ public class BuriStateUtilTest extends S2TestCase {
         assertEquals(2, count); // ★
 
         stateUtil.abortBranch(dataAccessFactory, sysContext, child2);
-        count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory, sysContext, child2);
+        count = stateUtil.countNoProcessedSiblingStatus(dataAccessFactory, sysContext, child1);
         assertEquals(0, count);
     }
 
