@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="docmanage" Name="文書管理パッケージ" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2007-07-10 11:12:07</Created>
+</PackageHeader>
+<Applications>
+<Application Id="docmanage_app1" Name="OgnlInvoker"/>
+<Application Id="docmanage_app2" Name="AfterOgnlInvoker">
+<ExtendedAttributes>
+<ExtendedAttribute Name="after"/>
+</ExtendedAttributes>
+</Application>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess Id="docmanage_wp1" Name="公開審査プロセス">
+<ProcessHeader>
+<Created>2007-07-10 11:13:28</Created>
+</ProcessHeader>
+<Participants>
+<Participant Id="docmanage_wp1_par1" Name="文書管理担当者">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="docmanage_wp1_par2" Name="依頼者">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Activities>
+<Activity Id="docmanage_wp1_act1" Name="審査開始">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開審査開始---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開審査開始---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="128,42"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act2" Name="認可">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開中---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開中---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par1</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="388,42"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act5" Name="審査待ち">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開待ち&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par2</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="docmanage_wp1_tra8"/>
+<TransitionRef Id="docmanage_wp1_tra7"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="258,54"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act6" Name="審査中">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開審査中---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開審査中---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par1</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="docmanage_wp1_tra4"/>
+<TransitionRef Id="docmanage_wp1_tra6"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="253,42"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act7" Name="不認可">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開不認可---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開不認可---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par1</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="390,132"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act8" Name="不認可済">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;不認可済---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;不認可済---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par2</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="388,139"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act9" Name="認可済">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開認可済---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開認可済---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par2</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="389,52"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="docmanage_wp1_act10" Name="審査依頼">
+<Implementation>
+<Tool Id="docmanage_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開依頼---開始&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="docmanage_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;公開審査依頼---終了&quot; + #data)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>docmanage_wp1_par2</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Automatic/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="docmanage_wp1_tra5"/>
+<TransitionRef Id="docmanage_wp1_tra9"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="docmanage_wp1_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="128,54"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="docmanage_wp1_act1" Id="docmanage_wp1_tra1" To="docmanage_wp1_act6">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="docmanage_wp1_act6" Id="docmanage_wp1_tra4" To="docmanage_wp1_act2">
+<Condition Type="CONDITION">#action == "認可"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="docmanage_wp1_act6" Id="docmanage_wp1_tra6" To="docmanage_wp1_act7">
+<Condition Type="CONDITION">#action == "不認可"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="docmanage_wp1_act5" Id="docmanage_wp1_tra7" To="docmanage_wp1_act8">
+<Condition Type="CONDITION">#action == "不認可"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="docmanage_wp1_act5" Id="docmanage_wp1_tra8" To="docmanage_wp1_act9">
+<Condition Type="CONDITION">#action == "認可"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="docmanage_wp1_act10" Id="docmanage_wp1_tra5" To="docmanage_wp1_act1">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="docmanage_wp1_act10" Id="docmanage_wp1_tra9" To="docmanage_wp1_act5">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=docmanage_wp1_par1,CONNECTING_ACTIVITY_ID=docmanage_wp1_act7,X_OFFSET=537,Y_OFFSET=143,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=docmanage_wp1_par2,CONNECTING_ACTIVITY_ID=docmanage_wp1_act9,X_OFFSET=538,Y_OFFSET=63,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=docmanage_wp1_par2,CONNECTING_ACTIVITY_ID=docmanage_wp1_act8,X_OFFSET=537,Y_OFFSET=150,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=docmanage_wp1_par2,CONNECTING_ACTIVITY_ID=docmanage_wp1_act10,X_OFFSET=59,Y_OFFSET=64,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=docmanage_wp1_par1,CONNECTING_ACTIVITY_ID=docmanage_wp1_act2,X_OFFSET=535,Y_OFFSET=53,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="docmanage_wp1_par1;docmanage_wp1_par2"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="JPEd - JaWE based Process Editor"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2(4?)-C-20060810-1931"/>
+</ExtendedAttributes>
+</Package>
