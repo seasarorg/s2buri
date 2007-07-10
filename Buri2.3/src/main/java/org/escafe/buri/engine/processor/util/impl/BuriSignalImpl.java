@@ -84,29 +84,28 @@ public class BuriSignalImpl implements BuriSignal {
 		return null;
 	}
 
-	private Object getTargetData(String callPath, Object data, DataAccessFactory accessFactory, Long dataID) {
-		return dataUtil.getBuriData(dataID, accessFactory);
-	}
-
 	private Object getUserData(BuriPathDataEntityDto pathDataDto, DataAccessFactory accessFactory) {
 		BuriPathDataUserEntityDto pathDataUserDto = pathDataUserDao.getDto(pathDataDto.getStateID());
 		IdentityInfo appUserId = new IdentityInfo(pathDataUserDto.getUserIDNum(), pathDataUserDto.getUserIDVal());
 		return userUtil.getUserData(accessFactory, pathDataUserDto.getBuriUserID(), appUserId);
 	}
 
-	private void simpleCall(String callPath, Object data, DataAccessFactory accessFactory, BuriProcessorInfo info) {
-		BuriPathDataEntityDto pathDataDto = getBuriPathData(callPath, data, accessFactory);
-		Long dataID = pathDataDto.getDataID();
-		Object targetDto = getTargetData(callPath, data, accessFactory, dataID);
-		processor.toNextStatus(callPath, targetDto, null, info);
+	private void simpleCall(String callPath, Object data, DataAccessFactory accessFactory, BuriProcessorInfo info, Object action) {
+		if (action != null) {
+			processor.toNextStatusAction(callPath, data, null, action);
+		} else {
+			processor.toNextStatus(callPath, data, null, info);
+		}
 	}
 
-	private void standardCall(String callPath, Object data, DataAccessFactory accessFactory, BuriProcessorInfo info) {
+	private void standardCall(String callPath, Object data, DataAccessFactory accessFactory, BuriProcessorInfo info, Object action) {
 		BuriPathDataEntityDto pathDataDto = getBuriPathData(callPath, data, accessFactory);
-		Long dataID = pathDataDto.getDataID();
-		Object targetDto = getTargetData(callPath, data, accessFactory, dataID);
 		Object userData = getUserData(pathDataDto, accessFactory);
-		processor.toNextStatus(callPath, targetDto, userData, info);
+		if (action != null) {
+			processor.toNextStatusAction(callPath, data, userData, action);
+		} else {
+			processor.toNextStatus(callPath, data, userData, info);
+		}
 	}
 
 	public void signal(String callPath, Object data) {
@@ -114,10 +113,35 @@ public class BuriSignalImpl implements BuriSignal {
 		BuriProcessorInfo info = new BuriProcessorInfo();
 		info.put("signalAction", Boolean.TRUE);
 		if (processor.isSimpleProcessor(callPath)) {
-			simpleCall(callPath, data, accessFactory, info);
+			simpleCall(callPath, data, accessFactory, info, null);
 		}
 		if (processor.isStdProcessor(callPath)) {
-			standardCall(callPath, data, accessFactory, info);
+			standardCall(callPath, data, accessFactory, info, null);
+		}
+	}
+
+	public void signal(String callPath, Object data, String action) {
+		DataAccessFactory accessFactory = processor.getDataAccessFactory(callPath);
+		BuriProcessorInfo info = new BuriProcessorInfo();
+		info.put("signalAction", Boolean.TRUE);
+		info.put("action", action);
+		if (processor.isSimpleProcessor(callPath)) {
+			simpleCall(callPath, data, accessFactory, info, action);
+		}
+		if (processor.isStdProcessor(callPath)) {
+			standardCall(callPath, data, accessFactory, info, action);
+		}
+	}
+
+	public void signal(String callPath, List datas) {
+		for (Object data : datas) {
+			signal(callPath, data);
+		}
+	}
+
+	public void signal(String callPath, List datas, String action) {
+		for (Object data : datas) {
+			signal(callPath, data, action);
 		}
 	}
 
