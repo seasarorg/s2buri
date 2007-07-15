@@ -879,8 +879,8 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(1,postState.size());
         assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
         
-        List waitings = waitingDao.getNowWaiting();
-        assertEquals(0,waitings.size());
+//        List waitings = waitingDao.getNowWaiting();
+//        assertEquals(0,waitings.size());
         
         
     }
@@ -939,7 +939,7 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(1,postState.size());
         assertEquals(getPathName(postState.get(0)),"basicTest.test15.end");
         
-        waitingDao.getAllBuriState();
+//        waitingDao.getAllBuriState();
 //        waitings = waitingDao.getNowWaiting();
 //        assertEquals(0,waitings.size());
     }
