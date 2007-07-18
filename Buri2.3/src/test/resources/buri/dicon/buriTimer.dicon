@@ -11,9 +11,11 @@
 			<arg>"StartupService"</arg>
 		</initMethod>
 		<!-- この下の行をコメントアウトするとServiceは動かない -->
+		<!--
 		<initMethod name="startup" ></initMethod>
 		<destroyMethod name="terminate" ></destroyMethod>
-		<aspect>aop.traceInterceptor</aspect>
+		-->
+		<!--<aspect>aop.traceInterceptor</aspect>-->
 	</component>
 	
 	<component class="jp.starlogic.servicemanager.impl.ServiceMonitorImpl">
