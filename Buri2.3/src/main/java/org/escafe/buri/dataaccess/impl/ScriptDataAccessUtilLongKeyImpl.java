@@ -65,6 +65,10 @@ public class ScriptDataAccessUtilLongKeyImpl extends AbstDataAccessUtilLongKey {
         return ((Boolean) evalResult).booleanValue();
     }
 
+	public String getTableName(Object data) {
+		return fieldType.getTableName();
+	}
+
     @Override
     public Script getPkeyExpressionScript() {
         if (pkeyExpressionScript == null) {

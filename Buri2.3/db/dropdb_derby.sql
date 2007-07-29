@@ -1,10 +1,10 @@
-DROP VIEW BuriWaitingPathDataUser;
-
-DROP VIEW BuriWaitingPathData;
-
 DROP VIEW BuriPathDataUser;
 
 DROP VIEW BuriPathData;
+
+DROP VIEW BuriPathHistoryDataUser;
+
+DROP VIEW BuriPathHistoryData;
 
 DROP TABLE BuriStateUser;
 

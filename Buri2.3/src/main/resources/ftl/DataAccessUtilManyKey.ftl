@@ -64,3 +64,9 @@ public Object getDataFromDto(Object dto) {
     String execScript = "${script}";
     return runScript(dto,execScript);
 }
+
+public String getTableName(Object dto) {
+	<#assign tableName = fieldType.getTableName()>
+    String tableName = "${tableName}";
+    return tableName;
+}

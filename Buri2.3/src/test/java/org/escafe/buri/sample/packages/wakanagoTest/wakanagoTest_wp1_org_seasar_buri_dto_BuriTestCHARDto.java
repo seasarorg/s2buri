@@ -60,4 +60,9 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestCHARDto extends AbstDa
         return runScript(keyVal,execScript);
     }
 
+	public String getTableName(Object data) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 }

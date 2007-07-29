@@ -54,6 +54,12 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto extends AbstDat
         String execScript = "BuriTestINTDao.getBuriTestINT(#data.testID)";
         return runScript(dto,execScript);
     }
+
+
+	public String getTableName(Object data) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
     
 
 }

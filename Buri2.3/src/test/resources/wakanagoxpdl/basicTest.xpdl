@@ -27,6 +27,7 @@
                 <ExtendedAttribute Name="select" Value="BuriTestINTDao.getBuriTestINT(#data.testID)"/>
                 <ExtendedAttribute Name="selectMany" Value="BuriTestINTDao.getBuriTestINTByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="BuriTestINTDao.delete(#data)"/>
+                <ExtendedAttribute Name="tableName" Value="BuriTestINT"/>
             </ExtendedAttributes>
         </DataField>
     </DataFields>

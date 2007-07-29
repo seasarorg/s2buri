@@ -10,6 +10,7 @@ public class BuriDataEntityDto {
     private Long pkeyNum;
     private Long insertUserID;
     private String dataType;
+    private String tableName;
 
     public BuriDataEntityDto() {
     }
@@ -54,13 +55,22 @@ public class BuriDataEntityDto {
         this.insertUserID = insertUserID;
     }
 
-    @Override
+    public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	@Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("/dataID=").append(dataID);
         buff.append("/pkeyVal=").append(pkeyVal);
         buff.append("/pkeyNum=").append(pkeyNum);
         buff.append("/dataType=").append(dataType);
+        buff.append("/tableName=").append(tableName);
         buff.append("/insertUserID=").append(insertUserID);
         buff.append("]");
         return buff.toString();

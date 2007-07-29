@@ -172,6 +172,12 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         stateDto.setPathID(new Long(path.getBuriPathId()));
         stateDto.setBranchID(new Long(walker.getBranchID()));
         stateDto.setInsertDate(new Date());
+        if(factory instanceof BuriExecProcess) {
+	        BuriExecProcess process = (BuriExecProcess)factory;
+	        BuriActivityType act = process.getBuriWorkflowProcessType().getActivityById(path.getActivityId().get(0));
+	        stateDto.setParticipantName(act.getParticipantName());
+	        stateDto.setParticipantType(act.getParticipantType());
+        }
 
         stateDto.setAbortDate(DateUtil.getSQLMaxDate());
         stateDto.setProcessDate(DateUtil.getSQLMaxDate());

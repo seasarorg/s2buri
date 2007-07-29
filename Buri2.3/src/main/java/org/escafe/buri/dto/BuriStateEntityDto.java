@@ -14,6 +14,8 @@ public class BuriStateEntityDto {
     private Long dataID;
     private Long branchID;
     private String userIDVal = null;
+    private String participantName = null;
+    private String participantType = null;
     private Long userIDNum = null;
     private long BTID;
     private Date insertDate = new Timestamp((new Date()).getTime());
@@ -90,6 +92,8 @@ public class BuriStateEntityDto {
         buff.append("/branchID=").append(branchID);
         buff.append("/userIDNum=").append(userIDNum);
         buff.append("/userIDVal=").append(userIDVal);
+        buff.append("/participantName=").append(participantName);
+        buff.append("/participantType=").append(participantType);
         buff.append("/BTID=").append(BTID);
         buff.append("/insertDate=").append(insertDate);
         buff.append("/processDate=").append(processDate);
@@ -139,5 +143,21 @@ public class BuriStateEntityDto {
     public void setBTID(long btid) {
         BTID = btid;
     }
+
+	public String getParticipantName() {
+		return participantName;
+	}
+
+	public void setParticipantName(String participantName) {
+		this.participantName = participantName;
+	}
+
+	public String getParticipantType() {
+		return participantType;
+	}
+
+	public void setParticipantType(String participantType) {
+		this.participantType = participantType;
+	}
 
 }

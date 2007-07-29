@@ -37,6 +37,7 @@ public class DataFieldStdTest extends S2TestCase {
         setBuriDataFieldType(dft, "update", "dao.update(#data)");
         setBuriDataFieldType(dft, "select", "dao.select(#data)");
         setBuriDataFieldType(dft, "delete", "dao.delete(#data)");
+        setBuriDataFieldType(dft, "tableName", "BuriTestINT");
 
         BuriDataFieldType dst = bdfcp.preprocess(dft);
 
@@ -45,6 +46,7 @@ public class DataFieldStdTest extends S2TestCase {
         assertEquals(dst.getUpdate(), "dao.update(#data)");
         assertEquals(dst.getSelect(), "dao.select(#data)");
         assertEquals(dst.getDelete(), "dao.delete(#data)");
+        assertEquals(dst.getTableName(), "BuriTestINT");
     }
 
     public void testDataFieldType04() {
@@ -55,6 +57,7 @@ public class DataFieldStdTest extends S2TestCase {
         setBuriDataFieldType(dft, "update", "dao.update(#data)");
         setBuriDataFieldType(dft, "select", "dao.select(#data)");
         setBuriDataFieldType(dft, "delete", "dao.delete(#data)");
+        setBuriDataFieldType(dft, "tableName", "BuriTestINT");
 
         try {
             bdfcp.preprocess(dft);
@@ -85,6 +88,7 @@ public class DataFieldStdTest extends S2TestCase {
         setBuriDataFieldType(dft, "update", "dao.update(#data)");
         setBuriDataFieldType(dft, "select", "dao.select(#data)");
         setBuriDataFieldType(dft, "delete", "dao.delete(#data)");
+        setBuriDataFieldType(dft, "tableName", "BuriTestINT");
 
         BuriDataFieldType dst = bdfcp.preprocess(dft);
 
@@ -105,6 +109,7 @@ public class DataFieldStdTest extends S2TestCase {
         setBuriDataFieldType(dft, "update", "dao.update(#data)");
         setBuriDataFieldType(dft, "select", "dao.select(#data)");
         setBuriDataFieldType(dft, "delete", "dao.delete(#data)");
+        setBuriDataFieldType(dft, "tableName", "BuriTestINT");
 
         BuriDataFieldType dst = bdfcp.preprocess(dft);
 

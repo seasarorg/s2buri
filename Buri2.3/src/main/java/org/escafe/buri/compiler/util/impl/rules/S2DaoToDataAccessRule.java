@@ -53,6 +53,9 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
         if (!hasName(src, "delete")) {
             return true;
         }
+        if (!hasName(src, "tableName")) {
+            return true;
+        }
         return false;
     }
 
@@ -112,10 +115,22 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
             deleteSetup(src, method, methodName, beanDesc);
             selectManySetup(src, method, methodName, beanDesc);
             insertSetup(src, method, methodName, beanDesc);
+            tableNameSetup(src, method, methodName, beanDesc);
         }
     }
 
-    protected void selectManySetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+    protected void tableNameSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+        if (!StringUtil.isEmpty(src.getTableName())) {
+            return;
+        }
+        Class tgt = ClassUtil.forName(src.getId());
+        Object sig = classDefUtil.getMethodSignatureValue(tgt, "TABLE", "");
+        if (sig != null) {
+            src.setTableName(sig.toString());
+        }
+	}
+
+	protected void selectManySetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
         if (!StringUtil.isEmpty(src.getSelectMany())) {
             return;
         }

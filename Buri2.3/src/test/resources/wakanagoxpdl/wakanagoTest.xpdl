@@ -25,6 +25,7 @@
 <ExtendedAttribute Name="update" Value="OrderInfoDao.update(#data)"/>
 <ExtendedAttribute Name="select" Value="OrderInfoDao.getOrderInfo(#data.orderTitleID)"/>
 <ExtendedAttribute Name="delete" Value="OrderInfoDao.delete(#data)"/>
+<ExtendedAttribute Name="tableName" Value="orderTitle"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
@@ -45,6 +46,7 @@
 <ExtendedAttribute Name="update" Value="BuriTestINTDao.update(#data)"/>
 <ExtendedAttribute Name="delete" Value="BuriTestINTDao.delete(#data)"/>
 <ExtendedAttribute Name="selectMany" Value="BuriTestINTDao.getBuriTestINTByIds(#data)"/>
+<ExtendedAttribute Name="tableName" Value="BuriTestINT"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="org.escafe.buri.dto.BuriTestCHARDto" IsArray="FALSE">
@@ -57,6 +59,7 @@
 <ExtendedAttribute Name="insert" Value="BuriTestCHARDao.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="BuriTestCHARDao.update(#data)"/>
 <ExtendedAttribute Name="delete" Value="BuriTestCHARDao.delete(#data)"/>
+<ExtendedAttribute Name="tableName" Value="BuriTestCHAR"/>
 </ExtendedAttributes>
 </DataField>
 <DataField Id="org.escafe.buri.dto.BuriTestManyDto" IsArray="FALSE">
@@ -69,6 +72,7 @@
 <ExtendedAttribute Name="insert" Value="BuriTestManyDao.inesrt(#data)"/>
 <ExtendedAttribute Name="update" Value="BuriTestManyDao.update(#data)"/>
 <ExtendedAttribute Name="delete" Value="BuriTestManyDao.delete(#data)"/>
+<ExtendedAttribute Name="tableName" Value="BuriTestMany"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

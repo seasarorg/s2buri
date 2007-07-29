@@ -19,6 +19,7 @@ public class BuriDataFieldType {
     private String delete;
     private String selectMany;
     private String preprocess;
+    private String tableName;
 
     private Map keys = new HashMap();
     private Map cache = new HashMap();
@@ -105,7 +106,15 @@ public class BuriDataFieldType {
         this.cache = cache;
     }
 
-    @Override
+    public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	@Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
         buff.append("id=").append(id);

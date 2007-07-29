@@ -19,4 +19,6 @@ public interface DataAccessUtil {
     void setDataAccessScript(Script dataAccessScript);
 
     void setPkeyExpressionScript(Script pkeyExpressionScript);
+    
+    String getTableName(Object data);
 }

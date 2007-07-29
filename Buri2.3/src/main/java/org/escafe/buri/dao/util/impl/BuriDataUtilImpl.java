@@ -171,6 +171,8 @@ public class BuriDataUtilImpl implements BuriDataUtil {
         BuriDataEntityDto dto = null;
         if (datas.size() == 0) {
             findDto.setInsertUserID(sysContext.getBuriUserID());
+            DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
+            findDto.setTableName(util.getTableName(argDto));
             dataDao.insert(findDto);
             dto = findDto;
         } else {
