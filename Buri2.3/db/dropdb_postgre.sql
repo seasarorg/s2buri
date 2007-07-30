@@ -6,12 +6,8 @@ drop view BuriPathHistoryDataUser;
 
 drop view BuriPathHistoryData;
 
-DROP VIEW BuriWaitingPathDataUser;
-
-DROP VIEW BuriWaitingPathData;
 
 DROP TABLE BuriStateUser;
-
 
 DROP SEQUENCE BuriStateUserID;
 
