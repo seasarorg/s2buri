@@ -2,16 +2,9 @@ package org.escafe.buri.engine.processor.util.impl;
 
 import java.util.List;
 
-import org.escafe.buri.dao.BuriDataDao;
-import org.escafe.buri.dao.BuriPathDao;
-import org.escafe.buri.dao.BuriPathDataDao;
-import org.escafe.buri.dao.BuriPathDataUserDao;
 import org.escafe.buri.dao.BuriUserDao;
-import org.escafe.buri.dao.util.BuriDataUtil;
 import org.escafe.buri.dao.util.BuriUserUtil;
-import org.escafe.buri.dto.BuriPathDataEntityDto;
-import org.escafe.buri.dto.BuriPathDataUserEntityDto;
-import org.escafe.buri.dto.BuriPathEntityDto;
+import org.escafe.buri.dto.BuriUserEntityDto;
 import org.escafe.buri.engine.IdentityInfo;
 import org.escafe.buri.engine.processor.BuriAutoSelectProcessor;
 import org.escafe.buri.engine.processor.BuriProcessorInfo;
@@ -30,19 +23,9 @@ public class BuriSignalImpl implements BuriSignal {
 
 	private BuriAutoSelectProcessor processor;
 
-	private BuriPathDao pathDao;
-
-	private BuriPathDataDao pathDataDao;
-
-	private BuriDataUtil dataUtil;
-
-	private BuriDataDao dataDao;
-
 	private BuriUserUtil userUtil;
 
 	private BuriUserDao userDao;
-
-	private BuriPathDataUserDao pathDataUserDao;
 
 	private Long getLongKey(Object data, DataAccessFactory accessFactory) {
 		Long longKey = null;
@@ -63,74 +46,38 @@ public class BuriSignalImpl implements BuriSignal {
 		}
 		return manyKey;
 	}
-
-	private BuriPathDataEntityDto getBuriPathData(String callPath, Object data, DataAccessFactory accessFactory) {
-		BuriPathEntityDto pathEntityDto = getBuriPath(callPath);
-		String className = data.getClass().getName();
-		String pathName = pathEntityDto.getPathName();
-		Long pathType = pathEntityDto.getPathType();
-		Long longKey = getLongKey(data, accessFactory);
-		String manyKey = getManyKey(data, accessFactory);
-		return pathDataDao.getDtoByPathKey(className, longKey, manyKey, pathName, pathType);
-	}
-
-	private BuriPathEntityDto getBuriPath(String callPath) {
-		List<BuriPathEntityDto> paths = pathDao.getAllBuriPath();
-		for (BuriPathEntityDto path : paths) {
-			if (path.getPathName().equals(callPath)) {
-				return path;
-			}
-		}
-		return null;
-	}
-
-	private Object getUserData(BuriPathDataEntityDto pathDataDto, DataAccessFactory accessFactory) {
-		BuriPathDataUserEntityDto pathDataUserDto = pathDataUserDao.getDto(pathDataDto.getStateID());
-		IdentityInfo appUserId = new IdentityInfo(pathDataUserDto.getUserIDNum(), pathDataUserDto.getUserIDVal());
-		return userUtil.getUserData(accessFactory, pathDataUserDto.getBuriUserID(), appUserId);
-	}
-
-	private void simpleCall(String callPath, Object data, DataAccessFactory accessFactory, BuriProcessorInfo info, Object action) {
-		if (action != null) {
-			processor.toNextStatusAction(callPath, data, null, action);
-		} else {
-			processor.toNextStatus(callPath, data, null, info);
-		}
-	}
-
-	private void standardCall(String callPath, Object data, DataAccessFactory accessFactory, BuriProcessorInfo info, Object action) {
-		BuriPathDataEntityDto pathDataDto = getBuriPathData(callPath, data, accessFactory);
-		Object userData = getUserData(pathDataDto, accessFactory);
-		if (action != null) {
-			processor.toNextStatusAction(callPath, data, userData, action);
-		} else {
-			processor.toNextStatus(callPath, data, userData, info);
-		}
-	}
-
-	public void signal(String callPath, Object data) {
-		DataAccessFactory accessFactory = processor.getDataAccessFactory(callPath);
+	
+	private void toNextStatus(String callPath, Object data, Object userData,Object action) {
 		BuriProcessorInfo info = new BuriProcessorInfo();
 		info.put("signalAction", Boolean.TRUE);
-		if (processor.isSimpleProcessor(callPath)) {
-			simpleCall(callPath, data, accessFactory, info, null);
+		
+		processor.toNextStatusAction(callPath, data, userData, action);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void processSignal(String callPath, Object data, String action) {
+		DataAccessFactory accessFactory = processor.getDataAccessFactory(callPath);
+		Long longKey = getLongKey(data, accessFactory);
+		String manyKey = getManyKey(data, accessFactory);
+		List<BuriUserEntityDto> buriUsers = userDao.getBuriUserFromPathAndPkey(callPath, longKey, manyKey);
+		if(buriUsers != null && buriUsers.size() > 0) {
+			for (BuriUserEntityDto userEntity : buriUsers) {
+				IdentityInfo appUserId = new IdentityInfo(userEntity.getUserIDNum(), userEntity.getUserIDVal());
+				Object userData = userUtil.getUserData(accessFactory, userEntity.getBuriUserID(), appUserId);
+				
+				toNextStatus(callPath, data, userData,action);
+			}
+		} else {
+			toNextStatus(callPath, data, null,action);
 		}
-		if (processor.isStdProcessor(callPath)) {
-			standardCall(callPath, data, accessFactory, info, null);
-		}
+	}
+	
+	public void signal(String callPath, Object data) {
+		processSignal(callPath, data, null);
 	}
 
 	public void signal(String callPath, Object data, String action) {
-		DataAccessFactory accessFactory = processor.getDataAccessFactory(callPath);
-		BuriProcessorInfo info = new BuriProcessorInfo();
-		info.put("signalAction", Boolean.TRUE);
-		info.put("action", action);
-		if (processor.isSimpleProcessor(callPath)) {
-			simpleCall(callPath, data, accessFactory, info, action);
-		}
-		if (processor.isStdProcessor(callPath)) {
-			standardCall(callPath, data, accessFactory, info, action);
-		}
+		processSignal(callPath, data, action);
 	}
 
 	public void signal(String callPath, List datas) {
@@ -153,38 +100,6 @@ public class BuriSignalImpl implements BuriSignal {
 		this.processor = processor;
 	}
 
-	public BuriPathDao getPathDao() {
-		return pathDao;
-	}
-
-	public void setPathDao(BuriPathDao pathDao) {
-		this.pathDao = pathDao;
-	}
-
-	public BuriPathDataDao getPathDataDao() {
-		return pathDataDao;
-	}
-
-	public void setPathDataDao(BuriPathDataDao pathDataDao) {
-		this.pathDataDao = pathDataDao;
-	}
-
-	public BuriDataUtil getDataUtil() {
-		return dataUtil;
-	}
-
-	public void setDataUtil(BuriDataUtil dataUtil) {
-		this.dataUtil = dataUtil;
-	}
-
-	public BuriDataDao getDataDao() {
-		return dataDao;
-	}
-
-	public void setDataDao(BuriDataDao dataDao) {
-		this.dataDao = dataDao;
-	}
-
 	public BuriUserDao getUserDao() {
 		return userDao;
 	}
@@ -199,14 +114,6 @@ public class BuriSignalImpl implements BuriSignal {
 
 	public void setUserUtil(BuriUserUtil userUtil) {
 		this.userUtil = userUtil;
-	}
-
-	public BuriPathDataUserDao getPathDataUserDao() {
-		return pathDataUserDao;
-	}
-
-	public void setPathDataUserDao(BuriPathDataUserDao pathDataUserDao) {
-		this.pathDataUserDao = pathDataUserDao;
 	}
 
 }

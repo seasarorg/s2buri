@@ -22,6 +22,10 @@ public interface BuriUserDao {
     public String getBuriUserFromIds_ARGS = "userIDNum,userIDVal";
 
     public BuriUserEntityDto getBuriUserFromIds(Long userIDNum, String userIDVal);
+    
+    public String getBuriUserFromPathAndPkey_ARGS = "path,pkeyNum,pkeyVal";
+    
+    public List getBuriUserFromPathAndPkey(String path, long pkeyNum,String pkeyVal);
 
     //
     //    public String getBuriUserFromDto_ARGS = "dto";
