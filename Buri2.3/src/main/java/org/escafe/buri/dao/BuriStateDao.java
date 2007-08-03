@@ -37,6 +37,10 @@ public interface BuriStateDao {
     public String getBuriStateByPathAndData_ARGS = "pathID,dataID";
 
     public BuriStateEntityDto getBuriStateByPathAndData(long pathID, long dataID);
+    
+    public String countBuriStateByPathNameAndPkey_ARGS = "pathName,longKey,manyKey";
+
+    public int countBuriStateByPathNameAndPkey(String pathName,Long longKey,String manyKey);
 
     public long getNewBuriStateID();
 

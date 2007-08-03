@@ -2,6 +2,7 @@ package org.escafe.buri.engine.processor.util.impl;
 
 import java.util.List;
 
+import org.escafe.buri.dao.BuriStateDao;
 import org.escafe.buri.dao.BuriUserDao;
 import org.escafe.buri.dao.util.BuriUserUtil;
 import org.escafe.buri.dto.BuriUserEntityDto;
@@ -26,6 +27,8 @@ public class BuriSignalImpl implements BuriSignal {
 	private BuriUserUtil userUtil;
 
 	private BuriUserDao userDao;
+	
+	private BuriStateDao stateDao;
 
 	private Long getLongKey(Object data, DataAccessFactory accessFactory) {
 		Long longKey = null;
@@ -68,7 +71,10 @@ public class BuriSignalImpl implements BuriSignal {
 				toNextStatus(callPath, data, userData,action);
 			}
 		} else {
-			toNextStatus(callPath, data, null,action);
+			int cnt = stateDao.countBuriStateByPathNameAndPkey(callPath, longKey, manyKey);
+			if(cnt != 0) {
+				toNextStatus(callPath, data, null,action);
+			}
 		}
 	}
 	
@@ -114,6 +120,14 @@ public class BuriSignalImpl implements BuriSignal {
 
 	public void setUserUtil(BuriUserUtil userUtil) {
 		this.userUtil = userUtil;
+	}
+
+	public BuriStateDao getStateDao() {
+		return stateDao;
+	}
+
+	public void setStateDao(BuriStateDao stateDao) {
+		this.stateDao = stateDao;
 	}
 
 }
