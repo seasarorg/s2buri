@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="buriSignalTest" Name="ぶりシグナルテスト" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2007-08-07 01:05:20</Created>
+</PackageHeader>
+<Applications>
+<Application Id="buriSignalTest_app1" Name="OgnlInvoker"/>
+<Application Id="buriSignalTest_app2" Name="AfterOgnlInvoker">
+<ExtendedAttributes>
+<ExtendedAttribute Name="after"/>
+</ExtendedAttributes>
+</Application>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess Id="buriSignalTest_wp1" Name="シグナルテスト">
+<ProcessHeader>
+<Created>2007-08-07 01:07:28</Created>
+</ProcessHeader>
+<Participants>
+<Participant Id="buriSignalTest_wp1_par1" Name="ぶり">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Activities>
+<Activity Id="buriSignalTest_wp1_act1" Name="箱1">
+<Implementation>
+<Tool Id="buriSignalTest_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;箱1:OgnlInvoker&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="buriSignalTest_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;箱1:AfterOgnlInvoker&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buriSignalTest_wp1_par1</Performer>
+<StartMode>
+<Automatic/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="buriSignalTest_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="183,44"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buriSignalTest_wp1_act2" Name="箱2">
+<Implementation>
+<Tool Id="buriSignalTest_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;箱2:OgnlInvoker&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="buriSignalTest_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;箱2:AfterOgnlInvoker&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buriSignalTest_wp1_par1</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="buriSignalTest_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="304,46"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="buriSignalTest_wp1_act3" Name="箱3">
+<Implementation>
+<Tool Id="buriSignalTest_app1" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;箱3:OgnlInvoker&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+<Tool Id="buriSignalTest_app2" Type="APPLICATION">
+<ExtendedAttributes>
+<ExtendedAttribute Name="ognl" Value="@System@out.println(&quot;箱3:AfterOgnlInvoker&quot;)"/>
+</ExtendedAttributes>
+</Tool>
+</Implementation>
+<Performer>buriSignalTest_wp1_par1</Performer>
+<StartMode>
+<Manual/>
+</StartMode>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="buriSignalTest_wp1_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="442,43"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="buriSignalTest_wp1_act1" Id="buriSignalTest_wp1_tra1" To="buriSignalTest_wp1_act2">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="buriSignalTest_wp1_act2" Id="buriSignalTest_wp1_tra2" To="buriSignalTest_wp1_act3">
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=buriSignalTest_wp1_par1,CONNECTING_ACTIVITY_ID=buriSignalTest_wp1_act3,X_OFFSET=573,Y_OFFSET=55,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=buriSignalTest_wp1_par1,CONNECTING_ACTIVITY_ID=buriSignalTest_wp1_act1,X_OFFSET=90,Y_OFFSET=58,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="buriSignalTest_wp1_par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="JPEd - JaWE based Process Editor"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2(4?)-C-20060810-1931"/>
+</ExtendedAttributes>
+</Package>

@@ -5,5 +5,5 @@ from
 where
 	PathName = /*pathName*/'hoge.hoge.hoge'
 	and pkeyNum = /*longKey*/1
-	and pkeyVal = /*manyKey*/'arekore=are'
+	/*IF manyKey != null*/and pkeyVal = /*manyKey*/'arekore=are'/*END*/
 	
