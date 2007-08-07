@@ -43,11 +43,3 @@ DROP TABLE BuriUser;
 
 DROP SEQUENCE BuriUserID;
 
-DROP TABLE BuriWaitingUser;
-
-DROP SEQUENCE BuriWaitingUserID;
-
-DROP TABLE BuriJoinWaiting;
-
-DROP SEQUENCE BuriWaitingID;
-

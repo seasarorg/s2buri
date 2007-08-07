@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.escafe.buri</groupId>
   <artifactId>buri-core</artifactId>
-  <version>0.4.1-SNAPSHOT</version>
+  <version>0.4.0</version>
   <description></description>
   <build>
     <defaultGoal>validate</defaultGoal>
