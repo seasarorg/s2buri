@@ -1,22 +1,16 @@
-DROP VIEW BuriWaitingPathDataUser;
-
-DROP VIEW BuriWaitingPathData;
-
 DROP VIEW BuriPathDataUser;
 
 DROP VIEW BuriPathData;
+
+DROP VIEW BuriPathHistoryDataUser;
+
+DROP VIEW BuriPathHistoryData;
 
 DROP SEQUENCE BuriStateUserID;
 DROP TABLE BuriStateUser;
 
 DROP SEQUENCE BuriStateID;
 DROP TABLE BuriState;
-
-DROP SEQUENCE WaitingUserID;
-DROP TABLE BuriWaitingUser;
-
-DROP SEQUENCE BuriWaitingID;
-DROP TABLE BuriJoinWaiting;
 
 DROP SEQUENCE BuriStateUndoLogID;
 DROP TABLE BuriStateUndoLog;
