@@ -7,4 +7,5 @@
 			<arg>"example.org.escafe.buri"</arg>
 		</initMethod>
 	</component>
+	<component class="org.seasar.framework.convention.impl.PersistenceConventionImpl"/>
 </components>

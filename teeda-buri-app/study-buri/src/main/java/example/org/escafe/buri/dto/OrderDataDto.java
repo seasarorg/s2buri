@@ -1,8 +1,9 @@
 package example.org.escafe.buri.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderDataDto {
+public class OrderDataDto implements Serializable {
 
 	private long customerId;
 
