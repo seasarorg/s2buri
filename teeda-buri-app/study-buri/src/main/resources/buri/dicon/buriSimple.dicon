@@ -115,7 +115,9 @@
 	</component>
 	<component class="org.escafe.buri.util.packages.abst.AbstBuriExeProcessDataAccess" instance="outer" >
 		<initMethod name="addProcessAOP"><arg>traceInterceptor</arg></initMethod>
+		<!--
 		<initMethod name="addProcessAOP"><arg>BuriRecorderInterceptor</arg></initMethod>
+		-->
 		<initMethod name="addConditonAOP"><arg>traceInterceptor</arg></initMethod>
 		<property name="dataAccessFactory">
 			<component class="org.escafe.buri.dataaccess.impl.BuriDataAccessFactoryImpl" instance="prototype" >
