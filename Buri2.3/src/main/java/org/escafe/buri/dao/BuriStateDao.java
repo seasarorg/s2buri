@@ -25,6 +25,10 @@ public interface BuriStateDao {
 
     public void updateAbortByStateID(long stateID);
 
+    public String updateAbortByDataId_ARGS = "dataId";
+
+    public void updateAbortByDataId(long dataId);
+
     public String updateAbortByBranchID_ARGS = "branchID";
 
     public void updateAbortByBranchID(long branchID);

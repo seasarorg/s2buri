@@ -23,6 +23,8 @@ public interface BuriStateUtil {
 
     void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker);
 
+    void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext);
+
     void abortBranch(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker);
 
     long countNoProcessedSiblingStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker);

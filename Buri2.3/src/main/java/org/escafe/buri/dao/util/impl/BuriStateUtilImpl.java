@@ -270,6 +270,11 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         return count;
     }
 
+	public void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext) {
+		long dataId = sysContext.getDataID();
+		stateDao.updateAbortByDataId(dataId);
+	}
+
     public BuriBranchDao getBranchDao() {
         return branchDao;
     }

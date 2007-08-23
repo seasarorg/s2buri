@@ -4,9 +4,12 @@
  */
 package org.escafe.buri.engine.impl;
 
+import java.util.HashMap;
+
 import org.escafe.buri.common.util.ClassDefUtil;
 import org.escafe.buri.compiler.BuriCompiler;
 import org.escafe.buri.dao.BuriPathDataDao;
+import org.escafe.buri.dao.util.BuriStateUtil;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
 import org.escafe.buri.dto.BuriPathDataEntityDto;
 import org.escafe.buri.engine.BuriEngine;
@@ -25,6 +28,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
 
     private BuriPathDataDao pathDataDao;
     private ClassDefUtil classDefUtil;
+    private BuriStateUtil stateUtil;
 
     public void setupUserID(BuriSystemContext sysContext) {
     }
@@ -36,6 +40,20 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
 
     @Override
     public void readWorkFlowFromResource(String workFlowName, String resourceName, ParticipantProvider provider) {
+    }
+    
+    public void abortData(BuriSystemContext sysContext) {
+        BuriExePackages wPackageObj = selectPackage(sysContext);
+        BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj, sysContext);
+        Object data = sysContext.getUserContext().getData();
+        BuriDataAccessFactory factory = (BuriDataAccessFactory) wp;
+        DataAccessUtil accessUtil = factory.getDataAccessUtil(data.getClass());
+        String manyKey = getManyKey(accessUtil, data);
+        Long longKey = getLongKey(accessUtil, data);
+        if ((manyKey == null) && (longKey == null)) {
+            return;
+        }
+        stateUtil.abortStatus(factory, sysContext);
     }
 
     @Override
@@ -116,5 +134,13 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
     public void setClassDefUtil(ClassDefUtil classDefUtil) {
         this.classDefUtil = classDefUtil;
     }
+
+	public BuriStateUtil getStateUtil() {
+		return stateUtil;
+	}
+
+	public void setStateUtil(BuriStateUtil stateUtil) {
+		this.stateUtil = stateUtil;
+	}
 
 }

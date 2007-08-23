@@ -33,4 +33,5 @@ public interface SimpleBuriProcessor {
 
     long countByPathAndDatas(String path, List datas, S2Container container);
 
+    void abortData(String path, Object data, BuriProcessorInfo info);
 }

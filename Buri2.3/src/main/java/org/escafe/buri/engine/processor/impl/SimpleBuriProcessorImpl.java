@@ -11,6 +11,7 @@ import org.escafe.buri.dao.util.BuriDataUtil;
 import org.escafe.buri.engine.BuriEngine;
 import org.escafe.buri.engine.BuriSystemContext;
 import org.escafe.buri.engine.BuriUserContext;
+import org.escafe.buri.engine.impl.BuriSimpleEngineImpl;
 import org.escafe.buri.engine.processor.BuriProcessorInfo;
 import org.escafe.buri.engine.processor.SimpleBuriProcessor;
 import org.escafe.buri.util.packages.BuriExecProcess;
@@ -69,6 +70,15 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
         info.setContainer(container);
         info.setResultExp(resultExp);
         return toNextStatus(path, data, info);
+    }
+    
+    public void abortData(String path, Object data, BuriProcessorInfo info) {
+        BuriUserContext userContext = engine.createUserContext(data, null, info.getAction(), info.getContext());
+        BuriSystemContext systemContext = engine.createSystemContext(path, userContext);
+        S2Container cont = info.getContainer() == null ? getRootContainer() : info.getContainer();
+        systemContext.setContainer(cont);
+        systemContext.setActivityNames(info.getActNames());
+        ((BuriSimpleEngineImpl)engine).abortData(systemContext);
     }
 
     public List getDataListFromPath(String path, Class tgtClass) {
