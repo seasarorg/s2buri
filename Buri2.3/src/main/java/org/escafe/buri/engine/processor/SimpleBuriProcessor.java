@@ -33,5 +33,6 @@ public interface SimpleBuriProcessor {
 
     long countByPathAndDatas(String path, List datas, S2Container container);
 
+    @Deprecated
     void abortData(String path, Object data, BuriProcessorInfo info);
 }
