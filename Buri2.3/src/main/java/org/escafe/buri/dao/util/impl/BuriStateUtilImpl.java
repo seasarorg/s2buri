@@ -30,6 +30,7 @@ import org.escafe.buri.util.packages.BranchWalker;
 import org.escafe.buri.util.packages.BuriExePackages;
 import org.escafe.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
+import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.Script;
 import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.util.StringUtil;
@@ -269,11 +270,6 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         long count = stateDao.countByBranchIDAndNotProcessed(walker.getParentBranchID());
         return count;
     }
-
-	public void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext) {
-		long dataId = sysContext.getDataID();
-		stateDao.updateAbortByDataId(dataId);
-	}
 
     public BuriBranchDao getBranchDao() {
         return branchDao;

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import org.escafe.buri.common.util.ClassDefUtil;
 import org.escafe.buri.compiler.BuriCompiler;
 import org.escafe.buri.dao.BuriPathDataDao;
+import org.escafe.buri.dao.BuriStateDao;
 import org.escafe.buri.dao.util.BuriStateUtil;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
 import org.escafe.buri.dto.BuriPathDataEntityDto;
@@ -28,7 +29,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
 
     private BuriPathDataDao pathDataDao;
     private ClassDefUtil classDefUtil;
-    private BuriStateUtil stateUtil;
+    private BuriStateDao stateDao;
 
     public void setupUserID(BuriSystemContext sysContext) {
     }
@@ -53,7 +54,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         if ((manyKey == null) && (longKey == null)) {
             return;
         }
-        stateUtil.abortStatus(factory, sysContext);
+        stateDao.updateAbortByData(longKey, manyKey, classDefUtil.getClassName(data));
     }
 
     @Override
@@ -135,12 +136,12 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         this.classDefUtil = classDefUtil;
     }
 
-	public BuriStateUtil getStateUtil() {
-		return stateUtil;
+	public BuriStateDao getStateDao() {
+		return stateDao;
 	}
 
-	public void setStateUtil(BuriStateUtil stateUtil) {
-		this.stateUtil = stateUtil;
+	public void setStateDao(BuriStateDao stateDao) {
+		this.stateDao = stateDao;
 	}
 
 }
