@@ -216,6 +216,7 @@ select
 	,BuriData.pkeyNum as pkeyNum
 	,BuriData.pkeyVal as pkeyVal
 	,BuriData.dataType as dataType
+	,BuriData.tableName AS tableName
 	,BuriData.dataID as dataID
 	,BuriState.StateID as StateID
 	,BuriState.autoRunTime as autoRunTime
@@ -241,6 +242,7 @@ select
 	,BuriPathData.pkeyNum as pkeyNum
 	,BuriPathData.pkeyVal as pkeyVal
 	,BuriPathData.dataType as dataType
+	,BuriPathData.tableName AS tableName
 	,BuriPathData.dataID as dataID
 	,BuriPathData.StateID as StateID
 	,BuriPathData.autoRunTime as autoRunTime
@@ -269,6 +271,7 @@ select
 	,BuriData.pkeyNum as pkeyNum
 	,BuriData.pkeyVal as pkeyVal
 	,BuriData.dataType as dataType
+	,BuriData.tableName AS tableName
 	,BuriData.dataID as dataID
 	,BuriState.StateID as StateID
 	,BuriState.autoRunTime as autoRunTime
@@ -296,6 +299,7 @@ select
 	,BuriPathData.pkeyNum as pkeyNum
 	,BuriPathData.pkeyVal as pkeyVal
 	,BuriPathData.dataType as dataType
+	,BuriPathData.tableName AS tableName
 	,BuriPathData.dataID as dataID
 	,BuriPathData.StateID as StateID
 	,BuriPathData.autoRunTime as autoRunTime
