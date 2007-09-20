@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.escafe.buri.common.util.ClassDefUtil;
+import org.escafe.buri.common.util.ClassDefUtilImpl;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.Script;
 import org.seasar.framework.util.StringUtil;
@@ -17,6 +19,7 @@ import org.seasar.framework.util.StringUtil;
 public abstract class AbstDataAccessUtil implements DataAccessUtil {
     protected Script dataAccessScript;
     protected Script pkeyExpressionScript;
+    protected ClassDefUtil classDefUtil = new ClassDefUtilImpl();;
 
     protected List getDataList(List keyVals, String execScript) {
         if (StringUtil.isEmpty(execScript)) {
@@ -53,6 +56,10 @@ public abstract class AbstDataAccessUtil implements DataAccessUtil {
         Object result = dataAccessScript.run(execScript, null, context);
         return result;
 
+    }
+    
+    public String getClassName(Object data) {
+    	return classDefUtil.getClassName(data);
     }
 
     public Script getDataAccessScript() {

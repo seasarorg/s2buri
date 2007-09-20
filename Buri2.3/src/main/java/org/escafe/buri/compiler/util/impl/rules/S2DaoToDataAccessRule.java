@@ -360,8 +360,16 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 		Class tgtClass = ClassUtil.forName(dtoClassName);
 		String shtName = ClassUtil.getShortClassName(tgtClass);
-		shtName = shtName.replaceAll("Dto", "");
-		shtName = shtName.replaceAll("Entity", "");
+		if(shtName.length() > 3) {
+			if(shtName.substring(shtName.length() - 3).equalsIgnoreCase("Dto")) {
+				shtName = shtName.substring(0,shtName.length() - 3);
+			}
+		}
+		if(shtName.length() > 6) {
+			if(shtName.substring(shtName.length() - 6).equalsIgnoreCase("Entity")) {
+				shtName = shtName.substring(0,shtName.length() - 6);
+			}
+		}
 		shtName = shtName + "Dao";
 		return shtName;
 	}

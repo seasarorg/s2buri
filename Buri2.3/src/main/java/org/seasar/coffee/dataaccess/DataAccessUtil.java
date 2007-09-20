@@ -21,4 +21,6 @@ public interface DataAccessUtil {
     void setPkeyExpressionScript(Script pkeyExpressionScript);
     
     String getTableName(Object data);
+    
+    String getClassName(Object data);
 }

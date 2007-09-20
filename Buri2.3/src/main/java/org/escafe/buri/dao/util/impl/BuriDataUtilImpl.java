@@ -46,7 +46,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
 
     protected long countByPathAndDatasPkeyNum(String pathName, List dataList, DataAccessUtilLongKey util, BuriSystemContext sysContext) {
         List<Long> longList = new ArrayList<Long>();
-        String className = classDefUtil.getClassName(dataList.get(0));
+        String className = util.getClassName(dataList.get(0));
         Iterator ite = dataList.iterator();
         while (ite.hasNext()) {
             Object data = ite.next();
@@ -64,7 +64,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
 
     protected long countByPathAndDatasPkeyVal(String pathName, List dataList, DataAccessUtilManyKey util, BuriSystemContext sysContext) {
         List<String> strList = new ArrayList<String>();
-        String className = classDefUtil.getClassName(dataList.get(0));
+        String className = util.getClassName(dataList.get(0));
         Iterator ite = dataList.iterator();
         while (ite.hasNext()) {
             Object data = ite.next();
@@ -76,9 +76,9 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     }
 
     public List getBuriPathByDto(Object dto, DataAccessFactory factory, BuriSystemContext sysContext) {
-        String className = classDefUtil.getClassName(dto);
-        Long pathType = sysContext.getCallPath().getPathType();
         DataAccessUtil util = factory.getDataAccessUtil(dto.getClass());
+        String className = util.getClassName(dto);
+        Long pathType = sysContext.getCallPath().getPathType();
         List infoList;
         if (util instanceof DataAccessUtilLongKey) {
             Long key = ((DataAccessUtilLongKey) util).getKey(dto);
@@ -166,12 +166,12 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     protected BuriDataEntityDto getBuriDataDto(Object argDto, DataAccessFactory factory, BuriSystemContext sysContext) {
         BuriDataEntityDto findDto = new BuriDataEntityDto();
         setupPkey(findDto, argDto, factory);
-        findDto.setDataType(classDefUtil.getClassName(argDto));
+        DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
+        findDto.setDataType(util.getClassName(argDto));
         List datas = dataDao.getBuridataFromDto(findDto);
         BuriDataEntityDto dto = null;
         if (datas.size() == 0) {
             findDto.setInsertUserID(sysContext.getBuriUserID());
-            DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
             findDto.setTableName(util.getTableName(argDto));
             dataDao.insert(findDto);
             dto = findDto;

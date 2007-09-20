@@ -54,7 +54,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         if ((manyKey == null) && (longKey == null)) {
             return;
         }
-        stateDao.updateAbortByData(longKey, manyKey, classDefUtil.getClassName(data));
+        stateDao.updateAbortByData(longKey, manyKey, accessUtil.getClassName(data));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements BuriEngi
         if (sysContext.getCallPath().getActivityName().size() > 0) {
             pathName = sysContext.getCallPath().getPlainName();
         }
-        BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(classDefUtil.getClassName(data), longKey, manyKey, pathName, sysContext.getCallPath()
+        BuriPathDataEntityDto dto = pathDataDao.getDtoByPathKey(accessUtil.getClassName(data), longKey, manyKey, pathName, sysContext.getCallPath()
             .getPathType());
         finalSetup(dto, sysContext);
     }
