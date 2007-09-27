@@ -1,10 +1,11 @@
-#Fri May 18 01:00:12 JST 2007
+#Thu Sep 27 18:33:33 JST 2007
 eclipse.preferences.version=1
 encoding//doc/\u30DE\u30CB\u30E5\u30A2\u30EB.txt=Shift_JIS
 encoding//src/main/resources/buri/dicon/bao.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buri-extension.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buri-share.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriBase.dicon=UTF-8
+encoding//src/main/resources/buri/dicon/buriBaseAS.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriSimple.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriStandard.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriTimer.dicon=UTF-8
