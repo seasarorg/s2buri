@@ -4,6 +4,7 @@
  */
 package org.escafe.buri.util.packages.abst;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,8 +13,11 @@ import java.util.Map;
 
 import org.escafe.buri.common.util.ClassDefUtil;
 import org.escafe.buri.common.util.ClassDefUtilImpl;
+import org.escafe.buri.dataaccess.BuriRepresentativeString;
 import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.Script;
+import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.MethodUtil;
 import org.seasar.framework.util.StringUtil;
 
 public abstract class AbstDataAccessUtil implements DataAccessUtil {
@@ -63,7 +67,17 @@ public abstract class AbstDataAccessUtil implements DataAccessUtil {
     }
     
     public String getString(Object data) {
-    	return data.toString();
+    	BuriRepresentativeString brs = data.getClass().getAnnotation(BuriRepresentativeString.class);
+    	if(brs == null) {
+        	return data.toString();
+    	}
+    	String methodName = brs.var();
+    	Method method = ClassUtil.getMethod(data.getClass(), methodName, new Class[]{});
+    	Object ret = MethodUtil.invoke(method, data, new Object[]{});
+    	if(ret == null) {
+        	return data.toString();
+    	}
+    	return ret.toString();
     }
 
     public Script getDataAccessScript() {
