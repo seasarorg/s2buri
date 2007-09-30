@@ -61,6 +61,10 @@ public abstract class AbstDataAccessUtil implements DataAccessUtil {
     public String getClassName(Object data) {
     	return classDefUtil.getClassName(data);
     }
+    
+    public String getString(Object data) {
+    	return data.toString();
+    }
 
     public Script getDataAccessScript() {
         return dataAccessScript;

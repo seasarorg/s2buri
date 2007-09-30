@@ -23,4 +23,6 @@ public interface DataAccessUtil {
     String getTableName(Object data);
     
     String getClassName(Object data);
+    
+    String getString(Object data);
 }
