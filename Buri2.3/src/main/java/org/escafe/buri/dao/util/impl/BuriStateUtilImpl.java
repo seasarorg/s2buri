@@ -201,6 +201,9 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     protected Date getLimitDate(String limit, Script exScript, BuriSystemContext sysContext, BranchWalker walker) {
         if (!StringUtil.isEmpty(limit)) {
             Object obj = exScript.eval(null, limit, sysContext.getUserContext());
+            if(obj==null) {
+            	return null;
+            }
             if (obj instanceof Date) {
                 return (Date) obj;
             } else if (obj instanceof Calendar) {
