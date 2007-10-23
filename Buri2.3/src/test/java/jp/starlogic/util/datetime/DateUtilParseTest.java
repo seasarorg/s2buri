@@ -96,6 +96,12 @@ public class DateUtilParseTest extends TestCase {
         txt = sdf.format(tmp.getTime());
         check = DateUtil.parse(txt);
         assertEquals(tmp.getTime(),check);
+        
+        sdf = new SimpleDateFormat("yy-MM-dd");
+        tmp.clearHourOfDay();
+        txt = sdf.format(tmp.getTime());
+        check = DateUtil.parseNomal(txt);
+        assertEquals(tmp.getTime(),check);
     }
 
 }

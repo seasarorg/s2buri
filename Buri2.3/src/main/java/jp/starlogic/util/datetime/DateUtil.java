@@ -134,6 +134,23 @@ public class DateUtil {
         return result;
     }
 
+    public static Date parseNomal(String strDate) {
+        String format = getParseFormat(strDate);
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        Date result = null;
+        try {
+            result = sdf.parse(strDate);
+        } catch (ParseException e) {
+            throw new ParseRuntimeException(e);
+        }
+        UtilCalendar util = (UtilCalendar)UtilCalendar.getInstance(result);
+        if(util.getYear() < 1000 ) {
+        	util.addYear(2000);
+        }
+        result.setTime(util.getTimeInMillis());
+        return result;
+    }
+
     private static String getParseFormat(String strDate) {
         String format = "";
         String dateSep = getDateSep(strDate);

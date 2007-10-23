@@ -310,6 +310,23 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		} else {
 			dao = findDaoClass(shtName, dtoClassName);
 		}
+		if(dao == null) {
+			dao = findDaoClassFromNamespace(shtName, dtoClassName);
+		}
+		return dao;
+	}
+	
+	protected String findDaoClassFromNamespace(String shtName, String dtoClassName) {
+		String dao = null;
+		List daoNamespace = configuration.getValList("Namespace");
+		Iterator ite = daoNamespace.iterator();
+		while (ite.hasNext()) {
+			String nameSpace = ite.next().toString();
+			String componentName = nameSpace + "." + shtName;
+			if (container.getRoot().hasComponentDef(componentName)) {
+				return componentName;
+			}
+		}
 		return dao;
 	}
 
