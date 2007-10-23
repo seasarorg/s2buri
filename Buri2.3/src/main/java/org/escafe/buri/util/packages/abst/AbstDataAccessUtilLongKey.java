@@ -22,6 +22,9 @@ public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil imple
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(target.getClass());
         PropertyDesc pkeyPropertyDesc = beanDesc.getPropertyDesc(prop);
         Object result = pkeyPropertyDesc.getValue(target);
+        if(result == null) {
+        	result = new Long(0);
+        }
         assert result instanceof Long;
         return (Long) result;
     }
