@@ -2,19 +2,14 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
+	<include path="buri/dicon/buri-user.dicon"/>
+
 	<!-- Standard と Simpleで共通のdicon wakanagoにも一部必要 -->
 	<include path="buri/dicon/OgnlScript.dicon"/>
 	<include path="buri/dicon/template.dicon"/>
 	<include path="buri/dicon/allDao.dicon"/>
 	<include path="aop.dicon"/>
-	
-	<component class="org.escafe.buri.common.util.BuriConfigurationImpl">
-	<!--
-		<initMethod>#self.addValue("DtoPackageName","org.escafe.buri.dto")</initMethod>
-		<initMethod>#self.addValue("DaoPackageName","org.escafe.buri.dao")</initMethod>
-	-->
-	</component>
-	
+
 	<component class="org.escafe.buri.common.delayloader.impl.DelayLoaderImpl">
 	</component>
 	<component name="BuriFileLoadInterceptor" class="org.escafe.buri.common.delayloader.interceptor.FileLoadInterceptor">
@@ -66,6 +61,8 @@
 	</component>
 	<component name="S2DaoToDataAccessRule" class="org.escafe.buri.compiler.util.impl.rules.S2DaoToDataAccessRule">
 	</component>
+	<component name="dbFluteToDataAccessRule" class="org.escafe.buri.compiler.util.impl.rules.DBFluteToDataAccessRule">
+	</component>
 	
 	<component class="org.escafe.buri.compiler.util.impl.BuriDataFieldCompilePreprocessorImpl">
 		<initMethod name="addDataAccessRules">
@@ -112,6 +109,9 @@
 		<initMethod name="addDataAccessRules">
 			<arg><component class="org.escafe.buri.compiler.util.impl.rules.DataAccessCheckRule">
 			</component></arg>
+		</initMethod>
+		<initMethod name="addDataAccessRules">
+			<arg>dbFluteToDataAccessRule</arg>
 		</initMethod>
 		<initMethod name="addDataAccessRules">
 			<arg>S2DaoToDataAccessRule</arg>

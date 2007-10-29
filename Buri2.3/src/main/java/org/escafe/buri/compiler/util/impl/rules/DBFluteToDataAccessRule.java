@@ -1,6 +1,6 @@
 /*
  * 作成日: 2006/07/06
- *
+ * 
  */
 package org.escafe.buri.compiler.util.impl.rules;
 
@@ -17,20 +17,32 @@ import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.framework.container.ComponentNotFoundRuntimeException;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 
-public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
+/**
+ * DBFlute用Dao自動設定用クラス
+ * 
+ * @author a-conv
+ * 
+ */
+public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 
-	private static Logger logger = Logger.getLogger(S2DaoToDataAccessRule.class);
+	private static Logger logger = Logger.getLogger(DBFluteToDataAccessRule.class);
 
 	protected String daoKeyName = "dao";
+
 	public final String DAOKEY = "dao";
 
+	public final String dbFluteComponentName = "dbflute.interceptor";
+
 	private BuriConfiguration configuration;
+
 	private S2Container container;
+
 	private ClassDefUtil classDefUtil;
 
 	@Override
@@ -54,7 +66,6 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		if (!hasName(src, "update")) {
 			return true;
 		}
-		// TODO そのうち全部に有効化する ぶりには必須じゃないのでコメントアウト中・・・
 		if (!hasName(src, "delete")) {
 			return true;
 		}
@@ -66,6 +77,9 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 
 	@Override
 	public boolean fstCheckProcess(BuriDataFieldType src) {
+		if (!isUseDBFlute()) {
+			return false;
+		}
 		if (!isRequiredNegotiate(src)) {
 			return false;
 		}
@@ -75,8 +89,59 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			src.getCache().put(daoKeyName, getNameVal(src, DAOKEY));
 		}
 		logger.debug("★-------------------------------------------------------------");
-		logger.debug("UseS2DaoToDataAccessRule");
+		logger.debug("UseDBFluteToDataAccessRule");
 		logger.debug("★-------------------------------------------------------------");
+		return true;
+	}
+
+	/**
+	 * DBFluteを使用しているかチェック(基本のコンポーネント名でチェックしているので、異なる場合は判定不可)
+	 * 
+	 * @return DBFltueを利用しているかどうか
+	 */
+	private boolean isUseDBFlute() {
+		if (checkDBFluteComponent(dbFluteComponentName)) {
+			return true;
+		}
+		String customDBFluteComponentName = setupUseDBFluteCustomComponentName();
+		if (customDBFluteComponentName == null) {
+			return false;
+		}
+		if (checkDBFluteComponent(customDBFluteComponentName)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * BuriConfigurationからDBFluteのコンポーネント名を受け取る
+	 * 
+	 * @return
+	 */
+	private String setupUseDBFluteCustomComponentName() {
+		String dbFluteInterceptorName = null;
+		List dbFluteInterceptorname = configuration.getValList("DBFluteComponentName");
+		Iterator ite = dbFluteInterceptorname.iterator();
+		while (ite.hasNext()) {
+			dbFluteInterceptorName = ite.next().toString();
+			break;
+		}
+		return dbFluteInterceptorName;
+	}
+
+	/**
+	 * DBFluteのコンポーネント検索
+	 * 
+	 * @param componentName
+	 * @return
+	 */
+	private boolean checkDBFluteComponent(String componentName) {
+		S2Container rootContainer = container.getRoot();
+		try {
+			rootContainer.getComponent(componentName);
+		} catch (ComponentNotFoundRuntimeException e) {
+			return false;
+		}
 		return true;
 	}
 
@@ -125,6 +190,13 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 
 	}
 
+	/**
+	 * 自動設定を行います。
+	 * 
+	 * @param src
+	 * @param beanDesc
+	 * @param daoClass
+	 */
 	protected void findAndSetupAllMethod(BuriDataFieldType src, BeanDesc beanDesc, Class daoClass) {
 		Method methods[] = daoClass.getMethods();
 		for (Method method : methods) {
@@ -135,9 +207,61 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			selectManySetup(src, method, methodName, beanDesc);
 			insertSetup(src, method, methodName, beanDesc);
 			tableNameSetup(src, method, methodName, beanDesc);
+			selectNextValSetup(src, method, methodName, beanDesc);
 		}
 	}
 
+	/**
+	 * Sequence取得用メソッド実行OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
+	protected void selectNextValSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+		if (isSelectNextValMethod(src, method, methodName)) {
+			String daoName = src.getCache().get(daoKeyName).toString();
+			String pkey = (String) src.getCache().get(daoKeyName + "_KeyName");
+			String selectNextVal = "#data." + pkey + " = " + daoName + "." + methodName + "()";
+			if (!StringUtil.isEmpty(src.getInsert())) {
+				String insertStr = src.getInsert();
+				StringBuffer strBuff = new StringBuffer();
+				strBuff.append(selectNextVal.toString());
+				strBuff.append("\n");
+				strBuff.append(insertStr);
+				src.setInsert(strBuff.toString());
+			} else {
+				src.setInsert(selectNextVal.toString());
+			}
+		}
+	}
+
+	/**
+	 * 引数のメソッドがSequence取得用か判定します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @return
+	 */
+	protected boolean isSelectNextValMethod(BuriDataFieldType src, Method method, String methodName) {
+		if (methodName.startsWith("selectNextVal")) {
+			if (method.getParameterTypes().length == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * テーブル名をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void tableNameSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getTableName())) {
 			return;
@@ -157,6 +281,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 	}
 
+	/**
+	 * 複数データ取得用メソッド実行OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void selectManySetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getSelectMany())) {
 			return;
@@ -168,6 +300,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 	}
 
+	/**
+	 * 引数のメソッドが複数データ取得用か判定します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @return
+	 */
 	protected boolean isSelectManyMethod(BuriDataFieldType src, Method method, String methodName) {
 		if (methodName.startsWith("get") || methodName.startsWith("select")) {
 			if (method.getParameterTypes().length == 1) {
@@ -179,6 +319,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		return false;
 	}
 
+	/**
+	 * データ削除用メソッド実行OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void deleteSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getDelete())) {
 			return;
@@ -190,6 +338,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 	}
 
+	/**
+	 * 引数のメソッドがデータ削除用か判定します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @return
+	 */
 	protected boolean isDeleteMethod(BuriDataFieldType src, Method method, String methodName) {
 		if (methodName.startsWith("del")) {
 			if (method.getParameterTypes().length == 1) {
@@ -202,6 +358,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		return false;
 	}
 
+	/**
+	 * データ更新用メソッド実行OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void updateSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getUpdate())) {
 			return;
@@ -213,6 +377,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 	}
 
+	/**
+	 * 引数のメソッドがデータ更新用か判定します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @return
+	 */
 	protected boolean isUpdateMethod(BuriDataFieldType src, Method method, String methodName) {
 		if (methodName.startsWith("update")) {
 			if (method.getParameterTypes().length == 1) {
@@ -225,17 +397,39 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		return false;
 	}
 
+	/**
+	 * データ作成用メソッド実行OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void insertSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
-		if (!StringUtil.isEmpty(src.getInsert())) {
-			return;
-		}
-
 		if (isInsertMethod(src, method, methodName)) {
 			String daoName = src.getCache().get(daoKeyName).toString();
-			src.setInsert(daoName + "." + methodName + "(#data)");
+			String insertOgnl = daoName + "." + methodName + "(#data)";
+			if (!StringUtil.isEmpty(src.getInsert())) {
+				String insertStr = src.getInsert();
+				StringBuffer strBuff = new StringBuffer();
+				strBuff.append(insertStr);
+				strBuff.append("\n");
+				strBuff.append(insertOgnl);
+				src.setInsert(strBuff.toString());
+			} else {
+				src.setInsert(insertOgnl);
+			}
 		}
 	}
 
+	/**
+	 * 引数のメソッドがデータ作成用か判定します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @return
+	 */
 	protected boolean isInsertMethod(BuriDataFieldType src, Method method, String methodName) {
 		if (methodName.startsWith("insert")) {
 			if (method.getParameterTypes().length == 1) {
@@ -248,6 +442,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		return false;
 	}
 
+	/**
+	 * 単一データ取得用メソッド実行OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void selectSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getSelect())) {
 			return;
@@ -260,6 +462,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 	}
 
+	/**
+	 * 引数のメソッドが単一データ取得用か判定します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @return
+	 */
 	protected boolean isSelectMethod(BuriDataFieldType src, Method method, String methodName) {
 		if (methodName.startsWith("get") || methodName.startsWith("select")) {
 			if (method.getParameterTypes().length == 1) {
@@ -272,6 +482,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		return false;
 	}
 
+	/**
+	 * ID存在判定用OGNL文をセットします。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected void pkeySetup(BuriDataFieldType src) {
 		if ((src.getKeys().size() > 0) || hasName(src, "pkey")) {
 			return;
@@ -303,12 +521,22 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 	}
 
+	/**
+	 * IDアノテーションのフィールド型を判定し、ID存在判定OGNL文を返却します。
+	 * 
+	 * @param src
+	 * @param method
+	 * @param methodName
+	 * @param beanDesc
+	 */
 	protected String createPkeyCondition(PropertyDesc pd) {
 		String condition = null;
 		String pkeyName = pd.getPropertyName();
 		Class propType = pd.getPropertyType();
 		if (propType.equals(Long.TYPE)) {
 			condition = pkeyName + " != 0";
+		} else if (propType.equals(Long.class)) {
+			condition = pkeyName + " != null" + " && " + pkeyName + " != 0";
 		} else if (propType.isAssignableFrom(Number.class)) {
 			condition = pkeyName + " != 0";
 		} else {
@@ -328,12 +556,12 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		} else {
 			dao = findDaoClass(shtName, dtoClassName);
 		}
-		if(dao == null) {
+		if (dao == null) {
 			dao = findDaoClassFromNamespace(shtName, dtoClassName);
 		}
 		return dao;
 	}
-	
+
 	protected String findDaoClassFromNamespace(String shtName, String dtoClassName) {
 		String dao = null;
 		List daoNamespace = configuration.getValList("Namespace");
@@ -395,14 +623,14 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 		Class tgtClass = ClassUtil.forName(dtoClassName);
 		String shtName = ClassUtil.getShortClassName(tgtClass);
-		if(shtName.length() > 3) {
-			if(shtName.substring(shtName.length() - 3).equalsIgnoreCase("Dto")) {
-				shtName = shtName.substring(0,shtName.length() - 3);
+		if (shtName.length() > 3) {
+			if (shtName.substring(shtName.length() - 3).equalsIgnoreCase("Dto")) {
+				shtName = shtName.substring(0, shtName.length() - 3);
 			}
 		}
-		if(shtName.length() > 6) {
-			if(shtName.substring(shtName.length() - 6).equalsIgnoreCase("Entity")) {
-				shtName = shtName.substring(0,shtName.length() - 6);
+		if (shtName.length() > 6) {
+			if (shtName.substring(shtName.length() - 6).equalsIgnoreCase("Entity")) {
+				shtName = shtName.substring(0, shtName.length() - 6);
 			}
 		}
 		shtName = shtName + "Dao";
