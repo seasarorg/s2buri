@@ -30,81 +30,55 @@
 		<dependency>
 			<groupId>org.escafe.buri</groupId>
 			<artifactId>buri-core</artifactId>
-			<version>0.4.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<!--
-			<dependency>
-			<groupId>org.seasar.coffee</groupId>
-			<artifactId>s2-coffee</artifactId>
-			<version>0.2.1</version>
-			<scope>compile</scope>
-			</dependency>
-		-->
-		<dependency>
-			<groupId>org.seasar.coffee</groupId>
-			<artifactId>s2-coffee-script</artifactId>
-			<version>0.2.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seasar.nadejako</groupId>
-			<artifactId>nadejako</artifactId>
-			<version>0.7-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seasar.nadejako</groupId>
-			<artifactId>s2-nadejako</artifactId>
-			<version>0.7-SNAPSHOT</version>
+			<version>0.4.1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.container</groupId>
 			<artifactId>s2-framework</artifactId>
-			<version>2.4.16</version>
+			<version>2.4.18-rc2</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.container</groupId>
 			<artifactId>s2-extension</artifactId>
-			<version>2.4.16</version>
+			<version>2.4.18-rc2</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.container</groupId>
 			<artifactId>s2-tiger</artifactId>
-			<version>2.4.16</version>
+			<version>2.4.18-rc2</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.dao</groupId>
 			<artifactId>s2-dao</artifactId>
-			<version>1.0.45</version>
+			<version>1.0.47-RC1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.dao</groupId>
 			<artifactId>s2-dao-tiger</artifactId>
-			<version>1.0.45</version>
+			<version>1.0.47-RC1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.teeda</groupId>
 			<artifactId>teeda-core</artifactId>
-			<version>1.0.9-SNAPSHOT</version>
+			<version>1.0.11-SP1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.teeda</groupId>
 			<artifactId>teeda-extension</artifactId>
-			<version>1.0.9-SNAPSHOT</version>
+			<version>1.0.11-SP1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.teeda</groupId>
 			<artifactId>teeda-tiger</artifactId>
-			<version>1.0.9-SNAPSHOT</version>
+			<version>1.0.11-SP1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -150,21 +124,9 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit-addons</groupId>
-			<artifactId>junit-addons</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>junit-addons</groupId>
-					<artifactId>junit-addons-runner</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.0.20070617</version>
+			<version>1.0.60</version>
 			<scope>compile</scope>
 		</dependency>
 		<!--
@@ -258,15 +220,15 @@
 		</testResources>
 	</build>
 
-<!--
-	<properties>
+	<!--
+		<properties>
 		<jdbc_driver>org.h2.Driver</jdbc_driver>
 		<jdbc_dbms>jdbc:h2:</jdbc_dbms>
 		<jdbc_url>/src/main/webapp/db/buri/buriDB;create=true</jdbc_url>
 		<jdbc_userid>buri</jdbc_userid>
 		<jdbc_password>buriburi</jdbc_password>
-	</properties>
--->
+		</properties>
+	-->
 
 	<profiles>
 		<profile>
@@ -328,7 +290,9 @@
 						</dependencies>
 						<configuration>
 							<driver>org.h2.Driver</driver>
-							<url>jdbc:h2:src/main/webapp/db/buri/buriDB;create=true</url>
+							<url>
+								jdbc:h2:src/main/webapp/db/buri/buriDB;create=true
+							</url>
 							<username>buri</username>
 							<password>buriburi</password>
 							<autocommit>true</autocommit>

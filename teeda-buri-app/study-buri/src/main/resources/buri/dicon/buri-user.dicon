@@ -3,6 +3,13 @@
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
 	<!-- ぶり利用者編集必須のdicon -->
+
+	<component class="org.escafe.buri.common.util.BuriConfigurationImpl">
+	<!--
+		<initMethod>#self.addValue("DtoPackageName","org.escafe.buri.dto")</initMethod>
+		<initMethod>#self.addValue("DaoPackageName","org.escafe.buri.dao")</initMethod>
+	-->
+	</component>
 	
 	<component name="BuriEngineConfig" class="org.escafe.buri.engine.impl.BuriEngineConfigImpl">
 		<!-- ParticipantProviderを使う場合はここに記述する。引数はResourceのファイル名,パッケージ名,ParticipantProvider -->
