@@ -103,7 +103,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
             result = standardProcessor.getPathFromData(path, data, userData, tgtClass, container);
         }
         if (isSimpleProcessor(path)) {
-            result = simpleProcessor.getPathFromData(path, tgtClass, container);
+            result = simpleProcessor.getPathFromData(path, data, container);
         }
         return result;
     }
