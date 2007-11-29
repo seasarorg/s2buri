@@ -334,6 +334,17 @@
       <version>1.0.20070617</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.seasar.mai</groupId>
+    	<artifactId>s2mai</artifactId>
+    	<version>0.9.6-SNAPSHOT</version>
+    	<exclusions>
+    		<exclusion>
+    			<groupId>freemarker</groupId>
+    			<artifactId>freemarker</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency>
   </dependencies>
 
    <distributionManagement>

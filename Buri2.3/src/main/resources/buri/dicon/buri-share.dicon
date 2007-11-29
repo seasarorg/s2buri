@@ -9,6 +9,7 @@
 	<include path="buri/dicon/template.dicon"/>
 	<include path="buri/dicon/allDao.dicon"/>
 	<include path="aop.dicon"/>
+	<include path="s2mai.dicon"/>
 
 	<component class="org.escafe.buri.common.delayloader.impl.DelayLoaderImpl">
 	</component>
@@ -39,6 +40,9 @@
 	</component>
 	<component name="AfterOgnlInvoker" class="org.escafe.buri.component.impl.BuriScriptComponentImpl">
 	</component>
+	<component name="MailSender" class="org.escafe.buri.component.impl.BuriMailSenderComponentImpl" >
+	</component>
+	
 	<component class="org.escafe.buri.common.util.ClassDefUtilImpl">
 	</component>
 
@@ -126,6 +130,15 @@
 			</component></arg>
 		</initMethod>
 		
+	</component>
+	
+	<!-- メール送信関連 -->
+	<component class="org.escafe.buri.mail.mai.BuriMai" >
+		<aspect>
+			s2mai.s2MaiInterceptor
+		</aspect>
+	</component>	
+	<component class="org.escafe.buri.mail.impl.BuriMailSendProcessorImpl" >
 	</component>
 	
 </components>
