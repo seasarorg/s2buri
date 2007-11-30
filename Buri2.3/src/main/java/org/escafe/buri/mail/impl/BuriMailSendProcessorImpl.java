@@ -1,6 +1,5 @@
 package org.escafe.buri.mail.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import org.escafe.buri.mail.BuriMailSendProcessor;
 import org.escafe.buri.mail.MailAttributes;
 import org.escafe.buri.mail.mai.BuriMai;
 import org.escafe.buri.mail.mai.BuriMaiDto;
+import org.escafe.buri.mail.util.BuriMailUtil;
 import org.seasar.framework.util.StringUtil;
 
 /**
@@ -81,27 +81,23 @@ public class BuriMailSendProcessorImpl implements BuriMailSendProcessor {
 		if (StringUtil.isEmpty(str)) {
 			return null;
 		}
-		String[] address = splitAddressAndPersonal(str);	
+		AddressInfo addressInfo = convertToAddressInfo(str);
 		
-		try {
-			return new InternetAddress(address[0],address[1]);
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
+		return BuriMailUtil.createInternetAddress(addressInfo.address, addressInfo.personal);
 	}
 	
-	protected String[] splitAddressAndPersonal(String str){
-		String[] ret = new String[2];
+	protected AddressInfo convertToAddressInfo(String str){
+		AddressInfo ai = new AddressInfo();
 		str = str.trim();
 		int idx = str.indexOf(ADDRESS_DELIMITER);
 		if (idx < 0) {
-			ret[0] = str;
-			ret[1] = "";
+			ai.address = str;
+			ai.personal = "";
 		} else {
-			ret[0] = str.substring(0, idx);
-			ret[1] = str.substring(idx + ADDRESS_DELIMITER.length());
+			ai.address = str.substring(0, idx);
+			ai.personal = str.substring(idx + ADDRESS_DELIMITER.length());
 		}
-		return ret;		
+		return ai;
 	}
 
 
@@ -118,6 +114,11 @@ public class BuriMailSendProcessorImpl implements BuriMailSendProcessor {
 
 	public void setTextTemplate(TextTemplate textTemplate) {
 		this.textTemplate = textTemplate;
+	}
+	
+	private class AddressInfo{
+		private String address;
+		private String personal;
 	}
 
 }
