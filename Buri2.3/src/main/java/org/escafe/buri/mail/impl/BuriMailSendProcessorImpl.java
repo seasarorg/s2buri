@@ -33,18 +33,35 @@ public class BuriMailSendProcessorImpl implements BuriMailSendProcessor {
 	 */
 	public void sendMail(MailAttributes attr, BuriUserContext userContext) {
 		BuriMaiDto dto = createDto(attr, userContext);
-		buriMai.sendMail(dto);
+		sendMailAtOnce(attr, userContext, dto);		
+		sendMailIndividually(attr, userContext, dto);		
+	}
+	
+	protected void sendMailAtOnce(MailAttributes attr, BuriUserContext userContext, BuriMaiDto dto){
+		if(attr.getTo() != null && attr.getTo().size() > 0){
+			dto.setTo(buildInternetAddressList(attr.getTo(), userContext));
+			buriMai.sendMail(dto);
+		}
+	}
+	
+	protected void sendMailIndividually(MailAttributes attr, BuriUserContext userContext, BuriMaiDto dto){
+		List<InternetAddress> toList = new ArrayList<InternetAddress>();
+		for(String to : attr.getContTo()){
+			toList.clear();
+			toList.add(buildInternetAddress(to, userContext));
+			dto.setTo(toList);
+			buriMai.sendMail(dto);
+		}		
 	}
 
 	protected BuriMaiDto createDto(MailAttributes attr,BuriUserContext userContext) {
 		BuriMaiDto dto = new BuriMaiDto();
-
-		dto.setFrom(buildInternetAddress(attr.getFrom(), userContext));
-		dto.setTo(buildInternetAddressList(attr.getTo(), userContext));
+		dto.setFrom(buildInternetAddress(attr.getFrom(), userContext));		
 		dto.setCc(buildInternetAddressList(attr.getCc(), userContext));
 		dto.setBcc(buildInternetAddressList(attr.getBcc(), userContext));
 		dto.setContent(templateProcess(attr.getContent(), userContext));
 		dto.setSubject(templateProcess(attr.getSubject(), userContext));
+		dto.setXHeader(templateProcess(attr.getHeader(), userContext));		
 
 		return dto;
 	}

@@ -16,6 +16,7 @@ public class BuriMaiDto {
 	private List<InternetAddress> bcc;
 	private String subject;
 	private String content;
+	private String XHeader;
 	
 	public List<InternetAddress> getBcc() {
 		return bcc;
@@ -52,6 +53,12 @@ public class BuriMaiDto {
 	}
 	public void setTo(List<InternetAddress> to) {
 		this.to = to;
+	}
+	public String getXHeader() {
+		return XHeader;
+	}
+	public void setXHeader(String header) {
+		XHeader = header;
 	}
 
 }

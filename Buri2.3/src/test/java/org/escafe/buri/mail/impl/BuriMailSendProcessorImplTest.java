@@ -30,6 +30,7 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		userData.setBccAddress("BCCの人の名前");
 		userData.setContentText("埋め込み本文");
 		userData.setSubjectText("埋め込み件名");
+		userData.setHeaderText("hogeMailer");
 		
 		
 		BuriUserContext userContext = new BuriUserContext();
@@ -43,6 +44,7 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		attri.addBcc("bcc@example.com ${data.bccAddress}");
 		attri.setContent("${data.contentText}ですよ");
 		attri.setSubject("${data.subjectText}である");
+		attri.setHeader("X-Mailer: ${data.headerText}\nX-Hoge: hogehoge");
 		
 		
 		Mail expected = new Mail();
@@ -53,12 +55,23 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		expected.addBcc(new InternetAddress("bcc@example.com","BCCの人の名前"));
 		expected.setText("埋め込み本文ですよ");		
 		expected.setSubject("埋め込み件名である");
+		expected.addHeader("X-Mailer", "hogeMailer");
+		expected.addHeader("X-Hoge", "hogehoge");
 		
 		processor.sendMail(attri, userContext);
 		
 		Mail actual = getActualMail(0);
 		
 		assertEquals(expected, actual);
+		
+		//送信件数返すの作っておけばよかった・・・
+		try{
+			actual = getActualMail(1);
+			fail();
+		}catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+
 		
 	}
 	
@@ -88,12 +101,61 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		
 	}
 	
-	public void testメール1回送信と連続送信混在() throws Exception{
+	public void test連続送信() throws Exception{
 		UserData userData = new UserData();
 		userData.setFromAddress("from@example.com");
 		userData.setToAddress("to1@example.com");
-		userData.setCcAddress("cc1@example.com CCの人の名前 スペース含む");
-		userData.setBccAddress("BCCの人の名前");
+		userData.setCcAddress("cc1@example.com CCの人の名前 スペース含む");		
+		
+		BuriUserContext userContext = new BuriUserContext();
+		userContext.setData(userData);
+		
+		MailAttributes attri = new MailAttributes();
+		attri.setFrom("${data.fromAddress} from_name");
+		attri.addContTo("${data.toAddress} to_name");
+		attri.addContTo("to2@example.com");
+		attri.addContTo("${data.ccAddress}");		
+		
+		processor.sendMail(attri, userContext);
+		
+		//1回目
+		Mail expected = new Mail();
+		expected.setFrom(new InternetAddress("from@example.com","from_name"));
+		expected.addTo(new InternetAddress("to1@example.com","to_name"));
+		expected.setText("");
+		
+		Mail actual = getActualMail(0);
+		assertEquals(expected, actual);
+		
+		//2回目		
+		expected.clearTo();
+		expected.addTo(new InternetAddress("to2@example.com",""));	
+		
+		actual = getActualMail(1);		
+		assertEquals(expected, actual);
+
+		//3回目		
+		expected.clearTo();
+		expected.addTo(new InternetAddress("cc1@example.com","CCの人の名前 スペース含む"));	
+		
+		actual = getActualMail(2);		
+		assertEquals(expected, actual);
+		
+		//送信件数返すの作っておけばよかった・・・
+		try{
+			actual = getActualMail(3);
+			fail();
+		}catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+
+	}	
+	
+	public void test一括連続が混在() throws Exception{
+		UserData userData = new UserData();
+		userData.setFromAddress("from@example.com");
+		userData.setToAddress("to1@example.com");
+		userData.setCcAddress("cc1@example.com CCの人の名前 スペース含む");		
 		
 		BuriUserContext userContext = new BuriUserContext();
 		userContext.setData(userData);
@@ -101,22 +163,45 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		MailAttributes attri = new MailAttributes();
 		attri.setFrom("${data.fromAddress} from_name");
 		attri.addTo("${data.toAddress} to_name");
-		attri.addOntTo("to2@example.com");		
-		attri.addOntTo("${data.ccAddress}");
-		attri.addOntTo("bcc@example.com ${data.bccAddress}");
+		attri.addTo("toto@example.com");
+		attri.addContTo("to2@example.com");
+		attri.addContTo("${data.ccAddress}");		
 		
 		processor.sendMail(attri, userContext);
 		
+		//1回目
 		Mail expected = new Mail();
 		expected.setFrom(new InternetAddress("from@example.com","from_name"));
 		expected.addTo(new InternetAddress("to1@example.com","to_name"));
+		expected.addTo(new InternetAddress("toto@example.com",""));
 		expected.setText("");
 		
 		Mail actual = getActualMail(0);
+		assertEquals(expected, actual);
+	
+		//2回目		
+		expected.clearTo();
+		expected.addTo(new InternetAddress("to2@example.com",""));	
 		
+		actual = getActualMail(1);		
+		assertEquals(expected, actual);
+
+		//3回目		
+		expected.clearTo();
+		expected.addTo(new InternetAddress("cc1@example.com","CCの人の名前 スペース含む"));	
+		
+		actual = getActualMail(2);		
 		assertEquals(expected, actual);
 		
-	}	
+		//送信件数返すの作っておけばよかった・・・
+		try{
+			actual = getActualMail(3);
+			fail();
+		}catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+
+	}
 	
 	
 	public class UserData{

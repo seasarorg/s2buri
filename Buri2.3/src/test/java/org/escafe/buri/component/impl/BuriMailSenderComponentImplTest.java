@@ -32,12 +32,12 @@ public class BuriMailSenderComponentImplTest extends TestCase {
 		attri.setValue("to2@example.com");
 		tool.addExtendedAttribute(attri);
 		attri = new BuriExtendedAttributeType();
-		attri.setName("ontTo");
-		attri.setValue("ontTo1@example.com");
+		attri.setName("contTo");
+		attri.setValue("contTo1@example.com");
 		tool.addExtendedAttribute(attri);
 		attri = new BuriExtendedAttributeType();
-		attri.setName("ontTo");
-		attri.setValue("ontTo2@example.com");
+		attri.setName("contTo");
+		attri.setValue("contTo2@example.com");
 		tool.addExtendedAttribute(attri);
 		attri = new BuriExtendedAttributeType();
 		attri.setName("cc");
@@ -70,8 +70,8 @@ public class BuriMailSenderComponentImplTest extends TestCase {
 		sb.append("    mail.setFrom(\"from@example.com\");\n");
 		sb.append("    mail.addTo(\"to1@example.com\");\n");
 		sb.append("    mail.addTo(\"to2@example.com\");\n");
-		sb.append("    mail.addOntTo(\"ontTo1@example.com\");\n");
-		sb.append("    mail.addOntTo(\"ontTo2@example.com\");\n");
+		sb.append("    mail.addContTo(\"contTo1@example.com\");\n");
+		sb.append("    mail.addContTo(\"contTo2@example.com\");\n");
 		sb.append("    mail.addCc(\"cc1@example.com\");\n");
 		sb.append("    mail.addCc(\"cc2@example.com\");\n");
 		sb.append("    mail.addBcc(\"bcc1@example.com\");\n");

@@ -18,7 +18,7 @@ import org.seasar.framework.util.StringUtil;
 public class BuriMailSenderComponentImpl implements BuriComponent {
 	private static final String FROM = "from";
 	private static final String TO = "to";
-	private static final String ONT_TO = "ontTo";
+	private static final String CONT_TO = "contTo";
 	private static final String CC = "cc";
 	private static final String BCC = "bcc";
 	private static final String CONTENT = "content";
@@ -31,7 +31,7 @@ public class BuriMailSenderComponentImpl implements BuriComponent {
 		writeMethodMap = new HashMap<String, String>();
 		writeMethodMap.put(FROM, "setFrom");
 		writeMethodMap.put(TO, "addTo");
-		writeMethodMap.put(ONT_TO, "addOntTo");
+		writeMethodMap.put(CONT_TO, "addContTo");
 		writeMethodMap.put(CC, "addCc");
 		writeMethodMap.put(BCC, "addBcc");
 		writeMethodMap.put(CONTENT, "setContent");

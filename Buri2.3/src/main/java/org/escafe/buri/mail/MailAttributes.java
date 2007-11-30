@@ -10,7 +10,7 @@ import java.util.List;
 public class MailAttributes {
 	private String from;
 	private List<String> to;
-	private List<String> ontTo;
+	private List<String> contTo;
 	private List<String> cc;
 	private List<String> bcc;
 	private String content;
@@ -19,7 +19,7 @@ public class MailAttributes {
 	
 	public MailAttributes(){
 		to = new ArrayList<String>();
-		ontTo = new ArrayList<String>();
+		contTo = new ArrayList<String>();
 		cc = new ArrayList<String>();
 		bcc = new ArrayList<String>();
 	}
@@ -27,8 +27,8 @@ public class MailAttributes {
 	public void addTo(String value){
 		to.add(value);		
 	}
-	public void addOntTo(String value){
-		ontTo.add(value);		
+	public void addContTo(String value){
+		contTo.add(value);
 	}
 	public void addCc(String value){
 		cc.add(value);		
@@ -67,11 +67,11 @@ public class MailAttributes {
 	public void setHeader(String header) {
 		this.header = header;
 	}
-	public List<String> getOntTo() {
-		return ontTo;
+	public List<String> getContTo() {
+		return contTo;
 	}
-	public void setOntTo(List<String> ontTo) {
-		this.ontTo = ontTo;
+	public void setContTo(List<String> contTo) {
+		this.contTo = contTo;
 	}
 	public String getSubject() {
 		return subject;
