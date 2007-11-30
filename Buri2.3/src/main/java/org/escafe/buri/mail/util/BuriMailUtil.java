@@ -5,9 +5,10 @@ import org.escafe.buri.mail.BuriMailSendProcessor;
 import org.seasar.framework.container.S2Container;
 
 public class BuriMailUtil {
-	public BuriMailUtil(){
+	private BuriMailUtil(){
 		
 	}
+	
 	public static BuriMailSendProcessor getSendProcessor(BuriSystemContext sysContext){
 		S2Container container = sysContext.getContainer();
 		return (BuriMailSendProcessor) container.getComponent(BuriMailSendProcessor.class);

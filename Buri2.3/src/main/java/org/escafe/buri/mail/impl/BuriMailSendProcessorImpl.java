@@ -1,53 +1,106 @@
 package org.escafe.buri.mail.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import org.escafe.buri.common.util.template.TextTemplate;
 import org.escafe.buri.engine.BuriUserContext;
 import org.escafe.buri.mail.BuriMailSendProcessor;
 import org.escafe.buri.mail.MailAttributes;
 import org.escafe.buri.mail.mai.BuriMai;
 import org.escafe.buri.mail.mai.BuriMaiDto;
+import org.seasar.framework.util.StringUtil;
 
 /**
  * @author rokugen
- *
+ * 
  */
 public class BuriMailSendProcessorImpl implements BuriMailSendProcessor {
-	private BuriMai buriMai;	
+	private static final String ADDRESS_DELIMITER = " ";
 
-	
-	/* (non-Javadoc)
-	 * @see org.escafe.buri.mail.BuriMailSendProcessor#sendMail(org.escafe.buri.mail.MailAttributes, org.escafe.buri.engine.BuriUserContext)
+	private BuriMai buriMai;
+
+	private TextTemplate textTemplate;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.escafe.buri.mail.BuriMailSendProcessor#sendMail(org.escafe.buri.mail.MailAttributes,
+	 *      org.escafe.buri.engine.BuriUserContext)
 	 */
 	public void sendMail(MailAttributes attr, BuriUserContext userContext) {
-		BuriMaiDto dto = createDto(attr);
-		buriMai.sendMail(dto);		
+		BuriMaiDto dto = createDto(attr, userContext);
+		buriMai.sendMail(dto);
 	}
 
-	
-	protected BuriMaiDto createDto(MailAttributes attr){
-		BuriMaiDto dto = new BuriMaiDto();		
-		String to = attr.getTo().get(0);
-		List<InternetAddress> toList = new ArrayList<InternetAddress>();
+	protected BuriMaiDto createDto(MailAttributes attr,BuriUserContext userContext) {
+		BuriMaiDto dto = new BuriMaiDto();
+
+		dto.setFrom(buildInternetAddress(attr.getFrom(), userContext));
+		dto.setTo(buildInternetAddressList(attr.getTo(), userContext));
+		dto.setCc(buildInternetAddressList(attr.getCc(), userContext));
+		dto.setBcc(buildInternetAddressList(attr.getBcc(), userContext));
+		dto.setContent(templateProcess(attr.getContent(), userContext));
+		dto.setSubject(templateProcess(attr.getSubject(), userContext));
+
+		return dto;
+	}
+
+	protected List<InternetAddress> buildInternetAddressList(
+			List<String> attrList, BuriUserContext userContext) {
+		List<InternetAddress> iaList = new ArrayList<InternetAddress>();
+		for (String attr : attrList) {
+			iaList.add(buildInternetAddress(attr, userContext));
+		}
+		return iaList;
+	}
+
+
+	protected InternetAddress buildInternetAddress(String attr,BuriUserContext userContext) {
+		String str = templateProcess(attr, userContext);
+		if (StringUtil.isEmpty(str)) {
+			return null;
+		}
+		String[] address = splitAddressAndPersonal(str);	
+		
 		try {
-			toList.add(new InternetAddress(to));
-			dto.setFrom(new InternetAddress("kei@moonfactory.co.jp"));
-		} catch (AddressException e) {
+			return new InternetAddress(address[0],address[1]);
+		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e);
 		}
-		dto.setTo(toList);
-		dto.setContent(attr.getContent());
-		dto.setSubject(attr.getSubject());
-		return dto;
+	}
+	
+	protected String[] splitAddressAndPersonal(String str){
+		String[] ret = new String[2];
+		str = str.trim();
+		int idx = str.indexOf(ADDRESS_DELIMITER);
+		if (idx < 0) {
+			ret[0] = str;
+			ret[1] = "";
+		} else {
+			ret[0] = str.substring(0, idx);
+			ret[1] = str.substring(idx + ADDRESS_DELIMITER.length());
+		}
+		return ret;		
+	}
+
+
+	protected String templateProcess(String templateText, BuriUserContext data) {
+		if (StringUtil.isEmpty(templateText)) {
+			return null;
+		}
+		return textTemplate.process(templateText, data);
 	}
 
 	public void setBuriMai(BuriMai buriMai) {
 		this.buriMai = buriMai;
 	}
 
+	public void setTextTemplate(TextTemplate textTemplate) {
+		this.textTemplate = textTemplate;
+	}
 
 }

@@ -1,11 +1,14 @@
 package org.escafe.buri.component.impl;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.escafe.buri.component.BuriComponent;
 import org.escafe.buri.oouo.internal.structure.BuriExtendedAttributeType;
 import org.escafe.buri.oouo.internal.structure.BuriToolType;
+import org.seasar.framework.util.StringUtil;
 
 /**
  * MailSender用BuriComponent
@@ -22,6 +25,21 @@ public class BuriMailSenderComponentImpl implements BuriComponent {
 	private static final String SUBJECT = "subject";
 	private static final String HEADER = "header";
 	
+	private Map<String, String> writeMethodMap;
+	
+	public BuriMailSenderComponentImpl(){
+		writeMethodMap = new HashMap<String, String>();
+		writeMethodMap.put(FROM, "setFrom");
+		writeMethodMap.put(TO, "addTo");
+		writeMethodMap.put(ONT_TO, "addOntTo");
+		writeMethodMap.put(CC, "addCc");
+		writeMethodMap.put(BCC, "addBcc");
+		writeMethodMap.put(CONTENT, "setContent");
+		writeMethodMap.put(SUBJECT, "setSubject");
+		writeMethodMap.put(HEADER, "setHeader");		
+		
+	}
+	
 	
 	/* (non-Javadoc)
 	 * @see org.escafe.buri.component.BuriComponent#getBuriExecuteSource(java.lang.String, org.escafe.buri.oouo.internal.structure.BuriToolType)
@@ -30,10 +48,11 @@ public class BuriMailSenderComponentImpl implements BuriComponent {
 		StringBuffer sb = new StringBuffer();
 		sb.append("org.escafe.buri.mail.MailAttributes mail = new org.escafe.buri.mail.MailAttributes();\n");
 		Iterator ite = tool.getExtendedAttribute().iterator();
+		
         while (ite.hasNext()) {
             BuriExtendedAttributeType attri = (BuriExtendedAttributeType) ite.next();
-            appendSourceByAttribute(attri, sb);            
-        }        
+            appendSourceByAttribute(attri, sb);
+        }
         
         sb.append("    org.escafe.buri.mail.BuriMailSendProcessor processor =\n");
         sb.append("        org.escafe.buri.mail.util.BuriMailUtil.getSendProcessor(sysContext);\n");
@@ -46,24 +65,10 @@ public class BuriMailSenderComponentImpl implements BuriComponent {
         String value = attri.getValue();
         value = convertTextToSource(value);
         
-        if(FROM.equalsIgnoreCase(name)){
-        	sb.append("    mail.setFrom(\"").append(value).append("\");\n");
-        }else if(TO.equalsIgnoreCase(name)){
-        	sb.append("    mail.addTo(\"").append(value).append("\");\n");
-        }else if(ONT_TO.equalsIgnoreCase(name)){
-        	sb.append("    mail.addOntTo(\"").append(value).append("\");\n");
-        }else if(CC.equalsIgnoreCase(name)){
-        	sb.append("    mail.addCc(\"").append(value).append("\");\n");
-        }else if(BCC.equalsIgnoreCase(name)){
-        	sb.append("    mail.addBcc(\"").append(value).append("\");\n");
-        }else if(CONTENT.equalsIgnoreCase(name)){
-        	sb.append("    mail.setContent(\"").append(value).append("\");\n");
-        }else if(SUBJECT.equalsIgnoreCase(name)){
-        	sb.append("    mail.setSubject(\"").append(value).append("\");\n");
-        }else if(HEADER.equalsIgnoreCase(name)){
-        	sb.append("    mail.setHeader(\"").append(value).append("\");\n");
-        }        
-        		
+        String writeMethod = writeMethodMap.get(name);
+        if(StringUtil.isEmpty(writeMethod) == false){
+        	sb.append("    mail.").append(writeMethod).append("(\"").append(value).append("\");\n");
+        }
 	}
 
 
