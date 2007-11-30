@@ -64,14 +64,7 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		
 		assertEquals(expected, actual);
 		
-		//送信件数返すの作っておけばよかった・・・
-		try{
-			actual = getActualMail(1);
-			fail();
-		}catch (IndexOutOfBoundsException e) {
-			assertTrue(true);
-		}
-
+		assertEquals(1, sentMailCount());
 		
 	}
 	
@@ -141,13 +134,8 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		actual = getActualMail(2);		
 		assertEquals(expected, actual);
 		
-		//送信件数返すの作っておけばよかった・・・
-		try{
-			actual = getActualMail(3);
-			fail();
-		}catch (IndexOutOfBoundsException e) {
-			assertTrue(true);
-		}
+		assertEquals(3, sentMailCount());
+		
 
 	}	
 	
@@ -193,13 +181,8 @@ public class BuriMailSendProcessorImplTest extends S2MaiTestCase {
 		actual = getActualMail(2);		
 		assertEquals(expected, actual);
 		
-		//送信件数返すの作っておけばよかった・・・
-		try{
-			actual = getActualMail(3);
-			fail();
-		}catch (IndexOutOfBoundsException e) {
-			assertTrue(true);
-		}
+		assertEquals(3, sentMailCount());
+		
 
 	}
 	
