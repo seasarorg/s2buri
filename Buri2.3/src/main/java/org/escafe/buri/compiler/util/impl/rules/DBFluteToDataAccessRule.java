@@ -11,6 +11,7 @@ import java.util.List;
 import org.escafe.buri.common.util.BuriConfiguration;
 import org.escafe.buri.common.util.ClassDefUtil;
 import org.escafe.buri.common.util.ClassDefUtilImpl;
+import org.escafe.buri.event.util.caller.DataAccessRuleEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriDataFieldType;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Id;
@@ -44,6 +45,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	private S2Container container;
 
 	private ClassDefUtil classDefUtil;
+	
+	private DataAccessRuleEventCaller dataAccessRuleEventCaller;
 
 	@Override
 	public boolean getRequiredRule(BuriDataFieldType src) {
@@ -88,9 +91,7 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		} else if (hasName(src, DAOKEY)) {
 			src.getCache().put(daoKeyName, getNameVal(src, DAOKEY));
 		}
-		logger.debug("★-------------------------------------------------------------");
-		logger.debug("UseDBFluteToDataAccessRule");
-		logger.debug("★-------------------------------------------------------------");
+		dataAccessRuleEventCaller.determinedRule(this, src);
 		return true;
 	}
 
@@ -154,17 +155,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			return false;
 		}
 		negotiateDao(src);
-
-		logger.info("★===========================================================");
-		logger.info("ぶりで自動設定された結果");
-		logger.info("Keys:=" + src.getKeys());
-		logger.info("ID:=" + src.getId());
-		logger.info("Insert:=" + src.getInsert());
-		logger.info("Update:=" + src.getUpdate());
-		logger.info("Delete:=" + src.getDelete());
-		logger.info("Select:=" + src.getSelect());
-		logger.info("SelectMany:=" + src.getSelectMany());
-		logger.info("★===========================================================");
+		
+		dataAccessRuleEventCaller.endNegotiateDao(this, src);
 
 		src.getCache().put(daoKeyName + "_end", Boolean.TRUE);
 		return false;
@@ -659,6 +651,15 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 
 	public void setClassDefUtil(ClassDefUtil classDefUtil) {
 		this.classDefUtil = classDefUtil;
+	}
+
+	public DataAccessRuleEventCaller getDataAccessRuleEventCaller() {
+		return dataAccessRuleEventCaller;
+	}
+
+	public void setDataAccessRuleEventCaller(
+			DataAccessRuleEventCaller dataAccessRuleEventCaller) {
+		this.dataAccessRuleEventCaller = dataAccessRuleEventCaller;
 	}
 
 }

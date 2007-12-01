@@ -24,6 +24,9 @@ import org.escafe.buri.engine.ParticipantProvider;
 import org.escafe.buri.engine.WakanagoEngine;
 import org.escafe.buri.engine.selector.BuriActivitySelector;
 import org.escafe.buri.engine.selector.BuriProcessSelector;
+import org.escafe.buri.event.engine.caller.BuriActivitySelectEventCaller;
+import org.escafe.buri.event.engine.caller.BuriEngineEventCaller;
+import org.escafe.buri.event.engine.caller.BuriProcessSelectEventCaller;
 import org.escafe.buri.exception.select.BuriActivitySelectException;
 import org.escafe.buri.exception.select.BuriManySelectActivityException;
 import org.escafe.buri.exception.select.BuriManySelectProcessException;
@@ -51,6 +54,10 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected S2Container container;
     protected ScriptFactory scriptFactory;
     protected boolean finSetup = false;
+    
+    protected BuriEngineEventCaller buriEngineEventCaller;
+    protected BuriActivitySelectEventCaller buriActivitySelectEventCaller;
+    protected BuriProcessSelectEventCaller buriProcessSelectEventCaller;
 
     public void readWorkFlowFromResource(String workFlowName, String resourceName) {
         readFromResource(workFlowName, resourceName, null);
@@ -159,14 +166,19 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
 
     public Object execute(BuriSystemContext sysContext, String resultScript) {
+    	buriEngineEventCaller.startExecute(sysContext,resultScript);
         setupSystemContext(sysContext);
         BuriExePackages wPackageObj = selectPackage(sysContext);
         BuriExecProcess wp = selectProcessNoDataAccess(wPackageObj, sysContext);
         updateSystemContext(sysContext, wp, wPackageObj);
         updateUserInfo(sysContext, wp, wPackageObj);
         wp = selectProcess(wPackageObj, sysContext);
+    	buriEngineEventCaller.startFlow(sysContext,resultScript);
         execActivity(wp, sysContext);
-        return getResultObj(sysContext, resultScript);
+    	buriEngineEventCaller.endFlow(sysContext,resultScript);
+        Object ret = getResultObj(sysContext, resultScript);
+    	buriEngineEventCaller.endExecute(sysContext,resultScript,ret);
+        return ret;
     }
 
     protected Object getResultObj(BuriSystemContext sysContext, String resultScript) {
@@ -197,8 +209,10 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
 
     protected String selectActivityId(BuriExecProcess wp, BuriSystemContext sysContext) {
+    	buriActivitySelectEventCaller.startSelectActivityId(wp,sysContext);
         Set<BuriActivityType> acts = new HashSet<BuriActivityType>();
         for (BuriActivitySelector selector : activitySelector) {
+        	buriActivitySelectEventCaller.startActivitySelector(wp,sysContext,selector,acts);
             int nextAct = selector.select(acts, sysContext, wp);
             if (nextAct == BuriActivitySelector.SELECT_FINAL) {
                 break;
@@ -206,11 +220,14 @@ public class WakanagoEngineImpl implements WakanagoEngine {
             if (nextAct == BuriActivitySelector.SELECT_ERROR) {
                 errorActivitySelect(acts, sysContext, wp);
             }
+        	buriActivitySelectEventCaller.endActivitySelector(wp,sysContext,selector,acts);
         }
-        return selectActivityFinal(acts, sysContext, wp);
+        String actId = selectActivityFinal(acts, sysContext, wp);
+    	buriActivitySelectEventCaller.endSelectActivityId(wp,sysContext,actId,acts);
+    	return actId;
     }
 
-    protected String selectActivityFinal(Set acts, BuriSystemContext systemContext, BuriExecProcess wp) {
+    protected String selectActivityFinal(Set<BuriActivityType> acts, BuriSystemContext systemContext, BuriExecProcess wp) {
         if (acts.size() != 1) {
             errorActivitySelect(acts, systemContext, wp);
         }
@@ -218,10 +235,11 @@ public class WakanagoEngineImpl implements WakanagoEngine {
         return actType.getId();
     }
 
-    protected void errorActivitySelect(Set acts, BuriSystemContext systemContext, BuriExecProcess wp) {
+    protected void errorActivitySelect(Set<BuriActivityType> acts, BuriSystemContext systemContext, BuriExecProcess wp) {
         BuriPath callPath = systemContext.getCallPath();
         String pakageID = callPath.getWorkflowPackage();
         ParticipantProvider provider = appUserIdMap.get(pakageID);
+    	buriActivitySelectEventCaller.errorActivitySelect(acts,systemContext,wp);
         if (acts.size() == 0) {
             throw new BuriNotSelectedActivityException(callPath, provider);
         }
@@ -246,10 +264,12 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     }
 
     public BuriExecProcess selectProcess(BuriExePackages wPackageObj, BuriSystemContext sysContext) {
+    	buriProcessSelectEventCaller.startSelectProcess(wPackageObj,sysContext);
         List pros = new ArrayList();
         Iterator ite = processSelector.iterator();
         while (ite.hasNext()) {
             BuriProcessSelector selector = (BuriProcessSelector) ite.next();
+        	buriProcessSelectEventCaller.startSelector(wPackageObj,sysContext,selector,pros);
             int nextAct = selector.select(pros, sysContext, wPackageObj);
             if (nextAct == BuriProcessSelector.SELECT_FINAL) {
                 break;
@@ -257,8 +277,11 @@ public class WakanagoEngineImpl implements WakanagoEngine {
             if (nextAct == BuriProcessSelector.SELECT_ERROR) {
                 errorProcessSelect(pros, sysContext, wPackageObj);
             }
+        	buriProcessSelectEventCaller.endSelector(wPackageObj,sysContext,selector,pros);
         }
-        return selectProcessFinal(pros, sysContext, wPackageObj);
+        BuriExecProcess process = selectProcessFinal(pros, sysContext, wPackageObj);
+    	buriProcessSelectEventCaller.endSelectProcess(wPackageObj,sysContext,process,pros);
+    	return process;
     }
 
     protected BuriExecProcess selectProcessFinal(List pros, BuriSystemContext systemContext, BuriExePackages wPackageObj) {
@@ -273,6 +296,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected void errorProcessSelect(List proces, BuriSystemContext systemContext, BuriExePackages wPackageObj) {
         BuriPath callPath = systemContext.getCallPath();
         String pakageID = callPath.getWorkflowPackage();
+    	buriProcessSelectEventCaller.errorSelectProcess(wPackageObj,systemContext,callPath,proces);
         ParticipantProvider provider = appUserIdMap.get(pakageID);
         if (proces.size() == 0) {
             throw new BuriNotSelectProcessException(callPath);
@@ -332,5 +356,31 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     public void setScriptFactory(ScriptFactory scriptFactory) {
         this.scriptFactory = scriptFactory;
     }
+
+	public BuriEngineEventCaller getBuriEngineEventCaller() {
+		return buriEngineEventCaller;
+	}
+
+	public void setBuriEngineEventCaller(BuriEngineEventCaller buriEngineEventCaller) {
+		this.buriEngineEventCaller = buriEngineEventCaller;
+	}
+
+	public BuriActivitySelectEventCaller getBuriActivitySelectEventCaller() {
+		return buriActivitySelectEventCaller;
+	}
+
+	public void setBuriActivitySelectEventCaller(
+			BuriActivitySelectEventCaller buriActivitySelectEventCaller) {
+		this.buriActivitySelectEventCaller = buriActivitySelectEventCaller;
+	}
+
+	public BuriProcessSelectEventCaller getBuriProcessSelectEventCaller() {
+		return buriProcessSelectEventCaller;
+	}
+
+	public void setBuriProcessSelectEventCaller(
+			BuriProcessSelectEventCaller buriProcessSelectEventCaller) {
+		this.buriProcessSelectEventCaller = buriProcessSelectEventCaller;
+	}
 
 }

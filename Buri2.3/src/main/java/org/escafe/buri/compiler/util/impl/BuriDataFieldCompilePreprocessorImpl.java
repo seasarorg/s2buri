@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.escafe.buri.compiler.util.BuriDataFieldCompilePreprocessor;
 import org.escafe.buri.compiler.util.BuriDataFieldProcRule;
+import org.escafe.buri.event.util.caller.DataAccessRuleEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriDataFieldType;
 import org.escafe.buri.oouo.internal.structure.BuriExtendedAttributeType;
 import org.escafe.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
@@ -18,8 +19,11 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
 
     private List<BuriDataFieldProcRule> preprocessRules = new ArrayList<BuriDataFieldProcRule>();
     private List<BuriDataFieldProcRule> dataAccessRules = new ArrayList<BuriDataFieldProcRule>();
+    
+    private DataAccessRuleEventCaller dataAccessRuleEventCaller;
 
     public BuriDataFieldType preprocess(BuriDataFieldType src) {
+    	dataAccessRuleEventCaller.entryProcessor(src);
         BuriDataFieldType dst = copyBuriDataFieldType(src);
         if (hasPreprocess(dst)) {
             checkDataAccess(dst, preprocessRules);
@@ -29,6 +33,7 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
         }
 
         dst.getCache().clear();
+    	dataAccessRuleEventCaller.returnProcessor(dst);
         return dst;
     }
 
@@ -245,7 +250,8 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
         return true;
     }
 
-    protected BuriExtendedAttributeType getExAttri(BuriDataFieldType src, String name) {
+    @SuppressWarnings("unchecked")
+	protected BuriExtendedAttributeType getExAttri(BuriDataFieldType src, String name) {
         if (src.getCache().containsKey(name)) {
             return (BuriExtendedAttributeType) src.getCache().get(name);
         }
@@ -258,5 +264,14 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
         boolean result = hasName(src, "preprocess");
         return result;
     }
+
+	public DataAccessRuleEventCaller getDataAccessRuleEventCaller() {
+		return dataAccessRuleEventCaller;
+	}
+
+	public void setDataAccessRuleEventCaller(
+			DataAccessRuleEventCaller dataAccessRuleEventCaller) {
+		this.dataAccessRuleEventCaller = dataAccessRuleEventCaller;
+	}
 
 }

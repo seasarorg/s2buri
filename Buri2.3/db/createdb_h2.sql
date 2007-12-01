@@ -34,8 +34,8 @@ CREATE TABLE BuriState (
        ParticipantType      VARCHAR(200),
        Btid                 INTEGER NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
-       autoRunTime          TIMESTAMP,
-       processDate          TIMESTAMP,
+       autoRunTime          TIMESTAMP NOT NULL,
+       processDate          TIMESTAMP NOT NULL,
        abortDate            TIMESTAMP NOT NULL,
        versionNo            INTEGER NOT NULL,
        PRIMARY KEY (StateID)

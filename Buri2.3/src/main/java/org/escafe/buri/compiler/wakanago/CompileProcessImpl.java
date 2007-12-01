@@ -11,6 +11,8 @@ import org.escafe.buri.compiler.CompileProcess;
 import org.escafe.buri.compiler.DataFieldCompiler;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
 import org.escafe.buri.engine.ParticipantProvider;
+import org.escafe.buri.event.boot.BuriCompileEvent;
+import org.escafe.buri.event.boot.caller.BuriComplieEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriPackageType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.escafe.buri.util.packages.BuriExePackages;
@@ -28,6 +30,7 @@ public class CompileProcessImpl implements CompileProcess {
 
     private String processTemplateName = "ftl/wakanagoProcess.ftl";
     private DataFieldCompiler dataFieldCompiler;
+    private BuriComplieEventCaller eventCaller;
 
     public void compile(BuriExePackages result, BuriWorkflowProcessType process, ParticipantProvider provider) {
         BuriExecProcess exeProcess = compileProcess(process, result.getBuriPackageType(), provider);
@@ -38,6 +41,8 @@ public class CompileProcessImpl implements CompileProcess {
         compileDataAccess(exeProcess, process);
         BuriDataAccessFactory dataAccessFactory = (BuriDataAccessFactory) container.getComponent("rootDataAccessFactory");
         dataAccessFactory.addChildFactory(process.getId(), (BuriDataAccessFactory) exeProcess);
+    	String tgt = result.getBuriPackageType().getName() + "." + process.getName();
+        eventCaller.callEndObjectInit(this,BuriCompileEvent.CompileTargetType.Process,tgt,exeProcess);
     }
 
     protected void compileDataAccess(BuriExecProcess exeProcess, BuriWorkflowProcessType process) {
@@ -47,6 +52,8 @@ public class CompileProcessImpl implements CompileProcess {
     }
 
     protected BuriExecProcess compileProcess(BuriWorkflowProcessType process, BuriPackageType buriPackage, ParticipantProvider provider) {
+    	String tgt = buriPackage.getName() + "." + process.getName();
+        eventCaller.callStartCompile(this,BuriCompileEvent.CompileTargetType.Process,tgt);
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName("" + buriPackage.getId() + "." + process.getId());
         info.setBaseClass(getAbstractProcessClass(provider));
@@ -55,6 +62,8 @@ public class CompileProcessImpl implements CompileProcess {
         info.setBaseObject(process);
         info.setTemplateFileName(processTemplateName);
         BuriExecProcess exeProcess = (BuriExecProcess) compler.Compile(info);
+        eventCaller.callEndCompile(this,BuriCompileEvent.CompileTargetType.Process,tgt,exeProcess);
+        eventCaller.callStartObjectInit(this,BuriCompileEvent.CompileTargetType.Process,tgt);
         container.injectDependency(exeProcess, getAbstractProcessClass(provider));
         exeProcess.setup(process);
         return exeProcess;
@@ -95,5 +104,13 @@ public class CompileProcessImpl implements CompileProcess {
     public void setDataFieldCompiler(DataFieldCompiler dataFieldCompiler) {
         this.dataFieldCompiler = dataFieldCompiler;
     }
+
+	public BuriComplieEventCaller getEventCaller() {
+		return eventCaller;
+	}
+
+	public void setEventCaller(BuriComplieEventCaller eventCaller) {
+		this.eventCaller = eventCaller;
+	}
 
 }

@@ -57,7 +57,8 @@ public abstract class AbstractBuriDataFieldProcRule implements BuriDataFieldProc
         return attri.getValue();
     }
 
-    protected BuriExtendedAttributeType getExAttri(BuriDataFieldType src, String name) {
+    @SuppressWarnings("unchecked")
+	protected BuriExtendedAttributeType getExAttri(BuriDataFieldType src, String name) {
         if (src.getCache().containsKey(name)) {
             return (BuriExtendedAttributeType) src.getCache().get(name);
         }

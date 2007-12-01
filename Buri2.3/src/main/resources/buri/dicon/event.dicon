@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<component class="org.escafe.buri.event.boot.caller.impl.BuriComplieEventCallerImpl">
+	</component>
+	<component class="org.escafe.buri.event.state.caller.impl.BuriStatusEventCallerImpl">
+	</component>
+	<component class="org.escafe.buri.event.util.caller.impl.DataAccessRuleEventCallerImpl">
+	</component>
+	<component class="org.escafe.buri.event.flow.caller.impl.BuriFlowEventCallerImpl">
+	</component>
+	<component class="org.escafe.buri.event.engine.caller.impl.BuriActivitySelectEventCallerImpl">
+	</component>
+	<component class="org.escafe.buri.event.engine.caller.impl.BuriEngineEventCallerImpl">
+	</component>
+	<component class="org.escafe.buri.event.engine.caller.impl.BuriProcessSelectEventCallerImpl">
+	</component>
+</components>

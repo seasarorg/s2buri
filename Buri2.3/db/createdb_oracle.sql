@@ -38,8 +38,8 @@ CREATE TABLE BuriState (
        UserIDNum            NUMBER(19,0),
        Btid                 NUMBER(19,0) NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
-       autoRunTime          TIMESTAMP,
-       processDate          TIMESTAMP,
+       autoRunTime          TIMESTAMP NOT NULL,
+       processDate          TIMESTAMP NOT NULL,
        abortDate            TIMESTAMP NOT NULL,
        versionNo            INTEGER NOT NULL,
        PRIMARY KEY (StateID)

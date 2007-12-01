@@ -9,6 +9,8 @@ import jp.starlogic.common.janino.util.BasicCompler;
 
 import org.escafe.buri.compiler.util.DataAccessCompileUtil;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
+import org.escafe.buri.event.boot.BuriCompileEvent;
+import org.escafe.buri.event.boot.caller.BuriComplieEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriDataFieldType;
 import org.escafe.buri.oouo.internal.structure.BuriPackageType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
@@ -34,6 +36,7 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     private BasicCompler compler;
     private String longKeyTemplateName = "ftl/DataAccessUtilLongKey.ftl";
     private String manyKeyTemplateName = "ftl/DataAccessUtilManyKey.ftl";
+    private BuriComplieEventCaller eventCaller;
 
     public void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, BuriPackageType buriPackage,
             BuriWorkflowProcessType process) {
@@ -88,13 +91,15 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
 
     public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, String processId, String packageId) {
         String createClassName = getDataAccessClassName(fieldType, processId, packageId);
+        eventCaller.callStartCompile(this,BuriCompileEvent.CompileTargetType.DataField,createClassName);
+        DataAccessUtil util = null;
         if (isUseLongKeyType(fieldType)) {
-            DataAccessUtilLongKey dataAccessUtil = comileDataAccessUtilLongKey(fieldType, createClassName);
-            return dataAccessUtil;
+        	util = comileDataAccessUtilLongKey(fieldType, createClassName);
         } else {
-            DataAccessUtilManyKey dataAccessUtil = comileDataAccessUtilManyKey(fieldType, createClassName);
-            return dataAccessUtil;
+        	util = comileDataAccessUtilManyKey(fieldType, createClassName);
         }
+        eventCaller.callEndCompile(this,BuriCompileEvent.CompileTargetType.DataField,createClassName,util);
+        return util;
     }
 
     private String getDataAccessClassName(BuriDataFieldType fieldType, String processId, String packageId) {
@@ -185,5 +190,13 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     public void setScriptFactory(ScriptFactory scriptFactory) {
         this.scriptFactory = scriptFactory;
     }
+
+	public BuriComplieEventCaller getEventCaller() {
+		return eventCaller;
+	}
+
+	public void setEventCaller(BuriComplieEventCaller eventCaller) {
+		this.eventCaller = eventCaller;
+	}
 
 }

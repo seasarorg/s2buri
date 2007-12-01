@@ -24,6 +24,7 @@ import org.escafe.buri.dto.BuriStateEntityDto;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.BuriRealPath;
 import org.escafe.buri.engine.BuriSystemContext;
+import org.escafe.buri.event.state.caller.BuriStatusEventCaller;
 import org.escafe.buri.exception.IllegalArgumentRuntimeException;
 import org.escafe.buri.oouo.internal.structure.BuriActivityType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
@@ -31,7 +32,6 @@ import org.escafe.buri.util.packages.BranchWalker;
 import org.escafe.buri.util.packages.BuriExePackages;
 import org.escafe.buri.util.packages.BuriExecProcess;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
-import org.seasar.coffee.dataaccess.DataAccessUtil;
 import org.seasar.coffee.script.Script;
 import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.util.StringUtil;
@@ -44,6 +44,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     private BuriUndoLogUtil undoLogUtil;
     private BTIDUtil btidUtil;
     private ScriptFactory scriptFactory;
+    protected BuriStatusEventCaller buriStatusEventCaller;
 
     public BranchWalker createBranchWalker(BuriSystemContext sysContext) {
         BranchWalker walker = new BranchWalker();
@@ -142,6 +143,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         branchDao.insert(dto);
         walker.setBranchID(dto.getBranchID());
         walker.setNowPath(tgtPath);
+    	buriStatusEventCaller.createBranch(sysContext, walker);
         return walker;
     }
 
@@ -159,6 +161,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     }
 
     public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
+    	buriStatusEventCaller.saveState(factory, sysContext, walker);
         dataUtil.storeData(factory, sysContext);
         dataUtil.updateBuriData(factory, sysContext);
         BuriStateEntityDto stateDto = createStateDto(factory, sysContext, walker);
@@ -194,6 +197,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
             Script exScript = scriptFactory.getScript(exePackages.getTimeLimitExpressionType());
             String limit = getLimit(exePackages, walker);
             setupDate = getLimitDate(limit, exScript, sysContext, walker);
+        	buriStatusEventCaller.setAutorun(factory, sysContext, walker, setupDate);
         }
         stateDto.setAutoRunTime(setupDate);
     }
@@ -202,7 +206,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         if (!StringUtil.isEmpty(limit)) {
             Object obj = exScript.eval(null, limit, sysContext.getUserContext());
             if(obj==null) {
-            	return null;
+            	return DateUtil.getSQLMaxDate();
             }
             if (obj instanceof Date) {
                 return (Date) obj;
@@ -214,7 +218,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
                 throw new IllegalArgumentRuntimeException("EBRI0007", new Object[] { walker.getNowPath(), obj });
             }
         }
-        return null;
+        return DateUtil.getSQLMaxDate();
     }
 
     protected BuriExePackages getBuriExePackages(DataAccessFactory factory) {
@@ -238,6 +242,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     public void processed(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
         assert sysContext.getStatusID() != null;
         long stateID = sysContext.getStatusID().longValue();
+    	buriStatusEventCaller.processed(factory, sysContext, walker);
         undoLogUtil.addUndoLog(stateID, 0);
         stateDao.updateProceesByStateID(stateID);
     }
@@ -246,11 +251,13 @@ public class BuriStateUtilImpl implements BuriStateUtil {
         assert sysContext.getStatusID() != null;
         long stateID = sysContext.getStatusID().longValue();
         assert walker.getBranchID() != 0;
+    	buriStatusEventCaller.abortState(factory, sysContext, walker);
         undoLogUtil.addUndoLog(stateID, 0);
         stateDao.updateAbortByStateID(stateID);
     }
 
     public void abortBranch(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
+    	buriStatusEventCaller.abortBranch(factory, sysContext, walker);
         abortParentBranchID(walker.getParentBranchID(), factory, sysContext);
         BuriBranchEntityDto dto= branchDao.select(walker.getParentBranchID());
         walker.setBranchID(dto.getBranchID());
@@ -332,5 +339,13 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     public void setScriptFactory(ScriptFactory scriptFactory) {
         this.scriptFactory = scriptFactory;
     }
+
+	public BuriStatusEventCaller getBuriStatusEventCaller() {
+		return buriStatusEventCaller;
+	}
+
+	public void setBuriStatusEventCaller(BuriStatusEventCaller buriStatusEventCaller) {
+		this.buriStatusEventCaller = buriStatusEventCaller;
+	}
 
 }

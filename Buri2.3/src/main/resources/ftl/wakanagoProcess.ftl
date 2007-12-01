@@ -36,9 +36,12 @@ public void ${activityId}_start(BuriSystemContext sysContext,BranchWalker walker
 		<#if activity.isNoJoin()>
 		<#else>
 		    <#if activity.isJoinAnd()>
-    boolean canExec = joinAndFlow(sysContext,walker,"${activity.getName()}","${activityId}");
+    boolean canExec = canJoinAndFlow(sysContext,walker,"${activity.getName()}","${activityId}");
     if(canExec == false) {
+		noProcessAndFlow(sysContext,walker,"${activity.getName()}","${activityId}");
     	return;
+    }else {
+		joinAndFlow(sysContext,walker,"${activity.getName()}","${activityId}");
     }
     		<#else>
     joinXorFlow(sysContext,walker,"${activity.getName()}","${activityId}");

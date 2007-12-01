@@ -24,7 +24,8 @@ public class ScriptDataAccessUtilLongKeyImpl extends AbstDataAccessUtilLongKey {
         condition = (String) fieldType.getKeys().get(pkey);
     }
 
-    public List get(List keyVals) {
+    @SuppressWarnings("unchecked")
+	public List get(List keyVals) {
         String script = fieldType.getSelectMany();
         return getDataList(keyVals, script);
     }

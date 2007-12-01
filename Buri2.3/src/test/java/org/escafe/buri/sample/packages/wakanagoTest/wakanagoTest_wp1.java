@@ -206,7 +206,7 @@ public class wakanagoTest_wp1 extends AbstBuriExecProcess{
     //終了
     public void wakanagoTest_wp1_act6_start(BuriSystemContext sysContext,BranchWalker walker) {
         joinXorFlow(sysContext,walker,"終了","wakanagoTest_wp1_act6");
-        joinAndFlow(sysContext,walker,"終了","wakanagoTest_wp1_act6");
+        canJoinAndFlow(sysContext,walker,"終了","wakanagoTest_wp1_act6");
         walker = walker.moveNext("終了","wakanagoTest_wp1_act6");
         startActivity(sysContext,walker);
         wakanagoTest_wp1_act6_process(sysContext,walker);

@@ -7,6 +7,8 @@ package org.escafe.buri.compiler.wakanago;
 import org.escafe.buri.compiler.CompilePackage;
 import org.escafe.buri.compiler.DataFieldCompiler;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
+import org.escafe.buri.event.boot.BuriCompileEvent;
+import org.escafe.buri.event.boot.caller.BuriComplieEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriPackageType;
 import org.escafe.buri.util.packages.BuriExePackages;
 import org.escafe.buri.util.packages.abst.AbstBuriExePackages;
@@ -19,12 +21,15 @@ public class CompilePackageImpl implements CompilePackage {
 
     private String packageTemplateName = "ftl/wakanagoPackage.ftl";
     private DataFieldCompiler dataFieldCompiler;
+    private BuriComplieEventCaller eventCaller;
 
     public BuriExePackages compile(BuriPackageType buriPackage) {
+        eventCaller.callStartObjectInit(this,BuriCompileEvent.CompileTargetType.Package,buriPackage.getName());
         BuriExePackages result = new AbstBuriExePackages();
         container.injectDependency(result, AbstBuriExePackages.class);
         result.setup(buriPackage);
         compileDataAccess(result, buriPackage);
+        eventCaller.callEndObjectInit(this,BuriCompileEvent.CompileTargetType.Package,buriPackage.getName(),result);
         return result;
     }
 
@@ -56,5 +61,13 @@ public class CompilePackageImpl implements CompilePackage {
     public void setDataFieldCompiler(DataFieldCompiler dataFieldCompiler) {
         this.dataFieldCompiler = dataFieldCompiler;
     }
+
+	public BuriComplieEventCaller getEventCaller() {
+		return eventCaller;
+	}
+
+	public void setEventCaller(BuriComplieEventCaller eventCaller) {
+		this.eventCaller = eventCaller;
+	}
 
 }

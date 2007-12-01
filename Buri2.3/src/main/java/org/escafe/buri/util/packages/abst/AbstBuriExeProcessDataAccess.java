@@ -60,6 +60,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
 
     @Override
     protected void restartActivity(BuriSystemContext sysContext, BranchWalker walker) {
+    	super.restartActivity(sysContext, walker);
         getStateUtil().processed(this, sysContext, walker);
     }
 
@@ -90,6 +91,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
 
     @Override
     protected BranchWalker splitAndPreprocess(BuriSystemContext sysContext, BranchWalker walker) {
+    	super.splitAndPreprocess(sysContext, walker);
         getStateUtil().saveBranch(walker, this, sysContext);
         return walker;
     }
@@ -103,19 +105,17 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     @Override
     protected void joinXorFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
         if (walker.getParentBranchID() != 0) {
+        	super.joinXorFlow(sysContext, walker, nextName, nextId);
             getStateUtil().abortBranch(this, sysContext, walker);
-//        	joinWaitingUtil.clearWaiting(this,sysContext, walker, nextName, nextId);
         }
     }
 
     @Override
-    protected boolean joinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
+    protected boolean canJoinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
         long count = getStateUtil().countNoProcessedSiblingStatus(this, sysContext, walker);
         if (count == 0) {
-//        	joinWaitingUtil.clearWaiting(this,sysContext, walker, nextName, nextId);
             return true;
         }
-//    	joinWaitingUtil.addWaiting(this,sysContext, walker, nextName, nextId);
         return false;
     }
 

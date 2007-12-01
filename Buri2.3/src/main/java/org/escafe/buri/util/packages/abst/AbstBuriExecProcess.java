@@ -14,6 +14,7 @@ import org.escafe.buri.aop.impl.BuriMethodInvocation;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.BuriSystemContext;
 import org.escafe.buri.engine.BuriUserContext;
+import org.escafe.buri.event.flow.caller.BuriFlowEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriActivityType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.escafe.buri.util.packages.BranchWalker;
@@ -34,6 +35,8 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     protected List<MethodInterceptor> conditionInterceptors = new ArrayList<MethodInterceptor>();
 
     protected BuriExePackages buriExePackages;
+    
+    protected BuriFlowEventCaller buriFlowEventCaller;
 
     protected Script getConditionScript() {
         return scriptFactory.getScript(buriExePackages.getConditionExpressionType());
@@ -62,12 +65,14 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     }
 
     public String selectActivityId(BuriSystemContext sysContext) {
+    	buriFlowEventCaller.startSelectActivityId(this,sysContext);
         assert sysContext.getCallPath().getActivityName() != null;
         assert sysContext.getCallPath().getActivityName().size() > 0;
         String actName = sysContext.getCallPath().getActivityName().get(0).toString();
         List actList = process.getActivityByName(actName);
         assert actList.size() == 1;
         BuriActivityType actType = (BuriActivityType) actList.get(0);
+    	buriFlowEventCaller.endSelectActivityId(this,sysContext,actType.getId());
         return actType.getId();
     }
 
@@ -84,6 +89,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         }
         sysContext.setStartParticipantName(actType.getParticipantName());
         walker = setupStatus(actId, sysContext, walker);
+    	buriFlowEventCaller.entryActivity(this,actId, sysContext, walker, mode);
         execActivity(actId, mode, sysContext, walker);
     }
 
@@ -125,6 +131,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     }
 
     protected Boolean conditionCheck(String methodName, String condition, BuriSystemContext sysContext, BranchWalker walker) {
+    	buriFlowEventCaller.startConditionCheck(this,methodName, condition, sysContext, walker);
         MethodInvokeInfo invokeInfo = new MethodInvokeInfo();
         invokeInfo.args = new Object[] { sysContext, walker };
         invokeInfo.methodArgType = new Class[] { BuriSystemContext.class, BranchWalker.class };
@@ -136,6 +143,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         invokeInfo.mode = "_condition";
         invokeInfo.interceptors = conditionInterceptors;
         Object result = runThisMethodName(invokeInfo);
+    	buriFlowEventCaller.endConditionCheck(this,methodName, condition, sysContext, walker,result);
         assert result instanceof Boolean : methodName + "の戻り値がBoolean以外です(" + result + ")";
         return (Boolean) result;
     }
@@ -166,17 +174,19 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     }
 
     protected void startActivity(BuriSystemContext sysContext, BranchWalker walker) {
-
+    	buriFlowEventCaller.startActivity(this,sysContext, walker);
     }
 
     protected void restartActivity(BuriSystemContext sysContext, BranchWalker walker) {
-
+    	buriFlowEventCaller.restartActivity(this,sysContext, walker);
     }
 
     protected void exitFlow(BuriSystemContext sysContext, BranchWalker walker) {
+    	buriFlowEventCaller.exitFlow(this,sysContext, walker);
         Iterator ite = sysContext.getAfterCallMethods().iterator();
         while (ite.hasNext()) {
             String actId = ite.next().toString();
+        	buriFlowEventCaller.callAfterProcess(this,actId,sysContext, walker);
             execActivity(actId, "_afterProcess", sysContext, walker);
         }
     }
@@ -206,6 +216,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     }
 
     protected BranchWalker splitAndPreprocess(BuriSystemContext sysContext, BranchWalker walker) {
+    	buriFlowEventCaller.splitAndPreprocess(this,sysContext, walker);
         return walker;
     }
 
@@ -214,10 +225,19 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     }
 
     protected void joinXorFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
+    	buriFlowEventCaller.joinXorFlow(this,sysContext, walker, nextName, nextId);
 
     }
+    
+    protected void noProcessAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
+    	buriFlowEventCaller.noProcessAndFlow(this,sysContext, walker, nextName, nextId);
+    }
+    
+    protected void joinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
+    	buriFlowEventCaller.joinAndFlow(this,sysContext, walker, nextName, nextId);
+    }
 
-    protected boolean joinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
+    protected boolean canJoinAndFlow(BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
         return true;
     }
 
@@ -252,5 +272,13 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     public void setBuriExePackages(BuriExePackages buriExePackages) {
         this.buriExePackages = buriExePackages;
     }
+
+	public BuriFlowEventCaller getBuriFlowEventCaller() {
+		return buriFlowEventCaller;
+	}
+
+	public void setBuriFlowEventCaller(BuriFlowEventCaller buriFlowEventCaller) {
+		this.buriFlowEventCaller = buriFlowEventCaller;
+	}
 
 }

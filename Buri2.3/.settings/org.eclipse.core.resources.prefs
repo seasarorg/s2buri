@@ -1,4 +1,4 @@
-#Thu Sep 27 18:33:33 JST 2007
+#Thu Nov 08 19:28:07 JST 2007
 eclipse.preferences.version=1
 encoding//doc/\u30DE\u30CB\u30E5\u30A2\u30EB.txt=Shift_JIS
 encoding//src/main/resources/buri/dicon/bao.dicon=UTF-8
@@ -9,6 +9,7 @@ encoding//src/main/resources/buri/dicon/buriBaseAS.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriSimple.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriStandard.dicon=UTF-8
 encoding//src/main/resources/buri/dicon/buriTimer.dicon=UTF-8
+encoding//src/main/resources/buri/dicon/event.dicon=UTF-8
 encoding//src/test/java/example/org/escafe/buri/test/BaoTest.java=UTF-8
 encoding//src/test/java/org/escafe/buri/dao/util/wakanagoUtils.dicon=UTF-8
 encoding//src/test/resources/ExcelBaseParticipantProvider/ExcelBase.dicon=UTF-8

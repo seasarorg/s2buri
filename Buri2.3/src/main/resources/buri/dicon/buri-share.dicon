@@ -8,6 +8,7 @@
 	<include path="buri/dicon/OgnlScript.dicon"/>
 	<include path="buri/dicon/template.dicon"/>
 	<include path="buri/dicon/allDao.dicon"/>
+	<include path="buri/dicon/event.dicon"/>
 	<include path="aop.dicon"/>
 	<include path="s2mai.dicon"/>
 
