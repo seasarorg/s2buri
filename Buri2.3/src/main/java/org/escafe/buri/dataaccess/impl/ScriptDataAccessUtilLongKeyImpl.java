@@ -47,8 +47,22 @@ public class ScriptDataAccessUtilLongKeyImpl extends AbstDataAccessUtilLongKey {
         } else {
             execScript = fieldType.getInsert();
         }
-        runScript(data, execScript);
+        Object ret = runScript(data, execScript);
+        checkAndRetryStore(data,ret);
         return data;
+    }
+    
+    protected void checkAndRetryStore(Object data,Object ret) {
+        if(ret != null) {
+        	if(ret instanceof Number) {
+        		Number num = (Number)ret;
+        		if(num.intValue()==0) {
+        			String execScript = fieldType.getInsert();
+        			runScript(data, execScript);
+        		}
+        	}
+        }
+    	
     }
 
     public int delete(Object data) {

@@ -1,6 +1,8 @@
 package org.escafe.buri.event.engine;
 
-public interface BuriActivitySelectEventListener {
+import org.escafe.buri.event.BuriEventListener;
+
+public interface BuriActivitySelectEventListener extends BuriEventListener {
 
 	void startSelectActivityId(BuriActivitySelectEvent event);
 

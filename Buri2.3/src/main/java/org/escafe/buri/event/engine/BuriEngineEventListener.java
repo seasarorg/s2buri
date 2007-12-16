@@ -1,6 +1,8 @@
 package org.escafe.buri.event.engine;
 
-public interface BuriEngineEventListener {
+import org.escafe.buri.event.BuriEventListener;
+
+public interface BuriEngineEventListener extends BuriEventListener {
 
 	void startExecute(BuriEngineEvent event);
 

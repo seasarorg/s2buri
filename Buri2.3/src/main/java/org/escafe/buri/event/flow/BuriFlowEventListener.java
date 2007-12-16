@@ -1,6 +1,8 @@
 package org.escafe.buri.event.flow;
 
-public interface BuriFlowEventListener {
+import org.escafe.buri.event.BuriEventListener;
+
+public interface BuriFlowEventListener extends BuriEventListener {
 	void startSelectActivityId(BuriFlowEvent event);
 	void endSelectActivityId(BuriFlowEvent event);
 	

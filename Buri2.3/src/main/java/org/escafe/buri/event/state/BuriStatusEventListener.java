@@ -1,6 +1,8 @@
 package org.escafe.buri.event.state;
 
-public interface BuriStatusEventListener {
+import org.escafe.buri.event.BuriEventListener;
+
+public interface BuriStatusEventListener extends BuriEventListener {
 	void saveState(BuriStatusEvent event);
 	void processed(BuriStatusEvent event);
 	void abortState(BuriStatusEvent event);

@@ -1,6 +1,8 @@
 package org.escafe.buri.event.engine;
 
-public interface BuriProcessSelectEventListener {
+import org.escafe.buri.event.BuriEventListener;
+
+public interface BuriProcessSelectEventListener extends BuriEventListener {
 
 	void startSelectProcess(BuriProcessSelectEvent event);
 

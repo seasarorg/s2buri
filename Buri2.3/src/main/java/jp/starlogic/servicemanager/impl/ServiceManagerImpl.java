@@ -15,12 +15,16 @@ import jp.starlogic.servicemanager.ServiceMonitor.ServiceInfo;
 public class ServiceManagerImpl implements ServiceManager {
     private List<String> startupService = new ArrayList<String>();
     private ServiceMonitor monitor;
+    private String envName = "BuriServiceManager";
 
     public void addStartupService(String serviceName) {
         startupService.add(serviceName);
     }
 
     public void startup() {
+    	if(! System.getenv().containsKey(envName)) {
+    		return;
+    	}
         Iterator<String> ite = startupService.iterator();
         while (ite.hasNext()) {
             executeService(ite.next().toString());
@@ -55,5 +59,13 @@ public class ServiceManagerImpl implements ServiceManager {
     public void setMonitor(ServiceMonitor monitor) {
         this.monitor = monitor;
     }
+
+	public String getEnvName() {
+		return envName;
+	}
+
+	public void setEnvName(String envName) {
+		this.envName = envName;
+	}
 
 }
