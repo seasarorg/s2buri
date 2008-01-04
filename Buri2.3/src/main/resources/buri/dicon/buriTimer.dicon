@@ -13,7 +13,6 @@
 		<!-- この下の行をコメントアウトするとServiceは動かない -->
 		<initMethod name="startup" ></initMethod>
 		<destroyMethod name="terminate" ></destroyMethod>
-		<aspect>aop.traceInterceptor</aspect>
 	</component>
 	
 	<component class="jp.starlogic.servicemanager.impl.ServiceMonitorImpl">
@@ -24,6 +23,7 @@
 	
 	<component class="jp.starlogic.servicemanager.impl.ExecuteServiceImpl" instance="prototype" >
 		<aspect pointcut="execute" >j2ee.requiresNewTx</aspect>
+		<aspect pointcut="execute" >aop.traceInterceptor</aspect>
 		<!--<aspect>aop.traceInterceptor</aspect>-->
 	</component>
 	
@@ -38,7 +38,7 @@
 	
 	<component name="BuriAutoInvokeService" class="org.escafe.buri.engine.service.impl.BuriTimerService">
 		<property name="runningTime">60000</property>
-		<property name="stopCheckInterval">500</property>
+		<property name="stopCheckInterval">240000</property>
 	</component>
 	
 </components>

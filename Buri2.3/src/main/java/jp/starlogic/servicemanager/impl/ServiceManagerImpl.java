@@ -12,15 +12,19 @@ import jp.starlogic.servicemanager.ServiceManager;
 import jp.starlogic.servicemanager.ServiceMonitor;
 import jp.starlogic.servicemanager.ServiceMonitor.ServiceInfo;
 
+import org.seasar.framework.log.Logger;
+
 public class ServiceManagerImpl implements ServiceManager {
     private List<String> startupService = new ArrayList<String>();
     private ServiceMonitor monitor;
+    private static Logger log = Logger.getLogger(ServiceManagerImpl.class); 
 
     public void addStartupService(String serviceName) {
         startupService.add(serviceName);
     }
 
     public void startup() {
+    	log.info("ServiceManager Start");
         Iterator<String> ite = startupService.iterator();
         while (ite.hasNext()) {
             executeService(ite.next().toString());
@@ -28,6 +32,7 @@ public class ServiceManagerImpl implements ServiceManager {
     }
 
     public void terminate() {
+    	log.info("ServiceManager End");
         Iterator<String> ite = startupService.iterator();
         while (ite.hasNext()) {
             ServiceInfo info = monitor.getServiceInfo(ite.next().toString());
