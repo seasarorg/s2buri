@@ -5,39 +5,39 @@
   <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbyLocale_ja_JP/10.1.2.1/derbyLocale_ja_JP-10.1.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-extension/2.4.10/s2-extension-2.4.10.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/mail/mail/1.4/mail-1.4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/poi/poi/2.5.1-final-20040804/poi-2.5.1-final-20040804.jar" sourcepath="M2_REPO/poi/poi/2.5.1-final-20040804/poi-2.5.1-final-20040804-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/derby/derby/10.1.2.1/derby-10.1.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/nadejako/nadejako/0.7-SNAPSHOT/nadejako-0.7-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar" sourcepath="M2_REPO/javax/activation/activation/1.1/activation-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/dao/s2-dao/1.0.41/s2-dao-1.0.41.jar" sourcepath="M2_REPO/org/seasar/dao/s2-dao/1.0.41/s2-dao-1.0.41-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/janino/janino/2.4.3/janino-2.4.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/coffee/s2-coffee-script/0.2.1/s2-coffee-script-0.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/jboss/javassist/3.4.ga/javassist-3.4.ga.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.0.1B_spec/1.0/geronimo-jta_1.0.1B_spec-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbyclient/10.1.2.1/derbyclient-10.1.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/geronimo-spec/geronimo-spec-j2ee/1.4-rc4/geronimo-spec-j2ee-1.4-rc4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-extension/2.4.10/s2-extension-2.4.10.jar" sourcepath="M2_REPO/org/seasar/container/s2-extension/2.4.10/s2-extension-2.4.10-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/nadejako/s2-nadejako/0.7-SNAPSHOT/s2-nadejako-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/org/seasar/nadejako/s2-nadejako/0.7-SNAPSHOT/s2-nadejako-0.7-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/h2database/h2/1.0.20070617/h2-1.0.20070617.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/freemarker/freemarker/2.3.9/freemarker-2.3.9.jar"/>
-  <classpathentry kind="var" path="M2_REPO/poi/poi/2.5.1-final-20040804/poi-2.5.1-final-20040804.jar"/>
-  <classpathentry kind="var" path="M2_REPO/postgresql/postgresql/8.1-404.jdbc3/postgresql-8.1-404.jdbc3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/dao/s2-dao-tiger/1.0.41/s2-dao-tiger-1.0.41.jar"/>
-  <classpathentry kind="var" path="M2_REPO/ozacc-mail/ozacc-mail/1.2.1/ozacc-mail-1.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/mai/s2mai/0.9.6-SNAPSHOT/s2mai-0.9.6-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/ognl/ognl/2.6.7/ognl-2.6.7.jar"/>
-  <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/dao/s2-dao/1.0.41/s2-dao-1.0.41.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbytools/10.1.2.1/derbytools-10.1.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.2/junit-3.8.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/jexcelapi/jxl/2.4.2/jxl-2.4.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/oracle/ojdbc14/9.2.0.5/ojdbc14-9.2.0.5.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbyclient/10.1.2.1/derbyclient-10.1.2.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.8/log4j-1.2.8.jar" sourcepath="M2_REPO/log4j/log4j/1.2.8/log4j-1.2.8-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbynet/10.1.2.1/derbynet-10.1.2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-framework/2.4.10/s2-framework-2.4.10.jar"/>
+  <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/mail/mail/1.4/mail-1.4.jar" sourcepath="M2_REPO/javax/mail/mail/1.4/mail-1.4-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.0.1B_spec/1.0/geronimo-jta_1.0.1B_spec-1.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/jboss/javassist/3.4.ga/javassist-3.4.ga.jar"/>
+  <classpathentry kind="var" path="M2_REPO/postgresql/postgresql/8.1-404.jdbc3/postgresql-8.1-404.jdbc3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbyLocale_ja_JP/10.1.2.1/derbyLocale_ja_JP-10.1.2.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar" sourcepath="M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/ognl/ognl/2.6.7/ognl-2.6.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/ozacc-mail/ozacc-mail/1.2.2/ozacc-mail-1.2.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/mai/s2mai/0.9.6/s2mai-0.9.6.jar" sourcepath="M2_REPO/org/seasar/mai/s2mai/0.9.6/s2mai-0.9.6-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-ejb_2.1_spec/1.0/geronimo-ejb_2.1_spec-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.8/log4j-1.2.8.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/nadejako/s2-nadejako/0.7-SNAPSHOT/s2-nadejako-0.7-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-framework/2.4.10/s2-framework-2.4.10.jar" sourcepath="M2_REPO/org/seasar/container/s2-framework/2.4.10/s2-framework-2.4.10-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/geronimo-spec/geronimo-spec-j2ee/1.4-rc4/geronimo-spec-j2ee-1.4-rc4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/freemarker/freemarker/2.3.9/freemarker-2.3.9.jar" sourcepath="M2_REPO/org/freemarker/freemarker/2.3.9/freemarker-2.3.9-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/oracle/ojdbc14/9.2.0.5/ojdbc14-9.2.0.5.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/dao/s2-dao-tiger/1.0.41/s2-dao-tiger-1.0.41.jar" sourcepath="M2_REPO/org/seasar/dao/s2-dao-tiger/1.0.41/s2-dao-tiger-1.0.41-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/derby/derbytools/10.1.2.1/derbytools-10.1.2.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/coffee/s2-coffee-script/0.2.1/s2-coffee-script-0.2.1.jar" sourcepath="M2_REPO/org/seasar/coffee/s2-coffee-script/0.2.1/s2-coffee-script-0.2.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/jexcelapi/jxl/2.4.2/jxl-2.4.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.2/junit-3.8.2.jar" sourcepath="M2_REPO/junit/junit/3.8.2/junit-3.8.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/nadejako/nadejako/0.7-SNAPSHOT/nadejako-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/org/seasar/nadejako/nadejako/0.7-SNAPSHOT/nadejako-0.7-SNAPSHOT-sources.jar"/>
 </classpath>
