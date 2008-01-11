@@ -161,11 +161,11 @@ public class BuriStateUtilImpl implements BuriStateUtil {
     }
 
     public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-    	buriStatusEventCaller.saveState(factory, sysContext, walker);
         dataUtil.storeData(factory, sysContext);
         dataUtil.updateBuriData(factory, sysContext);
         BuriStateEntityDto stateDto = createStateDto(factory, sysContext, walker);
         stateDao.insert(stateDto);
+        buriStatusEventCaller.saveState(factory, sysContext, walker);
         return stateDto.getStateID();
     }
 
