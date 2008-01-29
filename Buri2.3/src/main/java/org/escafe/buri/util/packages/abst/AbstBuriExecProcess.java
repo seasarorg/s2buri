@@ -15,6 +15,7 @@ import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.BuriSystemContext;
 import org.escafe.buri.engine.BuriUserContext;
 import org.escafe.buri.event.flow.caller.BuriFlowEventCaller;
+import org.escafe.buri.exception.BuriException;
 import org.escafe.buri.oouo.internal.structure.BuriActivityType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.escafe.buri.util.packages.BranchWalker;
@@ -144,7 +145,9 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
         invokeInfo.interceptors = conditionInterceptors;
         Object result = runThisMethodName(invokeInfo);
     	buriFlowEventCaller.endConditionCheck(this,methodName, condition, sysContext, walker,result);
-        assert result instanceof Boolean : methodName + "の戻り値がBoolean以外です(" + result + ")";
+        if( ! (result instanceof Boolean)) {
+        	throw new BuriException(methodName + "の式"+condition+"の戻り値がBoolean以外です。式に代入(=)を書いてる場合は比較(==)に変えてください (" + result + ")");
+        }
         return (Boolean) result;
     }
 
