@@ -166,8 +166,10 @@ public class BuriActivityType {
     }
 
     public boolean isNoJoin() {
-        if (ExtentedAttributeUtil.getExtendedAttribute(ExtentedAttribute, "NOXORJOIN") == null) {
-            return false;
+        if (ExtentedAttributeUtil.getExtendedAttribute(ExtentedAttribute, "NOJOIN") == null) {
+            if (ExtentedAttributeUtil.getExtendedAttribute(ExtentedAttribute, "NOXORJOIN") == null) {
+                return false;
+            }
         }
         return true;
     }
