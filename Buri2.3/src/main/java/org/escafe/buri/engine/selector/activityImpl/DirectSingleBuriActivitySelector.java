@@ -37,11 +37,11 @@ public class DirectSingleBuriActivitySelector extends AbstractBuriActivitySelect
     @Override
     protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         List activityIds = systemContext.getCallPath().getRealPath().getActivity();
-        if (activityIds.isEmpty()) {
+        if (activities.isEmpty()) {
             return false;
         }
-        if (activityIds.size() != 1) {
-            throw new UnsupportedOperationException();
+        if (activities.size() != 1) {
+        	return false;
         }
         return true;
     }

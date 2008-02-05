@@ -4,6 +4,7 @@
  */
 package org.escafe.buri.engine.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -343,6 +344,62 @@ public class BuriEngineTest extends S2TestCase {
         assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
 
     }
+    
+    
+    public void test07_2Tx() {
+        WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
+        engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
+        BuriTestINTDto testDto = new BuriTestINTDto();
+        testDto.setValue("testValue");
+
+        BuriUserContext userContext = engine.createUserContext(testDto,null,null,null);
+        BuriSystemContext sysContext = engine.createSystemContext("basicTest.test07.SAND",userContext);
+        
+        int stateSize = stateDao_.getNoProcessBuriState().size();
+        engine.execute(sysContext,null);
+        
+        assertTrue(testDto.getTestID() != 0);
+        assertEquals(stateSize+4,stateDao_.getNoProcessBuriState().size());
+
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test07.FM1",userContext);
+        
+        stateSize = stateDao_.getNoProcessBuriState().size();
+        engine.execute(sysContext,null);
+        
+        assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
+
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test07.FM2",userContext);
+        
+        stateSize = stateDao_.getNoProcessBuriState().size();
+        engine.execute(sysContext,null);
+        
+        assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
+
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test07",userContext);
+        List<String> actNames = new ArrayList<String>();
+        actNames.add("FM2");
+        actNames.add("FM3");
+        sysContext.setActivityNames(actNames);
+        
+        stateSize = stateDao_.getNoProcessBuriState().size();
+        engine.execute(sysContext,null);
+        
+        assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
+
+        userContext = engine.createUserContext(testDto,null,null,null);
+        sysContext = engine.createSystemContext("basicTest.test07.FM4",userContext);
+        
+        stateSize = stateDao_.getNoProcessBuriState().size();
+        engine.execute(sysContext,null);
+        
+        assertEquals(stateSize-1,stateDao_.getNoProcessBuriState().size());
+
+    }
+    
+    
     public void test08Tx() {
         WakanagoEngine engine = (WakanagoEngine)getComponent(WakanagoEngine.class);
         engine.readWorkFlowFromResource("wakanagoxpdl/basicTest.xpdl","basicTest");
