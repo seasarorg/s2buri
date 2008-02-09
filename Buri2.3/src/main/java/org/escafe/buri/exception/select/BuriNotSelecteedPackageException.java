@@ -18,6 +18,6 @@ public class BuriNotSelecteedPackageException extends BuriXpdlPathException {
     private static final long serialVersionUID = 2387595193717917852L;
 
     public BuriNotSelecteedPackageException(BuriPath path) {
-        super("EBRI0010", path);
+        super("EBRI0104", path);
     }
 }

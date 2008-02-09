@@ -18,7 +18,7 @@ public class BuriManySelectProcessException extends BuriXpdlPathException {
     private static final long serialVersionUID = -3982856125128375730L;
 
     public BuriManySelectProcessException(BuriPath path) {
-        super("EBRI0008", path);
+        super("EBRI0102", path);
     }
 
     public BuriManySelectProcessException(BuriPath path, String target) {

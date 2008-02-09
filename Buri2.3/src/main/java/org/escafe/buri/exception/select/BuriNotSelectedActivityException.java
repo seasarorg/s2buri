@@ -19,7 +19,7 @@ public class BuriNotSelectedActivityException extends BuriXpdlPathException {
     private static final long serialVersionUID = -8358547778982675056L;
 
     public BuriNotSelectedActivityException(BuriPath path, ParticipantProvider participant) {
-        super("EBRI0007", path, participant);
+        super("EBRI0103", path, participant);
     }
 
 }

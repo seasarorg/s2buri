@@ -15,6 +15,11 @@ import org.seasar.framework.util.ResourceUtil;
 public class DelayLoaderImpl implements DelayLoader {
     private Map resource = new HashMap();
     private Map file = new HashMap();
+    
+    public void destroy() {
+        resource = new HashMap();
+        file = new HashMap();
+    }
 
     public void addResourceLoader(Object obj, DelayLoaderInfo loaderInfo) throws Throwable {
         addLoader(resource, obj, loaderInfo);
@@ -58,6 +63,7 @@ public class DelayLoaderImpl implements DelayLoader {
         if (readFile.lastModified() != loaderInfo.getLastModified()) {
             loaderInfo.setLastModified(readFile.lastModified());
             loaderInfo.getInvoke().proceed();
+            System.gc();
         }
     }
 

@@ -49,7 +49,7 @@ public class DirectMultiBuriActivitySelector extends AbstractBuriActivitySelecto
 
     @Override
     protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        if ((activities.size() > 0) && (systemContext.getCallPath().getActivityName().size() > 0)) {
+        if ((activities.size() > 0) && (systemContext.getCallPath().getActivityName().size() > 0 || systemContext.getActivityNames() != null)) {
             return true;
         }
         return false;
