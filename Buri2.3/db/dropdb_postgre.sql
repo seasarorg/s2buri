@@ -1,45 +1,45 @@
-drop view BuriPathDataUser;
+drop view IF EXISTS BuriPathDataUser;
 
-drop view BuriPathData;
+drop view IF EXISTS BuriPathData;
 
-drop view BuriPathHistoryDataUser;
+drop view IF EXISTS BuriPathHistoryDataUser;
 
-drop view BuriPathHistoryData;
+drop view IF EXISTS BuriPathHistoryData;
 
 
-DROP TABLE BuriStateUser;
+DROP TABLE IF EXISTS BuriStateUser CASCADE;
 
-DROP SEQUENCE BuriStateUserID;
+DROP SEQUENCE IF EXISTS BuriStateUserID;
 
-DROP TABLE BuriState;
+DROP TABLE IF EXISTS BuriState CASCADE;
 
-DROP SEQUENCE BuriStateID;
+DROP SEQUENCE IF EXISTS BuriStateID;
 
-DROP TABLE BuriStateUndoLog;
+DROP TABLE IF EXISTS BuriStateUndoLog CASCADE;
 
-DROP SEQUENCE BuriStateUndoLogID;
+DROP SEQUENCE IF EXISTS BuriStateUndoLogID;
 
-DROP TABLE BuriTransaction;
+DROP TABLE IF EXISTS BuriTransaction CASCADE;
 
-DROP SEQUENCE BuriTransactionID;
+DROP SEQUENCE IF EXISTS BuriTransactionID;
 
-DROP TABLE BuriBranch;
+DROP TABLE IF EXISTS BuriBranch CASCADE;
 
-DROP SEQUENCE BuriBranchID;
+DROP SEQUENCE IF EXISTS BuriBranchID;
 
-DROP TABLE BuriDataPathHistory;
+DROP TABLE IF EXISTS BuriDataPathHistory CASCADE;
 
-DROP SEQUENCE BuriDataPathHistoryID;
+DROP SEQUENCE IF EXISTS BuriDataPathHistoryID;
 
-DROP TABLE BuriData;
+DROP TABLE IF EXISTS BuriData CASCADE;
 
-DROP SEQUENCE BuriDataID;
+DROP SEQUENCE IF EXISTS BuriDataID;
 
-DROP TABLE BuriPath;
+DROP TABLE IF EXISTS BuriPath CASCADE;
 
-DROP SEQUENCE BuriPathID;
+DROP SEQUENCE IF EXISTS BuriPathID;
 
-DROP TABLE BuriUser;
+DROP TABLE IF EXISTS BuriUser CASCADE;
 
-DROP SEQUENCE BuriUserID;
+DROP SEQUENCE IF EXISTS BuriUserID;
 
