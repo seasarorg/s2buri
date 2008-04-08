@@ -35,7 +35,7 @@ public class CompilePackageImpl implements CompilePackage {
 
     protected void compileDataAccess(BuriExePackages exePackages, BuriPackageType buriPackage) {
         BuriDataAccessFactory factory = (BuriDataAccessFactory) exePackages;
-        dataFieldCompiler.compileAndSetting(factory, buriPackage, null);
+        dataFieldCompiler.compileAndSetting(factory, buriPackage, null,exePackages.getClass().getClassLoader());
     }
 
     public S2Container getContainer() {

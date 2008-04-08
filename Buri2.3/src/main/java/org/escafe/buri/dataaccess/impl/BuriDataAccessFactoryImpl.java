@@ -21,6 +21,17 @@ public class BuriDataAccessFactoryImpl implements BuriDataAccessFactory {
     private Map filterAccess = new HashMap();
     private Map preprocess = new HashMap();
     private Map childFactory = new HashMap();
+    
+    public void destroy() {
+    	dispose();
+    }
+    
+    public void dispose() {
+    	dataAccess = new HashMap();
+    	filterAccess = new HashMap();
+    	preprocess = new HashMap();
+    	childFactory = new HashMap();
+    }
 
     public void setDataAccessUtil(Class tgtClass, DataAccessUtilLongKey utilLongKey) {
         dataAccess.put(tgtClass, utilLongKey);

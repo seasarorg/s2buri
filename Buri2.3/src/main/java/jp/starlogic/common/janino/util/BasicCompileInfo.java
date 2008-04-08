@@ -15,6 +15,8 @@ public class BasicCompileInfo {
     private Class baseClass;
     private Class interfaceClass[];
 
+    private ClassLoader parentClassLoader = this.getClass().getClassLoader();
+
     public Class getBaseClass() {
         return baseClass;
     }
@@ -62,5 +64,13 @@ public class BasicCompileInfo {
     public void setTemplateFileName(String templateFileName) {
         this.templateFileName = templateFileName;
     }
+
+	public ClassLoader getParentClassLoader() {
+		return parentClassLoader;
+	}
+
+	public void setParentClassLoader(ClassLoader parentClassLoader) {
+		this.parentClassLoader = parentClassLoader;
+	}
 
 }

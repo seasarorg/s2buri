@@ -20,4 +20,6 @@ public interface BuriDataAccessFactory extends DataAccessFactory {
     void setPreprocessAccessUtil(Class tgtClass, PreprocessAccessUtil accessUtil);
 
     void addChildFactory(String key, DataAccessFactory factory);
+    
+    void destroy();
 }

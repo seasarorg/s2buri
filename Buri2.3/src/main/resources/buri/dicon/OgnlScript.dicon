@@ -24,6 +24,7 @@
 				</component>
 			</arg>
 		</initMethod>
+		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.seasar.nadejako.adapter.s2.S2Context"/>
 </components>

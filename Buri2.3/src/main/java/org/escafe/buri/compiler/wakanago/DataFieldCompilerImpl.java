@@ -39,34 +39,34 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
     private String preprocessTemplateName = "ftl/Preprocess.ftl";
     private BuriDataFieldCompilePreprocessor bdfcp;
     private BuriComplieEventCaller eventCaller;
-
-    public void compileAndSetting(BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process) {
+    
+    public void compileAndSetting(BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process,ClassLoader classLoader) {
         Map dataField = getDataField(buriPackage, process);
         Iterator ite = dataField.keySet().iterator();
         while (ite.hasNext()) {
             String className = (String) ite.next();
             BuriDataFieldType fieldType = (BuriDataFieldType) dataField.get(className);
-            compileAndSettingOne(fieldType, factory, buriPackage, process);
+            compileAndSettingOne(fieldType, factory, buriPackage, process,classLoader);
         }
     }
 
     public void compileAndSettingOne(BuriDataFieldType fieldType, BuriDataAccessFactory factory, BuriPackageType buriPackage,
-            BuriWorkflowProcessType process) {
+            BuriWorkflowProcessType process,ClassLoader classLoader) {
         String className = fieldType.getId();
         fieldType = bdfcp.preprocess(fieldType);
         if (dataAccessCompileUtil.isDataAccessUtil(fieldType)) {
-            dataAccessCompileUtil.setupDataAccessUtil(factory, className, fieldType, buriPackage, process);
+            dataAccessCompileUtil.setupDataAccessUtil(factory, className, fieldType, buriPackage, process,classLoader);
         }
         if (isPreProcessUtil(fieldType)) {
-            setupPreprocessUtil(factory, className, fieldType, process, buriPackage);
+            setupPreprocessUtil(factory, className, fieldType, process, buriPackage,classLoader);
         }
     }
 
     protected void setupPreprocessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, BuriWorkflowProcessType process,
-            BuriPackageType buriPackage) {
+            BuriPackageType buriPackage,ClassLoader classLoader) {
     	String targetName = buriPackage.getName() + "/" + process.getName() + "/" + fieldType.getId();
         eventCaller.callStartCompile(this,BuriCompileEvent.CompileTargetType.Preprocessor,targetName);
-        PreprocessAccessUtil util = compile(fieldType, process, buriPackage);
+        PreprocessAccessUtil util = compile(fieldType, process, buriPackage,classLoader);
         Class clazz = ClassUtil.forName(className);
         factory.setPreprocessAccessUtil(clazz, util);
         BuriExePackages exePackage = null;
@@ -81,7 +81,7 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
         eventCaller.callEndObjectInit(this,BuriCompileEvent.CompileTargetType.Preprocessor,targetName,util);
     }
 
-    protected PreprocessAccessUtil compile(BuriDataFieldType fieldType, BuriWorkflowProcessType process, BuriPackageType buriPackage) {
+    protected PreprocessAccessUtil compile(BuriDataFieldType fieldType, BuriWorkflowProcessType process, BuriPackageType buriPackage,ClassLoader classLoader) {
     	String targetName = buriPackage.getName() + "/" + process.getName() + "/" + fieldType.getId();
         String createCalssName = getPreprocessClassName(fieldType, process, buriPackage);
         BasicCompileInfo info = new BasicCompileInfo();
@@ -91,6 +91,7 @@ public class DataFieldCompilerImpl implements DataFieldCompiler {
         info.setBaseObjectName("fieldType");
         info.setBaseObject(fieldType);
         info.setTemplateFileName(preprocessTemplateName);
+        info.setParentClassLoader(classLoader);
         Object result = compler.Compile(info);
         eventCaller.callEndCompile(this,BuriCompileEvent.CompileTargetType.Preprocessor,targetName,result);
         eventCaller.callStartObjectInit(this,BuriCompileEvent.CompileTargetType.Preprocessor,targetName);

@@ -23,7 +23,7 @@ public class ExecuteInterceptor extends AbstractInterceptor {
      * 
      */
     private static final long serialVersionUID = 1L;
-
+    
     public Object invoke(MethodInvocation invocation) throws Throwable {
         ScriptProcessor processor = new ScriptProcessor();
         //        Script script = factory.getScript("ognl");

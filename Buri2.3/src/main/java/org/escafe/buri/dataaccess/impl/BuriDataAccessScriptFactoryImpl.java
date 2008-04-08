@@ -14,6 +14,19 @@ public class BuriDataAccessScriptFactoryImpl extends BuriDataAccessFactoryImpl {
     private Map classToUtil = new HashMap();
     private ScriptFactory scriptFactory;
     private ClassDefUtil classDefUtil;
+    
+    
+    public void destroy() {
+    	dispose();
+    }
+    
+    public void dispose() {
+    	super.dispose();
+    	preprocessor = null;
+    	classToUtil.clear();
+    	scriptFactory = null;
+    	classDefUtil = null;
+    }
 
     @Override
     public DataAccessUtil getDataAccessUtil(Class tgtClass) {

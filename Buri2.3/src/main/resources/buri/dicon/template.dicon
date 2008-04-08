@@ -3,5 +3,6 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components>
 	<component class="org.escafe.buri.common.util.template.impl.TextTemplateFreeMakerImpl">
+		<destroyMethod name="destroy" ></destroyMethod>
 	</component>
 </components>

@@ -36,5 +36,9 @@ public class BuriDataAccessDummyFactoryImpl implements BuriDataAccessFactory {
     public PreprocessAccessUtil getPreprocessAccessUtil(Class tgtClass) {
         return null;
     }
+    
+    public void destroy() {
+    	
+    }
 
 }

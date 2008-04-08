@@ -26,7 +26,7 @@ public class ResourceLoadInterceptor extends AbstractInterceptor {
      * 
      */
     private static final long serialVersionUID = 1L;
-
+    
     public Object invoke(MethodInvocation invocation) throws Throwable {
         String key = invocation.getArguments()[keyNo].toString();
         String resource = invocation.getArguments()[resourceNo].toString();

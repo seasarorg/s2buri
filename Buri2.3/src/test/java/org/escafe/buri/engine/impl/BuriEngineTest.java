@@ -60,6 +60,7 @@ public class BuriEngineTest extends S2TestCase {
         
         assertTrue(testDto.getTestID() == 0);
         assertEquals(stateSize,stateDao_.getNoProcessBuriState().size());
+        System.gc();
     }
     
     public void test02Tx() {

@@ -54,6 +54,7 @@ public class TigerBaoMetadataFactoryImpl implements BaoMetadataFactory {
 
     public void dispose() {
         metadatas.clear();
+        classDefUtil = null;
     }
 
     public BaoMetadata getBaoMetadata(MethodInvocation invoke) {

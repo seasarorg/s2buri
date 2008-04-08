@@ -29,7 +29,7 @@ public class BuriSignalImpl implements BuriSignal {
 	private BuriUserDao userDao;
 	
 	private BuriStateDao stateDao;
-
+    
 	private Long getLongKey(Object data, DataAccessFactory accessFactory) {
 		Long longKey = null;
 		DataAccessUtil accessUtil = accessFactory.getDataAccessUtil(data.getClass());

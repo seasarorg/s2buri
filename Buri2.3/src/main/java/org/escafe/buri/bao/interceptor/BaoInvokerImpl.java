@@ -30,6 +30,7 @@ public class BaoInvokerImpl implements BaoInvoker {
     private ClassDefUtil classDefUtil;
     private BuriAutoSelectProcessor processor;
 
+  
     public Object invoke(BaoInvokeMetadata invokeMetadata, MethodInvocation invoke) {
         String path = getBuriPath(invokeMetadata);
         String action = invokeMetadata.getAction();

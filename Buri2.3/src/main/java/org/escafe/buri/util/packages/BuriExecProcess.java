@@ -21,4 +21,6 @@ public interface BuriExecProcess {
     BranchWalker readBranchWalker(BuriSystemContext sysContext);
 
     BuriWorkflowProcessType getBuriWorkflowProcessType();
+    
+    void destroy();
 }

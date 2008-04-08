@@ -7,6 +7,7 @@
 	<component class="org.escafe.buri.common.util.ClassDefUtilImpl">
 	</component>
 	<component class="org.escafe.buri.bao.impl.TigerBaoMetadataFactoryImpl">
+		<destroyMethod name="dispose"></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.bao.interceptor.BaoInvokerImpl">
 	</component>

@@ -28,6 +28,12 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     private ClassDefUtil classDefUtil;
     private BuriJoinWaitingUtil joinWaitingUtil;
 
+    public void destroy() {
+    	super.destroy();
+    	dataAccessFactory.destroy();
+    	dataAccessFactory = null;
+    }
+    
     @Override
     public void setup(BuriWorkflowProcessType process) {
         super.setup(process);

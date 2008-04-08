@@ -34,7 +34,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	private S2Container container;
 	private ClassDefUtil classDefUtil;
 	private DataAccessRuleEventCaller dataAccessRuleEventCaller;
-
+    
 	@Override
 	public boolean getRequiredRule(BuriDataFieldType src) {
 		if (hasName(src, "preprocess")) {

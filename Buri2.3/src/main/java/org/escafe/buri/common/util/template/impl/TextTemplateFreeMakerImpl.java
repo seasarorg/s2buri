@@ -27,6 +27,10 @@ import freemarker.template.TemplateException;
 public class TextTemplateFreeMakerImpl implements TextTemplate {
     private Configuration configuration = new Configuration();
 
+    public void destroy() {
+    	configuration = new Configuration();
+    }
+    
     public TextTemplateFreeMakerImpl() {
         //        configuration.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);  
     }

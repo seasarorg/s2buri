@@ -22,6 +22,7 @@
 		#self.readWorkFlowFromResource("sample.xpdl")
 		</initMethod>
 		-->
+		<destroyMethod name="destory"></destroyMethod>
 		<initMethod name="addActivitySelector">
 			<arg><component class="org.escafe.buri.engine.selector.activityImpl.DataStateBuriActivitySelector">
 				</component></arg>
@@ -61,6 +62,7 @@
 
 	<component class="org.escafe.buri.dao.util.impl.BuriDataUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
+		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriPathUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
@@ -70,6 +72,7 @@
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BTIDUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
+		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriUndoLogUtilNoImpl">
 		<aspect>BuriInterceptorChain</aspect>
@@ -80,6 +83,7 @@
 
 
 	<component class="org.escafe.buri.compiler.wakanago.WakanagoCompilerImpl">
+		<property name="processCompile">true</property>
 	</component>
 	<component class="org.escafe.buri.compiler.wakanago.CompilePackageImpl">
 	</component>

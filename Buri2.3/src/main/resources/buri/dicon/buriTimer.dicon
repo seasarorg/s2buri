@@ -19,6 +19,7 @@
 		<!--<aspect>aop.traceInterceptor</aspect>-->
 		<initMethod name="addService"><arg>"BuriAutoInvokeService"</arg></initMethod>
 		<initMethod name="addService"><arg>"StartupService"</arg></initMethod>
+		<destroyMethod name="destroy"></destroyMethod>
 	</component>
 	
 	<component class="jp.starlogic.servicemanager.impl.ExecuteServiceImpl" instance="prototype" >

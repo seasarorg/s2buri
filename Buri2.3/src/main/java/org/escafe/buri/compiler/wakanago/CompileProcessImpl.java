@@ -32,8 +32,9 @@ public class CompileProcessImpl implements CompileProcess {
     private DataFieldCompiler dataFieldCompiler;
     private BuriComplieEventCaller eventCaller;
 
-    public void compile(BuriExePackages result, BuriWorkflowProcessType process, ParticipantProvider provider) {
-        BuriExecProcess exeProcess = compileProcess(process, result.getBuriPackageType(), provider);
+
+    public void compile(BuriExePackages result, BuriWorkflowProcessType process, ParticipantProvider provider,ClassLoader classLoader) {
+        BuriExecProcess exeProcess = compileProcess(process, result.getBuriPackageType(), provider,classLoader);
         result.setProcess(process.getId(), exeProcess);
         exeProcess.setBuriExePackages(result);
         BuriDataAccessFactory accessFactory = (BuriDataAccessFactory) exeProcess;
@@ -48,10 +49,10 @@ public class CompileProcessImpl implements CompileProcess {
     protected void compileDataAccess(BuriExecProcess exeProcess, BuriWorkflowProcessType process) {
         BuriPackageType buriPackage = process.getPackageType();
         BuriDataAccessFactory factory = (BuriDataAccessFactory) exeProcess;
-        dataFieldCompiler.compileAndSetting(factory, buriPackage, process);
+        dataFieldCompiler.compileAndSetting(factory, buriPackage, process,exeProcess.getClass().getClassLoader());
     }
 
-    protected BuriExecProcess compileProcess(BuriWorkflowProcessType process, BuriPackageType buriPackage, ParticipantProvider provider) {
+    protected BuriExecProcess compileProcess(BuriWorkflowProcessType process, BuriPackageType buriPackage, ParticipantProvider provider,ClassLoader classLoader) {
     	String tgt = buriPackage.getName() + "." + process.getName();
         eventCaller.callStartCompile(this,BuriCompileEvent.CompileTargetType.Process,tgt);
         BasicCompileInfo info = new BasicCompileInfo();
@@ -61,6 +62,7 @@ public class CompileProcessImpl implements CompileProcess {
         info.setBaseObjectName("process");
         info.setBaseObject(process);
         info.setTemplateFileName(processTemplateName);
+        info.setParentClassLoader(classLoader);
         BuriExecProcess exeProcess = (BuriExecProcess) compler.Compile(info);
         eventCaller.callEndCompile(this,BuriCompileEvent.CompileTargetType.Process,tgt,exeProcess);
         eventCaller.callStartObjectInit(this,BuriCompileEvent.CompileTargetType.Process,tgt);

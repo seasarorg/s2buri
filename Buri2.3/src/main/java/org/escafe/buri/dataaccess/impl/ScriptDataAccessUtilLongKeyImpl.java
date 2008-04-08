@@ -18,6 +18,7 @@ public class ScriptDataAccessUtilLongKeyImpl extends AbstDataAccessUtilLongKey {
     private Script dataAccessScript;
     private Script pkeyExpressionScript;
 
+
     public ScriptDataAccessUtilLongKeyImpl(BuriDataFieldType fieldType) {
         this.fieldType = fieldType;
         pkey = (String) fieldType.getKeys().keySet().toArray()[0];

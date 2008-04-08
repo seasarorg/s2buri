@@ -38,18 +38,19 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
     private String manyKeyTemplateName = "ftl/DataAccessUtilManyKey.ftl";
     private BuriComplieEventCaller eventCaller;
 
+    
     public void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, BuriPackageType buriPackage,
-            BuriWorkflowProcessType process) {
+            BuriWorkflowProcessType process,ClassLoader classLoader) {
         String processID = "";
         if (process != null) {
             processID = process.getId();
         }
-        setupDataAccessUtil(factory, className, fieldType, buriPackage.getId(), processID);
+        setupDataAccessUtil(factory, className, fieldType, buriPackage.getId(), processID,classLoader);
     }
 
-    public void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, String packageId, String processId) {
+    public void setupDataAccessUtil(BuriDataAccessFactory factory, String className, BuriDataFieldType fieldType, String packageId, String processId,ClassLoader classLoader) {
         Class clazz = ClassUtil.forName(className);
-        DataAccessUtil accessUtil = compileDataAccess(fieldType, processId, packageId);
+        DataAccessUtil accessUtil = compileDataAccess(fieldType, processId, packageId,classLoader);
         BuriExePackages exePackage = null;
         if (factory instanceof BuriExePackages) {
             exePackage = (BuriExePackages) factory;
@@ -85,18 +86,18 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
         return true;
     }
 
-    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, BuriPackageType buriPackage, BuriWorkflowProcessType process) {
-        return compileDataAccess(fieldType, process.getId(), buriPackage.getId());
+    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, BuriPackageType buriPackage, BuriWorkflowProcessType process,ClassLoader classLoader) {
+        return compileDataAccess(fieldType, process.getId(), buriPackage.getId(),classLoader);
     }
 
-    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, String processId, String packageId) {
+    public DataAccessUtil compileDataAccess(BuriDataFieldType fieldType, String processId, String packageId,ClassLoader classLoader) {
         String createClassName = getDataAccessClassName(fieldType, processId, packageId);
         eventCaller.callStartCompile(this,BuriCompileEvent.CompileTargetType.DataField,createClassName);
         DataAccessUtil util = null;
         if (isUseLongKeyType(fieldType)) {
-        	util = comileDataAccessUtilLongKey(fieldType, createClassName);
+        	util = comileDataAccessUtilLongKey(fieldType, createClassName,classLoader);
         } else {
-        	util = comileDataAccessUtilManyKey(fieldType, createClassName);
+        	util = comileDataAccessUtilManyKey(fieldType, createClassName,classLoader);
         }
         eventCaller.callEndCompile(this,BuriCompileEvent.CompileTargetType.DataField,createClassName,util);
         return util;
@@ -110,7 +111,7 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
         return packageId + "." + processId + "_" + lastClassName;
     }
 
-    private DataAccessUtilLongKey comileDataAccessUtilLongKey(BuriDataFieldType fieldType, String createClassName) {
+    private DataAccessUtilLongKey comileDataAccessUtilLongKey(BuriDataFieldType fieldType, String createClassName,ClassLoader classLoader) {
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName(createClassName);
         info.setBaseClass(AbstDataAccessUtilLongKey.class);
@@ -118,13 +119,14 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
         info.setBaseObjectName("fieldType");
         info.setBaseObject(fieldType);
         info.setTemplateFileName(longKeyTemplateName);
+        info.setParentClassLoader(classLoader);
         Object result = compler.Compile(info);
         DataAccessUtilLongKey dataAccessUtil = (DataAccessUtilLongKey) result;
         container.injectDependency(dataAccessUtil, AbstDataAccessUtilLongKey.class);
         return dataAccessUtil;
     }
 
-    private DataAccessUtilManyKey comileDataAccessUtilManyKey(BuriDataFieldType fieldType, String createClassName) {
+    private DataAccessUtilManyKey comileDataAccessUtilManyKey(BuriDataFieldType fieldType, String createClassName,ClassLoader classLoader) {
         BasicCompileInfo info = new BasicCompileInfo();
         info.setOutputClassName(createClassName);
         info.setBaseClass(AbstDataAccessUtilManyKey.class);
@@ -132,6 +134,7 @@ public class DataAccessCompileUtilImpl implements DataAccessCompileUtil {
         info.setBaseObjectName("fieldType");
         info.setBaseObject(fieldType);
         info.setTemplateFileName(manyKeyTemplateName);
+        info.setParentClassLoader(classLoader);
         Object result = compler.Compile(info);
         DataAccessUtilManyKey dataAccessUtil = (DataAccessUtilManyKey) result;
         container.injectDependency(dataAccessUtil, AbstDataAccessUtilManyKey.class);

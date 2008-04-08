@@ -58,6 +58,17 @@ public class WakanagoEngineImpl implements WakanagoEngine {
     protected BuriEngineEventCaller buriEngineEventCaller;
     protected BuriActivitySelectEventCaller buriActivitySelectEventCaller;
     protected BuriProcessSelectEventCaller buriProcessSelectEventCaller;
+    
+    public void destory() {
+    	for(BuriExePackages packages : packageObjs.values()) {
+    		if(packages != null) {
+    			packages.destroy();
+    		}
+    	}
+    	appUserIdMap.clear();
+    	packageObjs.clear();
+    	System.gc();
+    }
 
     public void readWorkFlowFromResource(String workFlowName, String resourceName) {
         readFromResource(workFlowName, resourceName, null);
@@ -100,9 +111,13 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 
     protected void readFromBuriExePackages(BuriExePackages exePackages, String resourceName, ParticipantProvider provider) {
         String packageId = exePackages.getBuriPackageType().getId();
-        packageObjs.put(packageId, exePackages);
+        BuriExePackages oldPkg = packageObjs.put(packageId, exePackages);
         packageObjs.put(resourceName, exePackages);
         appUserIdMap.put(packageId, provider);
+        if(oldPkg != null) {
+        	oldPkg.destroy();
+        	System.gc();
+        }
     }
 
     public void setupBuriEngineConfig(BuriEngineConfig engineConfig) {

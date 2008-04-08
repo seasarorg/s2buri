@@ -31,7 +31,9 @@ public class WakanagoCompilerImpl implements BuriCompiler {
     private CompilePackage compilePackage;
     
     private BuriComplieEventCaller eventCaller;
-
+    
+    private boolean isProcessCompile = true;
+    
     public BuriExePackages CompileInputStream(InputStream workFlowIs, ParticipantProvider provider) {
         logger.info("読み込み開始");
         eventCaller.callStartReadXpdl(this,BuriCompileEvent.CompileTargetType.XPDL,null);
@@ -86,14 +88,15 @@ public class WakanagoCompilerImpl implements BuriCompiler {
     protected BuriExePackages Compile(BuriPackageType buriPackage, ParticipantProvider provider) {
         BuriExePackages result = compilePackage.compile(buriPackage);
         result.setParticipantProvider(provider);
-        Map processMap = buriPackage.getProcessById();
-        Iterator ite = processMap.keySet().iterator();
-        while (ite.hasNext()) {
-            String procId = (String) ite.next();
-            BuriWorkflowProcessType process = (BuriWorkflowProcessType) processMap.get(procId);
-            compileProcess.compile(result, process, provider);
+        if(isProcessCompile) {
+	        Map processMap = buriPackage.getProcessById();
+	        Iterator ite = processMap.keySet().iterator();
+	        while (ite.hasNext()) {
+	            String procId = (String) ite.next();
+	            BuriWorkflowProcessType process = (BuriWorkflowProcessType) processMap.get(procId);
+	            compileProcess.compile(result, process, provider,result.getClass().getClassLoader());
+	        }
         }
-
         return result;
     }
 
@@ -135,6 +138,14 @@ public class WakanagoCompilerImpl implements BuriCompiler {
 
 	public void setEventCaller(BuriComplieEventCaller eventCaller) {
 		this.eventCaller = eventCaller;
+	}
+
+	public boolean isProcessCompile() {
+		return isProcessCompile;
+	}
+
+	public void setProcessCompile(boolean isProcessCompile) {
+		this.isProcessCompile = isProcessCompile;
 	}
 
 }

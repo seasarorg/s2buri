@@ -31,6 +31,10 @@ public class BuriDataUtilImpl implements BuriDataUtil {
     private BuriPathDataDao pathDataDao;
     private ClassDefUtil classDefUtil = new ClassDefUtilImpl();
 
+    public void dispose() {
+    	classDefUtil = new ClassDefUtilImpl();
+    }
+
     public long countByPathAndDatas(String pathName, List dataList, DataAccessFactory factory, BuriSystemContext sysContext) {
         if ((dataList != null) && (dataList.size() == 0)) {
             return 0;

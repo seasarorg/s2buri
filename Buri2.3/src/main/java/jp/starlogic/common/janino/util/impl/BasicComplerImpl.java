@@ -53,9 +53,10 @@ public class BasicComplerImpl implements BasicCompler {
             Scanner scanner = new Scanner(null, new StringReader(src));
             Class baseClass = info.getBaseClass();
             Class interfaceClass[] = info.getInterfaceClass();
-            data = ClassBodyEvaluator.createFastClassBodyEvaluator(scanner, info.getOutputClassName(), baseClass, interfaceClass, null);
+            ClassLoader parentClassLoader = info.getParentClassLoader();
+            data = ClassBodyEvaluator.createFastClassBodyEvaluator(scanner, info.getOutputClassName(), baseClass, interfaceClass, parentClassLoader);
         } catch (CompileException e) {
-            compileProcessError(src, info.getBaseObject(), e.getLocation(), e.getMessage());
+            compileProcessError(src, info.getBaseObject(), null ,e.getMessage());
             throw new CompileRuntimeException(e);
         } catch (ParseException e) {
             compileProcessError(src, info.getBaseObject(), e.getLocation(), e.getMessage());

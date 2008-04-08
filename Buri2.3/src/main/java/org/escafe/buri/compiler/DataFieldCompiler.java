@@ -10,7 +10,7 @@ import org.escafe.buri.oouo.internal.structure.BuriPackageType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 
 public interface DataFieldCompiler {
-    void compileAndSettingOne(BuriDataFieldType fieldType, BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process);
+    void compileAndSettingOne(BuriDataFieldType fieldType, BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process,ClassLoader classLoader);
 
-    void compileAndSetting(BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process);
+    void compileAndSetting(BuriDataAccessFactory factory, BuriPackageType buriPackage, BuriWorkflowProcessType process,ClassLoader classLoader);
 }

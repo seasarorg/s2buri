@@ -2,5 +2,6 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
-	<component name="extensionDAF" class="org.escafe.buri.dataaccess.impl.BuriDataAccessDummyFactoryImpl"></component>
+	<component name="extensionDAF" class="org.escafe.buri.dataaccess.impl.BuriDataAccessDummyFactoryImpl">
+	</component>
 </components>

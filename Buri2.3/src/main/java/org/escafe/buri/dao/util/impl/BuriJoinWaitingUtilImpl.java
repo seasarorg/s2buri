@@ -18,7 +18,7 @@ public class BuriJoinWaitingUtilImpl implements BuriJoinWaitingUtil{
 	private BuriJoinWaitingDao joinWaitingDao;
 	private BuriPathUtil pathUtil;
 	private BuriBranchDao branchDao;
-
+	
 	public void addWaiting(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker, String nextName, String nextId) {
 		BranchWalker nextWalker = walker.moveNext(nextName, nextId);
 		BuriPath nextPath = nextWalker.getNowPath();

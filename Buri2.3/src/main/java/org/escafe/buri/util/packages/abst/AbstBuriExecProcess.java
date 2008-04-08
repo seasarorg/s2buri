@@ -39,6 +39,10 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     
     protected BuriFlowEventCaller buriFlowEventCaller;
 
+    public void destroy() {
+    	process = null;
+    }
+    
     protected Script getConditionScript() {
         return scriptFactory.getScript(buriExePackages.getConditionExpressionType());
     }

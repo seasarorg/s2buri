@@ -35,6 +35,7 @@ public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector 
     private BuriDataUtil dataUtil;
     private BuriPathUtil pathUtil;
 
+    
     @Override
     protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
         Set<BuriActivityType> result = new HashSet<BuriActivityType>();

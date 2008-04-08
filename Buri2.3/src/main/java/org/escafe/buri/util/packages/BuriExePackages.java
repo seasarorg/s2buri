@@ -32,5 +32,7 @@ public interface BuriExePackages {
     String getPreprocessScriptType();
 
     String getTimeLimitExpressionType();
+    
+    void destroy();
 
 }

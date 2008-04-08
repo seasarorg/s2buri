@@ -20,6 +20,10 @@ public class DelayLoaderImpl implements DelayLoader {
         resource = new HashMap();
         file = new HashMap();
     }
+    
+    public void dispose() {
+    	destroy();
+    }
 
     public void addResourceLoader(Object obj, DelayLoaderInfo loaderInfo) throws Throwable {
         addLoader(resource, obj, loaderInfo);

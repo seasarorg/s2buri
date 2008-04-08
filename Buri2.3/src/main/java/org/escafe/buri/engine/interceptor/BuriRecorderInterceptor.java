@@ -16,7 +16,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 1L;
     private BuriDataPathHistoryDao historyDao;
     private BuriPathUtil pathUtil;
-
+    
     public Object invoke(MethodInvocation invocation) throws Throwable {
         if (!(invocation instanceof BuriMethodInvocation)) {
             return invocation.proceed();

@@ -23,7 +23,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
     private BuriEngine engine;
     private S2Container container;
     private BuriDataUtil dataUtil;
-
+    
     public void toNextStatus(String path, Object data) {
         toNextStatusAction(path, null, data, null, null);
     }

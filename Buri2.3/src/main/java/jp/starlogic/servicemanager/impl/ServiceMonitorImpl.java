@@ -22,6 +22,12 @@ public class ServiceMonitorImpl implements ServiceMonitor {
     private List<String> keyList = new ArrayList<String>();
     private S2Container container;
 
+    public void destroy() {
+    	services.clear();
+    	keyList.clear();
+    	container = null;
+    }
+    
     public void updateStatus(String serviceName, int status) {
         updateStatus(serviceName, status, null);
     }

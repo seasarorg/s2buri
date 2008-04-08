@@ -9,5 +9,5 @@ import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
 import org.escafe.buri.util.packages.BuriExePackages;
 
 public interface CompileProcess {
-    void compile(BuriExePackages result, BuriWorkflowProcessType process, ParticipantProvider provider);
+    void compile(BuriExePackages result, BuriWorkflowProcessType process, ParticipantProvider provider,ClassLoader classLoader);
 }

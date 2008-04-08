@@ -13,6 +13,7 @@
 	<include path="s2mai.dicon"/>
 
 	<component class="org.escafe.buri.common.delayloader.impl.DelayLoaderImpl">
+		<destroyMethod name="destroy"></destroyMethod>
 	</component>
 	<component name="BuriFileLoadInterceptor" class="org.escafe.buri.common.delayloader.interceptor.FileLoadInterceptor">
 		<property name="keyNo">1</property>
@@ -28,8 +29,10 @@
 
 	
 	<component name="ScriptDataAccessFactory" class="org.escafe.buri.dataaccess.impl.BuriDataAccessScriptFactoryImpl">
+		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component name="rootDataAccessFactory" class="org.escafe.buri.dataaccess.impl.BuriDataAccessFactoryImpl">
+		<destroyMethod name="dispose" ></destroyMethod>
 		<initMethod name="addChildFactory">
 			<arg>"ScriptDataAccessFactory"</arg>
 			<arg>ScriptDataAccessFactory</arg>
@@ -55,11 +58,13 @@
 
 	
 	<component class="org.escafe.buri.oouo.reader.impl.XMLOouoReader">
+		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.oouo.reader.impl.OouoClassDefFactoryImpl">
 		<initMethod name="create">
 			<arg>@org.escafe.buri.oouo.internal.structure.BuriPackageType@class</arg>
 		</initMethod>
+		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	
 	<component name="ClassDefCheckRule" class="org.escafe.buri.compiler.util.impl.rules.ClassDefCheckRule">

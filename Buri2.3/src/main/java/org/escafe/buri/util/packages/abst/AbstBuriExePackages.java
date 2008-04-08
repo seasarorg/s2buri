@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.escafe.buri.common.util.MultiValueMap;
+import org.escafe.buri.compiler.CompileProcess;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.ParticipantProvider;
@@ -39,6 +40,8 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
     protected BuriPackageType buriPackage;
     protected S2Container container;
     protected BuriDataAccessFactory dataAccessFactory;
+    
+    protected CompileProcess compileProcess;
 
     protected String conditionExpressionType = "ognl";
     protected String pkeyExpressionType = "ognl";
@@ -47,6 +50,25 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
     protected String preprocessScriptType = "ognl";
     protected String timeLimitExpressionType = "ognl";
 
+    public void destroy() {
+    	for(BuriExecProcess process : buriExecProcessMap.values()) {
+    		process.destroy();
+    	}
+    	if(dataAccessFactory != null) {
+    		dataAccessFactory.destroy();
+    	}
+    	dataAccessFactory = null;
+    	buriExecProcessMap.clear();
+    	buriPackage = null;
+    	applications.clear();
+    	variables.clear();
+    	participant.clear();
+    }
+    
+    public void dispose() {
+    	destroy();
+    }
+    
     public String getTimeLimitExpressionType() {
         return timeLimitExpressionType;
     }
@@ -125,6 +147,10 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
         String processId = getProcessId(path);
         assert !StringUtil.isEmpty(processId);
         BuriExecProcess processObj = buriExecProcessMap.get(processId);
+        if(processObj == null) {
+        	compileProcess.compile(this, buriPackage.getProcessById(processId), participantProvider,this.getClass().getClassLoader());
+        	processObj = buriExecProcessMap.get(processId);
+        }
         return processObj;
     }
 
@@ -234,5 +260,13 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
     public ParticipantProvider getParticipantProvider() {
         return participantProvider;
     }
+
+	public CompileProcess getCompileProcess() {
+		return compileProcess;
+	}
+
+	public void setCompileProcess(CompileProcess compileProcess) {
+		this.compileProcess = compileProcess;
+	}
 
 }

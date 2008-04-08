@@ -22,6 +22,7 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
     
     private DataAccessRuleEventCaller dataAccessRuleEventCaller;
 
+
     public BuriDataFieldType preprocess(BuriDataFieldType src) {
     	dataAccessRuleEventCaller.entryProcessor(src);
         BuriDataFieldType dst = copyBuriDataFieldType(src);

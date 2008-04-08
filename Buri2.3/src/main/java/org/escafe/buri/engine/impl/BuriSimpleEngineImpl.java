@@ -4,13 +4,10 @@
  */
 package org.escafe.buri.engine.impl;
 
-import java.util.HashMap;
-
 import org.escafe.buri.common.util.ClassDefUtil;
 import org.escafe.buri.compiler.BuriCompiler;
 import org.escafe.buri.dao.BuriPathDataDao;
 import org.escafe.buri.dao.BuriStateDao;
-import org.escafe.buri.dao.util.BuriStateUtil;
 import org.escafe.buri.dataaccess.BuriDataAccessFactory;
 import org.escafe.buri.dto.BuriPathDataEntityDto;
 import org.escafe.buri.engine.BuriEngine;

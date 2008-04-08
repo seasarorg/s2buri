@@ -19,7 +19,7 @@ public class BaoInterceptorImpl extends AbstractInterceptor {
     private BaoMetadataFactory factory;
     private BaoInvoker invoker;
     private static final long serialVersionUID = -4368109274110757228L;
-
+    
     public Object invoke(MethodInvocation invoke) throws Throwable {
         Method method = invoke.getMethod();
         if (!MethodUtil.isAbstract(method)) {

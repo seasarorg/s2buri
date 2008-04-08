@@ -14,6 +14,9 @@ public class BTIDUtilImpl implements BTIDUtil {
     private BuriTransactionDao btDao;
     private ThreadLocal btidLocal = new ThreadLocal();
 
+    public void dispose() {
+    	btidLocal = new ThreadLocal();
+    }
     public long createBTID() {
         BuriTransactionEntityDto dto = new BuriTransactionEntityDto();
         dto.setInsertDate(new Date());
