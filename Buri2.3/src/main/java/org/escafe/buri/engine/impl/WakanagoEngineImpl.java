@@ -111,10 +111,10 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 
     protected void readFromBuriExePackages(BuriExePackages exePackages, String resourceName, ParticipantProvider provider) {
         String packageId = exePackages.getBuriPackageType().getId();
-        BuriExePackages oldPkg = packageObjs.put(packageId, exePackages);
-        packageObjs.put(resourceName, exePackages);
+        packageObjs.put(packageId, exePackages);
+        BuriExePackages oldPkg = packageObjs.put(resourceName, exePackages);
         appUserIdMap.put(packageId, provider);
-        if(oldPkg != null) {
+        if(oldPkg != null && (!oldPkg.equals(exePackages))) {
         	oldPkg.destroy();
         	System.gc();
         }

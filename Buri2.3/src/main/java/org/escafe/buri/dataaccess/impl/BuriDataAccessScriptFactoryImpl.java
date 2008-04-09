@@ -22,10 +22,7 @@ public class BuriDataAccessScriptFactoryImpl extends BuriDataAccessFactoryImpl {
     
     public void dispose() {
     	super.dispose();
-    	preprocessor = null;
     	classToUtil.clear();
-    	scriptFactory = null;
-    	classDefUtil = null;
     }
 
     @Override

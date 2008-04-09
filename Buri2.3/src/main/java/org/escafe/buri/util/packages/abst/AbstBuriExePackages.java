@@ -57,9 +57,7 @@ public class AbstBuriExePackages implements BuriExePackages, BuriDataAccessFacto
     	if(dataAccessFactory != null) {
     		dataAccessFactory.destroy();
     	}
-    	dataAccessFactory = null;
     	buriExecProcessMap.clear();
-    	buriPackage = null;
     	applications.clear();
     	variables.clear();
     	participant.clear();

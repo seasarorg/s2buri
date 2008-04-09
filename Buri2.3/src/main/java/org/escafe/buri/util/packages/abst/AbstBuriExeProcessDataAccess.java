@@ -31,7 +31,6 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
     public void destroy() {
     	super.destroy();
     	dataAccessFactory.destroy();
-    	dataAccessFactory = null;
     }
     
     @Override
