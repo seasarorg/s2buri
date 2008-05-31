@@ -172,7 +172,20 @@ public class BuriDataUtilImpl implements BuriDataUtil {
         setupPkey(findDto, argDto, factory);
         DataAccessUtil util = factory.getDataAccessUtil(argDto.getClass());
         findDto.setDataType(util.getClassName(argDto));
-        List datas = dataDao.getBuridataFromDto(findDto);
+        boolean hasDataId = false;
+        if (util instanceof DataAccessUtilLongKey) {
+            Long dataID = ((DataAccessUtilLongKey) util).getKey(argDto);
+            findDto.setPkeyNum(dataID);
+            hasDataId = dataID == null ? false : true;
+        } else {
+            String dataID = ((DataAccessUtilManyKey) util).getKey(argDto);
+            findDto.setPkeyVal(dataID);
+            hasDataId = dataID == null ? false : true;
+        }
+        List datas = new ArrayList();
+        if(hasDataId) {
+        	datas = dataDao.getBuridataFromDto(findDto);
+        }
         BuriDataEntityDto dto = null;
         if (datas.size() == 0) {
             findDto.setInsertUserID(sysContext.getBuriUserID());
