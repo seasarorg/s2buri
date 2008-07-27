@@ -36,6 +36,10 @@
 				</component></arg>
 		</initMethod>
 		<initMethod name="addActivitySelector">
+			<arg><component class="org.escafe.buri.engine.selector.activityImpl.DirectNamedBuriActivitySelector">
+				</component></arg>
+		</initMethod>
+		<initMethod name="addActivitySelector">
 			<arg><component class="org.escafe.buri.engine.selector.activityImpl.DirectMultiBuriActivitySelector">
 				</component></arg>
 		</initMethod>
