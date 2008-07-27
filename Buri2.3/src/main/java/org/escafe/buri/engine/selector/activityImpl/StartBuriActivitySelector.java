@@ -36,7 +36,7 @@ public class StartBuriActivitySelector extends AbstractBuriActivitySelector {
         if (!activities.isEmpty()) {
             return false;
         }
-        if (!systemContext.getCallPath().getActivityId().isEmpty()) {
+        if (!systemContext.getCallPath().getActivityName().isEmpty()) {
             return false;
         }
         return true;
