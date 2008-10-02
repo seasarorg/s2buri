@@ -1,10 +1,4 @@
-drop view BuriPathDataUser;
-
-drop view BuriPathData;
-
-
 DROP TABLE BuriStateUser;
-
 CREATE TABLE BuriStateUser (
        StateUserID          NUMBER(19,0) NOT NULL,
        StateID              NUMBER(19,0)  ,
@@ -28,7 +22,6 @@ CREATE SEQUENCE BuriStateUserID
 
 
 DROP TABLE BuriState;
-
 CREATE TABLE BuriState (
        StateID              NUMBER(19,0) NOT NULL,
        PathID               NUMBER(19,0)  ,
@@ -36,6 +29,8 @@ CREATE TABLE BuriState (
        BranchID             NUMBER(19,0)  ,
        UserIDVal            VARCHAR(20),
        UserIDNum            NUMBER(19,0),
+       ParticipantName      VARCHAR(200),
+       ParticipantType      VARCHAR(200),
        Btid                 NUMBER(19,0) NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
        autoRunTime          TIMESTAMP NOT NULL,
@@ -62,7 +57,6 @@ CREATE SEQUENCE BuriStateID
 
 
 DROP TABLE BuriStateUndoLog;
-
 CREATE TABLE BuriStateUndoLog (
        StateUndoLogID       NUMBER(19,0) NOT NULL,
 	   StateID				NUMBER(19,0) NOT NULL,
@@ -94,13 +88,11 @@ CREATE SEQUENCE BuriStateUndoLogID
 
 
 DROP TABLE BuriTransaction;
-
 CREATE TABLE BuriTransaction (
        Btid                 NUMBER(19,0) NOT NULL,
        insertDate           TIMESTAMP NOT NULL,
        versionNo            INTEGER NOT NULL,
        PRIMARY KEY (Btid)
-	
 );
 
 
@@ -114,7 +106,6 @@ CREATE SEQUENCE BuriTransactionID
 
 
 DROP TABLE BuriBranch;
-
 CREATE TABLE BuriBranch (
        BranchID             NUMBER(19,0) NOT NULL,
        parentBranchID       NUMBER(19,0)  ,
@@ -140,7 +131,6 @@ CREATE SEQUENCE BuriBranchID
 
 
 DROP TABLE BuriDataPathHistory;
-
 CREATE TABLE BuriDataPathHistory (
        historyID            NUMBER(19,0) NOT NULL,
        PathID               NUMBER(19,0)  ,
@@ -167,12 +157,12 @@ CREATE SEQUENCE BuriDataPathHistoryID
 
 
 DROP TABLE BuriData;
-
 CREATE TABLE BuriData (
        DataID               NUMBER(19,0) NOT NULL,
        pkeyVal              VARCHAR(250),
        pkeyNum              NUMBER(19,0),
        dataType             VARCHAR(200) NOT NULL,
+       tableName			VARCHAR(200) ,
        InsertUserID         NUMBER(19,0)  ,
        PRIMARY KEY (DataID)
 );
@@ -192,7 +182,6 @@ CREATE SEQUENCE BuriDataID
 
 
 DROP TABLE BuriPath;
-
 CREATE TABLE BuriPath (
        PathID               NUMBER(19,0) NOT NULL,
        PathName             VARCHAR(100) NOT NULL,
@@ -214,9 +203,7 @@ CREATE SEQUENCE BuriPathID
 ;
 
 
-
 DROP TABLE BuriUser;
-
 CREATE TABLE BuriUser (
        BuriUserID           NUMBER(19,0) NOT NULL,
        UserIDVal            VARCHAR(100),
@@ -235,55 +222,116 @@ CREATE SEQUENCE BuriUserID
 ;
 
 
-create view BuriPathData as 
-select 
-	BuriPath.pathID as pathID
-	,BuriPath.PathName as PathName
-	,BuriPath.RealPathName as RealPathName
-	,BuriPath.pathType as pathType
-	,BuriData.pkeyNum as pkeyNum
-	,BuriData.pkeyVal as pkeyVal
-	,BuriData.dataType as dataType
+CREATE OR REPLACE VIEW BuriPathData AS
+SELECT
+	BuriPath.pathID AS pathID
+	,BuriPath.PathName AS PathName
+	,BuriPath.RealPathName AS RealPathName
+	,BuriPath.pathType AS pathType
+	,BuriData.pkeyNum AS pkeyNum
+	,BuriData.pkeyVal AS pkeyVal
+	,BuriData.dataType AS dataType
 	,BuriData.tableName AS tableName
-	,BuriData.dataID as dataID
-	,BuriState.StateID as StateID
-	,BuriState.autoRunTime as autoRunTime
-from
+	,BuriData.dataID AS dataID
+	,BuriState.StateID AS StateID
+	,BuriState.autoRunTime AS autoRunTime
+	,BuriState.ParticipantName AS ParticipantName
+	,BuriState.ParticipantType AS ParticipantType
+FROM
 	BuriPath
 	,BuriState
 	,BuriData
-where
+WHERE
 	BuriPath.pathID = BuriState.pathID
-	and BuriData.dataID = BuriState.dataID
-	and BuriState.processDate > CURRENT_TIMESTAMP
+	AND BuriData.dataID = BuriState.dataID
+	AND BuriState.processDate > CURRENT_TIMESTAMP
 ;
 
 
-create view BuriPathDataUser as 
-select
-	BuriPathData.pathID as pathID
-	,BuriPathData.PathName as PathName
-	,BuriPathData.RealPathName as RealPathName
-	,BuriPathData.pathType as pathType
-	,BuriPathData.pkeyNum as pkeyNum
-	,BuriPathData.pkeyVal as pkeyVal
-	,BuriPathData.dataType as dataType
+CREATE OR REPLACE VIEW BuriPathDataUser AS
+SELECT
+	BuriPathData.pathID AS pathID
+	,BuriPathData.PathName AS PathName
+	,BuriPathData.RealPathName AS RealPathName
+	,BuriPathData.pathType AS pathType
+	,BuriPathData.pkeyNum AS pkeyNum
+	,BuriPathData.pkeyVal AS pkeyVal
+	,BuriPathData.dataType AS dataType
 	,BuriPathData.tableName AS tableName
-	,BuriPathData.dataID as dataID
-	,BuriPathData.StateID as StateID
-	,BuriPathData.autoRunTime as autoRunTime
-	,BuriUser.BuriUserID as BuriUserID
-	,BuriUser.UserIDVal as UserIDVal
-	,BuriUser.UserIDNum as UserIDNum
-from
+	,BuriPathData.dataID AS dataID
+	,BuriPathData.StateID AS StateID
+	,BuriPathData.autoRunTime AS autoRunTime
+	,BuriPathData.ParticipantName AS ParticipantName
+	,BuriPathData.ParticipantType AS ParticipantType
+	,BuriUser.BuriUserID AS BuriUserID
+	,BuriUser.UserIDVal AS UserIDVal
+	,BuriUser.UserIDNum AS UserIDNum
+FROM
 	BuriPathData
 	,BuriStateUser
 	,BuriUser
-where
+WHERE
 	BuriPathData.StateID = BuriStateUser.StateID
-	and BuriUser.BuriUserID = BuriStateUser.BuriUserID
-	and BuriStateUser.deleteDate > CURRENT_TIMESTAMP
+	AND BuriUser.BuriUserID = BuriStateUser.BuriUserID
+	AND BuriStateUser.deleteDate > CURRENT_TIMESTAMP
 ;
 
 
-	
+CREATE OR REPLACE VIEW BuriPathHistoryData AS
+SELECT
+	BuriPath.pathID AS pathID
+	,BuriPath.PathName AS PathName
+	,BuriPath.RealPathName AS RealPathName
+	,BuriPath.pathType AS pathType
+	,BuriData.pkeyNum AS pkeyNum
+	,BuriData.pkeyVal AS pkeyVal
+	,BuriData.dataType AS dataType
+	,BuriData.tableName AS tableName
+	,BuriData.dataID AS dataID
+	,BuriState.StateID AS StateID
+	,BuriState.autoRunTime AS autoRunTime
+    ,BuriState.insertDate AS insertDate
+    ,BuriState.processDate AS processDate
+    ,BuriState.abortDate AS abortDate
+	,BuriState.ParticipantName AS ParticipantName
+	,BuriState.ParticipantType AS ParticipantType
+FROM
+	BuriPath
+	,BuriState
+	,BuriData
+WHERE
+	BuriPath.pathID = BuriState.pathID
+	AND BuriData.dataID = BuriState.dataID
+;
+
+
+CREATE OR REPLACE VIEW BuriPathHistoryDataUser AS
+SELECT
+	BuriPathData.pathID AS pathID
+	,BuriPathData.PathName AS PathName
+	,BuriPathData.RealPathName AS RealPathName
+	,BuriPathData.pathType AS pathType
+	,BuriPathData.pkeyNum AS pkeyNum
+	,BuriPathData.pkeyVal AS pkeyVal
+	,BuriPathData.dataType AS dataType
+	,BuriPathData.tableName AS tableName
+	,BuriPathData.dataID AS dataID
+	,BuriPathData.StateID AS StateID
+	,BuriPathData.autoRunTime AS autoRunTime
+    ,BuriPathData.insertDate AS insertDate
+    ,BuriPathData.processDate AS processDate
+    ,BuriPathData.abortDate AS abortDate
+	,BuriPathData.ParticipantName AS ParticipantName
+	,BuriPathData.ParticipantType AS ParticipantType
+	,BuriUser.BuriUserID AS BuriUserID
+	,BuriUser.UserIDVal AS UserIDVal
+	,BuriUser.UserIDNum AS UserIDNum
+FROM
+	BuriPathHistoryData BuriPathData
+	,BuriStateUser
+	,BuriUser
+WHERE
+	BuriPathData.StateID = BuriStateUser.StateID
+	AND BuriUser.BuriUserID = BuriStateUser.BuriUserID
+	AND BuriStateUser.deleteDate > CURRENT_TIMESTAMP
+;
