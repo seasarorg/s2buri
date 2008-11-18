@@ -11,10 +11,27 @@ import java.util.Map;
 import org.seasar.framework.container.S2Container;
 
 public class BuriProcessorInfo {
+	/**
+	 * S2のコンテナ(ぶりが設定するので通常設定する必要なし)
+	 */
     private S2Container container;
+    /**
+     * #action に指定したい任意のデータ
+     */
     private Object action;
+    /**
+     * それ以外で渡したい情報
+     * ぶりのなかでは#nameとして値を参照可能
+     */
     private Map context = new HashMap();
+    /**
+     * 戻り値のOGNL式
+     */
     private String resultExp;
+    /**
+     * 実行制約用のアクティビティー名のリスト
+     * entityの状態がこれ以外だったらエラーになる
+     */
     private List actNames;
 
     public Object getAction() {
