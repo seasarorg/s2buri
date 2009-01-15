@@ -38,10 +38,10 @@ public class DirectMultiBuriActivitySelector extends AbstractBuriActivitySelecto
 
     private Set<String> getActivityNames(BuriSystemContext systemContext) {
         Set acts = new HashSet();
-        if ((systemContext.getActivityNames() == null) || systemContext.getActivityNames().isEmpty()) {
+        if (systemContext.getCallPath().getActivityName().size() > 0) {
             acts.add(systemContext.getCallPath().getActivityName().get(0));
         }
-        if(systemContext.getActivityNames() != null){
+        if((systemContext.getActivityNames() == null) || systemContext.getActivityNames().isEmpty()){
             acts.addAll(systemContext.getActivityNames());
         }
         return acts;
