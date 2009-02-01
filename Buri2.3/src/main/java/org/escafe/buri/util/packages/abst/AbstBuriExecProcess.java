@@ -26,6 +26,7 @@ import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.StringUtil;
 
 public abstract class AbstBuriExecProcess implements BuriExecProcess {
     protected static Logger logger = Logger.getLogger(AbstBuriExecProcess.class);
@@ -89,7 +90,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     public void entryActivity(String actId, BuriSystemContext sysContext, BranchWalker walker) {
         BuriActivityType actType = process.getActivityById(actId);
         String mode = "_start";
-        if (actType.isFinishModeManual()) {
+        if (actType.isFinishModeManual() && (sysContext.getStatusID() != 0) ) {
             mode = "_restart";
         }
         sysContext.setStartParticipantName(actType.getParticipantName());
