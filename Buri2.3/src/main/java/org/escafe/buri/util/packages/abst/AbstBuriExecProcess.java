@@ -90,7 +90,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
     public void entryActivity(String actId, BuriSystemContext sysContext, BranchWalker walker) {
         BuriActivityType actType = process.getActivityById(actId);
         String mode = "_start";
-        if (actType.isFinishModeManual() && (sysContext.getStatusID() != 0) ) {
+        if (actType.isFinishModeManual() && (sysContext.getStatusID() != null) ) {
             mode = "_restart";
         }
         sysContext.setStartParticipantName(actType.getParticipantName());
