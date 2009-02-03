@@ -24,6 +24,6 @@ public class BuriManySelectActivityException extends BuriXpdlPathException {
      * @param path
      */
     public BuriManySelectActivityException(BuriPath path, ParticipantProvider participant) {
-        super("EBRI0006", path, participant);
+        super("EBRI0101", path, participant);
     }
 }
