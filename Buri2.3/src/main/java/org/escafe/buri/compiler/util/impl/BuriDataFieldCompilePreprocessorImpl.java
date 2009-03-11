@@ -10,10 +10,12 @@ import java.util.List;
 
 import org.escafe.buri.compiler.util.BuriDataFieldCompilePreprocessor;
 import org.escafe.buri.compiler.util.BuriDataFieldProcRule;
+import org.escafe.buri.compiler.util.BuriDataFieldProcRuleSet;
 import org.escafe.buri.event.util.caller.DataAccessRuleEventCaller;
 import org.escafe.buri.oouo.internal.structure.BuriDataFieldType;
 import org.escafe.buri.oouo.internal.structure.BuriExtendedAttributeType;
 import org.escafe.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
+import org.seasar.framework.container.S2Container;
 
 public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompilePreprocessor {
 
@@ -21,6 +23,7 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
     private List<BuriDataFieldProcRule> dataAccessRules = new ArrayList<BuriDataFieldProcRule>();
     
     private DataAccessRuleEventCaller dataAccessRuleEventCaller;
+    private S2Container container;
 
 
     public BuriDataFieldType preprocess(BuriDataFieldType src) {
@@ -28,6 +31,12 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
         BuriDataFieldType dst = copyBuriDataFieldType(src);
         if (hasPreprocess(dst)) {
             checkDataAccess(dst, preprocessRules);
+        }
+        BuriDataFieldProcRuleSet[] allComponents = (BuriDataFieldProcRuleSet[])container.findAllComponents("userDataFieldRuleSet");
+        if(allComponents != null && allComponents.length != 0) {
+        	for (int i = 0; i < allComponents.length; i++) {
+        		dataAccessRules.addAll(allComponents[i].getDataAccessRules());
+			}
         }
         if (hasDataAccess(dst)) {
             checkDataAccess(dst, dataAccessRules);
@@ -273,6 +282,14 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
 	public void setDataAccessRuleEventCaller(
 			DataAccessRuleEventCaller dataAccessRuleEventCaller) {
 		this.dataAccessRuleEventCaller = dataAccessRuleEventCaller;
+	}
+
+	public S2Container getContainer() {
+		return container;
+	}
+
+	public void setContainer(S2Container container) {
+		this.container = container;
 	}
 
 }
