@@ -32,10 +32,11 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
         if (hasPreprocess(dst)) {
             checkDataAccess(dst, preprocessRules);
         }
-        BuriDataFieldProcRuleSet[] allComponents = (BuriDataFieldProcRuleSet[])container.findAllComponents("userDataFieldRuleSet");
-        if(allComponents != null && allComponents.length != 0) {
-        	for (int i = 0; i < allComponents.length; i++) {
-        		dataAccessRules.addAll(allComponents[i].getDataAccessRules());
+        Object[] userDataFieldRuleSets = container.findAllComponents("userDataFieldRuleSet");
+        if(userDataFieldRuleSets != null && userDataFieldRuleSets.length != 0) {
+        	for (int i = 0; i < userDataFieldRuleSets.length; i++) {
+        		BuriDataFieldProcRuleSet userDataFieldRuleSet = (BuriDataFieldProcRuleSet) userDataFieldRuleSets[i];
+        		dataAccessRules.addAll(userDataFieldRuleSet.getDataAccessRules());
 			}
         }
         if (hasDataAccess(dst)) {
