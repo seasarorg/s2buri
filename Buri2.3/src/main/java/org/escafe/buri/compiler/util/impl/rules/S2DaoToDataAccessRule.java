@@ -270,18 +270,21 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		BeanDesc bd = BeanDescFactory.getBeanDesc(tgt);
 		int propLen = bd.getPropertyDescSize();
 		// s2Dao-Tiger、IDアノテーションチェック
-		for (int i = 0; i < propLen; i++) {
-			PropertyDesc pd = bd.getPropertyDesc(i);
-			Method writeMethod = null;
-			if ((writeMethod = pd.getWriteMethod()) != null) {
-				Id id = writeMethod.getAnnotation(Id.class);
-				if (id != null) {
-					String condition = createPkeyCondition(pd);
-					src.getKeys().put(pd.getPropertyName(), condition);
-					return;
-				}
-			}
-		}
+        for (int i = 0; i < propLen; i++) {
+            PropertyDesc pd = bd.getPropertyDesc(i);
+            Method method = null;
+            Id id = null;
+            if ((method = pd.getWriteMethod()) != null) {
+                id = method.getAnnotation(Id.class);
+            } else if ((method = pd.getReadMethod()) != null) {
+                id = method.getAnnotation(Id.class);
+            }
+            if (id != null) {
+                String condition = createPkeyCondition(pd);
+                src.getKeys().put(pd.getPropertyName(), condition);
+                return;
+            }
+        }
 		// IDアノテーションがない場合、定数アノテーションチェック
 		for (int i = 0; i < propLen; i++) {
 			PropertyDesc pd = bd.getPropertyDesc(i);
