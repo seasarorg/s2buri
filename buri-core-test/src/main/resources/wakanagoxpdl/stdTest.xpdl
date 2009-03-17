@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="stdTest" Name="stdTest" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2006-06-13 17:06:43</Created>
+</PackageHeader>
+<Participants>
+<Participant Id="stdTest_par1" Name="一番上">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="stdTest_par2" Name="真ん中">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="stdTest_par3" Name="下っ端">
+<ParticipantType Type="ROLE"/>
+</Participant>
+<Participant Id="stdTest_par4" Name="無関係">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<DataFields>
+<DataField Id="example.org.escafe.buri.dto.ItemDto" IsArray="FALSE">
+<DataType>
+<BasicType Type="STRING"/>
+</DataType>
+<ExtendedAttributes>
+<ExtendedAttribute Name="pkey" Value="itemID,itemID!=0"/>
+<ExtendedAttribute Name="insert" Value="ItemDao.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="ItemDao.update(#data)"/>
+<ExtendedAttribute Name="select" Value="ItemDao.getItem(#data.itemID)"/>
+<ExtendedAttribute Name="delete" Value="ItemDao.delete(#data)"/>
+<ExtendedAttribute Name="tableName" Value="item"/>
+</ExtendedAttributes>
+</DataField>
+</DataFields>
+<WorkflowProcesses>
+<WorkflowProcess Id="stdTest_wp1" Name="Test01">
+<ProcessHeader>
+<Created>2006-06-13 17:07:03</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="stdTest_wp1_act1" Name="エントリー">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par4</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par4"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="125,61"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act2" Name="受付">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="stdTest_wp1_tra2"/>
+<TransitionRef Id="stdTest_wp1_tra8"/>
+<TransitionRef Id="stdTest_wp1_tra12"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="207,56"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act3" Name="受付済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="350,56"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act5" Name="受付済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="349,41"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act6" Name="受付済み">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="348,48"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act4" Name="処理中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="514,49"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act7" Name="完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="699,50"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act8" Name="処理中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="529,47"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act9" Name="完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="709,47"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act10" Name="処理中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="527,55"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act11" Name="完了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="703,49"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act12" Name="返信待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="848,51"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act13" Name="返信">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="985,52"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp1_act14" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par4</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par4"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="1093,53"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="stdTest_wp1_act1" Id="stdTest_wp1_tra1" To="stdTest_wp1_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act2" Id="stdTest_wp1_tra2" To="stdTest_wp1_act3">
+<Condition Type="CONDITION">#data.price &lt; 100</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act3" Id="stdTest_wp1_tra3" To="stdTest_wp1_act10">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act10" Id="stdTest_wp1_tra4" To="stdTest_wp1_act11">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act11" Id="stdTest_wp1_tra5" To="stdTest_wp1_act12">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act12" Id="stdTest_wp1_tra6" To="stdTest_wp1_act13">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act13" Id="stdTest_wp1_tra7" To="stdTest_wp1_act14">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act2" Id="stdTest_wp1_tra8" To="stdTest_wp1_act5">
+<Condition Type="CONDITION">100 &lt;= #data.price &amp;&amp; #data.price &lt; 10000</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act5" Id="stdTest_wp1_tra9" To="stdTest_wp1_act8">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act8" Id="stdTest_wp1_tra10" To="stdTest_wp1_act9">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act9" Id="stdTest_wp1_tra11" To="stdTest_wp1_act12">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act2" Id="stdTest_wp1_tra12" To="stdTest_wp1_act6">
+<Condition Type="CONDITION">10000 &lt;= #data.price</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act6" Id="stdTest_wp1_tra13" To="stdTest_wp1_act4">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act4" Id="stdTest_wp1_tra14" To="stdTest_wp1_act7">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp1_act7" Id="stdTest_wp1_tra15" To="stdTest_wp1_act12">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="stdTest_par1;stdTest_par2;stdTest_par3;stdTest_par4"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="stdTest_wp2" Name="Test02">
+<ProcessHeader>
+<Created>2006-06-13 20:46:20</Created>
+</ProcessHeader>
+<Activities>
+<Activity Id="stdTest_wp2_act1" Name="指示">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="71,28"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act2" Name="指示未処理">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="97,6"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act3" Name="未処理">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Join Type="XOR"/>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="309,41"/>
+<ExtendedAttribute Name="NOXORJOIN"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act4" Name="確認待ち">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="XOR">
+<TransitionRefs>
+<TransitionRef Id="stdTest_wp2_tra10"/>
+<TransitionRef Id="stdTest_wp2_tra8"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="561,95"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act5" Name="報告確認前">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="695,27"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act6" Name="処理中">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<TransitionRestrictions>
+<TransitionRestriction>
+<Split Type="AND">
+<TransitionRefs>
+<TransitionRef Id="stdTest_wp2_tra14"/>
+<TransitionRef Id="stdTest_wp2_tra3"/>
+</TransitionRefs>
+</Split>
+</TransitionRestriction>
+</TransitionRestrictions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="231,5"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act7" Name="指示">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="244,96"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act8" Name="頑張ってるところ">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="435,37"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act9" Name="終了">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par3</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par3"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="562,32"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act10" Name="確認、OK">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="564,7"/>
+<ExtendedAttribute Name="XORJOIN"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act11" Name="確認、NG">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="410,100"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act12" Name="自分がやったように報告">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="690,9"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act13" Name="報告確認">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par1</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="836,30"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="stdTest_wp2_act14" Name="頑張ってる振り">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>stdTest_par2</Performer>
+<FinishMode>
+<Manual/>
+</FinishMode>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="stdTest_par2"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="409,4"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="stdTest_wp2_act1" Id="stdTest_wp2_tra1" To="stdTest_wp2_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act2" Id="stdTest_wp2_tra2" To="stdTest_wp2_act6">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act6" Id="stdTest_wp2_tra3" To="stdTest_wp2_act7">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act7" Id="stdTest_wp2_tra4" To="stdTest_wp2_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act3" Id="stdTest_wp2_tra5" To="stdTest_wp2_act8">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act8" Id="stdTest_wp2_tra6" To="stdTest_wp2_act9">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act9" Id="stdTest_wp2_tra7" To="stdTest_wp2_act4">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act4" Id="stdTest_wp2_tra8" To="stdTest_wp2_act11">
+<Condition Type="CONDITION">#action == "NG"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act11" Id="stdTest_wp2_tra9" To="stdTest_wp2_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act4" Id="stdTest_wp2_tra10" To="stdTest_wp2_act10">
+<Condition Type="CONDITION">#action == "OK"</Condition>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act10" Id="stdTest_wp2_tra11" To="stdTest_wp2_act12">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act12" Id="stdTest_wp2_tra12" To="stdTest_wp2_act5">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act5" Id="stdTest_wp2_tra13" To="stdTest_wp2_act13">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="stdTest_wp2_act6" Id="stdTest_wp2_tra14" To="stdTest_wp2_act14">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="stdTest_par1;stdTest_par2;stdTest_par3"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+</ExtendedAttributes>
+</Package>

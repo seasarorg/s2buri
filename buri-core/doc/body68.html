@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>Invoker</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body35.html">buriリファレンス</A>
+:<A HREF="body53.html">Java</A>
+:</DIV><BR><BR>
+<H1>Invoker</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body67.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body69.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+Baoの下位層にあるProcessorでぶりを制御するには<BR>
+SimpleBuriProcessorもしくはStandardBuriProcessorもしくはBuriAutoSelectProcessorを呼びだすコンポーネントがインジェクションして使う必要があります。<BR>
+それぞれの違いは<BR>
+<BR>
+SimpleBuriProcessor<BR>
+権限を管理しないタイプ<BR>
+<BR>
+StandardBuriProcessor<BR>
+権限を管理するタイプ。S2AnA等の連携まで可能なタイプ<BR>
+<BR>
+BuriAutoSelectProcessor<BR>
+パスによって上記を自動的に切り替えるタイプ<BR>
+<BR>
+です<BR>
+BaoはBuriAutoSelectProcessorの上に載せる形で作られています。<BR>
+<BR>
+Processorは基本的な処理の呼びだしと最小限のデータの取得が可能です。<BR>
+<BR>
+0.2.0との違いとしてフィルター系(いわゆる検索用)のメソッドが無くなりました。ぶり0.3.0以降では検索用のメソッドは独自にSQLを書いた方が効率的と判断したためです。<BR>
+BuriPathDataとBuriPathDataUserという名前のViewをJoinすればSQLで特定の状態のデータを自由に検索できるようになります<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body53.html">Java に戻る</A></SPAN>
+</BODY></HTML>

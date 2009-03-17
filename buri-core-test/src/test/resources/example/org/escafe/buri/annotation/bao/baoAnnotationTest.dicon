@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="buri/dicon/allService.dicon"/>
+	<include path="org/escafe/buri/dicon/allTestService.dicon"/>
+	<include path="buri/dicon/bao.dicon"/>
+	<component name="InterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
+		<initMethod name="add"><arg>bao.interceptor</arg></initMethod>
+	</component>
+
+	<component name="BillBao" class="org.escafe.buri.annotation.bao.BillBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="OrderBao" class="org.escafe.buri.annotation.bao.OrderBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="ShippingBao" class="org.escafe.buri.annotation.bao.ShippingBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="ShippingItemBao" class="org.escafe.buri.annotation.bao.ShippingItemBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+
+	<component name="PrivacyInfoManagementBao" class="org.escafe.buri.annotation.bao.PrivacyInfoManagementBao">
+		<aspect>InterceptorChain</aspect>
+	</component>
+	
+	<component name="buriTestUser" class="org.escafe.buri.entity.BuriTestUser">
+	</component>
+	
+</components>

@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>ぶりでサポートするView</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body35.html">buriリファレンス</A>
+:</DIV><BR><BR>
+<H1>ぶりでサポートするView</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body68.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body70.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ぶりは状態の取得などをSQLで処理できるようにViewを提供しています。<BR>
+ViewはBuriPathDataとBuriPathDataUserの二つ。<BR>
+<BR>
+BuriPathData<BR>
+Userを無関係に状態を取得する為のView<BR>
+このViewは状態の管理上仮にUser情報があったとしても無視します<BR>
+<BR>
+BuriPathDataUser<BR>
+上記のViewにユーザの権限を追加したView<BR>
+ユーザ情報の扱いについて<BR>
+ユーザ情報はぶり内部のIDとParticipantProviderで取得できる値の二つを扱えます。<BR>
+ぶり内部のIDを扱うのは意外と大変なのでParticipantProviderで取得できる値で処理することをお勧めします<BR>
+<BR>
+手順的なヒントは<BR>
+・ParticipantProviderのgetAuthroizedUserIdsを作ります<BR>
+・IdentityInfoを取得します<BR>
+・BuriUserUtilのconvertBuriUserIdsでIdentityInfoのListを渡すとIDの一覧が返ってきます。<BR>
+これをSQLでin句に渡すとOKです<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body35.html">buriリファレンス に戻る</A></SPAN>
+</BODY></HTML>

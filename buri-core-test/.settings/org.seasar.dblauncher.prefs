@@ -1,0 +1,5 @@
+#Thu Mar 12 17:03:30 JST 2009
+baseDir=/buri-core-test/src/main/resources/db/buri
+dbPortNo=9093
+eclipse.preferences.version=1
+webPortNo=8083

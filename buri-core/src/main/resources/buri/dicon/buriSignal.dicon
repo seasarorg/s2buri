@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="buri/dicon/buriBase.dicon"/>
+	<include path="buri/dicon/internalService.dicon"/>
+	
+	<component name="buriSignal" class="org.escafe.buri.engine.processor.util.impl.BuriSignalImpl">
+		<property name="buriUserEntityService">buriUserEntityService</property>
+		<property name="buriStateEntityService">buriStateEntityService</property>
+	</component>
+
+</components>

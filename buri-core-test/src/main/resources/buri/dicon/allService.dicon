@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="aop.dicon"/>
+	<include path="j2ee.dicon"/>
+	<include path="s2jdbc.dicon"/>
+	<component name="billService" class="example.org.escafe.buri.service.BillService"/>
+	<component name="customerService" class="example.org.escafe.buri.service.CustomerService"/>
+	<component name="itemService" class="example.org.escafe.buri.service.ItemService"/>
+	<component name="orderTitleService" class="example.org.escafe.buri.service.OrderTitleService"/>
+	<component name="orderDetailService" class="example.org.escafe.buri.service.OrderDetailService"/>
+	<component name="shippingService" class="example.org.escafe.buri.service.ShippingService"/>
+	<component name="shippingItemService" class="example.org.escafe.buri.service.ShippingItemService"/>
+</components>

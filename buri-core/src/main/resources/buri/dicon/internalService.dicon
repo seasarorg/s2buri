@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="aop.dicon"/>
+	<include path="j2ee.dicon"/>
+	<include path="s2jdbc.dicon"/>
+	<component name="buriBranchEntityService" class="org.escafe.buri.service.BuriBranchEntityService"/>
+	<component name="buriDataEntityService" class="org.escafe.buri.service.BuriDataEntityService"/>
+	<component name="buriDataPathHistoryEntityService" class="org.escafe.buri.service.BuriDataPathHistoryEntityService"/>
+	<component name="buriIdListService" class="org.escafe.buri.service.BuriIdListService"/>
+	<component name="buriJoinWaitingEntityService" class="org.escafe.buri.service.BuriJoinWaitingEntityService"/>
+	<component name="buriPathDataEntityService" class="org.escafe.buri.service.BuriPathDataEntityService"/>
+	<component name="buriPathDataUserEntityService" class="org.escafe.buri.service.BuriPathDataUserEntityService"/>
+	<component name="buriPathEntityService" class="org.escafe.buri.service.BuriPathEntityService"/>
+	<component name="buriStateEntityService" class="org.escafe.buri.service.BuriStateEntityService"/>
+	<component name="buriStateUndoLogEntityService" class="org.escafe.buri.service.BuriStateUndoLogEntityService"/>
+	<component name="buriStateUserEntityService" class="org.escafe.buri.service.BuriStateUserEntityService"/>
+	<component name="buriTransactionEntityService" class="org.escafe.buri.service.BuriTransactionEntityService"/>
+	<component name="buriUserEntityService" class="org.escafe.buri.service.BuriUserEntityService"/>
+	<component name="buriWaitingUserEntityService" class="org.escafe.buri.service.BuriWaitingUserEntityService"/>
+</components>

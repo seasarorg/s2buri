@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Shift_JIS">
+<TITLE>プロセス</TITLE>
+<STYLE><!--
+dfn.popup {text-decoration: underline;cursor: help;font-weight: bold}
+--></STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<DIV CLASS="level"><A HREF="body.html">ホーム</A>
+:<A HREF="body35.html">buriリファレンス</A>
+:<A HREF="body36.html">XPDL</A>
+:</DIV><BR><BR>
+<H1>プロセス</H1>
+<TABLE BORDER="0" WIDTH="100%"><TR><TD ALIGN="left">
+<SPAN CLASS="prev"><A HREF="body45.html">前へ</A></SPAN>
+</TD><TD ALIGN="right"><SPAN CLASS="next"><A HREF="body47.html">次へ</A></SPAN>
+</TD></TR></TABLE>
+<HR>
+<BLOCKQUOTE><P CLASS="text">
+ワークフローを書くところ<BR>
+ぶりはNameで探すのでName重要<BR>
+ただし、コピー等をして同じNameなのに、別のIDでになったとき検索されない。<BR>
+<BR>
+履歴機能が利用可能です<BR>
+たとえば4/1より今の業務フローから新しくする場合に自動的にその日から追加されたデータを新たなフローへ流すような仕組みが簡単に構築できます<BR>
+使い方はプロセスのprocess headerでValid fromとValid toに使いたい期間を設定するだけです。<BR>
+デフォルトではfromは最小の日時、toは9999/12/31を指定しています。<BR>
+どちらか一つだけの修正も可能です。<BR>
+<BR>
+AとA'という二つのフローがあった場合、Aを流れていたデータは期間が来てもAを流れ続けます。新規のデータのみA'に流れます。<BR>
+データの一覧取得等では同じActivity名だった場合両方のプロセスから探すようになってます。<BR>
+
+</P></BLOCKQUOTE>
+
+<HR>
+<SPAN CLASS="return"><A HREF="body36.html">XPDL に戻る</A></SPAN>
+</BODY></HTML>
