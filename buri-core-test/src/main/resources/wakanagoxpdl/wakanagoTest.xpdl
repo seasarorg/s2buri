@@ -20,7 +20,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="orderTitleId,orderTitleId != 0"/>
+<ExtendedAttribute Name="pkey" Value="orderTitleId,orderTitleId != null &amp;&amp; orderTitleId != 0"/>
 <ExtendedAttribute Name="insert" Value="orderTitleService.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="orderTitleService.update(#data)"/>
 <ExtendedAttribute Name="select" Value="orderTitleService.getOrderInfo(#data.orderTitleId)"/>
@@ -40,7 +40,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="testId,testId != 0"/>
+<ExtendedAttribute Name="pkey" Value="testId,testId != null &amp;&amp; testId != 0"/>
 <ExtendedAttribute Name="select" Value="buriTestINTService.getBuriTestINT(#data.testId)"/>
 <ExtendedAttribute Name="insert" Value="buriTestINTService.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="buriTestINTService.update(#data)"/>
@@ -54,7 +54,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="testId,testId != &quot;&quot;"/>
+<ExtendedAttribute Name="pkey" Value="testId,testId != null &amp;&amp; testId != &quot;&quot;"/>
 <ExtendedAttribute Name="select" Value="buriTestCHARService.getBuriTestCHAR(#data.testId)"/>
 <ExtendedAttribute Name="insert" Value="buriTestCHARService.insert(#data)"/>
 <ExtendedAttribute Name="update" Value="buriTestCHARService.update(#data)"/>
@@ -67,7 +67,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="testId01,testId01 != 0&#10;testId02,testId02 != 0"/>
+<ExtendedAttribute Name="pkey" Value="testId01,testId01 != null &amp;&amp; testId01 != 0&#10;testId02,testId02 != null &amp;&amp; testId02 != 0"/>
 <ExtendedAttribute Name="select" Value="buriTestManyService.getBuriTestMany(#data.testId01 , #data.testId02)"/>
 <ExtendedAttribute Name="insert" Value="buriTestManyService.inesrt(#data)"/>
 <ExtendedAttribute Name="update" Value="buriTestManyService.update(#data)"/>

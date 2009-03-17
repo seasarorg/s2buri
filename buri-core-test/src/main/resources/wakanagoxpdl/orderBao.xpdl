@@ -54,7 +54,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#data&#10;ShippingBao&#10;ShippingBao.shipping(#data)"/>
+<ExtendedAttribute Name="ognl" Value="#data&#10;shippingBao&#10;shippingBao.shipping(#data)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -128,7 +128,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="ShippingBao.cancel(#data)"/>
+<ExtendedAttribute Name="ognl" Value="shippingBao.cancel(#data)"/>
 </ExtendedAttributes>
 </Tool>
 <Tool Id="order_App1" Type="APPLICATION">
@@ -261,7 +261,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="ShippingItemBao.startShipping(#data.shippingItemList)"/>
+<ExtendedAttribute Name="ognl" Value="shippingItemBao.startShipping(#data.shippingItemList)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -297,7 +297,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#data.orderTitleID&#10;OrderBao.endShipping(#data.orderTitleID)&#10;BillBao.enterBill(#data)"/>
+<ExtendedAttribute Name="ognl" Value="#data.orderTitleID&#10;orderBao.endShipping(#data.orderTitleID)&#10;BillBao.enterBill(#data)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -333,7 +333,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="ShippingItemBao.cancel(#data.shippingItemList)"/>
+<ExtendedAttribute Name="ognl" Value="shippingItemBao.cancel(#data.shippingItemList)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -353,7 +353,7 @@
 <Implementation>
 <Tool Id="order_App1" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#countDatas = ShippingItemBao.getEndShippingCount(#data.shippingItemList)"/>
+<ExtendedAttribute Name="ognl" Value="#countDatas = shippingItemBao.getEndShippingCount(#data.shippingItemList)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
