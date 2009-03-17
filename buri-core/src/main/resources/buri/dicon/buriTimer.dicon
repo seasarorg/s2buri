@@ -35,9 +35,11 @@
 	</component>
 
 	<component class="org.escafe.buri.engine.processor.util.impl.BuriTimerInvokerImpl">
+		<property name="buriPathDataUserEntityService">buriPathDataUserEntityService</property>
 	</component>
 	
 	<component name="BuriAutoInvokeService" class="org.escafe.buri.engine.service.impl.BuriTimerService">
+		<property name="buriPathDataEntityService">buriPathDataEntityService</property>
 		<property name="runningTime">60000</property>
 		<property name="stopCheckInterval">240000</property>
 	</component>

@@ -40,11 +40,12 @@ public class BuriTimerService extends AbstractGetRunService {
 		this.timerInvoker = timerInvoker;
 	}
 
-	public BuriPathDataEntityService getBuriPathDataService() {
+	public BuriPathDataEntityService getBuriPathDataEntityService() {
 		return buriPathDataEntityService;
 	}
 
-	public void setBuriPathDataService(BuriPathDataEntityService buriPathDataEntityService) {
+	public void setBuriPathDataEntityService(
+	        BuriPathDataEntityService buriPathDataEntityService) {
 		this.buriPathDataEntityService = buriPathDataEntityService;
 	}
 }

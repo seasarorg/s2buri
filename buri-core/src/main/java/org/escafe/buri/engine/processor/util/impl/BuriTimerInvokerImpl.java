@@ -96,11 +96,11 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 		this.userUtil = userUtil;
 	}
 
-	public BuriPathDataUserEntityService getBuriPathDataUserService() {
+	public BuriPathDataUserEntityService getBuriPathDataUserEntityService() {
 		return buriPathDataUserEntityService;
 	}
 
-	public void setBuriPathDataUserService(
+	public void setBuriPathDataUserEntityService(
 	        BuriPathDataUserEntityService buriPathDataUserEntityService) {
 		this.buriPathDataUserEntityService = buriPathDataUserEntityService;
 	}

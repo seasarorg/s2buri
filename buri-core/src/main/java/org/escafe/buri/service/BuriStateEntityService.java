@@ -3,6 +3,7 @@ package org.escafe.buri.service;
 import java.util.List;
 
 import org.escafe.buri.entity.BuriStateEntity;
+import org.seasar.framework.beans.util.BeanMap;
 
 import static org.escafe.buri.names.BuriStateEntityNames.*;
 import static org.seasar.extension.jdbc.operation.Operations.*;
@@ -50,10 +51,12 @@ public class BuriStateEntityService extends AbstractService<BuriStateEntity> {
 	}
 
 	public Long countByBranchIdAndNotProcessed(Long branchId) {
-		return selectBySqlFile(
-		    Long.class,
-		    "countByBranchIdAndNotProcessed.sql",
-		    branchId).getSingleResult();
+		BeanMap bm =
+		    selectBySqlFile(
+		        BeanMap.class,
+		        "countByBranchIdAndNotProcessed.sql",
+		        branchId).getSingleResult();
+		return (Long) bm.get("count(*)");
 	}
 
 	public BuriStateEntity getBuriStateByPathAndData(Long pathId, Long dataId) {
@@ -76,10 +79,12 @@ public class BuriStateEntityService extends AbstractService<BuriStateEntity> {
 		param.pathName = pathName;
 		param.manyKey = manyKey;
 		param.longKey = longKey;
-		return selectBySqlFile(
-		    Long.class,
-		    "countBuriStateByPathNameAndPkey.sql",
-		    param).getSingleResult();
+		BeanMap bm =
+		    selectBySqlFile(
+		        BeanMap.class,
+		        "countBuriStateByPathNameAndPkey.sql",
+		        param).getSingleResult();
+		return (Long) bm.get("count(*)");
 	}
 	/*
 	 * public Long getNewBuriStateId() { return null; }
