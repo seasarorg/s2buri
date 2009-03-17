@@ -31,8 +31,8 @@ import org.seasar.framework.util.StringUtil;
  * @author j5ik2o
  */
 public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
-	private static Logger logger = Logger
-			.getLogger(S2JDBCToDataAccessRule.class);
+	private static Logger logger =
+	    Logger.getLogger(S2JDBCToDataAccessRule.class);
 
 	protected String serviceKeyName = "service";
 
@@ -108,15 +108,19 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		String serviceName = getServiceName(src, dtoClassName);
 		if (serviceName != null) {
 			src.getCache().put(serviceKeyName, serviceName);
-			Class serviceClass = container.getRoot().getComponentDef(
-					serviceName).getComponentClass();
+			Class serviceClass =
+			    container
+			        .getRoot()
+			        .getComponentDef(serviceName)
+			        .getComponentClass();
 			pkeySetup(src);
 			if (src.getKeys().size() == 1) {
 				String keyName = src.getKeys().keySet().toArray()[0].toString();
-				BeanDesc beanDesc = BeanDescFactory.getBeanDesc(ClassUtil
-						.forName(dtoClassName));
-				Class tgtClass = beanDesc.getPropertyDesc(keyName)
-						.getPropertyType();
+				BeanDesc beanDesc =
+				    BeanDescFactory
+				        .getBeanDesc(ClassUtil.forName(dtoClassName));
+				Class tgtClass =
+				    beanDesc.getPropertyDesc(keyName).getPropertyType();
 				src.getCache().put(serviceKeyName + "_KeyType", tgtClass);
 				src.getCache().put(serviceKeyName + "_KeyName", keyName);
 				findAndSetupAllMethod(src, beanDesc, serviceClass);
@@ -132,11 +136,10 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param serviceClass
 	 */
 	protected void findAndSetupAllMethod(BuriDataFieldType src,
-			BeanDesc beanDesc, Class<?> serviceClass) {
+	        BeanDesc beanDesc, Class<?> serviceClass) {
 		Method methods[] = serviceClass.getMethods();
 		for (Method method : methods) {
 			String methodName = method.getName();
-			System.out.println("methodName =" + methodName);
 			selectSetup(src, method, methodName, beanDesc);
 			updateSetup(src, method, methodName, beanDesc);
 			deleteSetup(src, method, methodName, beanDesc);
@@ -156,13 +159,13 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void selectNextValSetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (isSelectNextValMethod(src, method, methodName)) {
 			String serviceName = src.getCache().get(serviceKeyName).toString();
-			String pkey = (String) src.getCache().get(
-					serviceKeyName + "_KeyName");
-			String selectNextVal = "#data." + pkey + " = " + serviceName + "."
-					+ methodName + "()";
+			String pkey =
+			    (String) src.getCache().get(serviceKeyName + "_KeyName");
+			String selectNextVal =
+			    "#data." + pkey + " = " + serviceName + "." + methodName + "()";
 			if (!StringUtil.isEmpty(src.getInsert())) {
 				String insertStr = src.getInsert();
 				StringBuffer strBuff = new StringBuffer();
@@ -185,7 +188,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @return
 	 */
 	protected boolean isSelectNextValMethod(BuriDataFieldType src,
-			Method method, String methodName) {
+	        Method method, String methodName) {
 		if (methodName.startsWith("selectNextVal")) {
 			if (method.getParameterTypes().length == 0) {
 				return true;
@@ -203,7 +206,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void tableNameSetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getTableName())) {
 			return;
 		}
@@ -227,7 +230,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void selectManySetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getSelectMany())) {
 			return;
 		}
@@ -246,9 +249,10 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @return
 	 */
 	protected boolean isSelectManyMethod(BuriDataFieldType src, Method method,
-			String methodName) {
-		if (methodName.startsWith("get") || methodName.startsWith("select")
-				|| methodName.startsWith("find")) {
+	        String methodName) {
+		if (methodName.startsWith("get")
+		    || methodName.startsWith("select")
+		    || methodName.startsWith("find")) {
 			if (method.getParameterTypes().length == 1) {
 				if (method.getParameterTypes()[0].isAssignableFrom(List.class)) {
 					return true;
@@ -267,7 +271,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void deleteSetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getDelete())) {
 			return;
 		}
@@ -286,7 +290,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @return
 	 */
 	protected boolean isDeleteMethod(BuriDataFieldType src, Method method,
-			String methodName) {
+	        String methodName) {
 		if (methodName.startsWith("del") && !methodName.endsWith("Batch")) {
 			if (method.getParameterTypes().length == 1) {
 				return true;
@@ -304,7 +308,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void updateSetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getUpdate())) {
 			return;
 		}
@@ -323,7 +327,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @return
 	 */
 	protected boolean isUpdateMethod(BuriDataFieldType src, Method method,
-			String methodName) {
+	        String methodName) {
 		if (methodName.startsWith("update") && !methodName.endsWith("Batch")) {
 			if (method.getParameterTypes().length == 1) {
 				return true;
@@ -341,7 +345,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void insertSetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getInsert())) {
 			return;
 		}
@@ -360,7 +364,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @return
 	 */
 	protected boolean isInsertMethod(BuriDataFieldType src, Method method,
-			String methodName) {
+	        String methodName) {
 		if (methodName.startsWith("insert") && !methodName.endsWith("Batch")) {
 			if (method.getParameterTypes().length == 1) {
 				return true;
@@ -378,16 +382,20 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 */
 	protected void selectSetup(BuriDataFieldType src, Method method,
-			String methodName, BeanDesc beanDesc) {
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getSelect())) {
 			return;
 		}
 		if (isSelectMethod(src, method, methodName)) {
-			String keyName = src.getCache().get(serviceKeyName + "_KeyName")
-					.toString();
+			String keyName =
+			    src.getCache().get(serviceKeyName + "_KeyName").toString();
 			String serviceName = src.getCache().get(serviceKeyName).toString();
-			src.setSelect(serviceName + "." + methodName + "(#data." + keyName
-					+ ")");
+			src.setSelect(serviceName
+			    + "."
+			    + methodName
+			    + "(#data."
+			    + keyName
+			    + ")");
 		}
 	}
 
@@ -400,12 +408,13 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @return
 	 */
 	protected boolean isSelectMethod(BuriDataFieldType src, Method method,
-			String methodName) {
-		if (methodName.startsWith("get") || methodName.startsWith("select")
-				|| methodName.startsWith("find")) {
+	        String methodName) {
+		if (methodName.startsWith("get")
+		    || methodName.startsWith("select")
+		    || methodName.startsWith("find")) {
 			if (method.getParameterTypes().length == 1) {
-				Class tgtClass = (Class) src.getCache().get(
-						serviceKeyName + "_KeyType");
+				Class tgtClass =
+				    (Class) src.getCache().get(serviceKeyName + "_KeyType");
 				// if (method.getParameterTypes()[0].equals(tgtClass)) {
 				return true;
 				// }
@@ -466,8 +475,8 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	protected String getServiceName(BuriDataFieldType src, String dtoClassName) {
 		String service = null;
 		String shtName2 = createServiceName(src, dtoClassName);
-		String shtName = shtName2.substring(0, 1).toLowerCase()
-				+ shtName2.substring(1);
+		String shtName =
+		    shtName2.substring(0, 1).toLowerCase() + shtName2.substring(1);
 		if (container.getRoot().hasComponentDef(shtName)) {
 			service = shtName;
 		} else if (container.getRoot().hasComponentDef(shtName2)) {
@@ -482,7 +491,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	}
 
 	protected String findServiceClassFromNamespace(String shtName,
-			String dtoClassName) {
+	        String dtoClassName) {
 		String service = null;
 		List serviceNamespace = configuration.getValList("Namespace");
 		Iterator ite = serviceNamespace.iterator();
@@ -498,8 +507,8 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 
 	protected String findServiceClass(String shtName, String dtoClassName) {
 		String service = null;
-		List servicePackageName = configuration
-				.getValList("ServicePackageName");
+		List servicePackageName =
+		    configuration.getValList("ServicePackageName");
 		Iterator ite = servicePackageName.iterator();
 		while (ite.hasNext()) {
 			String pacName = ite.next().toString();
@@ -528,15 +537,18 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		if (ClassDefUtilImpl.isClassName(fullName)) {
 			Class serviceClass = ClassUtil.forName(fullName);
 			if (container.getRoot().hasComponentDef(serviceClass)) {
-				service = container.getRoot().getComponentDef(serviceClass)
-						.getComponentName();
+				service =
+				    container
+				        .getRoot()
+				        .getComponentDef(serviceClass)
+				        .getComponentName();
 			}
 		}
 		return service;
 	}
 
 	protected String createServiceName(BuriDataFieldType src,
-			String dtoClassName) {
+	        String dtoClassName) {
 		if (hasName(src, serviceKEY)) {
 			return getNameVal(src, serviceKEY);
 		}
@@ -553,7 +565,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		}
 		if (shtName.length() > 6) {
 			if (shtName.substring(shtName.length() - 6).equalsIgnoreCase(
-					"Entity")) {
+			    "Entity")) {
 				shtName = shtName.substring(0, shtName.length() - 6);
 			}
 		}
@@ -590,7 +602,7 @@ public class S2JDBCToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	}
 
 	public void setDataAccessRuleEventCaller(
-			DataAccessRuleEventCaller dataAccessRuleEventCaller) {
+	        DataAccessRuleEventCaller dataAccessRuleEventCaller) {
 		this.dataAccessRuleEventCaller = dataAccessRuleEventCaller;
 	}
 }
