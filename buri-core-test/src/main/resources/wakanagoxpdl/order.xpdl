@@ -28,10 +28,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="shippingId,shippingId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="shippingId,shippigId != null &amp;&amp; shippingId != 0"/>
                 <ExtendedAttribute Name="insert" Value="shippingService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="shippingService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="shippingService.getShippingSetDto(#data.shippingID)"/>
+                <ExtendedAttribute Name="select" Value="shippingService.getShippingSetDto(#data.shippingId)"/>
                 <ExtendedAttribute Name="delete" Value="shippingService.delete(#data)"/>
             </ExtendedAttributes>
         </DataField>
@@ -40,10 +40,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="shippingItemId,shippingItemId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="shippingItemId,shippingItemId != null &amp;&amp; shippingItemId != 0"/>
                 <ExtendedAttribute Name="insert" Value="shippingItemService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="shippingItemService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="shippingItemService.getShippingItem(#data.shippingItemID)"/>
+                <ExtendedAttribute Name="select" Value="shippingItemService.getShippingItem(#data.shippingItemId)"/>
                 <ExtendedAttribute Name="selectMany" Value="shippingItemService.getShippingItemByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="shippingItemService.delete(#data)"/>
             </ExtendedAttributes>
@@ -53,10 +53,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="shippingId,shippingId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="shippingId,shippingId != null &amp;&amp; shippingId != 0"/>
                 <ExtendedAttribute Name="insert" Value="shippingService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="shippingService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="shippingService.getShipping(#data.shippingID)"/>
+                <ExtendedAttribute Name="select" Value="shippingService.getShipping(#data.shippingId)"/>
                 <ExtendedAttribute Name="selectMany" Value="shippingService.getShippingByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="shippingService.delete(#data)"/>
             </ExtendedAttributes>
@@ -66,10 +66,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="orderTitleId,orderTitleId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="orderTitleId,orderTitleId != null &amp;&amp; orderTitleId != 0"/>
                 <ExtendedAttribute Name="insert" Value="orderTitleService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="orderTitleService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="orderTitleService.getOrderTitle(#data.orderTitleID)"/>
+                <ExtendedAttribute Name="select" Value="orderTitleService.getOrderTitle(#data.orderTitleId)"/>
                 <ExtendedAttribute Name="selectMany" Value="orderTitleService.getOrderTitleByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="orderTitleService.delete(#data)"/>
             </ExtendedAttributes>
@@ -79,10 +79,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="orderTitleId,orderTitleId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="orderTitleId,orderTitleId != null &amp;&amp; orderTitleId != 0"/>
                 <ExtendedAttribute Name="insert" Value="orderTitleService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="orderTitleService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="orderTitleService.getOrderInfo(#data.orderTitleID)"/>
+                <ExtendedAttribute Name="select" Value="orderTitleService.getOrderInfo(#data.orderTitleId)"/>
                 <ExtendedAttribute Name="delete" Value="orderTitleService.delete(#data)"/>
             </ExtendedAttributes>
         </DataField>
@@ -91,10 +91,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="orderDetailId,orderDetailId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="orderDetailId,orderDetailId != null &amp;&amp; orderDetailId != 0"/>
                 <ExtendedAttribute Name="insert" Value="orderDetailService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="orderDetailService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="orderDetailService.getOrderDetail(#data.orderDetailID)"/>
+                <ExtendedAttribute Name="select" Value="orderDetailService.getOrderDetail(#data.orderDetailId)"/>
                 <ExtendedAttribute Name="selectMany" Value="orderDetailService.getOrderDetailByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="orderDetailService.delete(#data)"/>
             </ExtendedAttributes>
@@ -104,7 +104,7 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="ItemId,ItemId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="itemId,itemId != null &amp;&amp; itemId != 0"/>
                 <ExtendedAttribute Name="insert" Value="itemService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="itemService.update(#data)"/>
                 <ExtendedAttribute Name="select" Value="itemService.getItem(#data.itemId)"/>
@@ -117,10 +117,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="customerId,customerId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="customerId,customerId != null &amp;&amp; customerId != 0"/>
                 <ExtendedAttribute Name="insert" Value="customerService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="customerService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="customerService.getCustomer(#data.customerID)"/>
+                <ExtendedAttribute Name="select" Value="customerService.getCustomer(#data.customerId)"/>
                 <ExtendedAttribute Name="selectMany" Value="customerService.getCustomerByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="customerService.delete(#data)"/>
             </ExtendedAttributes>
@@ -130,10 +130,10 @@
                 <BasicType Type="STRING"/>
             </DataType>
             <ExtendedAttributes>
-                <ExtendedAttribute Name="pkey" Value="billId,billId != 0"/>
+                <ExtendedAttribute Name="pkey" Value="billId,billId != null &amp;&amp; billId != 0"/>
                 <ExtendedAttribute Name="insert" Value="billService.insert(#data)"/>
                 <ExtendedAttribute Name="update" Value="billService.update(#data)"/>
-                <ExtendedAttribute Name="select" Value="billService.getBill(#data.billID)"/>
+                <ExtendedAttribute Name="select" Value="billService.getBill(#data.billId)"/>
                 <ExtendedAttribute Name="selectMany" Value="billService.getBillByIds(#data)"/>
                 <ExtendedAttribute Name="delete" Value="billService.delete(#data)"/>
             </ExtendedAttributes>
@@ -367,7 +367,7 @@
                         <BasicType Type="STRING"/>
                     </DataType>
                     <ExtendedAttributes>
-                        <ExtendedAttribute Name="preprocess" Value="shippingService.getDtoByOrderTitleID(#data)"/>
+                        <ExtendedAttribute Name="preprocess" Value="shippingService.getDtoByOrderTitleId(#data)"/>
                     </ExtendedAttributes>
                 </DataField>
                 <DataField Id="java.lang.Long" IsArray="FALSE">

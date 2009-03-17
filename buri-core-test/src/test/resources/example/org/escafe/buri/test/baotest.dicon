@@ -9,7 +9,7 @@
 		<initMethod name="add"><arg>bao.interceptor</arg></initMethod>
 	</component>
 
-	<component name="BillBao" class="org.escafe.buri.bao.BillBao">
+	<component name="billBao" class="org.escafe.buri.bao.BillBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
 
