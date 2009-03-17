@@ -200,7 +200,7 @@ public class BaoTest extends S2TestCase {
 		    "注文管理");
 		customerSetup();
 		itemSetup();
-		List datas = null;
+		List<?> datas = null;
 		OrderTitle orderInfoDto1 = orderSetup1();
 		orderBao.order(orderInfoDto1);
 		try {
