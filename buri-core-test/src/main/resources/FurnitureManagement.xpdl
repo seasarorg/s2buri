@@ -21,12 +21,12 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="pkey" Value="furnitureID,furnitureID != 0"/>
-<ExtendedAttribute Name="insert" Value="FurnitureItemDao.insert(#data)"/>
-<ExtendedAttribute Name="update" Value="FurnitureItemDao.update(#data)"/>
-<ExtendedAttribute Name="select" Value="FurnitureItemDao.getFurnitureItem(#data.furnitureID)"/>
-<ExtendedAttribute Name="selectMany_NO" Value="FurnitureItemDao.getFurnitureItemByIds(#data)"/>
-<ExtendedAttribute Name="filterMany" Value="FurnitureItemDao.getByIdAndDto(#id,#findDto)"/>
+<ExtendedAttribute Name="pkey" Value="furnitureId,furnitureId != null &amp;&amp; furnitureId != 0"/>
+<ExtendedAttribute Name="insert" Value="furnitureItemService.insert(#data)"/>
+<ExtendedAttribute Name="update" Value="furnitureItemService.update(#data)"/>
+<ExtendedAttribute Name="select" Value="furnitureItemService.getFurnitureItem(#data.furnitureId)"/>
+<ExtendedAttribute Name="selectMany_NO" Value="furnitureItemService.getFurnitureItemByIds(#data)"/>
+<ExtendedAttribute Name="filterMany" Value="furnitureItemService.getByIdAndDto(#id,#findDto)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
@@ -42,7 +42,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="preprocess" Value="FurnitureItemDao.getFurnitureItem(#data)"/>
+<ExtendedAttribute Name="preprocess" Value="furnitureItemService.getFurnitureItem(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>

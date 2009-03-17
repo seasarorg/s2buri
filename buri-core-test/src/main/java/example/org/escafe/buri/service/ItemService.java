@@ -5,6 +5,9 @@ import static org.seasar.extension.jdbc.operation.Operations.asc;
 
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanMap;
+
+import example.org.escafe.buri.dto.ItemFindDto;
 import example.org.escafe.buri.entity.Item;
 
 /**
@@ -32,5 +35,14 @@ public class ItemService extends AbstractService<Item> {
 	 */
 	public List<Item> findAllOrderById() {
 		return select().orderBy(asc(itemId())).getResultList();
+	}
+
+	public List<Item> findAndUser(ItemFindDto findDto, List<String> pathList,
+	        List<Long> userList) {
+		BeanMap bm = new BeanMap();
+		bm.put("dto", findDto);
+		bm.put("paths", pathList);
+		bm.put("userIds", userList);
+		return selectBySqlFile(Item.class, "findAndUser", bm).getResultList();
 	}
 }

@@ -1,57 +1,55 @@
-select
-		Item.itemID as itemID
-	,Item.itemName as itemName
-	,Item.price as price
-from
-	Item
-	,BuriPathDataUser
+SELECT
+	ITEM.ITEM_ID AS ITEM_ID,
+	ITEM.ITEM_NAME AS ITEM_NAME,
+	ITEM.PRICE AS PRICE
+FROM
+	ITEM,
+	BURI_PATH_DATA_USER
 /*BEGIN*/
-where
-	
-	/*IF dto.itemID != null*/ itemID = /*dto.itemID*/0/*END*/
-	/*IF dto.itemID_not != null*/AND itemID != /*dto.itemID_not*/0/*END*/
-	/*IF dto.itemID_large != null*/AND  /*dto.itemID_large*/0 < itemID/*END*/
-	/*IF dto.itemID_moreLarge != null*/AND  /*dto.itemID_moreLarge*/0 <= itemID/*END*/
-	/*IF dto.itemID_from != null*/AND  /*dto.itemID_from*/0 <= itemID/*END*/
-	/*IF dto.itemID_to != null*/AND itemID <= /*dto.itemID_to*/0/*END*/
-	/*IF dto.itemID_moreSmall != null*/AND itemID <= /*dto.itemID_moreSmall*/0/*END*/
-	/*IF dto.itemID_small != null*/AND itemID < /*dto.itemID_small*/0/*END*/
-	/*IF dto.itemID_isNull != null*/AND itemID is null /*END*/
-	/*IF dto.itemID_isNotNull != null*/AND itemID is not null/*END*/
-	/*IF dto.itemID_in != null*/AND itemID in /*dto.itemID_in*/(0)/*END*/
+WHERE
+	/*IF dto.itemId != null*/ ITEM_ID = /*dto.itemId*/0/*END*/
+	/*IF dto.itemId_not != null*/AND ITEM_ID != /*dto.itemId_not*/0/*END*/
+	/*IF dto.itemId_large != null*/AND  /*dto.itemId_large*/0 < ITEM_ID/*END*/
+	/*IF dto.itemId_moreLarge != null*/AND  /*dto.itemId_moreLarge*/0 <= ITEM_ID/*END*/
+	/*IF dto.itemId_from != null*/AND  /*dto.itemId_from*/0 <= itemId/*END*/
+	/*IF dto.itemId_to != null*/AND ITEM_ID <= /*dto.itemId_to*/0/*END*/
+	/*IF dto.itemId_moreSmall != null*/AND ITEM_ID <= /*dto.itemId_moreSmall*/0/*END*/
+	/*IF dto.itemId_small != null*/AND ITEM_ID < /*dto.itemId_small*/0/*END*/
+	/*IF dto.itemId_isNull != null*/AND ITEM_ID is null /*END*/
+	/*IF dto.itemId_isNotNull != null*/AND ITEM_ID is not null/*END*/
+	/*IF dto.itemId_in != null*/AND ITEM_ID in /*dto.itemId_in*/(0)/*END*/
+
+	/*IF dto.itemName_matchFull != null*/AND ITEM_NAME Like /*dto.itemName_matchFull*/'%TestData%'/*END*/
+	/*IF dto.itemName_matchFront != null*/AND ITEM_NAME Like /*dto.itemName_matchFront*/'TestData%'/*END*/
+	/*IF dto.itemName_matchBack != null*/AND ITEM_NAME Like /*dto.itemName_matchBack*/'%TestData'/*END*/
+	/*IF dto.itemName != null*/AND ITEM_NAME = /*dto.itemName*/'TestData'/*END*/
+	/*IF dto.itemName_not != null*/AND ITEM_NAME != /*dto.itemName_not*/'TestData'/*END*/
+	/*IF dto.itemName_large != null*/AND  /*dto.itemName_large*/'TestData' < ITEM_NAME/*END*/
+	/*IF dto.itemName_moreLarge != null*/AND  /*dto.itemName_moreLarge*/'TestData' <= ITEM_NAME/*END*/
+	/*IF dto.itemName_from != null*/AND  /*dto.itemName_from*/'TestData' <= ITEM_NAME/*END*/
+	/*IF dto.itemName_to != null*/AND ITEM_NAME <= /*dto.itemName_to*/'TestData'/*END*/
+	/*IF dto.itemName_moreSmall != null*/AND ITEM_NAME <= /*dto.itemName_moreSmall*/'TestData'/*END*/
+	/*IF dto.itemName_small != null*/AND ITEM_NAME < /*dto.itemName_small*/'TestData'/*END*/
+	/*IF dto.itemName_isNull != null*/AND ITEM_NAME is null /*END*/
+	/*IF dto.itemName_isNotNull != null*/AND ITEM_NAME is not null/*END*/
+	/*IF dto.itemName_in != null*/AND ITEM_NAME in /*dto.itemName_in*/('TestData')/*END*/
 
 	
-	/*IF dto.itemName_matchFull != null*/AND itemName Like /*dto.itemName_matchFull*/'%TestData%'/*END*/
-	/*IF dto.itemName_matchFront != null*/AND itemName Like /*dto.itemName_matchFront*/'TestData%'/*END*/
-	/*IF dto.itemName_matchBack != null*/AND itemName Like /*dto.itemName_matchBack*/'%TestData'/*END*/
-	/*IF dto.itemName != null*/AND itemName = /*dto.itemName*/'TestData'/*END*/
-	/*IF dto.itemName_not != null*/AND itemName != /*dto.itemName_not*/'TestData'/*END*/
-	/*IF dto.itemName_large != null*/AND  /*dto.itemName_large*/'TestData' < itemName/*END*/
-	/*IF dto.itemName_moreLarge != null*/AND  /*dto.itemName_moreLarge*/'TestData' <= itemName/*END*/
-	/*IF dto.itemName_from != null*/AND  /*dto.itemName_from*/'TestData' <= itemName/*END*/
-	/*IF dto.itemName_to != null*/AND itemName <= /*dto.itemName_to*/'TestData'/*END*/
-	/*IF dto.itemName_moreSmall != null*/AND itemName <= /*dto.itemName_moreSmall*/'TestData'/*END*/
-	/*IF dto.itemName_small != null*/AND itemName < /*dto.itemName_small*/'TestData'/*END*/
-	/*IF dto.itemName_isNull != null*/AND itemName is null /*END*/
-	/*IF dto.itemName_isNotNull != null*/AND itemName is not null/*END*/
-	/*IF dto.itemName_in != null*/AND itemName in /*dto.itemName_in*/('TestData')/*END*/
-
-	
-	/*IF dto.price != null*/AND price = /*dto.price*/0/*END*/
-	/*IF dto.price_not != null*/AND price != /*dto.price_not*/0/*END*/
-	/*IF dto.price_large != null*/AND  /*dto.price_large*/0 < price/*END*/
-	/*IF dto.price_moreLarge != null*/AND  /*dto.price_moreLarge*/0 <= price/*END*/
+	/*IF dto.price != null*/AND PRICE = /*dto.price*/0/*END*/
+	/*IF dto.price_not != null*/AND PRICE != /*dto.price_not*/0/*END*/
+	/*IF dto.price_large != null*/AND  /*dto.price_large*/0 < PRICE/*END*/
+	/*IF dto.price_moreLarge != null*/AND  /*dto.price_moreLarge*/0 <= PRICE/*END*/
 	/*IF dto.price_from != null*/AND  /*dto.price_from*/0 <= price/*END*/
-	/*IF dto.price_to != null*/AND price <= /*dto.price_to*/0/*END*/
-	/*IF dto.price_moreSmall != null*/AND price <= /*dto.price_moreSmall*/0/*END*/
-	/*IF dto.price_small != null*/AND price < /*dto.price_small*/0/*END*/
-	/*IF dto.price_isNull != null*/AND price is null /*END*/
-	/*IF dto.price_isNotNull != null*/AND price is not null/*END*/
-	/*IF dto.price_in != null*/AND price in /*dto.price_in*/(0)/*END*/
+	/*IF dto.price_to != null*/AND PRICE <= /*dto.price_to*/0/*END*/
+	/*IF dto.price_moreSmall != null*/AND PRICE <= /*dto.price_moreSmall*/0/*END*/
+	/*IF dto.price_small != null*/AND PRICE < /*dto.price_small*/0/*END*/
+	/*IF dto.price_isNull != null*/AND PRICE is null /*END*/
+	/*IF dto.price_isNotNull != null*/AND PRICE is not null/*END*/
+	/*IF dto.price_in != null*/AND PRICE in /*dto.price_in*/(0)/*END*/
 
-	AND Item.itemID = BuriPathDataUser.pkeyNum
+	AND ITEM.ITEM_ID = BURI_PATH_DATA_USER.PKEY_NUM
 	/*IF paths != null*/AND BuriPathDataUser.PathName in /*paths*/('buri.path.names')/*END*/
-	/*IF userIDs != null*/AND BuriPathDataUser.BuriUserID in /*userIDs*/(1)/*END*/
+	/*IF userIds != null*/AND BuriPathDataUser.BuriUserID in /*userIds*/(1)/*END*/
 	
 /*END*/
 /*$dto.orderList*/
