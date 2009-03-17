@@ -1,6 +1,5 @@
 /*
  * 作成日: 2006/05/23
- *
  */
 package org.escafe.buri.engine.selector;
 
@@ -13,7 +12,9 @@ import org.escafe.buri.util.packages.BuriExecProcess;
 /**
  * 実行対象のアクティビティを選択するためのインターフェースです。
  * 
- * @author $Author$
+ * @author makotan
+ * @author nobeans
+ * @author imai78(JavaDoc)
  */
 public interface BuriActivitySelector {
 
@@ -35,7 +36,7 @@ public interface BuriActivitySelector {
      * @param activitys
      * @param systemContext
      * @param execProcess
-     * @return
+     * @return 選択処理の結果ステータス
      */
     int select(Set<BuriActivityType> activitys, BuriSystemContext systemContext, BuriExecProcess execProcess);
 }

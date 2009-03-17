@@ -1,6 +1,5 @@
 /*
  * 作成日: 2006/05/29
- *
  */
 package org.escafe.buri.engine.selector;
 
@@ -13,7 +12,9 @@ import org.escafe.buri.util.packages.BuriExePackages;
 /**
  * 実行対象のプロセスを選択するためのインターフェースです。
  * 
- * @author $Author$
+ * @author makotan
+ * @author nobeans
+ * @author imai78(JavaDoc)
  */
 public interface BuriProcessSelector {
 
@@ -35,7 +36,7 @@ public interface BuriProcessSelector {
      * @param processes
      * @param systemContext
      * @param exePackages
-     * @return
+     * @return 選択処理の結果ステータス
      */
     int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages exePackages);
 

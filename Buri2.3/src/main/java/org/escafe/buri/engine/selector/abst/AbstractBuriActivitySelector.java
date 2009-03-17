@@ -14,11 +14,13 @@ import org.escafe.buri.util.packages.BuriExecProcess;
 /**
  * 実行対象のアクティビティを選択するための抽象クラスです。
  * 
- * @author $Author$
+ * @author makotan
+ * @author nobeans
+ * @author imai78(JavaDoc)
  */
 public abstract class AbstractBuriActivitySelector implements BuriActivitySelector {
 
-    /**
+    /*
      * @see org.escafe.buri.engine.selector.BuriActivitySelector#select(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
      */
     public int select(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
@@ -32,7 +34,7 @@ public abstract class AbstractBuriActivitySelector implements BuriActivitySelect
     /**
      * デフォルトの結果種別を返します。
      * 
-     * @return
+     * @return [選択に成功し、続けて他のセレクタを実行する]旨の結果種別
      */
     protected int getDefaultResultType() {
         return SELECT_NEXT;
