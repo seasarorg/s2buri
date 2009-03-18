@@ -1,6 +1,17 @@
 /*
- * 作成日: 2006/07/15
+ * Copyright 2004-2009 the Seasar Foundation and the Others.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package org.escafe.buri.engine.selector.processImpl;
 
@@ -38,27 +49,33 @@ import org.seasar.framework.util.StringUtil;
  * 新しく投入されたデータだけが新しいフローを流れるようになります。
  * </p>
  * 
- * @author $Author$
+ * @author makotan
+ * @author nobeans
+ * @author imai78(JavaDoc)
+ * @since 2006/07/15
  */
 public class ValidDateBuriProcessSelector extends AbstractBuriProcessSelector {
 
+    /*
+     * @see org.escafe.buri.engine.selector.abst.AbstractBuriProcessSelector#isTarget(java.util.List, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExePackages)
+     */
     @Override
     protected boolean isTarget(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         String realProcsName = systemContext.getCallPath().getWorkflowProcess();
         if (StringUtil.isEmpty(realProcsName)) {
             return false;
         }
-        List<BuriWorkflowProcessType> targets = execPackages.getBuriPackageType().getProcessByName(realProcsName);
-        if (targets.size() > 1) {
+        if (execPackages.getBuriPackageType().getProcessByName(realProcsName).size() > 1) {
             return true;
         }
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void applyRule(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
         String realProcsName = systemContext.getCallPath().getWorkflowProcess();
-        List<BuriWorkflowProcessType> tgts = execPackages.getBuriPackageType().getProcessByName(realProcsName);
+        List<BuriWorkflowProcessType> tgts = (List<BuriWorkflowProcessType>) execPackages.getBuriPackageType().getProcessByName(realProcsName);
         List<BuriWorkflowProcessType> result = new ArrayList<BuriWorkflowProcessType>();
         for (BuriWorkflowProcessType process : tgts) {
             if (isInValidDate(process)) {
@@ -69,6 +86,12 @@ public class ValidDateBuriProcessSelector extends AbstractBuriProcessSelector {
         processes.addAll(result);
     }
 
+    /**
+     * フローの有効期間を検査して、現在有効なフローかどうかを判定します。
+     * 
+     * @param process 対象となるフローの{@link BuriWorkflowProcessType}
+     * @return 有効なフローであれば{@code true}、そうでない場合は{@code false}
+     */
     private static boolean isInValidDate(BuriWorkflowProcessType process) {
         Date validFrom = process.getValidFrom();
         Date validTo = process.getValidTo();
