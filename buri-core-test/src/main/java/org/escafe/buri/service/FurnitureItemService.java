@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.escafe.buri.dto.FurnitureItemFindDto;
 import org.escafe.buri.entity.FurnitureItem;
-import org.seasar.framework.beans.util.BeanMap;
 
 public class FurnitureItemService extends AbstractService<FurnitureItem> {
 	public List<FurnitureItem> getAllFurnitureItem() {
@@ -32,10 +31,15 @@ public class FurnitureItemService extends AbstractService<FurnitureItem> {
 	 */
 	public List<FurnitureItem> find(FurnitureItemFindDto findDto,
 	        List<String> pathNames) {
-		BeanMap bm = new BeanMap();
-		bm.put("dto", findDto);
-		bm.put("paths", pathNames);
-		return selectBySqlFile(FurnitureItem.class, "find.sql", bm)
+		class Param {
+			public FurnitureItemFindDto dto;
+
+			public List<String> paths;
+		}
+		Param param = new Param();
+		param.dto = findDto;
+		param.paths = pathNames;
+		return selectBySqlFile(FurnitureItem.class, "find.sql", param)
 		    .getResultList();
 	}
 }
