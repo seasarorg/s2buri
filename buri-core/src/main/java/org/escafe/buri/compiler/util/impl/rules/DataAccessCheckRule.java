@@ -4,10 +4,7 @@
  */
 package org.escafe.buri.compiler.util.impl.rules;
 
-import java.lang.reflect.Field;
 import java.util.Iterator;
-
-import javax.persistence.Id;
 
 import org.escafe.buri.common.util.ClassDefUtilImpl;
 import org.escafe.buri.exception.BuriDataFieldErrorException;
@@ -29,12 +26,12 @@ public class DataAccessCheckRule extends AbstractBuriDataFieldProcRule {
 	protected void checkKeyName(BuriDataFieldType src) {
 		String id = src.getId();
 		Class<?> tgtClass = ClassUtil.forName(id);
-		Field fields[] = ClassUtil.getDeclaredFields(tgtClass);
-		for (Field field : fields) {
-			if (field.getAnnotation(Id.class) != null) {
-				return;
-			}
-		}
+		// Field fields[] = ClassUtil.getDeclaredFields(tgtClass);
+		// for (Field field : fields) {
+		// if (field.getAnnotation(Id.class) != null) {
+		// return;
+		// }
+		// }
 		Iterator<?> ite = src.getKeys().keySet().iterator();
 		while (ite.hasNext()) {
 			String keyVal = ite.next().toString();

@@ -16,13 +16,31 @@ public class BuriDataEntityService extends AbstractService<BuriDataEntity> {
 		return selectById(dataID);
 	}
 
+	@Override
+	public int delete(BuriDataEntity entity) {
+		// TODO Auto-generated method stub
+		return super.delete(entity);
+	}
+
+	@Override
+	public int insert(BuriDataEntity entity) {
+		// TODO Auto-generated method stub
+		return super.insert(entity);
+	}
+
+	@Override
+	public int update(BuriDataEntity entity) {
+		// TODO Auto-generated method stub
+		return super.update(entity);
+	}
+
 	public List<BuriDataEntity> getBuriDataFromDto(BuriDataEntity buriDataEntity) {
-		return select().where(
-		    eq(dataId(), buriDataEntity.dataId),
-		    eq(dataType(), buriDataEntity.dataType),
-		    eq(pkeyVal(), buriDataEntity.pkeyVal),
-		    eq(pkeyNum(), buriDataEntity.pkeyNum),
-		    eq(tableName(), buriDataEntity.tableName),
-		    eq(insertUserId(), buriDataEntity.insertUserId)).getResultList();
+		return select().where(eq(dataId(), buriDataEntity.dataId),
+				eq(dataType(), buriDataEntity.dataType),
+				eq(pkeyVal(), buriDataEntity.pkeyVal),
+				eq(pkeyNum(), buriDataEntity.pkeyNum),
+				eq(tableName(), buriDataEntity.tableName),
+				eq(insertUserId(), buriDataEntity.insertUserId))
+				.getResultList();
 	}
 }
