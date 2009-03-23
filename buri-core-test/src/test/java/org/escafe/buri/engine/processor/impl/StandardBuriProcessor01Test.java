@@ -51,6 +51,8 @@ public class StandardBuriProcessor01Test extends S2TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		include("buri/dicon/allService.dicon");
+		include("org/escafe/buri/dicon/allTestService.dicon");
 		include(PATH);
 	}
 

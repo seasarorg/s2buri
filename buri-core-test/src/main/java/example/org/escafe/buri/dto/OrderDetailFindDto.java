@@ -1,148 +1,208 @@
 package example.org.escafe.buri.dto;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class OrderDetailFindDto {
 	public static final String TABLE = "OrderDetail";
-    private ArrayList orderList = new ArrayList();
-	
-	private Long orderDetailID = null;
-	private Long orderDetailID_not = null;
-	private Long orderDetailID_large = null;
-	private Long orderDetailID_moreLarge = null;
-	private Long orderDetailID_from = null;
-	private Long orderDetailID_to = null;
-	private Long orderDetailID_moreSmall = null;
-	private Long orderDetailID_small = null;
-	private List orderDetailID_in = null;
-	private Boolean orderDetailID_isNull = null;
-	private Boolean orderDetailID_isNotNull = null;
-	private boolean orderDetailID_isASC = true;
+
+	private final ArrayList orderList = new ArrayList();
+
+	private Long orderDetailId = null;
+
+	private Long orderDetailId_not = null;
+
+	private Long orderDetailId_large = null;
+
+	private Long orderDetailId_moreLarge = null;
+
+	private Long orderDetailId_from = null;
+
+	private Long orderDetailId_to = null;
+
+	private Long orderDetailId_moreSmall = null;
+
+	private Long orderDetailId_small = null;
+
+	private List orderDetailId_in = null;
+
+	private Boolean orderDetailId_isNull = null;
+
+	private Boolean orderDetailId_isNotNull = null;
+
+	private boolean orderDetailId_isASC = true;
+
 	private Integer orderCount = null;
+
 	private Integer orderCount_not = null;
+
 	private Integer orderCount_large = null;
+
 	private Integer orderCount_moreLarge = null;
+
 	private Integer orderCount_from = null;
+
 	private Integer orderCount_to = null;
+
 	private Integer orderCount_moreSmall = null;
+
 	private Integer orderCount_small = null;
+
 	private List orderCount_in = null;
+
 	private Boolean orderCount_isNull = null;
+
 	private Boolean orderCount_isNotNull = null;
+
 	private boolean orderCount_isASC = true;
-	private Long itemID = null;
-	private Long itemID_not = null;
-	private Long itemID_large = null;
-	private Long itemID_moreLarge = null;
-	private Long itemID_from = null;
-	private Long itemID_to = null;
-	private Long itemID_moreSmall = null;
-	private Long itemID_small = null;
-	private List itemID_in = null;
-	private Boolean itemID_isNull = null;
-	private Boolean itemID_isNotNull = null;
-	private boolean itemID_isASC = true;
-	private Long orderTitleID = null;
-	private Long orderTitleID_not = null;
-	private Long orderTitleID_large = null;
-	private Long orderTitleID_moreLarge = null;
-	private Long orderTitleID_from = null;
-	private Long orderTitleID_to = null;
-	private Long orderTitleID_moreSmall = null;
-	private Long orderTitleID_small = null;
-	private List orderTitleID_in = null;
-	private Boolean orderTitleID_isNull = null;
-	private Boolean orderTitleID_isNotNull = null;
-	private boolean orderTitleID_isASC = true;
 
-	public Long getOrderDetailID() {
-		return orderDetailID;
-	}
+	private Long itemId = null;
 
-	public void setOrderDetailID(Long orderDetailID) {
-		this.orderDetailID = orderDetailID;
-	}
-	public Long getOrderDetailID_not() {
-		return orderDetailID_not;
-	}
+	private Long itemId_not = null;
 
-	public void setOrderDetailID_not(Long orderDetailID_not) {
-		this.orderDetailID_not = orderDetailID_not;
-	}
-	public Long getOrderDetailID_large() {
-		return orderDetailID_large;
-	}
+	private Long itemId_large = null;
 
-	public void setOrderDetailID_large(Long orderDetailID_large) {
-		this.orderDetailID_large = orderDetailID_large;
-	}
-	public Long getOrderDetailID_moreLarge() {
-		return orderDetailID_moreLarge;
-	}
+	private Long itemId_moreLarge = null;
 
-	public void setOrderDetailID_moreLarge(Long orderDetailID_moreLarge) {
-		this.orderDetailID_moreLarge = orderDetailID_moreLarge;
-	}
-	public Long getOrderDetailID_from() {
-		return orderDetailID_from;
+	private Long itemId_from = null;
+
+	private Long itemId_to = null;
+
+	private Long itemId_moreSmall = null;
+
+	private Long itemId_small = null;
+
+	private List itemId_in = null;
+
+	private Boolean itemId_isNull = null;
+
+	private Boolean itemId_isNotNull = null;
+
+	private boolean itemId_isASC = true;
+
+	private Long orderTitleId = null;
+
+	private Long orderTitleId_not = null;
+
+	private Long orderTitleId_large = null;
+
+	private Long orderTitleId_moreLarge = null;
+
+	private Long orderTitleId_from = null;
+
+	private Long orderTitleId_to = null;
+
+	private Long orderTitleId_moreSmall = null;
+
+	private Long orderTitleId_small = null;
+
+	private List orderTitleId_in = null;
+
+	private Boolean orderTitleId_isNull = null;
+
+	private Boolean orderTitleId_isNotNull = null;
+
+	private boolean orderTitleId_isASC = true;
+
+	public Long getoOrderDetailId() {
+		return orderDetailId;
 	}
 
-	public void setOrderDetailID_from(Long orderDetailID_from) {
-		this.orderDetailID_from = orderDetailID_from;
-	}
-	public Long getOrderDetailID_to() {
-		return orderDetailID_to;
+	public void setOrderDetailId(Long orderDetailId) {
+		this.orderDetailId = orderDetailId;
 	}
 
-	public void setOrderDetailID_to(Long orderDetailID_to) {
-		this.orderDetailID_to = orderDetailID_to;
-	}
-	public Long getOrderDetailID_moreSmall() {
-		return orderDetailID_moreSmall;
+	public Long getOrderDetailId_not() {
+		return orderDetailId_not;
 	}
 
-	public void setOrderDetailID_moreSmall(Long orderDetailID_moreSmall) {
-		this.orderDetailID_moreSmall = orderDetailID_moreSmall;
-	}
-	public Long getOrderDetailID_small() {
-		return orderDetailID_small;
+	public void setOrderDetailId_not(Long orderDetailId_not) {
+		this.orderDetailId_not = orderDetailId_not;
 	}
 
-	public void setOrderDetailID_small(Long orderDetailID_small) {
-		this.orderDetailID_small = orderDetailID_small;
-	}
-	public List getOrderDetailID_in() {
-		return orderDetailID_in;
+	public Long getOrderDetailId_large() {
+		return orderDetailId_large;
 	}
 
-	public void setOrderDetailID_in(List orderDetailID_in) {
-		this.orderDetailID_in = orderDetailID_in;
-	}
-	public Boolean getOrderDetailID_isNull() {
-		return orderDetailID_isNull;
+	public void setOrderDetailId_large(Long orderDetailId_large) {
+		this.orderDetailId_large = orderDetailId_large;
 	}
 
-	public void setOrderDetailID_isNull(Boolean orderDetailID_isNull) {
-		this.orderDetailID_isNull = orderDetailID_isNull;
-	}
-	public Boolean getOrderDetailID_isNotNull() {
-		return orderDetailID_isNotNull;
+	public Long getOrderDetailId_moreLarge() {
+		return orderDetailId_moreLarge;
 	}
 
-	public void setOrderDetailID_isNotNull(Boolean orderDetailID_isNotNull) {
-		this.orderDetailID_isNotNull = orderDetailID_isNotNull;
-	}
-	public boolean getOrderDetailID_isASC() {
-		return orderDetailID_isASC;
+	public void setOrderDetailId_moreLarge(Long orderDetailId_moreLarge) {
+		this.orderDetailId_moreLarge = orderDetailId_moreLarge;
 	}
 
-	public void setOrderDetailID_isASC(boolean orderDetailID_isASC) {
-		this.orderDetailID_isASC = orderDetailID_isASC;
+	public Long getOrderDetailId_from() {
+		return orderDetailId_from;
 	}
+
+	public void setOrderDetailId_from(Long orderDetailId_from) {
+		this.orderDetailId_from = orderDetailId_from;
+	}
+
+	public Long getOrderDetailId_to() {
+		return orderDetailId_to;
+	}
+
+	public void setOrderDetailId_to(Long orderDetailId_to) {
+		this.orderDetailId_to = orderDetailId_to;
+	}
+
+	public Long getOrderDetailId_moreSmall() {
+		return orderDetailId_moreSmall;
+	}
+
+	public void setOrderDetailId_moreSmall(Long orderDetailId_moreSmall) {
+		this.orderDetailId_moreSmall = orderDetailId_moreSmall;
+	}
+
+	public Long getOrderDetailId_small() {
+		return orderDetailId_small;
+	}
+
+	public void setOrderDetailId_small(Long orderDetailId_small) {
+		this.orderDetailId_small = orderDetailId_small;
+	}
+
+	public List getOrderDetailId_in() {
+		return orderDetailId_in;
+	}
+
+	public void setOrderDetailId_in(List orderDetailId_in) {
+		this.orderDetailId_in = orderDetailId_in;
+	}
+
+	public Boolean getOrderDetailId_isNull() {
+		return orderDetailId_isNull;
+	}
+
+	public void setOrderDetailId_isNull(Boolean orderDetailId_isNull) {
+		this.orderDetailId_isNull = orderDetailId_isNull;
+	}
+
+	public Boolean getOrderDetailId_isNotNull() {
+		return orderDetailId_isNotNull;
+	}
+
+	public void setOrderDetailId_isNotNull(Boolean orderDetailId_isNotNull) {
+		this.orderDetailId_isNotNull = orderDetailId_isNotNull;
+	}
+
+	public boolean getOrderDetailId_isASC() {
+		return orderDetailId_isASC;
+	}
+
+	public void setOrderDetailId_isASC(boolean orderDetailId_isASC) {
+		this.orderDetailId_isASC = orderDetailId_isASC;
+	}
+
 	public Integer getOrderCount() {
 		return orderCount;
 	}
@@ -150,6 +210,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount(Integer orderCount) {
 		this.orderCount = orderCount;
 	}
+
 	public Integer getOrderCount_not() {
 		return orderCount_not;
 	}
@@ -157,6 +218,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_not(Integer orderCount_not) {
 		this.orderCount_not = orderCount_not;
 	}
+
 	public Integer getOrderCount_large() {
 		return orderCount_large;
 	}
@@ -164,6 +226,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_large(Integer orderCount_large) {
 		this.orderCount_large = orderCount_large;
 	}
+
 	public Integer getOrderCount_moreLarge() {
 		return orderCount_moreLarge;
 	}
@@ -171,6 +234,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_moreLarge(Integer orderCount_moreLarge) {
 		this.orderCount_moreLarge = orderCount_moreLarge;
 	}
+
 	public Integer getOrderCount_from() {
 		return orderCount_from;
 	}
@@ -178,6 +242,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_from(Integer orderCount_from) {
 		this.orderCount_from = orderCount_from;
 	}
+
 	public Integer getOrderCount_to() {
 		return orderCount_to;
 	}
@@ -185,6 +250,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_to(Integer orderCount_to) {
 		this.orderCount_to = orderCount_to;
 	}
+
 	public Integer getOrderCount_moreSmall() {
 		return orderCount_moreSmall;
 	}
@@ -192,6 +258,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_moreSmall(Integer orderCount_moreSmall) {
 		this.orderCount_moreSmall = orderCount_moreSmall;
 	}
+
 	public Integer getOrderCount_small() {
 		return orderCount_small;
 	}
@@ -199,6 +266,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_small(Integer orderCount_small) {
 		this.orderCount_small = orderCount_small;
 	}
+
 	public List getOrderCount_in() {
 		return orderCount_in;
 	}
@@ -206,6 +274,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_in(List orderCount_in) {
 		this.orderCount_in = orderCount_in;
 	}
+
 	public Boolean getOrderCount_isNull() {
 		return orderCount_isNull;
 	}
@@ -213,6 +282,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_isNull(Boolean orderCount_isNull) {
 		this.orderCount_isNull = orderCount_isNull;
 	}
+
 	public Boolean getOrderCount_isNotNull() {
 		return orderCount_isNotNull;
 	}
@@ -220,6 +290,7 @@ public class OrderDetailFindDto {
 	public void setOrderCount_isNotNull(Boolean orderCount_isNotNull) {
 		this.orderCount_isNotNull = orderCount_isNotNull;
 	}
+
 	public boolean getOrderCount_isASC() {
 		return orderCount_isASC;
 	}
@@ -227,218 +298,251 @@ public class OrderDetailFindDto {
 	public void setOrderCount_isASC(boolean orderCount_isASC) {
 		this.orderCount_isASC = orderCount_isASC;
 	}
-	public Long getItemID() {
-		return itemID;
+
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setItemID(Long itemID) {
-		this.itemID = itemID;
-	}
-	public Long getItemID_not() {
-		return itemID_not;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
-	public void setItemID_not(Long itemID_not) {
-		this.itemID_not = itemID_not;
-	}
-	public Long getItemID_large() {
-		return itemID_large;
+	public Long getItemId_not() {
+		return itemId_not;
 	}
 
-	public void setItemID_large(Long itemID_large) {
-		this.itemID_large = itemID_large;
-	}
-	public Long getItemID_moreLarge() {
-		return itemID_moreLarge;
+	public void setItemId_not(Long itemId_not) {
+		this.itemId_not = itemId_not;
 	}
 
-	public void setItemID_moreLarge(Long itemID_moreLarge) {
-		this.itemID_moreLarge = itemID_moreLarge;
-	}
-	public Long getItemID_from() {
-		return itemID_from;
+	public Long getitemId_large() {
+		return itemId_large;
 	}
 
-	public void setItemID_from(Long itemID_from) {
-		this.itemID_from = itemID_from;
-	}
-	public Long getItemID_to() {
-		return itemID_to;
+	public void setItemId_large(Long itemId_large) {
+		this.itemId_large = itemId_large;
 	}
 
-	public void setItemID_to(Long itemID_to) {
-		this.itemID_to = itemID_to;
-	}
-	public Long getItemID_moreSmall() {
-		return itemID_moreSmall;
+	public Long getItemId_moreLarge() {
+		return itemId_moreLarge;
 	}
 
-	public void setItemID_moreSmall(Long itemID_moreSmall) {
-		this.itemID_moreSmall = itemID_moreSmall;
-	}
-	public Long getItemID_small() {
-		return itemID_small;
+	public void setItemId_moreLarge(Long itemId_moreLarge) {
+		this.itemId_moreLarge = itemId_moreLarge;
 	}
 
-	public void setItemID_small(Long itemID_small) {
-		this.itemID_small = itemID_small;
-	}
-	public List getItemID_in() {
-		return itemID_in;
+	public Long getItemId_from() {
+		return itemId_from;
 	}
 
-	public void setItemID_in(List itemID_in) {
-		this.itemID_in = itemID_in;
-	}
-	public Boolean getItemID_isNull() {
-		return itemID_isNull;
+	public void setItemId_from(Long itemId_from) {
+		this.itemId_from = itemId_from;
 	}
 
-	public void setItemID_isNull(Boolean itemID_isNull) {
-		this.itemID_isNull = itemID_isNull;
-	}
-	public Boolean getItemID_isNotNull() {
-		return itemID_isNotNull;
+	public Long getItemId_to() {
+		return itemId_to;
 	}
 
-	public void setItemID_isNotNull(Boolean itemID_isNotNull) {
-		this.itemID_isNotNull = itemID_isNotNull;
-	}
-	public boolean getItemID_isASC() {
-		return itemID_isASC;
+	public void setItemId_to(Long itemId_to) {
+		this.itemId_to = itemId_to;
 	}
 
-	public void setItemID_isASC(boolean itemID_isASC) {
-		this.itemID_isASC = itemID_isASC;
-	}
-	public Long getOrderTitleID() {
-		return orderTitleID;
+	public Long getItemId_moreSmall() {
+		return itemId_moreSmall;
 	}
 
-	public void setOrderTitleID(Long orderTitleID) {
-		this.orderTitleID = orderTitleID;
-	}
-	public Long getOrderTitleID_not() {
-		return orderTitleID_not;
+	public void setItemId_moreSmall(Long itemId_moreSmall) {
+		this.itemId_moreSmall = itemId_moreSmall;
 	}
 
-	public void setOrderTitleID_not(Long orderTitleID_not) {
-		this.orderTitleID_not = orderTitleID_not;
-	}
-	public Long getOrderTitleID_large() {
-		return orderTitleID_large;
+	public Long getItemId_small() {
+		return itemId_small;
 	}
 
-	public void setOrderTitleID_large(Long orderTitleID_large) {
-		this.orderTitleID_large = orderTitleID_large;
-	}
-	public Long getOrderTitleID_moreLarge() {
-		return orderTitleID_moreLarge;
+	public void setItemId_small(Long itemId_small) {
+		this.itemId_small = itemId_small;
 	}
 
-	public void setOrderTitleID_moreLarge(Long orderTitleID_moreLarge) {
-		this.orderTitleID_moreLarge = orderTitleID_moreLarge;
-	}
-	public Long getOrderTitleID_from() {
-		return orderTitleID_from;
+	public List getItemId_in() {
+		return itemId_in;
 	}
 
-	public void setOrderTitleID_from(Long orderTitleID_from) {
-		this.orderTitleID_from = orderTitleID_from;
-	}
-	public Long getOrderTitleID_to() {
-		return orderTitleID_to;
+	public void setItemId_in(List itemId_in) {
+		this.itemId_in = itemId_in;
 	}
 
-	public void setOrderTitleID_to(Long orderTitleID_to) {
-		this.orderTitleID_to = orderTitleID_to;
-	}
-	public Long getOrderTitleID_moreSmall() {
-		return orderTitleID_moreSmall;
+	public Boolean getItemId_isNull() {
+		return itemId_isNull;
 	}
 
-	public void setOrderTitleID_moreSmall(Long orderTitleID_moreSmall) {
-		this.orderTitleID_moreSmall = orderTitleID_moreSmall;
-	}
-	public Long getOrderTitleID_small() {
-		return orderTitleID_small;
+	public void setItemId_isNull(Boolean itemId_isNull) {
+		this.itemId_isNull = itemId_isNull;
 	}
 
-	public void setOrderTitleID_small(Long orderTitleID_small) {
-		this.orderTitleID_small = orderTitleID_small;
-	}
-	public List getOrderTitleID_in() {
-		return orderTitleID_in;
+	public Boolean getItemId_isNotNull() {
+		return itemId_isNotNull;
 	}
 
-	public void setOrderTitleID_in(List orderTitleID_in) {
-		this.orderTitleID_in = orderTitleID_in;
-	}
-	public Boolean getOrderTitleID_isNull() {
-		return orderTitleID_isNull;
+	public void setItemId_isNotNull(Boolean itemId_isNotNull) {
+		this.itemId_isNotNull = itemId_isNotNull;
 	}
 
-	public void setOrderTitleID_isNull(Boolean orderTitleID_isNull) {
-		this.orderTitleID_isNull = orderTitleID_isNull;
-	}
-	public Boolean getOrderTitleID_isNotNull() {
-		return orderTitleID_isNotNull;
+	public boolean getItemId_isASC() {
+		return itemId_isASC;
 	}
 
-	public void setOrderTitleID_isNotNull(Boolean orderTitleID_isNotNull) {
-		this.orderTitleID_isNotNull = orderTitleID_isNotNull;
-	}
-	public boolean getOrderTitleID_isASC() {
-		return orderTitleID_isASC;
+	public void setItemId_isASC(boolean itemId_isASC) {
+		this.itemId_isASC = itemId_isASC;
 	}
 
-	public void setOrderTitleID_isASC(boolean orderTitleID_isASC) {
-		this.orderTitleID_isASC = orderTitleID_isASC;
+	public Long getOrderTitleId() {
+		return orderTitleId;
 	}
 
+	public void setOrderTitleId(Long orderTitleId) {
+		this.orderTitleId = orderTitleId;
+	}
 
-    public void addOrderList(String order) {
-        orderList.add(order);
-    }
+	public Long getOrderTitleId_not() {
+		return orderTitleId_not;
+	}
 
-    public void addOrderList(String order,boolean isAsc) {
-        orderList.add(order);
-        ScriptProcessor processor = new ScriptProcessor();
-        processor.setValue(order.replace('.','_') + "_isASC",this,new Boolean(isAsc));
-    }
-    
-    public String getOrderList() {
-        String order = "";
-        String ORDER = "ORDER BY ";
-        Iterator ite = orderList.iterator();
-        ScriptProcessor processor = new ScriptProcessor();
-        while(ite.hasNext()) {
-            String orderTgt = (String)ite.next();
-            order = ORDER + order + orderTgt.replace('_','.') + " ";
-            Boolean var = (Boolean)processor.getValue(orderTgt + "_isASC", this);
-            if( ! var.booleanValue()) {
-                order = order + "DESC ";
-            }
-            ORDER = "";
-        }
-        return order;
-    }
+	public void setOrderTitleId_not(Long orderTitleId_not) {
+		this.orderTitleId_not = orderTitleId_not;
+	}
+
+	public Long getOrderTitleId_large() {
+		return orderTitleId_large;
+	}
+
+	public void setorderTitleId_large(Long orderTitleId_large) {
+		this.orderTitleId_large = orderTitleId_large;
+	}
+
+	public Long getOrderTitleId_moreLarge() {
+		return orderTitleId_moreLarge;
+	}
+
+	public void setOrderTitleId_moreLarge(Long orderTitleId_moreLarge) {
+		this.orderTitleId_moreLarge = orderTitleId_moreLarge;
+	}
+
+	public Long getorderTitleId_from() {
+		return orderTitleId_from;
+	}
+
+	public void setOrderTitleId_from(Long orderTitleId_from) {
+		this.orderTitleId_from = orderTitleId_from;
+	}
+
+	public Long getOrderTitleId_to() {
+		return orderTitleId_to;
+	}
+
+	public void setOrderTitleId_to(Long orderTitleId_to) {
+		this.orderTitleId_to = orderTitleId_to;
+	}
+
+	public Long getorderTitleId_moreSmall() {
+		return orderTitleId_moreSmall;
+	}
+
+	public void setOrderTitleId_moreSmall(Long orderTitleId_moreSmall) {
+		this.orderTitleId_moreSmall = orderTitleId_moreSmall;
+	}
+
+	public Long getorderTitleId_small() {
+		return orderTitleId_small;
+	}
+
+	public void setOrderTitleId_small(Long orderTitleId_small) {
+		this.orderTitleId_small = orderTitleId_small;
+	}
+
+	public List getorderTitleId_in() {
+		return orderTitleId_in;
+	}
+
+	public void setOrderTitleId_in(List orderTitleId_in) {
+		this.orderTitleId_in = orderTitleId_in;
+	}
+
+	public Boolean getOrderTitleId_isNull() {
+		return orderTitleId_isNull;
+	}
+
+	public void setOrderTitleId_isNull(Boolean orderTitleId_isNull) {
+		this.orderTitleId_isNull = orderTitleId_isNull;
+	}
+
+	public Boolean getOrderTitleId_isNotNull() {
+		return orderTitleId_isNotNull;
+	}
+
+	public void setOrderTitleId_isNotNull(Boolean orderTitleId_isNotNull) {
+		this.orderTitleId_isNotNull = orderTitleId_isNotNull;
+	}
+
+	public boolean getOrderTitleId_isASC() {
+		return orderTitleId_isASC;
+	}
+
+	public void setOrderTitleId_isASC(boolean orderTitleId_isASC) {
+		this.orderTitleId_isASC = orderTitleId_isASC;
+	}
+
+	public void addOrderList(String order) {
+		orderList.add(order);
+	}
+
+	public void addOrderList(String order, boolean isAsc) {
+		orderList.add(order);
+		ScriptProcessor processor = new ScriptProcessor();
+		processor.setValue(
+		    order.replace('.', '_') + "_isASC",
+		    this,
+		    new Boolean(isAsc));
+	}
+
+	public String getOrderList() {
+		String order = "";
+		String ORDER = "ORDER BY ";
+		Iterator ite = orderList.iterator();
+		ScriptProcessor processor = new ScriptProcessor();
+		while (ite.hasNext()) {
+			String orderTgt = (String) ite.next();
+			order = ORDER + order + orderTgt.replace('_', '.') + " ";
+			Boolean var =
+			    (Boolean) processor.getValue(orderTgt + "_isASC", this);
+			if (!var.booleanValue()) {
+				order = order + "DESC ";
+			}
+			ORDER = "";
+		}
+		return order;
+	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/orderDetailID=").append(orderDetailID);
-		buff.append("/orderDetailID_not=").append(orderDetailID_not);
-		buff.append("/orderDetailID_large=").append(orderDetailID_large);
-		buff.append("/orderDetailID_moreLarge=").append(orderDetailID_moreLarge);
-		buff.append("/orderDetailID_from=").append(orderDetailID_from);
-		buff.append("/orderDetailID_to=").append(orderDetailID_to);
-		buff.append("/orderDetailID_moreSmall=").append(orderDetailID_moreSmall);
-		buff.append("/orderDetailID_small=").append(orderDetailID_small);
-		buff.append("/orderDetailID_in=").append(orderDetailID_in);
-		buff.append("/orderDetailID_isNull=").append(orderDetailID_isNull);
-		buff.append("/orderDetailID_isNotNull=").append(orderDetailID_isNotNull);
-		buff.append("/orderDetailID_isASC=").append(orderDetailID_isASC);
+		buff.append("/orderDetailId=").append(orderDetailId);
+		buff.append("/orderDetailId_not=").append(orderDetailId_not);
+		buff.append("/orderDetailId_large=").append(orderDetailId_large);
+		buff
+		    .append("/orderDetailId_moreLarge=")
+		    .append(orderDetailId_moreLarge);
+		buff.append("/orderDetailId_from=").append(orderDetailId_from);
+		buff.append("/orderDetailId_to=").append(orderDetailId_to);
+		buff
+		    .append("/orderDetailId_moreSmall=")
+		    .append(orderDetailId_moreSmall);
+		buff.append("/orderDetailId_small=").append(orderDetailId_small);
+		buff.append("/orderDetailId_in=").append(orderDetailId_in);
+		buff.append("/orderDetailId_isNull=").append(orderDetailId_isNull);
+		buff
+		    .append("/orderDetailId_isNotNull=")
+		    .append(orderDetailId_isNotNull);
+		buff.append("/orderDetailId_isASC=").append(orderDetailId_isASC);
 		buff.append("/orderCount=").append(orderCount);
 		buff.append("/orderCount_not=").append(orderCount_not);
 		buff.append("/orderCount_large=").append(orderCount_large);
@@ -451,32 +555,31 @@ public class OrderDetailFindDto {
 		buff.append("/orderCount_isNull=").append(orderCount_isNull);
 		buff.append("/orderCount_isNotNull=").append(orderCount_isNotNull);
 		buff.append("/orderCount_isASC=").append(orderCount_isASC);
-		buff.append("/itemID=").append(itemID);
-		buff.append("/itemID_not=").append(itemID_not);
-		buff.append("/itemID_large=").append(itemID_large);
-		buff.append("/itemID_moreLarge=").append(itemID_moreLarge);
-		buff.append("/itemID_from=").append(itemID_from);
-		buff.append("/itemID_to=").append(itemID_to);
-		buff.append("/itemID_moreSmall=").append(itemID_moreSmall);
-		buff.append("/itemID_small=").append(itemID_small);
-		buff.append("/itemID_in=").append(itemID_in);
-		buff.append("/itemID_isNull=").append(itemID_isNull);
-		buff.append("/itemID_isNotNull=").append(itemID_isNotNull);
-		buff.append("/itemID_isASC=").append(itemID_isASC);
-		buff.append("/orderTitleID=").append(orderTitleID);
-		buff.append("/orderTitleID_not=").append(orderTitleID_not);
-		buff.append("/orderTitleID_large=").append(orderTitleID_large);
-		buff.append("/orderTitleID_moreLarge=").append(orderTitleID_moreLarge);
-		buff.append("/orderTitleID_from=").append(orderTitleID_from);
-		buff.append("/orderTitleID_to=").append(orderTitleID_to);
-		buff.append("/orderTitleID_moreSmall=").append(orderTitleID_moreSmall);
-		buff.append("/orderTitleID_small=").append(orderTitleID_small);
-		buff.append("/orderTitleID_in=").append(orderTitleID_in);
-		buff.append("/orderTitleID_isNull=").append(orderTitleID_isNull);
-		buff.append("/orderTitleID_isNotNull=").append(orderTitleID_isNotNull);
-		buff.append("/orderTitleID_isASC=").append(orderTitleID_isASC);
+		buff.append("/itemId=").append(itemId);
+		buff.append("/itemId_not=").append(itemId_not);
+		buff.append("/itemId_large=").append(itemId_large);
+		buff.append("/itemId_moreLarge=").append(itemId_moreLarge);
+		buff.append("/itemId_from=").append(itemId_from);
+		buff.append("/itemId_to=").append(itemId_to);
+		buff.append("/itemId_moreSmall=").append(itemId_moreSmall);
+		buff.append("/itemId_small=").append(itemId_small);
+		buff.append("/itemId_in=").append(itemId_in);
+		buff.append("/itemId_isNull=").append(itemId_isNull);
+		buff.append("/itemId_isNotNull=").append(itemId_isNotNull);
+		buff.append("/itemId_isASC=").append(itemId_isASC);
+		buff.append("/OrderTitleId=").append(orderTitleId);
+		buff.append("/orderTitleId_not=").append(orderTitleId_not);
+		buff.append("/orderTitleId_large=").append(orderTitleId_large);
+		buff.append("/orderTitleId_moreLarge=").append(orderTitleId_moreLarge);
+		buff.append("/orderTitleId_from=").append(orderTitleId_from);
+		buff.append("/orderTitleId_to=").append(orderTitleId_to);
+		buff.append("/orderTitleId_moreSmall=").append(orderTitleId_moreSmall);
+		buff.append("/orderTitleId_small=").append(orderTitleId_small);
+		buff.append("/orderTitleId_in=").append(orderTitleId_in);
+		buff.append("/orderTitleId_isNull=").append(orderTitleId_isNull);
+		buff.append("/orderTitleId_isNotNull=").append(orderTitleId_isNotNull);
+		buff.append("/orderTitleId_isASC=").append(orderTitleId_isASC);
 		buff.append("]");
 		return buff.toString();
 	}
-	
 }

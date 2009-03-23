@@ -7,10 +7,10 @@ package example.org.escafe.buri.test;
 import java.util.Date;
 import java.util.List;
 
-import org.escafe.buri.annotation.bao.BillBao;
-import org.escafe.buri.annotation.bao.OrderBao;
-import org.escafe.buri.annotation.bao.ShippingBao;
-import org.escafe.buri.annotation.bao.ShippingItemBao;
+import org.escafe.buri.bao.BillBao;
+import org.escafe.buri.bao.OrderBao;
+import org.escafe.buri.bao.ShippingBao;
+import org.escafe.buri.bao.ShippingItemBao;
 import org.escafe.buri.engine.BuriEngine;
 import org.escafe.buri.service.BuriPathEntityService;
 import org.escafe.buri.service.BuriStateEntityService;

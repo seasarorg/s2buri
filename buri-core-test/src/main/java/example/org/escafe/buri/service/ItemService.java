@@ -28,6 +28,10 @@ public class ItemService extends AbstractService<Item> {
 		return select().id(itemId).getSingleResult();
 	}
 
+	public Item getItem(Long itemId) {
+		return findById(itemId);
+	}
+
 	/**
 	 * 識別子の昇順ですべてのエンティティを検索します。
 	 * 

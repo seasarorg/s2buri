@@ -27,12 +27,6 @@ public class BuriTestINTService extends AbstractService<BuriTestINT> {
 		return super.update(entity);
 	}
 
-	@Override
-	public BuriTestINT selectById(Object... ids) {
-		// TODO Auto-generated method stub
-		return super.selectById(ids);
-	}
-
 	public List<BuriTestINT> getAllBuriTestINT() {
 		return findAll();
 	}

@@ -2,14 +2,19 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
 	"http://www.seasar.org/dtd/components24.dtd">
 <components>
-	
+	<include path="buri/dicon/allService.dicon"/>
+	<include path="org/escafe/buri/dicon/allTestService.dicon"/>
 
 	<!-- BuriSignal -->
 	<include path="buri/dicon/buriSignal.dicon"/>
 	<include path="buri/dicon/bao.dicon"/>
+	
 	<component name="interceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
-		<initMethod name="add"><arg>bao.interceptor</arg></initMethod>
+		<initMethod name="add">
+			<arg>bao.interceptor</arg>
+		</initMethod>
 	</component>
+	
 	<component name="buriSignalTestBao" class="org.escafe.buri.annotation.bao.BuriSignalTestBao" >
 		<aspect>interceptorChain</aspect>
 	</component>

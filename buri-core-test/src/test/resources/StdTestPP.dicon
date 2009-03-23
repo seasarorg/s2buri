@@ -4,7 +4,9 @@
 <components>
 	<include path="aop.dicon"/>
 	<include path="buri/dicon/allService.dicon"/>
+	<include path="org/escafe/buri/dicon/allTestService.dicon"/>
 	<component name="StdTestParticipantProvider" class="org.escafe.buri.engine.processor.impl.StdTestParticipantProvider">
 		<aspect>aop.traceInterceptor</aspect>
+		<property name="buriTestUserService">buriTestUserService</property>
 	</component>
 </components>

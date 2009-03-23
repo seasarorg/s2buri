@@ -2,12 +2,11 @@ package example.org.escafe.buri.signal.test;
 
 import java.util.List;
 
+import org.escafe.buri.annotation.bao.BuriSignalTestBao;
 import org.escafe.buri.engine.BuriEngine;
 import org.escafe.buri.engine.processor.util.BuriSignal;
 import org.escafe.buri.entity.BuriTestINT;
 import org.seasar.extension.unit.S2TestCase;
-
-import example.org.escafe.buri.annotation.bao.BuriSignalTestBao;
 
 public class BuriSignalTest extends S2TestCase {
 	String diconPath =
@@ -24,8 +23,6 @@ public class BuriSignalTest extends S2TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		include(diconPath);
-		BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
-		buriEngine.readWorkFlowFromResource(workFlowName, resourceName);
 	}
 
 	/**
@@ -34,6 +31,8 @@ public class BuriSignalTest extends S2TestCase {
 	 * @throws Exception
 	 */
 	public void testSignalTx() throws Exception {
+		BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
+		buriEngine.readWorkFlowFromResource(workFlowName, resourceName);
 		BuriTestINT testDto = new BuriTestINT();
 		testDto.value = "データ1";
 		List<BuriTestINT> result = null;
@@ -55,6 +54,8 @@ public class BuriSignalTest extends S2TestCase {
 	 * @throws Exception
 	 */
 	public void testSignalManyTx() throws Exception {
+		BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
+		buriEngine.readWorkFlowFromResource(workFlowName, resourceName);
 		BuriTestINT[] dtos = new BuriTestINT[10];
 		BuriTestINT testDto = null;
 		for (int i = 0; i < 10; i++) {
