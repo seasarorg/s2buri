@@ -1,21 +1,22 @@
 /*
- * 作成日: 2006/05/04
+ * 作成日: 2006/05/05
  *
  */
 package org.escafe.buri.sample.packages.wakanagoTest;
 
 import java.util.List;
 
-import org.escafe.buri.entity.BuriTestCHAR;
+import org.escafe.buri.entity.BuriTestMany;
 import org.escafe.buri.util.packages.abst.AbstDataAccessUtilManyKey;
-import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
 
-public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestCHARDto extends
-        AbstDataAccessUtilManyKey implements DataAccessUtilManyKey {
-	private static String params[] = new String[] { "testId" };
+public class wakanagoTest_wp1_org_seasar_buri_entity_BuriTestMany extends
+        AbstDataAccessUtilManyKey {
+	private static String params[] = new String[] { "testId01", "testId02" };
 
 	private static String condition[] =
-	    new String[] { "testId != null && testId != \"\"" };
+	    new String[] {
+	        "testId01 != null && testId01 != 0",
+	        "testId02 != null && testId02 != 0" };
 
 	@Override
 	protected String[] getConditions() {
@@ -31,35 +32,36 @@ public class wakanagoTest_wp1_org_seasar_buri_dto_BuriTestCHARDto extends
 		return getKey(key, params);
 	}
 
-	protected BuriTestCHAR convKeyStringToObj(String keyObj) {
-		BuriTestCHAR dto = new BuriTestCHAR();
+	protected BuriTestMany convKeyStringToObj(String keyObj) {
+		BuriTestMany dto = new BuriTestMany();
 		setStringKeyToObj(dto, keyObj);
 		return dto;
 	}
 
 	public Object getObjectFromKey(String keyObj) {
-		BuriTestCHAR dto = convKeyStringToObj(keyObj);
+		BuriTestMany dto = convKeyStringToObj(keyObj);
 		return getDataFromDto(dto);
 	}
 
 	public Object Store(Object data) {
 		String execScript = "";
 		if (hasPkey(data, condition)) {
-			execScript = "buriTestCHARService.update(#data)";
+			execScript = "buriTestManyService.update(#data)";
 		} else {
-			execScript = "buriTestCHARService.insert(#data)";
+			execScript = "buriTestManyService.insert(#data)";
 		}
 		runScript(data, execScript);
 		return data;
 	}
 
 	public int delete(Object data) {
-		String execScript = "buriTestCHARService.delete(#data)";
+		String execScript = "buriTestManyService.delete(#data)";
 		return deleteData(data, execScript);
 	}
 
 	public Object getDataFromDto(Object keyVal) {
-		String execScript = "buriTestCHARService.getBuriTestCHAR(#data.testId)";
+		String execScript =
+		    "buriTestManyService.getBuriTestMany(#data.testId01 , #data.testId02)";
 		return runScript(keyVal, execScript);
 	}
 

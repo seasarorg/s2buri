@@ -8,13 +8,13 @@
 	<component class="org.escafe.buri.sample.packages.wakanagoTest.WakanagoSampleEngine">
 	</component>
 
-	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_dto_BuriTestINTDto">
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_entity_BuriTestINT">
 	</component>
 	
-	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_dto_BuriTestCHARDto">
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_entity_BuriTestCHAR">
 	</component>
 	
-	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_dto_BuriTestManyDto">
+	<component class="org.escafe.buri.sample.packages.wakanagoTest.wakanagoTest_wp1_org_seasar_buri_entity_BuriTestMany">
 	</component>
 	
 </components>
