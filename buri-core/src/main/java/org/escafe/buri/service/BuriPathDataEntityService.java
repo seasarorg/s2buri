@@ -1,6 +1,5 @@
 package org.escafe.buri.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.escafe.buri.entity.BuriPathDataEntity;
@@ -58,7 +57,7 @@ public class BuriPathDataEntityService extends
 
 	public List<BuriPathDataEntity> getTimeOrverState() {
 		return select()
-		    .where(lt(autoRunTime(), new Timestamp(System.currentTimeMillis())))
+		    .where("autoRunTime < CURRENT_TIMESTAMP")
 		    .getResultList();
 	}
 }
