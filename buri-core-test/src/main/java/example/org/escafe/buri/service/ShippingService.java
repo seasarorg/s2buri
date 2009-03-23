@@ -9,8 +9,6 @@ import static org.seasar.extension.jdbc.operation.Operations.in;
 
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanMap;
-
 import example.org.escafe.buri.dto.ShippingFindDto;
 import example.org.escafe.buri.entity.OrderDetail;
 import example.org.escafe.buri.entity.OrderTitle;
@@ -95,10 +93,33 @@ public class ShippingService extends AbstractService<Shipping> {
 	}
 
 	public List<Shipping> find(ShippingFindDto dto, List<String> paths) {
-		BeanMap bm = new BeanMap();
-		bm.put("dto", dto);
-		bm.put("paths", paths);
-		return selectBySqlFile(Shipping.class, "", bm).getResultList();
+		class Param {
+			public ShippingFindDto dto;
+
+			public List<String> paths;
+		}
+		Param param = new Param();
+		param.dto = dto;
+		param.paths = paths;
+		return selectBySqlFile(Shipping.class, "find.sql", param)
+		    .getResultList();
+	}
+
+	public List<Shipping> findAndUser(ShippingFindDto dto, List paths,
+	        List userIds) {
+		class Param {
+			public ShippingFindDto dto;
+
+			public List<String> paths;
+
+			public List<Long> userIds;
+		}
+		Param param = new Param();
+		param.dto = dto;
+		param.paths = paths;
+		param.userIds = userIds;
+		return selectBySqlFile(Shipping.class, "findAndUser.sql", param)
+		    .getResultList();
 	}
 
 	@Override
