@@ -297,7 +297,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="#data.orderTitleID&#10;orderBao.endShipping(#data.orderTitleID)&#10;BillBao.enterBill(#data)"/>
+<ExtendedAttribute Name="ognl" Value="#data.orderTitleId&#10;orderBao.endShipping(#data.orderTitleId)&#10;billBao.enterBill(#data)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -480,7 +480,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.escafe.buri.entity.Bill()&#10;#bill.shippingId = #data.shippingId&#10;#bill.orderTitleID = #data.orderTitleID&#10;#bill.customerId = #data.customerId&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
+<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.escafe.buri.entity.Bill()&#10;#bill.shippingId = #data.shippingId&#10;#bill.orderTitleId = #data.orderTitleId&#10;#bill.customerId = #data.customerId&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
@@ -521,7 +521,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="//InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleID)&#10;OrderBao.endBill(#data.orderTitleID)"/>
+<ExtendedAttribute Name="ognl" Value="//InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleId)&#10;OrderBao.endBill(#data.orderTitleId)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
@@ -698,7 +698,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="ShippingBao.checkEdnShipping(#data.shippingID)"/>
+<ExtendedAttribute Name="ognl" Value="shippingBao.checkEndShipping(#data.shippingId)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
