@@ -13,7 +13,7 @@ import org.seasar.coffee.dataaccess.DataAccessUtilLongKey;
 public class wakanagoTest_wp1_org_seasar_buri_entity_BuriTestINT extends
         AbstDataAccessUtilLongKey implements DataAccessUtilLongKey {
 	public List get(List keyVals) {
-		String execScript = "BuriTestINTDao.getBuriTestINTByIds(#data)";
+		String execScript = "buriTestINTService.getBuriTestINTByIds(#data)";
 		return getDataList(keyVals, execScript);
 	}
 
