@@ -4,6 +4,7 @@ import static org.escafe.buri.names.BuriTestUserNames.parentUserId;
 import static org.escafe.buri.names.BuriTestUserNames.roleName;
 import static org.escafe.buri.names.BuriTestUserNames.userId;
 import static org.seasar.extension.jdbc.operation.Operations.eq;
+import static org.seasar.extension.jdbc.operation.Operations.in;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class BuriTestUserService extends AbstractService<BuriTestUser> {
 	}
 
 	public List<BuriTestUser> getBuriTestUserByIds(List<Long> userIds) {
-		return select().where("userId in (?)", userIds).getResultList();
+		return select().where(in(userId(), userIds)).getResultList();
 	}
 
 	public List<BuriTestUser> find(BuriTestUserFindDto dto, List<String> paths) {
