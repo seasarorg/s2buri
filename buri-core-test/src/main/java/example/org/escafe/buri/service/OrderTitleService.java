@@ -24,7 +24,7 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 	/**
 	 * 識別子でエンティティを検索します。
 	 * 
-	 * @param orderTitleID
+	 * @param orderTitleId
 	 *            識別子
 	 * @return エンティティ
 	 */

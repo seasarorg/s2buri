@@ -38,6 +38,14 @@ public class ShippingService extends AbstractService<Shipping> {
 		return select().id(shippingId).getSingleResult();
 	}
 
+	public String getShippingByIds_ARGS = "shippingIDs";
+
+	public String getShippingByIds_QUERY = "shippingID in /*shippingIDs*/(1)";
+
+	public List<Shipping> getShippingByIds(List<Long> shippingIds) {
+		return select().where(in(shippingId(), shippingIds)).getResultList();
+	}
+
 	/**
 	 * 識別子の昇順ですべてのエンティティを検索します。
 	 * 
@@ -86,10 +94,6 @@ public class ShippingService extends AbstractService<Shipping> {
 		}
 		result = convertOrNew(entity.shippingId);
 		return result;
-	}
-
-	public List<Shipping> findByIds(List<Long> shippingIds) {
-		return select().where(in(shippingId(), shippingIds)).getResultList();
 	}
 
 	public List<Shipping> find(ShippingFindDto dto, List<String> paths) {
