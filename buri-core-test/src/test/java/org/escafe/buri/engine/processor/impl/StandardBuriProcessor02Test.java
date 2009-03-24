@@ -49,7 +49,7 @@ public class StandardBuriProcessor02Test extends S2TestCase {
 		    "wakanagoxpdl/stdTest.xpdl",
 		    "stdTest",
 		    participantProvider);
-		Item itemDto1 = itemService.findById(1L);
+		Item itemDto1 = itemService.getItem(1L);
 		BuriTestUser user1Dto = buriTestUserService.getBuriTestUser(1L);
 		BuriTestUser user2Dto = buriTestUserService.getBuriTestUser(2L);
 		BuriTestUser user3Dto = buriTestUserService.getBuriTestUser(3L);
@@ -182,7 +182,7 @@ public class StandardBuriProcessor02Test extends S2TestCase {
 		    "wakanagoxpdl/stdTest.xpdl",
 		    "stdTest",
 		    participantProvider);
-		Item itemDto1 = itemService.findById(1L);
+		Item itemDto1 = itemService.getItem(1L);
 		BuriTestUser user1Dto = buriTestUserService.getBuriTestUser(1L);
 		BuriTestUser user2Dto = buriTestUserService.getBuriTestUser(2L);
 		BuriTestUser user3Dto = buriTestUserService.getBuriTestUser(3L);

@@ -68,9 +68,9 @@ public class StandardBuriProcessor01Test extends S2TestCase {
 		BuriTestUser 下っ端ユーザ = buriTestUserService.getBuriTestUser(3L);
 		BuriTestUser 真ん中ユーザ = buriTestUserService.getBuriTestUser(2L);
 		BuriTestUser 一番上ユーザ = buriTestUserService.getBuriTestUser(1L);
-		Item 安い商品 = itemService.findById(1L);
-		Item やや高い商品 = itemService.findById(2L);
-		Item とても高い商品 = itemService.findById(3L);
+		Item 安い商品 = itemService.getItem(1L);
+		Item やや高い商品 = itemService.getItem(2L);
+		Item とても高い商品 = itemService.getItem(3L);
 		processor.toNextStatus("stdTest.Test01", 安い商品, 無関係ユーザ);
 		List dataList =
 		    processor.getDataListFromPath(

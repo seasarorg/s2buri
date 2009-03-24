@@ -35,7 +35,7 @@ public class PrivacyInfoManagementTest extends S2TestCase {
 
 	public void test01Tx() {
 		readXlsWriteDb("org/escafe/buri/engine/processor/impl/StdTestData.xls");
-		Item dto = itemService.findById(1L);
+		Item dto = itemService.getItem(1L);
 		setupBuriTestUser(3L);
 		bao.indicationRequest(dto);
 		List<Item> datas = bao.getWaitingIndicationRecognition();
