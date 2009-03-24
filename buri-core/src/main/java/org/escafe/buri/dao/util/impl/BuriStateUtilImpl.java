@@ -55,8 +55,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
 	public BranchWalker createBranchWalker(BuriSystemContext sysContext) {
 		BranchWalker walker = new BranchWalker();
-		walker.setBranchID(0);
-		walker.setParentBranchID(0);
+		walker.setBranchId(0);
+		walker.setParentBranchId(0);
 		walker.setParentPath(sysContext.getCallPath().moveUpPath());
 		walker.setNowPath(null);
 		return walker;
@@ -91,8 +91,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 	private BranchWalker loadBranchWalker(BuriSystemContext sysContext,
 	        BuriStateEntity buriStateEntity, BuriBranchEntity buriBranchEntity) {
 		BranchWalker walker = new BranchWalker();
-		walker.setBranchID(buriBranchEntity.branchId);
-		walker.setParentBranchID(buriBranchEntity.parentBranchId.longValue());
+		walker.setBranchId(buriBranchEntity.branchId);
+		walker.setParentBranchId(buriBranchEntity.parentBranchId.longValue());
 		walker.setParentPath(sysContext.getCallPath().moveUpPath());
 		BuriPath branchPath =
 		    pathUtil.getBuriPathFromRealPath(pathUtil
@@ -103,22 +103,22 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
 	public void saveBranch(BranchWalker walker, DataAccessFactory factory,
 	        BuriSystemContext sysContext) {
-		if (walker.getBranchID() != 0) {
+		if (walker.getBranchId() != 0) {
 			return;
 		}
 		BuriBranchEntity branch = new BuriBranchEntity();
 		branch.btId = btidUtil.getCurrentBtId();
 		long dataId = dataUtil.getBuriDataId(factory, sysContext);
 		branch.dataId = new Long(dataId);
-		branch.parentBranchId = new Long(walker.getParentBranchID());
+		branch.parentBranchId = new Long(walker.getParentBranchId());
 		buriBranchEntityService.insert(branch);
-		walker.setBranchID(branch.branchId);
+		walker.setBranchId(branch.branchId);
 	}
 
 	public BranchWalker branchChild(BranchWalker parentWalker,
 	        DataAccessFactory factory, BuriSystemContext sysContext) {
 		BranchWalker walker = new BranchWalker();
-		walker.setParentBranchID(parentWalker.getBranchID());
+		walker.setParentBranchId(parentWalker.getBranchId());
 		walker.setParentPath(parentWalker.getParentPath());
 		return walker;
 	}
@@ -139,7 +139,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 	private BranchWalker getNowPathBranchWalker(BuriPath path,
 	        BuriStateEntity buriStateEntity, BuriSystemContext sysContext) {
 		BranchWalker walker = new BranchWalker();
-		walker.setBranchID(buriStateEntity.branchId.longValue());
+		walker.setBranchId(buriStateEntity.branchId.longValue());
 		walker.setNowPath(path);
 		walker.setParentPath(sysContext.getCallPath());
 		BuriBranchEntity buriBranchEntity =
@@ -148,7 +148,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 		if (buriBranchEntity != null) { // 本当は状態と一緒に保存しているはずなので不要なハズ
 			assert buriBranchEntity != null;
 			assert buriBranchEntity.parentBranchId != null;
-			walker.setParentBranchID(buriBranchEntity.parentBranchId
+			walker.setParentBranchId(buriBranchEntity.parentBranchId
 			    .longValue());
 		}
 		return walker;
@@ -161,14 +161,14 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 		BuriPath path = pathUtil.getBuriPathFromRealPath(tgtPath);
 		BranchWalker walker = new BranchWalker();
 		walker.setParentPath(parentPath);
-		walker.setParentBranchID(nowWalker.getBranchID());
+		walker.setParentBranchId(nowWalker.getBranchId());
 		BuriBranchEntity dto = new BuriBranchEntity();
 		dto.dataId = sysContext.getDataId();
-		dto.parentBranchId = new Long(nowWalker.getBranchID());
+		dto.parentBranchId = new Long(nowWalker.getBranchId());
 		dto.processDate = new Date();
 		dto.pathId = new Long(path.getBuriPathId());
 		buriBranchEntityService.insert(dto);
-		walker.setBranchID(dto.branchId);
+		walker.setBranchId(dto.branchId);
 		walker.setNowPath(tgtPath);
 		buriStatusEventCaller.createBranch(sysContext, walker);
 		return walker;
@@ -207,7 +207,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 		BuriStateEntity stateDto = new BuriStateEntity();
 		stateDto.dataId = new Long(dataID);
 		stateDto.pathId = new Long(path.getBuriPathId());
-		stateDto.branchId = new Long(walker.getBranchID());
+		stateDto.branchId = new Long(walker.getBranchId());
 		stateDto.insertDate = new Date();
 		if (factory instanceof BuriExecProcess) {
 			BuriExecProcess process = (BuriExecProcess) factory;
@@ -303,7 +303,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 	        BuriSystemContext sysContext, BranchWalker walker) {
 		assert sysContext.getStatusId() != null;
 		long stateID = sysContext.getStatusId().longValue();
-		assert walker.getBranchID() != 0;
+		assert walker.getBranchId() != 0;
 		buriStatusEventCaller.abortState(factory, sysContext, walker);
 		undoLogUtil.addUndoLog(stateID, 0);
 		buriStateEntityService.updateAbortByStateId(stateID);
@@ -312,11 +312,11 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 	public void abortBranch(DataAccessFactory factory,
 	        BuriSystemContext sysContext, BranchWalker walker) {
 		buriStatusEventCaller.abortBranch(factory, sysContext, walker);
-		abortParentBranchID(walker.getParentBranchID(), factory, sysContext);
+		abortParentBranchID(walker.getParentBranchId(), factory, sysContext);
 		BuriBranchEntity dto =
-		    buriBranchEntityService.select(walker.getParentBranchID());
-		walker.setBranchID(dto.branchId);
-		walker.setParentBranchID(dto.parentBranchId);
+		    buriBranchEntityService.select(walker.getParentBranchId());
+		walker.setBranchId(dto.branchId);
+		walker.setParentBranchId(dto.parentBranchId);
 	}
 
 	protected void abortParentBranchID(long parentBranchId,
@@ -337,10 +337,10 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
 	public long countNoProcessedSiblingStatus(DataAccessFactory factory,
 	        BuriSystemContext sysContext, BranchWalker walker) {
-		assert walker.getParentBranchID() != 0;
+		assert walker.getParentBranchId() != 0;
 		long count =
 		    buriStateEntityService.countByBranchIdAndNotProcessed(walker
-		        .getParentBranchID());
+		        .getParentBranchId());
 		return count;
 	}
 

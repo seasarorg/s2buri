@@ -54,14 +54,14 @@ public class BuriStateUtilTest extends S2TestCase {
 		long statusId =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, walker);
 		assertTrue(statusId != 0);
-		assertTrue(walker.getBranchID() != 0);
+		assertTrue(walker.getBranchId() != 0);
 		userContext = engine.createUserContext(dto, null, null, null);
 		sysContext =
 		    engine.createSystemContext("wakanagoTest.ワカナゴテスト.開始", userContext);
-		sysContext.setStatusID(new Long(statusId));// 本当はAbstractで処理する
+		sysContext.setStatusId(new Long(statusId));// 本当はAbstractで処理する
 		walker = stateUtil.loadBranchWalker(sysContext);
 		assertNotNull(walker);
-		assertTrue(walker.getBranchID() != 0);
+		assertTrue(walker.getBranchId() != 0);
 		BuriStateEntity stateDto =
 		    buriStateEntityService.getBuriState(statusId);
 		assertEquals(stateDto.processDate.getTime() / 10, DateUtil
@@ -114,13 +114,13 @@ public class BuriStateUtilTest extends S2TestCase {
 		walker.setParentPath(sysContext.getCallPath());
 		walker = walker.moveNext("開始", "wakanagoTest_wp1_act1");
 		stateUtil.saveBranch(walker, dataAccessFactory, sysContext);
-		long statusID =
+		long statusId =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, walker);
-		assertTrue(statusID != 0);
-		sysContext.setStatusID(new Long(statusID));// 本当はAbstractで処理する
+		assertTrue(statusId != 0);
+		sysContext.setStatusId(new Long(statusId));// 本当はAbstractで処理する
 		stateUtil.abortStatus(dataAccessFactory, sysContext, walker);
 		BuriStateEntity stateDto =
-		    buriStateEntityService.getBuriState(statusID);
+		    buriStateEntityService.getBuriState(statusId);
 		assertFalse((stateDto.processDate.getTime() / 10) == (DateUtil
 		    .getSQLMaxDate()
 		    .getTime() / 10));
@@ -154,10 +154,10 @@ public class BuriStateUtilTest extends S2TestCase {
 		walker.setParentPath(sysContext.getCallPath());
 		walker = walker.moveNext("開始", "wakanagoTest_wp1_act1");
 		stateUtil.saveBranch(walker, dataAccessFactory, sysContext);
-		long statusID =
+		long statusId =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, walker);
-		assertTrue(statusID != 0);
-		sysContext.setStatusID(new Long(statusID));// 本当はAbstractで処理する
+		assertTrue(statusId != 0);
+		sysContext.setStatusId(new Long(statusId));// 本当はAbstractで処理する
 		assertEquals(
 		    buriBranchEntityService.getAllBuriBranch().size(),
 		    startSize + 1);
@@ -167,8 +167,8 @@ public class BuriStateUtilTest extends S2TestCase {
 		assertEquals(
 		    buriBranchEntityService.getAllBuriBranch().size(),
 		    startSize + 1);
-		assertEquals(child1.getParentBranchID(), walker.getBranchID());
-		assertEquals(child1.getBranchID(), 0);
+		assertEquals(child1.getParentBranchId(), walker.getBranchId());
+		assertEquals(child1.getBranchId(), 0);
 		stateUtil.saveBranch(child1, dataAccessFactory, sysContext);
 		long child1StateID =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, child1);
@@ -181,8 +181,8 @@ public class BuriStateUtilTest extends S2TestCase {
 		assertEquals(
 		    buriBranchEntityService.getAllBuriBranch().size(),
 		    startSize + 2);
-		assertEquals(child2.getParentBranchID(), walker.getBranchID());
-		assertEquals(child2.getBranchID(), 0);
+		assertEquals(child2.getParentBranchId(), walker.getBranchId());
+		assertEquals(child2.getBranchId(), 0);
 		stateUtil.saveBranch(child2, dataAccessFactory, sysContext);
 		long child2StateID =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, child2);
@@ -195,7 +195,7 @@ public class BuriStateUtilTest extends S2TestCase {
 		        sysContext,
 		        child2);
 		assertEquals(2, count);
-		sysContext.setStatusID(new Long(child1StateID));// 本当はAbstractで処理する
+		sysContext.setStatusId(new Long(child1StateID));// 本当はAbstractで処理する
 		stateUtil.processed(dataAccessFactory, sysContext, child1);
 		count =
 		    stateUtil.countNoProcessedSiblingStatus(
@@ -203,7 +203,7 @@ public class BuriStateUtilTest extends S2TestCase {
 		        sysContext,
 		        child1);
 		assertEquals(1, count);
-		sysContext.setStatusID(new Long(child2StateID));// 本当はAbstractで処理する
+		sysContext.setStatusId(new Long(child2StateID));// 本当はAbstractで処理する
 		stateUtil.abortStatus(dataAccessFactory, sysContext, child2);
 		count =
 		    stateUtil.countNoProcessedSiblingStatus(
@@ -233,10 +233,10 @@ public class BuriStateUtilTest extends S2TestCase {
 		walker.setParentPath(sysContext.getCallPath());
 		walker = walker.moveNext("開始", "wakanagoTest_wp1_act1");
 		stateUtil.saveBranch(walker, dataAccessFactory, sysContext);
-		long statusID =
+		long statusId =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, walker);
-		assertTrue(statusID != 0);
-		sysContext.setStatusID(new Long(statusID));// 本当はAbstractで処理する
+		assertTrue(statusId != 0);
+		sysContext.setStatusId(new Long(statusId));// 本当はAbstractで処理する
 		assertEquals(
 		    buriBranchEntityService.getAllBuriBranch().size(),
 		    startSize + 1);
@@ -246,8 +246,8 @@ public class BuriStateUtilTest extends S2TestCase {
 		assertEquals(
 		    buriBranchEntityService.getAllBuriBranch().size(),
 		    startSize + 1);
-		assertEquals(child1.getParentBranchID(), walker.getBranchID());
-		assertEquals(child1.getBranchID(), 0);
+		assertEquals(child1.getParentBranchId(), walker.getBranchId());
+		assertEquals(child1.getBranchId(), 0);
 		stateUtil.saveBranch(child1, dataAccessFactory, sysContext);
 		long child1StateID =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, child1);
@@ -261,8 +261,8 @@ public class BuriStateUtilTest extends S2TestCase {
 		assertEquals(
 		    buriBranchEntityService.getAllBuriBranch().size(),
 		    startSize + 2);
-		assertEquals(child2.getParentBranchID(), walker.getBranchID());
-		assertEquals(child2.getBranchID(), 0);
+		assertEquals(child2.getParentBranchId(), walker.getBranchId());
+		assertEquals(child2.getBranchId(), 0);
 		stateUtil.saveBranch(child2, dataAccessFactory, sysContext);
 		long child2StateID =
 		    stateUtil.saveStatus(dataAccessFactory, sysContext, child2);

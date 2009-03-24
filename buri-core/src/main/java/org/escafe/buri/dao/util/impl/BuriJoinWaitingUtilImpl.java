@@ -29,7 +29,7 @@ public class BuriJoinWaitingUtilImpl implements BuriJoinWaitingUtil {
 		BuriPath newPath = pathUtil.getBuriPathFromRealPath(nextPath);
 		long pathId = newPath.getBuriPathId();
 		BuriJoinWaitingEntity dto = new BuriJoinWaitingEntity();
-		dto.branchId = walker.getBranchID();
+		dto.branchId = walker.getBranchId();
 		dto.dataId = sysContext.getDataId();
 		dto.pathId = pathId;
 		buriJoinWaitingEntityService.insert(dto);
@@ -49,7 +49,7 @@ public class BuriJoinWaitingUtilImpl implements BuriJoinWaitingUtil {
 
 	public void clearBranch(DataAccessFactory factory,
 	        BuriSystemContext sysContext, BranchWalker walker) {
-		clearParentBranchID(walker.getParentBranchID(), factory, sysContext);
+		clearParentBranchID(walker.getParentBranchId(), factory, sysContext);
 	}
 
 	protected void clearParentBranchID(long parentBranchId,

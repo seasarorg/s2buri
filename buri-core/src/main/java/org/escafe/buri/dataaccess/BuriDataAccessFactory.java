@@ -11,15 +11,16 @@ import org.seasar.coffee.dataaccess.FilterAccessUtil;
 import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
 
 public interface BuriDataAccessFactory extends DataAccessFactory {
-    void setDataAccessUtil(Class tgtClass, DataAccessUtilLongKey utilLongKey);
+	void setDataAccessUtil(Class<?> tgtClass, DataAccessUtilLongKey utilLongKey);
 
-    void setDataAccessUtil(Class tgtClass, DataAccessUtilManyKey utilManyKey);
+	void setDataAccessUtil(Class<?> tgtClass, DataAccessUtilManyKey utilManyKey);
 
-    void setFilterAccessUtil(Class tgtClass, FilterAccessUtil accessUtil);
+	void setFilterAccessUtil(Class<?> tgtClass, FilterAccessUtil accessUtil);
 
-    void setPreprocessAccessUtil(Class tgtClass, PreprocessAccessUtil accessUtil);
+	void setPreprocessAccessUtil(Class<?> tgtClass,
+	        PreprocessAccessUtil accessUtil);
 
-    void addChildFactory(String key, DataAccessFactory factory);
-    
-    void destroy();
+	void addChildFactory(String key, DataAccessFactory factory);
+
+	void destroy();
 }

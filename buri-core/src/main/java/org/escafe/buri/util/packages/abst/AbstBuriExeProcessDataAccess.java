@@ -125,7 +125,7 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
 	@Override
 	protected void joinXorFlow(BuriSystemContext sysContext,
 	        BranchWalker walker, String nextName, String nextId) {
-		if (walker.getParentBranchID() != 0) {
+		if (walker.getParentBranchId() != 0) {
 			super.joinXorFlow(sysContext, walker, nextName, nextId);
 			getStateUtil().abortBranch(this, sysContext, walker);
 		}
@@ -145,21 +145,22 @@ public class AbstBuriExeProcessDataAccess extends AbstBuriExecProcess implements
 		return false;
 	}
 
-	public void setDataAccessUtil(Class tgtClass,
+	public void setDataAccessUtil(Class<?> tgtClass,
 	        DataAccessUtilLongKey utilLongKey) {
 		dataAccessFactory.setDataAccessUtil(tgtClass, utilLongKey);
 	}
 
-	public void setDataAccessUtil(Class tgtClass,
+	public void setDataAccessUtil(Class<?> tgtClass,
 	        DataAccessUtilManyKey utilManyKey) {
 		dataAccessFactory.setDataAccessUtil(tgtClass, utilManyKey);
 	}
 
-	public void setFilterAccessUtil(Class tgtClass, FilterAccessUtil accessUtil) {
+	public void setFilterAccessUtil(Class<?> tgtClass,
+	        FilterAccessUtil accessUtil) {
 		dataAccessFactory.setFilterAccessUtil(tgtClass, accessUtil);
 	}
 
-	public void setPreprocessAccessUtil(Class tgtClass,
+	public void setPreprocessAccessUtil(Class<?> tgtClass,
 	        PreprocessAccessUtil accessUtil) {
 		dataAccessFactory.setPreprocessAccessUtil(tgtClass, accessUtil);
 	}

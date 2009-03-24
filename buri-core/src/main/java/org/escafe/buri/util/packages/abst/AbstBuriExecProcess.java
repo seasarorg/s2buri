@@ -71,8 +71,8 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
 
 	public BranchWalker readBranchWalker(BuriSystemContext sysContext) {
 		BranchWalker walker = new BranchWalker();
-		walker.setBranchID(0);
-		walker.setParentBranchID(0);
+		walker.setBranchId(0);
+		walker.setParentBranchId(0);
 		walker.setParentPath(sysContext.getCallPath().moveUpPath());
 		walker.setNowPath(null);
 		return walker;
@@ -223,11 +223,11 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
 
 		public BranchWalker walker;
 
-		public Class dummyMethodArgType[];
+		public Class<?> dummyMethodArgType[];
 
 		public Object dummyArgs[];
 
-		public Class methodArgType[];
+		public Class<?> methodArgType[];
 
 		public Object args[];
 
@@ -246,7 +246,7 @@ public abstract class AbstBuriExecProcess implements BuriExecProcess {
 
 	protected void exitFlow(BuriSystemContext sysContext, BranchWalker walker) {
 		buriFlowEventCaller.exitFlow(this, sysContext, walker);
-		Iterator ite = sysContext.getAfterCallMethods().iterator();
+		Iterator<String> ite = sysContext.getAfterCallMethods().iterator();
 		while (ite.hasNext()) {
 			String actId = ite.next().toString();
 			buriFlowEventCaller.callAfterProcess(
