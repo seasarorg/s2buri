@@ -54,5 +54,5 @@ public interface OrderBao {
 
 	public static String cancel_RESULT = "#cancelStatus";
 
-	public String cancel(long orderID);
+	public String cancel(Long orderId);
 }

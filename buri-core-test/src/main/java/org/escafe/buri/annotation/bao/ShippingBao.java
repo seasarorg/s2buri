@@ -39,9 +39,9 @@ public interface ShippingBao {
 
 	public void shipping(OrderTitle dto);
 
-	public static String checkEdnShipping_ACTIVITY = "商品待ち";
+	public static String checkEndShipping_ACTIVITY = "商品待ち";
 
-	public void checkEdnShipping(Long shippingId);
+	public void checkEndShipping(Long shippingId);
 
 	public static String cancel_ACTIVITY = "商品待ち";
 
