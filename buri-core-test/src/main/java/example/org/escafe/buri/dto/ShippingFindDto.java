@@ -8,8 +8,6 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class ShippingFindDto {
-	public static final String TABLE = "Shipping";
-
 	private final ArrayList orderList = new ArrayList();
 
 	private Long shippingId = null;
@@ -108,99 +106,99 @@ public class ShippingFindDto {
 
 	private boolean customerId_isASC = true;
 
-	public Long getshippingId() {
+	public Long getShippingId() {
 		return shippingId;
 	}
 
-	public void setshippingId(Long shippingId) {
+	public void setShippingId(Long shippingId) {
 		this.shippingId = shippingId;
 	}
 
-	public Long getshippingId_not() {
+	public Long getShippingId_not() {
 		return shippingId_not;
 	}
 
-	public void setshippingId_not(Long shippingId_not) {
+	public void setShippingId_not(Long shippingId_not) {
 		this.shippingId_not = shippingId_not;
 	}
 
-	public Long getshippingId_large() {
+	public Long getShippingId_large() {
 		return shippingId_large;
 	}
 
-	public void setshippingId_large(Long shippingId_large) {
+	public void setShippingId_large(Long shippingId_large) {
 		this.shippingId_large = shippingId_large;
 	}
 
-	public Long getshippingId_moreLarge() {
+	public Long getShippingId_moreLarge() {
 		return shippingId_moreLarge;
 	}
 
-	public void setshippingId_moreLarge(Long shippingId_moreLarge) {
+	public void setShippingId_moreLarge(Long shippingId_moreLarge) {
 		this.shippingId_moreLarge = shippingId_moreLarge;
 	}
 
-	public Long getshippingId_from() {
+	public Long getShippingId_from() {
 		return shippingId_from;
 	}
 
-	public void setshippingId_from(Long shippingId_from) {
+	public void setShippingId_from(Long shippingId_from) {
 		this.shippingId_from = shippingId_from;
 	}
 
-	public Long getshippingId_to() {
+	public Long getShippingId_to() {
 		return shippingId_to;
 	}
 
-	public void setshippingId_to(Long shippingId_to) {
+	public void setShippingId_to(Long shippingId_to) {
 		this.shippingId_to = shippingId_to;
 	}
 
-	public Long getshippingId_moreSmall() {
+	public Long getShippingId_moreSmall() {
 		return shippingId_moreSmall;
 	}
 
-	public void setshippingId_moreSmall(Long shippingId_moreSmall) {
+	public void setShippingId_moreSmall(Long shippingId_moreSmall) {
 		this.shippingId_moreSmall = shippingId_moreSmall;
 	}
 
-	public Long getshippingId_small() {
+	public Long getShippingId_small() {
 		return shippingId_small;
 	}
 
-	public void setshippingId_small(Long shippingId_small) {
+	public void setShippingId_small(Long shippingId_small) {
 		this.shippingId_small = shippingId_small;
 	}
 
-	public List getshippingId_in() {
+	public List getShippingId_in() {
 		return shippingId_in;
 	}
 
-	public void setshippingId_in(List shippingId_in) {
+	public void setShippingId_in(List shippingId_in) {
 		this.shippingId_in = shippingId_in;
 	}
 
-	public Boolean getshippingId_isNull() {
+	public Boolean getShippingId_isNull() {
 		return shippingId_isNull;
 	}
 
-	public void setshippingId_isNull(Boolean shippingId_isNull) {
+	public void setShippingId_isNull(Boolean shippingId_isNull) {
 		this.shippingId_isNull = shippingId_isNull;
 	}
 
-	public Boolean getshippingId_isNotNull() {
+	public Boolean getShippingId_isNotNull() {
 		return shippingId_isNotNull;
 	}
 
-	public void setshippingId_isNotNull(Boolean shippingId_isNotNull) {
+	public void setShippingId_isNotNull(Boolean shippingId_isNotNull) {
 		this.shippingId_isNotNull = shippingId_isNotNull;
 	}
 
-	public boolean getshippingId_isASC() {
+	public boolean getShippingId_isASC() {
 		return shippingId_isASC;
 	}
 
-	public void setshippingId_isASC(boolean shippingId_isASC) {
+	public void setShippingId_isASC(boolean shippingId_isASC) {
 		this.shippingId_isASC = shippingId_isASC;
 	}
 
@@ -300,195 +298,195 @@ public class ShippingFindDto {
 		this.shippingDate_isASC = shippingDate_isASC;
 	}
 
-	public Long getorderTitleId() {
+	public Long getOrderTitleId() {
 		return orderTitleId;
 	}
 
-	public void setorderTitleId(Long orderTitleId) {
+	public void setOrderTitleId(Long orderTitleId) {
 		this.orderTitleId = orderTitleId;
 	}
 
-	public Long getorderTitleId_not() {
+	public Long getOrderTitleId_not() {
 		return orderTitleId_not;
 	}
 
-	public void setorderTitleId_not(Long orderTitleId_not) {
+	public void setOrderTitleId_not(Long orderTitleId_not) {
 		this.orderTitleId_not = orderTitleId_not;
 	}
 
-	public Long getorderTitleId_large() {
+	public Long getOrderTitleId_large() {
 		return orderTitleId_large;
 	}
 
-	public void setorderTitleId_large(Long orderTitleId_large) {
+	public void setOrderTitleId_large(Long orderTitleId_large) {
 		this.orderTitleId_large = orderTitleId_large;
 	}
 
-	public Long getorderTitleId_moreLarge() {
+	public Long getOrderTitleId_moreLarge() {
 		return orderTitleId_moreLarge;
 	}
 
-	public void setorderTitleId_moreLarge(Long orderTitleId_moreLarge) {
+	public void setOrderTitleId_moreLarge(Long orderTitleId_moreLarge) {
 		this.orderTitleId_moreLarge = orderTitleId_moreLarge;
 	}
 
-	public Long getorderTitleId_from() {
+	public Long getOrderTitleId_from() {
 		return orderTitleId_from;
 	}
 
-	public void setorderTitleId_from(Long orderTitleId_from) {
+	public void setOrderTitleId_from(Long orderTitleId_from) {
 		this.orderTitleId_from = orderTitleId_from;
 	}
 
-	public Long getorderTitleId_to() {
+	public Long getOrderTitleId_to() {
 		return orderTitleId_to;
 	}
 
-	public void setorderTitleId_to(Long orderTitleId_to) {
+	public void setOrderTitleId_to(Long orderTitleId_to) {
 		this.orderTitleId_to = orderTitleId_to;
 	}
 
-	public Long getorderTitleId_moreSmall() {
+	public Long getOrderTitleId_moreSmall() {
 		return orderTitleId_moreSmall;
 	}
 
-	public void setorderTitleId_moreSmall(Long orderTitleId_moreSmall) {
+	public void setOrderTitleId_moreSmall(Long orderTitleId_moreSmall) {
 		this.orderTitleId_moreSmall = orderTitleId_moreSmall;
 	}
 
-	public Long getorderTitleId_small() {
+	public Long getOrderTitleId_small() {
 		return orderTitleId_small;
 	}
 
-	public void setorderTitleId_small(Long orderTitleId_small) {
+	public void setOrderTitleId_small(Long orderTitleId_small) {
 		this.orderTitleId_small = orderTitleId_small;
 	}
 
-	public List getorderTitleId_in() {
+	public List getOrderTitleId_in() {
 		return orderTitleId_in;
 	}
 
-	public void setorderTitleId_in(List orderTitleId_in) {
+	public void setOrderTitleId_in(List orderTitleId_in) {
 		this.orderTitleId_in = orderTitleId_in;
 	}
 
-	public Boolean getorderTitleId_isNull() {
+	public Boolean getOrderTitleId_isNull() {
 		return orderTitleId_isNull;
 	}
 
-	public void setorderTitleId_isNull(Boolean orderTitleId_isNull) {
+	public void setOrderTitleId_isNull(Boolean orderTitleId_isNull) {
 		this.orderTitleId_isNull = orderTitleId_isNull;
 	}
 
-	public Boolean getorderTitleId_isNotNull() {
+	public Boolean getOrderTitleId_isNotNull() {
 		return orderTitleId_isNotNull;
 	}
 
-	public void setorderTitleId_isNotNull(Boolean orderTitleId_isNotNull) {
+	public void setOrderTitleId_isNotNull(Boolean orderTitleId_isNotNull) {
 		this.orderTitleId_isNotNull = orderTitleId_isNotNull;
 	}
 
-	public boolean getorderTitleId_isASC() {
+	public boolean getOrderTitleId_isASC() {
 		return orderTitleId_isASC;
 	}
 
-	public void setorderTitleId_isASC(boolean orderTitleId_isASC) {
+	public void setOrderTitleId_isASC(boolean orderTitleId_isASC) {
 		this.orderTitleId_isASC = orderTitleId_isASC;
 	}
 
-	public Long getcustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setcustomerId(Long customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 
-	public Long getcustomerId_not() {
+	public Long getCustomerId_not() {
 		return customerId_not;
 	}
 
-	public void setcustomerId_not(Long customerId_not) {
+	public void setCustomerId_not(Long customerId_not) {
 		this.customerId_not = customerId_not;
 	}
 
-	public Long getcustomerId_large() {
+	public Long getCustomerId_large() {
 		return customerId_large;
 	}
 
-	public void setcustomerId_large(Long customerId_large) {
+	public void setCustomerId_large(Long customerId_large) {
 		this.customerId_large = customerId_large;
 	}
 
-	public Long getcustomerId_moreLarge() {
+	public Long getCustomerId_moreLarge() {
 		return customerId_moreLarge;
 	}
 
-	public void setcustomerId_moreLarge(Long customerId_moreLarge) {
+	public void setCustomerId_moreLarge(Long customerId_moreLarge) {
 		this.customerId_moreLarge = customerId_moreLarge;
 	}
 
-	public Long getcustomerId_from() {
+	public Long getCustomerId_from() {
 		return customerId_from;
 	}
 
-	public void setcustomerId_from(Long customerId_from) {
+	public void setCustomerId_from(Long customerId_from) {
 		this.customerId_from = customerId_from;
 	}
 
-	public Long getcustomerId_to() {
+	public Long getCustomerId_to() {
 		return customerId_to;
 	}
 
-	public void setcustomerId_to(Long customerId_to) {
+	public void setCustomerId_to(Long customerId_to) {
 		this.customerId_to = customerId_to;
 	}
 
-	public Long getcustomerId_moreSmall() {
+	public Long getCustomerId_moreSmall() {
 		return customerId_moreSmall;
 	}
 
-	public void setcustomerId_moreSmall(Long customerId_moreSmall) {
+	public void setCustomerId_moreSmall(Long customerId_moreSmall) {
 		this.customerId_moreSmall = customerId_moreSmall;
 	}
 
-	public Long getcustomerId_small() {
+	public Long getCustomerId_small() {
 		return customerId_small;
 	}
 
-	public void setcustomerId_small(Long customerId_small) {
+	public void setCustomerId_small(Long customerId_small) {
 		this.customerId_small = customerId_small;
 	}
 
-	public List getcustomerId_in() {
+	public List getCustomerId_in() {
 		return customerId_in;
 	}
 
-	public void setcustomerId_in(List customerId_in) {
+	public void setCustomerId_in(List customerId_in) {
 		this.customerId_in = customerId_in;
 	}
 
-	public Boolean getcustomerId_isNull() {
+	public Boolean getCustomerId_isNull() {
 		return customerId_isNull;
 	}
 
-	public void setcustomerId_isNull(Boolean customerId_isNull) {
+	public void setCustomerId_isNull(Boolean customerId_isNull) {
 		this.customerId_isNull = customerId_isNull;
 	}
 
-	public Boolean getcustomerId_isNotNull() {
+	public Boolean getCustomerId_isNotNull() {
 		return customerId_isNotNull;
 	}
 
-	public void setcustomerId_isNotNull(Boolean customerId_isNotNull) {
+	public void setCustomerId_isNotNull(Boolean customerId_isNotNull) {
 		this.customerId_isNotNull = customerId_isNotNull;
 	}
 
-	public boolean getcustomerId_isASC() {
+	public boolean getCustomerId_isASC() {
 		return customerId_isASC;
 	}
 
-	public void setcustomerId_isASC(boolean customerId_isASC) {
+	public void setCustomerId_isASC(boolean customerId_isASC) {
 		this.customerId_isASC = customerId_isASC;
 	}
 

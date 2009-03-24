@@ -7,8 +7,6 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class CustomerFindDto {
-	public static final String TABLE = "Customer";
-
 	private final ArrayList orderList = new ArrayList();
 
 	private Long customerId = null;
@@ -65,99 +63,99 @@ public class CustomerFindDto {
 
 	private boolean customerName_isASC = true;
 
-	public Long getcustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setcustomerId(Long customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 
-	public Long getcustomerId_not() {
+	public Long getCustomerId_not() {
 		return customerId_not;
 	}
 
-	public void setcustomerId_not(Long customerId_not) {
+	public void setCustomerId_not(Long customerId_not) {
 		this.customerId_not = customerId_not;
 	}
 
-	public Long getcustomerId_large() {
+	public Long getCustomerId_large() {
 		return customerId_large;
 	}
 
-	public void setcustomerId_large(Long customerId_large) {
+	public void setCustomerId_large(Long customerId_large) {
 		this.customerId_large = customerId_large;
 	}
 
-	public Long getcustomerId_moreLarge() {
+	public Long getCustomerId_moreLarge() {
 		return customerId_moreLarge;
 	}
 
-	public void setcustomerId_moreLarge(Long customerId_moreLarge) {
+	public void setCustomerId_moreLarge(Long customerId_moreLarge) {
 		this.customerId_moreLarge = customerId_moreLarge;
 	}
 
-	public Long getcustomerId_from() {
+	public Long getCustomerId_from() {
 		return customerId_from;
 	}
 
-	public void setcustomerId_from(Long customerId_from) {
+	public void setCustomerId_from(Long customerId_from) {
 		this.customerId_from = customerId_from;
 	}
 
-	public Long getcustomerId_to() {
+	public Long getCustomerId_to() {
 		return customerId_to;
 	}
 
-	public void setcustomerId_to(Long customerId_to) {
+	public void setCustomerId_to(Long customerId_to) {
 		this.customerId_to = customerId_to;
 	}
 
-	public Long getcustomerId_moreSmall() {
+	public Long getCustomerId_moreSmall() {
 		return customerId_moreSmall;
 	}
 
-	public void setcustomerId_moreSmall(Long customerId_moreSmall) {
+	public void setCustomerId_moreSmall(Long customerId_moreSmall) {
 		this.customerId_moreSmall = customerId_moreSmall;
 	}
 
-	public Long getcustomerId_small() {
+	public Long getCustomerId_small() {
 		return customerId_small;
 	}
 
-	public void setcustomerId_small(Long customerId_small) {
+	public void setCustomerId_small(Long customerId_small) {
 		this.customerId_small = customerId_small;
 	}
 
-	public List getcustomerId_in() {
+	public List getCustomerId_in() {
 		return customerId_in;
 	}
 
-	public void setcustomerId_in(List customerId_in) {
+	public void setCustomerId_in(List customerId_in) {
 		this.customerId_in = customerId_in;
 	}
 
-	public Boolean getcustomerId_isNull() {
+	public Boolean getCustomerId_isNull() {
 		return customerId_isNull;
 	}
 
-	public void setcustomerId_isNull(Boolean customerId_isNull) {
+	public void setCustomerId_isNull(Boolean customerId_isNull) {
 		this.customerId_isNull = customerId_isNull;
 	}
 
-	public Boolean getcustomerId_isNotNull() {
+	public Boolean getCustomerId_isNotNull() {
 		return customerId_isNotNull;
 	}
 
-	public void setcustomerId_isNotNull(Boolean customerId_isNotNull) {
+	public void setCustomerId_isNotNull(Boolean customerId_isNotNull) {
 		this.customerId_isNotNull = customerId_isNotNull;
 	}
 
-	public boolean getcustomerId_isASC() {
+	public boolean getCustomerId_isASC() {
 		return customerId_isASC;
 	}
 
-	public void setcustomerId_isASC(boolean customerId_isASC) {
+	public void setCustomerId_isASC(boolean customerId_isASC) {
 		this.customerId_isASC = customerId_isASC;
 	}
 

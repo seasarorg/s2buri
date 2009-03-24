@@ -7,8 +7,6 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class ItemFindDto {
-	public static final String TABLE = "Item";
-
 	private final ArrayList orderList = new ArrayList();
 
 	private Long itemId = null;
@@ -89,99 +87,99 @@ public class ItemFindDto {
 
 	private boolean price_isASC = true;
 
-	public Long getitemId() {
+	public Long getItemId() {
 		return itemId;
 	}
 
-	public void setitemId(Long itemId) {
+	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
 
-	public Long getitemId_not() {
+	public Long getItemId_not() {
 		return itemId_not;
 	}
 
-	public void setitemId_not(Long itemId_not) {
+	public void setItemId_not(Long itemId_not) {
 		this.itemId_not = itemId_not;
 	}
 
-	public Long getitemId_large() {
+	public Long getItemId_large() {
 		return itemId_large;
 	}
 
-	public void setitemId_large(Long itemId_large) {
+	public void setItemId_large(Long itemId_large) {
 		this.itemId_large = itemId_large;
 	}
 
-	public Long getitemId_moreLarge() {
+	public Long getItemId_moreLarge() {
 		return itemId_moreLarge;
 	}
 
-	public void setitemId_moreLarge(Long itemId_moreLarge) {
+	public void setItemId_moreLarge(Long itemId_moreLarge) {
 		this.itemId_moreLarge = itemId_moreLarge;
 	}
 
-	public Long getitemId_from() {
+	public Long getItemId_from() {
 		return itemId_from;
 	}
 
-	public void setitemId_from(Long itemId_from) {
+	public void setItemId_from(Long itemId_from) {
 		this.itemId_from = itemId_from;
 	}
 
-	public Long getitemId_to() {
+	public Long getItemId_to() {
 		return itemId_to;
 	}
 
-	public void setitemId_to(Long itemId_to) {
+	public void setItemId_to(Long itemId_to) {
 		this.itemId_to = itemId_to;
 	}
 
-	public Long getitemId_moreSmall() {
+	public Long getItemId_moreSmall() {
 		return itemId_moreSmall;
 	}
 
-	public void setitemId_moreSmall(Long itemId_moreSmall) {
+	public void setItemId_moreSmall(Long itemId_moreSmall) {
 		this.itemId_moreSmall = itemId_moreSmall;
 	}
 
-	public Long getitemId_small() {
+	public Long getItemId_small() {
 		return itemId_small;
 	}
 
-	public void setitemId_small(Long itemId_small) {
+	public void setItemId_small(Long itemId_small) {
 		this.itemId_small = itemId_small;
 	}
 
-	public List getitemId_in() {
+	public List getItemId_in() {
 		return itemId_in;
 	}
 
-	public void setitemId_in(List itemId_in) {
+	public void setItemId_in(List itemId_in) {
 		this.itemId_in = itemId_in;
 	}
 
-	public Boolean getitemId_isNull() {
+	public Boolean getItemId_isNull() {
 		return itemId_isNull;
 	}
 
-	public void setitemId_isNull(Boolean itemId_isNull) {
+	public void setItemId_isNull(Boolean itemId_isNull) {
 		this.itemId_isNull = itemId_isNull;
 	}
 
-	public Boolean getitemId_isNotNull() {
+	public Boolean getItemId_isNotNull() {
 		return itemId_isNotNull;
 	}
 
-	public void setitemId_isNotNull(Boolean itemId_isNotNull) {
+	public void setItemId_isNotNull(Boolean itemId_isNotNull) {
 		this.itemId_isNotNull = itemId_isNotNull;
 	}
 
-	public boolean getitemId_isASC() {
+	public boolean getItemId_isASC() {
 		return itemId_isASC;
 	}
 
-	public void setitemId_isASC(boolean itemId_isASC) {
+	public void setItemId_isASC(boolean itemId_isASC) {
 		this.itemId_isASC = itemId_isASC;
 	}
 

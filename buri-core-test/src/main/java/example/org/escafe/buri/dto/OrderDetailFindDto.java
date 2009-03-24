@@ -7,8 +7,6 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class OrderDetailFindDto {
-	public static final String TABLE = "OrderDetail";
-
 	private final ArrayList orderList = new ArrayList();
 
 	private Long orderDetailId = null;
@@ -107,7 +105,7 @@ public class OrderDetailFindDto {
 
 	private boolean orderTitleId_isASC = true;
 
-	public Long getoOrderDetailId() {
+	public Long getOrderDetailId() {
 		return orderDetailId;
 	}
 
