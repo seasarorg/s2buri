@@ -9,6 +9,7 @@
 	<include path="StdTestPP.dicon" condition="@org.seasar.framework.util.ResourceUtil@isExist('StdTestPP.dicon')"/>
 	<!-- ここまではテスト用なので実際は削除する -->
 	
+	
 	<component class="org.escafe.buri.common.util.BuriConfigurationImpl">
 	<!--
 		<initMethod>#self.addValue("DtoPackageName","org.escafe.buri.dto")</initMethod>
