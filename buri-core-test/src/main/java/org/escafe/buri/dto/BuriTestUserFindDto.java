@@ -7,8 +7,6 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class BuriTestUserFindDto {
-	public static final String TABLE = "BuriTestUser";
-
 	private final ArrayList orderList = new ArrayList();
 
 	private Long userId = null;

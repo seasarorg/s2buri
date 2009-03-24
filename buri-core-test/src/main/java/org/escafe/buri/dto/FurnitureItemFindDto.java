@@ -8,9 +8,7 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class FurnitureItemFindDto {
-	public static final String TABLE = "FurnitureItem";
-
-	private ArrayList orderList = new ArrayList();
+	private final ArrayList orderList = new ArrayList();
 
 	private Integer furnitureId = null;
 

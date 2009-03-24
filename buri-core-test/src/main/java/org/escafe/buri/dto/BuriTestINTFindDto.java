@@ -7,9 +7,7 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class BuriTestINTFindDto {
-	public static final String TABLE = "BuriTestINT";
-
-	private ArrayList orderList = new ArrayList();
+	private final ArrayList orderList = new ArrayList();
 
 	private Integer testId = null;
 
@@ -141,7 +139,7 @@ public class BuriTestINTFindDto {
 		return testId_moreSmall;
 	}
 
-	public void setTestID_moreSmall(Integer testID_moreSmall) {
+	public void setTestId_moreSmall(Integer testId_moreSmall) {
 		this.testId_moreSmall = testId_moreSmall;
 	}
 
@@ -153,7 +151,7 @@ public class BuriTestINTFindDto {
 		this.testId_small = testId_small;
 	}
 
-	public List getTestID_in() {
+	public List getTestId_in() {
 		return testId_in;
 	}
 
