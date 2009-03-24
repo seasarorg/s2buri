@@ -11,10 +11,12 @@ public class BuriPathDataEntityService extends
         AbstractService<BuriPathDataEntity> {
 	public List<BuriPathDataEntity> getListByPathName(String className,
 	        String pathName, Long pathType) {
-		return select().where(
-		    eq(dataType(), className),
-		    eq(pathName(), pathName),
-		    eq(pathType(), pathType)).getResultList();
+		List<BuriPathDataEntity> result =
+		    select().where(
+		        eq(dataType(), className),
+		        eq(pathName(), pathName),
+		        eq(pathType(), pathType)).getResultList();
+		return result;
 	}
 
 	public List<BuriPathDataEntity> getListByPkeyNum(String className,
