@@ -3,7 +3,6 @@ package example.org.escafe.buri.service;
 import static example.org.escafe.buri.names.ShippingNames.orderTitle;
 import static example.org.escafe.buri.names.ShippingNames.shippingId;
 import static example.org.escafe.buri.names.ShippingNames.shippingItemList;
-import static org.seasar.extension.jdbc.operation.Operations.asc;
 import static org.seasar.extension.jdbc.operation.Operations.eq;
 import static org.seasar.extension.jdbc.operation.Operations.in;
 
@@ -27,32 +26,12 @@ public class ShippingService extends AbstractService<Shipping> {
 	 */
 	public ShippingItemService shippingItemService;
 
-	/**
-	 * 識別子でエンティティを検索します。
-	 * 
-	 * @param shippingId
-	 *            識別子
-	 * @return エンティティ
-	 */
-	public Shipping findById(Long shippingId) {
+	public Shipping getShipping(Long shippingId) {
 		return select().id(shippingId).getSingleResult();
 	}
 
-	public String getShippingByIds_ARGS = "shippingIDs";
-
-	public String getShippingByIds_QUERY = "shippingID in /*shippingIDs*/(1)";
-
 	public List<Shipping> getShippingByIds(List<Long> shippingIds) {
 		return select().where(in(shippingId(), shippingIds)).getResultList();
-	}
-
-	/**
-	 * 識別子の昇順ですべてのエンティティを検索します。
-	 * 
-	 * @return エンティティのリスト
-	 */
-	public List<Shipping> findAllOrderById() {
-		return select().orderBy(asc(shippingId())).getResultList();
 	}
 
 	public Shipping convertOrNew(Long shippingId) {

@@ -1,10 +1,11 @@
 package example.org.escafe.buri.service;
 
-import example.org.escafe.buri.entity.Bill;
+import static example.org.escafe.buri.names.BillNames.billId;
+import static org.seasar.extension.jdbc.operation.Operations.in;
+
 import java.util.List;
 
-import static example.org.escafe.buri.names.BillNames.*;
-import static org.seasar.extension.jdbc.operation.Operations.*;
+import example.org.escafe.buri.entity.Bill;
 
 /**
  * {@link Bill}のサービスクラスです。
@@ -13,24 +14,11 @@ import static org.seasar.extension.jdbc.operation.Operations.*;
  * @suppresshack com.google.code.hack.ej2.ToStringRewriter
  */
 public class BillService extends AbstractService<Bill> {
+	public Bill getBill(Long billId) {
+		return select().id(billId).getSingleResult();
+	}
 
-    /**
-     * 識別子でエンティティを検索します。
-     * 
-     * @param billId
-     *            識別子
-     * @return エンティティ
-     */
-    public Bill findById(Long billId) {
-        return select().id(billId).getSingleResult();
-    }
-
-    /**
-     * 識別子の昇順ですべてのエンティティを検索します。
-     * 
-     * @return エンティティのリスト
-     */
-    public List<Bill> findAllOrderById() {
-        return select().orderBy(asc(billId())).getResultList();
-    }
+	public List<Bill> getBillByIds(List<Long> billIds) {
+		return select().where(in(billId(), billIds)).getResultList();
+	}
 }

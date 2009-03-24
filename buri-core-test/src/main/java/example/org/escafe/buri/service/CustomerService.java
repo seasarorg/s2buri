@@ -1,10 +1,11 @@
 package example.org.escafe.buri.service;
 
-import example.org.escafe.buri.entity.Customer;
+import static example.org.escafe.buri.names.CustomerNames.customerId;
+import static org.seasar.extension.jdbc.operation.Operations.in;
+
 import java.util.List;
 
-import static example.org.escafe.buri.names.CustomerNames.*;
-import static org.seasar.extension.jdbc.operation.Operations.*;
+import example.org.escafe.buri.entity.Customer;
 
 /**
  * {@link Customer}のサービスクラスです。
@@ -13,24 +14,11 @@ import static org.seasar.extension.jdbc.operation.Operations.*;
  * @suppresshack com.google.code.hack.ej2.ToStringRewriter
  */
 public class CustomerService extends AbstractService<Customer> {
+	public Customer getCustomer(Long customerId) {
+		return select().id(customerId).getSingleResult();
+	}
 
-    /**
-     * 識別子でエンティティを検索します。
-     * 
-     * @param customerId
-     *            識別子
-     * @return エンティティ
-     */
-    public Customer findById(Long customerId) {
-        return select().id(customerId).getSingleResult();
-    }
-
-    /**
-     * 識別子の昇順ですべてのエンティティを検索します。
-     * 
-     * @return エンティティのリスト
-     */
-    public List<Customer> findAllOrderById() {
-        return select().orderBy(asc(customerId())).getResultList();
-    }
+	public List<Customer> getCustomerByIds(List<Long> customerIds) {
+		return select().where(in(customerId(), customerIds)).getResultList();
+	}
 }

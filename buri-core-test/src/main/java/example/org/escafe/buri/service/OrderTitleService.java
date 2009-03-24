@@ -2,7 +2,7 @@ package example.org.escafe.buri.service;
 
 import static example.org.escafe.buri.names.OrderTitleNames.orderDetailList;
 import static example.org.escafe.buri.names.OrderTitleNames.orderTitleId;
-import static org.seasar.extension.jdbc.operation.Operations.asc;
+import static org.seasar.extension.jdbc.operation.Operations.in;
 
 import java.util.List;
 
@@ -21,24 +21,8 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 	 */
 	public OrderDetailService orderDetailService;
 
-	/**
-	 * 識別子でエンティティを検索します。
-	 * 
-	 * @param orderTitleId
-	 *            識別子
-	 * @return エンティティ
-	 */
-	public OrderTitle findById(Long orderTitleId) {
+	public OrderTitle getOrderTitle(Long orderTitleId) {
 		return select().id(orderTitleId).getSingleResult();
-	}
-
-	/**
-	 * 識別子の昇順ですべてのエンティティを検索します。
-	 * 
-	 * @return エンティティのリスト
-	 */
-	public List<OrderTitle> findAllOrderById() {
-		return select().orderBy(asc(orderTitleId())).getResultList();
 	}
 
 	public OrderTitle findByIdWithOrderDetail(Long orderTitleId) {
@@ -46,6 +30,12 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 		    .leftOuterJoin(orderDetailList())
 		    .id(orderTitleId)
 		    .getSingleResult();
+	}
+
+	public List<OrderTitle> getOrderTitleByIds(List<Long> orderTitleIds) {
+		return select()
+		    .where(in(orderTitleId(), orderTitleIds))
+		    .getResultList();
 	}
 
 	@Override
@@ -74,11 +64,5 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public List<OrderTitle> findAll() {
-		// TODO Auto-generated method stub
-		return super.findAll();
 	}
 }
