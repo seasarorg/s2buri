@@ -15,268 +15,295 @@ import org.seasar.framework.container.S2Container;
  * @author $Author: nobeans $
  */
 public class BuriSystemContext {
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+	private BuriUserContext userContext;
 
-    private BuriUserContext userContext;
-    private Class targetDtoClass;
-    private BuriPath callPath;
-    private Long dataID;
-    private S2Container container;
-    private IdentityInfo appUserId;
-    private Long buriUserID;
-    private Long statusID;
-    private String startParticipantName;
-    private List<String> activityNames;
-    private List<String> afterCallMethods = new ArrayList<String>();
-    private RuntimeException exception;
+	private Class<?> targetDtoClass;
 
-    /**
-     * 現在のコンテキスト上でのメインのDIコンテナを返します。
-     * @return
-     */
-    public S2Container getContainer() {
-        return container;
-    }
+	private BuriPath callPath;
 
-    /**
-     * 現在のコンテキスト上でのメインのDIコンテナを設定します。
-     * @param container
-     */
-    public void setContainer(S2Container container) {
-        this.container = container;
-    }
+	private Long dataId;
 
-    /**
-     * ユーザコンテキストを返します。
-     * @return
-     */
-    public BuriUserContext getUserContext() {
-        return userContext;
-    }
+	private S2Container container;
 
-    /**
-     * ユーザコンテキストを設定します。
-     * @param userContext
-     */
-    public void setUserContext(BuriUserContext userContext) {
-        this.userContext = userContext;
-    }
+	private IdentityInfo appUserId;
 
-    /**
-     * 処理対象のアクティビティのパスを返します。
-     * @return
-     */
-    public BuriPath getCallPath() {
-        return callPath;
-    }
+	private Long buriUserId;
 
-    /**
-     * 処理対象のアクティビティのパスを返します。
-     * @return
-     */
-    public void setCallPath(BuriPath callPath) {
-        this.callPath = callPath;
-    }
+	private Long statusId;
 
-    /**
-     * 現在のコンテキストで対象としているデータIDを返します。
-     * @return
-     */
-    public Long getDataID() {
-        return dataID;
-    }
+	private String startParticipantName;
 
-    /**
-     * 現在のコンテキストで対象としているデータIDを設定します。
-     * @param dataID
-     */
-    public void setDataID(Long dataID) {
-        this.dataID = dataID;
-    }
+	private List<String> activityNames;
 
-    /**
-     * 現在のコンテキストで対象としているデータのステータスIDを返します。
-     * @return
-     */
-    public Long getStatusID() {
-        return statusID;
-    }
+	private List<String> afterCallMethods = new ArrayList<String>();
 
-    /**
-     * 現在のコンテキストで対象としているデータのステータスIDを設定します。
-     * @param statusID
-     */
-    public void setStatusID(Long statusID) {
-        this.statusID = statusID;
-    }
+	private RuntimeException exception;
 
-    /**
-     * 現在のコンテキストで対象としているデータのDTOクラス型を返します。
-     * @return
-     */
-    public Class getTargetDtoClass() {
-        return targetDtoClass;
-    }
+	/**
+	 * 現在のコンテキスト上でのメインのDIコンテナを返します。
+	 * 
+	 * @return
+	 */
+	public S2Container getContainer() {
+		return container;
+	}
 
-    /**
-     * 現在のコンテキストで対象としているデータのDTOクラス型を設定します。
-     * @param targetDtoClass
-     */
-    public void setTargetDtoClass(Class targetClass) {
-        this.targetDtoClass = targetClass;
-    }
+	/**
+	 * 現在のコンテキスト上でのメインのDIコンテナを設定します。
+	 * 
+	 * @param container
+	 */
+	public void setContainer(S2Container container) {
+		this.container = container;
+	}
 
-    /**
-     * アプリケーション側で定義されるユーザIDを返します。
-     * @return
-     */
-    public IdentityInfo getAppUserId() {
-        return appUserId;
-    }
+	/**
+	 * ユーザコンテキストを返します。
+	 * 
+	 * @return
+	 */
+	public BuriUserContext getUserContext() {
+		return userContext;
+	}
 
-    /**
-     * アプリケーション側で定義されるユーザIDを設定します。
-     * @param appUserID
-     */
-    public void setAppUserId(IdentityInfo appUserId) {
-        this.appUserId = appUserId;
-    }
+	/**
+	 * ユーザコンテキストを設定します。
+	 * 
+	 * @param userContext
+	 */
+	public void setUserContext(BuriUserContext userContext) {
+		this.userContext = userContext;
+	}
 
-    /**
-     * ぶり側で定義されるユーザIDを返します。
-     * <p>
-     * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。
-     * 本メソッドではこの独自管理上のIDを返します。
-     * </p>
-     * @return
-     */
-    public Long getBuriUserID() {
-        return buriUserID;
-    }
+	/**
+	 * 処理対象のアクティビティのパスを返します。
+	 * 
+	 * @return
+	 */
+	public BuriPath getCallPath() {
+		return callPath;
+	}
 
-    /**
-     * ぶり側で定義されるユーザIDを設定します。
-     * <p>
-     * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。
-     * 本メソッドではこの独自管理上のIDを設定します。
-     * </p>
-     * @param buriUserID
-     */
-    public void setBuriUserID(Long buriUserID) {
-        this.buriUserID = buriUserID;
-    }
+	/**
+	 * 処理対象のアクティビティのパスを返します。
+	 * 
+	 * @return
+	 */
+	public void setCallPath(BuriPath callPath) {
+		this.callPath = callPath;
+	}
 
-    /**
-     * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を返します。
-     * <p>
-     * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが
-     * 所属するスイムレーンの権限主体名を返します。
-     * </p>
-     * <p>
-     * 「開始アクティビティ」とは以下のアクティビティを指します。
-     * <ul>
-     * <li>フローに初めてデータを投入した場合は、開始アクティビティそのもの</li>
-     * <li>既にフロー中にあるデータの場合は、フローを再開させたときの最初のアクティビティ</li>
-     * </ul>
-     * </p>
-     * @return
-     */
-    public String getStartParticipantName() {
-        return startParticipantName;
-    }
+	/**
+	 * 現在のコンテキストで対象としているデータIDを返します。
+	 * 
+	 * @return
+	 */
+	public Long getDataId() {
+		return dataId;
+	}
 
-    /**
-     * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を設定します。
-     * <p>
-     * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが
-     * 所属するスイムレーンの権限主体名を返します。
-     * </p>
-     * <p>
-     * 「開始アクティビティ」とは以下のアクティビティを指します。
-     * <ul>
-     * <li>フローに初めてデータを投入した場合は、開始アクティビティそのもの</li>
-     * <li>既にフロー中にあるデータの場合は、フローを再開させたときの最初のアクティビティ</li>
-     * </ul>
-     * </p>
-     * @param startParticipantName
-     */
-    public void setStartParticipantName(String startParticipantName) {
-        this.startParticipantName = startParticipantName;
-    }
+	/**
+	 * 現在のコンテキストで対象としているデータIDを設定します。
+	 * 
+	 * @param dataID
+	 */
+	public void setDataId(Long dataId) {
+		this.dataId = dataId;
+	}
 
-    /**
-     * 実行時例外を返します。
-     * <p>
-     * {@code WakanagoProcess}での例外処理の実現で使用されます。
-     * </p>
-     * @return
-     */
-    public RuntimeException getException() {
-        return exception;
-    }
+	/**
+	 * 現在のコンテキストで対象としているデータのステータスIDを返します。
+	 * 
+	 * @return
+	 */
+	public Long getStatusId() {
+		return statusId;
+	}
 
-    /**
-     * 実行時例外を設定します。
-     * <p>
-     * {@code WakanagoProcess}での例外処理の実現で使用されます。
-     * </p>
-     * @param exception
-     */
-    public void setException(RuntimeException exception) {
-        this.exception = exception;
-    }
+	/**
+	 * 現在のコンテキストで対象としているデータのステータスIDを設定します。
+	 * 
+	 * @param statusID
+	 */
+	public void setStatusId(Long statusId) {
+		this.statusId = statusId;
+	}
 
-    /**
-     * アクティビティ名群を返します
-     * <p>
-     * BAOのアノテーションで指定したアクティビティ名が含まれます。
-     * </p>
-     * @return
-     */
-    public List<String> getActivityNames() {
-        return activityNames;
-    }
+	/**
+	 * 現在のコンテキストで対象としているデータのDTOクラス型を返します。
+	 * 
+	 * @return
+	 */
+	public Class<?> getTargetDtoClass() {
+		return targetDtoClass;
+	}
 
-    /**
-     * アクティビティ名群を設定します。
-     * <p>
-     * BAOのアノテーションで指定したアクティビティ名が含まれます。
-     * </p>
-     * @param activityNames
-     */
-    public void setActivityNames(List<String> actNames) {
-        this.activityNames = actNames;
-    }
+	/**
+	 * 現在のコンテキストで対象としているデータのDTOクラス型を設定します。
+	 * 
+	 * @param targetDtoClass
+	 */
+	public void setTargetDtoClass(Class<?> targetClass) {
+		this.targetDtoClass = targetClass;
+	}
 
-    public List<String> getAfterCallMethods() {
-        return afterCallMethods;
-    }
+	/**
+	 * アプリケーション側で定義されるユーザIDを返します。
+	 * 
+	 * @return
+	 */
+	public IdentityInfo getAppUserId() {
+		return appUserId;
+	}
 
-    public void setAfterCallMethods(List<String> afterCallMethods) {
-        this.afterCallMethods = afterCallMethods;
-    }
+	/**
+	 * アプリケーション側で定義されるユーザIDを設定します。
+	 * 
+	 * @param appUserID
+	 */
+	public void setAppUserId(IdentityInfo appUserId) {
+		this.appUserId = appUserId;
+	}
 
-    public void addAfterCallMethods(String afterCallName) {
-        this.afterCallMethods.add(afterCallName);
-    }
+	/**
+	 * ぶり側で定義されるユーザIDを返します。
+	 * <p>
+	 * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。 本メソッドではこの独自管理上のIDを返します。
+	 * </p>
+	 * 
+	 * @return
+	 */
+	public Long getBuriUserId() {
+		return buriUserId;
+	}
 
-    @Override
-    public String toString() {
-        StringBuffer buff = new StringBuffer("[");
-        buff.append("userContext=").append(userContext);
-        buff.append("/callPath=").append(callPath);
-        buff.append("/dataID=").append(dataID);
-        buff.append("/buriUserID=").append(buriUserID);
-        buff.append("/appUserId=").append(appUserId);
-        buff.append("/statusID=").append(statusID);
-        buff.append("/targetDtoClass=").append(targetDtoClass);
-        buff.append("/startParticipantName=").append(startParticipantName);
-        buff.append("/activityNames=").append(activityNames);
-        buff.append("/afterCallMethods=").append(afterCallMethods);
-        buff.append("/exception=").append(exception);
-        buff.append("]");
-        return buff.toString();
-    }
+	/**
+	 * ぶり側で定義されるユーザIDを設定します。
+	 * <p>
+	 * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。 本メソッドではこの独自管理上のIDを設定します。
+	 * </p>
+	 * 
+	 * @param buriUserId
+	 */
+	public void setBuriUserId(Long buriUserId) {
+		this.buriUserId = buriUserId;
+	}
 
+	/**
+	 * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を返します。
+	 * <p>
+	 * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが 所属するスイムレーンの権限主体名を返します。
+	 * </p>
+	 * <p>
+	 * 「開始アクティビティ」とは以下のアクティビティを指します。
+	 * <ul>
+	 * <li>フローに初めてデータを投入した場合は、開始アクティビティそのもの</li>
+	 * <li>既にフロー中にあるデータの場合は、フローを再開させたときの最初のアクティビティ</li>
+	 * </ul>
+	 * </p>
+	 * 
+	 * @return
+	 */
+	public String getStartParticipantName() {
+		return startParticipantName;
+	}
+
+	/**
+	 * 現在のコンテキストで対象としているデータの開始アクティビティの権限主体名を設定します。
+	 * <p>
+	 * 1度の実行で複数のアクティビティが実行される場合に、その1つ目のアクティビティが 所属するスイムレーンの権限主体名を返します。
+	 * </p>
+	 * <p>
+	 * 「開始アクティビティ」とは以下のアクティビティを指します。
+	 * <ul>
+	 * <li>フローに初めてデータを投入した場合は、開始アクティビティそのもの</li>
+	 * <li>既にフロー中にあるデータの場合は、フローを再開させたときの最初のアクティビティ</li>
+	 * </ul>
+	 * </p>
+	 * 
+	 * @param startParticipantName
+	 */
+	public void setStartParticipantName(String startParticipantName) {
+		this.startParticipantName = startParticipantName;
+	}
+
+	/**
+	 * 実行時例外を返します。
+	 * <p>
+	 * {@code WakanagoProcess}での例外処理の実現で使用されます。
+	 * </p>
+	 * 
+	 * @return
+	 */
+	public RuntimeException getException() {
+		return exception;
+	}
+
+	/**
+	 * 実行時例外を設定します。
+	 * <p>
+	 * {@code WakanagoProcess}での例外処理の実現で使用されます。
+	 * </p>
+	 * 
+	 * @param exception
+	 */
+	public void setException(RuntimeException exception) {
+		this.exception = exception;
+	}
+
+	/**
+	 * アクティビティ名群を返します
+	 * <p>
+	 * BAOのアノテーションで指定したアクティビティ名が含まれます。
+	 * </p>
+	 * 
+	 * @return
+	 */
+	public List<String> getActivityNames() {
+		return activityNames;
+	}
+
+	/**
+	 * アクティビティ名群を設定します。
+	 * <p>
+	 * BAOのアノテーションで指定したアクティビティ名が含まれます。
+	 * </p>
+	 * 
+	 * @param activityNames
+	 */
+	public void setActivityNames(List<String> actNames) {
+		this.activityNames = actNames;
+	}
+
+	public List<String> getAfterCallMethods() {
+		return afterCallMethods;
+	}
+
+	public void setAfterCallMethods(List<String> afterCallMethods) {
+		this.afterCallMethods = afterCallMethods;
+	}
+
+	public void addAfterCallMethods(String afterCallName) {
+		this.afterCallMethods.add(afterCallName);
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer buff = new StringBuffer("[");
+		buff.append("userContext=").append(userContext);
+		buff.append("/callPath=").append(callPath);
+		buff.append("/dataId=").append(dataId);
+		buff.append("/buriUserId=").append(buriUserId);
+		buff.append("/appUserId=").append(appUserId);
+		buff.append("/statusId=").append(statusId);
+		buff.append("/targetDtoClass=").append(targetDtoClass);
+		buff.append("/startParticipantName=").append(startParticipantName);
+		buff.append("/activityNames=").append(activityNames);
+		buff.append("/afterCallMethods=").append(afterCallMethods);
+		buff.append("/exception=").append(exception);
+		buff.append("]");
+		return buff.toString();
+	}
 }

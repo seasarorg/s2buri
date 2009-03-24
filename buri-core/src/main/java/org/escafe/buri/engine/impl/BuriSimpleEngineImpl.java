@@ -87,8 +87,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	protected void finalSetup(BuriPathDataEntity dto,
 	        BuriSystemContext sysContext) {
 		if (dto != null) {
-			sysContext.setDataID(new Long(dto.dataId));
-			sysContext.setStatusID(new Long(dto.stateId));
+			sysContext.setDataId(new Long(dto.dataId));
+			sysContext.setStatusId(new Long(dto.stateId));
 			BuriPath callPath =
 			    new BuriPath(
 			        dto.pathName,

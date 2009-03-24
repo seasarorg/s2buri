@@ -30,7 +30,7 @@ public class BuriJoinWaitingUtilImpl implements BuriJoinWaitingUtil {
 		long pathId = newPath.getBuriPathId();
 		BuriJoinWaitingEntity dto = new BuriJoinWaitingEntity();
 		dto.branchId = walker.getBranchID();
-		dto.dataId = sysContext.getDataID();
+		dto.dataId = sysContext.getDataId();
 		dto.pathId = pathId;
 		buriJoinWaitingEntityService.insert(dto);
 		saveWaitingUser(factory, dto, sysContext, nextWalker);

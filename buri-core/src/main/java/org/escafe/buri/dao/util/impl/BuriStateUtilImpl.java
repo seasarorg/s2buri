@@ -63,13 +63,13 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 	}
 
 	public BranchWalker loadBranchWalker(BuriSystemContext sysContext) {
-		if ((sysContext.getStatusID() == null)
-		    || (sysContext.getStatusID().longValue() == 0)) {
+		if ((sysContext.getStatusId() == null)
+		    || (sysContext.getStatusId().longValue() == 0)) {
 			return createBranchWalker(sysContext);
 		}
 		BuriStateEntity stateDto =
 		    buriStateEntityService.getBuriState(sysContext
-		        .getStatusID()
+		        .getStatusId()
 		        .longValue());
 		if ((stateDto == null) || (stateDto.branchId == null)) {
 			return createBranchWalker(sysContext);
@@ -163,7 +163,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 		walker.setParentPath(parentPath);
 		walker.setParentBranchID(nowWalker.getBranchID());
 		BuriBranchEntity dto = new BuriBranchEntity();
-		dto.dataId = sysContext.getDataID();
+		dto.dataId = sysContext.getDataId();
 		dto.parentBranchId = new Long(nowWalker.getBranchID());
 		dto.processDate = new Date();
 		dto.pathId = new Long(path.getBuriPathId());
@@ -292,8 +292,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
 	public void processed(DataAccessFactory factory,
 	        BuriSystemContext sysContext, BranchWalker walker) {
-		assert sysContext.getStatusID() != null;
-		long stateID = sysContext.getStatusID().longValue();
+		assert sysContext.getStatusId() != null;
+		long stateID = sysContext.getStatusId().longValue();
 		buriStatusEventCaller.processed(factory, sysContext, walker);
 		undoLogUtil.addUndoLog(stateID, 0);
 		buriStateEntityService.updateProceesByStateId(stateID);
@@ -301,8 +301,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
 	public void abortStatus(DataAccessFactory factory,
 	        BuriSystemContext sysContext, BranchWalker walker) {
-		assert sysContext.getStatusID() != null;
-		long stateID = sysContext.getStatusID().longValue();
+		assert sysContext.getStatusId() != null;
+		long stateID = sysContext.getStatusId().longValue();
 		assert walker.getBranchID() != 0;
 		buriStatusEventCaller.abortState(factory, sysContext, walker);
 		undoLogUtil.addUndoLog(stateID, 0);

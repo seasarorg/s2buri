@@ -249,7 +249,7 @@ public class BuriDataUtilImpl implements BuriDataUtil {
 		}
 		BuriDataEntity dto = null;
 		if (datas.size() == 0) {
-			findDto.insertUserId = sysContext.getBuriUserID();
+			findDto.insertUserId = sysContext.getBuriUserId();
 			findDto.tableName = util.getTableName(argDto);
 			buriDataEntityService.insert(findDto);
 			dto = findDto;
@@ -279,12 +279,12 @@ public class BuriDataUtilImpl implements BuriDataUtil {
 	public long getBuriDataId(DataAccessFactory factory,
 	        BuriSystemContext sysContext) {
 		Object argDto = sysContext.getUserContext().getData();
-		if (sysContext.getDataID() == null) {
+		if (sysContext.getDataId() == null) {
 			BuriDataEntity dto = getBuriDataDto(argDto, factory, sysContext);
 			assert dto != null;
-			sysContext.setDataID(new Long(dto.dataId));
+			sysContext.setDataId(new Long(dto.dataId));
 		}
-		return sysContext.getDataID().longValue();
+		return sysContext.getDataId().longValue();
 	}
 
 	public void storeData(DataAccessFactory factory,
@@ -297,13 +297,13 @@ public class BuriDataUtilImpl implements BuriDataUtil {
 	public void updateBuriData(DataAccessFactory factory,
 	        BuriSystemContext sysContext) {
 		Object argDto = sysContext.getUserContext().getData();
-		if (sysContext.getDataID() == null) {
+		if (sysContext.getDataId() == null) {
 			BuriDataEntity dto = getBuriDataDto(argDto, factory, sysContext);
-			sysContext.setDataID(new Long(dto.dataId));
+			sysContext.setDataId(new Long(dto.dataId));
 		} else {
 			BuriDataEntity dto =
 			    buriDataEntityService.getBuriData(sysContext
-			        .getDataID()
+			        .getDataId()
 			        .longValue());
 			setupPkey(dto, argDto, factory);
 			buriDataEntityService.update(dto);

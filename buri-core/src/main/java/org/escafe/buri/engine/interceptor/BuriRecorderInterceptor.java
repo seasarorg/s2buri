@@ -37,8 +37,8 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 		BranchWalker walker = (BranchWalker) bInvo.getCallArguments()[1];
 		BuriDataPathHistoryEntity dto = new BuriDataPathHistoryEntity();
 		dto.action = sysContext.getUserContext().getAction();
-		dto.buriUserId = sysContext.getBuriUserID();
-		dto.dataId = sysContext.getDataID();
+		dto.buriUserId = sysContext.getBuriUserId();
+		dto.dataId = sysContext.getDataId();
 		if (walker.getNowPath() != null) {
 			BuriPath realPath =
 			    pathUtil.getBuriPathFromRealPath(walker.getNowPath());
@@ -68,6 +68,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 
 	public void setBuriDataPathHistoryService(
 	        BuriDataPathHistoryEntityService buriDataPathHistoryEntityService) {
-		this.buriDataPathHistoryEntityService = buriDataPathHistoryEntityService;
+		this.buriDataPathHistoryEntityService =
+		    buriDataPathHistoryEntityService;
 	}
 }

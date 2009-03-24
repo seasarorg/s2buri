@@ -135,7 +135,7 @@ public class BuriUserUtilImpl implements BuriUserUtil {
 	public IdentityInfo getInsertUserId(BuriSystemContext sysContext) {
 		BuriDataEntity dataEntity =
 		    buriDataEntityService.getBuriData(sysContext
-		        .getDataID()
+		        .getDataId()
 		        .longValue());
 		Long insertBuriUserId = dataEntity.insertUserId;
 		if (insertBuriUserId == null) {

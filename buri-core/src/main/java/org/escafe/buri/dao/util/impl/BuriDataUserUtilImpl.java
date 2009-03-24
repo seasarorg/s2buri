@@ -33,7 +33,7 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements
 		        strList,
 		        pathName,
 		        sysContext.getCallPath().getPathType(),
-		        sysContext.getBuriUserID());
+		        sysContext.getBuriUserId());
 		return count;
 	}
 
@@ -51,7 +51,7 @@ public class BuriDataUserUtilImpl extends BuriDataUtilImpl implements
 		        className,
 		        pathName,
 		        pathType,
-		        sysContext.getBuriUserID());
+		        sysContext.getBuriUserId());
 		List<AbstractBuriPathDataEntity> result =
 		    CollectionsUtil.newArrayList();
 		result.addAll(infoList);
