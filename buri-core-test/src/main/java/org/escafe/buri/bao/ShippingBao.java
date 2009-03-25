@@ -16,7 +16,7 @@ public interface ShippingBao {
 
 	public static BuriConvert CONVERTER[] =
 	    new BuriConvert[] {
-	        new BuriConvert(Long.class, "shippingService.convertOrNew(#data"),
+	        new BuriConvert(Long.class, "shippingService.convertOrNew(#data)"),
 	        new BuriConvert(
 	            OrderTitle.class,
 	            "shippingService.convertOrNew(#data)") };
@@ -35,7 +35,7 @@ public interface ShippingBao {
 
 	public static String shipping_ACTIVITY = "出荷依頼";
 
-	public void shipping(OrderTitle dto);
+	public void shipping(OrderTitle entity);
 
 	public static String checkEndShipping_ACTIVITY = "商品待ち";
 
