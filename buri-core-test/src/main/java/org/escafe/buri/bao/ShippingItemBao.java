@@ -6,41 +6,40 @@ package org.escafe.buri.bao;
 
 import java.util.List;
 
-import example.org.escafe.buri.entity.Shipping;
 import example.org.escafe.buri.entity.ShippingItem;
 
 public interface ShippingItemBao {
 	public static String PROCESS = "注文管理.出荷詳細";
 
-	public static Class<?> TARGETDTO = Shipping.class;
+	public static Class<?> TARGETDTO = ShippingItem.class;
 
 	public static String getItemWaiting_ACTIVITY = "商品準備中";
 
-	public List<Shipping> getItemWaiting();
+	public List<ShippingItem> getItemWaiting();
 
 	public static String getEndShipping_ACTIVITY = "商品準備完了";
 
-	public List<Shipping> getEndShipping();
+	public List<ShippingItem> getEndShipping();
 
 	public static String getCancel_ACTIVITY = "cancel済み";
 
-	public List<Shipping> getCancel();
+	public List<ShippingItem> getCancel();
 
 	public static String getEndShippingCount_ACTIVITY = "商品準備完了";
 
 	public static String getEndShippingCount_ARGS = "datas";
 
-	public long getEndShippingCount(List datas);
+	public long getEndShippingCount(List<ShippingItem> datas);
 
 	public static String startShipping_ACTIVITY = "商品準備開始";
 
-	public void startShipping(Shipping dto);
+	public void startShipping(ShippingItem dto);
 
-	public void startShipping(List dtos);
+	public void startShipping(List<ShippingItem> dtos);
 
 	public static String endShipping_ACTIVITY = "商品準備中";
 
-	public void endShipping(ShippingItem dto);
+	public void endShipping(ShippingItem entity);
 
 	public static String cancel_ACTIVITY = "商品準備中";
 
@@ -48,5 +47,5 @@ public interface ShippingItemBao {
 
 	public void cancel(ShippingItem dto);
 
-	public void cancel(List dtos);
+	public void cancel(List<ShippingItem> dtos);
 }
