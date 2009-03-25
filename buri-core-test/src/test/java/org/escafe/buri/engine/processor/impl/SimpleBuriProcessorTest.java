@@ -87,11 +87,11 @@ public class SimpleBuriProcessorTest extends S2TestCase {
 		datas = furnitureItemService.find(findDto, pathNames);
 		assertEquals(datas.size(), 2);
 		start = Calendar.getInstance().getTimeInMillis();
-		invoker_.toNextStatus("資産管理.備品管理", new Long(buyItemDto.furnitureId));
+		invoker_.toNextStatus("資産管理.備品管理", buyItemDto.furnitureId);
 		end = Calendar.getInstance().getTimeInMillis();
 		System.out.println("資産管理.備品管理 =" + (end - start) + "ms");
 		start = Calendar.getInstance().getTimeInMillis();
-		invoker_.toNextStatus("資産管理.備品管理", new Long(leaseItemDto.furnitureId));
+		invoker_.toNextStatus("資産管理.備品管理", leaseItemDto.furnitureId);
 		end = Calendar.getInstance().getTimeInMillis();
 		System.out.println("資産管理.備品管理 =" + (end - start) + "ms");
 		start = Calendar.getInstance().getTimeInMillis();
