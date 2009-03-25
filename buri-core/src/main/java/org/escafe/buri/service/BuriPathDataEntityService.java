@@ -13,8 +13,8 @@ public class BuriPathDataEntityService extends
 	        String pathName, Long pathType) {
 		List<BuriPathDataEntity> result =
 		    select().where(
-		        eq(dataType(), className),
-		        eq(pathName(), pathName),
+		        like(dataType(), className),
+		        like(pathName(), pathName),
 		        eq(pathType(), pathType)).getResultList();
 		return result;
 	}
@@ -22,7 +22,7 @@ public class BuriPathDataEntityService extends
 	public List<BuriPathDataEntity> getListByPkeyNum(String className,
 	        Long pkeyNum, Long pathType) {
 		return select().where(
-		    eq(dataType(), className),
+		    like(dataType(), className),
 		    eq(pkeyNum(), pkeyNum),
 		    eq(pathType(), pathType)).getResultList();
 	}
@@ -30,7 +30,7 @@ public class BuriPathDataEntityService extends
 	public List<BuriPathDataEntity> getListByPkeyVal(String className,
 	        String pkeyVal, Long pathType) {
 		return select().where(
-		    eq(dataType(), className),
+		    like(dataType(), className),
 		    eq(pkeyVal(), pkeyVal),
 		    eq(pathType(), pathType)).getResultList();
 	}
@@ -41,7 +41,7 @@ public class BuriPathDataEntityService extends
 		    like(dataType(), className),
 		    eq(pkeyNum(), pkeyNum),
 		    eq(pkeyVal(), pkeyVal),
-		    eq(pathName(), pathName),
+		    like(pathName(), pathName),
 		    eq(pathType(), pathType)).getSingleResult();
 	}
 
@@ -49,10 +49,10 @@ public class BuriPathDataEntityService extends
 	        List<String> pkeyVals, String pathName, Long pathType) {
 		long count =
 		    select().where(
-		        eq(dataType(), className),
+		        like(dataType(), className),
 		        in(pkeyNum(), pkeyNums),
 		        in(pkeyVal(), pkeyVals),
-		        eq(pathName(), pathName),
+		        like(pathName(), pathName),
 		        eq(pathType(), pathType)).getCount();
 		return count;
 	}

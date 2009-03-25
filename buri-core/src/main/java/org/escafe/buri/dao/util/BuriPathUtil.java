@@ -10,13 +10,13 @@ import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.util.packages.BuriExecProcess;
 
 public interface BuriPathUtil {
-	List getPathListByDataId(long dataId);
+	List<BuriPath> getPathListByDataId(long dataId);
 
 	BuriPath getBuriPathById(long pathId);
 
 	BuriPath getBuriPathFromRealPath(BuriPath srcPath);
 
-	List getBuriPathFromPathName(BuriPath srcPath);
+	List<BuriPath> getBuriPathFromPathName(BuriPath srcPath);
 
 	long getPathType(BuriExecProcess process);
 }
