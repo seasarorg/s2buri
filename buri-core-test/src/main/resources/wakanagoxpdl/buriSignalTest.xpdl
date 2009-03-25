@@ -42,7 +42,7 @@
 <Automatic/>
 </StartMode>
 <FinishMode>
-<Manual/>
+<Automatic/>
 </FinishMode>
 <ExtendedAttributes>
 <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="buriSignalTest_wp1_par1"/>
