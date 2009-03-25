@@ -521,7 +521,7 @@
 <Implementation>
 <Tool Id="order_App2" Type="APPLICATION">
 <ExtendedAttributes>
-<ExtendedAttribute Name="ognl" Value="//InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleId)&#10;OrderBao.endBill(#data.orderTitleId)"/>
+<ExtendedAttribute Name="ognl" Value="//InnerInvoker.invoke(&quot;注文管理.注文&quot;,#data.orderTitleId)&#10;orderBao.endBill(#data.orderTitleId)"/>
 </ExtendedAttributes>
 </Tool>
 </Implementation>
