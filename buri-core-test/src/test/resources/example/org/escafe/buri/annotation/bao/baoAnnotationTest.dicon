@@ -3,8 +3,10 @@
 	"http://www.seasar.org/dtd/components23.dtd">
 <components>
 	<include path="buri/dicon/allService.dicon"/>
-	<include path="org/escafe/buri/dicon/allTestService.dicon"/>
+	<include path="org/escafe/buri/dicon/allTestService.dicon"/> 
+	
 	<include path="buri/dicon/bao.dicon"/>
+	
 	<component name="InterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
 		<initMethod name="add"><arg>bao.interceptor</arg></initMethod>
 	</component>
