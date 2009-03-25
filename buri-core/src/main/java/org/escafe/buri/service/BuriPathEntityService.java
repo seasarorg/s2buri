@@ -39,10 +39,13 @@ public class BuriPathEntityService extends AbstractService<BuriPathEntity> {
 	public List<BuriPathEntity> getPathListByPathAndData(String path,
 	        Long dataId, Long pathType) {
 		class Param {
+			@SuppressWarnings("unused")
 			public String path;
 
+			@SuppressWarnings("unused")
 			public Long dataId;
 
+			@SuppressWarnings("unused")
 			public Long pathType;
 		}
 		Param param = new Param();
@@ -57,6 +60,7 @@ public class BuriPathEntityService extends AbstractService<BuriPathEntity> {
 
 	public List<BuriPathEntity> getBuriPathByDataId(Long dataId) {
 		class Param {
+			@SuppressWarnings("unused")
 			public Long dataId;
 		}
 		Param param = new Param();

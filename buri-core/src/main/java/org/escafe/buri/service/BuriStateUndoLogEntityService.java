@@ -12,10 +12,13 @@ public class BuriStateUndoLogEntityService extends
 
 	public void addUndoLog(Long stateId, Long branchId, Long btId) {
 		class Param {
+			@SuppressWarnings("unused")
 			public Long stateId;
 
+			@SuppressWarnings("unused")
 			public Long branchId;
 
+			@SuppressWarnings("unused")
 			public Long btId;
 		}
 		Param param = new Param();

@@ -22,6 +22,7 @@ public class BuriJoinWaitingEntityService extends
 
 	public void updateClearWaitingInfo(Long branchId) {
 		class Param {
+			@SuppressWarnings("unused")
 			public Long branchId;
 		}
 		Param param = new Param();

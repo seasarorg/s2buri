@@ -25,22 +25,30 @@ public class BuriUserEntityService extends AbstractService<BuriUserEntity> {
 	}
 
 	public BuriUserEntity getBuriUserFromIds(Long userIdNum, String userIdVal) {
-		return select().where(eq(userIdNum(), userIdNum),
-				eq(userIdVal(), userIdVal)).getSingleResult();
+		return select().where(
+		    eq(userIdNum(), userIdNum),
+		    eq(userIdVal(), userIdVal)).getSingleResult();
 	}
 
 	public List<BuriUserEntity> getBuriUserFromPathAndPkey(String path,
-			long pkeyNum, String pkeyVal) {
+	        long pkeyNum, String pkeyVal) {
 		class Param {
+			@SuppressWarnings("unused")
 			public String path;
+
+			@SuppressWarnings("unused")
 			public Long pkeyNum;
+
+			@SuppressWarnings("unused")
 			public String pkeyVal;
 		}
 		Param param = new Param();
 		param.path = path;
 		param.pkeyNum = pkeyNum;
 		param.pkeyVal = pkeyVal;
-		return selectBySqlFile(BuriUserEntity.class,
-				"getBuriUserFromPathAndPkey.sql", param).getResultList();
+		return selectBySqlFile(
+		    BuriUserEntity.class,
+		    "getBuriUserFromPathAndPkey.sql",
+		    param).getResultList();
 	}
 }

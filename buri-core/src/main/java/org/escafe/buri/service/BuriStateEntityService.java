@@ -33,10 +33,13 @@ public class BuriStateEntityService extends AbstractService<BuriStateEntity> {
 
 	public void updateAbortByData(Long longKey, String manyKey, String dataType) {
 		class Param {
+			@SuppressWarnings("unused")
 			public Long longKey;
 
+			@SuppressWarnings("unused")
 			public String manyKey;
 
+			@SuppressWarnings("unused")
 			public String dataType;
 		}
 		Param param = new Param();
@@ -69,10 +72,13 @@ public class BuriStateEntityService extends AbstractService<BuriStateEntity> {
 	public Long countBuriStateByPathNameAndPkey(String pathName, Long longKey,
 	        String manyKey) {
 		class Param {
+			@SuppressWarnings("unused")
 			public String pathName;
 
+			@SuppressWarnings("unused")
 			public String manyKey;
 
+			@SuppressWarnings("unused")
 			public Long longKey;
 		}
 		Param param = new Param();

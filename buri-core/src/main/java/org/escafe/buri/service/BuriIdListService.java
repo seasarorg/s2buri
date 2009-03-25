@@ -13,10 +13,13 @@ public class BuriIdListService {
 	public List<Long> getIdListByPathName(String className, String pathName,
 	        Long pathType) {
 		class Param {
+			@SuppressWarnings("unused")
 			public String className;
 
+			@SuppressWarnings("unused")
 			public String pathName;
 
+			@SuppressWarnings("unused")
 			public Long pathType;
 		}
 		Param param = new Param();
@@ -32,12 +35,16 @@ public class BuriIdListService {
 	public List<Long> getIdListByPathNameAndUser(String className,
 	        String pathName, Long pathType, Long userId) {
 		class Param {
+			@SuppressWarnings("unused")
 			public String className;
 
+			@SuppressWarnings("unused")
 			public String pathName;
 
+			@SuppressWarnings("unused")
 			public Long pathType;
 
+			@SuppressWarnings("unused")
 			public Long userId;
 		}
 		Param param = new Param();
