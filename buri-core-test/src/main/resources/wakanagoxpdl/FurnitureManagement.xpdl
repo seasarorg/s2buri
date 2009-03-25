@@ -26,7 +26,7 @@
 <ExtendedAttribute Name="update" Value="furnitureItemService.update(#data)"/>
 <ExtendedAttribute Name="select" Value="furnitureItemService.getFurnitureItem(#data.furnitureId)"/>
 <ExtendedAttribute Name="selectMany_NO" Value="furnitureItemService.getFurnitureItemByIds(#data)"/>
-<ExtendedAttribute Name="delete" Value="furnitureItemDao.delete(#data)"/>
+<ExtendedAttribute Name="delete" Value="furnitureItemService.delete(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
@@ -226,7 +226,7 @@
 <BasicType Type="STRING"/>
 </DataType>
 <ExtendedAttributes>
-<ExtendedAttribute Name="preprocess" Value="FurnitureItemDao.getFurnitureItem(#data)"/>
+<ExtendedAttribute Name="preprocess" Value="furnitureItemService.getFurnitureItem(#data)"/>
 </ExtendedAttributes>
 </DataField>
 </DataFields>
