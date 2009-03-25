@@ -86,14 +86,15 @@ public class BaoTest extends S2TestCase {
 		datas = shippingItemBao.getItemWaiting();
 		assertEquals(datas.size(), 2);
 		System.out.println(datas);
-		ShippingItem shippingItemDto = (ShippingItem) datas.get(0);
-		shippingItemBao.endShipping(shippingItemDto);
+		ShippingItem shippingItem = (ShippingItem) datas.get(0);
+		// endShipping
+		shippingItemBao.endShipping(shippingItem);
 		datas = orderBao.getUnderWork();
 		assertEquals(datas.size(), 1);
 		datas = shippingItemBao.getItemWaiting();
 		System.out.println(datas);
 		assertEquals(datas.size(), 1);
-		shippingItemDto = (ShippingItem) datas.get(0);
+		shippingItem = (ShippingItem) datas.get(0);
 		datas = shippingItemBao.getEndShipping();
 		System.out.println(datas);
 		assertEquals(datas.size(), 1);
@@ -103,7 +104,7 @@ public class BaoTest extends S2TestCase {
 		datas = shippingBao.getEndShipping();
 		System.out.println(datas);
 		assertEquals(datas.size(), 0);
-		shippingItemBao.endShipping(shippingItemDto);
+		shippingItemBao.endShipping(shippingItem);
 		buriPathEntityService.getAllBuriPath();
 		buriStateEntityService.getAllBuriState();
 		datas = shippingItemBao.getItemWaiting();
@@ -144,107 +145,106 @@ public class BaoTest extends S2TestCase {
 		assertEquals(datas.size(), 1);
 	}
 
-	public void testCancelSuccessOrderTx() {
-		// 本当はburi2.diconに書くもの
-		BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
-		buriEngine.readWorkFlowFromResource(
-		    "wakanagoxpdl/orderBao.xpdl",
-		    "注文管理");
-		customerSetup();
-		itemSetup();
-		List<?> datas = null;
-		OrderTitle orderInfoDto1 = orderSetup1();
-		orderBao.order(orderInfoDto1);
-		datas = orderBao.getUnderWork();
-		assertEquals(datas.size(), 1);
-		System.out.println(datas);
-		datas = shippingBao.getNowWaiting();
-		assertEquals(datas.size(), 1);
-		System.out.println(datas);
-		datas = shippingItemBao.getItemWaiting();
-		assertEquals(datas.size(), 2);
-		System.out.println(datas);
-		Object status = orderBao.cancel(orderInfoDto1.orderTitleId);
-		assertEquals(status.toString(), "success");
-		datas = orderBao.getOrderCancelEnd();
-		assertEquals(datas.size(), 1);
-		datas = orderBao.getUnderWork();
-		assertEquals(datas.size(), 0);
-		datas = orderBao.getEndShipping();
-		assertEquals(datas.size(), 0);
-		datas = shippingItemBao.getCancel();
-		System.out.println(datas);
-		assertEquals(datas.size(), 2);
-		datas = shippingItemBao.getItemWaiting();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-		datas = shippingItemBao.getEndShipping();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-		datas = shippingBao.getShippingCancel();
-		System.out.println(datas);
-		assertEquals(datas.size(), 1);
-		datas = shippingBao.getNowWaiting();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-		datas = shippingBao.getEndShipping();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-	}
-
-	public void testInvokeExceptionOrderTx() {
-		// 本当はburi2.diconに書くもの
-		BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
-		buriEngine.readWorkFlowFromResource(
-		    "wakanagoxpdl/orderBao.xpdl",
-		    "注文管理");
-		customerSetup();
-		itemSetup();
-		List<?> datas = null;
-		OrderTitle orderInfoDto1 = orderSetup1();
-		orderBao.order(orderInfoDto1);
-		try {
-			orderBao.order(orderInfoDto1);
-			fail();
-		} catch (Exception ex) {
-		}
-		datas = orderBao.getUnderWork();
-		assertEquals(datas.size(), 1);
-		System.out.println(datas);
-		datas = shippingBao.getNowWaiting();
-		assertEquals(datas.size(), 1);
-		System.out.println(datas);
-		datas = shippingItemBao.getItemWaiting();
-		assertEquals(datas.size(), 2);
-		System.out.println(datas);
-		Object status = orderBao.cancel(orderInfoDto1.orderTitleId);
-		assertEquals(status.toString(), "success");
-		datas = orderBao.getOrderCancelEnd();
-		assertEquals(datas.size(), 1);
-		datas = orderBao.getUnderWork();
-		assertEquals(datas.size(), 0);
-		datas = orderBao.getEndShipping();
-		assertEquals(datas.size(), 0);
-		datas = shippingItemBao.getCancel();
-		System.out.println(datas);
-		assertEquals(datas.size(), 2);
-		datas = shippingItemBao.getItemWaiting();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-		datas = shippingItemBao.getEndShipping();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-		datas = shippingBao.getShippingCancel();
-		System.out.println(datas);
-		assertEquals(datas.size(), 1);
-		datas = shippingBao.getNowWaiting();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-		datas = shippingBao.getEndShipping();
-		System.out.println(datas);
-		assertEquals(datas.size(), 0);
-	}
-
+	// public void testCancelSuccessOrderTx() {
+	// // 本当はburi2.diconに書くもの
+	// BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
+	// buriEngine.readWorkFlowFromResource(
+	// "wakanagoxpdl/orderBao.xpdl",
+	// "注文管理");
+	// customerSetup();
+	// itemSetup();
+	// List<?> datas = null;
+	// OrderTitle orderInfoDto1 = orderSetup1();
+	// orderBao.order(orderInfoDto1);
+	// datas = orderBao.getUnderWork();
+	// assertEquals(datas.size(), 1);
+	// System.out.println(datas);
+	// datas = shippingBao.getNowWaiting();
+	// assertEquals(datas.size(), 1);
+	// System.out.println(datas);
+	// datas = shippingItemBao.getItemWaiting();
+	// assertEquals(datas.size(), 2);
+	// System.out.println(datas);
+	// Object status = orderBao.cancel(orderInfoDto1.orderTitleId);
+	// assertEquals(status.toString(), "success");
+	// datas = orderBao.getOrderCancelEnd();
+	// assertEquals(datas.size(), 1);
+	// datas = orderBao.getUnderWork();
+	// assertEquals(datas.size(), 0);
+	// datas = orderBao.getEndShipping();
+	// assertEquals(datas.size(), 0);
+	// datas = shippingItemBao.getCancel();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 2);
+	// datas = shippingItemBao.getItemWaiting();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// datas = shippingItemBao.getEndShipping();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// datas = shippingBao.getShippingCancel();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 1);
+	// datas = shippingBao.getNowWaiting();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// datas = shippingBao.getEndShipping();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// }
+	//
+	// public void testInvokeExceptionOrderTx() {
+	// // 本当はburi2.diconに書くもの
+	// BuriEngine buriEngine = (BuriEngine) getComponent("BuriSimpleEngine");
+	// buriEngine.readWorkFlowFromResource(
+	// "wakanagoxpdl/orderBao.xpdl",
+	// "注文管理");
+	// customerSetup();
+	// itemSetup();
+	// List<?> datas = null;
+	// OrderTitle orderInfoDto1 = orderSetup1();
+	// orderBao.order(orderInfoDto1);
+	// try {
+	// orderBao.order(orderInfoDto1);
+	// fail();
+	// } catch (Exception ex) {
+	// }
+	// datas = orderBao.getUnderWork();
+	// assertEquals(datas.size(), 1);
+	// System.out.println(datas);
+	// datas = shippingBao.getNowWaiting();
+	// assertEquals(datas.size(), 1);
+	// System.out.println(datas);
+	// datas = shippingItemBao.getItemWaiting();
+	// assertEquals(datas.size(), 2);
+	// System.out.println(datas);
+	// Object status = orderBao.cancel(orderInfoDto1.orderTitleId);
+	// assertEquals(status.toString(), "success");
+	// datas = orderBao.getOrderCancelEnd();
+	// assertEquals(datas.size(), 1);
+	// datas = orderBao.getUnderWork();
+	// assertEquals(datas.size(), 0);
+	// datas = orderBao.getEndShipping();
+	// assertEquals(datas.size(), 0);
+	// datas = shippingItemBao.getCancel();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 2);
+	// datas = shippingItemBao.getItemWaiting();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// datas = shippingItemBao.getEndShipping();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// datas = shippingBao.getShippingCancel();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 1);
+	// datas = shippingBao.getNowWaiting();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// datas = shippingBao.getEndShipping();
+	// System.out.println(datas);
+	// assertEquals(datas.size(), 0);
+	// }
 	protected OrderTitle orderSetup1() {
 		OrderTitle dto = new OrderTitle();
 		dto.customerId = 客1.customerId;
