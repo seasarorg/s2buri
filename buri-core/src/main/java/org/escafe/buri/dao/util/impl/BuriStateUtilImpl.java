@@ -325,7 +325,7 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 			return;
 		}
 		List<BuriBranchEntity> childs =
-		    buriBranchEntityService.getBranchByParentID(parentBranchId);
+		    buriBranchEntityService.getBranchByParentId(parentBranchId);
 		Iterator<BuriBranchEntity> ite = childs.iterator();
 		while (ite.hasNext()) {
 			BuriBranchEntity child = ite.next();
