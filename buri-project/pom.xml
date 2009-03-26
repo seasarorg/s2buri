@@ -44,9 +44,8 @@
 	</build>
 	<modules>
 		<module>../buri-core</module>
+		<module>../buri-core-test</module>
 		<module>../buri-s2dao</module>
-		<module>../buri-test</module>
-		<module>../buri-example</module>
 	</modules>
 	<repositories>
 		<repository>
