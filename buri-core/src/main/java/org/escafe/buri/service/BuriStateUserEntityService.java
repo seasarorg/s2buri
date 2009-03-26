@@ -11,9 +11,10 @@ import org.escafe.buri.entity.BuriStateUserEntity;
 import static org.escafe.buri.names.BuriStateUserEntityNames.*;
 import static org.seasar.extension.jdbc.operation.Operations.*;
 
-public class BuriStateUserEntityService extends AbstractService<BuriStateUserEntity> {
+public class BuriStateUserEntityService extends
+        AbstractService<BuriStateUserEntity> {
 	public List<BuriStateUserEntity> getAllBuriBranch() {
-		return findAll();
+		return select().orderBy(asc(stateUserId())).getResultList();
 	}
 
 	public BuriStateUserEntity getBuriStateUser(Long stateUserId) {

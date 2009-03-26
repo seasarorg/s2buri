@@ -12,10 +12,13 @@ public class BuriPathDataEntityService extends
 	public List<BuriPathDataEntity> getListByPathName(String className,
 	        String pathName, Long pathType) {
 		List<BuriPathDataEntity> result =
-		    select().where(
-		        eq(dataType(), className),
-		        eq(pathName(), pathName),
-		        eq(pathType(), pathType)).getResultList();
+		    select()
+		        .where(
+		            eq(dataType(), className),
+		            eq(pathName(), pathName),
+		            eq(pathType(), pathType))
+		        .orderBy(asc(pathId()))
+		        .getResultList();
 		return result;
 	}
 
@@ -24,7 +27,7 @@ public class BuriPathDataEntityService extends
 		return select().where(
 		    eq(dataType(), className),
 		    eq(pkeyNum(), pkeyNum),
-		    eq(pathType(), pathType)).getResultList();
+		    eq(pathType(), pathType)).orderBy(asc(pathId())).getResultList();
 	}
 
 	public List<BuriPathDataEntity> getListByPkeyVal(String className,
@@ -32,19 +35,23 @@ public class BuriPathDataEntityService extends
 		return select().where(
 		    eq(dataType(), className),
 		    eq(pkeyVal(), pkeyVal),
-		    eq(pathType(), pathType)).getResultList();
+		    eq(pathType(), pathType)).orderBy(asc(pathId())).getResultList();
 	}
 
 	public BuriPathDataEntity getDtoByPathKey(String className, Long pkeyNum,
 	        String pkeyVal, String pathName, Long pathType) {
-		List<BuriPathDataEntity> result =
-		    select().where(
-		        eq(dataType(), className),
-		        eq(pkeyNum(), pkeyNum),
-		        eq(pkeyVal(), pkeyVal),
-		        like(pathName(), pathName),
-		        eq(pathType(), pathType)).getResultList();
-		return result.size() > 0 ? result.get(0) : null;
+		BuriPathDataEntity result =
+		    select()
+		        .where(
+		            eq(dataType(), className),
+		            eq(pkeyNum(), pkeyNum),
+		            eq(pkeyVal(), pkeyVal),
+		            like(pathName(), pathName),
+		            eq(pathType(), pathType))
+		        .orderBy(asc(pathId()))
+		        .limit(1)
+		        .getSingleResult();
+		return result;
 	}
 
 	public long getCountByPathKeys(String className, List<Long> pkeyNums,
@@ -60,8 +67,7 @@ public class BuriPathDataEntityService extends
 	}
 
 	public List<BuriPathDataEntity> getTimeOrverState() {
-		return select()
-		    .where("autoRunTime < CURRENT_TIMESTAMP")
-		    .getResultList();
+		return select().where("autoRunTime < CURRENT_TIMESTAMP").orderBy(
+		    asc(pathId())).getResultList();
 	}
 }

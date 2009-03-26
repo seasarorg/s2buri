@@ -18,7 +18,7 @@ public class BuriPathDataUserEntityService extends
 	public List<BuriPathDataUserEntity> getTimeOrverByState(Long stateId) {
 		return select().where(
 		    "autoRunTime < CURRENT_TIMESTAMP AND stateId = ?",
-		    stateId).getResultList();
+		    stateId).orderBy(asc(buriUserId())).getResultList();
 	}
 
 	public Long getCountByPathKeysAndUser(String className,
@@ -33,10 +33,13 @@ public class BuriPathDataUserEntityService extends
 
 	public List<BuriPathDataUserEntity> getListByPathNameAndUser(
 	        String className, String pathName, Long pathType, Long userId) {
-		return select().where(
-		    eq(dataType(), className),
-		    eq(pathName(), pathName),
-		    eq(pathType(), pathType),
-		    eq(buriUserId(), userId)).getResultList();
+		return select()
+		    .where(
+		        eq(dataType(), className),
+		        eq(pathName(), pathName),
+		        eq(pathType(), pathType),
+		        eq(buriUserId(), userId))
+		    .orderBy(asc(buriUserId()))
+		    .getResultList();
 	}
 }

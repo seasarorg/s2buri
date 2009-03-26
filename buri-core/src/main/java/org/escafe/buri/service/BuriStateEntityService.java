@@ -10,13 +10,12 @@ import static org.seasar.extension.jdbc.operation.Operations.*;
 
 public class BuriStateEntityService extends AbstractService<BuriStateEntity> {
 	public List<BuriStateEntity> getAllBuriState() {
-		return findAll();
+		return select().orderBy(asc(stateId())).getResultList();
 	}
 
 	public List<BuriStateEntity> getNoProcessBuriState() {
-		return select()
-		    .where("processDate > CURRENT_TIMESTAMP")
-		    .getResultList();
+		return select().where("processDate > CURRENT_TIMESTAMP").orderBy(
+		    asc(stateId())).getResultList();
 	}
 
 	public BuriStateEntity getBuriState(Long stateId) {

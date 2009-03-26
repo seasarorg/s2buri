@@ -9,7 +9,7 @@ import static org.seasar.extension.jdbc.operation.Operations.*;
 
 public class BuriBranchEntityService extends AbstractService<BuriBranchEntity> {
 	public List<BuriBranchEntity> getAllBuriBranch() {
-		return findAll();
+		return select().orderBy(asc(branchId())).getResultList();
 	}
 
 	public BuriBranchEntity select(Long branchId) {
@@ -17,8 +17,7 @@ public class BuriBranchEntityService extends AbstractService<BuriBranchEntity> {
 	}
 
 	public List<BuriBranchEntity> getBranchByParentId(Long parentBranchId) {
-		return select()
-		    .where(eq(parentBranchId(), parentBranchId))
-		    .getResultList();
+		return select().where(eq(parentBranchId(), parentBranchId)).orderBy(
+		    asc(branchId())).getResultList();
 	}
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.escafe.buri.entity.BuriJoinWaitingEntity;
 
+import static org.escafe.buri.names.BuriJoinWaitingEntityNames.*;
+import static org.seasar.extension.jdbc.operation.Operations.*;
+
 public class BuriJoinWaitingEntityService extends
         AbstractService<BuriJoinWaitingEntity> {
 	public List<BuriJoinWaitingEntity> getAllBuriState() {
-		return findAll();
+		return select().orderBy(asc(waitingId())).getResultList();
 	}
 
 	public BuriJoinWaitingEntity getBuriJoinWaiting(Long waitingId) {
@@ -15,9 +18,8 @@ public class BuriJoinWaitingEntityService extends
 	}
 
 	public List<BuriJoinWaitingEntity> getNowWaiting() {
-		return select()
-		    .where("processDate > CURRENT_TIMESTAMP")
-		    .getResultList();
+		return select().where("processDate > CURRENT_TIMESTAMP").orderBy(
+		    asc(waitingId())).getResultList();
 	}
 
 	public void updateClearWaitingInfo(Long branchId) {

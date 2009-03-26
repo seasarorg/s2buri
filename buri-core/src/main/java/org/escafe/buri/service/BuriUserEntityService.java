@@ -13,21 +13,18 @@ import static org.seasar.extension.jdbc.operation.Operations.*;
 
 public class BuriUserEntityService extends AbstractService<BuriUserEntity> {
 	public List<BuriUserEntity> getAllBuriBranch() {
-		return findAll();
+		return select().orderBy(asc(buriUserId())).getResultList();
 	}
 
-	public BuriUserEntity getBuriUser(long buriUserId) {
+	public BuriUserEntity getBuriUser(Long buriUserId) {
 		return selectById(buriUserId);
 	}
 
-	public Long getNewBuriStateUserId() {
-		return null;
-	}
-
 	public BuriUserEntity getBuriUserFromIds(Long userIdNum, String userIdVal) {
-		return select().where(
-		    eq(userIdNum(), userIdNum),
-		    eq(userIdVal(), userIdVal)).getSingleResult();
+		return select()
+		    .where(eq(userIdNum(), userIdNum), eq(userIdVal(), userIdVal))
+		    .orderBy(asc(buriUserId()))
+		    .getSingleResult();
 	}
 
 	public List<BuriUserEntity> getBuriUserFromPathAndPkey(String path,

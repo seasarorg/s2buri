@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.escafe.buri.entity.BuriStateUndoLogEntity;
 
+import static org.escafe.buri.names.BuriStateUndoLogEntityNames.*;
+import static org.seasar.extension.jdbc.operation.Operations.*;
+
 public class BuriStateUndoLogEntityService extends
         AbstractService<BuriStateUndoLogEntity> {
 	public List<BuriStateUndoLogEntity> getAllBuriState() {
-		return findAll();
+		return select().orderBy(asc(stateUndoLogId())).getResultList();
 	}
 
 	public void addUndoLog(Long stateId, Long branchId, Long btId) {

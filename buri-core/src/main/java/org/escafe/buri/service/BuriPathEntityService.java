@@ -9,14 +9,14 @@ import static org.seasar.extension.jdbc.operation.Operations.*;
 
 public class BuriPathEntityService extends AbstractService<BuriPathEntity> {
 	public List<BuriPathEntity> getAllBuriPath() {
-		return findAll();
+		return select().orderBy(asc(pathId())).getResultList();
 	}
 
 	public List<BuriPathEntity> getPathListByLikePathName(String pathName,
 	        Long pathType) {
 		return select().where(
 		    like(pathName(), pathName),
-		    eq(pathType(), pathType)).getResultList();
+		    eq(pathType(), pathType)).orderBy(asc(pathId())).getResultList();
 	}
 
 	public BuriPathEntity getBuriPath(Long pathId) {
@@ -27,7 +27,7 @@ public class BuriPathEntityService extends AbstractService<BuriPathEntity> {
 	        Long pathType) {
 		return select().where(
 		    eq(pathName(), pathName),
-		    eq(pathType(), pathType)).getResultList();
+		    eq(pathType(), pathType)).orderBy(asc(pathId())).getResultList();
 	}
 
 	public BuriPathEntity getBuriPathFromRealPath(String realPathName) {
