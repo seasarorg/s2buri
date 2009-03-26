@@ -44,6 +44,14 @@ public class FurnitureItem {
 	@Column(precision = 19, nullable = false, unique = false)
 	public AcquisitionType acquisitionType;
 
+	public boolean isBuying() {
+		return acquisitionType == AcquisitionType.BUYING;
+	}
+
+	public boolean isLease() {
+		return acquisitionType == AcquisitionType.LEASE;
+	}
+
 	@Version
 	@Column(precision = 19, nullable = false, unique = false)
 	public Long versionNo;
