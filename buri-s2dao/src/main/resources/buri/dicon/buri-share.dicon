@@ -7,9 +7,8 @@
 	<!-- Standard と Simpleで共通のdicon wakanagoにも一部必要 -->
 	<include path="buri/dicon/OgnlScript.dicon"/>
 	<include path="buri/dicon/template.dicon"/>
-	<include path="buri/dicon/allDao.dicon"/>
 	<include path="buri/dicon/event.dicon"/>
-	<include path="aop.dicon"/>
+	<include path="buri/dicon/internalService.dicon"/>
 	<include path="s2mai.dicon"/>
 
 	<component class="org.escafe.buri.common.delayloader.impl.DelayLoaderImpl">

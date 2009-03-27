@@ -46,6 +46,7 @@
 		<module>../buri-core</module>
 		<module>../buri-core-test</module>
 		<module>../buri-s2dao</module>
+		<module>../buri-s2dao-test</module>
 	</modules>
 	<repositories>
 		<repository>
