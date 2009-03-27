@@ -39,67 +39,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--
-				[SQLを簡単にderbyに流すための暫定手段(by nobeans)] 下のコメントをはずして、mvn
-				process-test-resourcesを実行するとdb/buri配下にderbyのデータが
-				作成されます。既存のデータがあっても大丈夫だと思います。 ただし、mvn
-				testとして一気にユニットテストまで通して実行しようとするとテスト結果がNGに なってしまいます。原因はまだよくわかっていません。
-				データの投入が完了したら、もう一度コメントアウトしてから、mvn testを実行してください。 mvn
-				process-test-resourcesの実行でいろいろSQLエラーがでるかもしれませんが、 気にしないで(?) mvn
-				testを実行してみてください。全テストが通れば問題はありません。
-			-->
-			<!--
-				<plugin> <groupId>org.codehaus.mojo</groupId>
-				<artifactId>sql-maven-plugin</artifactId> <dependencies>
-				<dependency> <groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId> <version>10.1.2.1</version>
-				<scope>test</scope> </dependency> </dependencies> <configuration>
-				<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
-				<url>jdbc:derby:db/buri;create=true</url>
-				<autocommit>true</autocommit> </configuration> <executions>
-				<execution> <id>drop-db</id> <phase>process-test-resources</phase>
-				<goals> <goal>execute</goal> </goals> <configuration> <fileset>
-				<basedir>${basedir}</basedir> <includes>
-				<include>db/dropdb_derby.sql</include>
-				<include>db/example_drop_derby.sql</include>
-				<include>db/unitTestTable_drop_derby.sql</include> </includes>
-				</fileset> <onError>continue</onError> <skip>false</skip>
-				</configuration> </execution> <execution> <id>create-db</id>
-				<phase>process-test-resources</phase> <goals> <goal>execute</goal>
-				</goals> <configuration> <fileset> <basedir>${basedir}</basedir>
-				<includes> <include>db/createdb_derby.sql</include>
-				<include>db/example_derby.sql</include>
-				<include>db/unitTestTable_derby.sql</include> </includes> </fileset>
-				<onError>continue</onError> <skip>false</skip> </configuration>
-				</execution> </executions> </plugin>
-			-->
-
-			<!--  H2 -->
-			<!--
-				<plugin> <groupId>org.codehaus.mojo</groupId>
-				<artifactId>sql-maven-plugin</artifactId> <dependencies>
-				<dependency> <groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId> <version>1.0.20070617</version>
-				<scope>test</scope> </dependency> </dependencies> <configuration>
-				<driver>org.h2.Driver</driver>
-				<url>jdbc:h2:db/buri/buri;create=true</url>
-				<autocommit>true</autocommit> </configuration> <executions>
-				<execution> <id>drop-db</id> <phase>process-test-resources</phase>
-				<goals> <goal>execute</goal> </goals> <configuration> <srcFiles>
-				<srcFile>${basedir}/db/dropdb_h2.sql</srcFile>
-				<srcFile>${basedir}/db/example_drop_h2.sql</srcFile>
-				<srcFile>${basedir}/db/unitTestTable_drop_h2.sql</srcFile>
-				</srcFiles> <onError>continue</onError> <skip>false</skip>
-				</configuration> </execution> <execution> <id>create-db</id>
-				<phase>process-test-resources</phase> <goals> <goal>execute</goal>
-				</goals> <configuration> <srcFiles>
-				<srcFile>${basedir}/db/createdb_h2.sql</srcFile>
-				<srcFile>${basedir}/db/example_h2.sql</srcFile>
-				<srcFile>${basedir}/db/unitTestTable_h2.sql</srcFile> </srcFiles>
-				<onError>continue</onError> <skip>false</skip> </configuration>
-				</execution> </executions> </plugin>
-			-->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -117,7 +56,6 @@
 			</extension>
 		</extensions>
 	</build>
-
 	<repositories>
 		<repository>
 			<id>maven.seasar.org</id>
