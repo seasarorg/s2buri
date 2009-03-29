@@ -1,20 +1,19 @@
 package example.org.escafe.buri.dto;
 
-
 public class ItemDto {
-	public static final String TABLE = "Item";
+	public static final String TABLE = "ITEM";
 
-	public static final String itemID_ID = "sequence, sequenceName=itemID";
-	private long itemID;
+	public static final String itemId_ID = "sequence, sequenceName=ITEM_SEQ";
+	private Long itemId;
 	private String itemName = "";
-	private long price;
-	
-	public long getItemID() {
-		return itemID;
+	private Long price;
+
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setItemID(long itemID) {
-		this.itemID = itemID;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
 	public String getItemName() {
@@ -25,22 +24,22 @@ public class ItemDto {
 		this.itemName = itemName;
 	}
 
-	public long getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/itemID=").append(itemID);
+		buff.append("/itemID=").append(itemId);
 		buff.append("/itemName=").append(itemName);
 		buff.append("/price=").append(price);
 		buff.append("]");
 		return buff.toString();
 	}
-	
+
 }

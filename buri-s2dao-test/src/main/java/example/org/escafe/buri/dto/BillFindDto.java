@@ -1,482 +1,530 @@
 package example.org.escafe.buri.dto;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class BillFindDto {
-	public static final String TABLE = "Bill";
-    private ArrayList orderList = new ArrayList();
-	
-	private Long billID = null;
-	private Long billID_not = null;
-	private Long billID_large = null;
-	private Long billID_moreLarge = null;
-	private Long billID_from = null;
-	private Long billID_to = null;
-	private Long billID_moreSmall = null;
-	private Long billID_small = null;
-	private List billID_in = null;
-	private Boolean billID_isNull = null;
-	private Boolean billID_isNotNull = null;
-	private boolean billID_isASC = true;
-	private Long shippingID = null;
-	private Long shippingID_not = null;
-	private Long shippingID_large = null;
-	private Long shippingID_moreLarge = null;
-	private Long shippingID_from = null;
-	private Long shippingID_to = null;
-	private Long shippingID_moreSmall = null;
-	private Long shippingID_small = null;
-	private List shippingID_in = null;
-	private Boolean shippingID_isNull = null;
-	private Boolean shippingID_isNotNull = null;
-	private boolean shippingID_isASC = true;
-	private Long orderTitleID = null;
-	private Long orderTitleID_not = null;
-	private Long orderTitleID_large = null;
-	private Long orderTitleID_moreLarge = null;
-	private Long orderTitleID_from = null;
-	private Long orderTitleID_to = null;
-	private Long orderTitleID_moreSmall = null;
-	private Long orderTitleID_small = null;
-	private List orderTitleID_in = null;
-	private Boolean orderTitleID_isNull = null;
-	private Boolean orderTitleID_isNotNull = null;
-	private boolean orderTitleID_isASC = true;
-	private Long customerID = null;
-	private Long customerID_not = null;
-	private Long customerID_large = null;
-	private Long customerID_moreLarge = null;
-	private Long customerID_from = null;
-	private Long customerID_to = null;
-	private Long customerID_moreSmall = null;
-	private Long customerID_small = null;
-	private List customerID_in = null;
-	private Boolean customerID_isNull = null;
-	private Boolean customerID_isNotNull = null;
-	private boolean customerID_isASC = true;
+	public static final String TABLE = "BILL";
+	private final ArrayList orderList = new ArrayList();
 
-	public Long getBillID() {
-		return billID;
-	}
+	private Long billId = null;
+	private Long billId_not = null;
+	private Long billId_large = null;
+	private Long billId_moreLarge = null;
+	private Long billId_from = null;
+	private Long billId_to = null;
+	private Long billId_moreSmall = null;
+	private Long billId_small = null;
+	private List billId_in = null;
+	private Boolean billId_isNull = null;
+	private Boolean billId_isNotNull = null;
+	private boolean billId_isASC = true;
+	private Long shippingId = null;
+	private Long shippingId_not = null;
+	private Long shippingId_large = null;
+	private Long shippingId_moreLarge = null;
+	private Long shippingId_from = null;
+	private Long shippingId_to = null;
+	private Long shippingId_moreSmall = null;
+	private Long shippingId_small = null;
+	private List shippingId_in = null;
+	private Boolean shippingId_isNull = null;
+	private Boolean shippingId_isNotNull = null;
+	private boolean shippingId_isASC = true;
+	private Long orderTitleId = null;
+	private Long orderTitleId_not = null;
+	private Long orderTitleId_large = null;
+	private Long orderTitleId_moreLarge = null;
+	private Long orderTitleId_from = null;
+	private Long orderTitleId_to = null;
+	private Long orderTitleId_moreSmall = null;
+	private Long orderTitleId_small = null;
+	private List orderTitleId_in = null;
+	private Boolean orderTitleId_isNull = null;
+	private Boolean orderTitleId_isNotNull = null;
+	private boolean orderTitleId_isASC = true;
+	private Long customerId = null;
+	private Long customerId_not = null;
+	private Long customerId_large = null;
+	private Long customerId_moreLarge = null;
+	private Long customerId_from = null;
+	private Long customerId_to = null;
+	private Long customerId_moreSmall = null;
+	private Long customerId_small = null;
+	private List customerId_in = null;
+	private Boolean customerId_isNull = null;
+	private Boolean customerId_isNotNull = null;
+	private boolean customerId_isASC = true;
 
-	public void setBillID(Long billID) {
-		this.billID = billID;
-	}
-	public Long getBillID_not() {
-		return billID_not;
+	public Long getBillId() {
+		return billId;
 	}
 
-	public void setBillID_not(Long billID_not) {
-		this.billID_not = billID_not;
-	}
-	public Long getBillID_large() {
-		return billID_large;
+	public void setBillId(Long billId) {
+		this.billId = billId;
 	}
 
-	public void setBillID_large(Long billID_large) {
-		this.billID_large = billID_large;
-	}
-	public Long getBillID_moreLarge() {
-		return billID_moreLarge;
+	public Long getBillId_not() {
+		return billId_not;
 	}
 
-	public void setBillID_moreLarge(Long billID_moreLarge) {
-		this.billID_moreLarge = billID_moreLarge;
-	}
-	public Long getBillID_from() {
-		return billID_from;
+	public void setBillId_not(Long billId_not) {
+		this.billId_not = billId_not;
 	}
 
-	public void setBillID_from(Long billID_from) {
-		this.billID_from = billID_from;
-	}
-	public Long getBillID_to() {
-		return billID_to;
+	public Long getBillId_large() {
+		return billId_large;
 	}
 
-	public void setBillID_to(Long billID_to) {
-		this.billID_to = billID_to;
-	}
-	public Long getBillID_moreSmall() {
-		return billID_moreSmall;
+	public void setBillId_large(Long billId_large) {
+		this.billId_large = billId_large;
 	}
 
-	public void setBillID_moreSmall(Long billID_moreSmall) {
-		this.billID_moreSmall = billID_moreSmall;
-	}
-	public Long getBillID_small() {
-		return billID_small;
+	public Long getBillId_moreLarge() {
+		return billId_moreLarge;
 	}
 
-	public void setBillID_small(Long billID_small) {
-		this.billID_small = billID_small;
-	}
-	public List getBillID_in() {
-		return billID_in;
+	public void setBillId_moreLarge(Long billId_moreLarge) {
+		this.billId_moreLarge = billId_moreLarge;
 	}
 
-	public void setBillID_in(List billID_in) {
-		this.billID_in = billID_in;
-	}
-	public Boolean getBillID_isNull() {
-		return billID_isNull;
+	public Long getBillId_from() {
+		return billId_from;
 	}
 
-	public void setBillID_isNull(Boolean billID_isNull) {
-		this.billID_isNull = billID_isNull;
-	}
-	public Boolean getBillID_isNotNull() {
-		return billID_isNotNull;
+	public void setBillId_from(Long billId_from) {
+		this.billId_from = billId_from;
 	}
 
-	public void setBillID_isNotNull(Boolean billID_isNotNull) {
-		this.billID_isNotNull = billID_isNotNull;
-	}
-	public boolean getBillID_isASC() {
-		return billID_isASC;
+	public Long getBillId_to() {
+		return billId_to;
 	}
 
-	public void setBillID_isASC(boolean billID_isASC) {
-		this.billID_isASC = billID_isASC;
-	}
-	public Long getShippingID() {
-		return shippingID;
+	public void setBillId_to(Long billId_to) {
+		this.billId_to = billId_to;
 	}
 
-	public void setShippingID(Long shippingID) {
-		this.shippingID = shippingID;
-	}
-	public Long getShippingID_not() {
-		return shippingID_not;
+	public Long getBillId_moreSmall() {
+		return billId_moreSmall;
 	}
 
-	public void setShippingID_not(Long shippingID_not) {
-		this.shippingID_not = shippingID_not;
-	}
-	public Long getShippingID_large() {
-		return shippingID_large;
+	public void setBillId_moreSmall(Long billId_moreSmall) {
+		this.billId_moreSmall = billId_moreSmall;
 	}
 
-	public void setShippingID_large(Long shippingID_large) {
-		this.shippingID_large = shippingID_large;
-	}
-	public Long getShippingID_moreLarge() {
-		return shippingID_moreLarge;
+	public Long getBillId_small() {
+		return billId_small;
 	}
 
-	public void setShippingID_moreLarge(Long shippingID_moreLarge) {
-		this.shippingID_moreLarge = shippingID_moreLarge;
-	}
-	public Long getShippingID_from() {
-		return shippingID_from;
+	public void setBillId_small(Long billId_small) {
+		this.billId_small = billId_small;
 	}
 
-	public void setShippingID_from(Long shippingID_from) {
-		this.shippingID_from = shippingID_from;
-	}
-	public Long getShippingID_to() {
-		return shippingID_to;
+	public List getBillId_in() {
+		return billId_in;
 	}
 
-	public void setShippingID_to(Long shippingID_to) {
-		this.shippingID_to = shippingID_to;
-	}
-	public Long getShippingID_moreSmall() {
-		return shippingID_moreSmall;
+	public void setBillId_in(List billId_in) {
+		this.billId_in = billId_in;
 	}
 
-	public void setShippingID_moreSmall(Long shippingID_moreSmall) {
-		this.shippingID_moreSmall = shippingID_moreSmall;
-	}
-	public Long getShippingID_small() {
-		return shippingID_small;
+	public Boolean getBillId_isNull() {
+		return billId_isNull;
 	}
 
-	public void setShippingID_small(Long shippingID_small) {
-		this.shippingID_small = shippingID_small;
-	}
-	public List getShippingID_in() {
-		return shippingID_in;
+	public void setBillId_isNull(Boolean billId_isNull) {
+		this.billId_isNull = billId_isNull;
 	}
 
-	public void setShippingID_in(List shippingID_in) {
-		this.shippingID_in = shippingID_in;
-	}
-	public Boolean getShippingID_isNull() {
-		return shippingID_isNull;
+	public Boolean getBillId_isNotNull() {
+		return billId_isNotNull;
 	}
 
-	public void setShippingID_isNull(Boolean shippingID_isNull) {
-		this.shippingID_isNull = shippingID_isNull;
-	}
-	public Boolean getShippingID_isNotNull() {
-		return shippingID_isNotNull;
+	public void setBillId_isNotNull(Boolean billId_isNotNull) {
+		this.billId_isNotNull = billId_isNotNull;
 	}
 
-	public void setShippingID_isNotNull(Boolean shippingID_isNotNull) {
-		this.shippingID_isNotNull = shippingID_isNotNull;
-	}
-	public boolean getShippingID_isASC() {
-		return shippingID_isASC;
+	public boolean getBillId_isASC() {
+		return billId_isASC;
 	}
 
-	public void setShippingID_isASC(boolean shippingID_isASC) {
-		this.shippingID_isASC = shippingID_isASC;
-	}
-	public Long getOrderTitleID() {
-		return orderTitleID;
+	public void setBillId_isASC(boolean billId_isASC) {
+		this.billId_isASC = billId_isASC;
 	}
 
-	public void setOrderTitleID(Long orderTitleID) {
-		this.orderTitleID = orderTitleID;
-	}
-	public Long getOrderTitleID_not() {
-		return orderTitleID_not;
+	public Long getShippingId() {
+		return shippingId;
 	}
 
-	public void setOrderTitleID_not(Long orderTitleID_not) {
-		this.orderTitleID_not = orderTitleID_not;
-	}
-	public Long getOrderTitleID_large() {
-		return orderTitleID_large;
+	public void setShippingId(Long shippingId) {
+		this.shippingId = shippingId;
 	}
 
-	public void setOrderTitleID_large(Long orderTitleID_large) {
-		this.orderTitleID_large = orderTitleID_large;
-	}
-	public Long getOrderTitleID_moreLarge() {
-		return orderTitleID_moreLarge;
+	public Long getShippingId_not() {
+		return shippingId_not;
 	}
 
-	public void setOrderTitleID_moreLarge(Long orderTitleID_moreLarge) {
-		this.orderTitleID_moreLarge = orderTitleID_moreLarge;
-	}
-	public Long getOrderTitleID_from() {
-		return orderTitleID_from;
+	public void setShippingId_not(Long shippingId_not) {
+		this.shippingId_not = shippingId_not;
 	}
 
-	public void setOrderTitleID_from(Long orderTitleID_from) {
-		this.orderTitleID_from = orderTitleID_from;
-	}
-	public Long getOrderTitleID_to() {
-		return orderTitleID_to;
+	public Long getShippingId_large() {
+		return shippingId_large;
 	}
 
-	public void setOrderTitleID_to(Long orderTitleID_to) {
-		this.orderTitleID_to = orderTitleID_to;
-	}
-	public Long getOrderTitleID_moreSmall() {
-		return orderTitleID_moreSmall;
+	public void setShippingId_large(Long shippingId_large) {
+		this.shippingId_large = shippingId_large;
 	}
 
-	public void setOrderTitleID_moreSmall(Long orderTitleID_moreSmall) {
-		this.orderTitleID_moreSmall = orderTitleID_moreSmall;
-	}
-	public Long getOrderTitleID_small() {
-		return orderTitleID_small;
+	public Long getShippingId_moreLarge() {
+		return shippingId_moreLarge;
 	}
 
-	public void setOrderTitleID_small(Long orderTitleID_small) {
-		this.orderTitleID_small = orderTitleID_small;
-	}
-	public List getOrderTitleID_in() {
-		return orderTitleID_in;
+	public void setShippingId_moreLarge(Long shippingId_moreLarge) {
+		this.shippingId_moreLarge = shippingId_moreLarge;
 	}
 
-	public void setOrderTitleID_in(List orderTitleID_in) {
-		this.orderTitleID_in = orderTitleID_in;
-	}
-	public Boolean getOrderTitleID_isNull() {
-		return orderTitleID_isNull;
+	public Long getShippingId_from() {
+		return shippingId_from;
 	}
 
-	public void setOrderTitleID_isNull(Boolean orderTitleID_isNull) {
-		this.orderTitleID_isNull = orderTitleID_isNull;
-	}
-	public Boolean getOrderTitleID_isNotNull() {
-		return orderTitleID_isNotNull;
+	public void setShippingId_from(Long shippingId_from) {
+		this.shippingId_from = shippingId_from;
 	}
 
-	public void setOrderTitleID_isNotNull(Boolean orderTitleID_isNotNull) {
-		this.orderTitleID_isNotNull = orderTitleID_isNotNull;
-	}
-	public boolean getOrderTitleID_isASC() {
-		return orderTitleID_isASC;
+	public Long getShippingId_to() {
+		return shippingId_to;
 	}
 
-	public void setOrderTitleID_isASC(boolean orderTitleID_isASC) {
-		this.orderTitleID_isASC = orderTitleID_isASC;
-	}
-	public Long getCustomerID() {
-		return customerID;
+	public void setShippingId_to(Long shippingId_to) {
+		this.shippingId_to = shippingId_to;
 	}
 
-	public void setCustomerID(Long customerID) {
-		this.customerID = customerID;
-	}
-	public Long getCustomerID_not() {
-		return customerID_not;
+	public Long getShippingId_moreSmall() {
+		return shippingId_moreSmall;
 	}
 
-	public void setCustomerID_not(Long customerID_not) {
-		this.customerID_not = customerID_not;
-	}
-	public Long getCustomerID_large() {
-		return customerID_large;
+	public void setShippingId_moreSmall(Long shippingId_moreSmall) {
+		this.shippingId_moreSmall = shippingId_moreSmall;
 	}
 
-	public void setCustomerID_large(Long customerID_large) {
-		this.customerID_large = customerID_large;
-	}
-	public Long getCustomerID_moreLarge() {
-		return customerID_moreLarge;
+	public Long getShippingId_small() {
+		return shippingId_small;
 	}
 
-	public void setCustomerID_moreLarge(Long customerID_moreLarge) {
-		this.customerID_moreLarge = customerID_moreLarge;
-	}
-	public Long getCustomerID_from() {
-		return customerID_from;
+	public void setShippingId_small(Long shippingId_small) {
+		this.shippingId_small = shippingId_small;
 	}
 
-	public void setCustomerID_from(Long customerID_from) {
-		this.customerID_from = customerID_from;
-	}
-	public Long getCustomerID_to() {
-		return customerID_to;
+	public List getShippingId_in() {
+		return shippingId_in;
 	}
 
-	public void setCustomerID_to(Long customerID_to) {
-		this.customerID_to = customerID_to;
-	}
-	public Long getCustomerID_moreSmall() {
-		return customerID_moreSmall;
+	public void setShippingId_in(List shippingId_in) {
+		this.shippingId_in = shippingId_in;
 	}
 
-	public void setCustomerID_moreSmall(Long customerID_moreSmall) {
-		this.customerID_moreSmall = customerID_moreSmall;
-	}
-	public Long getCustomerID_small() {
-		return customerID_small;
+	public Boolean getShippingId_isNull() {
+		return shippingId_isNull;
 	}
 
-	public void setCustomerID_small(Long customerID_small) {
-		this.customerID_small = customerID_small;
-	}
-	public List getCustomerID_in() {
-		return customerID_in;
+	public void setShippingId_isNull(Boolean shippingId_isNull) {
+		this.shippingId_isNull = shippingId_isNull;
 	}
 
-	public void setCustomerID_in(List customerID_in) {
-		this.customerID_in = customerID_in;
-	}
-	public Boolean getCustomerID_isNull() {
-		return customerID_isNull;
+	public Boolean getShippingId_isNotNull() {
+		return shippingId_isNotNull;
 	}
 
-	public void setCustomerID_isNull(Boolean customerID_isNull) {
-		this.customerID_isNull = customerID_isNull;
-	}
-	public Boolean getCustomerID_isNotNull() {
-		return customerID_isNotNull;
+	public void setShippingId_isNotNull(Boolean shippingId_isNotNull) {
+		this.shippingId_isNotNull = shippingId_isNotNull;
 	}
 
-	public void setCustomerID_isNotNull(Boolean customerID_isNotNull) {
-		this.customerID_isNotNull = customerID_isNotNull;
-	}
-	public boolean getCustomerID_isASC() {
-		return customerID_isASC;
+	public boolean getShippingId_isASC() {
+		return shippingId_isASC;
 	}
 
-	public void setCustomerID_isASC(boolean customerID_isASC) {
-		this.customerID_isASC = customerID_isASC;
+	public void setShippingId_isASC(boolean shippingId_isASC) {
+		this.shippingId_isASC = shippingId_isASC;
 	}
 
+	public Long getOrderTitleId() {
+		return orderTitleId;
+	}
 
-    public void addOrderList(String order) {
-        orderList.add(order);
-    }
+	public void setOrderTitleId(Long orderTitleId) {
+		this.orderTitleId = orderTitleId;
+	}
 
-    public void addOrderList(String order,boolean isAsc) {
-        orderList.add(order);
-        ScriptProcessor processor = new ScriptProcessor();
-        processor.setValue(order.replace('.','_') + "_isASC",this,new Boolean(isAsc));
-    }
-    
-    public String getOrderList() {
-        String order = "";
-        String ORDER = "ORDER BY ";
-        Iterator ite = orderList.iterator();
-        ScriptProcessor processor = new ScriptProcessor();
-        while(ite.hasNext()) {
-            String orderTgt = (String)ite.next();
-            order = ORDER + order + orderTgt.replace('_','.') + " ";
-            Boolean var = (Boolean)processor.getValue(orderTgt + "_isASC", this);
-            if( ! var.booleanValue()) {
-                order = order + "DESC ";
-            }
-            ORDER = "";
-        }
-        return order;
-    }
+	public Long getOrderTitleId_not() {
+		return orderTitleId_not;
+	}
+
+	public void setOrderTitleId_not(Long orderTitleId_not) {
+		this.orderTitleId_not = orderTitleId_not;
+	}
+
+	public Long getOrderTitleId_large() {
+		return orderTitleId_large;
+	}
+
+	public void setOrderTitleId_large(Long orderTitleId_large) {
+		this.orderTitleId_large = orderTitleId_large;
+	}
+
+	public Long getOrderTitleId_moreLarge() {
+		return orderTitleId_moreLarge;
+	}
+
+	public void setOrderTitleId_moreLarge(Long orderTitleId_moreLarge) {
+		this.orderTitleId_moreLarge = orderTitleId_moreLarge;
+	}
+
+	public Long getOrderTitleId_from() {
+		return orderTitleId_from;
+	}
+
+	public void setOrderTitleId_from(Long orderTitleId_from) {
+		this.orderTitleId_from = orderTitleId_from;
+	}
+
+	public Long getOrderTitleId_to() {
+		return orderTitleId_to;
+	}
+
+	public void setOrderTitleId_to(Long orderTitleId_to) {
+		this.orderTitleId_to = orderTitleId_to;
+	}
+
+	public Long getOrderTitleId_moreSmall() {
+		return orderTitleId_moreSmall;
+	}
+
+	public void setOrderTitleId_moreSmall(Long orderTitleId_moreSmall) {
+		this.orderTitleId_moreSmall = orderTitleId_moreSmall;
+	}
+
+	public Long getOrderTitleId_small() {
+		return orderTitleId_small;
+	}
+
+	public void setOrderTitleId_small(Long orderTitleId_small) {
+		this.orderTitleId_small = orderTitleId_small;
+	}
+
+	public List getOrderTitleId_in() {
+		return orderTitleId_in;
+	}
+
+	public void setOrderTitleId_in(List orderTitleId_in) {
+		this.orderTitleId_in = orderTitleId_in;
+	}
+
+	public Boolean getOrderTitleId_isNull() {
+		return orderTitleId_isNull;
+	}
+
+	public void setOrderTitleId_isNull(Boolean orderTitleId_isNull) {
+		this.orderTitleId_isNull = orderTitleId_isNull;
+	}
+
+	public Boolean getOrderTitleId_isNotNull() {
+		return orderTitleId_isNotNull;
+	}
+
+	public void setOrderTitleId_isNotNull(Boolean orderTitleId_isNotNull) {
+		this.orderTitleId_isNotNull = orderTitleId_isNotNull;
+	}
+
+	public boolean getOrderTitleId_isASC() {
+		return orderTitleId_isASC;
+	}
+
+	public void setOrderTitleId_isASC(boolean orderTitleId_isASC) {
+		this.orderTitleId_isASC = orderTitleId_isASC;
+	}
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
+
+	public Long getCustomerId_not() {
+		return customerId_not;
+	}
+
+	public void setCustomerId_not(Long customerId_not) {
+		this.customerId_not = customerId_not;
+	}
+
+	public Long getCustomerId_large() {
+		return customerId_large;
+	}
+
+	public void setCustomerId_large(Long customerId_large) {
+		this.customerId_large = customerId_large;
+	}
+
+	public Long getCustomerId_moreLarge() {
+		return customerId_moreLarge;
+	}
+
+	public void setCustomerId_moreLarge(Long customerId_moreLarge) {
+		this.customerId_moreLarge = customerId_moreLarge;
+	}
+
+	public Long getCustomerId_from() {
+		return customerId_from;
+	}
+
+	public void setCustomerId_from(Long customerId_from) {
+		this.customerId_from = customerId_from;
+	}
+
+	public Long getCustomerId_to() {
+		return customerId_to;
+	}
+
+	public void setCustomerId_to(Long customerId_to) {
+		this.customerId_to = customerId_to;
+	}
+
+	public Long getCustomerId_moreSmall() {
+		return customerId_moreSmall;
+	}
+
+	public void setCustomerId_moreSmall(Long customerId_moreSmall) {
+		this.customerId_moreSmall = customerId_moreSmall;
+	}
+
+	public Long getCustomerId_small() {
+		return customerId_small;
+	}
+
+	public void setCustomerId_small(Long customerId_small) {
+		this.customerId_small = customerId_small;
+	}
+
+	public List getCustomerId_in() {
+		return customerId_in;
+	}
+
+	public void setCustomerId_in(List customerId_in) {
+		this.customerId_in = customerId_in;
+	}
+
+	public Boolean getCustomerId_isNull() {
+		return customerId_isNull;
+	}
+
+	public void setCustomerId_isNull(Boolean customerId_isNull) {
+		this.customerId_isNull = customerId_isNull;
+	}
+
+	public Boolean getCustomerId_isNotNull() {
+		return customerId_isNotNull;
+	}
+
+	public void setCustomerId_isNotNull(Boolean customerId_isNotNull) {
+		this.customerId_isNotNull = customerId_isNotNull;
+	}
+
+	public boolean getCustomerId_isASC() {
+		return customerId_isASC;
+	}
+
+	public void setCustomerId_isASC(boolean customerId_isASC) {
+		this.customerId_isASC = customerId_isASC;
+	}
+
+	public void addOrderList(String order) {
+		orderList.add(order);
+	}
+
+	public void addOrderList(String order, boolean isAsc) {
+		orderList.add(order);
+		ScriptProcessor processor = new ScriptProcessor();
+		processor.setValue(order.replace('.', '_') + "_isASC", this,
+				new Boolean(isAsc));
+	}
+
+	public String getOrderList() {
+		String order = "";
+		String ORDER = "ORDER BY ";
+		Iterator ite = orderList.iterator();
+		ScriptProcessor processor = new ScriptProcessor();
+		while (ite.hasNext()) {
+			String orderTgt = (String) ite.next();
+			order = ORDER + order + orderTgt.replace('_', '.') + " ";
+			Boolean var = (Boolean) processor.getValue(orderTgt + "_isASC",
+					this);
+			if (!var.booleanValue()) {
+				order = order + "DESC ";
+			}
+			ORDER = "";
+		}
+		return order;
+	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/billID=").append(billID);
-		buff.append("/billID_not=").append(billID_not);
-		buff.append("/billID_large=").append(billID_large);
-		buff.append("/billID_moreLarge=").append(billID_moreLarge);
-		buff.append("/billID_from=").append(billID_from);
-		buff.append("/billID_to=").append(billID_to);
-		buff.append("/billID_moreSmall=").append(billID_moreSmall);
-		buff.append("/billID_small=").append(billID_small);
-		buff.append("/billID_in=").append(billID_in);
-		buff.append("/billID_isNull=").append(billID_isNull);
-		buff.append("/billID_isNotNull=").append(billID_isNotNull);
-		buff.append("/billID_isASC=").append(billID_isASC);
-		buff.append("/shippingID=").append(shippingID);
-		buff.append("/shippingID_not=").append(shippingID_not);
-		buff.append("/shippingID_large=").append(shippingID_large);
-		buff.append("/shippingID_moreLarge=").append(shippingID_moreLarge);
-		buff.append("/shippingID_from=").append(shippingID_from);
-		buff.append("/shippingID_to=").append(shippingID_to);
-		buff.append("/shippingID_moreSmall=").append(shippingID_moreSmall);
-		buff.append("/shippingID_small=").append(shippingID_small);
-		buff.append("/shippingID_in=").append(shippingID_in);
-		buff.append("/shippingID_isNull=").append(shippingID_isNull);
-		buff.append("/shippingID_isNotNull=").append(shippingID_isNotNull);
-		buff.append("/shippingID_isASC=").append(shippingID_isASC);
-		buff.append("/orderTitleID=").append(orderTitleID);
-		buff.append("/orderTitleID_not=").append(orderTitleID_not);
-		buff.append("/orderTitleID_large=").append(orderTitleID_large);
-		buff.append("/orderTitleID_moreLarge=").append(orderTitleID_moreLarge);
-		buff.append("/orderTitleID_from=").append(orderTitleID_from);
-		buff.append("/orderTitleID_to=").append(orderTitleID_to);
-		buff.append("/orderTitleID_moreSmall=").append(orderTitleID_moreSmall);
-		buff.append("/orderTitleID_small=").append(orderTitleID_small);
-		buff.append("/orderTitleID_in=").append(orderTitleID_in);
-		buff.append("/orderTitleID_isNull=").append(orderTitleID_isNull);
-		buff.append("/orderTitleID_isNotNull=").append(orderTitleID_isNotNull);
-		buff.append("/orderTitleID_isASC=").append(orderTitleID_isASC);
-		buff.append("/customerID=").append(customerID);
-		buff.append("/customerID_not=").append(customerID_not);
-		buff.append("/customerID_large=").append(customerID_large);
-		buff.append("/customerID_moreLarge=").append(customerID_moreLarge);
-		buff.append("/customerID_from=").append(customerID_from);
-		buff.append("/customerID_to=").append(customerID_to);
-		buff.append("/customerID_moreSmall=").append(customerID_moreSmall);
-		buff.append("/customerID_small=").append(customerID_small);
-		buff.append("/customerID_in=").append(customerID_in);
-		buff.append("/customerID_isNull=").append(customerID_isNull);
-		buff.append("/customerID_isNotNull=").append(customerID_isNotNull);
-		buff.append("/customerID_isASC=").append(customerID_isASC);
+		buff.append("/billId=").append(billId);
+		buff.append("/billId_not=").append(billId_not);
+		buff.append("/billId_large=").append(billId_large);
+		buff.append("/billId_moreLarge=").append(billId_moreLarge);
+		buff.append("/billId_from=").append(billId_from);
+		buff.append("/billId_to=").append(billId_to);
+		buff.append("/billId_moreSmall=").append(billId_moreSmall);
+		buff.append("/billId_small=").append(billId_small);
+		buff.append("/billId_in=").append(billId_in);
+		buff.append("/billId_isNull=").append(billId_isNull);
+		buff.append("/billId_isNotNull=").append(billId_isNotNull);
+		buff.append("/billId_isASC=").append(billId_isASC);
+		buff.append("/shippingId=").append(shippingId);
+		buff.append("/shippingId_not=").append(shippingId_not);
+		buff.append("/shippingId_large=").append(shippingId_large);
+		buff.append("/shippingId_moreLarge=").append(shippingId_moreLarge);
+		buff.append("/shippingId_from=").append(shippingId_from);
+		buff.append("/shippingId_to=").append(shippingId_to);
+		buff.append("/shippingId_moreSmall=").append(shippingId_moreSmall);
+		buff.append("/shippingId_small=").append(shippingId_small);
+		buff.append("/shippingId_in=").append(shippingId_in);
+		buff.append("/shippingId_isNull=").append(shippingId_isNull);
+		buff.append("/shippingId_isNotNull=").append(shippingId_isNotNull);
+		buff.append("/shippingId_isASC=").append(shippingId_isASC);
+		buff.append("/orderTitleId=").append(orderTitleId);
+		buff.append("/orderTitleId_not=").append(orderTitleId_not);
+		buff.append("/orderTitleId_large=").append(orderTitleId_large);
+		buff.append("/orderTitleId_moreLarge=").append(orderTitleId_moreLarge);
+		buff.append("/orderTitleId_from=").append(orderTitleId_from);
+		buff.append("/orderTitleId_to=").append(orderTitleId_to);
+		buff.append("/orderTitleId_moreSmall=").append(orderTitleId_moreSmall);
+		buff.append("/orderTitleId_small=").append(orderTitleId_small);
+		buff.append("/orderTitleId_in=").append(orderTitleId_in);
+		buff.append("/orderTitleId_isNull=").append(orderTitleId_isNull);
+		buff.append("/orderTitleId_isNotNull=").append(orderTitleId_isNotNull);
+		buff.append("/orderTitleId_isASC=").append(orderTitleId_isASC);
+		buff.append("/customerId=").append(customerId);
+		buff.append("/customerId_not=").append(customerId_not);
+		buff.append("/customerId_large=").append(customerId_large);
+		buff.append("/customerId_moreLarge=").append(customerId_moreLarge);
+		buff.append("/customerId_from=").append(customerId_from);
+		buff.append("/customerId_to=").append(customerId_to);
+		buff.append("/customerId_moreSmall=").append(customerId_moreSmall);
+		buff.append("/customerId_small=").append(customerId_small);
+		buff.append("/customerId_in=").append(customerId_in);
+		buff.append("/customerId_isNull=").append(customerId_isNull);
+		buff.append("/customerId_isNotNull=").append(customerId_isNotNull);
+		buff.append("/customerId_isASC=").append(customerId_isASC);
 		buff.append("]");
 		return buff.toString();
 	}
-	
+
 }

@@ -3,20 +3,20 @@ package example.org.escafe.buri.dto;
 import java.util.Date;
 
 public class OrderTitleDto {
-	public static final String TABLE = "OrderTitle";
+	public static final String TABLE = "ORDER_TITLE";
 
-	public static final String orderTitleID_ID = "sequence, sequenceName=orderTitleID";
-	private long orderTitleID;
+	public static final String orderTitleID_ID = "sequence, sequenceName=ORDER_TITLE_SEQ";
+	private Long orderTitleId;
 	private Date orderDate;
-	private long customerID;
+	private Long customerId;
 	private Integer status;
-	
-	public long getOrderTitleID() {
-		return orderTitleID;
+
+	public Long getOrderTitleId() {
+		return orderTitleId;
 	}
 
-	public void setOrderTitleID(long orderTitleID) {
-		this.orderTitleID = orderTitleID;
+	public void setOrderTitleId(Long orderTitleId) {
+		this.orderTitleId = orderTitleId;
 	}
 
 	public Date getOrderDate() {
@@ -27,12 +27,12 @@ public class OrderTitleDto {
 		this.orderDate = orderDate;
 	}
 
-	public long getCustomerID() {
-		return customerID;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerID(long customerID) {
-		this.customerID = customerID;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public Integer getStatus() {
@@ -44,14 +44,14 @@ public class OrderTitleDto {
 	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/orderTitleID=").append(orderTitleID);
+		buff.append("/orderTitleId=").append(orderTitleId);
 		buff.append("/orderDate=").append(orderDate);
-		buff.append("/customerID=").append(customerID);
+		buff.append("/customerId=").append(customerId);
 		buff.append("/status=").append(status);
 		buff.append("]");
 		return buff.toString();
 	}
-	
+
 }

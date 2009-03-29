@@ -1,46 +1,45 @@
 package example.org.escafe.buri.dto;
 
-
 public class ShippingItemDto {
-	public static final String TABLE = "ShippingItem";
+	public static final String TABLE = "SHIPPING_ITEM";
 
-	public static final String shippingItemID_ID = "sequence, sequenceName=shippingItemID";
-	private long shippingItemID;
-	private long orderDetailID;
-	private long shippingID;
-	
-	public long getShippingItemID() {
-		return shippingItemID;
+	public static final String shippingItemID_ID = "sequence, sequenceName=SHIPPING_ITEM_SEQ";
+	private Long shippingItemId;
+	private Long orderDetailId;
+	private Long shippingId;
+
+	public long getShippingItemId() {
+		return shippingItemId;
 	}
 
-	public void setShippingItemID(long shippingItemID) {
-		this.shippingItemID = shippingItemID;
+	public void setShippingItemId(Long shippingItemId) {
+		this.shippingItemId = shippingItemId;
 	}
 
-	public long getOrderDetailID() {
-		return orderDetailID;
+	public Long getOrderDetailId() {
+		return orderDetailId;
 	}
 
-	public void setOrderDetailID(long orderDetailID) {
-		this.orderDetailID = orderDetailID;
+	public void setOrderDetailId(Long orderDetailId) {
+		this.orderDetailId = orderDetailId;
 	}
 
-	public long getShippingID() {
-		return shippingID;
+	public Long getShippingId() {
+		return shippingId;
 	}
 
-	public void setShippingID(long shippingID) {
-		this.shippingID = shippingID;
+	public void setShippingId(Long shippingId) {
+		this.shippingId = shippingId;
 	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/shippingItemID=").append(shippingItemID);
-		buff.append("/orderDetailID=").append(orderDetailID);
-		buff.append("/shippingID=").append(shippingID);
+		buff.append("/shippingItemId=").append(shippingItemId);
+		buff.append("/orderDetailId=").append(orderDetailId);
+		buff.append("/shippingId=").append(shippingId);
 		buff.append("]");
 		return buff.toString();
 	}
-	
+
 }

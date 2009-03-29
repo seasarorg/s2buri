@@ -3,8 +3,7 @@ package example.org.escafe.buri.dto;
 public class CustomerDto {
 	public static final String TABLE = "CUSTOMER";
 
-	public static final String customerId_Id =
-	    "sequence, sequenceName=customerId";
+	public static final String customerId_ID = "sequence, sequenceName=CUSTOMER_SEQ";
 
 	private Long customerId;
 

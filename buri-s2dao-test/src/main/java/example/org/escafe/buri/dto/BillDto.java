@@ -3,21 +3,21 @@ package example.org.escafe.buri.dto;
 import java.util.Date;
 
 public class BillDto {
-	public static final String TABLE = "Bill";
+	public static final String TABLE = "BILL";
 
-	public static final String billID_ID = "sequence, sequenceName=billID";
-	private long billID;
+	public static final String billId_ID = "sequence, sequenceName=BILL_SEQ";
+	private long billId;
 	private Date billDate;
-	private long shippingID;
-	private long orderTitleID;
-	private long customerID;
-	
-	public long getBillID() {
-		return billID;
+	private long shippingId;
+	private long orderTitleId;
+	private long customerId;
+
+	public long getBillId() {
+		return billId;
 	}
 
-	public void setBillID(long billID) {
-		this.billID = billID;
+	public void setBillId(long billId) {
+		this.billId = billId;
 	}
 
 	public Date getBillDate() {
@@ -28,40 +28,40 @@ public class BillDto {
 		this.billDate = billDate;
 	}
 
-	public long getShippingID() {
-		return shippingID;
+	public long getShippingId() {
+		return shippingId;
 	}
 
-	public void setShippingID(long shippingID) {
-		this.shippingID = shippingID;
+	public void setShippingId(long shippingId) {
+		this.shippingId = shippingId;
 	}
 
-	public long getOrderTitleID() {
-		return orderTitleID;
+	public long getOrderTitleId() {
+		return orderTitleId;
 	}
 
-	public void setOrderTitleID(long orderTitleID) {
-		this.orderTitleID = orderTitleID;
+	public void setOrderTitleId(long orderTitleId) {
+		this.orderTitleId = orderTitleId;
 	}
 
-	public long getCustomerID() {
-		return customerID;
+	public long getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerID(long customerID) {
-		this.customerID = customerID;
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/billID=").append(billID);
+		buff.append("/billId=").append(billId);
 		buff.append("/billDate=").append(billDate);
-		buff.append("/shippingID=").append(shippingID);
-		buff.append("/orderTitleID=").append(orderTitleID);
-		buff.append("/customerID=").append(customerID);
+		buff.append("/shippingId=").append(shippingId);
+		buff.append("/orderTitleId=").append(orderTitleId);
+		buff.append("/customerId=").append(customerId);
 		buff.append("]");
 		return buff.toString();
 	}
-	
+
 }
