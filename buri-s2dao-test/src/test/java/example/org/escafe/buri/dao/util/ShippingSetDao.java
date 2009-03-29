@@ -68,7 +68,7 @@ public class ShippingSetDao {
             while(ite.hasNext()) {
                 OrderDetailDto detailDto = (OrderDetailDto)ite.next();
                 ShippingItemDto shippingItemDto = new ShippingItemDto();
-                shippingItemDto.setOrderDetailID(detailDto.getOrderDetailID());
+                shippingItemDto.setOrderDetailID(detailDto.getOrderDetailId());
                 setDto.getItems().add(shippingItemDto);
             }
             return setDto;

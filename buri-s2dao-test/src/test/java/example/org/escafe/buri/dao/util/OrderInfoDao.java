@@ -33,7 +33,7 @@ public class OrderInfoDao {
         while(ite.hasNext()) {
             OrderDetailDto detailDto = (OrderDetailDto)ite.next();
             detailDto.setOrderTitleID(orderInfo.getOrderTitleID());
-            if(detailDto.getOrderDetailID() != 0) {
+            if(detailDto.getOrderDetailId() != 0) {
                 detailDao.update(detailDto);
             } else {
                 detailDao.insert(detailDto);
