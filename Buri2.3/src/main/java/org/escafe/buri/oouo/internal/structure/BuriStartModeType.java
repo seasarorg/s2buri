@@ -17,6 +17,25 @@ package org.escafe.buri.oouo.internal.structure;
 
 /**
  * XPDLの{@code StartMode}要素を表すクラスです。
+ * <p>
+ * この{@code StartMode}は、アクティビティに対するぶりの挙動を決定する
+ * 非常に重要な属性です。
+ * {@code FinishMode}とこの{@code StartMode}のいずれかが{@code Manual}ではない場合、
+ * ぶりはそのアクティビティを状態として認識せず、処理としてデータを通過させます。
+ * {@code FinishMode}という属性との違いは{@code Tool}({@link BuriToolType})に
+ * 指定された任意の処理を行う前にデータを停止させるという点です。
+ * </p>
+ * <p>
+ * {@code StartMode}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:attribute name="StartMode">
+ *     <xsd:simpleType>
+ *         <xsd:restriction base="xsd:NMTOKEN">
+ *             <xsd:enumeration value="Automatic"/>
+ *             <xsd:enumeration value="Manual"/>
+ *         </xsd:restriction>
+ *     </xsd:simpleType>
+ * </xsd:attribute>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

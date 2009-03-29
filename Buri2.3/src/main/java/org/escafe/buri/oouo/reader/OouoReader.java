@@ -17,8 +17,6 @@ package org.escafe.buri.oouo.reader;
 
 import java.io.InputStream;
 
-import org.escafe.buri.oouo.internal.structure.BuriPackageType;
-
 /**
  * フローを読み込む為のリーダーです。
  * <p>

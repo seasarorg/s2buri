@@ -21,6 +21,21 @@ package org.escafe.buri.oouo.internal.structure;
  * {@code Performer}はアクティビティの所有者を表します。
  * この{@code Performer}には、{@code Participant}で定義された権限のIDが指定されます。
  * </p>
+ * <p>
+ * {@code Performer}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Performer">
+ *     <xsd:annotation>
+ *         <xsd:documentation>A String or Expression designating the Performer</xsd:documentation>
+ *     </xsd:annotation>
+ *     <xsd:complexType>
+ *         <xsd:simpleContent>
+ *             <xsd:extension base="xsd:string">
+ *                 <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *             </xsd:extension>
+ *         </xsd:simpleContent>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

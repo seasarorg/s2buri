@@ -20,6 +20,18 @@ package org.escafe.buri.oouo.internal.structure;
  * <p>
  * この{@code ExtendedAttribute}要素は、XPDLの様々な要素を拡張する為の要素です。
  * </p>
+ * <p>
+ * この{@code ExtendedAttribute}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="ExtendedAttribute">
+ *     <xsd:complexType mixed="true">
+ *         <xsd:choice minOccurs="0" maxOccurs="unbounded">
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:choice>
+ *         <xsd:attribute name="Name" type="xsd:NMTOKEN" use="required"/>
+ *         <xsd:attribute name="Value" type="xsd:string"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

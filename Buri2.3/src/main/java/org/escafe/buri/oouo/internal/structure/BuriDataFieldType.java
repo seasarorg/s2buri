@@ -120,12 +120,18 @@ public class BuriDataFieldType {
 	 * {@code "tableName"}として登録された検索処理の為のOGNL式
 	 * </p>
 	 * <p>
-	 * DataFieldに含まれる{@code ExtendedAttributes}の{@code ExtendedAttribute}というノードで定義される情報です。
+	 * {@code DataField}に含まれる{@code ExtendedAttributes}の{@code ExtendedAttribute}というノードで定義される情報です。
 	 * </p>
 	 */
 	private String tableName;
 
+	/**
+	 * {@code DataField}に指定されたDtoの属性名とその値を保持する{@link Map}
+	 */
 	private Map<String, String> keys = new HashMap<String, String>();
+	/**
+	 * {@code DataField}に紐づく{@code ExtendedAttribute}の内容を一時的にキャッシュする為の{@link Map}
+	 */
 	private Map<String, Object> cache = new HashMap<String, Object>();
 
 	/**
@@ -296,10 +302,20 @@ public class BuriDataFieldType {
 		this.delete = delete;
 	}
 
+	/**
+	 * {@code DataField}に紐づく{@code ExtendedAttribute}の内容を一時的にキャッシュする為の{@link Map}を返します。
+	 * 
+	 * @return {@code DataField}に紐づく{@code ExtendedAttribute}の内容を一時的にキャッシュする為の{@link Map}
+	 */
 	public Map<String, Object> getCache() {
 		return cache;
 	}
 
+	/**
+	 * {@code DataField}に紐づく{@code ExtendedAttribute}の内容を一時的にキャッシュする為の{@link Map}を登録します。
+	 * 
+	 * @param cache {@code DataField}に紐づく{@code ExtendedAttribute}の内容を一時的にキャッシュする為の{@link Map}
+	 */
 	public void setCache(Map<String, Object> cache) {
 		this.cache = cache;
 	}
@@ -335,10 +351,20 @@ public class BuriDataFieldType {
 		return buff.toString();
 	}
 
+	/**
+	 * Dtoの属性名とその値を保持する{@link Map}を返します。
+	 * 
+	 * @return Dtoの属性名とその値を保持する{@link Map}
+	 */
 	public Map<String, String> getKeys() {
 		return keys;
 	}
 
+	/**
+	 * Dtoの属性名とその値を保持する{@link Map}を登録します。
+	 * 
+	 * @param keys Dtoの属性名とその値を保持する{@link Map}
+	 */
 	public void setKeys(Map<String, String> keys) {
 		this.keys = keys;
 	}

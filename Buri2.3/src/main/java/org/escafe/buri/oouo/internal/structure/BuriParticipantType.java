@@ -23,13 +23,30 @@ package org.escafe.buri.oouo.internal.structure;
  * <p>
  * この{@code Participant}要素の{@code Type}には、以下のような選択肢があらかじめ用意されています。
  * <ul>
- * <li>Resource set</li>
- * <li>Role</li>
- * <li>Human</li>
- * <li>Resource</li>
- * <li>Organization unit</li>
- * <li>System</li>
+ * <li>{@code Resource set}</li>
+ * <li>{@code Role}</li>
+ * <li>{@code Human}</li>
+ * <li>{@code Resource}</li>
+ * <li>{@code Organization unit}</li>
+ * <li>{@code System}</li>
  * </ul>
+ * </p>
+ * <p>
+ * {@code participant}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Participant">
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:element ref="xpdl:ParticipantType"/>
+ *             <xsd:element ref="xpdl:Description" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:ExternalReference" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:ExtendedAttributes" minOccurs="0"/>
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Id" type="xsd:NMTOKEN" use="required"/>
+ *         <xsd:attribute name="Name" type="xsd:string" use="optional"/>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
  * </p>
  * 
  * @author makotan

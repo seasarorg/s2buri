@@ -38,6 +38,83 @@ import org.escafe.buri.common.util.MultiValueMap;
  * <li>追加設定を定義する{@code ExtendedAttribute}要素</li>
  * </ul>
  * </p>
+ * <p>
+ * {@code Package}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Package" type="xpdl:PackageType">
+ *     <xsd:key name="ProcessIds.Package">
+ *         <xsd:selector xpath=".//xpdl:WorkflowProcess | .//xpdl:ActivitySet"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="PoolProcessIdRef.Package" refer="xpdl:ProcessIds.Package">
+ *         <xsd:selector xpath=".//xpdl:Pool"/>
+ *         <xsd:field xpath="@Process"/>
+ *     </xsd:keyref>
+ *     <xsd:key name="ProcessIdsTopLevel.Package">
+ *         <xsd:selector xpath=".//xpdl:WorkflowProcess"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="SubFlowIdRef.Package" refer="xpdl:ProcessIdsTopLevel.Package">
+ *         <xsd:selector xpath=".//xpdl:SubFlow"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:keyref>
+ *     <xsd:key name="ActivitySetIds.Package">
+ *         <xsd:selector xpath=".//xpdl:ActivitySet"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="SubFlowStartActivitySetIdRef.Package" refer="xpdl:ActivitySetIds.Package">
+ *         <xsd:selector xpath=".//xpdl:SubFlow"/>
+ *         <xsd:field xpath="@StartActivitySetId"/>
+ *     </xsd:keyref>
+ *     <xsd:key name="ActivityIds.Package">
+ *         <xsd:selector xpath=".//xpdl:Activity"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="SubFlowStartActivityIdRef.Package" refer="xpdl:ActivityIds.Package">
+ *         <xsd:selector xpath=".//xpdl:SubFlow"/>
+ *         <xsd:field xpath="@StartActivityId"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TaskReferenceTaskRef.Package" refer="xpdl:ActivityIds.Package">
+ *         <xsd:selector xpath=".//xpdl:TaskReference"/>
+ *         <xsd:field xpath="@TaskRef"/>
+ *     </xsd:keyref>
+ *     <xsd:key name="LaneIds.Package">
+ *         <xsd:selector xpath=".//xpdl:Lane"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="NodeGraphicsInfoLaneIdRef.Package" refer="xpdl:LaneIds.Package">
+ *         <xsd:selector xpath=".//xpdl:NodeGraphicsInfo"/>
+ *         <xsd:field xpath="@LaneId"/>
+ *     </xsd:keyref>
+ *     <xsd:key name="PageIds.Package">
+ *         <xsd:selector xpath=".//xpdl:Page"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="GraphicsInfoPageIdRef.Package" refer="xpdl:PageIds.Package">
+ *         <xsd:selector xpath=".//xpdl:NodeGraphicsInfo | .//xpdl:ConnectorGraphicsInfo"/>
+ *         <xsd:field xpath="@PageId"/>
+ *     </xsd:keyref>
+ *     <xsd:key name="PoolAndActivityIds.Package">
+ *         <xsd:selector xpath=".//xpdl:Pool | .//xpdl:Activity"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="MessageFlowSourceRef.Package" refer="xpdl:PoolAndActivityIds.Package">
+ *         <xsd:selector xpath=".//xpdl:MessageFlow"/>
+ *         <xsd:field xpath="@Source"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="MessageFlowTargetRef.Package" refer="xpdl:PoolAndActivityIds.Package">
+ *         <xsd:selector xpath=".//xpdl:MessageFlow"/>
+ *         <xsd:field xpath="@Target"/>
+ *     </xsd:keyref>
+ *     <!-- checks that process id referred to by pool exists -->
+ *     <!-- checks that process id referred to by subflow exists (must be top-level, not an activityset) -->
+ *     <!-- checks that start activityset referred to by subflow exists (note: incomplete test, does not constrain to process specified by subflow) -->
+ *     <!-- checks that start activity referred to by subflow exists (note: incomplete test, does not constrain to process specified by subflow) -->
+ *     <!-- checks that activity referred to by taskreference exists (note: may be incomplete test, does not constrain to same process that contains the task) -->
+ *     <!-- checks that lane id referred to by nodegraphicsinfo exists -->
+ *     <!-- checks that page id referred to by grahicsinfo exists -->
+ *     <!-- checks that source and target referred to by messageflow exists (note: incomplete test, does check that source/target are, or are in, separate pools) -->
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

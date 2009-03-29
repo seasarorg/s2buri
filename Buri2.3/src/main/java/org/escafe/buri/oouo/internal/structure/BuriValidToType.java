@@ -20,6 +20,18 @@ package org.escafe.buri.oouo.internal.structure;
  * <p>
  * この{@code ValidTo}に指定された日時が、そのフローが無効になる日時です。
  * </p>
+ * <p>
+ * {@code ValidTo}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="ValidTo">
+ *     <xsd:complexType>
+ *         <xsd:simpleContent>
+ *             <xsd:extension base="xsd:string">
+ *                 <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *             </xsd:extension>
+ *         </xsd:simpleContent>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

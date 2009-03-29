@@ -30,6 +30,75 @@ import org.escafe.buri.common.util.MultiValueMap;
  * この{@code ActivitySet}には、フローから参照するフローを定義できます。
  * フローのサブルーチンとなるもので、アクティビティやトランジション等も通常のフローと同様に定義されます。
  * </p>
+ * <p>
+ * {@code ActivitySet}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="ActivitySet">
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:element ref="xpdl:Activities" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Transitions" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Object" minOccurs="0"/>
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Id" type="xpdl:Id" use="required"/>
+ *         <xsd:attribute name="Name" type="xsd:string" use="optional">
+ *             <xsd:annotation>
+ *                 <xsd:documentation source="added to XPDL 2.0"/>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="AdHoc" type="xsd:boolean" use="optional" default="false">
+ *             <xsd:annotation>
+ *                 <xsd:documentation>BPMN: for Embedded subprocess</xsd:documentation>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="AdHocOrdering" use="optional" default="Parallel">
+ *             <xsd:annotation>
+ *                 <xsd:documentation>BPMN: for Embedded subprocess</xsd:documentation>
+ *             </xsd:annotation>
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="Sequential"/>
+ *                     <xsd:enumeration value="Parallel"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="AdHocCompletionCondition" type="xsd:string" use="optional">
+ *             <xsd:annotation>
+ *                 <xsd:documentation>BPMN: for Embedded subprocess</xsd:documentation>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="DefaultStartActivityId" type="xpdl:IdRef" use="optional"/>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ *     <xsd:key name="ActivityIds.ActivitySet">
+ *         <xsd:selector xpath="./xpdl:Activities/xpdl:Activity"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:key name="TransitionIds.ActivitySet">
+ *         <xsd:selector xpath="./xpdl:Transitions/xpdl:Transition"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="DefaultStartActivityIdRef.ActivitySet" refer="xpdl:ActivityIds.ActivitySet">
+ *         <xsd:selector xpath="."/>
+ *         <xsd:field xpath="@DefaultStartActivityId"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TransitionFromRef.ActivitySet" refer="xpdl:ActivityIds.ActivitySet">
+ *         <xsd:selector xpath="./xpdl:Transitions/xpdl:Transition"/>
+ *         <xsd:field xpath="@From"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TransitionToRef.ActivitySet" refer="xpdl:ActivityIds.ActivitySet">
+ *         <xsd:selector xpath="./xpdl:Transitions/xpdl:Transition"/>
+ *         <xsd:field xpath="@To"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TransitionRefIdRef.ActivitySet" refer="xpdl:TransitionIds.ActivitySet">
+ *         <xsd:selector xpath="./xpdl:Activities/xpdl:Activity/xpdl:TransitionRestrictions/xpdl:TransitionRestriction/xpdl:Split/xpdl:TransitionRefs/xpdl:TransitionRef"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:keyref>
+ *     <!-- check that the default start activity id exists -->
+ *     <!-- check that the from and to specified in a transition exists -->
+ *     <!-- check that the id specified in a transitionref exists -->
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans
@@ -62,6 +131,9 @@ public class BuriActivitySetType {
      * 接続先の{@code Transition}のIDの一覧
      */
     private Set<String> transToId = new HashSet<String>();
+    /**
+     * 接続元の{@link BuriActivityType}のリスト
+     */
     private List<BuriActivityType> startActivitys = new ArrayList<BuriActivityType>();
 
     /**
@@ -193,6 +265,12 @@ public class BuriActivitySetType {
         this.processType = processType;
     }
 
+    /**
+     * 接続元の{@link BuriActivityType}のリストを更新します。
+     * <p>
+     * 保持しているアクティビティのIDのリストを元に、{@code startActivitys}を更新します。
+     * </p>
+     */
     protected void updateStartActivites() {
         List<String> actIds = new ArrayList<String>(activityById.keySet());
         actIds.removeAll(transToId);

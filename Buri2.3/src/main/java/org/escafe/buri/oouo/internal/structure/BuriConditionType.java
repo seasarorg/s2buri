@@ -22,15 +22,39 @@ import java.util.List;
  * XPDLの{@code Condition}要素を表すクラスです。
  * <p>
  * {@code Condition}はトランジションに対して紐づく要素です。
+ * ぶりはこのトランジションの{@code Condition}に指定された条件を評価した結果、
+ * ルートとして適切なアクティビティを選択し遷移先とします。
  * </p>
  * <p>
  * {@code Condition}の{@code Type}には以下のような種類があります。
  * <ul>
- * <li>Condition</li>
- * <li>Default exception</li>
- * <li>Exception</li>
- * <li>Otherwise</li>
+ * <li>{@code Condition}</li>
+ * <li>{@code Default exception}</li>
+ * <li>{@code Exception}</li>
+ * <li>{@code Otherwise}</li>
  * </ul>
+ * </p>
+ * <p>
+ * {@code Condition}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Condition">
+ *     <xsd:complexType mixed="true">
+ *         <xsd:choice minOccurs="0">
+ *             <xsd:element ref="deprecated:Xpression" minOccurs="0"/>
+ *             <xsd:element name="Expression" type="xpdl:ExpressionType" minOccurs="0"/>
+ *         </xsd:choice>
+ *         <xsd:attribute name="Type">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="CONDITION"/>
+ *                     <xsd:enumeration value="OTHERWISE"/>
+ *                     <xsd:enumeration value="EXCEPTION"/>
+ *                     <xsd:enumeration value="DEFAULTEXCEPTION"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
  * </p>
  * 
  * @author makotan

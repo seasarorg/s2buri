@@ -18,7 +18,6 @@ package org.escafe.buri.oouo.internal.structure;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +30,62 @@ import org.escafe.buri.common.util.MultiValueMap;
  * <p>
  * XPDLの{@code WorkflowProcess}は、フローのパッケージに対して複数紐づきます。
  * </p>
+ * <p>
+ * {@code WorkflowProcess}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="WorkflowProcess" type="xpdl:ProcessType">
+ *     <xsd:key name="ActivitySetIds.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:ActivitySets/xpdl:ActivitySet"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:key name="ActivityIds.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:Activities/xpdl:Activity | ./xpdl:ActivitySets/xpdl:ActivitySet/xpdl:Activities/xpdl:Activity"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:key name="ActivityIdsTopLevel.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:Activities/xpdl:Activity"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:key name="TransitionIdsTopLevel.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:Transitions/xpdl:Transition"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:key>
+ *     <xsd:keyref name="DefaultStartActivitySetIdRef.WorkflowProcess" refer="xpdl:ActivitySetIds.WorkflowProcess">
+ *         <xsd:selector xpath="."/>
+ *         <xsd:field xpath="@DefaultStartActivitySetId"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="DefaultStartActivityIdRef.WorkflowProcess" refer="xpdl:ActivityIds.WorkflowProcess">
+ *         <xsd:selector xpath="."/>
+ *         <xsd:field xpath="@DefaultStartActivityId"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="BlockActivityActivitySetIdRef.WorkflowProcess" refer="xpdl:ActivitySetIds.WorkflowProcess">
+ *         <xsd:selector xpath=".//xpdl:BlockActivity"/>
+ *         <xsd:field xpath="@ActivitySetId"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="BlockActivityStartActivityIdRef.WorkflowProcess" refer="xpdl:ActivityIds.WorkflowProcess">
+ *         <xsd:selector xpath=".//xpdl:BlockActivity"/>
+ *         <xsd:field xpath="@StartActivityId"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TransitionFromRef.WorkflowProcess" refer="xpdl:ActivityIdsTopLevel.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:Transitions/xpdl:Transition"/>
+ *         <xsd:field xpath="@From"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TransitionToRef.WorkflowProcess" refer="xpdl:ActivityIdsTopLevel.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:Transitions/xpdl:Transition"/>
+ *         <xsd:field xpath="@To"/>
+ *     </xsd:keyref>
+ *     <xsd:keyref name="TransitionRefIdRef.WorkflowProcess" refer="xpdl:TransitionIdsTopLevel.WorkflowProcess">
+ *         <xsd:selector xpath="./xpdl:Activities/xpdl:Activity/xpdl:TransitionRestrictions/xpdl:TransitionRestriction/xpdl:Split/xpdl:TransitionRefs/xpdl:TransitionRef"/>
+ *         <xsd:field xpath="@Id"/>
+ *     </xsd:keyref>
+ *     <!-- constrain to only activities in the top-level, not activitysets -->
+ *     <!-- constrain to only transitions in the top-level, not activitysets -->
+ *     <!-- check that specified default start activityset exists -->
+ *     <!-- check that specified default start activity exists (note: incomplete test, does not constrain to optional activtyset specified by DefaultStartActivitySetId) -->
+ *     <!-- check that the activityset specified in a blockactivity exists -->
+ *     <!-- check that the start activity specified in a blockactivity exists (note: incomplete test, does not constrain to activtyset specified by ActivitySetId) -->
+ *     <!-- check that the from and to specified in a transition exists -->
+ *     <!-- check that the id specified in a transitionref exists -->
+ * </xsd:element>}</pre>
  * 
  * @author makotan
  * @author nobeans
@@ -95,7 +150,7 @@ public class BuriWorkflowProcessType {
     private List<BuriTransitionType> transitions = new ArrayList<BuriTransitionType>();
 
     /**
-     * 遷移元の{@code Transition}のIDと{@link BuriTransitionType}を紐づけて管理する{@link MultiValueMap}
+     * 遷移元の{@code Activity}のIDと{@link BuriTransitionType}を紐づけて管理する{@link MultiValueMap}
      */
     private MultiValueMap<BuriTransitionType> transitionsByFrom = new MultiValueMap<BuriTransitionType>();
 
@@ -104,6 +159,9 @@ public class BuriWorkflowProcessType {
      */
     private MultiValueMap<BuriTransitionType> transitionsByTo = new MultiValueMap<BuriTransitionType>();
 
+    /**
+     * 始点になるアクティビティのリスト
+     */
     private List<BuriActivityType> startActivities = new ArrayList<BuriActivityType>();
 
     /**
@@ -402,6 +460,12 @@ public class BuriWorkflowProcessType {
         transitionsByTo.put(transition.getTo(), transition);
     }
 
+    /**
+     * 指定された遷移元のアクティビティのIDから、遷移先のトランジションのリストを返します。
+     * 
+     * @param actId アクティビティのID
+     * @return 遷移先のトランジションのリスト
+     */
     public List<BuriTransitionType> getRefToTransition(String actId) {
         if (transitionsByTo.containsKey(actId)) {
             return transitionsByTo.get(actId);
@@ -409,6 +473,12 @@ public class BuriWorkflowProcessType {
         return new ArrayList<BuriTransitionType>();
     }
 
+    /**
+     * 指定された遷移元のアクティビティのIDから、トランジションのリストを返します。
+     * 
+     * @param actId 遷移元のアクティビティのID
+     * @return トランジションのリスト
+     */
     public List<BuriTransitionType> getRefFromTransition(String actId) {
         if (transitionsByFrom.containsKey(actId)) {
             return transitionsByFrom.get(actId);
@@ -480,17 +550,23 @@ public class BuriWorkflowProcessType {
         updateStartActivites();
     }
 
+    /**
+     * 始点となるアクティビティのリストを更新します。
+     */
     protected void updateStartActivites() {
-        List actIds = new ArrayList(activitiesById.keySet());
+        List<String> actIds = new ArrayList<String>(activitiesById.keySet());
         actIds.removeAll(transitionsByTo.keySet());
-        Iterator ite = actIds.iterator();
-        while (ite.hasNext()) {
-            String id = (String) ite.next();
+        for (String id : actIds) {
             BuriActivityType act = getActivityById(id);
             startActivities.add(act);
         }
     }
 
+    /**
+     * 始点となるアクティビティのリストを返します。
+     * 
+     * @return 始点となるアクティビティのリスト
+     */
     public List<BuriActivityType> getStartActivitys() {
         return startActivities;
     }

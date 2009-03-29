@@ -28,6 +28,32 @@ import org.seasar.framework.util.StringUtil;
  * 1つの{@code Transition}は必ず1つのアクティビティから1つのアクティビティに
  * 接続されます。
  * </p>
+ * <p>
+ * {@code Transition}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Transition">
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:element ref="xpdl:Condition" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Description" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:ExtendedAttributes" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Assignments" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Object" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:ConnectorGraphicsInfos" minOccurs="0"/>
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Id" type="xpdl:Id" use="required"/>
+ *         <xsd:attribute name="From" type="xpdl:IdRef" use="required"/>
+ *         <xsd:attribute name="To" type="xpdl:IdRef" use="required"/>
+ *         <xsd:attribute name="Name" type="xsd:string" use="optional"/>
+ *         <xsd:attribute name="Quantity" type="xsd:int" use="optional" default="1">
+ *             <xsd:annotation>
+ *                 <xsd:documentation>Used only in BPMN. Specifies number of tokens on outgoing transition.</xsd:documentation>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans
@@ -52,6 +78,9 @@ public class BuriTransitionType {
      */
     private BuriConditionType condition;
 
+    /**
+     * トランジションに指定された条件式
+     */
     private String conditionStr = "";
     /**
      * {@code Transition}に紐づく{@code ExtendedAttribute}のリスト
@@ -190,6 +219,11 @@ public class BuriTransitionType {
         return true;
     }
 
+    /**
+     * トランジションに指定された条件式を返します。
+     * 
+     * @return トランジションに指定された条件式
+     */
     public String getConditionStr() {
         return conditionStr;
     }

@@ -18,14 +18,32 @@ package org.escafe.buri.oouo.internal.structure;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.escafe.buri.component.BuriComponent;
-
 /**
  * XPDLの{@code Application}要素を表すクラスです。
  * <p>
  * この{@code Application}要素には{@link BuriComponent}インターフェイスを元に
  * 実装されたコンポーネントを定義することで、フローの実行の際にJavaコンポーネントを
  * 利用することができます。
+ * </p>
+ * <p>
+ * {@code Application}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Application">
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:element ref="xpdl:Description" minOccurs="0"/>
+ *             <xsd:element name="Type" type="xpdl:ApplicationType" minOccurs="0"/>
+ *             <xsd:choice>
+ *                 <xsd:element ref="xpdl:FormalParameters"/>
+ *                 <xsd:element ref="xpdl:ExternalReference" minOccurs="0"/>
+ *             </xsd:choice>
+ *             <xsd:element ref="xpdl:ExtendedAttributes" minOccurs="0"/>
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Id" type="xsd:NMTOKEN" use="required"/>
+ *         <xsd:attribute name="Name" type="xsd:string" use="optional"/>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
  * </p>
  * 
  * @author makotan

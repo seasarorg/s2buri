@@ -28,6 +28,33 @@ import java.util.List;
  * 任意の処理を行うことが可能です。
  * 例えば、{@code #result = "A"}などとする事で、フロー実行時の戻り値を定義する事ができます。
  * </p>
+ * <p>
+ * {@code Tool}は{@code Implementation}に従属する要素として定義されており、以下のように定義されています。
+ * <pre>{@code <xsd:element name="Implementation">
+ *     <xsd:complexType>
+ *         <xsd:choice minOccurs="0">
+ *             <xsd:element ref="xpdl:No" minOccurs="0">
+ *                 <xsd:annotation>
+ *                     <xsd:documentation>BPMN: corresponds to a task with unspecified TaskType</xsd:documentation>
+ *                 </xsd:annotation>
+ *             </xsd:element>
+ *             <xsd:element ref="deprecated:Tool" minOccurs="0" maxOccurs="unbounded"/>
+ *             <xsd:element ref="xpdl:Task" minOccurs="0">
+ *                 <xsd:annotation>
+ *                     <xsd:documentation>BPMN: corresponds to a task with specified TaskType</xsd:documentation>
+ *                 </xsd:annotation>
+ *             </xsd:element>
+ *             <xsd:element ref="xpdl:SubFlow" minOccurs="0">
+ *                 <xsd:annotation>
+ *                     <xsd:documentation>BPMN: corresponds to Reusable subprocess.  May run in different pool or same pool.</xsd:documentation>
+ *                 </xsd:annotation>
+ *             </xsd:element>
+ *             <xsd:element ref="xpdl:Reference" minOccurs="0"/>
+ *         </xsd:choice>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

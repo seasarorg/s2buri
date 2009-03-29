@@ -31,6 +31,51 @@ package org.escafe.buri.oouo.internal.structure;
  * 余談ながら、この{@code Join}が{@code AND}となるケースは、開発の対象となる実業務では非常に稀なので、
  * 特に使用しなくても済む筈です。
  * </p>
+ * <p>
+ * この{@code Join}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Join">
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Type">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="XOR">
+ *                         <xsd:annotation>
+ *                             <xsd:documentation>Deprecated in BPMN1.1</xsd:documentation>
+ *                         </xsd:annotation>
+ *                     </xsd:enumeration>
+ *                     <xsd:enumeration value="Exclusive"/>
+ *                     <xsd:enumeration value="OR">
+ *                         <xsd:annotation>
+ *                             <xsd:documentation>Deprecated in BPMN1.1</xsd:documentation>
+ *                         </xsd:annotation>
+ *                     </xsd:enumeration>
+ *                     <xsd:enumeration value="Inclusive"/>
+ *                     <xsd:enumeration value="Complex"/>
+ *                     <xsd:enumeration value="AND">
+ *                         <xsd:annotation>
+ *                             <xsd:documentation>Deprecated in BPMN1.1</xsd:documentation>
+ *                         </xsd:annotation>
+ *                     </xsd:enumeration>
+ *                     <xsd:enumeration value="Parallel"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="ExclusiveType" use="optional" default="Data">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="Data"/>
+ *                     <xsd:enumeration value="Event"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="IncomingCondtion" type="xsd:string"/>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

@@ -20,6 +20,66 @@ import java.util.List;
 
 /**
  * XPDLの{@code Split}要素を表すクラスです。
+ * <p>
+ * この{@code Split}は、アクティビティから分岐するトランジションをどう取り扱うかを示す要素です。
+ * <ul>
+ * <li>{@code XOR}</li>
+ * <li>{@code AND}</li>
+ * </ul>
+ * この2通りで、取り扱う方法を決定します。
+ * {@code XOR}は1つのアクティビティから派生する複数のトランジションの中から
+ * 1つを選択して状態を進めようとします。この際、いずれのトランジションに進ませるかは
+ * トランジションに定義された条件式を参照して決定します。
+ * <br />
+ * 転じて{@code AND}は、アクティビティから派生する全てのトランジションに対して
+ * 状態を進めさせます。
+ * </p>
+ * <p>
+ * {@code Split}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Split">
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:element ref="xpdl:TransitionRefs" minOccurs="0"/>
+ *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Type">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="XOR">
+ *                         <xsd:annotation>
+ *                             <xsd:documentation>Deprecated in BPMN1.1</xsd:documentation>
+ *                         </xsd:annotation>
+ *                     </xsd:enumeration>
+ *                     <xsd:enumeration value="Exclusive"/>
+ *                     <xsd:enumeration value="OR">
+ *                         <xsd:annotation>
+ *                             <xsd:documentation>Deprecated in BPMN1.1</xsd:documentation>
+ *                         </xsd:annotation>
+ *                     </xsd:enumeration>
+ *                     <xsd:enumeration value="Inclusive"/>
+ *                     <xsd:enumeration value="Complex"/>
+ *                     <xsd:enumeration value="AND">
+ *                         <xsd:annotation>
+ *                             <xsd:documentation>Deprecated in BPMN1.1</xsd:documentation>
+ *                         </xsd:annotation>
+ *                     </xsd:enumeration>
+ *                     <xsd:enumeration value="Parallel"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="ExclusiveType" use="optional" default="Data">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="Data"/>
+ *                     <xsd:enumeration value="Event"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="OutgoingCondition" type="xsd:string"/>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
+ * </p>
  * 
  * @author makotan
  * @author nobeans

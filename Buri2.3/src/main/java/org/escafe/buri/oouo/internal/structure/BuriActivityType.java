@@ -21,14 +21,130 @@ import java.util.List;
 import org.escafe.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
 
 /**
- * XPDLの{@code Activitty}要素を表すクラスです。
+ * XPDLの{@code Activity}要素を表すクラスです。
  * <p>
- * この{@code Activitty}要素は、フローのプロセスで書かれた状態の1つを表します。
+ * この{@code Activity}要素は、フローのプロセスで書かれた状態の1つを表します。
  * </p>
  * <p>
  * 前のアクティビティからトランジションを経る事で遷移をしていきます。
  * そして、次のアクティビティに遷移するまで、そのアクティビティが有効と判断されます。
  * </p>
+ * <p>
+ * {@code Activity}のスキーマは以下のように定義されています。
+ * <pre>{@code <xsd:element name="Activity">
+ *     <xsd:annotation>
+ *         <xsd:documentation>BPMN extension</xsd:documentation>
+ *     </xsd:annotation>
+ *     <xsd:complexType>
+ *         <xsd:sequence>
+ *             <xsd:element ref="xpdl:Description" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Limit" minOccurs="0"/>
+ *             <xsd:choice minOccurs="0">
+ *                 <xsd:element ref="xpdl:Route"/>
+ *                 <xsd:element ref="xpdl:Implementation">
+ *                     <xsd:annotation>
+ *                         <xsd:documentation>BPMN: corresponds to an activity, which could be a task or subprocess.[Suggest change element to BpmnActivity, since there is an attribute Implementation which means something else entirely.]</xsd:documentation>
+ *                     </xsd:annotation>
+ *                 </xsd:element>
+ *                 <xsd:choice minOccurs="0">
+ *                     <xsd:element ref="deprecated:BlockActivity"/>
+ *                     <xsd:element ref="xpdl:BlockActivity"/>
+ *                 </xsd:choice>
+ *                 <xsd:element ref="xpdl:Event">
+ *                     <xsd:annotation>
+ *                         <xsd:documentation>BPMN: Identifies XPDL activity as a BPMN event.</xsd:documentation>
+ *                     </xsd:annotation>
+ *                 </xsd:element>
+ *             </xsd:choice>
+ *             <xsd:element ref="xpdl:Transaction" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Performers" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Performer" minOccurs="0">
+ *                 <xsd:annotation>
+ *                     <xsd:documentation>Deprecated from XPDL2.0. Must be a child of  Performers</xsd:documentation>
+ *                 </xsd:annotation>
+ *             </xsd:element>
+ *             <xsd:element ref="deprecated:StartMode" minOccurs="0"/>
+ *             <xsd:element ref="deprecated:FinishMode" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Priority" minOccurs="0"/>
+ *             <xsd:choice minOccurs="0">
+ *                 <xsd:element ref="deprecated:Deadline" minOccurs="0" maxOccurs="unbounded"/>
+ *                 <xsd:element ref="xpdl:Deadline" minOccurs="0" maxOccurs="unbounded"/>
+ *             </xsd:choice>
+ *             <xsd:element ref="xpdl:SimulationInformation" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Icon" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Documentation" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:TransitionRestrictions" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:ExtendedAttributes" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:DataFields" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:InputSets" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:OutputSets" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:IORules" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Loop" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Assignments" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:Object" minOccurs="0"/>
+ *             <xsd:element ref="xpdl:NodeGraphicsInfos" minOccurs="0"/>
+ *             <xsd:choice minOccurs="0">
+ *                 <xsd:sequence>
+ *                     <xsd:element name="Extensions"/>
+ *                     <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+ *                 </xsd:sequence>
+ *             </xsd:choice>
+ *         </xsd:sequence>
+ *         <xsd:attribute name="Id" type="xpdl:Id" use="required">
+ *             <xsd:annotation>
+ *                 <xsd:documentation>BPMN: unique identifier of the flow object</xsd:documentation>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="IsForCompensation" type="xsd:boolean" use="optional"/>
+ *         <xsd:attribute name="Name" type="xsd:string" use="optional">
+ *             <xsd:annotation>
+ *                 <xsd:documentation>BPMN: label of the flow object in the diagram</xsd:documentation>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="StartActivity" type="xsd:boolean" use="optional">
+ *             <xsd:annotation>
+ *                 <xsd:documentation> Designates the first activity to be executed when the process is instantiated. Used when there is no other way to determine this Conflicts with BPMN StartEvent and no process definition should use both.</xsd:documentation>
+ *             </xsd:annotation>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="Status" use="optional" default="None">
+ *             <xsd:annotation>
+ *                 <xsd:documentation> BPMN: Status values are assigned during execution. Status can be treated as a property and used in expressions local to an Activity. It is unclear that status belongs in the XPDL document.</xsd:documentation>
+ *             </xsd:annotation>
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="None"/>
+ *                     <xsd:enumeration value="Ready"/>
+ *                     <xsd:enumeration value="Active"/>
+ *                     <xsd:enumeration value="Cancelled"/>
+ *                     <xsd:enumeration value="Aborting"/>
+ *                     <xsd:enumeration value="Aborted"/>
+ *                     <xsd:enumeration value="Completing"/>
+ *                     <xsd:enumeration value="Completed"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="StartMode">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="Automatic"/>
+ *                     <xsd:enumeration value="Manual"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="FinishMode">
+ *             <xsd:simpleType>
+ *                 <xsd:restriction base="xsd:NMTOKEN">
+ *                     <xsd:enumeration value="Automatic"/>
+ *                     <xsd:enumeration value="Manual"/>
+ *                 </xsd:restriction>
+ *             </xsd:simpleType>
+ *         </xsd:attribute>
+ *         <xsd:attribute name="StartQuantity" type="xsd:integer" use="optional" default="1"/>
+ *         <xsd:attribute name="CompletionQuantity" type="xsd:integer" use="optional" default="1"/>
+ *         <xsd:attribute name="IsATransaction" type="xsd:boolean" use="optional" default="false"/>
+ *         <xsd:anyAttribute namespace="##other" processContents="lax"/>
+ *     </xsd:complexType>
+ * </xsd:element>}</pre>
  * 
  * @author makotan
  * @author nobeans
@@ -94,9 +210,18 @@ public class BuriActivityType {
 	 * アクティビティに設定された{@code ActivitySet}
 	 */
 	private BuriActivitySetType activitySet;
+	/**
+	 * アクティビティに設定された{@code Limit}
+	 */
 	private BuriActivityLimitType limitType;
 
+	/**
+	 * 従属するサブフローが存在した場合のサブフローのID
+	 */
 	private String subFlow = null;
+	/**
+	 * 従属するサブフローへのエントリポイントとなるアクティビティのID
+	 */
 	private String blockActivity = null;
 
 	/**
@@ -395,6 +520,12 @@ public class BuriActivityType {
 		return isJoinAnd.booleanValue();
 	}
 
+	/**
+	 * このアクティビティの{@code ExtentedAttribute}に、{@code "NOJOIN"}か
+	 * {@code "NOXORJOIN"}が設定されているかどうかを判定します。
+	 * 
+	 * @return 設定されていた場合{@code true}、そうでない場合は{@code false}
+	 */
 	public boolean isNoJoin() {
 		if (ExtentedAttributeUtil.getExtendedAttribute(ExtentedAttribute,
 				"NOJOIN") == null) {
@@ -406,6 +537,12 @@ public class BuriActivityType {
 		return true;
 	}
 
+	/**
+     * このアクティビティの{@code ExtentedAttribute}に、
+     * {@code "NOXORJOIN"}が設定されているかどうかを判定します。
+     * 
+     * @return 設定されていた場合{@code true}、そうでない場合は{@code false}
+	 */
 	public boolean isXorJoin() {
 		if (ExtentedAttributeUtil.getExtendedAttribute(ExtentedAttribute,
 				"XORJOIN") == null) {
@@ -414,24 +551,56 @@ public class BuriActivityType {
 		return true;
 	}
 
+	/**
+	 * 従属するサブフローが存在した場合のサブフローのIDを返します。
+	 * 
+	 * @return サブフローのID
+	 */
 	public String getSubFlow() {
 		return subFlow;
 	}
 
+	/**
+	 * {@code SubFlow}の要素名
+	 */
 	public static final String setSubFlow_ELEMENT = "SubFlow";
+	/**
+	 * {@code SubFlow}のIDの属性名
+	 */
 	public static final String setSubFlow_ATTRI = "Id";
 
+	/**
+	 * サブフローのIDを登録します。
+	 * 
+	 * @param subFlow サブフローのID
+	 */
 	public void setSubFlow(String subFlow) {
 		this.subFlow = subFlow;
 	}
 
+	/**
+	 * 従属するサブフローへのエントリポイントとなるアクティビティのIDを返します。
+	 * 
+	 * @return 従属するサブフローへのエントリポイントとなるアクティビティのID
+	 */
 	public String getBlockActivity() {
 		return blockActivity;
 	}
 
+	/**
+	 * 従属するサブフローへのエントリポイントとなるアクティビティの要素名
+	 */
 	public static final String setBlockActivity_ELEMENT = "BlockActivity";
+	/**
+	 * 従属するサブフローへのエントリポイントとなるアクティビティのIDの属性名
+	 */
 	public static final String setBlockActivity_ATTRI = "BlockId";
 
+	/**
+	 * 従属するサブフローへのエントリポイントとなるアクティビティのIDを登録します。
+	 * 
+	 * @param blockActivity 従属するサブフローへのエントリポイントとなるアクティビティのID
+	 */
 	public void setBlockActivity(String blockActivity) {
 		this.blockActivity = blockActivity;
 	}
@@ -474,6 +643,17 @@ public class BuriActivityType {
 		return activitySet;
 	}
 
+	/**
+	 * アクティビティに設定された{@code Limit}の値を返します。
+	 * <p>
+	 * {@code Limit}は{@link TimerService}を使用した際にそのアクティビティを実行する日時を指定する為のパラメータです。
+	 * </p>
+	 * <p>
+	 * 設定されていなかった場合は{@code null}を返します。
+	 * </p>
+	 * 
+	 * @return {@code Limit}
+	 */
 	public String getLimit() {
 		if (limitType == null) {
 			return null;
@@ -481,12 +661,25 @@ public class BuriActivityType {
 		return limitType.getLimit();
 	}
 
+	/**
+	 * アクティビティに設定された{@code Limit}を返します。
+	 * 
+	 * @return 対応する{@link BuriActivityLimitType}
+	 */
 	public BuriActivityLimitType getLimitType() {
 		return limitType;
 	}
 
+	/**
+	 * アクティビティに設定された{@code Limit}の要素名
+	 */
 	public static final String setLimitType_ELEMENT = "Limit";
 
+	/**
+	 * アクティビティに設定された{@code Limit}を登録します。
+	 * 
+	 * @param limit アクティビティに設定された{@code Limit}
+	 */
 	public void setLimitType(BuriActivityLimitType limit) {
 		this.limitType = limit;
 	}
