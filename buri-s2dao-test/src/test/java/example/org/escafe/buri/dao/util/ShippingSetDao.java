@@ -15,90 +15,92 @@ import example.org.escafe.buri.dto.ShippingItemDto;
 import example.org.escafe.buri.dto.ShippingSetDto;
 
 public class ShippingSetDao {
-    private ShippingDao shippingDao;
-    private ShippingItemDao itemDao;
-    private OrderInfoDao orderInfoDao;
-    
-    public void insert(ShippingSetDto setDto) {
-        shippingDao.insert(setDto);
-        Iterator ite = setDto.getItems().iterator();
-        while(ite.hasNext()) {
-            ShippingItemDto itemDto = (ShippingItemDto)ite.next();
-            itemDto.setShippingID(setDto.getShippingID());
-            itemDao.insert(itemDto);
-        }
-    }
-    
-    public void update(ShippingSetDto setDto) {
-        shippingDao.update(setDto);
-        Iterator ite = setDto.getItems().iterator();
-        while(ite.hasNext()) {
-            ShippingItemDto itemDto = (ShippingItemDto)ite.next();
-            itemDto.setShippingID(setDto.getShippingID());
-            if(itemDto.getShippingItemID() != 0) {
-                itemDao.update(itemDto);
-            } else {
-                itemDao.insert(itemDto);
-            }
-        }
-    }
-    
-    public ShippingSetDto getShippingSetDto(long shippingID) {
-        ShippingSetDto setDto = new ShippingSetDto();
-        ShippingDto dto = shippingDao.getShipping(shippingID);
-        if(dto == null) {
-            return setDto;
-        }
-        setDto.setShippingID(dto.getShippingID());
-        setDto.setCustomerID(dto.getCustomerID());
-        setDto.setOrderTitleID(dto.getOrderTitleID());
-        setDto.setShippingDate(dto.getShippingDate());
-        setDto.setShippingID(dto.getShippingID());
-        setDto.setItems(itemDao.getShippingItemByShippingID(shippingID));
-        return setDto;
-    }
-    
-    public ShippingSetDto getDtoByOrderTitleID(OrderInfoDto orderInfo) {
-        ShippingSetDto setDto = new ShippingSetDto();
-        ShippingDto dto = shippingDao.getShippingByOrderTitleID(orderInfo.getOrderTitleID());
-        if(dto == null) {
-            setDto.setCustomerID(orderInfo.getCustomerID());
-            setDto.setOrderTitleID(orderInfo.getOrderTitleID());
-            Iterator ite = orderInfo.getOrderDetail().iterator();
-            while(ite.hasNext()) {
-                OrderDetailDto detailDto = (OrderDetailDto)ite.next();
-                ShippingItemDto shippingItemDto = new ShippingItemDto();
-                shippingItemDto.setOrderDetailID(detailDto.getOrderDetailId());
-                setDto.getItems().add(shippingItemDto);
-            }
-            return setDto;
-        }
-        setDto = getShippingSetDto(dto.getShippingID());
-        return setDto;
-    }
+	private ShippingDao shippingDao;
 
-    public ShippingItemDao getItemDao() {
-        return itemDao;
-    }
+	private ShippingItemDao itemDao;
 
-    public void setItemDao(ShippingItemDao itemDao) {
-        this.itemDao = itemDao;
-    }
+	private OrderInfoDao orderInfoDao;
 
-    public OrderInfoDao getOrderInfoDao() {
-        return orderInfoDao;
-    }
+	public void insert(ShippingSetDto setDto) {
+		shippingDao.insert(setDto);
+		Iterator ite = setDto.getItems().iterator();
+		while (ite.hasNext()) {
+			ShippingItemDto itemDto = (ShippingItemDto) ite.next();
+			itemDto.setShippingId(setDto.getShippingId());
+			itemDao.insert(itemDto);
+		}
+	}
 
-    public void setOrderInfoDao(OrderInfoDao orderInfoDao) {
-        this.orderInfoDao = orderInfoDao;
-    }
+	public void update(ShippingSetDto setDto) {
+		shippingDao.update(setDto);
+		Iterator ite = setDto.getItems().iterator();
+		while (ite.hasNext()) {
+			ShippingItemDto itemDto = (ShippingItemDto) ite.next();
+			itemDto.setShippingId(setDto.getShippingId());
+			if (itemDto.getShippingItemId() != 0) {
+				itemDao.update(itemDto);
+			} else {
+				itemDao.insert(itemDto);
+			}
+		}
+	}
 
-    public ShippingDao getShippingDao() {
-        return shippingDao;
-    }
+	public ShippingSetDto getShippingSetDto(long shippingID) {
+		ShippingSetDto setDto = new ShippingSetDto();
+		ShippingDto dto = shippingDao.getShipping(shippingID);
+		if (dto == null) {
+			return setDto;
+		}
+		setDto.setShippingId(dto.getShippingId());
+		setDto.setCustomerId(dto.getCustomerId());
+		setDto.setOrderTitleId(dto.getOrderTitleId());
+		setDto.setShippingDate(dto.getShippingDate());
+		setDto.setShippingId(dto.getShippingId());
+		setDto.setItems(itemDao.getShippingItemByShippingID(shippingID));
+		return setDto;
+	}
 
-    public void setShippingDao(ShippingDao shippingDao) {
-        this.shippingDao = shippingDao;
-    }
-    
+	public ShippingSetDto getDtoByOrderTitleID(OrderInfoDto orderInfo) {
+		ShippingSetDto setDto = new ShippingSetDto();
+		ShippingDto dto =
+		    shippingDao.getShippingByOrderTitleID(orderInfo.getOrderTitleId());
+		if (dto == null) {
+			setDto.setCustomerId(orderInfo.getCustomerId());
+			setDto.setOrderTitleId(orderInfo.getOrderTitleId());
+			Iterator ite = orderInfo.getOrderDetail().iterator();
+			while (ite.hasNext()) {
+				OrderDetailDto detailDto = (OrderDetailDto) ite.next();
+				ShippingItemDto shippingItemDto = new ShippingItemDto();
+				shippingItemDto.setOrderDetailId(detailDto.getOrderDetailId());
+				setDto.getItems().add(shippingItemDto);
+			}
+			return setDto;
+		}
+		setDto = getShippingSetDto(dto.getShippingId());
+		return setDto;
+	}
+
+	public ShippingItemDao getItemDao() {
+		return itemDao;
+	}
+
+	public void setItemDao(ShippingItemDao itemDao) {
+		this.itemDao = itemDao;
+	}
+
+	public OrderInfoDao getOrderInfoDao() {
+		return orderInfoDao;
+	}
+
+	public void setOrderInfoDao(OrderInfoDao orderInfoDao) {
+		this.orderInfoDao = orderInfoDao;
+	}
+
+	public ShippingDao getShippingDao() {
+		return shippingDao;
+	}
+
+	public void setShippingDao(ShippingDao shippingDao) {
+		this.shippingDao = shippingDao;
+	}
 }

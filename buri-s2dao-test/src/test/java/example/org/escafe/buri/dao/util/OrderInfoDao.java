@@ -14,62 +14,63 @@ import example.org.escafe.buri.dto.OrderInfoDto;
 import example.org.escafe.buri.dto.OrderTitleDto;
 
 public class OrderInfoDao {
-    private OrderTitleDao titleDao;
-    private OrderDetailDao detailDao;
-    
-    public void insert(OrderInfoDto orderInfo) {
-        titleDao.insert(orderInfo);
-        Iterator ite = orderInfo.getOrderDetail().iterator();
-        while(ite.hasNext()) {
-            OrderDetailDto detailDto = (OrderDetailDto)ite.next();
-            detailDto.setOrderTitleID(orderInfo.getOrderTitleID());
-            detailDao.insert(detailDto);
-        }
-    }
-    
-    public void update(OrderInfoDto orderInfo) {
-        titleDao.update(orderInfo);
-        Iterator ite = orderInfo.getOrderDetail().iterator();
-        while(ite.hasNext()) {
-            OrderDetailDto detailDto = (OrderDetailDto)ite.next();
-            detailDto.setOrderTitleID(orderInfo.getOrderTitleID());
-            if(detailDto.getOrderDetailId() != 0) {
-                detailDao.update(detailDto);
-            } else {
-                detailDao.insert(detailDto);
-            }
-        }
-    }
-    
-    public OrderInfoDto getOrderInfo(long orderTitleID) {
-        OrderTitleDto titleDto = titleDao.getOrderTitle(orderTitleID);
-        if(titleDto==null) {
-            return null;
-        }
-        OrderInfoDto info = new OrderInfoDto();
-        info.setOrderTitleID(titleDto.getOrderTitleID());
-        info.setCustomerID(titleDto.getCustomerID());
-        info.setOrderDate(titleDto.getOrderDate());
-        info.setStatus(titleDto.getStatus());
-        List details = detailDao.getOrderDetailByTitleID(orderTitleID);
-        info.setOrderDetail(details);
-        return info;
-    }
+	private OrderTitleDao titleDao;
 
-    public OrderDetailDao getDetailDao() {
-        return detailDao;
-    }
+	private OrderDetailDao detailDao;
 
-    public void setDetailDao(OrderDetailDao detailDao) {
-        this.detailDao = detailDao;
-    }
+	public void insert(OrderInfoDto orderInfo) {
+		titleDao.insert(orderInfo);
+		Iterator ite = orderInfo.getOrderDetail().iterator();
+		while (ite.hasNext()) {
+			OrderDetailDto detailDto = (OrderDetailDto) ite.next();
+			detailDto.setOrderTitleId(orderInfo.getOrderTitleId());
+			detailDao.insert(detailDto);
+		}
+	}
 
-    public OrderTitleDao getTitleDao() {
-        return titleDao;
-    }
+	public void update(OrderInfoDto orderInfo) {
+		titleDao.update(orderInfo);
+		Iterator ite = orderInfo.getOrderDetail().iterator();
+		while (ite.hasNext()) {
+			OrderDetailDto detailDto = (OrderDetailDto) ite.next();
+			detailDto.setOrderTitleId(orderInfo.getOrderTitleId());
+			if (detailDto.getOrderDetailId() != 0) {
+				detailDao.update(detailDto);
+			} else {
+				detailDao.insert(detailDto);
+			}
+		}
+	}
 
-    public void setTitleDao(OrderTitleDao titleDao) {
-        this.titleDao = titleDao;
-    }
-    
+	public OrderInfoDto getOrderInfo(long orderTitleID) {
+		OrderTitleDto titleDto = titleDao.getOrderTitle(orderTitleID);
+		if (titleDto == null) {
+			return null;
+		}
+		OrderInfoDto info = new OrderInfoDto();
+		info.setOrderTitleId(titleDto.getOrderTitleId());
+		info.setCustomerId(titleDto.getCustomerId());
+		info.setOrderDate(titleDto.getOrderDate());
+		info.setStatus(titleDto.getStatus());
+		List<OrderDetailDto> details =
+		    detailDao.getOrderDetailByTitleId(orderTitleID);
+		info.setOrderDetail(details);
+		return info;
+	}
+
+	public OrderDetailDao getDetailDao() {
+		return detailDao;
+	}
+
+	public void setDetailDao(OrderDetailDao detailDao) {
+		this.detailDao = detailDao;
+	}
+
+	public OrderTitleDao getTitleDao() {
+		return titleDao;
+	}
+
+	public void setTitleDao(OrderTitleDao titleDao) {
+		this.titleDao = titleDao;
+	}
 }

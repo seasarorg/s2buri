@@ -164,7 +164,7 @@ public class BaoAnnotationTest extends S2TestCase {
 		datas = shippingItemBao.getItemWaiting();
 		assertEquals(datas.size(), 2);
 		System.out.println(datas);
-		Object status = orderBao.cancel(orderInfoDto1.getOrderTitleID());
+		Object status = orderBao.cancel(orderInfoDto1.getOrderTitleId());
 		assertEquals(status.toString(), "success");
 		datas = orderBao.getOrderCancelEnd();
 		assertEquals(datas.size(), 1);
@@ -217,7 +217,7 @@ public class BaoAnnotationTest extends S2TestCase {
 		datas = shippingItemBao.getItemWaiting();
 		assertEquals(datas.size(), 2);
 		System.out.println(datas);
-		Object status = orderBao.cancel(orderInfoDto1.getOrderTitleID());
+		Object status = orderBao.cancel(orderInfoDto1.getOrderTitleId());
 		assertEquals(status.toString(), "success");
 		datas = orderBao.getOrderCancelEnd();
 		assertEquals(datas.size(), 1);
@@ -247,7 +247,7 @@ public class BaoAnnotationTest extends S2TestCase {
 
 	protected OrderInfoDto orderSetup1() {
 		OrderInfoDto dto = new OrderInfoDto();
-		dto.setCustomerID(客1.getCustomerId());
+		dto.setCustomerId(客1.getCustomerId());
 		dto.setOrderDate(new Date());
 		dto.setStatus(new Integer(0));
 		OrderDetailDto detailDto = new OrderDetailDto();
@@ -263,7 +263,7 @@ public class BaoAnnotationTest extends S2TestCase {
 
 	protected OrderInfoDto orderSetup2() {
 		OrderInfoDto dto = new OrderInfoDto();
-		dto.setCustomerID(客1.getCustomerId());
+		dto.setCustomerId(客1.getCustomerId());
 		dto.setOrderDate(new Date());
 		dto.setStatus(new Integer(0));
 		OrderDetailDto detailDto = new OrderDetailDto();
@@ -279,7 +279,7 @@ public class BaoAnnotationTest extends S2TestCase {
 
 	protected OrderInfoDto orderSetup3() {
 		OrderInfoDto dto = new OrderInfoDto();
-		dto.setCustomerID(客2.getCustomerId());
+		dto.setCustomerId(客2.getCustomerId());
 		dto.setOrderDate(new Date());
 		dto.setStatus(new Integer(0));
 		OrderDetailDto detailDto = new OrderDetailDto();
@@ -292,23 +292,23 @@ public class BaoAnnotationTest extends S2TestCase {
 	protected void itemSetup() {
 		商品1 = new ItemDto();
 		商品1.setItemName("PS1");
-		商品1.setPrice(19800);
+		商品1.setPrice(19800L);
 		itemDao.insert(商品1);
 		商品2 = new ItemDto();
 		商品2.setItemName("PS2");
-		商品2.setPrice(19800);
+		商品2.setPrice(19800L);
 		itemDao.insert(商品2);
 		商品3 = new ItemDto();
 		商品3.setItemName("PS3");
-		商品3.setPrice(19800);
+		商品3.setPrice(19800L);
 		itemDao.insert(商品3);
 		商品4 = new ItemDto();
 		商品4.setItemName("PS4");
-		商品4.setPrice(19800);
+		商品4.setPrice(19800L);
 		itemDao.insert(商品4);
 		商品5 = new ItemDto();
 		商品5.setItemName("PS5");
-		商品5.setPrice(19800);
+		商品5.setPrice(19800L);
 		itemDao.insert(商品5);
 	}
 
