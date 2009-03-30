@@ -2,7 +2,7 @@
  * 作成日: 2006/07/17
  *
  */
-package org.escafe.buri.annotation.bao;
+package org.escafe.buri.s2dao.annotation.bao;
 
 import java.util.List;
 

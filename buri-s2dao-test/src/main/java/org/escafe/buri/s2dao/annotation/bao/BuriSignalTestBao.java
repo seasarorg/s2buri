@@ -1,4 +1,4 @@
-package org.escafe.buri.annotation.bao;
+package org.escafe.buri.s2dao.annotation.bao;
 
 import java.util.List;
 

@@ -8,23 +8,23 @@
 		<initMethod name="add"><arg>bao.interceptor</arg></initMethod>
 	</component>
 
-	<component name="billBao" class="org.escafe.buri.annotation.bao.BillBao">
+	<component name="billBao" class="org.escafe.buri.s2dao.annotation.bao.BillBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
 
-	<component name="orderBao" class="org.escafe.buri.annotation.bao.OrderBao">
+	<component name="orderBao" class="org.escafe.buri.s2dao.annotation.bao.OrderBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
 
-	<component name="shippingBao" class="org.escafe.buri.annotation.bao.ShippingBao">
+	<component name="shippingBao" class="org.escafe.buri.s2dao.annotation.bao.ShippingBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
 
-	<component name="shippingItemBao" class="org.escafe.buri.annotation.bao.ShippingItemBao">
+	<component name="shippingItemBao" class="org.escafe.buri.s2dao.annotation.bao.ShippingItemBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
 
-	<component name="privacyInfoManagementBao" class="org.escafe.buri.annotation.bao.PrivacyInfoManagementBao">
+	<component name="privacyInfoManagementBao" class="org.escafe.buri.s2dao.annotation.bao.PrivacyInfoManagementBao">
 		<aspect>InterceptorChain</aspect>
 	</component>
 	

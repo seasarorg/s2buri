@@ -2,7 +2,7 @@
  * 作成日: 2005/07/02
  *
  */
-package org.escafe.buri.dao;
+package org.escafe.buri.s2dao.dao;
 
 import java.util.List;
 

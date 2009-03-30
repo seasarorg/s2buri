@@ -14,7 +14,7 @@
 	<component class="org.escafe.buri.common.util.BuriConfigurationImpl">
 	<!--
 		<initMethod>#self.addValue("DtoPackageName","org.escafe.buri.dto")</initMethod>
-		<initMethod>#self.addValue("DaoPackageName","org.escafe.buri.dao")</initMethod>
+		<initMethod>#self.addValue("DaoPackageName","org.escafe.buri.s2dao.dao")</initMethod>
 	-->
 	</component>
 	

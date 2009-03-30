@@ -2,10 +2,10 @@ package example.org.escafe.buri.signal.test;
 
 import java.util.List;
 
-import org.escafe.buri.annotation.bao.BuriSignalTestBao;
 import org.escafe.buri.dto.BuriTestINTDto;
 import org.escafe.buri.engine.BuriEngine;
 import org.escafe.buri.engine.processor.util.BuriSignal;
+import org.escafe.buri.s2dao.annotation.bao.BuriSignalTestBao;
 import org.seasar.extension.unit.S2TestCase;
 
 public class BuriSignalTest extends S2TestCase {

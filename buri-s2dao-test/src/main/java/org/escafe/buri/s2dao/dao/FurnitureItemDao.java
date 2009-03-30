@@ -1,4 +1,4 @@
-package org.escafe.buri.dao;
+package org.escafe.buri.s2dao.dao;
 
 import java.util.List;
 

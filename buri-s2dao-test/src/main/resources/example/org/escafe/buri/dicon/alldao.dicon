@@ -4,9 +4,10 @@
 <components>
 	<include path="dao.dicon"/>
 	<include path="aop.dicon"/>
-
+	<component name="debugInterceptor" class="example.org.escafe.buri.interceptor.DebugDaoInterceptor"/>
 	<component name="DaoInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">
 		<initMethod name="add"><arg>aop.traceInterceptor</arg></initMethod>
+		<initMethod name="add"><arg>debugInterceptor</arg></initMethod>
 		<initMethod name="add"><arg>dao.interceptor</arg></initMethod>
 	</component>
 	<component name="ComponentInterceptorChain" class="org.seasar.framework.aop.interceptors.InterceptorChain">

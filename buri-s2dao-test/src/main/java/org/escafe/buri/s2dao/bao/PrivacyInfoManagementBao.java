@@ -2,9 +2,11 @@
  * 作成日: 2006/07/17
  *
  */
-package org.escafe.buri.bao;
+package org.escafe.buri.s2dao.bao;
 
 import java.util.List;
+
+import org.escafe.buri.bao.BuriConvert;
 
 import example.org.escafe.buri.dto.ItemDto;
 

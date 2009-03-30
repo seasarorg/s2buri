@@ -115,7 +115,7 @@ public class DataFieldStdTest extends S2TestCase {
 	public void testDataFieldType08() {
 		BuriDataFieldType dft = new BuriDataFieldType();
 		configuration.addValue("DtoPackageName", "org.escafe.buri.dto");
-		configuration.addValue("DaoPackageName", "org.escafe.buri.dao");
+		configuration.addValue("DaoPackageName", "org.escafe.buri.s2dao.dao");
 		dft.setId("BuriTestINTDto");
 		BuriDataFieldType dst = bdfcp.preprocess(dft);
 		System.out.println(dst.getKeys().toString());
