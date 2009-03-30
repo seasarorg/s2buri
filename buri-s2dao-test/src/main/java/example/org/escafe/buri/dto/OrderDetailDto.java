@@ -18,8 +18,8 @@ public class OrderDetailDto {
 		return orderDetailId;
 	}
 
-	public void setOrderDetailId(Long orderDetailID) {
-		this.orderDetailId = orderDetailID;
+	public void setOrderDetailId(Long orderDetailId) {
+		this.orderDetailId = orderDetailId;
 	}
 
 	public Integer getOrderCount() {
@@ -34,7 +34,7 @@ public class OrderDetailDto {
 		return itemId;
 	}
 
-	public void setItemID(Long itemId) {
+	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
 
@@ -51,8 +51,8 @@ public class OrderDetailDto {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("/orderDetailId=").append(orderDetailId);
 		buff.append("/orderCount=").append(orderCount);
-		buff.append("/itemID=").append(itemId);
-		buff.append("/orderTitleID=").append(orderTitleId);
+		buff.append("/itemId=").append(itemId);
+		buff.append("/orderTitleId=").append(orderTitleId);
 		buff.append("]");
 		return buff.toString();
 	}

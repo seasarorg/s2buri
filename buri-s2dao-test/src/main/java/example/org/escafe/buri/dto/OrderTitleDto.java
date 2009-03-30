@@ -5,10 +5,15 @@ import java.util.Date;
 public class OrderTitleDto {
 	public static final String TABLE = "ORDER_TITLE";
 
-	public static final String orderTitleID_ID = "sequence, sequenceName=ORDER_TITLE_SEQ";
+	public static final String orderTitleId_ID =
+	    "sequence, sequenceName=ORDER_TITLE_SEQ";
+
 	private Long orderTitleId;
+
 	private Date orderDate;
+
 	private Long customerId;
+
 	private Integer status;
 
 	public Long getOrderTitleId() {
@@ -53,5 +58,4 @@ public class OrderTitleDto {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

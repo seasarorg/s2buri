@@ -8,56 +8,104 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class OrderTitleFindDto {
-	public static final String TABLE = "OrderTitle";
+	public static final String TABLE = "ORDER_TITLE";
+
 	private final ArrayList orderList = new ArrayList();
 
 	private Long orderTitleId = null;
+
 	private Long orderTitleId_not = null;
+
 	private Long orderTitleId_large = null;
+
 	private Long orderTitleId_moreLarge = null;
+
 	private Long orderTitleId_from = null;
+
 	private Long orderTitleId_to = null;
+
 	private Long orderTitleId_moreSmall = null;
+
 	private Long orderTitleId_small = null;
+
 	private List orderTitleId_in = null;
+
 	private Boolean orderTitleId_isNull = null;
+
 	private Boolean orderTitleId_isNotNull = null;
+
 	private boolean orderTitleId_isASC = true;
+
 	private Timestamp orderDate = null;
+
 	private Timestamp orderDate_not = null;
+
 	private Timestamp orderDate_large = null;
+
 	private Timestamp orderDate_moreLarge = null;
+
 	private Timestamp orderDate_from = null;
+
 	private Timestamp orderDate_to = null;
+
 	private Timestamp orderDate_moreSmall = null;
+
 	private Timestamp orderDate_small = null;
+
 	private List orderDate_in = null;
+
 	private Boolean orderDate_isNull = null;
+
 	private Boolean orderDate_isNotNull = null;
+
 	private boolean orderDate_isASC = true;
+
 	private Long customerId = null;
+
 	private Long customerId_not = null;
+
 	private Long customerId_large = null;
+
 	private Long customerId_moreLarge = null;
+
 	private Long customerId_from = null;
+
 	private Long customerId_to = null;
+
 	private Long customerId_moreSmall = null;
+
 	private Long customerId_small = null;
+
 	private List customerId_in = null;
+
 	private Boolean customerId_isNull = null;
+
 	private Boolean customerId_isNotNull = null;
+
 	private boolean customerId_isASC = true;
+
 	private Integer status = null;
+
 	private Integer status_not = null;
+
 	private Integer status_large = null;
+
 	private Integer status_moreLarge = null;
+
 	private Integer status_from = null;
+
 	private Integer status_to = null;
+
 	private Integer status_moreSmall = null;
+
 	private Integer status_small = null;
+
 	private List status_in = null;
+
 	private Boolean status_isNull = null;
+
 	private Boolean status_isNotNull = null;
+
 	private boolean status_isASC = true;
 
 	public Long getOrderTitleId() {
@@ -451,8 +499,10 @@ public class OrderTitleFindDto {
 	public void addOrderList(String order, boolean isAsc) {
 		orderList.add(order);
 		ScriptProcessor processor = new ScriptProcessor();
-		processor.setValue(order.replace('.', '_') + "_isASC", this,
-				new Boolean(isAsc));
+		processor.setValue(
+		    order.replace('.', '_') + "_isASC",
+		    this,
+		    new Boolean(isAsc));
 	}
 
 	public String getOrderList() {
@@ -463,8 +513,8 @@ public class OrderTitleFindDto {
 		while (ite.hasNext()) {
 			String orderTgt = (String) ite.next();
 			order = ORDER + order + orderTgt.replace('_', '.') + " ";
-			Boolean var = (Boolean) processor.getValue(orderTgt + "_isASC",
-					this);
+			Boolean var =
+			    (Boolean) processor.getValue(orderTgt + "_isASC", this);
 			if (!var.booleanValue()) {
 				order = order + "DESC ";
 			}
@@ -527,5 +577,4 @@ public class OrderTitleFindDto {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

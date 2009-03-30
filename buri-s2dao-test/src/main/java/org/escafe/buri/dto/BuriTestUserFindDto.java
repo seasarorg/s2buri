@@ -1,154 +1,220 @@
 package org.escafe.buri.dto;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class BuriTestUserFindDto {
-	public static final String TABLE = "BuriTestUser";
-    private ArrayList orderList = new ArrayList();
-	
-	private Long userID = null;
-	private Long userID_not = null;
-	private Long userID_large = null;
-	private Long userID_moreLarge = null;
-	private Long userID_from = null;
-	private Long userID_to = null;
-	private Long userID_moreSmall = null;
-	private Long userID_small = null;
-	private List userID_in = null;
-	private Boolean userID_isNull = null;
-	private Boolean userID_isNotNull = null;
-	private boolean userID_isASC = true;
+	public static final String TABLE = "BURI_TEST_USER";
+
+	private final ArrayList orderList = new ArrayList();
+
+	private Long userId = null;
+
+	private Long userId_not = null;
+
+	private Long userId_large = null;
+
+	private Long userId_moreLarge = null;
+
+	private Long userId_from = null;
+
+	private Long userId_to = null;
+
+	private Long userId_moreSmall = null;
+
+	private Long userId_small = null;
+
+	private List userId_in = null;
+
+	private Boolean userId_isNull = null;
+
+	private Boolean userId_isNotNull = null;
+
+	private boolean userId_isASC = true;
+
 	private String userName = null;
+
 	private String userName_not = null;
+
 	private String userName_large = null;
+
 	private String userName_moreLarge = null;
+
 	private String userName_from = null;
+
 	private String userName_to = null;
+
 	private String userName_moreSmall = null;
+
 	private String userName_small = null;
+
 	private String userName_matchFull = null;
+
 	private String userName_matchFront = null;
+
 	private String userName_matchBack = null;
+
 	private List userName_in = null;
+
 	private Boolean userName_isNull = null;
+
 	private Boolean userName_isNotNull = null;
+
 	private boolean userName_isASC = true;
+
 	private String roleName = null;
+
 	private String roleName_not = null;
+
 	private String roleName_large = null;
+
 	private String roleName_moreLarge = null;
+
 	private String roleName_from = null;
+
 	private String roleName_to = null;
+
 	private String roleName_moreSmall = null;
+
 	private String roleName_small = null;
+
 	private String roleName_matchFull = null;
+
 	private String roleName_matchFront = null;
+
 	private String roleName_matchBack = null;
+
 	private List roleName_in = null;
+
 	private Boolean roleName_isNull = null;
+
 	private Boolean roleName_isNotNull = null;
+
 	private boolean roleName_isASC = true;
-	private Integer parentUserID = null;
-	private Integer parentUserID_not = null;
-	private Integer parentUserID_large = null;
-	private Integer parentUserID_moreLarge = null;
-	private Integer parentUserID_from = null;
-	private Integer parentUserID_to = null;
-	private Integer parentUserID_moreSmall = null;
-	private Integer parentUserID_small = null;
-	private List parentUserID_in = null;
-	private Boolean parentUserID_isNull = null;
-	private Boolean parentUserID_isNotNull = null;
-	private boolean parentUserID_isASC = true;
 
-	public Long getUserID() {
-		return userID;
-	}
+	private Integer parentUserId = null;
 
-	public void setUserID(Long userID) {
-		this.userID = userID;
-	}
-	public Long getUserID_not() {
-		return userID_not;
-	}
+	private Integer parentUserId_not = null;
 
-	public void setUserID_not(Long userID_not) {
-		this.userID_not = userID_not;
-	}
-	public Long getUserID_large() {
-		return userID_large;
+	private Integer parentUserId_large = null;
+
+	private Integer parentUserId_moreLarge = null;
+
+	private Integer parentUserId_from = null;
+
+	private Integer parentUserId_to = null;
+
+	private Integer parentUserId_moreSmall = null;
+
+	private Integer parentUserId_small = null;
+
+	private List parentUserId_in = null;
+
+	private Boolean parentUserId_isNull = null;
+
+	private Boolean parentUserId_isNotNull = null;
+
+	private boolean parentUserId_isASC = true;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUserID_large(Long userID_large) {
-		this.userID_large = userID_large;
-	}
-	public Long getUserID_moreLarge() {
-		return userID_moreLarge;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public void setUserID_moreLarge(Long userID_moreLarge) {
-		this.userID_moreLarge = userID_moreLarge;
-	}
-	public Long getUserID_from() {
-		return userID_from;
+	public Long getUserId_not() {
+		return userId_not;
 	}
 
-	public void setUserID_from(Long userID_from) {
-		this.userID_from = userID_from;
-	}
-	public Long getUserID_to() {
-		return userID_to;
+	public void setUserId_not(Long userId_not) {
+		this.userId_not = userId_not;
 	}
 
-	public void setUserID_to(Long userID_to) {
-		this.userID_to = userID_to;
-	}
-	public Long getUserID_moreSmall() {
-		return userID_moreSmall;
+	public Long getUserId_large() {
+		return userId_large;
 	}
 
-	public void setUserID_moreSmall(Long userID_moreSmall) {
-		this.userID_moreSmall = userID_moreSmall;
-	}
-	public Long getUserID_small() {
-		return userID_small;
+	public void setUserId_large(Long userId_large) {
+		this.userId_large = userId_large;
 	}
 
-	public void setUserID_small(Long userID_small) {
-		this.userID_small = userID_small;
-	}
-	public List getUserID_in() {
-		return userID_in;
+	public Long getUserId_moreLarge() {
+		return userId_moreLarge;
 	}
 
-	public void setUserID_in(List userID_in) {
-		this.userID_in = userID_in;
-	}
-	public Boolean getUserID_isNull() {
-		return userID_isNull;
+	public void setUserId_moreLarge(Long userId_moreLarge) {
+		this.userId_moreLarge = userId_moreLarge;
 	}
 
-	public void setUserID_isNull(Boolean userID_isNull) {
-		this.userID_isNull = userID_isNull;
-	}
-	public Boolean getUserID_isNotNull() {
-		return userID_isNotNull;
+	public Long getUserId_from() {
+		return userId_from;
 	}
 
-	public void setUserID_isNotNull(Boolean userID_isNotNull) {
-		this.userID_isNotNull = userID_isNotNull;
-	}
-	public boolean getUserID_isASC() {
-		return userID_isASC;
+	public void setUserId_from(Long userId_from) {
+		this.userId_from = userId_from;
 	}
 
-	public void setUserID_isASC(boolean userID_isASC) {
-		this.userID_isASC = userID_isASC;
+	public Long getUserId_to() {
+		return userId_to;
 	}
+
+	public void setUserId_to(Long userId_to) {
+		this.userId_to = userId_to;
+	}
+
+	public Long getUserId_moreSmall() {
+		return userId_moreSmall;
+	}
+
+	public void setUserId_moreSmall(Long userId_moreSmall) {
+		this.userId_moreSmall = userId_moreSmall;
+	}
+
+	public Long getUserId_small() {
+		return userId_small;
+	}
+
+	public void setUserId_small(Long userId_small) {
+		this.userId_small = userId_small;
+	}
+
+	public List getUserId_in() {
+		return userId_in;
+	}
+
+	public void setUserId_in(List userId_in) {
+		this.userId_in = userId_in;
+	}
+
+	public Boolean getUserId_isNull() {
+		return userId_isNull;
+	}
+
+	public void setUserId_isNull(Boolean userId_isNull) {
+		this.userId_isNull = userId_isNull;
+	}
+
+	public Boolean getUserId_isNotNull() {
+		return userId_isNotNull;
+	}
+
+	public void setUserId_isNotNull(Boolean userId_isNotNull) {
+		this.userId_isNotNull = userId_isNotNull;
+	}
+
+	public boolean getUserId_isASC() {
+		return userId_isASC;
+	}
+
+	public void setUserId_isASC(boolean userId_isASC) {
+		this.userId_isASC = userId_isASC;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -156,6 +222,7 @@ public class BuriTestUserFindDto {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getUserName_not() {
 		return userName_not;
 	}
@@ -163,6 +230,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_not(String userName_not) {
 		this.userName_not = userName_not;
 	}
+
 	public String getUserName_large() {
 		return userName_large;
 	}
@@ -170,6 +238,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_large(String userName_large) {
 		this.userName_large = userName_large;
 	}
+
 	public String getUserName_moreLarge() {
 		return userName_moreLarge;
 	}
@@ -177,6 +246,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_moreLarge(String userName_moreLarge) {
 		this.userName_moreLarge = userName_moreLarge;
 	}
+
 	public String getUserName_from() {
 		return userName_from;
 	}
@@ -184,6 +254,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_from(String userName_from) {
 		this.userName_from = userName_from;
 	}
+
 	public String getUserName_to() {
 		return userName_to;
 	}
@@ -191,6 +262,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_to(String userName_to) {
 		this.userName_to = userName_to;
 	}
+
 	public String getUserName_moreSmall() {
 		return userName_moreSmall;
 	}
@@ -198,6 +270,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_moreSmall(String userName_moreSmall) {
 		this.userName_moreSmall = userName_moreSmall;
 	}
+
 	public String getUserName_small() {
 		return userName_small;
 	}
@@ -205,36 +278,40 @@ public class BuriTestUserFindDto {
 	public void setUserName_small(String userName_small) {
 		this.userName_small = userName_small;
 	}
+
 	public String getUserName_matchFull() {
-		if(userName_matchFull==null) {
+		if (userName_matchFull == null) {
 			return null;
 		}
-		return "%"+userName_matchFull+"%";
+		return "%" + userName_matchFull + "%";
 	}
 
 	public void setUserName_matchFull(String userName_matchFull) {
 		this.userName_matchFull = userName_matchFull;
 	}
+
 	public String getUserName_matchFront() {
-		if(userName_matchFront==null) {
+		if (userName_matchFront == null) {
 			return null;
 		}
-		return userName_matchFront+"%";
+		return userName_matchFront + "%";
 	}
 
 	public void setUserName_matchFront(String userName_matchFront) {
 		this.userName_matchFront = userName_matchFront;
 	}
+
 	public String getUserName_matchBack() {
-		if(userName_matchBack==null) {
+		if (userName_matchBack == null) {
 			return null;
 		}
-		return "%"+userName_matchBack;
+		return "%" + userName_matchBack;
 	}
 
 	public void setUserName_matchBack(String userName_matchBack) {
 		this.userName_matchBack = userName_matchBack;
 	}
+
 	public List getUserName_in() {
 		return userName_in;
 	}
@@ -242,6 +319,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_in(List userName_in) {
 		this.userName_in = userName_in;
 	}
+
 	public Boolean getUserName_isNull() {
 		return userName_isNull;
 	}
@@ -249,6 +327,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_isNull(Boolean userName_isNull) {
 		this.userName_isNull = userName_isNull;
 	}
+
 	public Boolean getUserName_isNotNull() {
 		return userName_isNotNull;
 	}
@@ -256,6 +335,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_isNotNull(Boolean userName_isNotNull) {
 		this.userName_isNotNull = userName_isNotNull;
 	}
+
 	public boolean getUserName_isASC() {
 		return userName_isASC;
 	}
@@ -263,6 +343,7 @@ public class BuriTestUserFindDto {
 	public void setUserName_isASC(boolean userName_isASC) {
 		this.userName_isASC = userName_isASC;
 	}
+
 	public String getRoleName() {
 		return roleName;
 	}
@@ -270,6 +351,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+
 	public String getRoleName_not() {
 		return roleName_not;
 	}
@@ -277,6 +359,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_not(String roleName_not) {
 		this.roleName_not = roleName_not;
 	}
+
 	public String getRoleName_large() {
 		return roleName_large;
 	}
@@ -284,6 +367,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_large(String roleName_large) {
 		this.roleName_large = roleName_large;
 	}
+
 	public String getRoleName_moreLarge() {
 		return roleName_moreLarge;
 	}
@@ -291,6 +375,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_moreLarge(String roleName_moreLarge) {
 		this.roleName_moreLarge = roleName_moreLarge;
 	}
+
 	public String getRoleName_from() {
 		return roleName_from;
 	}
@@ -298,6 +383,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_from(String roleName_from) {
 		this.roleName_from = roleName_from;
 	}
+
 	public String getRoleName_to() {
 		return roleName_to;
 	}
@@ -305,6 +391,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_to(String roleName_to) {
 		this.roleName_to = roleName_to;
 	}
+
 	public String getRoleName_moreSmall() {
 		return roleName_moreSmall;
 	}
@@ -312,6 +399,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_moreSmall(String roleName_moreSmall) {
 		this.roleName_moreSmall = roleName_moreSmall;
 	}
+
 	public String getRoleName_small() {
 		return roleName_small;
 	}
@@ -319,36 +407,40 @@ public class BuriTestUserFindDto {
 	public void setRoleName_small(String roleName_small) {
 		this.roleName_small = roleName_small;
 	}
+
 	public String getRoleName_matchFull() {
-		if(roleName_matchFull==null) {
+		if (roleName_matchFull == null) {
 			return null;
 		}
-		return "%"+roleName_matchFull+"%";
+		return "%" + roleName_matchFull + "%";
 	}
 
 	public void setRoleName_matchFull(String roleName_matchFull) {
 		this.roleName_matchFull = roleName_matchFull;
 	}
+
 	public String getRoleName_matchFront() {
-		if(roleName_matchFront==null) {
+		if (roleName_matchFront == null) {
 			return null;
 		}
-		return roleName_matchFront+"%";
+		return roleName_matchFront + "%";
 	}
 
 	public void setRoleName_matchFront(String roleName_matchFront) {
 		this.roleName_matchFront = roleName_matchFront;
 	}
+
 	public String getRoleName_matchBack() {
-		if(roleName_matchBack==null) {
+		if (roleName_matchBack == null) {
 			return null;
 		}
-		return "%"+roleName_matchBack;
+		return "%" + roleName_matchBack;
 	}
 
 	public void setRoleName_matchBack(String roleName_matchBack) {
 		this.roleName_matchBack = roleName_matchBack;
 	}
+
 	public List getRoleName_in() {
 		return roleName_in;
 	}
@@ -356,6 +448,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_in(List roleName_in) {
 		this.roleName_in = roleName_in;
 	}
+
 	public Boolean getRoleName_isNull() {
 		return roleName_isNull;
 	}
@@ -363,6 +456,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_isNull(Boolean roleName_isNull) {
 		this.roleName_isNull = roleName_isNull;
 	}
+
 	public Boolean getRoleName_isNotNull() {
 		return roleName_isNotNull;
 	}
@@ -370,6 +464,7 @@ public class BuriTestUserFindDto {
 	public void setRoleName_isNotNull(Boolean roleName_isNotNull) {
 		this.roleName_isNotNull = roleName_isNotNull;
 	}
+
 	public boolean getRoleName_isASC() {
 		return roleName_isASC;
 	}
@@ -377,134 +472,149 @@ public class BuriTestUserFindDto {
 	public void setRoleName_isASC(boolean roleName_isASC) {
 		this.roleName_isASC = roleName_isASC;
 	}
-	public Integer getParentUserID() {
-		return parentUserID;
+
+	public Integer getParentUserId() {
+		return parentUserId;
 	}
 
-	public void setParentUserID(Integer parentUserID) {
-		this.parentUserID = parentUserID;
-	}
-	public Integer getParentUserID_not() {
-		return parentUserID_not;
+	public void setParentUserId(Integer parentUserId) {
+		this.parentUserId = parentUserId;
 	}
 
-	public void setParentUserID_not(Integer parentUserID_not) {
-		this.parentUserID_not = parentUserID_not;
-	}
-	public Integer getParentUserID_large() {
-		return parentUserID_large;
+	public Integer getParentUserId_not() {
+		return parentUserId_not;
 	}
 
-	public void setParentUserID_large(Integer parentUserID_large) {
-		this.parentUserID_large = parentUserID_large;
-	}
-	public Integer getParentUserID_moreLarge() {
-		return parentUserID_moreLarge;
+	public void setParentUserId_not(Integer parentUserId_not) {
+		this.parentUserId_not = parentUserId_not;
 	}
 
-	public void setParentUserID_moreLarge(Integer parentUserID_moreLarge) {
-		this.parentUserID_moreLarge = parentUserID_moreLarge;
-	}
-	public Integer getParentUserID_from() {
-		return parentUserID_from;
+	public Integer getParentUserId_large() {
+		return parentUserId_large;
 	}
 
-	public void setParentUserID_from(Integer parentUserID_from) {
-		this.parentUserID_from = parentUserID_from;
-	}
-	public Integer getParentUserID_to() {
-		return parentUserID_to;
+	public void setParentUserId_large(Integer parentUserId_large) {
+		this.parentUserId_large = parentUserId_large;
 	}
 
-	public void setParentUserID_to(Integer parentUserID_to) {
-		this.parentUserID_to = parentUserID_to;
-	}
-	public Integer getParentUserID_moreSmall() {
-		return parentUserID_moreSmall;
+	public Integer getParentUserId_moreLarge() {
+		return parentUserId_moreLarge;
 	}
 
-	public void setParentUserID_moreSmall(Integer parentUserID_moreSmall) {
-		this.parentUserID_moreSmall = parentUserID_moreSmall;
-	}
-	public Integer getParentUserID_small() {
-		return parentUserID_small;
+	public void setParentUserId_moreLarge(Integer parentUserId_moreLarge) {
+		this.parentUserId_moreLarge = parentUserId_moreLarge;
 	}
 
-	public void setParentUserID_small(Integer parentUserID_small) {
-		this.parentUserID_small = parentUserID_small;
-	}
-	public List getParentUserID_in() {
-		return parentUserID_in;
+	public Integer getParentUserId_from() {
+		return parentUserId_from;
 	}
 
-	public void setParentUserID_in(List parentUserID_in) {
-		this.parentUserID_in = parentUserID_in;
-	}
-	public Boolean getParentUserID_isNull() {
-		return parentUserID_isNull;
+	public void setParentUserId_from(Integer parentUserId_from) {
+		this.parentUserId_from = parentUserId_from;
 	}
 
-	public void setParentUserID_isNull(Boolean parentUserID_isNull) {
-		this.parentUserID_isNull = parentUserID_isNull;
-	}
-	public Boolean getParentUserID_isNotNull() {
-		return parentUserID_isNotNull;
+	public Integer getParentUserId_to() {
+		return parentUserId_to;
 	}
 
-	public void setParentUserID_isNotNull(Boolean parentUserID_isNotNull) {
-		this.parentUserID_isNotNull = parentUserID_isNotNull;
-	}
-	public boolean getParentUserID_isASC() {
-		return parentUserID_isASC;
+	public void setParentUserId_to(Integer parentUserId_to) {
+		this.parentUserId_to = parentUserId_to;
 	}
 
-	public void setParentUserID_isASC(boolean parentUserID_isASC) {
-		this.parentUserID_isASC = parentUserID_isASC;
+	public Integer getParentUserId_moreSmall() {
+		return parentUserId_moreSmall;
 	}
 
+	public void setParentUserId_moreSmall(Integer parentUserId_moreSmall) {
+		this.parentUserId_moreSmall = parentUserId_moreSmall;
+	}
 
-    public void addOrderList(String order) {
-        orderList.add(order);
-    }
+	public Integer getParentUserId_small() {
+		return parentUserId_small;
+	}
 
-    public void addOrderList(String order,boolean isAsc) {
-        orderList.add(order);
-        ScriptProcessor processor = new ScriptProcessor();
-        processor.setValue(order.replace('.','_') + "_isASC",this,new Boolean(isAsc));
-    }
-    
-    public String getOrderList() {
-        String order = "";
-        String ORDER = "ORDER BY ";
-        Iterator ite = orderList.iterator();
-        ScriptProcessor processor = new ScriptProcessor();
-        while(ite.hasNext()) {
-            String orderTgt = (String)ite.next();
-            order = ORDER + order + orderTgt.replace('_','.') + " ";
-            Boolean var = (Boolean)processor.getValue(orderTgt + "_isASC", this);
-            if( ! var.booleanValue()) {
-                order = order + "DESC ";
-            }
-            ORDER = "";
-        }
-        return order;
-    }
+	public void setParentUserId_small(Integer parentUserId_small) {
+		this.parentUserId_small = parentUserId_small;
+	}
+
+	public List getParentUserId_in() {
+		return parentUserId_in;
+	}
+
+	public void setParentUserId_in(List parentUserId_in) {
+		this.parentUserId_in = parentUserId_in;
+	}
+
+	public Boolean getParentUserId_isNull() {
+		return parentUserId_isNull;
+	}
+
+	public void setParentUserId_isNull(Boolean parentUserId_isNull) {
+		this.parentUserId_isNull = parentUserId_isNull;
+	}
+
+	public Boolean getParentUserId_isNotNull() {
+		return parentUserId_isNotNull;
+	}
+
+	public void setParentUserId_isNotNull(Boolean parentUserId_isNotNull) {
+		this.parentUserId_isNotNull = parentUserId_isNotNull;
+	}
+
+	public boolean getParentUserId_isASC() {
+		return parentUserId_isASC;
+	}
+
+	public void setParentUserId_isASC(boolean parentUserId_isASC) {
+		this.parentUserId_isASC = parentUserId_isASC;
+	}
+
+	public void addOrderList(String order) {
+		orderList.add(order);
+	}
+
+	public void addOrderList(String order, boolean isAsc) {
+		orderList.add(order);
+		ScriptProcessor processor = new ScriptProcessor();
+		processor.setValue(
+		    order.replace('.', '_') + "_isASC",
+		    this,
+		    new Boolean(isAsc));
+	}
+
+	public String getOrderList() {
+		String order = "";
+		String ORDER = "ORDER BY ";
+		Iterator ite = orderList.iterator();
+		ScriptProcessor processor = new ScriptProcessor();
+		while (ite.hasNext()) {
+			String orderTgt = (String) ite.next();
+			order = ORDER + order + orderTgt.replace('_', '.') + " ";
+			Boolean var =
+			    (Boolean) processor.getValue(orderTgt + "_isASC", this);
+			if (!var.booleanValue()) {
+				order = order + "DESC ";
+			}
+			ORDER = "";
+		}
+		return order;
+	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/userID=").append(userID);
-		buff.append("/userID_not=").append(userID_not);
-		buff.append("/userID_large=").append(userID_large);
-		buff.append("/userID_moreLarge=").append(userID_moreLarge);
-		buff.append("/userID_from=").append(userID_from);
-		buff.append("/userID_to=").append(userID_to);
-		buff.append("/userID_moreSmall=").append(userID_moreSmall);
-		buff.append("/userID_small=").append(userID_small);
-		buff.append("/userID_in=").append(userID_in);
-		buff.append("/userID_isNull=").append(userID_isNull);
-		buff.append("/userID_isNotNull=").append(userID_isNotNull);
-		buff.append("/userID_isASC=").append(userID_isASC);
+		buff.append("/userId=").append(userId);
+		buff.append("/userId_not=").append(userId_not);
+		buff.append("/userId_large=").append(userId_large);
+		buff.append("/userId_moreLarge=").append(userId_moreLarge);
+		buff.append("/userId_from=").append(userId_from);
+		buff.append("/userId_to=").append(userId_to);
+		buff.append("/userId_moreSmall=").append(userId_moreSmall);
+		buff.append("/userId_small=").append(userId_small);
+		buff.append("/userId_in=").append(userId_in);
+		buff.append("/userId_isNull=").append(userId_isNull);
+		buff.append("/userId_isNotNull=").append(userId_isNotNull);
+		buff.append("/userId_isASC=").append(userId_isASC);
 		buff.append("/userName=").append(userName);
 		buff.append("/userName_not=").append(userName_not);
 		buff.append("/userName_large=").append(userName_large);
@@ -529,20 +639,19 @@ public class BuriTestUserFindDto {
 		buff.append("/roleName_isNull=").append(roleName_isNull);
 		buff.append("/roleName_isNotNull=").append(roleName_isNotNull);
 		buff.append("/roleName_isASC=").append(roleName_isASC);
-		buff.append("/parentUserID=").append(parentUserID);
-		buff.append("/parentUserID_not=").append(parentUserID_not);
-		buff.append("/parentUserID_large=").append(parentUserID_large);
-		buff.append("/parentUserID_moreLarge=").append(parentUserID_moreLarge);
-		buff.append("/parentUserID_from=").append(parentUserID_from);
-		buff.append("/parentUserID_to=").append(parentUserID_to);
-		buff.append("/parentUserID_moreSmall=").append(parentUserID_moreSmall);
-		buff.append("/parentUserID_small=").append(parentUserID_small);
-		buff.append("/parentUserID_in=").append(parentUserID_in);
-		buff.append("/parentUserID_isNull=").append(parentUserID_isNull);
-		buff.append("/parentUserID_isNotNull=").append(parentUserID_isNotNull);
-		buff.append("/parentUserID_isASC=").append(parentUserID_isASC);
+		buff.append("/parentUserId=").append(parentUserId);
+		buff.append("/parentUserId_not=").append(parentUserId_not);
+		buff.append("/parentUserId_large=").append(parentUserId_large);
+		buff.append("/parentUserId_moreLarge=").append(parentUserId_moreLarge);
+		buff.append("/parentUserId_from=").append(parentUserId_from);
+		buff.append("/parentUserId_to=").append(parentUserId_to);
+		buff.append("/parentUserId_moreSmall=").append(parentUserId_moreSmall);
+		buff.append("/parentUserId_small=").append(parentUserId_small);
+		buff.append("/parentUserId_in=").append(parentUserId_in);
+		buff.append("/parentUserId_isNull=").append(parentUserId_isNull);
+		buff.append("/parentUserId_isNotNull=").append(parentUserId_isNotNull);
+		buff.append("/parentUserId_isASC=").append(parentUserId_isASC);
 		buff.append("]");
 		return buff.toString();
 	}
-	
 }

@@ -45,9 +45,9 @@ public class ShippingSetDao {
 		}
 	}
 
-	public ShippingSetDto getShippingSetDto(long shippingID) {
+	public ShippingSetDto getShippingSetDto(Long shippingId) {
 		ShippingSetDto setDto = new ShippingSetDto();
-		ShippingDto dto = shippingDao.getShipping(shippingID);
+		ShippingDto dto = shippingDao.getShipping(shippingId);
 		if (dto == null) {
 			return setDto;
 		}
@@ -56,14 +56,14 @@ public class ShippingSetDao {
 		setDto.setOrderTitleId(dto.getOrderTitleId());
 		setDto.setShippingDate(dto.getShippingDate());
 		setDto.setShippingId(dto.getShippingId());
-		setDto.setItems(itemDao.getShippingItemByShippingID(shippingID));
+		setDto.setItems(itemDao.getShippingItemByShippingId(shippingId));
 		return setDto;
 	}
 
-	public ShippingSetDto getDtoByOrderTitleID(OrderInfoDto orderInfo) {
+	public ShippingSetDto getDtoByOrderTitleId(OrderInfoDto orderInfo) {
 		ShippingSetDto setDto = new ShippingSetDto();
 		ShippingDto dto =
-		    shippingDao.getShippingByOrderTitleID(orderInfo.getOrderTitleId());
+		    shippingDao.getShippingByOrderTitleId(orderInfo.getOrderTitleId());
 		if (dto == null) {
 			setDto.setCustomerId(orderInfo.getCustomerId());
 			setDto.setOrderTitleId(orderInfo.getOrderTitleId());

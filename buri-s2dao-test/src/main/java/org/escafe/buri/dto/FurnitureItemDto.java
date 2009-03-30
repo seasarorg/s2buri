@@ -5,30 +5,36 @@ import java.util.Date;
 import org.seasar.nadejako.annotation.NakoProperties;
 import org.seasar.nadejako.annotation.NakoProperty;
 
-@NakoProperties({
-	@NakoProperty(name="あいでぃー", property="furnitureID"),
-	@NakoProperty(name="種類", property="type"),
-	@NakoProperty(name="名前", property="name"),
-	@NakoProperty(name="取得日", property="acquisition"),
-	@NakoProperty(name="取得タイプ", property="acquisitionType")
-	})
+@NakoProperties( {
+    @NakoProperty(name = "あいでぃー", property = "furnitureId"),
+    @NakoProperty(name = "種類", property = "type"),
+    @NakoProperty(name = "名前", property = "name"),
+    @NakoProperty(name = "取得日", property = "acquisition"),
+    @NakoProperty(name = "取得タイプ", property = "acquisitionType") })
 public class FurnitureItemDto {
-	public static final String TABLE = "FurnitureItem";
+	public static final String TABLE = "FURNITURE_ITEM";
 
-	public static final String furnitureID_ID = "sequence, sequenceName=FurnitureItemID";
-	private long furnitureID;
+	public static final String furnitureId_ID =
+	    "sequence, sequenceName=FURNITURE_ITEM_SEQ";
+
+	private Long furnitureId;
+
 	private String type = "";
+
 	private String name = "";
+
 	private Date acquisition;
-	private int acquisitionType;
-	private int versionNo;
-	
-	public long getFurnitureID() {
-		return furnitureID;
+
+	private Integer acquisitionType;
+
+	private Long versionNo;
+
+	public Long getFurnitureId() {
+		return furnitureId;
 	}
 
-	public void setFurnitureID(long furnitureID) {
-		this.furnitureID = furnitureID;
+	public void setFurnitureId(Long furnitureId) {
+		this.furnitureId = furnitureId;
 	}
 
 	public String getType() {
@@ -59,35 +65,38 @@ public class FurnitureItemDto {
 		return acquisitionType;
 	}
 
-	public void setAcquisitionType(int acquisitionType) {
+	public void setAcquisitionType(Integer acquisitionType) {
 		this.acquisitionType = acquisitionType;
 	}
 
-	public int getVersionNo() {
+	public Long getVersionNo() {
 		return versionNo;
 	}
 
-	public void setVersionNo(int versionNo) {
+	public void setVersionNo(Long versionNo) {
 		this.versionNo = versionNo;
 	}
-    
-    public void setAcquisitionTypeBuy() {
-        acquisitionType = 0;
-    }
-    public void setAcquisitionTypeLease() {
-        acquisitionType = 1;
-    }
-    public boolean isBuying() {
-        return acquisitionType == 0;
-    }
-    public boolean isLease() {
-        return acquisitionType == 1;
-    }
+
+	public void setAcquisitionTypeBuy() {
+		acquisitionType = 0;
+	}
+
+	public void setAcquisitionTypeLease() {
+		acquisitionType = 1;
+	}
+
+	public boolean isBuying() {
+		return acquisitionType == 0;
+	}
+
+	public boolean isLease() {
+		return acquisitionType == 1;
+	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/furnitureID=").append(furnitureID);
+		buff.append("/furnitureId=").append(furnitureId);
 		buff.append("/type=").append(type);
 		buff.append("/name=").append(name);
 		buff.append("/acquisition=").append(acquisition);
@@ -96,5 +105,4 @@ public class FurnitureItemDto {
 		buff.append("]");
 		return buff.toString();
 	}
-	
 }

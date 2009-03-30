@@ -7,47 +7,86 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class ItemFindDto {
-	public static final String TABLE = "Item";
+	public static final String TABLE = "ITEM";
+
 	private final ArrayList orderList = new ArrayList();
 
 	private Long itemId = null;
+
 	private Long itemId_not = null;
+
 	private Long itemId_large = null;
+
 	private Long itemId_moreLarge = null;
+
 	private Long itemId_from = null;
+
 	private Long itemId_to = null;
+
 	private Long itemId_moreSmall = null;
+
 	private Long itemId_small = null;
+
 	private List itemId_in = null;
+
 	private Boolean itemId_isNull = null;
+
 	private Boolean itemId_isNotNull = null;
+
 	private boolean itemId_isASC = true;
+
 	private String itemName = null;
+
 	private String itemName_not = null;
+
 	private String itemName_large = null;
+
 	private String itemName_moreLarge = null;
+
 	private String itemName_from = null;
+
 	private String itemName_to = null;
+
 	private String itemName_moreSmall = null;
+
 	private String itemName_small = null;
+
 	private String itemName_matchFull = null;
+
 	private String itemName_matchFront = null;
+
 	private String itemName_matchBack = null;
+
 	private List itemName_in = null;
+
 	private Boolean itemName_isNull = null;
+
 	private Boolean itemName_isNotNull = null;
+
 	private boolean itemName_isASC = true;
+
 	private Long price = null;
+
 	private Long price_not = null;
+
 	private Long price_large = null;
+
 	private Long price_moreLarge = null;
+
 	private Long price_from = null;
+
 	private Long price_to = null;
+
 	private Long price_moreSmall = null;
+
 	private Long price_small = null;
+
 	private List price_in = null;
+
 	private Boolean price_isNull = null;
+
 	private Boolean price_isNotNull = null;
+
 	private boolean price_isASC = true;
 
 	public Long getItemId() {
@@ -378,8 +417,10 @@ public class ItemFindDto {
 	public void addOrderList(String order, boolean isAsc) {
 		orderList.add(order);
 		ScriptProcessor processor = new ScriptProcessor();
-		processor.setValue(order.replace('.', '_') + "_isASC", this,
-				new Boolean(isAsc));
+		processor.setValue(
+		    order.replace('.', '_') + "_isASC",
+		    this,
+		    new Boolean(isAsc));
 	}
 
 	public String getOrderList() {
@@ -390,8 +431,8 @@ public class ItemFindDto {
 		while (ite.hasNext()) {
 			String orderTgt = (String) ite.next();
 			order = ORDER + order + orderTgt.replace('_', '.') + " ";
-			Boolean var = (Boolean) processor.getValue(orderTgt + "_isASC",
-					this);
+			Boolean var =
+			    (Boolean) processor.getValue(orderTgt + "_isASC", this);
 			if (!var.booleanValue()) {
 				order = order + "DESC ";
 			}
@@ -442,5 +483,4 @@ public class ItemFindDto {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

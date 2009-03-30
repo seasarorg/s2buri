@@ -1,46 +1,48 @@
 package org.escafe.buri.dto;
 
 public class BuriTestINTDto {
+	public static final String TABLE = "BURI_TEST_INT";
 
-    public static final String TABLE = "BuriTestINT";
+	public static final String testId_ID =
+	    "sequence, sequenceName=BURI_TEST_INT_SEQ";
 
-    public static final String testID_ID = "sequence, sequenceName=BuriTestINTID";
-    private long testID;
-    private String value = "";
-    private int versionNo;
+	private Long testId;
 
-    public long getTestID() {
-        return testID;
-    }
+	private String value = "";
 
-    public void setTestID(long testID) {
-        this.testID = testID;
-    }
+	private Long versionNo;
 
-    public String getValue() {
-        return value;
-    }
+	public Long getTestId() {
+		return testId;
+	}
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	public void setTestId(Long testId) {
+		this.testId = testId;
+	}
 
-    public int getVersionNo() {
-        return versionNo;
-    }
+	public String getValue() {
+		return value;
+	}
 
-    public void setVersionNo(int versionNo) {
-        this.versionNo = versionNo;
-    }
+	public void setValue(String value) {
+		this.value = value;
+	}
 
-    @Override
-    public String toString() {
-        StringBuffer buff = new StringBuffer("[");
-        buff.append("/testID=").append(testID);
-        buff.append("/value=").append(value);
-        buff.append("/versionNo=").append(versionNo);
-        buff.append("]");
-        return buff.toString();
-    }
+	public Long getVersionNo() {
+		return versionNo;
+	}
 
+	public void setVersionNo(Long versionNo) {
+		this.versionNo = versionNo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer buff = new StringBuffer("[");
+		buff.append("/testId=").append(testId);
+		buff.append("/value=").append(value);
+		buff.append("/versionNo=").append(versionNo);
+		buff.append("]");
+		return buff.toString();
+	}
 }

@@ -42,8 +42,8 @@ public class OrderInfoDao {
 		}
 	}
 
-	public OrderInfoDto getOrderInfo(long orderTitleID) {
-		OrderTitleDto titleDto = titleDao.getOrderTitle(orderTitleID);
+	public OrderInfoDto getOrderInfo(Long orderTitleId) {
+		OrderTitleDto titleDto = titleDao.getOrderTitle(orderTitleId);
 		if (titleDto == null) {
 			return null;
 		}
@@ -52,8 +52,7 @@ public class OrderInfoDao {
 		info.setCustomerId(titleDto.getCustomerId());
 		info.setOrderDate(titleDto.getOrderDate());
 		info.setStatus(titleDto.getStatus());
-		List<OrderDetailDto> details =
-		    detailDao.getOrderDetailByTitleId(orderTitleID);
+		List details = detailDao.getOrderDetailByTitleId(orderTitleId);
 		info.setOrderDetail(details);
 		return info;
 	}

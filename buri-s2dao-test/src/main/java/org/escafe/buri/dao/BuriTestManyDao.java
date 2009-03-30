@@ -8,20 +8,20 @@ import java.util.List;
 
 import org.escafe.buri.dto.BuriTestManyDto;
 
-
 public interface BuriTestManyDao {
-    public Class BEAN = BuriTestManyDto.class;
+	public Class BEAN = BuriTestManyDto.class;
 
-    public List getAllBuriTestMany();
+	public List<BuriTestManyDto> getAllBuriTestMany();
 
-    public String getBuriTestMany_ARGS = "testID01,testID02";
-    public BuriTestManyDto getBuriTestMany(long testID01,long testID02);
-    
-    public String insert_ARGS = "dto";
-    public void insert(BuriTestManyDto dto);
-    
-    public void update(BuriTestManyDto dto);
-    
-    public void delete(BuriTestManyDto dto);
+	public String getBuriTestMany_ARGS = "testId01,testId02";
 
+	public BuriTestManyDto getBuriTestMany(Long testId01, Long testId02);
+
+	public String insert_ARGS = "dto";
+
+	public void insert(BuriTestManyDto entity);
+
+	public void update(BuriTestManyDto entity);
+
+	public void delete(BuriTestManyDto entity);
 }

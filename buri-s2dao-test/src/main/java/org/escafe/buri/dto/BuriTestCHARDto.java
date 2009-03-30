@@ -5,38 +5,38 @@
 package org.escafe.buri.dto;
 
 public class BuriTestCHARDto {
-    public static final String TABLE = "BuriTestCHAR";
+	public static final String TABLE = "BURI_TEST_CHAR";
 
-//    public static final String testID_ID = "assigned";
-    private String testID;
-    private String value;
-    private int versionNo;
+	private String testId;
 
-    public BuriTestCHARDto() {
-    }
+	private String value;
 
-    public String getTestID() {
-        return testID;
-    }
+	private int versionNo;
 
-    public void setTestID(String testID) {
-        this.testID = testID;
-    }
+	public BuriTestCHARDto() {
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public String getTestId() {
+		return testId;
+	}
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	public void setTestId(String testId) {
+		this.testId = testId;
+	}
 
-    public int getVersionNo() {
-        return versionNo;
-    }
+	public String getValue() {
+		return value;
+	}
 
-    public void setVersionNo(int versionNo) {
-        this.versionNo = versionNo;
-    }
+	public void setValue(String value) {
+		this.value = value;
+	}
 
+	public int getVersionNo() {
+		return versionNo;
+	}
+
+	public void setVersionNo(int versionNo) {
+		this.versionNo = versionNo;
+	}
 }

@@ -35,10 +35,8 @@ public interface ShippingItemDao {
 	public String getShippingItemByShippingId_QUERY =
 	    "SHIPPING_ID = /*shippingId*/0";
 
-	public List<ShippingItemDto> getShippingItemByShippingID(Long shippingId);
+	public List<ShippingItemDto> getShippingItemByShippingId(Long shippingId);
 
-	// public String soleMatch_ARGS = "dto";
-	// public ShippingItemDto soleMatch(ShippingItemFindDto dto);
 	public void insert(ShippingItemDto entity);
 
 	public void update(ShippingItemDto entity);

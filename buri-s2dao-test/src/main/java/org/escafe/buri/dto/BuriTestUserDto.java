@@ -3,27 +3,31 @@ package org.escafe.buri.dto;
 import org.seasar.nadejako.annotation.NakoProperties;
 import org.seasar.nadejako.annotation.NakoProperty;
 
-@NakoProperties({
-	@NakoProperty(name="あいでぃー", property="userID"),
-	@NakoProperty(name="ユーザ名", property="userName"),
-	@NakoProperty(name="権限名", property="roleName"),
-	@NakoProperty(name="上司", property="parentUserID")
-	})
+@NakoProperties( {
+    @NakoProperty(name = "あいでぃー", property = "userId"),
+    @NakoProperty(name = "ユーザ名", property = "userName"),
+    @NakoProperty(name = "権限名", property = "roleName"),
+    @NakoProperty(name = "上司", property = "parentUserId") })
 public class BuriTestUserDto {
-	public static final String TABLE = "BuriTestUser";
+	public static final String TABLE = "BURI_TEST_USER";
 
-	public static final String userID_ID = "sequence, sequenceName=BuriTestUserID";
-	private long userID;
+	public static final String userId_ID =
+	    "sequence, sequenceName=BURI_TEST_USER_SEQ";
+
+	private Long userId;
+
 	private String userName = "";
+
 	private String roleName = "";
-	private int parentUserID;
-	
-	public long getUserID() {
-		return userID;
+
+	private int parentUserId;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUserID(long userID) {
-		this.userID = userID;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -42,23 +46,22 @@ public class BuriTestUserDto {
 		this.roleName = roleName;
 	}
 
-	public int getParentUserID() {
-		return parentUserID;
+	public int getParentUserId() {
+		return parentUserId;
 	}
 
-	public void setParentUserID(int parentUserID) {
-		this.parentUserID = parentUserID;
+	public void setParentUserId(int parentUserId) {
+		this.parentUserId = parentUserId;
 	}
 
 	@Override
-    public String toString() {
+	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/userID=").append(userID);
+		buff.append("/userId=").append(userId);
 		buff.append("/userName=").append(userName);
 		buff.append("/roleName=").append(roleName);
-		buff.append("/parentUserID=").append(parentUserID);
+		buff.append("/parentUserId=").append(parentUserId);
 		buff.append("]");
 		return buff.toString();
 	}
-	
 }

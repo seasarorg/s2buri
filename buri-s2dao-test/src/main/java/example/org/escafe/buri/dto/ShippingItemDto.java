@@ -3,9 +3,13 @@ package example.org.escafe.buri.dto;
 public class ShippingItemDto {
 	public static final String TABLE = "SHIPPING_ITEM";
 
-	public static final String shippingItemID_ID = "sequence, sequenceName=SHIPPING_ITEM_SEQ";
+	public static final String shippingItemId_ID =
+	    "sequence, sequenceName=SHIPPING_ITEM_SEQ";
+
 	private Long shippingItemId;
+
 	private Long orderDetailId;
+
 	private Long shippingId;
 
 	public long getShippingItemId() {
@@ -41,5 +45,4 @@ public class ShippingItemDto {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

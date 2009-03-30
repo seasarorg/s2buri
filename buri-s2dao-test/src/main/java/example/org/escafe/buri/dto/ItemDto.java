@@ -4,8 +4,11 @@ public class ItemDto {
 	public static final String TABLE = "ITEM";
 
 	public static final String itemId_ID = "sequence, sequenceName=ITEM_SEQ";
+
 	private Long itemId;
+
 	private String itemName = "";
+
 	private Long price;
 
 	public Long getItemId() {
@@ -35,11 +38,10 @@ public class ItemDto {
 	@Override
 	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/itemID=").append(itemId);
+		buff.append("/itemId=").append(itemId);
 		buff.append("/itemName=").append(itemName);
 		buff.append("/price=").append(price);
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

@@ -6,33 +6,43 @@ import org.escafe.buri.dto.BuriTestUserDto;
 import org.escafe.buri.dto.BuriTestUserFindDto;
 
 public interface BuriTestUserDao {
-    public Class BEAN = BuriTestUserDto.class;
+	public Class<?> BEAN = BuriTestUserDto.class;
 
-    public List<BuriTestUserDto> getAllBuriTestUser();
+	public List<BuriTestUserDto> getAllBuriTestUser();
 
-    public String getBuriTestUser_QUERY = "userID = ?";
-    public BuriTestUserDto getBuriTestUser(long userID);
+	public String getBuriTestUser_QUERY = "USER_ID = ?";
 
-    public String getBuriTestUserByIds_ARGS = "userIDs";
-    public String getBuriTestUserByIds_QUERY = "userID in /*userIDs*/(1)";
-    public List<BuriTestUserDto> getBuriTestUserByIds(List userIDs);
-    
-    public String find_ARGS = "dto,paths";
-    public List<BuriTestUserDto> find(BuriTestUserFindDto dto,List paths);
-    
-    public String findAndUser_ARGS = "dto,paths,userIDs";
-    public List<BuriTestUserDto> findAndUser(BuriTestUserFindDto dto,List paths,List userIDs);
+	public BuriTestUserDto getBuriTestUser(Long userId);
 
-    public String getUserListByParentUserID_ARGS = "parentUserID,roleName";
-    public List<BuriTestUserDto> getUserListByParentUserID(Long userID,String roleName);
+	public String getBuriTestUserByIds_ARGS = "userIds";
 
-    public String getUserListByUserID_ARGS = "userID,roleName";
-    public List<BuriTestUserDto> getUserListByUserID(Long userID,String roleName);
+	public String getBuriTestUserByIds_QUERY = "USER_ID in /*userIds*/(1)";
 
-    public void insert(BuriTestUserDto dto);
-    
-    public void update(BuriTestUserDto dto);
-    
-    public void delete(BuriTestUserDto dto);
+	public List<BuriTestUserDto> getBuriTestUserByIds(List<Long> userIds);
+
+	public String find_ARGS = "dto,paths";
+
+	public List<BuriTestUserDto> find(BuriTestUserFindDto dto,
+	        List<String> paths);
+
+	public String findAndUser_ARGS = "dto,paths,userIds";
+
+	public List<BuriTestUserDto> findAndUser(BuriTestUserFindDto dto,
+	        List<String> paths, List<Long> userIds);
+
+	public String getUserListByParentUserId_ARGS = "parentUserId,roleName";
+
+	public List<BuriTestUserDto> getUserListByParentUserId(Long userId,
+	        String roleName);
+
+	public String getUserListByUserId_ARGS = "userId,roleName";
+
+	public List<BuriTestUserDto> getUserListByUserId(Long userId,
+	        String roleName);
+
+	public void insert(BuriTestUserDto entity);
+
+	public void update(BuriTestUserDto entity);
+
+	public void delete(BuriTestUserDto entity);
 }
-

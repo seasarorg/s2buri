@@ -16,27 +16,26 @@ import example.org.escafe.buri.dto.OrderInfoDto;
 import example.org.escafe.buri.dto.ShippingSetDto;
 
 @Buri(process = "注文管理.出荷", dtoClass = ShippingSetDto.class)
-@BuriConverter( { @BuriConversionRule(convertClass = Long.class, ognl = "ShippingSetDao.getShippingSetDto(#data)"),
-    @BuriConversionRule(convertClass = OrderInfoDto.class, ognl = "ShippingSetDao.getDtoByOrderTitleID(#data)") })
+@BuriConverter( {
+    @BuriConversionRule(convertClass = Long.class, ognl = "shippingSetDao.getShippingSetDto(#data)"),
+    @BuriConversionRule(convertClass = OrderInfoDto.class, ognl = "shippingSetDao.getDtoByOrderTitleId(#data)") })
 public interface ShippingBao {
+	@BuriActivity("商品待ち")
+	public List getNowWaiting();
 
-    @BuriActivity("商品待ち")
-    public List getNowWaiting();
+	@BuriActivity("出荷済み")
+	public List getEndShipping();
 
-    @BuriActivity("出荷済み")
-    public List getEndShipping();
+	@BuriActivity("キャンセル済み")
+	public List getShippingCancel();
 
-    @BuriActivity("キャンセル済み")
-    public List getShippingCancel();
+	@BuriActivity("出荷依頼")
+	public void shipping(OrderInfoDto dto);
 
-    @BuriActivity("出荷依頼")
-    public void shipping(OrderInfoDto dto);
+	@BuriActivity("商品待ち")
+	public void checkEdnShipping(Long shippingId);
 
-    @BuriActivity("商品待ち")
-    public void checkEdnShipping(long shippingID);
-
-    @BuriActivity("商品待ち")
-    @BuriAction("cancel")
-    public void cancel(OrderInfoDto dto);
-
+	@BuriActivity("商品待ち")
+	@BuriAction("cancel")
+	public void cancel(OrderInfoDto dto);
 }
