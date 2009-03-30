@@ -3,25 +3,30 @@ package example.org.escafe.buri.dto;
 public class OrderDetailDto {
 	public static final String TABLE = "ORDER_DETAIL";
 
-	public static final String orderDetailId_ID = "sequence, sequenceName=ORDER_DETAIL_SEQ";
+	public static final String orderDetailId_ID =
+	    "sequence, sequenceName=ORDER_DETAIL_SEQ";
+
 	private Long orderDetailId;
+
 	private Integer orderCount;
+
 	private Long itemId;
+
 	private Long orderTitleId;
 
-	public long getOrderDetailId() {
+	public Long getOrderDetailId() {
 		return orderDetailId;
 	}
 
-	public void setOrderDetailId(long orderDetailID) {
+	public void setOrderDetailId(Long orderDetailID) {
 		this.orderDetailId = orderDetailID;
 	}
 
-	public int getOrderCount() {
+	public Integer getOrderCount() {
 		return orderCount;
 	}
 
-	public void setOrderCount(int orderCount) {
+	public void setOrderCount(Integer orderCount) {
 		this.orderCount = orderCount;
 	}
 
@@ -33,7 +38,7 @@ public class OrderDetailDto {
 		this.itemId = itemId;
 	}
 
-	public long getOrderTitleId() {
+	public Long getOrderTitleId() {
 		return orderTitleId;
 	}
 
@@ -51,5 +56,4 @@ public class OrderDetailDto {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

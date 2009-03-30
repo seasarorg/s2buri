@@ -6,17 +6,22 @@ public class BillDto {
 	public static final String TABLE = "BILL";
 
 	public static final String billId_ID = "sequence, sequenceName=BILL_SEQ";
-	private long billId;
-	private Date billDate;
-	private long shippingId;
-	private long orderTitleId;
-	private long customerId;
 
-	public long getBillId() {
+	private Long billId;
+
+	private Date billDate;
+
+	private Long shippingId;
+
+	private Long orderTitleId;
+
+	private Long customerId;
+
+	public Long getBillId() {
 		return billId;
 	}
 
-	public void setBillId(long billId) {
+	public void setBillId(Long billId) {
 		this.billId = billId;
 	}
 
@@ -28,27 +33,27 @@ public class BillDto {
 		this.billDate = billDate;
 	}
 
-	public long getShippingId() {
+	public Long getShippingId() {
 		return shippingId;
 	}
 
-	public void setShippingId(long shippingId) {
+	public void setShippingId(Long shippingId) {
 		this.shippingId = shippingId;
 	}
 
-	public long getOrderTitleId() {
+	public Long getOrderTitleId() {
 		return orderTitleId;
 	}
 
-	public void setOrderTitleId(long orderTitleId) {
+	public void setOrderTitleId(Long orderTitleId) {
 		this.orderTitleId = orderTitleId;
 	}
 
-	public long getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 
@@ -63,5 +68,4 @@ public class BillDto {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

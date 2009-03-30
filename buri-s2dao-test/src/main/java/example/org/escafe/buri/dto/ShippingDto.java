@@ -5,17 +5,22 @@ import java.util.Date;
 public class ShippingDto {
 	public static final String TABLE = "SHIPPING";
 
-	public static final String shippingId_ID = "sequence, sequenceName=SHIPPING_SEQ";
+	public static final String shippingId_ID =
+	    "sequence, sequenceName=SHIPPING_SEQ";
+
 	private Long shippingId;
+
 	private Date shippingDate = new Date(8070, 11, 31, 23, 59, 59);
+
 	private Long orderTitleId;
+
 	private Long customerId;
 
 	public Long getShippingId() {
 		return shippingId;
 	}
 
-	public void setShippingID(Long shippingId) {
+	public void setShippingId(Long shippingId) {
 		this.shippingId = shippingId;
 	}
 
@@ -46,12 +51,11 @@ public class ShippingDto {
 	@Override
 	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
-		buff.append("/shippingID=").append(shippingId);
+		buff.append("/shippingId=").append(shippingId);
 		buff.append("/shippingDate=").append(shippingDate);
-		buff.append("/orderTitleID=").append(orderTitleId);
-		buff.append("/customerID=").append(customerId);
+		buff.append("/orderTitleId=").append(orderTitleId);
+		buff.append("/customerId=").append(customerId);
 		buff.append("]");
 		return buff.toString();
 	}
-
 }
