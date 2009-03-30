@@ -30,12 +30,12 @@ public interface BuriTestUserDao {
 	public List<BuriTestUserDto> findAndUser(BuriTestUserFindDto dto,
 	        List<String> paths, List<Long> userIds);
 
-	public String getUserListByParentUserId_ARGS = "parentUserId,roleName";
+	public String getUserListByParentUserId_ARGS = "PARENT_USER_ID,ROLE_NAME";
 
 	public List<BuriTestUserDto> getUserListByParentUserId(Long userId,
 	        String roleName);
 
-	public String getUserListByUserId_ARGS = "userId,roleName";
+	public String getUserListByUserId_ARGS = "USER_ID,ROLE_NAME";
 
 	public List<BuriTestUserDto> getUserListByUserId(Long userId,
 	        String roleName);

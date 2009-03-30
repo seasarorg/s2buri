@@ -20,7 +20,7 @@ public class BuriTestUserDto {
 
 	private String roleName = "";
 
-	private int parentUserId;
+	private Long parentUserId;
 
 	public Long getUserId() {
 		return userId;
@@ -46,11 +46,11 @@ public class BuriTestUserDto {
 		this.roleName = roleName;
 	}
 
-	public int getParentUserId() {
+	public Long getParentUserId() {
 		return parentUserId;
 	}
 
-	public void setParentUserId(int parentUserId) {
+	public void setParentUserId(Long parentUserId) {
 		this.parentUserId = parentUserId;
 	}
 

@@ -9,11 +9,11 @@ import java.util.List;
 import org.escafe.buri.dto.BuriTestManyDto;
 
 public interface BuriTestManyDao {
-	public Class BEAN = BuriTestManyDto.class;
+	public Class<?> BEAN = BuriTestManyDto.class;
 
 	public List<BuriTestManyDto> getAllBuriTestMany();
 
-	public String getBuriTestMany_ARGS = "testId01,testId02";
+	public String getBuriTestMany_ARGS = "TEST_ID01,TEST_ID02";
 
 	public BuriTestManyDto getBuriTestMany(Long testId01, Long testId02);
 
