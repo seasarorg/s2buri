@@ -1,54 +1,50 @@
-select
-		ShippingItem.orderDetailID as orderDetailID
-	,ShippingItem.shippingID as shippingID
-	,ShippingItem.shippingItemID as shippingItemID
-from
-	ShippingItem
-	,BuriPathDataUser
+SELECT
+	SHIPPING_ITEM.ORDER_DETAIL_ID AS ORDER_DETAIL_ID,
+	SHIPPING_ITEM.SHIPPING_ID AS SHIPPING_ID,
+	SHIPPING_ITEM.SHIPPING_ITEM_ID AS SHIPPING_ITEM_ID
+FROM
+	SHIPPING_ITEM,
+	BURI_PATH_DATA_USER
 /*BEGIN*/
-where
-	
-	/*IF dto.orderDetailID != null*/ orderDetailID = /*dto.orderDetailID*/0/*END*/
-	/*IF dto.orderDetailID_not != null*/AND orderDetailID != /*dto.orderDetailID_not*/0/*END*/
-	/*IF dto.orderDetailID_large != null*/AND  /*dto.orderDetailID_large*/0 < orderDetailID/*END*/
-	/*IF dto.orderDetailID_moreLarge != null*/AND  /*dto.orderDetailID_moreLarge*/0 <= orderDetailID/*END*/
-	/*IF dto.orderDetailID_from != null*/AND  /*dto.orderDetailID_from*/0 <= orderDetailID/*END*/
-	/*IF dto.orderDetailID_to != null*/AND orderDetailID <= /*dto.orderDetailID_to*/0/*END*/
-	/*IF dto.orderDetailID_moreSmall != null*/AND orderDetailID <= /*dto.orderDetailID_moreSmall*/0/*END*/
-	/*IF dto.orderDetailID_small != null*/AND orderDetailID < /*dto.orderDetailID_small*/0/*END*/
-	/*IF dto.orderDetailID_isNull != null*/AND orderDetailID is null /*END*/
-	/*IF dto.orderDetailID_isNotNull != null*/AND orderDetailID is not null/*END*/
-	/*IF dto.orderDetailID_in != null*/AND orderDetailID in /*dto.orderDetailID_in*/(0)/*END*/
+WHERE
+	/*IF dto.orderDetailId != null*/ ORDER_DETAIL_ID = /*dto.orderDetailId*/0/*END*/
+	/*IF dto.orderDetailId_not != null*/AND ORDER_DETAIL_ID != /*dto.orderDetailId_not*/0/*END*/
+	/*IF dto.orderDetailId_large != null*/AND  /*dto.orderDetailId_large*/0 < orderDetailId/*END*/
+	/*IF dto.orderDetailId_moreLarge != null*/AND  /*dto.orderDetailId_moreLarge*/0 <= orderDetailId/*END*/
+	/*IF dto.orderDetailId_from != null*/AND  /*dto.orderDetailId_from*/0 <= orderDetailId/*END*/
+	/*IF dto.orderDetailId_to != null*/AND ORDER_DETAIL_ID <= /*dto.orderDetailId_to*/0/*END*/
+	/*IF dto.orderDetailId_moreSmall != null*/AND ORDER_DETAIL_ID <= /*dto.orderDetailId_moreSmall*/0/*END*/
+	/*IF dto.orderDetailId_small != null*/AND ORDER_DETAIL_ID < /*dto.orderDetailId_small*/0/*END*/
+	/*IF dto.orderDetailId_isNull != null*/AND ORDER_DETAIL_ID is null /*END*/
+	/*IF dto.orderDetailId_isNotNull != null*/AND ORDER_DETAIL_ID is not null/*END*/
+	/*IF dto.orderDetailId_in != null*/AND ORDER_DETAIL_ID in /*dto.orderDetailId_in*/(0)/*END*/
 
+	/*IF dto.shippingId != null*/AND SHIPPING_ID = /*dto.shippingId*/0/*END*/
+	/*IF dto.shippingId_not != null*/AND SHIPPING_ID != /*dto.shippingId_not*/0/*END*/
+	/*IF dto.shippingId_large != null*/AND  /*dto.shippingId_large*/0 < SHIPPING_ID/*END*/
+	/*IF dto.shippingId_moreLarge != null*/AND  /*dto.shippingId_moreLarge*/0 <= SHIPPING_ID/*END*/
+	/*IF dto.shippingId_from != null*/AND  /*dto.shippingId_from*/0 <= SHIPPING_ID/*END*/
+	/*IF dto.shippingId_to != null*/AND SHIPPING_ID <= /*dto.shippingId_to*/0/*END*/
+	/*IF dto.shippingId_moreSmall != null*/AND SHIPPING_ID <= /*dto.shippingId_moreSmall*/0/*END*/
+	/*IF dto.shippingId_small != null*/AND SHIPPING_ID < /*dto.shippingId_small*/0/*END*/
+	/*IF dto.shippingId_isNull != null*/AND SHIPPING_ID is null /*END*/
+	/*IF dto.shippingId_isNotNull != null*/AND SHIPPING_ID is not null/*END*/
+	/*IF dto.shippingId_in != null*/AND SHIPPING_ID in /*dto.shippingId_in*/(0)/*END*/
 	
-	/*IF dto.shippingID != null*/AND shippingID = /*dto.shippingID*/0/*END*/
-	/*IF dto.shippingID_not != null*/AND shippingID != /*dto.shippingID_not*/0/*END*/
-	/*IF dto.shippingID_large != null*/AND  /*dto.shippingID_large*/0 < shippingID/*END*/
-	/*IF dto.shippingID_moreLarge != null*/AND  /*dto.shippingID_moreLarge*/0 <= shippingID/*END*/
-	/*IF dto.shippingID_from != null*/AND  /*dto.shippingID_from*/0 <= shippingID/*END*/
-	/*IF dto.shippingID_to != null*/AND shippingID <= /*dto.shippingID_to*/0/*END*/
-	/*IF dto.shippingID_moreSmall != null*/AND shippingID <= /*dto.shippingID_moreSmall*/0/*END*/
-	/*IF dto.shippingID_small != null*/AND shippingID < /*dto.shippingID_small*/0/*END*/
-	/*IF dto.shippingID_isNull != null*/AND shippingID is null /*END*/
-	/*IF dto.shippingID_isNotNull != null*/AND shippingID is not null/*END*/
-	/*IF dto.shippingID_in != null*/AND shippingID in /*dto.shippingID_in*/(0)/*END*/
+	/*IF dto.shippingItemId != null*/AND SHIPPING_ITEM_ID = /*dto.shippingItemId*/0/*END*/
+	/*IF dto.shippingItemId_not != null*/AND SHIPPING_ITEM_ID != /*dto.shippingItemId_not*/0/*END*/
+	/*IF dto.shippingItemId_large != null*/AND  /*dto.shippingItemId_large*/0 < SHIPPING_ITEM_ID/*END*/
+	/*IF dto.shippingItemId_moreLarge != null*/AND  /*dto.shippingItemId_moreLarge*/0 <= SHIPPING_ITEM_ID/*END*/
+	/*IF dto.shippingItemId_from != null*/AND  /*dto.shippingItemId_from*/0 <= SHIPPING_ITEM_ID/*END*/
+	/*IF dto.shippingItemId_to != null*/AND SHIPPING_ITEM_ID <= /*dto.shippingItemId_to*/0/*END*/
+	/*IF dto.shippingItemId_moreSmall != null*/AND SHIPPING_ITEM_ID <= /*dto.shippingItemId_moreSmall*/0/*END*/
+	/*IF dto.shippingItemId_small != null*/AND SHIPPING_ITEM_ID < /*dto.shippingItemId_small*/0/*END*/
+	/*IF dto.shippingItemId_isNull != null*/AND SHIPPING_ITEM_ID is null /*END*/
+	/*IF dto.shippingItemId_isNotNull != null*/AND SHIPPING_ITEM_ID is not null/*END*/
+	/*IF dto.shippingItemId_in != null*/AND SHIPPING_ITEM_ID in /*dto.shippingItemId_in*/(0)/*END*/
 
-	
-	/*IF dto.shippingItemID != null*/AND shippingItemID = /*dto.shippingItemID*/0/*END*/
-	/*IF dto.shippingItemID_not != null*/AND shippingItemID != /*dto.shippingItemID_not*/0/*END*/
-	/*IF dto.shippingItemID_large != null*/AND  /*dto.shippingItemID_large*/0 < shippingItemID/*END*/
-	/*IF dto.shippingItemID_moreLarge != null*/AND  /*dto.shippingItemID_moreLarge*/0 <= shippingItemID/*END*/
-	/*IF dto.shippingItemID_from != null*/AND  /*dto.shippingItemID_from*/0 <= shippingItemID/*END*/
-	/*IF dto.shippingItemID_to != null*/AND shippingItemID <= /*dto.shippingItemID_to*/0/*END*/
-	/*IF dto.shippingItemID_moreSmall != null*/AND shippingItemID <= /*dto.shippingItemID_moreSmall*/0/*END*/
-	/*IF dto.shippingItemID_small != null*/AND shippingItemID < /*dto.shippingItemID_small*/0/*END*/
-	/*IF dto.shippingItemID_isNull != null*/AND shippingItemID is null /*END*/
-	/*IF dto.shippingItemID_isNotNull != null*/AND shippingItemID is not null/*END*/
-	/*IF dto.shippingItemID_in != null*/AND shippingItemID in /*dto.shippingItemID_in*/(0)/*END*/
-
-	AND ShippingItem.shippingItemID = BuriPathDataUser.pkeyNum
-	/*IF paths != null*/AND BuriPathDataUser.PathName in /*paths*/('buri.path.names')/*END*/
-	/*IF userIDs != null*/AND BuriPathDataUser.BuriUserID in /*userIDs*/(1)/*END*/
-	
+	AND SHIPPING_ITEM.SHIPPING_ITEM_ID = BURI_PATH_DATA_USER.PKEY_NUM
+	/*IF paths != null*/AND BURI_PATH_DATA_USER.PATH_NAME in /*paths*/('buri.path.names')/*END*/
+	/*IF userIds != null*/AND BURI_PATH_DATA_USER.BURI_USER_ID in /*userIds*/(1)/*END*/
 /*END*/
 /*$dto.orderList*/
