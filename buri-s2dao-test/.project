@@ -15,9 +15,20 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.seasar.kijimuna.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.seasar.kijimuna.core.validator</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.devzuz.q.maven.jdt.core.mavenNature</nature>
+		<nature>org.seasar.kijimuna.core.nature</nature>
 	</natures>
 </projectDescription>

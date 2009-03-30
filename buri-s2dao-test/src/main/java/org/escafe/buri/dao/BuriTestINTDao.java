@@ -29,7 +29,7 @@ public interface BuriTestINTDao {
 	public List<BuriTestINTDto> findAndUser(BuriTestINTFindDto dto,
 	        List<String> paths, List<Long> userIds);
 
-	public String getBuriTestINTByIdAndDto_ARGS = "testIDs,dto";
+	public String getBuriTestINTByIdAndDto_ARGS = "testIds,dto";
 
 	public String getBuriTestINTByIdAndDto_QUERY =
 	    "TEST_ID IN /*testIds*/(1) and value = /*dto.value*/'hoge'";

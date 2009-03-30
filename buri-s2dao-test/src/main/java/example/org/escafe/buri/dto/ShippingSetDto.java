@@ -23,7 +23,7 @@ public class ShippingSetDto extends ShippingDto {
 	public String toString() {
 		StringBuffer buff = new StringBuffer("{");
 		buff.append(super.toString());
-		buff.append("/items=").append(shippingItemList);
+		buff.append("/shippingItemList=").append(shippingItemList);
 		buff.append("}");
 		return buff.toString();
 	}
