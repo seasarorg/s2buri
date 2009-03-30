@@ -6,30 +6,34 @@ import example.org.escafe.buri.dto.BillDto;
 import example.org.escafe.buri.dto.BillFindDto;
 
 public interface BillDao {
-    public Class BEAN = BillDto.class;
+	public Class<?> BEAN = BillDto.class;
 
-    public List getAllBill();
+	public List<BillDto> getAllBill();
 
-    public String getBill_QUERY = "billID = ?";
-    public BillDto getBill(long billID);
+	public String getBill_QUERY = "BILL_ID = ?";
 
-    public String getBillByIds_ARGS = "billIDs";
-    public String getBillByIds_QUERY = "billID in /*billIDs*/(1)";
-    public List getBillByIds(List billIDs);
-    
-    public String find_ARGS = "dto,paths";
-    public List find(BillFindDto dto,List paths);
-    
-    public String findAndUser_ARGS = "dto,paths,userIDs";
-    public List findAndUser(BillFindDto dto,List paths,List userIDs);
+	public BillDto getBill(long billID);
 
-    //public String soleMatch_ARGS = "dto";
-    //public BillDto soleMatch(BillFindDto dto);
-    
-    public void insert(BillDto dto);
-    
-    public void update(BillDto dto);
-    
-    public void delete(BillDto dto);
+	public String getBillByIds_ARGS = "billIds";
+
+	public String getBillByIds_QUERY = "BILL_ID in /*billIds*/(1)";
+
+	public List<BillDto> getBillByIds(List<Long> billIds);
+
+	public String find_ARGS = "dto,paths";
+
+	public List<BillDto> find(BillFindDto dto, List<String> paths);
+
+	public String findAndUser_ARGS = "dto,paths,userIds";
+
+	public List<BillDto> findAndUser(BillFindDto dto, List<String> paths,
+	        List<Long> userIds);
+
+	// public String soleMatch_ARGS = "dto";
+	// public BillDto soleMatch(BillFindDto dto);
+	public void insert(BillDto entity);
+
+	public void update(BillDto entity);
+
+	public void delete(BillDto entity);
 }
-

@@ -6,32 +6,35 @@ import example.org.escafe.buri.dto.OrderDetailDto;
 import example.org.escafe.buri.dto.OrderDetailFindDto;
 
 public interface OrderDetailDao {
-    public Class BEAN = OrderDetailDto.class;
+	public Class<?> BEAN = OrderDetailDto.class;
 
-    public List getAllOrderDetail();
+	public List<OrderDetailDto> getAllOrderDetail();
 
-    public String getOrderDetail_QUERY = "orderDetailID = ?";
-    public OrderDetailDto getOrderDetail(long orderDetailID);
+	public String getOrderDetail_QUERY = "ORDER_DETAIL_ID = ?";
 
+	public OrderDetailDto getOrderDetail(Long orderDetailId);
 
-    public String find_ARGS = "dto,paths";
-    public List find(OrderDetailFindDto dto,List paths);
-    
-    public String findAndUser_ARGS = "dto,paths,userIDs";
-    public List findAndUser(OrderDetailFindDto dto,List paths,List userIDs);
-    
-    public String getOrderDetailByTitleID_ARGS = "orderTitleID";
-    public String getOrderDetailByTitleID_QUERY = "orderTitleID = /*orderTitleID*/0";
-    public List getOrderDetailByTitleID(long orderTitleID);
-    
+	public String find_ARGS = "dto,paths";
 
-    //public String soleMatch_ARGS = "dto";
-    //public OrderDetailDto soleMatch(OrderDetailFindDto dto);
-    
-    public void insert(OrderDetailDto dto);
-    
-    public void update(OrderDetailDto dto);
-    
-    public void delete(OrderDetailDto dto);
+	public List<OrderDetailDto> find(OrderDetailFindDto dto, List<String> paths);
+
+	public String findAndUser_ARGS = "dto,paths,userIds";
+
+	public List<OrderDetailDto> findAndUser(OrderDetailFindDto dto,
+	        List<String> paths, List<Long> userIds);
+
+	public String getOrderDetailByTitleID_ARGS = "orderTitleId";
+
+	public String getOrderDetailByTitleID_QUERY =
+	    "ORDER_TITLE_ID = /*orderTitleId*/0";
+
+	public List<OrderDetailDto> getOrderDetailByTitleId(Long orderTitleId);
+
+	// public String soleMatch_ARGS = "dto";
+	// public OrderDetailDto soleMatch(OrderDetailFindDto dto);
+	public void insert(OrderDetailDto entity);
+
+	public void update(OrderDetailDto entity);
+
+	public void delete(OrderDetailDto entity);
 }
-

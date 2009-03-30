@@ -6,35 +6,42 @@ import example.org.escafe.buri.dto.ShippingItemDto;
 import example.org.escafe.buri.dto.ShippingItemFindDto;
 
 public interface ShippingItemDao {
-    public Class BEAN = ShippingItemDto.class;
+	public Class<?> BEAN = ShippingItemDto.class;
 
-    public List getAllShippingItem();
+	public List<ShippingItemDto> getAllShippingItem();
 
-    public String getShippingItem_QUERY = "shippingItemID = ?";
-    public ShippingItemDto getShippingItem(long shippingItemID);
+	public String getShippingItem_QUERY = "SHIPPING_ITEM_ID = ?";
 
-    public String getShippingItemByIds_ARGS = "shippingItemIDs";
-    public String getShippingItemByIds_QUERY = "shippingItemID in /*shippingItemIDs*/(1)";
-    public List getShippingItemByIds(List shippingItemIDs);
-    
-    public String find_ARGS = "dto,paths";
-    public List find(ShippingItemFindDto dto,List paths);
-    
-    public String findAndUser_ARGS = "dto,paths,userIDs";
-    public List findAndUser(ShippingItemFindDto dto,List paths,List userIDs);
-    
-    public String getShippingItemByShippingID_ARGS = "shippingID";
-    public String getShippingItemByShippingID_QUERY = "shippingID = /*shippingID*/0";
-    public List getShippingItemByShippingID(long shippingID);
+	public ShippingItemDto getShippingItem(Long shippingItemId);
 
+	public String getShippingItemByIds_ARGS = "shippingItemIds";
 
-    //public String soleMatch_ARGS = "dto";
-    //public ShippingItemDto soleMatch(ShippingItemFindDto dto);
-    
-    public void insert(ShippingItemDto dto);
-    
-    public void update(ShippingItemDto dto);
-    
-    public void delete(ShippingItemDto dto);
+	public String getShippingItemByIds_QUERY =
+	    "SHIPPING_ITEM_ID in /*shippingItemIds*/(1)";
+
+	public List<ShippingItemDto> getShippingItemByIds(List<Long> shippingItemIds);
+
+	public String find_ARGS = "dto,paths";
+
+	public List<ShippingItemDto> find(ShippingItemFindDto dto, List paths);
+
+	public String findAndUser_ARGS = "dto,paths,userIDs";
+
+	public List<ShippingItemDto> findAndUser(ShippingItemFindDto dto,
+	        List paths, List userIds);
+
+	public String getShippingItemByShippingId_ARGS = "shippingId";
+
+	public String getShippingItemByShippingId_QUERY =
+	    "SHIPPING_ID = /*shippingId*/0";
+
+	public List<ShippingItemDto> getShippingItemByShippingID(Long shippingId);
+
+	// public String soleMatch_ARGS = "dto";
+	// public ShippingItemDto soleMatch(ShippingItemFindDto dto);
+	public void insert(ShippingItemDto entity);
+
+	public void update(ShippingItemDto entity);
+
+	public void delete(ShippingItemDto entity);
 }
-
