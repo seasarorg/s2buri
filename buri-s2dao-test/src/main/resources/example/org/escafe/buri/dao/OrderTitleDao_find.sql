@@ -1,67 +1,64 @@
-select
-		OrderTitle.orderTitleID as orderTitleID
-	,OrderTitle.orderDate as orderDate
-	,OrderTitle.customerID as customerID
-	,OrderTitle.status as status
-from
-	OrderTitle
-	,BuriPathData
+SELECT
+	ORDER_TITLE.ORDER_TITLE_ID AS ORDER_TITLE_ID,
+	ORDER_TITLE.ORDER_DATE AS ORDER_DATE,
+	ORDER_TITLE.CUSTOMER_ID AS CUSTOMER_ID,
+	ORDER_TITLE.STATUS AS STATUS
+FROM
+	ORDER_TITLE,
+	BURI_PATH_DATA
 /*BEGIN*/
-where
+WHERE
+	/*IF dto.orderTitleId != null*/ ORDER_TITLE_ID = /*dto.orderTitleId*/0/*END*/
+	/*IF dto.orderTitleId_not != null*/AND ORDER_TITLE_ID != /*dto.orderTitleId_not*/0/*END*/
+	/*IF dto.orderTitleId_large != null*/AND  /*dto.orderTitleId_large*/0 < ORDER_TITLE_ID/*END*/
+	/*IF dto.orderTitleId_moreLarge != null*/AND  /*dto.orderTitleId_moreLarge*/0 <= ORDER_TITLE_ID/*END*/
+	/*IF dto.orderTitleId_from != null*/AND  /*dto.orderTitleId_from*/0 <= ORDER_TITLE_ID/*END*/
+	/*IF dto.orderTitleId_to != null*/AND ORDER_TITLE_ID <= /*dto.orderTitleId_to*/0/*END*/
+	/*IF dto.orderTitleId_moreSmall != null*/AND ORDER_TITLE_ID <= /*dto.orderTitleId_moreSmall*/0/*END*/
+	/*IF dto.orderTitleId_small != null*/AND ORDER_TITLE_ID < /*dto.orderTitleId_small*/0/*END*/
+	/*IF dto.orderTitleId_isNull != null*/AND ORDER_TITLE_ID is null /*END*/
+	/*IF dto.orderTitleId_isNotNull != null*/AND ORDER_TITLE_ID is not null/*END*/
+	/*IF dto.orderTitleId_in != null*/AND ORDER_TITLE_ID in /*dto.orderTitleId_in*/(0)/*END*/
 	
-	/*IF dto.orderTitleID != null*/ orderTitleID = /*dto.orderTitleID*/0/*END*/
-	/*IF dto.orderTitleID_not != null*/AND orderTitleID != /*dto.orderTitleID_not*/0/*END*/
-	/*IF dto.orderTitleID_large != null*/AND  /*dto.orderTitleID_large*/0 < orderTitleID/*END*/
-	/*IF dto.orderTitleID_moreLarge != null*/AND  /*dto.orderTitleID_moreLarge*/0 <= orderTitleID/*END*/
-	/*IF dto.orderTitleID_from != null*/AND  /*dto.orderTitleID_from*/0 <= orderTitleID/*END*/
-	/*IF dto.orderTitleID_to != null*/AND orderTitleID <= /*dto.orderTitleID_to*/0/*END*/
-	/*IF dto.orderTitleID_moreSmall != null*/AND orderTitleID <= /*dto.orderTitleID_moreSmall*/0/*END*/
-	/*IF dto.orderTitleID_small != null*/AND orderTitleID < /*dto.orderTitleID_small*/0/*END*/
-	/*IF dto.orderTitleID_isNull != null*/AND orderTitleID is null /*END*/
-	/*IF dto.orderTitleID_isNotNull != null*/AND orderTitleID is not null/*END*/
-	/*IF dto.orderTitleID_in != null*/AND orderTitleID in /*dto.orderTitleID_in*/(0)/*END*/
+	/*IF dto.orderDate != null*/AND ORDER_DATE = /*dto.orderDate*/Timestamp/*END*/
+	/*IF dto.orderDate_not != null*/AND ORDER_DATE != /*dto.orderDate_not*/Timestamp/*END*/
+	/*IF dto.orderDate_large != null*/AND  /*dto.orderDate_large*/Timestamp < ORDER_DATE/*END*/
+	/*IF dto.orderDate_moreLarge != null*/AND  /*dto.orderDate_moreLarge*/Timestamp <= ORDER_DATE/*END*/
+	/*IF dto.orderDate_from != null*/AND  /*dto.orderDate_from*/Timestamp <= ORDER_DATE/*END*/
+	/*IF dto.orderDate_to != null*/AND ORDER_DATE <= /*dto.orderDate_to*/Timestamp/*END*/
+	/*IF dto.orderDate_moreSmall != null*/AND ORDER_DATE <= /*dto.orderDate_moreSmall*/Timestamp/*END*/
+	/*IF dto.orderDate_small != null*/AND ORDER_DATE < /*dto.orderDate_small*/Timestamp/*END*/
+	/*IF dto.orderDate_isNull != null*/AND ORDER_DATE is null /*END*/
+	/*IF dto.orderDate_isNotNull != null*/AND ORDER_DATE is not null/*END*/
+	/*IF dto.orderDate_in != null*/AND ORDER_DATE in /*dto.orderDate_in*/(Timestamp)/*END*/
 
 	
-	/*IF dto.orderDate != null*/AND orderDate = /*dto.orderDate*/Timestamp/*END*/
-	/*IF dto.orderDate_not != null*/AND orderDate != /*dto.orderDate_not*/Timestamp/*END*/
-	/*IF dto.orderDate_large != null*/AND  /*dto.orderDate_large*/Timestamp < orderDate/*END*/
-	/*IF dto.orderDate_moreLarge != null*/AND  /*dto.orderDate_moreLarge*/Timestamp <= orderDate/*END*/
-	/*IF dto.orderDate_from != null*/AND  /*dto.orderDate_from*/Timestamp <= orderDate/*END*/
-	/*IF dto.orderDate_to != null*/AND orderDate <= /*dto.orderDate_to*/Timestamp/*END*/
-	/*IF dto.orderDate_moreSmall != null*/AND orderDate <= /*dto.orderDate_moreSmall*/Timestamp/*END*/
-	/*IF dto.orderDate_small != null*/AND orderDate < /*dto.orderDate_small*/Timestamp/*END*/
-	/*IF dto.orderDate_isNull != null*/AND orderDate is null /*END*/
-	/*IF dto.orderDate_isNotNull != null*/AND orderDate is not null/*END*/
-	/*IF dto.orderDate_in != null*/AND orderDate in /*dto.orderDate_in*/(Timestamp)/*END*/
+	/*IF dto.customerId != null*/AND CUSTOMER_ID = /*dto.customerId*/0/*END*/
+	/*IF dto.customerId_not != null*/AND CUSTOMER_ID != /*dto.customerId_not*/0/*END*/
+	/*IF dto.customerId_large != null*/AND  /*dto.customerId_large*/0 < CUSTOMER_ID/*END*/
+	/*IF dto.customerId_moreLarge != null*/AND  /*dto.customerId_moreLarge*/0 <= CUSTOMER_ID/*END*/
+	/*IF dto.customerId_from != null*/AND  /*dto.customerId_from*/0 <= CUSTOMER_ID/*END*/
+	/*IF dto.customerId_to != null*/AND CUSTOMER_ID <= /*dto.customerId_to*/0/*END*/
+	/*IF dto.customerId_moreSmall != null*/AND CUSTOMER_ID <= /*dto.customerId_moreSmall*/0/*END*/
+	/*IF dto.customerId_small != null*/AND CUSTOMER_ID < /*dto.customerId_small*/0/*END*/
+	/*IF dto.customerId_isNull != null*/AND CUSTOMER_ID IS NULL/*END*/
+	/*IF dto.customerId_isNotNull != null*/AND CUSTOMER_ID IS NOT NULL/*END*/
+	/*IF dto.customerId_in != null*/AND CUSTOMER_ID IN/*dto.customerId_in*/(0)/*END*/
 
 	
-	/*IF dto.customerID != null*/AND customerID = /*dto.customerID*/0/*END*/
-	/*IF dto.customerID_not != null*/AND customerID != /*dto.customerID_not*/0/*END*/
-	/*IF dto.customerID_large != null*/AND  /*dto.customerID_large*/0 < customerID/*END*/
-	/*IF dto.customerID_moreLarge != null*/AND  /*dto.customerID_moreLarge*/0 <= customerID/*END*/
-	/*IF dto.customerID_from != null*/AND  /*dto.customerID_from*/0 <= customerID/*END*/
-	/*IF dto.customerID_to != null*/AND customerID <= /*dto.customerID_to*/0/*END*/
-	/*IF dto.customerID_moreSmall != null*/AND customerID <= /*dto.customerID_moreSmall*/0/*END*/
-	/*IF dto.customerID_small != null*/AND customerID < /*dto.customerID_small*/0/*END*/
-	/*IF dto.customerID_isNull != null*/AND customerID is null /*END*/
-	/*IF dto.customerID_isNotNull != null*/AND customerID is not null/*END*/
-	/*IF dto.customerID_in != null*/AND customerID in /*dto.customerID_in*/(0)/*END*/
+	/*IF dto.status != null*/AND STATUS = /*dto.status*/Integer/*END*/
+	/*IF dto.status_not != null*/AND STATUS != /*dto.status_not*/Integer/*END*/
+	/*IF dto.status_large != null*/AND  /*dto.status_large*/Integer < STATUS/*END*/
+	/*IF dto.status_moreLarge != null*/AND  /*dto.status_moreLarge*/Integer <= STATUS/*END*/
+	/*IF dto.status_from != null*/AND  /*dto.status_from*/Integer <= STATUS/*END*/
+	/*IF dto.status_to != null*/AND STATUS <= /*dto.status_to*/Integer/*END*/
+	/*IF dto.status_moreSmall != null*/AND STATUS <= /*dto.status_moreSmall*/Integer/*END*/
+	/*IF dto.status_small != null*/AND STATUS < /*dto.status_small*/Integer/*END*/
+	/*IF dto.status_isNull != null*/AND STATUS IS NULL/*END*/
+	/*IF dto.status_isNotNull != null*/AND STATUS IS NOT NULL/*END*/
+	/*IF dto.status_in != null*/AND STATUS IN/*dto.status_in*/(Integer)/*END*/
 
-	
-	/*IF dto.status != null*/AND status = /*dto.status*/Integer/*END*/
-	/*IF dto.status_not != null*/AND status != /*dto.status_not*/Integer/*END*/
-	/*IF dto.status_large != null*/AND  /*dto.status_large*/Integer < status/*END*/
-	/*IF dto.status_moreLarge != null*/AND  /*dto.status_moreLarge*/Integer <= status/*END*/
-	/*IF dto.status_from != null*/AND  /*dto.status_from*/Integer <= status/*END*/
-	/*IF dto.status_to != null*/AND status <= /*dto.status_to*/Integer/*END*/
-	/*IF dto.status_moreSmall != null*/AND status <= /*dto.status_moreSmall*/Integer/*END*/
-	/*IF dto.status_small != null*/AND status < /*dto.status_small*/Integer/*END*/
-	/*IF dto.status_isNull != null*/AND status is null /*END*/
-	/*IF dto.status_isNotNull != null*/AND status is not null/*END*/
-	/*IF dto.status_in != null*/AND status in /*dto.status_in*/(Integer)/*END*/
-
-	AND OrderTitle.orderTitleID = BuriPathData.pkeyNum
-	/*IF paths != null*/AND BuriPathData.PathName in /*paths*/('buri.path.names')/*END*/
-	
+	AND ORDER_TITLE.ORDER_TITLE_ID = BURI_PATH_DATA.PKEY_NUM
+	/*IF paths != null*/AND BURI_PATH_DATA.PATH_NAME in /*paths*/('buri.path.names')/*END*/
 /*END*/
 /*$dto.orderList*/
