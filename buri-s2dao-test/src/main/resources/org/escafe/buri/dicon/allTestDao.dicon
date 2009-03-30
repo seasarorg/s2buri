@@ -5,27 +5,27 @@
 	<include path="dao.dicon"/>
 	<include path="aop.dicon"/>
 
-	<component name="buriTestUserDao" class="org.escafe.buri.s2dao.dao.BuriTestUserDao">
+	<component name="buriTestUserDao" class="org.escafe.buri.dao.BuriTestUserDao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>
 
-	<component name="buriTestCHARDao" class="org.escafe.buri.s2dao.dao.BuriTestCHARDao">
+	<component name="buriTestCHARDao" class="org.escafe.buri.dao.BuriTestCHARDao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>
 
-	<component name="buriTestINTDao" class="org.escafe.buri.s2dao.dao.BuriTestINTDao">
+	<component name="buriTestINTDao" class="org.escafe.buri.dao.BuriTestINTDao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>
 
-	<component name="buriTestManyDao" class="org.escafe.buri.s2dao.dao.BuriTestManyDao">
+	<component name="buriTestManyDao" class="org.escafe.buri.dao.BuriTestManyDao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>
 
-	<component name="furnitureItemDao" class="org.escafe.buri.s2dao.dao.FurnitureItemDao">
+	<component name="furnitureItemDao" class="org.escafe.buri.dao.FurnitureItemDao">
 		<aspect>aop.traceInterceptor</aspect>
 		<aspect>dao.interceptor</aspect>
 	</component>

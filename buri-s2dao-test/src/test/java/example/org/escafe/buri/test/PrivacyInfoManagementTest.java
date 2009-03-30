@@ -6,9 +6,9 @@ package example.org.escafe.buri.test;
 
 import java.util.List;
 
+import org.escafe.buri.dao.BuriTestUserDao;
 import org.escafe.buri.dto.BuriTestUserDto;
 import org.escafe.buri.s2dao.bao.PrivacyInfoManagementBao;
-import org.escafe.buri.s2dao.dao.BuriTestUserDao;
 import org.seasar.extension.unit.S2TestCase;
 
 import example.org.escafe.buri.dao.ItemDao;
