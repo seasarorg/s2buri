@@ -8,21 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderInfoDto extends OrderTitleDto {
-	private List<OrderDetailDto> orderDetail = new ArrayList<OrderDetailDto>();
+	private List<OrderDetailDto> orderDetailList =
+	    new ArrayList<OrderDetailDto>();
 
-	public List<OrderDetailDto> getOrderDetail() {
-		return orderDetail;
+	public List<OrderDetailDto> getOrderDetailList() {
+		return orderDetailList;
 	}
 
-	public void setOrderDetail(List<OrderDetailDto> orderDetail) {
-		this.orderDetail = orderDetail;
+	public void setOrderDetailList(List<OrderDetailDto> orderDetailList) {
+		this.orderDetailList = orderDetailList;
 	}
 
 	@Override
 	public String toString() {
 		StringBuffer buff = new StringBuffer("{");
 		buff.append(super.toString());
-		buff.append("/orderDetail=").append(orderDetail);
+		buff.append("/orderDetailList=").append(orderDetailList);
 		buff.append("}");
 		return buff.toString();
 	}

@@ -18,10 +18,10 @@ public interface ShippingBao {
 	    new BuriConvert[] {
 	        new BuriConvert(
 	            Long.class,
-	            "ShippingSetDao.getShippingSetDto(#data)"),
+	            "shippingSetDao.getShippingSetDto(#data)"),
 	        new BuriConvert(
 	            OrderInfoDto.class,
-	            "ShippingSetDao.getDtoByOrderTitleId(#data)") };
+	            "shippingSetDao.getDtoByOrderTitleId(#data)") };
 
 	public static String getNowWaiting_ACTIVITY = "商品待ち";
 

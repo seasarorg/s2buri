@@ -16,7 +16,7 @@ import org.escafe.buri.annotation.BuriResult;
 import example.org.escafe.buri.dto.OrderInfoDto;
 
 @Buri(process = "注文管理.注文", dtoClass = OrderInfoDto.class)
-@BuriConverter( { @BuriConversionRule(convertClass = Long.class, ognl = "OrderInfoDao.getOrderInfo(#data)") })
+@BuriConverter( { @BuriConversionRule(convertClass = Long.class, ognl = "orderInfoDao.getOrderInfo(#data)") })
 public interface OrderBao {
 	@BuriActivity("出荷作業中")
 	public List getUnderWork();

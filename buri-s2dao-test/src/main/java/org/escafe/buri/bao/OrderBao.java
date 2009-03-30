@@ -16,7 +16,7 @@ public interface OrderBao {
 	public static BuriConvert CONVERTER[] =
 	    new BuriConvert[] { new BuriConvert(
 	        Long.class,
-	        "OrderInfoDao.getOrderInfo(#data)") };
+	        "orderInfoDao.getOrderInfo(#data)") };
 
 	public static String getUnderWork_ACTIVITY = "出荷作業中";
 

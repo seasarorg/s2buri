@@ -29,8 +29,6 @@ public interface BillDao {
 	public List<BillDto> findAndUser(BillFindDto dto, List<String> paths,
 	        List<Long> userIds);
 
-	// public String soleMatch_ARGS = "dto";
-	// public BillDto soleMatch(BillFindDto dto);
 	public void insert(BillDto entity);
 
 	public void update(BillDto entity);

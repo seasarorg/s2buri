@@ -33,7 +33,7 @@ public interface ShippingBao {
 	public void shipping(OrderInfoDto dto);
 
 	@BuriActivity("商品待ち")
-	public void checkEdnShipping(Long shippingId);
+	public void checkEndShipping(Long shippingId);
 
 	@BuriActivity("商品待ち")
 	@BuriAction("cancel")

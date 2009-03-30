@@ -12,7 +12,7 @@ public class ShippingItemDto {
 
 	private Long shippingId;
 
-	public long getShippingItemId() {
+	public Long getShippingItemId() {
 		return shippingItemId;
 	}
 

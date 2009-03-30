@@ -20,7 +20,7 @@ public class OrderInfoDao {
 
 	public void insert(OrderInfoDto orderInfo) {
 		titleDao.insert(orderInfo);
-		Iterator ite = orderInfo.getOrderDetail().iterator();
+		Iterator ite = orderInfo.getOrderDetailList().iterator();
 		while (ite.hasNext()) {
 			OrderDetailDto detailDto = (OrderDetailDto) ite.next();
 			detailDto.setOrderTitleId(orderInfo.getOrderTitleId());
@@ -30,7 +30,7 @@ public class OrderInfoDao {
 
 	public void update(OrderInfoDto orderInfo) {
 		titleDao.update(orderInfo);
-		Iterator ite = orderInfo.getOrderDetail().iterator();
+		Iterator ite = orderInfo.getOrderDetailList().iterator();
 		while (ite.hasNext()) {
 			OrderDetailDto detailDto = (OrderDetailDto) ite.next();
 			detailDto.setOrderTitleId(orderInfo.getOrderTitleId());
@@ -53,7 +53,7 @@ public class OrderInfoDao {
 		info.setOrderDate(titleDto.getOrderDate());
 		info.setStatus(titleDto.getStatus());
 		List details = detailDao.getOrderDetailByTitleId(orderTitleId);
-		info.setOrderDetail(details);
+		info.setOrderDetailList(details);
 		return info;
 	}
 

@@ -253,11 +253,11 @@ public class BaoTest extends S2TestCase {
 		OrderDetailDto detailDto = new OrderDetailDto();
 		detailDto.setItemId(商品2.getItemId());
 		detailDto.setOrderCount(1);
-		dto.getOrderDetail().add(detailDto);
+		dto.getOrderDetailList().add(detailDto);
 		detailDto = new OrderDetailDto();
 		detailDto.setItemId(商品3.getItemId());
 		detailDto.setOrderCount(2);
-		dto.getOrderDetail().add(detailDto);
+		dto.getOrderDetailList().add(detailDto);
 		return dto;
 	}
 
@@ -269,11 +269,11 @@ public class BaoTest extends S2TestCase {
 		OrderDetailDto detailDto = new OrderDetailDto();
 		detailDto.setItemId(商品4.getItemId());
 		detailDto.setOrderCount(2);
-		dto.getOrderDetail().add(detailDto);
+		dto.getOrderDetailList().add(detailDto);
 		detailDto = new OrderDetailDto();
 		detailDto.setItemId(商品5.getItemId());
 		detailDto.setOrderCount(1);
-		dto.getOrderDetail().add(detailDto);
+		dto.getOrderDetailList().add(detailDto);
 		return dto;
 	}
 
@@ -285,7 +285,7 @@ public class BaoTest extends S2TestCase {
 		OrderDetailDto detailDto = new OrderDetailDto();
 		detailDto.setItemId(商品1.getItemId());
 		detailDto.setOrderCount(5);
-		dto.getOrderDetail().add(detailDto);
+		dto.getOrderDetailList().add(detailDto);
 		return dto;
 	}
 

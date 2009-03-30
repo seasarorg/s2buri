@@ -23,7 +23,7 @@ public class ShippingSetDao {
 
 	public void insert(ShippingSetDto setDto) {
 		shippingDao.insert(setDto);
-		Iterator ite = setDto.getItems().iterator();
+		Iterator ite = setDto.getShippingItemList().iterator();
 		while (ite.hasNext()) {
 			ShippingItemDto itemDto = (ShippingItemDto) ite.next();
 			itemDto.setShippingId(setDto.getShippingId());
@@ -33,7 +33,7 @@ public class ShippingSetDao {
 
 	public void update(ShippingSetDto setDto) {
 		shippingDao.update(setDto);
-		Iterator ite = setDto.getItems().iterator();
+		Iterator ite = setDto.getShippingItemList().iterator();
 		while (ite.hasNext()) {
 			ShippingItemDto itemDto = (ShippingItemDto) ite.next();
 			itemDto.setShippingId(setDto.getShippingId());
@@ -56,7 +56,8 @@ public class ShippingSetDao {
 		setDto.setOrderTitleId(dto.getOrderTitleId());
 		setDto.setShippingDate(dto.getShippingDate());
 		setDto.setShippingId(dto.getShippingId());
-		setDto.setItems(itemDao.getShippingItemByShippingId(shippingId));
+		setDto.setShippingItemList(itemDao
+		    .getShippingItemByShippingId(shippingId));
 		return setDto;
 	}
 
@@ -67,12 +68,12 @@ public class ShippingSetDao {
 		if (dto == null) {
 			setDto.setCustomerId(orderInfo.getCustomerId());
 			setDto.setOrderTitleId(orderInfo.getOrderTitleId());
-			Iterator ite = orderInfo.getOrderDetail().iterator();
+			Iterator ite = orderInfo.getOrderDetailList().iterator();
 			while (ite.hasNext()) {
 				OrderDetailDto detailDto = (OrderDetailDto) ite.next();
 				ShippingItemDto shippingItemDto = new ShippingItemDto();
 				shippingItemDto.setOrderDetailId(detailDto.getOrderDetailId());
-				setDto.getItems().add(shippingItemDto);
+				setDto.getShippingItemList().add(shippingItemDto);
 			}
 			return setDto;
 		}
