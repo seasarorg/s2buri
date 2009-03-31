@@ -16,7 +16,7 @@ public interface ItemDao {
 
 	public String getItemByIds_ARGS = "itemIds";
 
-	public String getItemByIds_QUERY = "ITEM_ID in /*itemIds*/(1)";
+	public String getItemByIds_QUERY = "ITEM_ID IN/*itemIds*/(1)";
 
 	public List<ItemDto> getItemByIds(List<Long> itemIds);
 

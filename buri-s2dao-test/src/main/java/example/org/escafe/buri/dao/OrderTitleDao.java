@@ -17,7 +17,7 @@ public interface OrderTitleDao {
 	public String getOrderTitleByIds_ARGS = "orderTitleIds";
 
 	public String getOrderTitleByIds_QUERY =
-	    "ORDER_TITLE_ID in /*orderTitleIds*/(1)";
+	    "ORDER_TITLE_ID IN/*orderTitleIds*/(1)";
 
 	public List<OrderTitleDto> getOrderTitleByIds(List<Long> orderTitleIds);
 

@@ -16,7 +16,7 @@ public interface CustomerDao {
 
 	public String getCustomerByIds_ARGS = "customerIds";
 
-	public String getCustomerByIds_QUERY = "CUSTOMER_ID in /*customerIds*/(1)";
+	public String getCustomerByIds_QUERY = "CUSTOMER_ID IN/*customerIds*/(1)";
 
 	public List<CustomerDto> getCustomerByIds(List<Long> customerIds);
 

@@ -16,7 +16,7 @@ public interface BillDao {
 
 	public String getBillByIds_ARGS = "billIds";
 
-	public String getBillByIds_QUERY = "BILL_ID in /*billIds*/(1)";
+	public String getBillByIds_QUERY = "BILL_ID IN/*billIds*/(1)";
 
 	public List<BillDto> getBillByIds(List<Long> billIds);
 

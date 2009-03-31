@@ -17,7 +17,7 @@ public interface ShippingItemDao {
 	public String getShippingItemByIds_ARGS = "shippingItemIds";
 
 	public String getShippingItemByIds_QUERY =
-	    "SHIPPING_ITEM_ID in /*shippingItemIds*/(1)";
+	    "SHIPPING_ITEM_ID IN/*shippingItemIds*/(1)";
 
 	public List<ShippingItemDto> getShippingItemByIds(List<Long> shippingItemIds);
 
