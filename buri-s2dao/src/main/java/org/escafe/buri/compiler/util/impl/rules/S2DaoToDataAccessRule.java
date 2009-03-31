@@ -24,7 +24,7 @@ import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 
 public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
-	private static Logger logger =
+	private static final Logger LOG =
 	    Logger.getLogger(S2DaoToDataAccessRule.class);
 
 	protected String daoKeyName = "dao";
