@@ -28,11 +28,10 @@ import org.seasar.framework.util.StringUtil;
  * DBFlute用Dao自動設定用クラス
  * 
  * @author a-conv
- * 
  */
 public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
-
-	private static Logger logger = Logger.getLogger(DBFluteToDataAccessRule.class);
+	private static final Logger LOG =
+	    Logger.getLogger(DBFluteToDataAccessRule.class);
 
 	protected String daoKeyName = "dao";
 
@@ -45,7 +44,7 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	private S2Container container;
 
 	private ClassDefUtil classDefUtil;
-	
+
 	private DataAccessRuleEventCaller dataAccessRuleEventCaller;
 
 	@Override
@@ -87,7 +86,6 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			return false;
 		}
 		if (src.getCache().containsKey(daoKeyName)) {
-
 		} else if (hasName(src, DAOKEY)) {
 			src.getCache().put(daoKeyName, getNameVal(src, DAOKEY));
 		}
@@ -104,7 +102,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		if (checkDBFluteComponent(dbFluteComponentName)) {
 			return true;
 		}
-		String customDBFluteComponentName = setupUseDBFluteCustomComponentName();
+		String customDBFluteComponentName =
+		    setupUseDBFluteCustomComponentName();
 		if (customDBFluteComponentName == null) {
 			return false;
 		}
@@ -121,7 +120,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 */
 	private String setupUseDBFluteCustomComponentName() {
 		String dbFluteInterceptorName = null;
-		List dbFluteInterceptorname = configuration.getValList("DBFluteComponentName");
+		List dbFluteInterceptorname =
+		    configuration.getValList("DBFluteComponentName");
 		Iterator ite = dbFluteInterceptorname.iterator();
 		while (ite.hasNext()) {
 			dbFluteInterceptorName = ite.next().toString();
@@ -155,9 +155,7 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			return false;
 		}
 		negotiateDao(src);
-		
 		dataAccessRuleEventCaller.endNegotiateDao(this, src);
-
 		src.getCache().put(daoKeyName + "_end", Boolean.TRUE);
 		return false;
 	}
@@ -167,19 +165,24 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		String daoName = getDaoName(src, dtoClassName);
 		if (daoName != null) {
 			src.getCache().put(daoKeyName, daoName);
-			Class daoClass = container.getRoot().getComponentDef(daoName).getComponentClass();
+			Class daoClass =
+			    container
+			        .getRoot()
+			        .getComponentDef(daoName)
+			        .getComponentClass();
 			pkeySetup(src);
-
 			if (src.getKeys().size() == 1) {
 				String keyName = src.getKeys().keySet().toArray()[0].toString();
-				BeanDesc beanDesc = BeanDescFactory.getBeanDesc(ClassUtil.forName(dtoClassName));
-				Class tgtClass = beanDesc.getPropertyDesc(keyName).getPropertyType();
+				BeanDesc beanDesc =
+				    BeanDescFactory
+				        .getBeanDesc(ClassUtil.forName(dtoClassName));
+				Class tgtClass =
+				    beanDesc.getPropertyDesc(keyName).getPropertyType();
 				src.getCache().put(daoKeyName + "_KeyType", tgtClass);
 				src.getCache().put(daoKeyName + "_KeyName", keyName);
 				findAndSetupAllMethod(src, beanDesc, daoClass);
 			}
 		}
-
 	}
 
 	/**
@@ -189,7 +192,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param beanDesc
 	 * @param daoClass
 	 */
-	protected void findAndSetupAllMethod(BuriDataFieldType src, BeanDesc beanDesc, Class daoClass) {
+	protected void findAndSetupAllMethod(BuriDataFieldType src,
+	        BeanDesc beanDesc, Class daoClass) {
 		Method methods[] = daoClass.getMethods();
 		for (Method method : methods) {
 			String methodName = method.getName();
@@ -211,11 +215,13 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void selectNextValSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void selectNextValSetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (isSelectNextValMethod(src, method, methodName)) {
 			String daoName = src.getCache().get(daoKeyName).toString();
 			String pkey = (String) src.getCache().get(daoKeyName + "_KeyName");
-			String selectNextVal = "#data." + pkey + " = " + daoName + "." + methodName + "()";
+			String selectNextVal =
+			    "#data." + pkey + " = " + daoName + "." + methodName + "()";
 			if (!StringUtil.isEmpty(src.getInsert())) {
 				String insertStr = src.getInsert();
 				StringBuffer strBuff = new StringBuffer();
@@ -237,7 +243,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @return
 	 */
-	protected boolean isSelectNextValMethod(BuriDataFieldType src, Method method, String methodName) {
+	protected boolean isSelectNextValMethod(BuriDataFieldType src,
+	        Method method, String methodName) {
 		if (methodName.startsWith("selectNextVal")) {
 			if (method.getParameterTypes().length == 0) {
 				return true;
@@ -254,7 +261,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void tableNameSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void tableNameSetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getTableName())) {
 			return;
 		}
@@ -281,11 +289,11 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void selectManySetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void selectManySetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getSelectMany())) {
 			return;
 		}
-
 		if (isSelectManyMethod(src, method, methodName)) {
 			String daoName = src.getCache().get(daoKeyName).toString();
 			src.setSelectMany(daoName + "." + methodName + "(#data)");
@@ -300,7 +308,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @return
 	 */
-	protected boolean isSelectManyMethod(BuriDataFieldType src, Method method, String methodName) {
+	protected boolean isSelectManyMethod(BuriDataFieldType src, Method method,
+	        String methodName) {
 		if (methodName.startsWith("get") || methodName.startsWith("select")) {
 			if (method.getParameterTypes().length == 1) {
 				if (method.getParameterTypes()[0].isAssignableFrom(List.class)) {
@@ -319,11 +328,11 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void deleteSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void deleteSetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getDelete())) {
 			return;
 		}
-
 		if (isDeleteMethod(src, method, methodName)) {
 			String daoName = src.getCache().get(daoKeyName).toString();
 			src.setDelete(daoName + "." + methodName + "(#data)");
@@ -338,10 +347,12 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @return
 	 */
-	protected boolean isDeleteMethod(BuriDataFieldType src, Method method, String methodName) {
+	protected boolean isDeleteMethod(BuriDataFieldType src, Method method,
+	        String methodName) {
 		if (methodName.startsWith("del")) {
 			if (method.getParameterTypes().length == 1) {
-				String clazzName = classDefUtil.getClassName(method.getParameterTypes()[0]);
+				String clazzName =
+				    classDefUtil.getClassName(method.getParameterTypes()[0]);
 				if (clazzName.equals(src.getId())) {
 					return true;
 				}
@@ -358,11 +369,11 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void updateSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void updateSetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getUpdate())) {
 			return;
 		}
-
 		if (isUpdateMethod(src, method, methodName)) {
 			String daoName = src.getCache().get(daoKeyName).toString();
 			src.setUpdate(daoName + "." + methodName + "(#data)");
@@ -377,10 +388,12 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @return
 	 */
-	protected boolean isUpdateMethod(BuriDataFieldType src, Method method, String methodName) {
+	protected boolean isUpdateMethod(BuriDataFieldType src, Method method,
+	        String methodName) {
 		if (methodName.startsWith("update")) {
 			if (method.getParameterTypes().length == 1) {
-				String clazzName = classDefUtil.getClassName(method.getParameterTypes()[0]);
+				String clazzName =
+				    classDefUtil.getClassName(method.getParameterTypes()[0]);
 				if (clazzName.equals(src.getId())) {
 					return true;
 				}
@@ -397,7 +410,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void insertSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void insertSetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (isInsertMethod(src, method, methodName)) {
 			String daoName = src.getCache().get(daoKeyName).toString();
 			String insertOgnl = daoName + "." + methodName + "(#data)";
@@ -422,10 +436,12 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @return
 	 */
-	protected boolean isInsertMethod(BuriDataFieldType src, Method method, String methodName) {
+	protected boolean isInsertMethod(BuriDataFieldType src, Method method,
+	        String methodName) {
 		if (methodName.startsWith("insert")) {
 			if (method.getParameterTypes().length == 1) {
-				String clazzName = classDefUtil.getClassName(method.getParameterTypes()[0]);
+				String clazzName =
+				    classDefUtil.getClassName(method.getParameterTypes()[0]);
 				if (clazzName.equals(src.getId())) {
 					return true;
 				}
@@ -442,15 +458,21 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @param beanDesc
 	 */
-	protected void selectSetup(BuriDataFieldType src, Method method, String methodName, BeanDesc beanDesc) {
+	protected void selectSetup(BuriDataFieldType src, Method method,
+	        String methodName, BeanDesc beanDesc) {
 		if (!StringUtil.isEmpty(src.getSelect())) {
 			return;
 		}
-
 		if (isSelectMethod(src, method, methodName)) {
-			String keyName = src.getCache().get(daoKeyName + "_KeyName").toString();
+			String keyName =
+			    src.getCache().get(daoKeyName + "_KeyName").toString();
 			String daoName = src.getCache().get(daoKeyName).toString();
-			src.setSelect(daoName + "." + methodName + "(#data." + keyName + ")");
+			src.setSelect(daoName
+			    + "."
+			    + methodName
+			    + "(#data."
+			    + keyName
+			    + ")");
 		}
 	}
 
@@ -462,10 +484,12 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * @param methodName
 	 * @return
 	 */
-	protected boolean isSelectMethod(BuriDataFieldType src, Method method, String methodName) {
+	protected boolean isSelectMethod(BuriDataFieldType src, Method method,
+	        String methodName) {
 		if (methodName.startsWith("get") || methodName.startsWith("select")) {
 			if (method.getParameterTypes().length == 1) {
-				Class tgtClass = (Class) src.getCache().get(daoKeyName + "_KeyType");
+				Class tgtClass =
+				    (Class) src.getCache().get(daoKeyName + "_KeyType");
 				if (method.getParameterTypes()[0].equals(tgtClass)) {
 					return true;
 				}
@@ -505,7 +529,9 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		// IDアノテーションがない場合、定数アノテーションチェック
 		for (int i = 0; i < propLen; i++) {
 			PropertyDesc pd = bd.getPropertyDesc(i);
-			Object sig = classDefUtil.getMethodSignatureValue(tgt, "_ID", pd.getPropertyName());
+			Object sig =
+			    classDefUtil.getMethodSignatureValue(tgt, "_ID", pd
+			        .getPropertyName());
 			if (sig != null) {
 				String condition = createPkeyCondition(pd);
 				src.getKeys().put(pd.getPropertyName(), condition);
@@ -540,7 +566,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	protected String getDaoName(BuriDataFieldType src, String dtoClassName) {
 		String dao = null;
 		String shtName = createDaoName(src, dtoClassName);
-		String shtName2 = shtName.substring(0, 1).toLowerCase() + shtName.substring(1);
+		String shtName2 =
+		    shtName.substring(0, 1).toLowerCase() + shtName.substring(1);
 		if (container.getRoot().hasComponentDef(shtName)) {
 			dao = shtName;
 		} else if (container.getRoot().hasComponentDef(shtName2)) {
@@ -554,7 +581,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		return dao;
 	}
 
-	protected String findDaoClassFromNamespace(String shtName, String dtoClassName) {
+	protected String findDaoClassFromNamespace(String shtName,
+	        String dtoClassName) {
 		String dao = null;
 		List daoNamespace = configuration.getValList("Namespace");
 		Iterator ite = daoNamespace.iterator();
@@ -593,13 +621,16 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	 * packageName.replaceAll("dto","dao") + "." + shtName; packageName =
 	 * classNameToDao(packageName); return packageName; }
 	 */
-
 	protected String classNameToDao(String fullName) {
 		String dao = null;
 		if (ClassDefUtilImpl.isClassName(fullName)) {
-			Class daoClass = ClassUtil.forName(fullName);
+			Class<?> daoClass = ClassUtil.forName(fullName);
 			if (container.getRoot().hasComponentDef(daoClass)) {
-				dao = container.getRoot().getComponentDef(daoClass).getComponentName();
+				dao =
+				    container
+				        .getRoot()
+				        .getComponentDef(daoClass)
+				        .getComponentName();
 			}
 		}
 		return dao;
@@ -613,7 +644,7 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			int enhansPos = dtoClassName.indexOf("$$");
 			dtoClassName = dtoClassName.substring(0, enhansPos);
 		}
-		Class tgtClass = ClassUtil.forName(dtoClassName);
+		Class<?> tgtClass = ClassUtil.forName(dtoClassName);
 		String shtName = ClassUtil.getShortClassName(tgtClass);
 		if (shtName.length() > 3) {
 			if (shtName.substring(shtName.length() - 3).equalsIgnoreCase("Dto")) {
@@ -621,7 +652,8 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			}
 		}
 		if (shtName.length() > 6) {
-			if (shtName.substring(shtName.length() - 6).equalsIgnoreCase("Entity")) {
+			if (shtName.substring(shtName.length() - 6).equalsIgnoreCase(
+			    "Entity")) {
 				shtName = shtName.substring(0, shtName.length() - 6);
 			}
 		}
@@ -658,8 +690,7 @@ public class DBFluteToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	}
 
 	public void setDataAccessRuleEventCaller(
-			DataAccessRuleEventCaller dataAccessRuleEventCaller) {
+	        DataAccessRuleEventCaller dataAccessRuleEventCaller) {
 		this.dataAccessRuleEventCaller = dataAccessRuleEventCaller;
 	}
-
 }
