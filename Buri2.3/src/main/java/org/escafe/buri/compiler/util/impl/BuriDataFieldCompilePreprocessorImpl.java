@@ -5,8 +5,10 @@
 package org.escafe.buri.compiler.util.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.escafe.buri.compiler.util.BuriDataFieldCompilePreprocessor;
 import org.escafe.buri.compiler.util.BuriDataFieldProcRule;
@@ -21,6 +23,7 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
 
     private List<BuriDataFieldProcRule> preprocessRules = new ArrayList<BuriDataFieldProcRule>();
     private List<BuriDataFieldProcRule> dataAccessRules = new ArrayList<BuriDataFieldProcRule>();
+    private Set<BuriDataFieldProcRuleSet> userDefDataAccessRules = new HashSet<BuriDataFieldProcRuleSet>();
     
     private DataAccessRuleEventCaller dataAccessRuleEventCaller;
     private S2Container container;
@@ -36,7 +39,10 @@ public class BuriDataFieldCompilePreprocessorImpl implements BuriDataFieldCompil
         if(userDataFieldRuleSets != null && userDataFieldRuleSets.length != 0) {
         	for (int i = 0; i < userDataFieldRuleSets.length; i++) {
         		BuriDataFieldProcRuleSet userDataFieldRuleSet = (BuriDataFieldProcRuleSet) userDataFieldRuleSets[i];
-        		dataAccessRules.addAll(userDataFieldRuleSet.getDataAccessRules());
+        		if(userDefDataAccessRules.contains(userDataFieldRuleSet) == false) {
+        			dataAccessRules.addAll(userDataFieldRuleSet.getDataAccessRules());
+        			userDefDataAccessRules.add(userDataFieldRuleSet);
+        		}
 			}
         }
         if (hasDataAccess(dst)) {
