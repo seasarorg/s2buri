@@ -291,20 +291,22 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 		if ((src.getKeys().size() > 0) || hasName(src, "pkey")) {
 			return;
 		}
-		Class tgt = ClassUtil.forName(src.getId());
+		Class<?> tgt = ClassUtil.forName(src.getId());
 		BeanDesc bd = BeanDescFactory.getBeanDesc(tgt);
 		int propLen = bd.getPropertyDescSize();
 		// s2Dao-Tiger、IDアノテーションチェック
 		for (int i = 0; i < propLen; i++) {
 			PropertyDesc pd = bd.getPropertyDesc(i);
-			Method writeMethod = null;
-			if ((writeMethod = pd.getWriteMethod()) != null) {
-				Id id = writeMethod.getAnnotation(Id.class);
-				if (id != null) {
-					String condition = createPkeyCondition(pd);
-					src.getKeys().put(pd.getPropertyName(), condition);
-					return;
-				}
+			Id id = null;
+			if (pd.isWritable()) {
+				id = pd.getWriteMethod().getAnnotation(Id.class);
+			} else if (pd.isReadable()) {
+				id = pd.getReadMethod().getAnnotation(Id.class);
+			}
+			if (id != null) {
+				String condition = createPkeyCondition(pd);
+				src.getKeys().put(pd.getPropertyName(), condition);
+				return;
 			}
 		}
 		// IDアノテーションがない場合、定数アノテーションチェック
@@ -323,7 +325,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 	protected String createPkeyCondition(PropertyDesc pd) {
 		String condition = null;
 		String pkeyName = pd.getPropertyName();
-		Class propType = pd.getPropertyType();
+		Class<?> propType = pd.getPropertyType();
 		if (propType.equals(Long.TYPE)) {
 			condition = pkeyName + " != 0";
 		} else if (propType.isAssignableFrom(Number.class)) {
@@ -415,7 +417,7 @@ public class S2DaoToDataAccessRule extends AbstractBuriDataFieldProcRule {
 			int enhansPos = dtoClassName.indexOf("$$");
 			dtoClassName = dtoClassName.substring(0, enhansPos);
 		}
-		Class tgtClass = ClassUtil.forName(dtoClassName);
+		Class<?> tgtClass = ClassUtil.forName(dtoClassName);
 		String shtName = ClassUtil.getShortClassName(tgtClass);
 		if (shtName.length() > 3) {
 			if (shtName.substring(shtName.length() - 3).equalsIgnoreCase("Dto")) {
