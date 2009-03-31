@@ -15,35 +15,33 @@ import example.org.escafe.buri.dto.ShippingItemDto;
 
 @Buri(process = "注文管理.出荷詳細", dtoClass = ShippingItemDto.class)
 public interface ShippingItemBao {
+	@BuriActivity("商品準備中")
+	public List<ShippingItemDto> getItemWaiting();
 
-    @BuriActivity("商品準備中")
-    public List getItemWaiting();
+	@BuriActivity("商品準備完了")
+	public List<ShippingItemDto> getEndShipping();
 
-    @BuriActivity("商品準備完了")
-    public List getEndShipping();
+	@BuriActivity("cancel済み")
+	public List<ShippingItemDto> getCancel();
 
-    @BuriActivity("cancel済み")
-    public List getCancel();
+	@BuriActivity("商品準備完了")
+	@BuriArgs("datas")
+	public Long getEndShippingCount(List datas);
 
-    @BuriActivity("商品準備完了")
-    @BuriArgs("datas")
-    public long getEndShippingCount(List datas);
+	@BuriActivity("商品準備開始")
+	public void startShipping(ShippingItemDto dto);
 
-    @BuriActivity("商品準備開始")
-    public void startShipping(ShippingItemDto dto);
+	@BuriActivity("商品準備開始")
+	public void startShipping(List<ShippingItemDto> dtos);
 
-    @BuriActivity("商品準備開始")
-    public void startShipping(List dtos);
+	@BuriActivity("商品準備中")
+	public void endShipping(ShippingItemDto dto);
 
-    @BuriActivity("商品準備中")
-    public void endShipping(ShippingItemDto dto);
+	@BuriActivity("商品準備中")
+	@BuriAction("cancel")
+	public void cancel(ShippingItemDto dto);
 
-    @BuriActivity("商品準備中")
-    @BuriAction("cancel")
-    public void cancel(ShippingItemDto dto);
-
-    @BuriActivity("商品準備中")
-    @BuriAction("cancel")
-    public void cancel(List dtos);
-
+	@BuriActivity("商品準備中")
+	@BuriAction("cancel")
+	public void cancel(List<ShippingItemDto> dtos);
 }

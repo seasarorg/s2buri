@@ -19,16 +19,16 @@ import example.org.escafe.buri.dto.OrderInfoDto;
 @BuriConverter( { @BuriConversionRule(convertClass = Long.class, ognl = "orderInfoDao.getOrderInfo(#data)") })
 public interface OrderBao {
 	@BuriActivity("出荷作業中")
-	public List getUnderWork();
+	public List<OrderInfoDto> getUnderWork();
 
 	@BuriActivity("出荷終了")
-	public List getEndShipping();
+	public List<OrderInfoDto> getEndShipping();
 
 	@BuriActivity("終了")
-	public List getOrderEnd();
+	public List<OrderInfoDto> getOrderEnd();
 
 	@BuriActivity("キャンセル終了")
-	public List getOrderCancelEnd();
+	public List<OrderInfoDto> getOrderCancelEnd();
 
 	@BuriActivity("注文")
 	public void order(OrderInfoDto dto);

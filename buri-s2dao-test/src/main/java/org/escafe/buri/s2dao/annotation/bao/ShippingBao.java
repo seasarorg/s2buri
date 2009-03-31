@@ -21,13 +21,13 @@ import example.org.escafe.buri.dto.ShippingSetDto;
     @BuriConversionRule(convertClass = OrderInfoDto.class, ognl = "shippingSetDao.getDtoByOrderTitleId(#data)") })
 public interface ShippingBao {
 	@BuriActivity("商品待ち")
-	public List getNowWaiting();
+	public List<ShippingSetDto> getNowWaiting();
 
 	@BuriActivity("出荷済み")
-	public List getEndShipping();
+	public List<ShippingSetDto> getEndShipping();
 
 	@BuriActivity("キャンセル済み")
-	public List getShippingCancel();
+	public List<ShippingSetDto> getShippingCancel();
 
 	@BuriActivity("出荷依頼")
 	public void shipping(OrderInfoDto dto);

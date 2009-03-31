@@ -42,11 +42,11 @@ public interface OrderBao {
 
 	public static String endShipping_ACTIVITY = "出荷作業中";
 
-	public void endShipping(long orderId);
+	public void endShipping(Long orderId);
 
 	public static String endBill_ACTIVITY = "出荷終了";
 
-	public void endBill(long orderId);
+	public void endBill(Long orderId);
 
 	public static String cancel_ACTIVITY = "出荷作業中,出荷終了";
 
@@ -54,5 +54,5 @@ public interface OrderBao {
 
 	public static String cancel_RESULT = "#cancelStatus";
 
-	public String cancel(long orderId);
+	public String cancel(Long orderId);
 }
