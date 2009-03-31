@@ -30,7 +30,7 @@ public class OrderTitle {
 	public Date orderDate;
 
 	@Column(precision = 19, nullable = true, unique = false)
-	public long customerId;
+	public Long customerId;
 
 	@Column(precision = 10, nullable = true, unique = false)
 	public Integer status;
