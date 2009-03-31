@@ -29,8 +29,6 @@ public interface CustomerDao {
 	public List<CustomerDto> findAndUser(CustomerFindDto dto,
 	        List<String> paths, List<Long> userIds);
 
-	// public String soleMatch_ARGS = "dto";
-	// public CustomerDto soleMatch(CustomerFindDto dto);
 	public void insert(CustomerDto entity);
 
 	public void update(CustomerDto entity);

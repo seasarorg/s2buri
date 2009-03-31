@@ -12,7 +12,7 @@ public interface BillDao {
 
 	public String getBill_QUERY = "BILL_ID = ?";
 
-	public BillDto getBill(long billID);
+	public BillDto getBill(Long billId);
 
 	public String getBillByIds_ARGS = "billIds";
 

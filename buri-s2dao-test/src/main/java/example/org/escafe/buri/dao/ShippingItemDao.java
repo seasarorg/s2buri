@@ -23,12 +23,13 @@ public interface ShippingItemDao {
 
 	public String find_ARGS = "dto,paths";
 
-	public List<ShippingItemDto> find(ShippingItemFindDto dto, List paths);
+	public List<ShippingItemDto> find(ShippingItemFindDto dto,
+	        List<String> paths);
 
-	public String findAndUser_ARGS = "dto,paths,userIDs";
+	public String findAndUser_ARGS = "dto,paths,userIds";
 
 	public List<ShippingItemDto> findAndUser(ShippingItemFindDto dto,
-	        List paths, List userIds);
+	        List<String> paths, List<Long> userIds);
 
 	public String getShippingItemByShippingId_ARGS = "shippingId";
 

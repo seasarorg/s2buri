@@ -22,7 +22,7 @@ public interface ShippingDao {
 
 	public String find_ARGS = "dto,paths";
 
-	public List<ShippingDto> find(ShippingFindDto dto, List paths);
+	public List<ShippingDto> find(ShippingFindDto dto, List<String> paths);
 
 	public String findAndUser_ARGS = "dto,paths,userIds";
 
@@ -36,8 +36,6 @@ public interface ShippingDao {
 
 	public ShippingDto getShippingByOrderTitleId(Long orderTitleId);
 
-	// public String soleMatch_ARGS = "dto";
-	// public ShippingDto soleMatch(ShippingFindDto dto);
 	public void insert(ShippingDto entity);
 
 	public void update(ShippingDto entity);

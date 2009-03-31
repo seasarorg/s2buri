@@ -30,8 +30,6 @@ public interface OrderTitleDao {
 	public List<OrderTitleDto> findAndUser(OrderTitleFindDto dto,
 	        List<String> paths, List<Long> userIds);
 
-	// public String soleMatch_ARGS = "dto";
-	// public OrderTitleDto soleMatch(OrderTitleFindDto dto);
 	public void insert(OrderTitleDto entity);
 
 	public void update(OrderTitleDto entity);

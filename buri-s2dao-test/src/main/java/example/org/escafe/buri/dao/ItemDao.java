@@ -29,8 +29,6 @@ public interface ItemDao {
 	public List<ItemDto> findAndUser(ItemFindDto dto, List<String> paths,
 	        List<Long> userIds);
 
-	// public String soleMatch_ARGS = "dto";
-	// public ItemDto soleMatch(ItemFindDto dto);
 	public void insert(ItemDto entity);
 
 	public void update(ItemDto entity);

@@ -30,8 +30,6 @@ public interface OrderDetailDao {
 
 	public List<OrderDetailDto> getOrderDetailByTitleId(Long orderTitleId);
 
-	// public String soleMatch_ARGS = "dto";
-	// public OrderDetailDto soleMatch(OrderDetailFindDto dto);
 	public void insert(OrderDetailDto entity);
 
 	public void update(OrderDetailDto entity);
