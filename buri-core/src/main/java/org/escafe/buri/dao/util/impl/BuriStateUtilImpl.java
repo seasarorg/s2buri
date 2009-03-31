@@ -109,8 +109,8 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 		BuriBranchEntity branch = new BuriBranchEntity();
 		branch.btId = btidUtil.getCurrentBtId();
 		long dataId = dataUtil.getBuriDataId(factory, sysContext);
-		branch.dataId = new Long(dataId);
-		branch.parentBranchId = new Long(walker.getParentBranchId());
+		branch.dataId = Long.valueOf(dataId);
+		branch.parentBranchId = Long.valueOf(walker.getParentBranchId());
 		buriBranchEntityService.insert(branch);
 		walker.setBranchId(branch.branchId);
 	}
@@ -164,9 +164,9 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 		walker.setParentBranchId(nowWalker.getBranchId());
 		BuriBranchEntity dto = new BuriBranchEntity();
 		dto.dataId = sysContext.getDataId();
-		dto.parentBranchId = new Long(nowWalker.getBranchId());
+		dto.parentBranchId = Long.valueOf(nowWalker.getBranchId());
 		dto.processDate = new Date();
-		dto.pathId = new Long(path.getBuriPathId());
+		dto.pathId = Long.valueOf(path.getBuriPathId());
 		buriBranchEntityService.insert(dto);
 		walker.setBranchId(dto.branchId);
 		walker.setNowPath(tgtPath);
@@ -202,12 +202,12 @@ public class BuriStateUtilImpl implements BuriStateUtil {
 
 	protected BuriStateEntity createStateDto(DataAccessFactory factory,
 	        BuriSystemContext sysContext, BranchWalker walker) {
-		long dataID = dataUtil.getBuriDataId(factory, sysContext);
+		long dataId = dataUtil.getBuriDataId(factory, sysContext);
 		BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
 		BuriStateEntity stateDto = new BuriStateEntity();
-		stateDto.dataId = new Long(dataID);
-		stateDto.pathId = new Long(path.getBuriPathId());
-		stateDto.branchId = new Long(walker.getBranchId());
+		stateDto.dataId = Long.valueOf(dataId);
+		stateDto.pathId = Long.valueOf(path.getBuriPathId());
+		stateDto.branchId = Long.valueOf(walker.getBranchId());
 		stateDto.insertDate = new Date();
 		if (factory instanceof BuriExecProcess) {
 			BuriExecProcess process = (BuriExecProcess) factory;
