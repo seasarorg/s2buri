@@ -121,11 +121,9 @@
 			<arg><component class="org.escafe.buri.compiler.util.impl.rules.DataAccessCheckRule">
 			</component></arg>
 		</initMethod>
-		<!--
 		<initMethod name="addDataAccessRules">
 			<arg>s2JdbcToDataAccessRule</arg>
 		</initMethod>
-		-->
 		<initMethod name="addDataAccessRules">
 			<arg>dbFluteToDataAccessRule</arg>
 		</initMethod>

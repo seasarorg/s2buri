@@ -12,22 +12,22 @@ import java.util.List;
 
 import jp.starlogic.util.datetime.DateUtil;
 
-import org.escafe.buri.dao.BuriBranchDao;
-import org.escafe.buri.dao.BuriStateDao;
 import org.escafe.buri.dao.util.BTIDUtil;
 import org.escafe.buri.dao.util.BuriDataUtil;
 import org.escafe.buri.dao.util.BuriPathUtil;
 import org.escafe.buri.dao.util.BuriStateUtil;
 import org.escafe.buri.dao.util.BuriUndoLogUtil;
-import org.escafe.buri.dto.BuriBranchEntityDto;
-import org.escafe.buri.dto.BuriStateEntityDto;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.BuriRealPath;
 import org.escafe.buri.engine.BuriSystemContext;
+import org.escafe.buri.entity.BuriBranchEntity;
+import org.escafe.buri.entity.BuriStateEntity;
 import org.escafe.buri.event.state.caller.BuriStatusEventCaller;
 import org.escafe.buri.exception.IllegalArgumentRuntimeException;
 import org.escafe.buri.oouo.internal.structure.BuriActivityType;
 import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
+import org.escafe.buri.service.BuriBranchEntityService;
+import org.escafe.buri.service.BuriStateEntityService;
 import org.escafe.buri.util.packages.BranchWalker;
 import org.escafe.buri.util.packages.BuriExePackages;
 import org.escafe.buri.util.packages.BuriExecProcess;
@@ -37,315 +37,377 @@ import org.seasar.coffee.script.ScriptFactory;
 import org.seasar.framework.util.StringUtil;
 
 public class BuriStateUtilImpl implements BuriStateUtil {
-    private BuriDataUtil dataUtil;
-    private BuriPathUtil pathUtil;
-    private BuriStateDao stateDao;
-    private BuriBranchDao branchDao;
-    private BuriUndoLogUtil undoLogUtil;
-    private BTIDUtil btidUtil;
-    private ScriptFactory scriptFactory;
-    protected BuriStatusEventCaller buriStatusEventCaller;
+	private BuriDataUtil dataUtil;
 
-    public BranchWalker createBranchWalker(BuriSystemContext sysContext) {
-        BranchWalker walker = new BranchWalker();
-        walker.setBranchID(0);
-        walker.setParentBranchID(0);
-        walker.setParentPath(sysContext.getCallPath().moveUpPath());
-        walker.setNowPath(null);
-        return walker;
-    }
+	private BuriPathUtil pathUtil;
 
-    public BranchWalker loadBranchWalker(BuriSystemContext sysContext) {
-        if ((sysContext.getStatusID() == null) || (sysContext.getStatusID().longValue() == 0)) {
-            return createBranchWalker(sysContext);
-        }
-        BuriStateEntityDto stateDto = stateDao.getBuriState(sysContext.getStatusID().longValue());
-        if ((stateDto == null) || (stateDto.getBranchID() == null)) {
-            return createBranchWalker(sysContext);
-        }
-        return loadBranchWalker(sysContext, stateDto);
-    }
+	private BuriStateEntityService buriStateEntityService;
 
-    private BranchWalker loadBranchWalker(BuriSystemContext sysContext, BuriStateEntityDto stateDto) {
-        BuriBranchEntityDto branchDto = branchDao.select(stateDto.getBranchID().longValue());
-        if (branchDto == null) {
-            return createBranchWalker(sysContext);
-        } else {
-            return loadBranchWalker(sysContext, stateDto, branchDto);
-        }
-    }
+	private BuriBranchEntityService buriBranchEntityService;
 
-    private BranchWalker loadBranchWalker(BuriSystemContext sysContext, BuriStateEntityDto stateDto, BuriBranchEntityDto branchDto) {
-        BranchWalker walker = new BranchWalker();
-        walker.setBranchID(branchDto.getBranchID());
-        walker.setParentBranchID(branchDto.getParentBranchID().longValue());
-        walker.setParentPath(sysContext.getCallPath().moveUpPath());
-        BuriPath branchPath = pathUtil.getBuriPathFromRealPath(pathUtil.getBuriPathByID(stateDto.getPathID().longValue()));
-        walker.setNowPath(branchPath);
-        return walker;
-    }
+	private BuriUndoLogUtil undoLogUtil;
 
-    public void saveBranch(BranchWalker walker, DataAccessFactory factory, BuriSystemContext sysContext) {
-        if (walker.getBranchID() != 0) {
-            return;
-        }
-        BuriBranchEntityDto branchDto = new BuriBranchEntityDto();
-        branchDto.setBTID(btidUtil.getCurrentBTID());
-        long dataID = dataUtil.getBuriDataId(factory, sysContext);
-        branchDto.setDataID(new Long(dataID));
-        branchDto.setParentBranchID(new Long(walker.getParentBranchID()));
-        branchDao.insert(branchDto);
-        walker.setBranchID(branchDto.getBranchID());
-    }
+	private BTIDUtil btidUtil;
 
-    public BranchWalker branchChild(BranchWalker parentWalker, DataAccessFactory factory, BuriSystemContext sysContext) {
-        BranchWalker walker = new BranchWalker();
-        walker.setParentBranchID(parentWalker.getBranchID());
-        walker.setParentPath(parentWalker.getParentPath());
-        return walker;
-    }
+	private ScriptFactory scriptFactory;
 
-    public BranchWalker getNowPathBranchWalker(DataAccessFactory factory, BuriSystemContext sysContext, BuriPath callPath) {
-        long dataID = dataUtil.getBuriDataId(factory, sysContext);
-        BuriPath path = pathUtil.getBuriPathFromRealPath(callPath);
-        BuriStateEntityDto stateDto = stateDao.getBuriStateByPathAndData(path.getBuriPathId(), dataID);
-        if (stateDto == null) {
-            return null;
-        }
-        return getNowPathBranchWalker(path, stateDto, sysContext);
-    }
+	protected BuriStatusEventCaller buriStatusEventCaller;
 
-    private BranchWalker getNowPathBranchWalker(BuriPath path, BuriStateEntityDto stateDto, BuriSystemContext sysContext) {
-        BranchWalker walker = new BranchWalker();
-        walker.setBranchID(stateDto.getBranchID().longValue());
-        walker.setNowPath(path);
-        walker.setParentPath(sysContext.getCallPath());
-        BuriBranchEntityDto branchDto = branchDao.select(stateDto.getBranchID().longValue());
-        if (branchDto != null) { // 本当は状態と一緒に保存しているはずなので不要なハズ
-            assert branchDto != null;
-            assert branchDto.getParentBranchID() != null;
-            walker.setParentBranchID(branchDto.getParentBranchID().longValue());
-        }
-        return walker;
-    }
+	public BranchWalker createBranchWalker(BuriSystemContext sysContext) {
+		BranchWalker walker = new BranchWalker();
+		walker.setBranchId(0);
+		walker.setParentBranchId(0);
+		walker.setParentPath(sysContext.getCallPath().moveUpPath());
+		walker.setNowPath(null);
+		return walker;
+	}
 
-    public BranchWalker createBranch(BranchWalker nowWalker, BuriPath parentPath, BuriSystemContext sysContext, String pathName, String PathId) {
-        BuriPath tgtPath = parentPath.moveChildPath(pathName, PathId);
-        BuriPath path = pathUtil.getBuriPathFromRealPath(tgtPath);
-        BranchWalker walker = new BranchWalker();
-        walker.setParentPath(parentPath);
-        walker.setParentBranchID(nowWalker.getBranchID());
-        BuriBranchEntityDto dto = new BuriBranchEntityDto();
-        dto.setDataID(sysContext.getDataID());
-        dto.setParentBranchID(new Long(nowWalker.getBranchID()));
-        dto.setProcessDate(new Date());
-        dto.setPathID(new Long(path.getBuriPathId()));
-        branchDao.insert(dto);
-        walker.setBranchID(dto.getBranchID());
-        walker.setNowPath(tgtPath);
-    	buriStatusEventCaller.createBranch(sysContext, walker);
-        return walker;
-    }
+	public BranchWalker loadBranchWalker(BuriSystemContext sysContext) {
+		if ((sysContext.getStatusId() == null)
+		    || (sysContext.getStatusId().longValue() == 0)) {
+			return createBranchWalker(sysContext);
+		}
+		BuriStateEntity stateDto =
+		    buriStateEntityService.getBuriState(sysContext
+		        .getStatusId()
+		        .longValue());
+		if ((stateDto == null) || (stateDto.branchId == null)) {
+			return createBranchWalker(sysContext);
+		}
+		return loadBranchWalker(sysContext, stateDto);
+	}
 
-    public long loadStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
-        long dataID = dataUtil.getBuriDataId(factory, sysContext);
-        if (dataID == 0) {
-            return 0;
-        }
-        BuriStateEntityDto dto = stateDao.getBuriStateByPathAndData(path.getBuriPathId(), dataID);
-        if (dto != null) {
-            return dto.getStateID();
-        }
-        return 0;
-    }
+	private BranchWalker loadBranchWalker(BuriSystemContext sysContext,
+	        BuriStateEntity stateDto) {
+		BuriBranchEntity branchDto =
+		    buriBranchEntityService.select(stateDto.branchId.longValue());
+		if (branchDto == null) {
+			return createBranchWalker(sysContext);
+		} else {
+			return loadBranchWalker(sysContext, stateDto, branchDto);
+		}
+	}
 
-    public long saveStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        dataUtil.storeData(factory, sysContext);
-        dataUtil.updateBuriData(factory, sysContext);
-        BuriStateEntityDto stateDto = createStateDto(factory, sysContext, walker);
-        stateDao.insert(stateDto);
-        buriStatusEventCaller.saveState(factory, sysContext, walker);
-        return stateDto.getStateID();
-    }
+	private BranchWalker loadBranchWalker(BuriSystemContext sysContext,
+	        BuriStateEntity buriStateEntity, BuriBranchEntity buriBranchEntity) {
+		BranchWalker walker = new BranchWalker();
+		walker.setBranchId(buriBranchEntity.branchId);
+		walker.setParentBranchId(buriBranchEntity.parentBranchId.longValue());
+		walker.setParentPath(sysContext.getCallPath().moveUpPath());
+		BuriPath branchPath =
+		    pathUtil.getBuriPathFromRealPath(pathUtil
+		        .getBuriPathById(buriStateEntity.pathId.longValue()));
+		walker.setNowPath(branchPath);
+		return walker;
+	}
 
-    protected BuriStateEntityDto createStateDto(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        long dataID = dataUtil.getBuriDataId(factory, sysContext);
-        BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
-        BuriStateEntityDto stateDto = new BuriStateEntityDto();
-        stateDto.setDataID(new Long(dataID));
-        stateDto.setPathID(new Long(path.getBuriPathId()));
-        stateDto.setBranchID(new Long(walker.getBranchID()));
-        stateDto.setInsertDate(new Date());
-        if(factory instanceof BuriExecProcess) {
-	        BuriExecProcess process = (BuriExecProcess)factory;
-	        BuriActivityType act = process.getBuriWorkflowProcessType().getActivityById(path.getActivityId().get(0));
-	        stateDto.setParticipantName(act.getParticipantName());
-	        stateDto.setParticipantType(act.getParticipantType());
-        }
+	public void saveBranch(BranchWalker walker, DataAccessFactory factory,
+	        BuriSystemContext sysContext) {
+		if (walker.getBranchId() != 0) {
+			return;
+		}
+		BuriBranchEntity branch = new BuriBranchEntity();
+		branch.btId = btidUtil.getCurrentBtId();
+		long dataId = dataUtil.getBuriDataId(factory, sysContext);
+		branch.dataId = Long.valueOf(dataId);
+		branch.parentBranchId = Long.valueOf(walker.getParentBranchId());
+		buriBranchEntityService.insert(branch);
+		walker.setBranchId(branch.branchId);
+	}
 
-        stateDto.setAbortDate(DateUtil.getSQLMaxDate());
-        stateDto.setProcessDate(DateUtil.getSQLMaxDate());
-        setupAutoRunTime(stateDto, factory, sysContext, walker);
-        return stateDto;
-    }
+	public BranchWalker branchChild(BranchWalker parentWalker,
+	        DataAccessFactory factory, BuriSystemContext sysContext) {
+		BranchWalker walker = new BranchWalker();
+		walker.setParentBranchId(parentWalker.getBranchId());
+		walker.setParentPath(parentWalker.getParentPath());
+		return walker;
+	}
 
-    protected void setupAutoRunTime(BuriStateEntityDto stateDto, DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        Date setupDate = DateUtil.getSQLMaxDate();
-        BuriExePackages exePackages = getBuriExePackages(factory);
-        if (exePackages != null) {
-            Script exScript = scriptFactory.getScript(exePackages.getTimeLimitExpressionType());
-            String limit = getLimit(exePackages, walker);
-            setupDate = getLimitDate(limit, exScript, sysContext, walker);
-        	buriStatusEventCaller.setAutorun(factory, sysContext, walker, setupDate);
-        }
-        stateDto.setAutoRunTime(setupDate);
-    }
+	public BranchWalker getNowPathBranchWalker(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BuriPath callPath) {
+		long dataId = dataUtil.getBuriDataId(factory, sysContext);
+		BuriPath path = pathUtil.getBuriPathFromRealPath(callPath);
+		BuriStateEntity stateDto =
+		    buriStateEntityService.getBuriStateByPathAndData(path
+		        .getBuriPathId(), dataId);
+		if (stateDto == null) {
+			return null;
+		}
+		return getNowPathBranchWalker(path, stateDto, sysContext);
+	}
 
-    protected Date getLimitDate(String limit, Script exScript, BuriSystemContext sysContext, BranchWalker walker) {
-        if (!StringUtil.isEmpty(limit)) {
-            Object obj = exScript.eval(null, limit, sysContext.getUserContext());
-            if(obj==null) {
-            	return DateUtil.getSQLMaxDate();
-            }
-            if (obj instanceof Date) {
-                return (Date) obj;
-            } else if (obj instanceof Calendar) {
-                return ((Calendar) obj).getTime();
-            } else if (obj instanceof Timestamp) {
-                return new Date(((Timestamp) obj).getTime());
-            } else {
-                throw new IllegalArgumentRuntimeException("EBRI0007", new Object[] { walker.getNowPath(), obj });
-            }
-        }
-        return DateUtil.getSQLMaxDate();
-    }
+	private BranchWalker getNowPathBranchWalker(BuriPath path,
+	        BuriStateEntity buriStateEntity, BuriSystemContext sysContext) {
+		BranchWalker walker = new BranchWalker();
+		walker.setBranchId(buriStateEntity.branchId.longValue());
+		walker.setNowPath(path);
+		walker.setParentPath(sysContext.getCallPath());
+		BuriBranchEntity buriBranchEntity =
+		    buriBranchEntityService
+		        .select(buriStateEntity.branchId.longValue());
+		if (buriBranchEntity != null) { // 本当は状態と一緒に保存しているはずなので不要なハズ
+			assert buriBranchEntity != null;
+			assert buriBranchEntity.parentBranchId != null;
+			walker.setParentBranchId(buriBranchEntity.parentBranchId
+			    .longValue());
+		}
+		return walker;
+	}
 
-    protected BuriExePackages getBuriExePackages(DataAccessFactory factory) {
-        BuriExePackages exePackages = null;
-        if (factory instanceof BuriExecProcess) {
-            exePackages = ((BuriExecProcess) factory).getBuriExePackages();
-        } else if (factory instanceof BuriExePackages) {
-            exePackages = (BuriExePackages) factory;
-        }
-        return exePackages;
-    }
+	public BranchWalker createBranch(BranchWalker nowWalker,
+	        BuriPath parentPath, BuriSystemContext sysContext, String pathName,
+	        String PathId) {
+		BuriPath tgtPath = parentPath.moveChildPath(pathName, PathId);
+		BuriPath path = pathUtil.getBuriPathFromRealPath(tgtPath);
+		BranchWalker walker = new BranchWalker();
+		walker.setParentPath(parentPath);
+		walker.setParentBranchId(nowWalker.getBranchId());
+		BuriBranchEntity dto = new BuriBranchEntity();
+		dto.dataId = sysContext.getDataId();
+		dto.parentBranchId = Long.valueOf(nowWalker.getBranchId());
+		dto.processDate = new Date();
+		dto.pathId = Long.valueOf(path.getBuriPathId());
+		buriBranchEntityService.insert(dto);
+		walker.setBranchId(dto.branchId);
+		walker.setNowPath(tgtPath);
+		buriStatusEventCaller.createBranch(sysContext, walker);
+		return walker;
+	}
 
-    protected String getLimit(BuriExePackages exePackages, BranchWalker walker) {
-        BuriRealPath nowRealPath = walker.getNowPath().getRealPath();
-        BuriWorkflowProcessType processType = exePackages.getBuriPackageType().getProcessById(nowRealPath.getWorkflowProcess());
-        BuriActivityType actType = processType.getActivityById(nowRealPath.getActivity().get(0).toString());
-        String limit = actType.getLimit();
-        return limit;
-    }
+	public Long loadStatus(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
+		long dataID = dataUtil.getBuriDataId(factory, sysContext);
+		if (dataID == 0) {
+			return 0L;
+		}
+		BuriStateEntity dto =
+		    buriStateEntityService.getBuriStateByPathAndData(path
+		        .getBuriPathId(), dataID);
+		if (dto != null) {
+			return dto.stateId;
+		}
+		return 0L;
+	}
 
-    public void processed(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        assert sysContext.getStatusID() != null;
-        long stateID = sysContext.getStatusID().longValue();
-    	buriStatusEventCaller.processed(factory, sysContext, walker);
-        undoLogUtil.addUndoLog(stateID, 0);
-        stateDao.updateProceesByStateID(stateID);
-    }
+	public Long saveStatus(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		dataUtil.storeData(factory, sysContext);
+		dataUtil.updateBuriData(factory, sysContext);
+		BuriStateEntity stateDto = createStateDto(factory, sysContext, walker);
+		buriStateEntityService.insert(stateDto);
+		buriStatusEventCaller.saveState(factory, sysContext, walker);
+		return stateDto.stateId;
+	}
 
-    public void abortStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        assert sysContext.getStatusID() != null;
-        long stateID = sysContext.getStatusID().longValue();
-        assert walker.getBranchID() != 0;
-    	buriStatusEventCaller.abortState(factory, sysContext, walker);
-        undoLogUtil.addUndoLog(stateID, 0);
-        stateDao.updateAbortByStateID(stateID);
-    }
+	protected BuriStateEntity createStateDto(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		long dataId = dataUtil.getBuriDataId(factory, sysContext);
+		BuriPath path = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
+		BuriStateEntity stateDto = new BuriStateEntity();
+		stateDto.dataId = Long.valueOf(dataId);
+		stateDto.pathId = Long.valueOf(path.getBuriPathId());
+		stateDto.branchId = Long.valueOf(walker.getBranchId());
+		stateDto.insertDate = new Date();
+		if (factory instanceof BuriExecProcess) {
+			BuriExecProcess process = (BuriExecProcess) factory;
+			BuriActivityType act =
+			    process.getBuriWorkflowProcessType().getActivityById(
+			        path.getActivityId().get(0));
+			stateDto.participantName = (act.getParticipantName());
+			stateDto.participantType = (act.getParticipantType());
+		}
+		stateDto.abortDate = DateUtil.getSQLMaxDate();
+		stateDto.processDate = DateUtil.getSQLMaxDate();
+		setupAutoRunTime(stateDto, factory, sysContext, walker);
+		return stateDto;
+	}
 
-    public void abortBranch(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-    	buriStatusEventCaller.abortBranch(factory, sysContext, walker);
-        abortParentBranchID(walker.getParentBranchID(), factory, sysContext);
-        BuriBranchEntityDto dto= branchDao.select(walker.getParentBranchID());
-        walker.setBranchID(dto.getBranchID());
-        walker.setParentBranchID(dto.getParentBranchID());
-    }
+	protected void setupAutoRunTime(BuriStateEntity stateDto,
+	        DataAccessFactory factory, BuriSystemContext sysContext,
+	        BranchWalker walker) {
+		Date setupDate = DateUtil.getSQLMaxDate();
+		BuriExePackages exePackages = getBuriExePackages(factory);
+		if (exePackages != null) {
+			Script exScript =
+			    scriptFactory.getScript(exePackages
+			        .getTimeLimitExpressionType());
+			String limit = getLimit(exePackages, walker);
+			setupDate = getLimitDate(limit, exScript, sysContext, walker);
+			buriStatusEventCaller.setAutorun(
+			    factory,
+			    sysContext,
+			    walker,
+			    setupDate);
+		}
+		stateDto.autoRunTime = setupDate;
+	}
 
-    protected void abortParentBranchID(long parentBranchId, DataAccessFactory factory, BuriSystemContext sysContext) {
-        if (parentBranchId == 0) {
-            return;
-        }
-        List childs = branchDao.getBranchByParentID(parentBranchId);
-        Iterator ite = childs.iterator();
-        while (ite.hasNext()) {
-            BuriBranchEntityDto child = (BuriBranchEntityDto) ite.next();
-            abortParentBranchID(child.getBranchID(), factory, sysContext);
-        }
-        undoLogUtil.addUndoLog(0, parentBranchId);
-        stateDao.updateAbortByBranchID(parentBranchId);
-    }
+	protected Date getLimitDate(String limit, Script exScript,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		if (!StringUtil.isEmpty(limit)) {
+			Object obj =
+			    exScript.eval(null, limit, sysContext.getUserContext());
+			if (obj == null) {
+				return DateUtil.getSQLMaxDate();
+			}
+			if (obj instanceof Date) {
+				return (Date) obj;
+			} else if (obj instanceof Calendar) {
+				return ((Calendar) obj).getTime();
+			} else if (obj instanceof Timestamp) {
+				return new Date(((Timestamp) obj).getTime());
+			} else {
+				throw new IllegalArgumentRuntimeException(
+				    "EBRI0007",
+				    new Object[] { walker.getNowPath(), obj });
+			}
+		}
+		return DateUtil.getSQLMaxDate();
+	}
 
-    public long countNoProcessedSiblingStatus(DataAccessFactory factory, BuriSystemContext sysContext, BranchWalker walker) {
-        assert walker.getParentBranchID() != 0;
-        long count = stateDao.countByBranchIDAndNotProcessed(walker.getParentBranchID());
-        return count;
-    }
+	protected BuriExePackages getBuriExePackages(DataAccessFactory factory) {
+		BuriExePackages exePackages = null;
+		if (factory instanceof BuriExecProcess) {
+			exePackages = ((BuriExecProcess) factory).getBuriExePackages();
+		} else if (factory instanceof BuriExePackages) {
+			exePackages = (BuriExePackages) factory;
+		}
+		return exePackages;
+	}
 
-    public BuriBranchDao getBranchDao() {
-        return branchDao;
-    }
+	protected String getLimit(BuriExePackages exePackages, BranchWalker walker) {
+		BuriRealPath nowRealPath = walker.getNowPath().getRealPath();
+		BuriWorkflowProcessType processType =
+		    exePackages.getBuriPackageType().getProcessById(
+		        nowRealPath.getWorkflowProcess());
+		BuriActivityType actType =
+		    processType.getActivityById(nowRealPath
+		        .getActivity()
+		        .get(0)
+		        .toString());
+		String limit = actType.getLimit();
+		return limit;
+	}
 
-    public void setBranchDao(BuriBranchDao branchDao) {
-        this.branchDao = branchDao;
-    }
+	public void processed(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		assert sysContext.getStatusId() != null;
+		long stateID = sysContext.getStatusId().longValue();
+		buriStatusEventCaller.processed(factory, sysContext, walker);
+		undoLogUtil.addUndoLog(stateID, 0);
+		buriStateEntityService.updateProceesByStateId(stateID);
+	}
 
-    public BuriDataUtil getDataUtil() {
-        return dataUtil;
-    }
+	public void abortStatus(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		assert sysContext.getStatusId() != null;
+		long stateID = sysContext.getStatusId().longValue();
+		assert walker.getBranchId() != 0;
+		buriStatusEventCaller.abortState(factory, sysContext, walker);
+		undoLogUtil.addUndoLog(stateID, 0);
+		buriStateEntityService.updateAbortByStateId(stateID);
+	}
 
-    public void setDataUtil(BuriDataUtil dataUtil) {
-        this.dataUtil = dataUtil;
-    }
+	public void abortBranch(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		buriStatusEventCaller.abortBranch(factory, sysContext, walker);
+		abortParentBranchID(walker.getParentBranchId(), factory, sysContext);
+		BuriBranchEntity dto =
+		    buriBranchEntityService.select(walker.getParentBranchId());
+		walker.setBranchId(dto.branchId);
+		walker.setParentBranchId(dto.parentBranchId);
+	}
 
-    public BuriPathUtil getPathUtil() {
-        return pathUtil;
-    }
+	protected void abortParentBranchID(long parentBranchId,
+	        DataAccessFactory factory, BuriSystemContext sysContext) {
+		if (parentBranchId == 0) {
+			return;
+		}
+		List<BuriBranchEntity> childs =
+		    buriBranchEntityService.getBranchByParentId(parentBranchId);
+		Iterator<BuriBranchEntity> ite = childs.iterator();
+		while (ite.hasNext()) {
+			BuriBranchEntity child = ite.next();
+			abortParentBranchID(child.branchId, factory, sysContext);
+		}
+		undoLogUtil.addUndoLog(0, parentBranchId);
+		buriStateEntityService.updateAbortByBranchId(parentBranchId);
+	}
 
-    public void setPathUtil(BuriPathUtil pathUtil) {
-        this.pathUtil = pathUtil;
-    }
+	public Long countNoProcessedSiblingStatus(DataAccessFactory factory,
+	        BuriSystemContext sysContext, BranchWalker walker) {
+		assert walker.getParentBranchId() != 0;
+		long count =
+		    buriStateEntityService.countByBranchIdAndNotProcessed(walker
+		        .getParentBranchId());
+		return count;
+	}
 
-    public BuriStateDao getStateDao() {
-        return stateDao;
-    }
+	public BuriDataUtil getDataUtil() {
+		return dataUtil;
+	}
 
-    public void setStateDao(BuriStateDao stateDao) {
-        this.stateDao = stateDao;
-    }
+	public void setDataUtil(BuriDataUtil dataUtil) {
+		this.dataUtil = dataUtil;
+	}
 
-    public BuriUndoLogUtil getUndoLogUtil() {
-        return undoLogUtil;
-    }
+	public BuriPathUtil getPathUtil() {
+		return pathUtil;
+	}
 
-    public void setUndoLogUtil(BuriUndoLogUtil undoLogUtil) {
-        this.undoLogUtil = undoLogUtil;
-    }
+	public void setPathUtil(BuriPathUtil pathUtil) {
+		this.pathUtil = pathUtil;
+	}
 
-    public BTIDUtil getBtidUtil() {
-        return btidUtil;
-    }
+	public BuriBranchEntityService getBuriBranchEntityService() {
+		return buriBranchEntityService;
+	}
 
-    public void setBtidUtil(BTIDUtil btidUtil) {
-        this.btidUtil = btidUtil;
-    }
+	public void setBuriBranchEntityService(
+	        BuriBranchEntityService buriBranchEntityService) {
+		this.buriBranchEntityService = buriBranchEntityService;
+	}
 
-    public ScriptFactory getScriptFactory() {
-        return scriptFactory;
-    }
+	public BuriStateEntityService getBuriStateEntityService() {
+		return buriStateEntityService;
+	}
 
-    public void setScriptFactory(ScriptFactory scriptFactory) {
-        this.scriptFactory = scriptFactory;
-    }
+	public void setBuriStateEntityService(
+	        BuriStateEntityService buriStateEntityService) {
+		this.buriStateEntityService = buriStateEntityService;
+	}
+
+	public BuriUndoLogUtil getUndoLogUtil() {
+		return undoLogUtil;
+	}
+
+	public void setUndoLogUtil(BuriUndoLogUtil undoLogUtil) {
+		this.undoLogUtil = undoLogUtil;
+	}
+
+	public BTIDUtil getBtidUtil() {
+		return btidUtil;
+	}
+
+	public void setBtidUtil(BTIDUtil btidUtil) {
+		this.btidUtil = btidUtil;
+	}
+
+	public ScriptFactory getScriptFactory() {
+		return scriptFactory;
+	}
+
+	public void setScriptFactory(ScriptFactory scriptFactory) {
+		this.scriptFactory = scriptFactory;
+	}
 
 	public BuriStatusEventCaller getBuriStatusEventCaller() {
 		return buriStatusEventCaller;
 	}
 
-	public void setBuriStatusEventCaller(BuriStatusEventCaller buriStatusEventCaller) {
+	public void setBuriStatusEventCaller(
+	        BuriStatusEventCaller buriStatusEventCaller) {
 		this.buriStatusEventCaller = buriStatusEventCaller;
 	}
-
 }

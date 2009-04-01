@@ -35,33 +35,37 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @since 2006/06/06
  */
 public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
-
 	/**
 	 * ユーザ情報ユーティリティ
 	 */
 	private BuriUserUtil userUtil;
 
 	/*
-	 * @see org.escafe.buri.engine.impl.BuriSimpleEngineImpl#readWorkFlowFromResource(java.lang.String,
-	 *      java.lang.String)
+	 * @see
+	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#readWorkFlowFromResource
+	 * (java.lang.String, java.lang.String)
 	 */
 	@Override
 	public void readWorkFlowFromResource(String workFlowName,
-			String resourceName) {
+	        String resourceName) {
 	}
 
 	/*
-	 * @see org.escafe.buri.engine.impl.BuriSimpleEngineImpl#readWorkFlowFromResource(java.lang.String,
-	 *      java.lang.String, org.escafe.buri.engine.ParticipantProvider)
+	 * @see
+	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#readWorkFlowFromResource
+	 * (java.lang.String, java.lang.String,
+	 * org.escafe.buri.engine.ParticipantProvider)
 	 */
 	@Override
 	public void readWorkFlowFromResource(String workFlowName,
-			String resourceName, ParticipantProvider provider) {
+	        String resourceName, ParticipantProvider provider) {
 		readFromResource(workFlowName, resourceName, provider);
 	}
 
 	/*
-	 * @see org.escafe.buri.engine.impl.BuriSimpleEngineImpl#setupUserID(org.escafe.buri.engine.BuriSystemContext)
+	 * @see
+	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#setupUserID(org.escafe
+	 * .buri.engine.BuriSystemContext)
 	 */
 	@Override
 	public void setupUserID(BuriSystemContext sysContext) {
@@ -71,21 +75,23 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 	}
 
 	/*
-	 * @see org.escafe.buri.engine.impl.WakanagoEngineImpl#updateUserInfo(org.escafe.buri.engine.BuriSystemContext,
-	 *      org.escafe.buri.util.packages.BuriExecProcess,
-	 *      org.escafe.buri.util.packages.BuriExePackages)
+	 * @see
+	 * org.escafe.buri.engine.impl.WakanagoEngineImpl#updateUserInfo(org.escafe
+	 * .buri.engine.BuriSystemContext,
+	 * org.escafe.buri.util.packages.BuriExecProcess,
+	 * org.escafe.buri.util.packages.BuriExePackages)
 	 */
 	@Override
 	protected void updateUserInfo(BuriSystemContext sysContext,
-			BuriExecProcess wp, BuriExePackages wPackageObj) {
+	        BuriExecProcess wp, BuriExePackages wPackageObj) {
 		super.updateUserInfo(sysContext, wp, wPackageObj);
 		IdentityInfo appUserId = sysContext.getAppUserId();
 		if ((appUserId.getIdNumber() == null)
-				&& (appUserId.getIdString() == null)) {
+		    && (appUserId.getIdString() == null)) {
 			return;
 		}
 		long userID = userUtil.convertBuriUserId(appUserId);
-		sysContext.setBuriUserID(new Long(userID));
+		sysContext.setBuriUserId(userID);
 	}
 
 	/**
@@ -103,7 +109,8 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 	 * DIコンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param userUtil ユーザ情報ユーティリティ
+	 * @param userUtil
+	 *            ユーザ情報ユーティリティ
 	 */
 	public void setUserUtil(BuriUserUtil userUtil) {
 		this.userUtil = userUtil;
@@ -118,11 +125,12 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 	}
 
 	/*
-	 * @see org.escafe.buri.engine.impl.BuriSimpleEngineImpl#setBuriCompiler(org.escafe.buri.compiler.BuriCompiler)
+	 * @see
+	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#setBuriCompiler(org.
+	 * escafe.buri.compiler.BuriCompiler)
 	 */
 	@Override
 	public void setBuriCompiler(BuriCompiler buriCompiler) {
 		this.buriCompiler = buriCompiler;
 	}
-
 }

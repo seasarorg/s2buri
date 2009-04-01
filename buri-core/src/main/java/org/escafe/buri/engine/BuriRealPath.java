@@ -40,14 +40,17 @@ public class BuriRealPath {
 	 * フローのパッケージID/名
 	 */
 	private String workflowPackage = "";
+
 	/**
 	 * フローのプロセスID/名
 	 */
 	private String workflowProcess = "";
+
 	/**
 	 * フローのプロセスに所属するアクティビティID/名のリスト
 	 */
 	private List<String> activity = new ArrayList<String>();
+
 	/**
 	 * 実行対象パス
 	 * <p>
@@ -69,7 +72,8 @@ public class BuriRealPath {
 	/**
 	 * 実行可能なパスとしてパッケージ、プロセス、アクティビティを管理するDtoのコンストラクタです。
 	 * 
-	 * @param path パッケージID/名.プロセスID/名[.アクティビティID/名]
+	 * @param path
+	 *            パッケージID/名.プロセスID/名[.アクティビティID/名]
 	 */
 	public BuriRealPath(String path) {
 		if (StringUtil.isEmpty(path)) {
@@ -86,8 +90,10 @@ public class BuriRealPath {
 	 * {@code pos}のアクティビティID/名が存在しない場合は、新たにアクティビティID/名のリストに追加します。
 	 * </p>
 	 * 
-	 * @param newPath 新しいアクティビティID/名
-	 * @param pos アクティビティID/名が登録されている{@code pos}
+	 * @param newPath
+	 *            新しいアクティビティID/名
+	 * @param pos
+	 *            アクティビティID/名が登録されている{@code pos}
 	 */
 	public void changePath(String newPath, int pos) {
 		if (StringUtil.isEmpty(newPath)) {
@@ -114,8 +120,10 @@ public class BuriRealPath {
 	 * {@code pos}のアクティビティID/名が存在しない場合は、新たにアクティビティID/名のリストに追加します。
 	 * </p>
 	 * 
-	 * @param newAct 新しいアクティビティ
-	 * @param pos アクティビティID/名が登録されている{@code pos}
+	 * @param newAct
+	 *            新しいアクティビティ
+	 * @param pos
+	 *            アクティビティID/名が登録されている{@code pos}
 	 */
 	public void changePath(BuriActivityType newAct, int pos) {
 		changePath(newAct.getName(), pos);
@@ -177,10 +185,14 @@ public class BuriRealPath {
 	@Override
 	public int hashCode() {
 		int hashCode = 1;
-		hashCode = 31 * hashCode
-				+ (workflowPackage == null ? 0 : workflowPackage.hashCode());
-		hashCode = 31 * hashCode
-				+ (workflowProcess == null ? 0 : workflowProcess.hashCode());
+		hashCode =
+		    31
+		        * hashCode
+		        + (workflowPackage == null ? 0 : workflowPackage.hashCode());
+		hashCode =
+		    31
+		        * hashCode
+		        + (workflowProcess == null ? 0 : workflowProcess.hashCode());
 		hashCode = 31 * hashCode + (activity == null ? 0 : activity.hashCode());
 		hashCode = 31 * hashCode + (pathStr == null ? 0 : pathStr.hashCode());
 		return hashCode;
@@ -189,7 +201,8 @@ public class BuriRealPath {
 	/**
 	 * {@link BuriActivityType}から新しいアクティビティを追加します。
 	 * 
-	 * @param newAct 新しいアクティビティの{@link BuriActivityType}
+	 * @param newAct
+	 *            新しいアクティビティの{@link BuriActivityType}
 	 */
 	public void moveChildPath(BuriActivityType newAct) {
 		moveChildPath(newAct.getName());
@@ -199,7 +212,8 @@ public class BuriRealPath {
 	/**
 	 * 新しいアクティビティID/名を追加します。
 	 * 
-	 * @param childPath 新しいアクティビティID/名
+	 * @param childPath
+	 *            新しいアクティビティID/名
 	 */
 	public void moveChildPath(String childPath) {
 		activity.add(childPath);
@@ -221,7 +235,8 @@ public class BuriRealPath {
 	/**
 	 * アクティビティID/名のリストを登録します。
 	 * 
-	 * @param activity アクティビティID/名のリスト
+	 * @param activity
+	 *            アクティビティID/名のリスト
 	 */
 	public void setActivity(List<String> activity) {
 		activity.clear();
@@ -232,7 +247,8 @@ public class BuriRealPath {
 	/**
 	 * {@link BuriPackageType}からフローのパッケージID/名を登録します。
 	 * 
-	 * @param packageDoc フローの{@link BuriPackageType}
+	 * @param packageDoc
+	 *            フローの{@link BuriPackageType}
 	 */
 	public void setWorkflowPackage(BuriPackageType packageDoc) {
 		setWorkflowPackage(packageDoc.getName());
@@ -242,7 +258,8 @@ public class BuriRealPath {
 	/**
 	 * フローのパッケージID/名を登録します。
 	 * 
-	 * @param workflow フローのパッケージID/名
+	 * @param workflow
+	 *            フローのパッケージID/名
 	 */
 	public void setWorkflowPackage(String workflow) {
 		if (StringUtil.isEmpty(workflow)) {
@@ -256,7 +273,8 @@ public class BuriRealPath {
 	/**
 	 * {@link BuriWorkflowProcessType}からフローのプロセスID/名を登録します。
 	 * 
-	 * @param wkfProcess フローの{@link BuriWorkflowProcessType}
+	 * @param wkfProcess
+	 *            フローの{@link BuriWorkflowProcessType}
 	 */
 	public void setWorkflowProcess(BuriWorkflowProcessType wkfProcess) {
 		setWorkflowProcess(wkfProcess.getName());
@@ -266,7 +284,8 @@ public class BuriRealPath {
 	/**
 	 * フローのプロセスID/名を登録します。
 	 * 
-	 * @param process フローのプロセスID/名
+	 * @param process
+	 *            フローのプロセスID/名
 	 */
 	public void setWorkflowProcess(String process) {
 		if (StringUtil.isEmpty(process)) {
@@ -288,16 +307,19 @@ public class BuriRealPath {
 	/**
 	 * 指定されたパスの構成要素が空ではないかどうかを判定します。
 	 * 
-	 * @param pathName パスの構成要素（パッケージID/名、プロセスID/名、アクティビティID/名）
+	 * @param pathName
+	 *            パスの構成要素（パッケージID/名、プロセスID/名、アクティビティID/名）
 	 * @return パスの構成要素が空ではない場合{@code true}、そうでない場合は{code false}
 	 */
 	protected boolean hasPathName(String pathName) {
 		return pathName.length() > 0;
 	}
+
 	/**
 	 * インスタンスのパスに空の構成要素がないかどうかを判定します。
 	 * 
-	 * @return パッケージID/名、プロセスID/名、アクティビティID/名のいずれかに空の要素があった場合{@code false}、そうでない場合は{@code true}
+	 * @return パッケージID/名、プロセスID/名、アクティビティID/名のいずれかに空の要素があった場合{@code false}
+	 *         、そうでない場合は{@code true}
 	 */
 	protected boolean isCorrect() {
 		if (hasPathName(getWorkflowPackage())) {
@@ -307,10 +329,12 @@ public class BuriRealPath {
 		}
 		return false;
 	}
+
 	/**
 	 * 空のアクティビティが指定されているかどうかを判定します。
 	 * 
-	 * @param activitis アクティビティID/名のリスト
+	 * @param activitis
+	 *            アクティビティID/名のリスト
 	 * @return 空のアクティビティがない場合は{@code true}、そうでない場合は{@code false}
 	 */
 	protected boolean isCorrectActivitys(List<String> activitis) {
@@ -325,7 +349,8 @@ public class BuriRealPath {
 	/**
 	 * パスとして渡された文字列をパッケージID/名、プロセスID/名とアクティビティID/名のリストに分解してセットします。
 	 * 
-	 * @param st 区切り文字を与えた{@link StringTokenizer}
+	 * @param st
+	 *            区切り文字を与えた{@link StringTokenizer}
 	 */
 	protected void setPathFromToken(StringTokenizer st) {
 		if (st.hasMoreTokens()) {
@@ -355,5 +380,4 @@ public class BuriRealPath {
 		}
 		pathStr = path + koron + act;
 	}
-
 }

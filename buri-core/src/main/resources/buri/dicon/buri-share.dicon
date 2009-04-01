@@ -7,7 +7,7 @@
 	<!-- Standard と Simpleで共通のdicon wakanagoにも一部必要 -->
 	<include path="buri/dicon/OgnlScript.dicon"/>
 	<include path="buri/dicon/template.dicon"/>
-	<include path="buri/dicon/allDao.dicon"/>
+	<include path="buri/dicon/internalService.dicon"/>
 	<include path="buri/dicon/event.dicon"/>
 	<include path="aop.dicon"/>
 	<include path="s2mai.dicon"/>
@@ -69,9 +69,7 @@
 	
 	<component name="ClassDefCheckRule" class="org.escafe.buri.compiler.util.impl.rules.ClassDefCheckRule">
 	</component>
-	<component name="S2DaoToDataAccessRule" class="org.escafe.buri.compiler.util.impl.rules.S2DaoToDataAccessRule">
-	</component>
-	<component name="dbFluteToDataAccessRule" class="org.escafe.buri.compiler.util.impl.rules.DBFluteToDataAccessRule">
+	<component name="s2JdbcToDataAccessRule" class="org.escafe.buri.compiler.util.impl.rules.S2JDBCToDataAccessRule">
 	</component>
 	
 	<component class="org.escafe.buri.compiler.util.impl.BuriDataFieldCompilePreprocessorImpl">
@@ -121,12 +119,8 @@
 			</component></arg>
 		</initMethod>
 		<initMethod name="addDataAccessRules">
-			<arg>dbFluteToDataAccessRule</arg>
+			<arg>s2JdbcToDataAccessRule</arg>
 		</initMethod>
-		<initMethod name="addDataAccessRules">
-			<arg>S2DaoToDataAccessRule</arg>
-		</initMethod>
-		
 		<initMethod name="addPreprocessRules">
 			<arg>ClassDefCheckRule</arg>
 		</initMethod>

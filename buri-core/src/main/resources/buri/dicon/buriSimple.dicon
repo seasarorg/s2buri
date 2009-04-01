@@ -17,6 +17,8 @@
 	</component>
 
 	<component name="BuriSimpleEngine" class="org.escafe.buri.engine.impl.BuriSimpleEngineImpl">
+		<property name="buriPathDataEntityService">buriPathDataEntityService</property>
+		<property name="buriStateEntityService">buriStateEntityService</property>
 		<!--
 		<initMethod>
 		#self.readWorkFlowFromResource("sample.xpdl")
@@ -64,24 +66,35 @@
 	</component>
 
 
+
 	<component class="org.escafe.buri.dao.util.impl.BuriDataUtilImpl">
+		<property name="buriDataEntityService">buriDataEntityService</property>
+		<property name="buriIdListService">buriIdListService</property>
+		<property name="buriPathDataEntityService">buriPathDataEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriPathUtilImpl">
+		<property name="buriPathEntityService">buriPathEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriStateUtilImpl">
+		<property name="buriStateEntityService">buriStateEntityService</property>
+		<property name="buriBranchEntityService">buriBranchEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BTIDUtilImpl">
+		<property name="buriTransactionEntityService">buriTransactionEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriUndoLogUtilNoImpl">
+		<property name="buriStateUndoLogEntityService">buriStateUndoLogEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriJoinWaitingUtilImpl">
+		<property name="buriJoinWaitingEntityService">buriJoinWaitingEntityService</property>
+		<property name="buriBranchEntityService">buriBranchEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 

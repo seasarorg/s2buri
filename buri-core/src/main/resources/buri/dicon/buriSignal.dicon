@@ -5,6 +5,8 @@
 	<include path="buri/dicon/buriBase.dicon"/>
 	
 	<component name="buriSignal" class="org.escafe.buri.engine.processor.util.impl.BuriSignalImpl">
+		<property name="buriUserEntityService">buriUserEntityService</property>
+		<property name="buriStateEntityService">buriStateEntityService</property>
 	</component>
 	
 </components>

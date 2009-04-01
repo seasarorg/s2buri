@@ -69,30 +69,35 @@
 		-->
 	</component>
 
-
 	<component class="org.escafe.buri.dao.util.impl.BuriUserUtilImpl">
+		<property name="buriDataEntityService">buriDataEntityService</property>
+		<property name="buriUserEntityService">buriUserEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 		<destroyMethod name="dispose" ></destroyMethod>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriDataUserUtilImpl">
+		<property name="buriPathDataUserEntityService">buriPathDataUserEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriPathUtilImpl">
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriStateUserUtilImpl">
+		<property name="buriStateUserEntityService">buriStateUserEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BTIDUtilImpl">
+		<property name="buriTransactionEntityService">buriTransactionEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriUndoLogUtilNoImpl">
+		<property name="buriStateUndoLogEntityService">buriStateUndoLogEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
 	<component class="org.escafe.buri.dao.util.impl.BuriJoinWaitingUserUtilImpl">
+		<property name="buriWaitingUserEntityService">buriWaitingUserEntityService</property>
 		<aspect>BuriInterceptorChain</aspect>
 	</component>
-
 
 	<component class="org.escafe.buri.compiler.wakanago.WakanagoCompilerImpl">
 		<property name="processCompile">true</property>

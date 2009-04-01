@@ -7,15 +7,14 @@ package org.escafe.buri.dao.util.impl;
 import org.escafe.buri.dao.util.BTIDUtil;
 
 public class BTIDUtilNoImpl implements BTIDUtil {
+	public long createBtId() {
+		return 0;
+	}
 
-    public long createBTID() {
-        return 0;
-    }
+	public long getCurrentBtId() {
+		return 0;
+	}
 
-    public long getCurrentBTID() {
-        return 0;
-    }
-
-    public void setBTID(long btid) {
-    }
+	public void setBtId(long btId) {
+	}
 }

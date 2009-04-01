@@ -7,25 +7,25 @@ package org.escafe.buri.util.packages;
 import org.escafe.buri.engine.BuriPath;
 
 public class BranchWalker {
-    private long parentBranchID;
-    private long branchID;
+    private long parentBranchId;
+    private long branchId;
     private BuriPath parentPath;
     private BuriPath nowPath;
 
-    public long getBranchID() {
-        return branchID;
+    public long getBranchId() {
+        return branchId;
     }
 
-    public void setBranchID(long branchID) {
-        this.branchID = branchID;
+    public void setBranchId(long branchID) {
+        this.branchId = branchID;
     }
 
-    public long getParentBranchID() {
-        return parentBranchID;
+    public long getParentBranchId() {
+        return parentBranchId;
     }
 
-    public void setParentBranchID(long parentBranchID) {
-        this.parentBranchID = parentBranchID;
+    public void setParentBranchId(long parentBranchID) {
+        this.parentBranchId = parentBranchID;
     }
 
     public BuriPath getParentPath() {
@@ -46,8 +46,8 @@ public class BranchWalker {
 
     public BranchWalker moveNext(String actName, String realName) {
         BranchWalker result = new BranchWalker();
-        result.branchID = branchID;
-        result.parentBranchID = parentBranchID;
+        result.branchId = branchId;
+        result.parentBranchId = parentBranchId;
         result.parentPath = parentPath;
         result.nowPath = parentPath.moveChildPath(actName, realName);
         return result;
@@ -56,8 +56,8 @@ public class BranchWalker {
     @Override
     public String toString() {
         StringBuffer buff = new StringBuffer("[");
-        buff.append("parentBranchID=").append(parentBranchID);
-        buff.append("/branchID=").append(branchID);
+        buff.append("parentBranchId=").append(parentBranchId);
+        buff.append("/branchId=").append(branchId);
         buff.append("/parentPath=").append(parentPath);
         buff.append("/nowPath=").append(nowPath);
         buff.append("]");

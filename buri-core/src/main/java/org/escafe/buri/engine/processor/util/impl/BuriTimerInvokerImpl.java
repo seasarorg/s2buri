@@ -15,15 +15,15 @@
  */
 package org.escafe.buri.engine.processor.util.impl;
 
-import org.escafe.buri.dao.BuriPathDataUserDao;
 import org.escafe.buri.dao.util.BuriDataUtil;
 import org.escafe.buri.dao.util.BuriUserUtil;
-import org.escafe.buri.dto.BuriPathDataEntityDto;
-import org.escafe.buri.dto.BuriPathDataUserEntityDto;
 import org.escafe.buri.engine.IdentityInfo;
 import org.escafe.buri.engine.processor.BuriAutoSelectProcessor;
 import org.escafe.buri.engine.processor.BuriProcessorInfo;
 import org.escafe.buri.engine.processor.util.BuriTimerInvoker;
+import org.escafe.buri.entity.BuriPathDataEntity;
+import org.escafe.buri.entity.BuriPathDataUserEntity;
+import org.escafe.buri.service.BuriPathDataUserEntityService;
 import org.seasar.coffee.dataaccess.DataAccessFactory;
 
 /**
@@ -37,159 +37,185 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
  * @author imai78(JavaDoc)
  */
 public class BuriTimerInvokerImpl implements BuriTimerInvoker {
-    /**
-     * {@link BuriAutoSelectProcessor}
-     */
-    private BuriAutoSelectProcessor processor;
-    /**
-     * データ操作ユーティリティ
-     */
-    private BuriDataUtil dataUtil;
-    /**
-     * ユーザ情報ユーティリティ
-     */
-    private BuriUserUtil userUtil;
-    /**
-     * ぶり固有のビュー{@code BuriPathDataUser}のDao
-     */
-    private BuriPathDataUserDao dataUserDao;
+	/**
+	 * {@link BuriAutoSelectProcessor}
+	 */
+	private BuriAutoSelectProcessor processor;
 
-    /*
-     * @see org.escafe.buri.engine.processor.util.BuriTimerInvoker#invoke(org.escafe.buri.dto.BuriPathDataEntityDto)
-     */
-    public void invoke(BuriPathDataEntityDto callDto) {
-        DataAccessFactory accessFactory = processor.getDataAccessFactory(callDto.getPathName());
-        BuriProcessorInfo info = new BuriProcessorInfo();
-        info.put("autoAction", Boolean.TRUE);
-        if (processor.isSimpleProcessor(callDto.getPathName())) {
-            simpleCall(callDto, accessFactory, info);
-        }
-        if (processor.isStdProcessor(callDto.getPathName())) {
-            stdCall(callDto, accessFactory, info);
-        }
-    }
+	/**
+	 * データ操作ユーティリティ
+	 */
+	private BuriDataUtil dataUtil;
 
-    /**
-     * 権限管理のないフローを実行します。
-     * 
-     * @param callDto 実行対象の{@code BuriPathDataUser}のDto
-     * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
-     * @param info プロセッサの情報
-     */
-    protected void simpleCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory, BuriProcessorInfo info) {
-        Object argDto = getArgDto(callDto, accessFactory);
-        processor.toNextStatus(callDto.getPathName(), argDto, null, info);
-    }
+	/**
+	 * ユーザ情報ユーティリティ
+	 */
+	private BuriUserUtil userUtil;
 
-    /**
-     * {@link BuriPathDataEntityDto}をぶりが管理するDtoのオブジェクトに変換して返します。
-     * 
-     * @param callDto 実行対象の{@code BuriPathDataUser}のDto
-     * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
-     * @return ぶりが管理するDtoのオブジェクト
-     */
-    protected Object getArgDto(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory) {
-        Object argDto = dataUtil.getBuriData(callDto.getDataID(), accessFactory);
-        return argDto;
-    }
+	/**
+	 * ぶり固有のビュー{@code BuriPathDataUserEntity}のService
+	 */
+	private BuriPathDataUserEntityService buriPathDataUserEntityService;
 
-    /**
-     * ぶり固有のテーブル{@code BuriUser}からアプリケーション用のユーザ情報を取得して返します。
-     * 
-     * @param callDto 実行対象の{@code BuriPathDataUser}のDto
-     * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
-     * @return アプリケーション用のユーザ情報
-     */
-    protected Object getUserData(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory) {
-        BuriPathDataUserEntityDto dto = dataUserDao.getDto(callDto.getStateID());
-        IdentityInfo appUserId = new IdentityInfo(dto.getUserIDNum(), dto.getUserIDVal());
-        Object userData = userUtil.getUserData(accessFactory, dto.getBuriUserID(), appUserId);
-        return userData;
-    }
+	/*
+	 * @see
+	 * org.escafe.buri.engine.processor.util.BuriTimerInvoker#invoke(org.escafe
+	 * .buri.dto.BuriPathDataEntityDto)
+	 */
+	public void invoke(BuriPathDataEntity callDto) {
+		DataAccessFactory accessFactory =
+		    processor.getDataAccessFactory(callDto.pathName);
+		BuriProcessorInfo info = new BuriProcessorInfo();
+		info.put("autoAction", Boolean.TRUE);
+		if (processor.isSimpleProcessor(callDto.pathName)) {
+			simpleCall(callDto, accessFactory, info);
+		}
+		if (processor.isStdProcessor(callDto.pathName)) {
+			stdCall(callDto, accessFactory, info);
+		}
+	}
 
-    /**
-     * 権限管理のあるフローを実行します。
-     * 
-     * @param callDto 実行対象の{@code BuriPathDataUser}のDto
-     * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
-     * @param info プロセッサの情報
-     */
-    protected void stdCall(BuriPathDataEntityDto callDto, DataAccessFactory accessFactory, BuriProcessorInfo info) {
-        Object argDto = getArgDto(callDto, accessFactory);
-        Object userData = getUserData(callDto, accessFactory);
-        processor.toNextStatus(callDto.getPathName(), argDto, userData, info);
-    }
+	/**
+	 * 権限管理のないフローを実行します。
+	 * 
+	 * @param callDto
+	 *            実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory
+	 *            実行対象のパスに対応した{@link DataAccessFactory}
+	 * @param info
+	 *            プロセッサの情報
+	 */
+	protected void simpleCall(BuriPathDataEntity callDto,
+	        DataAccessFactory accessFactory, BuriProcessorInfo info) {
+		Object argDto = getArgDto(callDto, accessFactory);
+		processor.toNextStatus(callDto.pathName, argDto, null, info);
+	}
 
-    /**
-     * ぶり固有のビュー{@code BuriPathDataUser}のDaoを返します。
-     * 
-     * @return ぶり固有のビュー{@code BuriPathDataUser}のDao
-     */
-    public BuriPathDataUserDao getDataUserDao() {
-        return dataUserDao;
-    }
+	/**
+	 * {@link BuriPathDataEntityDto}をぶりが管理するDtoのオブジェクトに変換して返します。
+	 * 
+	 * @param callDto
+	 *            実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory
+	 *            実行対象のパスに対応した{@link DataAccessFactory}
+	 * @return ぶりが管理するDtoのオブジェクト
+	 */
+	protected Object getArgDto(BuriPathDataEntity callDto,
+	        DataAccessFactory accessFactory) {
+		Object argDto = dataUtil.getBuriData(callDto.dataId, accessFactory);
+		return argDto;
+	}
 
-    /**
-     * ぶり固有のビュー{@code BuriPathDataUser}のDaoを登録します。
-     * 
-     * @param dataUserDao ぶり固有のビュー{@code BuriPathDataUser}のDao
-     */
-    public void setDataUserDao(BuriPathDataUserDao dataUserDao) {
-        this.dataUserDao = dataUserDao;
-    }
+	/**
+	 * ぶり固有のテーブル{@code BuriUser}からアプリケーション用のユーザ情報を取得して返します。
+	 * 
+	 * @param callDto
+	 *            実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory
+	 *            実行対象のパスに対応した{@link DataAccessFactory}
+	 * @return アプリケーション用のユーザ情報
+	 */
+	protected Object getUserData(BuriPathDataEntity callDto,
+	        DataAccessFactory accessFactory) {
+		BuriPathDataUserEntity dto =
+		    buriPathDataUserEntityService.getDto(callDto.stateId);
+		IdentityInfo appUserId = new IdentityInfo(dto.userIdNum, dto.userIdVal);
+		Object userData =
+		    userUtil.getUserData(accessFactory, dto.buriUserId, appUserId);
+		return userData;
+	}
 
-    /**
-     * データ操作ユーティリティを返します。
-     * 
-     * @return データ操作ユーティリティ
-     */
-    public BuriDataUtil getDataUtil() {
-        return dataUtil;
-    }
+	/**
+	 * 権限管理のあるフローを実行します。
+	 * 
+	 * @param callDto
+	 *            実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory
+	 *            実行対象のパスに対応した{@link DataAccessFactory}
+	 * @param info
+	 *            プロセッサの情報
+	 */
+	protected void stdCall(BuriPathDataEntity callDto,
+	        DataAccessFactory accessFactory, BuriProcessorInfo info) {
+		Object argDto = getArgDto(callDto, accessFactory);
+		Object userData = getUserData(callDto, accessFactory);
+		processor.toNextStatus(callDto.pathName, argDto, userData, info);
+	}
 
-    /**
-     * データ操作ユーティリティを登録します。
-     * 
-     * @param dataUtil データ操作ユーティリティ
-     */
-    public void setDataUtil(BuriDataUtil dataUtil) {
-        this.dataUtil = dataUtil;
-    }
+	/**
+	 * ぶり固有のビュー{@code BuriPathDataUserEntity}のServiceを返します。
+	 * 
+	 * @return ぶり固有のビュー{@code BuriPathDataUserEntity}のService
+	 */
+	public BuriPathDataUserEntityService getBuriPathDataUserEntityService() {
+		return buriPathDataUserEntityService;
+	}
 
-    /**
-     * {@link BuriAutoSelectProcessor}を返します。
-     * 
-     * @return {@link BuriAutoSelectProcessor}
-     */
-    public BuriAutoSelectProcessor getProcessor() {
-        return processor;
-    }
+	/**
+	 * ぶり固有のビュー{@code BuriPathDataUserEntity}のServiceを登録します。
+	 * 
+	 * @param dataUserDao
+	 *            ぶり固有のビュー{@code BuriPathDataUserEntity}のService
+	 */
+	public void setBuriPathDataUserEntityService(
+	        BuriPathDataUserEntityService buriPathDataUserEntityService) {
+		this.buriPathDataUserEntityService = buriPathDataUserEntityService;
+	}
 
-    /**
-     * {@link BuriAutoSelectProcessor}を登録します。
-     * 
-     * @param processor {@link BuriAutoSelectProcessor}
-     */
-    public void setProcessor(BuriAutoSelectProcessor processor) {
-        this.processor = processor;
-    }
+	/**
+	 * データ操作ユーティリティを返します。
+	 * 
+	 * @return データ操作ユーティリティ
+	 */
+	public BuriDataUtil getDataUtil() {
+		return dataUtil;
+	}
 
-    /**
-     * ユーザ情報ユーティリティを返します。
-     * 
-     * @return ユーザ情報ユーティリティ
-     */
-    public BuriUserUtil getUserUtil() {
-        return userUtil;
-    }
+	/**
+	 * データ操作ユーティリティを登録します。
+	 * 
+	 * @param dataUtil
+	 *            データ操作ユーティリティ
+	 */
+	public void setDataUtil(BuriDataUtil dataUtil) {
+		this.dataUtil = dataUtil;
+	}
 
-    /**
-     * ユーザ情報ユーティリティを登録します。
-     * 
-     * @param userUtil ユーザ情報ユーティリティ
-     */
-    public void setUserUtil(BuriUserUtil userUtil) {
-        this.userUtil = userUtil;
-    }
+	/**
+	 * {@link BuriAutoSelectProcessor}を返します。
+	 * 
+	 * @return {@link BuriAutoSelectProcessor}
+	 */
+	public BuriAutoSelectProcessor getProcessor() {
+		return processor;
+	}
 
+	/**
+	 * {@link BuriAutoSelectProcessor}を登録します。
+	 * 
+	 * @param processor
+	 *            {@link BuriAutoSelectProcessor}
+	 */
+	public void setProcessor(BuriAutoSelectProcessor processor) {
+		this.processor = processor;
+	}
+
+	/**
+	 * ユーザ情報ユーティリティを返します。
+	 * 
+	 * @return ユーザ情報ユーティリティ
+	 */
+	public BuriUserUtil getUserUtil() {
+		return userUtil;
+	}
+
+	/**
+	 * ユーザ情報ユーティリティを登録します。
+	 * 
+	 * @param userUtil
+	 *            ユーザ情報ユーティリティ
+	 */
+	public void setUserUtil(BuriUserUtil userUtil) {
+		this.userUtil = userUtil;
+	}
 }

@@ -4,31 +4,32 @@
  */
 package org.escafe.buri.dao.util.impl;
 
-import org.escafe.buri.dao.BuriStateUndoLogDao;
 import org.escafe.buri.dao.util.BTIDUtil;
 import org.escafe.buri.dao.util.BuriUndoLogUtil;
+import org.escafe.buri.service.BuriStateUndoLogEntityService;
 
 public class BuriUndoLogUtilNoImpl implements BuriUndoLogUtil {
-    private BTIDUtil btidUtil;
-    private BuriStateUndoLogDao undoDao;
+	private BTIDUtil btidUtil;
 
-    public void addUndoLog(long stateID, long branchID) {
-    }
+	private BuriStateUndoLogEntityService buriStateUndoLogEntityService;
 
-    public BTIDUtil getBtidUtil() {
-        return btidUtil;
-    }
+	public void addUndoLog(long stateID, long branchID) {
+	}
 
-    public void setBtidUtil(BTIDUtil btidUtil) {
-        this.btidUtil = btidUtil;
-    }
+	public BTIDUtil getBtidUtil() {
+		return btidUtil;
+	}
 
-    public BuriStateUndoLogDao getUndoDao() {
-        return undoDao;
-    }
+	public void setBtidUtil(BTIDUtil btidUtil) {
+		this.btidUtil = btidUtil;
+	}
 
-    public void setUndoDao(BuriStateUndoLogDao undoDao) {
-        this.undoDao = undoDao;
-    }
+	public BuriStateUndoLogEntityService getBuriStateUndoLogEntityService() {
+		return buriStateUndoLogEntityService;
+	}
 
+	public void setBuriStateUndoLogEntityService(
+	        BuriStateUndoLogEntityService buriStateUndoLogEntityService) {
+		this.buriStateUndoLogEntityService = buriStateUndoLogEntityService;
+	}
 }

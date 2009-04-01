@@ -11,12 +11,23 @@
 	<include path="StdTestPP.dicon"/>
 	<!-- ここまではテスト用なので実際は削除する -->
 	
+	<!--
+	<component name="userDataFieldRuleSet" class="org.escafe.buri.compiler.util.BuriDataFieldProcRuleSet">
+		<initMethod name="addDataAccessRules"><arg>
+			<component name="dbFluteToDataAccessRule" class="org.escafe.buri.compiler.util.impl.rules.DBFluteToDataAccessRule">
+			</component></arg>
+		</initMethod>
+	</component>
+	-->
+	
 	<component class="org.escafe.buri.common.util.BuriConfigurationImpl">
 	<!--
 		<initMethod>#self.addValue("DtoPackageName","org.escafe.buri.dto")</initMethod>
 		<initMethod>#self.addValue("DaoPackageName","org.escafe.buri.dao")</initMethod>
 	-->
 	</component>
+	
+
 	
 	<component name="BuriEngineConfig" class="org.escafe.buri.engine.impl.BuriEngineConfigImpl">
 		<!-- ParticipantProviderを使う場合はここに記述する。引数はResourceのファイル名,パッケージ名,ParticipantProvider -->

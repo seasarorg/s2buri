@@ -6,42 +6,45 @@ package org.escafe.buri.dao.util.impl;
 
 import java.util.Date;
 
-import org.escafe.buri.dao.BuriTransactionDao;
 import org.escafe.buri.dao.util.BTIDUtil;
-import org.escafe.buri.dto.BuriTransactionEntityDto;
+import org.escafe.buri.entity.BuriTransactionEntity;
+import org.escafe.buri.service.BuriTransactionEntityService;
 
 public class BTIDUtilImpl implements BTIDUtil {
-    private BuriTransactionDao btDao;
-    private ThreadLocal btidLocal = new ThreadLocal();
+	private BuriTransactionEntityService buriTransactionEntityService;
 
-    public void dispose() {
-    	btidLocal = new ThreadLocal();
-    }
-    public long createBTID() {
-        BuriTransactionEntityDto dto = new BuriTransactionEntityDto();
-        dto.setInsertDate(new Date());
-        btDao.insert(dto);
-        return dto.getBTID();
-    }
+	private ThreadLocal<Long> btidLocal = new ThreadLocal<Long>();
 
-    public long getCurrentBTID() {
-        if (btidLocal.get() == null) {
-            setBTID(0);
-        }
-        long result = ((Long) btidLocal.get()).longValue();
-        return result;
-    }
+	public void dispose() {
+		btidLocal = new ThreadLocal<Long>();
+	}
 
-    public void setBTID(long btid) {
-        Long val = new Long(btid);
-        btidLocal.set(val);
-    }
+	public long createBtId() {
+		BuriTransactionEntity dto = new BuriTransactionEntity();
+		dto.insertDate = new Date();
+		buriTransactionEntityService.insert(dto);
+		return dto.btId;
+	}
 
-    public BuriTransactionDao getBtDao() {
-        return btDao;
-    }
+	public long getCurrentBtId() {
+		if (btidLocal.get() == null) {
+			setBtId(0);
+		}
+		long result = (btidLocal.get()).longValue();
+		return result;
+	}
 
-    public void setBtDao(BuriTransactionDao btDao) {
-        this.btDao = btDao;
-    }
+	public void setBtId(long btid) {
+		Long val = Long.valueOf(btid);
+		btidLocal.set(val);
+	}
+
+	public BuriTransactionEntityService getBuriTransactionEntityService() {
+		return buriTransactionEntityService;
+	}
+
+	public void setBuriTransactionEntityService(
+	        BuriTransactionEntityService buriTransactionEntityService) {
+		this.buriTransactionEntityService = buriTransactionEntityService;
+	}
 }

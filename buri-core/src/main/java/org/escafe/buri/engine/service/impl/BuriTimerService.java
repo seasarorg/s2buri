@@ -8,9 +8,9 @@ import java.util.List;
 
 import jp.starlogic.servicemanager.abst.AbstractGetRunService;
 
-import org.escafe.buri.dao.BuriPathDataDao;
-import org.escafe.buri.dto.BuriPathDataEntityDto;
 import org.escafe.buri.engine.processor.util.BuriTimerInvoker;
+import org.escafe.buri.entity.BuriPathDataEntity;
+import org.escafe.buri.service.BuriPathDataEntityService;
 
 /**
  * タイマーによる制御を行うクラスです。
@@ -24,66 +24,70 @@ import org.escafe.buri.engine.processor.util.BuriTimerInvoker;
  * @since 2006/06/28
  */
 public class BuriTimerService extends AbstractGetRunService {
-    /**
-     * {@link BuriTimerInvoker}
-     */
-    private BuriTimerInvoker timerInvoker;
-    /**
-     * ぶり固有のビュー{@code BuriPathData}のDao
-     */
-    private BuriPathDataDao dataDao;
+	/**
+	 * {@link BuriTimerInvoker}
+	 */
+	private BuriTimerInvoker timerInvoker;
 
-    /*
-     * @see jp.starlogic.servicemanager.OneService#canService()
-     */
-    public boolean canService() {
-        return true;
-    }
+	/**
+	 * ぶり固有のビュー{@code BuriPathDataEntityService}のService
+	 */
+	private BuriPathDataEntityService buriPathDataEntityService;
 
-    /*
-     * @see jp.starlogic.servicemanager.OneService#execute()
-     */
-    public void execute() {
-        List<BuriPathDataEntityDto> timerOverList = dataDao.getTimeOrverState();
-        for (BuriPathDataEntityDto callDto : timerOverList) {
-            timerInvoker.invoke(callDto);
-        }
-    }
+	/*
+	 * @see jp.starlogic.servicemanager.OneService#canService()
+	 */
+	public boolean canService() {
+		return true;
+	}
 
-    /**
-     * ぶり固有のビュー{@code BuriPathData}のDaoを返します。
-     * 
-     * @return ぶり固有のビュー{@code BuriPathData}のDao
-     */
-    public BuriPathDataDao getDataDao() {
-        return dataDao;
-    }
+	/*
+	 * @see jp.starlogic.servicemanager.OneService#execute()
+	 */
+	public void execute() {
+		List<BuriPathDataEntity> timerOverList =
+		    buriPathDataEntityService.getTimeOrverState();
+		for (BuriPathDataEntity callDto : timerOverList) {
+			timerInvoker.invoke(callDto);
+		}
+	}
 
-    /**
-     * ぶり固有のビュー{@code BuriPathData}のDaoを登録します。
-     * 
-     * @param dataDao ぶり固有のビュー{@code BuriPathData}のDao
-     */
-    public void setDataDao(BuriPathDataDao dataDao) {
-        this.dataDao = dataDao;
-    }
+	/**
+	 * ぶり固有のビュー{@code BuriPathDataEntity}のServiceを返します。
+	 * 
+	 * @return ぶり固有のビュー{@code BuriPathDataEntity}のService
+	 */
+	public BuriPathDataEntityService getBuriPathDataEntityService() {
+		return buriPathDataEntityService;
+	}
 
-    /**
-     * {@link BuriTimerInvoker}を返します。
-     * 
-     * @return {@link BuriTimerInvoker}
-     */
-    public BuriTimerInvoker getTimerInvoker() {
-        return timerInvoker;
-    }
+	/**
+	 * ぶり固有のビュー{@code BuriPathDataEntity}のServiceを登録します。
+	 * 
+	 * @param dataDao
+	 *            ぶり固有のビュー{@code BuriPathDataEntity}のService
+	 */
+	public void setBuriPathDataEntityService(
+	        BuriPathDataEntityService buriPathDataEntityService) {
+		this.buriPathDataEntityService = buriPathDataEntityService;
+	}
 
-    /**
-     * {@link BuriTimerInvoker}を登録します。
-     * 
-     * @param timerInvoker {@link BuriTimerInvoker}
-     */
-    public void setTimerInvoker(BuriTimerInvoker timerInvoker) {
-        this.timerInvoker = timerInvoker;
-    }
+	/**
+	 * {@link BuriTimerInvoker}を返します。
+	 * 
+	 * @return {@link BuriTimerInvoker}
+	 */
+	public BuriTimerInvoker getTimerInvoker() {
+		return timerInvoker;
+	}
 
+	/**
+	 * {@link BuriTimerInvoker}を登録します。
+	 * 
+	 * @param timerInvoker
+	 *            {@link BuriTimerInvoker}
+	 */
+	public void setTimerInvoker(BuriTimerInvoker timerInvoker) {
+		this.timerInvoker = timerInvoker;
+	}
 }

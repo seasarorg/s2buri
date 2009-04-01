@@ -14,7 +14,7 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
 /**
  * ユーザ情報に関するユーティリティクラスです。
  * 
- * @author $Author$
+ * @author $Author: nobeans $
  */
 public interface BuriUserUtil {
 

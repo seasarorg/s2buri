@@ -15,8 +15,8 @@
  */
 package org.escafe.buri.engine.processor.util;
 
-import org.escafe.buri.dto.BuriPathDataEntityDto;
 import org.escafe.buri.engine.service.impl.BuriTimerService;
+import org.escafe.buri.entity.BuriPathDataEntity;
 
 /**
  * 指定時刻になった時点でエンジンを起動する為のAPIです。
@@ -29,10 +29,11 @@ import org.escafe.buri.engine.service.impl.BuriTimerService;
  * @author imai78(JavaDoc)
  */
 public interface BuriTimerInvoker {
-    /**
-     * {@link BuriPathDataEntityDto}に基づいてぶりのエンジンを実行します。
-     * 
-     * @param callDto 実行対象の{@code BuriPathDataUser}のDto
-     */
-    void invoke(BuriPathDataEntityDto callDto);
+	/**
+	 * {@link BuriPathDataEntity}に基づいてぶりのエンジンを実行します。
+	 * 
+	 * @param callDto
+	 *            実行対象の{@code BuriPathDataUser}のDto
+	 */
+	void invoke(BuriPathDataEntity callDto);
 }

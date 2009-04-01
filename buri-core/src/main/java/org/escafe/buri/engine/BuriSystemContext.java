@@ -24,8 +24,7 @@ import org.seasar.framework.container.S2Container;
  * フローを実行する上で必要なシステムのコンテキスト情報を保持するクラスです。
  * <p>
  * ぶりのプロセッサはこのクラスに必要な情報を与えて、ぶりのエンジンに引き渡します。
- * そしてぶりのエンジンは、受け取ったこのクラスを参照することでその動作を決定します。
- * その為、このクラスのオブジェクト生成はぶりのエンジン
+ * そしてぶりのエンジンは、受け取ったこのクラスを参照することでその動作を決定します。 その為、このクラスのオブジェクト生成はぶりのエンジン
  * {@link WakanagoEngine#createSystemContext(String, BuriUserContext)}
  * を使用する事をお勧めします。
  * </p>
@@ -36,7 +35,6 @@ import org.seasar.framework.container.S2Container;
  * @since 2006/03/21
  */
 public class BuriSystemContext {
-
 	/** */
 	private static final long serialVersionUID = 1L;
 
@@ -47,49 +45,60 @@ public class BuriSystemContext {
 	 * </p>
 	 */
 	private BuriUserContext userContext;
+
 	/**
 	 * ぶりが管理するデータのDtoのクラス
 	 */
 	private Class<?> targetDtoClass;
+
 	/**
 	 * 処理対象となるパスを表す{@link BuriPath}
 	 */
 	private BuriPath callPath;
+
 	/**
 	 * 現在のコンテキストで対象としているデータID
 	 * <p>
 	 * 実行対象となるぶり固有のテーブル{@code BuriData}のID
 	 * </p>
 	 */
-	private Long dataID;
+	private Long dataId;
+
 	/**
 	 * 使用する{@link S2Container}
 	 */
 	private S2Container container;
+
 	/**
 	 * ID情報
 	 */
 	private IdentityInfo appUserId;
+
 	/**
 	 * ぶり固有のテーブル{@code BuriUser}のID
 	 */
-	private Long buriUserID;
+	private Long buriUserId;
+
 	/**
 	 * ぶり固有のテーブル{@code BuriState}のID
 	 */
-	private Long statusID;
+	private Long statusId;
+
 	/**
 	 * 権限管理をする際の権限名
 	 */
 	private String startParticipantName;
+
 	/**
 	 * 実行可能なアクティビティのリスト
 	 */
 	private List<String> activityNames;
+
 	/**
 	 * 後処理として実行するメソッド
 	 */
 	private List<String> afterCallMethods = new ArrayList<String>();
+
 	/**
 	 * 実行時例外
 	 */
@@ -107,28 +116,11 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキスト上でのメインのDIコンテナを設定します。
 	 * 
-	 * @param container S2コンテナ
+	 * @param container
+	 *            S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;
-	}
-
-	/**
-	 * ユーザコンテキストを返します。
-	 * 
-	 * @return ユーザコンテキスト
-	 */
-	public BuriUserContext getUserContext() {
-		return userContext;
-	}
-
-	/**
-	 * ユーザコンテキストを設定します。
-	 * 
-	 * @param userContext ユーザコンテキスト
-	 */
-	public void setUserContext(BuriUserContext userContext) {
-		this.userContext = userContext;
 	}
 
 	/**
@@ -143,10 +135,20 @@ public class BuriSystemContext {
 	/**
 	 * 処理対象のアクティビティのパスを設定します。
 	 * 
-	 * @param callPath 処理対象を示す{@link BuriPath}
+	 * @param callPath
+	 *            処理対象を示す{@link BuriPath}
 	 */
 	public void setCallPath(BuriPath callPath) {
 		this.callPath = callPath;
+	}
+
+	/**
+	 * ユーザコンテキストを返します。
+	 * 
+	 * @return
+	 */
+	public BuriUserContext getUserContext() {
+		return userContext;
 	}
 
 	/**
@@ -154,17 +156,27 @@ public class BuriSystemContext {
 	 * 
 	 * @return 現在のコンテキストで対象としているデータID
 	 */
-	public Long getDataID() {
-		return dataID;
+	public Long getDataId() {
+		return dataId;
+	}
+
+	/**
+	 * ユーザコンテキストを設定します。
+	 * 
+	 * @param userContext
+	 */
+	public void setUserContext(BuriUserContext userContext) {
+		this.userContext = userContext;
 	}
 
 	/**
 	 * 現在のコンテキストで対象としているデータIDを設定します。
 	 * 
-	 * @param dataID 現在のコンテキストで対象としているデータID
+	 * @param dataID
+	 *            現在のコンテキストで対象としているデータID
 	 */
-	public void setDataID(Long dataID) {
-		this.dataID = dataID;
+	public void setDataId(Long dataId) {
+		this.dataId = dataId;
 	}
 
 	/**
@@ -172,17 +184,18 @@ public class BuriSystemContext {
 	 * 
 	 * @return 現在のコンテキストで対象としているデータのステータスID
 	 */
-	public Long getStatusID() {
-		return statusID;
+	public Long getStatusId() {
+		return statusId;
 	}
 
 	/**
 	 * 現在のコンテキストで対象としているデータのステータスIDを設定します。
 	 * 
-	 * @param statusID データのステータスID
+	 * @param statusID
+	 *            データのステータスID
 	 */
-	public void setStatusID(Long statusID) {
-		this.statusID = statusID;
+	public void setStatusId(Long statusId) {
+		this.statusId = statusId;
 	}
 
 	/**
@@ -197,7 +210,8 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキストで対象としているデータのDTOクラス型を設定します。
 	 * 
-	 * @param targetClass データのDTOクラス型
+	 * @param targetClass
+	 *            データのDTOクラス型
 	 */
 	public void setTargetDtoClass(Class<?> targetClass) {
 		this.targetDtoClass = targetClass;
@@ -215,7 +229,8 @@ public class BuriSystemContext {
 	/**
 	 * アプリケーション側で定義されるユーザIDを設定します。
 	 * 
-	 * @param appUserId アプリケーション側で定義されるユーザID
+	 * @param appUserId
+	 *            アプリケーション側で定義されるユーザID
 	 */
 	public void setAppUserId(IdentityInfo appUserId) {
 		this.appUserId = appUserId;
@@ -229,20 +244,8 @@ public class BuriSystemContext {
 	 * 
 	 * @return ぶり側で定義されるユーザID
 	 */
-	public Long getBuriUserID() {
-		return buriUserID;
-	}
-
-	/**
-	 * ぶり側で定義されるユーザIDを設定します。
-	 * <p>
-	 * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。 本メソッドではこの独自管理上のIDを設定します。
-	 * </p>
-	 * 
-	 * @param buriUserID
-	 */
-	public void setBuriUserID(Long buriUserID) {
-		this.buriUserID = buriUserID;
+	public Long getBuriUserId() {
+		return buriUserId;
 	}
 
 	/**
@@ -284,6 +287,18 @@ public class BuriSystemContext {
 	}
 
 	/**
+	 * ぶり側で定義されるユーザIDを設定します。
+	 * <p>
+	 * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。 本メソッドではこの独自管理上のIDを設定します。
+	 * </p>
+	 * 
+	 * @param buriUserId
+	 */
+	public void setBuriUserId(Long buriUserId) {
+		this.buriUserId = buriUserId;
+	}
+
+	/**
 	 * 実行時例外を返します。
 	 * <p>
 	 * {@code WakanagoProcess}での例外処理の実現で使用されます。
@@ -301,7 +316,8 @@ public class BuriSystemContext {
 	 * {@code WakanagoProcess}での例外処理の実現で使用されます。
 	 * </p>
 	 * 
-	 * @param exception 実行時例外
+	 * @param exception
+	 *            実行時例外
 	 */
 	public void setException(RuntimeException exception) {
 		this.exception = exception;
@@ -325,7 +341,8 @@ public class BuriSystemContext {
 	 * BAOのアノテーションで指定したアクティビティ名が含まれます。
 	 * </p>
 	 * 
-	 * @param actNames アクティビティ名のリスト
+	 * @param actNames
+	 *            アクティビティ名のリスト
 	 */
 	public void setActivityNames(List<String> actNames) {
 		this.activityNames = actNames;
@@ -343,7 +360,8 @@ public class BuriSystemContext {
 	/**
 	 * 後処理として実行するメソッドのメソッド名のリストを登録します。
 	 * 
-	 * @param afterCallMethods 後処理として実行するメソッドのメソッド名のリスト
+	 * @param afterCallMethods
+	 *            後処理として実行するメソッドのメソッド名のリスト
 	 */
 	public void setAfterCallMethods(List<String> afterCallMethods) {
 		this.afterCallMethods = afterCallMethods;
@@ -352,24 +370,22 @@ public class BuriSystemContext {
 	/**
 	 * 後処理として実行するメソッドのメソッド名を追加します。
 	 * 
-	 * @param afterCallName 後処理として実行するメソッドのメソッド名
+	 * @param afterCallName
+	 *            後処理として実行するメソッドのメソッド名
 	 */
 	public void addAfterCallMethods(String afterCallName) {
 		this.afterCallMethods.add(afterCallName);
 	}
 
-	/*
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		StringBuffer buff = new StringBuffer("[");
 		buff.append("userContext=").append(userContext);
 		buff.append("/callPath=").append(callPath);
-		buff.append("/dataID=").append(dataID);
-		buff.append("/buriUserID=").append(buriUserID);
+		buff.append("/dataId=").append(dataId);
+		buff.append("/buriUserId=").append(buriUserId);
 		buff.append("/appUserId=").append(appUserId);
-		buff.append("/statusID=").append(statusID);
+		buff.append("/statusId=").append(statusId);
 		buff.append("/targetDtoClass=").append(targetDtoClass);
 		buff.append("/startParticipantName=").append(startParticipantName);
 		buff.append("/activityNames=").append(activityNames);
@@ -378,5 +394,4 @@ public class BuriSystemContext {
 		buff.append("]");
 		return buff.toString();
 	}
-
 }

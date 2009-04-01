@@ -9,30 +9,29 @@ import org.escafe.buri.engine.ParticipantProvider;
 import org.escafe.buri.oouo.internal.structure.BuriPackageType;
 
 public interface BuriExePackages {
-    void setup(BuriPackageType buriPackage);
+	void setup(BuriPackageType buriPackage);
 
-    BuriExecProcess getProcess(BuriPath path);
+	BuriExecProcess getProcess(BuriPath path);
 
-    void setProcess(String procID, BuriExecProcess execProcess);
+	void setProcess(String procId, BuriExecProcess execProcess);
 
-    BuriPackageType getBuriPackageType();
+	BuriPackageType getBuriPackageType();
 
-    void setParticipantProvider(ParticipantProvider provider);
+	void setParticipantProvider(ParticipantProvider provider);
 
-    ParticipantProvider getParticipantProvider();
+	ParticipantProvider getParticipantProvider();
 
-    String getConditionExpressionType();
+	String getConditionExpressionType();
 
-    String getDataAccessScriptType();
+	String getDataAccessScriptType();
 
-    String getDefaultExpressionType();
+	String getDefaultExpressionType();
 
-    String getPkeyExpressionType();
+	String getPkeyExpressionType();
 
-    String getPreprocessScriptType();
+	String getPreprocessScriptType();
 
-    String getTimeLimitExpressionType();
-    
-    void destroy();
+	String getTimeLimitExpressionType();
 
+	void destroy();
 }

@@ -16,58 +16,56 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.util.StringUtil;
 
-public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil implements DataAccessUtilLongKey {
+public abstract class AbstDataAccessUtilLongKey extends AbstDataAccessUtil
+        implements DataAccessUtilLongKey {
+	protected Long getLongPkey(Object target, String prop) {
+		BeanDesc beanDesc = BeanDescFactory.getBeanDesc(target.getClass());
+		PropertyDesc pkeyPropertyDesc = beanDesc.getPropertyDesc(prop);
+		Object result = pkeyPropertyDesc.getValue(target);
+		if (result == null) {
+			result = 0L;
+		}
+		assert result instanceof Long;
+		return (Long) result;
+	}
 
-    protected Long getLongPkey(Object target, String prop) {
-        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(target.getClass());
-        PropertyDesc pkeyPropertyDesc = beanDesc.getPropertyDesc(prop);
-        Object result = pkeyPropertyDesc.getValue(target);
-        if(result == null) {
-        	result = new Long(0);
-        }
-        assert result instanceof Long;
-        return (Long) result;
-    }
+	@Override
+	protected List getDataList(List keyVals, String execScript) {
+		if (StringUtil.isEmpty(execScript)) {
+			return getDataListFromKeys(keyVals);
+		}
+		Object result = runScript(keyVals, execScript);
+		assert result instanceof List;
+		return (List) result;
+	}
 
-    @Override
-    protected List getDataList(List keyVals, String execScript) {
-        if (StringUtil.isEmpty(execScript)) {
-            return getDataListFromKeys(keyVals);
-        }
-        Object result = runScript(keyVals, execScript);
-        assert result instanceof List;
-        return (List) result;
-    }
+	@Override
+	protected List getDataListFromKeys(List keyVals) {
+		List result = new ArrayList();
+		Iterator ite = keyVals.iterator();
+		while (ite.hasNext()) {
+			Object oneKey = ite.next();
+			Object oneResult = getObjectFromKey((Long) oneKey);
+			result.add(oneResult);
+		}
+		return result;
+	}
 
-    @Override
-    protected List getDataListFromKeys(List keyVals) {
-        List result = new ArrayList();
-        Iterator ite = keyVals.iterator();
-        while (ite.hasNext()) {
-            Object oneKey = ite.next();
-            Object oneResult = getObjectFromKey((Long) oneKey);
-            result.add(oneResult);
-        }
-        return result;
-    }
+	@Override
+	protected int deleteData(Object data, String execScript) {
+		Object result = runScript(data, execScript);
+		if (result instanceof Integer) {
+			Integer delCount = (Integer) result;
+			return delCount.intValue();
+		}
+		return 0;
+	}
 
-    @Override
-    protected int deleteData(Object data, String execScript) {
-        Object result = runScript(data, execScript);
-        if (result instanceof Integer) {
-            Integer delCount = (Integer) result;
-            return delCount.intValue();
-        }
-        return 0;
-    }
-
-    @Override
-    protected Object runScript(Object data, String execScript) {
-        Map context = new HashMap();
-        context.put("data", data);
-        Object result = getDataAccessScript().run(execScript, null, context);
-        return result;
-
-    }
-
+	@Override
+	protected Object runScript(Object data, String execScript) {
+		Map context = new HashMap();
+		context.put("data", data);
+		Object result = getDataAccessScript().run(execScript, null, context);
+		return result;
+	}
 }

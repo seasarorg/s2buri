@@ -5,9 +5,9 @@
 package org.escafe.buri.dao.util;
 
 public interface BTIDUtil {
-    long createBTID();
+	long createBtId();
 
-    long getCurrentBTID();
+	long getCurrentBtId();
 
-    void setBTID(long btid);
+	void setBtId(long btId);
 }

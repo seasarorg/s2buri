@@ -17,11 +17,11 @@ package org.escafe.buri.engine.interceptor;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.escafe.buri.aop.impl.BuriMethodInvocation;
-import org.escafe.buri.dao.BuriDataPathHistoryDao;
 import org.escafe.buri.dao.util.BuriPathUtil;
-import org.escafe.buri.dto.BuriDataPathHistoryEntityDto;
 import org.escafe.buri.engine.BuriPath;
 import org.escafe.buri.engine.BuriSystemContext;
+import org.escafe.buri.entity.BuriDataPathHistoryEntity;
+import org.escafe.buri.service.BuriDataPathHistoryEntityService;
 import org.escafe.buri.util.packages.BranchWalker;
 import org.escafe.buri.util.packages.BuriExecProcess;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
@@ -29,105 +29,114 @@ import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 /**
  * 履歴を保存する為のインターセプタです。
  * <p>
- * {@link MethodInvocation}から得られる情報を元に
- * ぶり固有のテーブル{@code BuriDataPathHistory}にデータを登録します。
+ * {@link MethodInvocation}から得られる情報を元に ぶり固有のテーブル{@code BuriDataPathHistory}
+ * にデータを登録します。
  * </p>
  * 
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
- *
  */
 public class BuriRecorderInterceptor extends AbstractInterceptor {
+	/** */
+	private static final long serialVersionUID = 1L;
 
-    /** */
-    private static final long serialVersionUID = 1L;
-    /**
-     * ぶり固有のテーブル{@code BuriDataPathHistory}のDao
-     */
-    private BuriDataPathHistoryDao historyDao;
-    /**
-     * パス参照ユーティリティ
-     */
-    private BuriPathUtil pathUtil;
+	/**
+	 * ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のService
+	 */
+	private transient BuriDataPathHistoryEntityService buriDataPathHistoryEntityService;
 
-    /*
-     * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
-     */
-    public Object invoke(MethodInvocation invocation) throws Throwable {
-        // ぶりのMethodInvocationではない場合のキャスト
-        if (!(invocation instanceof BuriMethodInvocation)) {
-            return invocation.proceed();
-        }
-        // ぶりのMethodInvocationの場合のキャスト
-        BuriMethodInvocation bInvo = (BuriMethodInvocation) invocation;
-        if (bInvo.getThisObject() instanceof BuriExecProcess) {
-            if (bInvo.getCallMethod().getName().indexOf("_start") > 0) {
-                saveLog(bInvo);
-            }
-        }
-        return invocation.proceed();
-    }
+	/**
+	 * パス参照ユーティリティ
+	 */
+	private transient BuriPathUtil pathUtil;
 
-    /**
-     * ぶり固有のテーブル{@code BuriDataPathHistory}にデータを登録します。
-     * 
-     * @param bInvo 指定された{@link BuriMethodInvocation}
-     */
-    protected void saveLog(BuriMethodInvocation bInvo) {
-        BuriSystemContext sysContext = (BuriSystemContext) bInvo.getCallArguments()[0];
-        BranchWalker walker = (BranchWalker) bInvo.getCallArguments()[1];
-        // BuriDataPathHistoryEntityDtoのセットアップ
-        BuriDataPathHistoryEntityDto dto = new BuriDataPathHistoryEntityDto();
-        dto.setAction(sysContext.getUserContext().getAction());
-        dto.setBuriUserID(sysContext.getBuriUserID());
-        dto.setDataID(sysContext.getDataID());
-        // パス名のセットアップ
-        if (walker.getNowPath() != null) {
-            BuriPath realPath = pathUtil.getBuriPathFromRealPath(walker.getNowPath());
-            long pathID = realPath.getBuriPathId();
-            dto.setPathID(new Long(pathID));
-            dto.setPathName(realPath.toString());
-        } else {
-            dto.setPathName(sysContext.getCallPath().toString() + "/" + bInvo.getCallMethod().getName());
-        }
-        historyDao.insert(dto);
-    }
+	/*
+	 * @see
+	 * org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept
+	 * .MethodInvocation)
+	 */
+	public Object invoke(MethodInvocation invocation) throws Throwable {
+		// ぶりのMethodInvocationではない場合のキャスト
+		if (!(invocation instanceof BuriMethodInvocation)) {
+			return invocation.proceed();
+		}
+		// ぶりのMethodInvocationの場合のキャスト
+		BuriMethodInvocation bInvo = (BuriMethodInvocation) invocation;
+		if (bInvo.getThisObject() instanceof BuriExecProcess) {
+			if (bInvo.getCallMethod().getName().indexOf("_start") > 0) {
+				saveLog(bInvo);
+			}
+		}
+		return invocation.proceed();
+	}
 
-    /**
-     * ぶり固有のテーブル{@code BuriDataPathHistory}のDaoを返します。
-     * 
-     * @return ぶり固有のテーブル{@code BuriDataPathHistory}のDao
-     */
-    public BuriDataPathHistoryDao getHistoryDao() {
-        return historyDao;
-    }
+	/**
+	 * ぶり固有のテーブル{@code BuriDataPathHistory}にデータを登録します。
+	 * 
+	 * @param bInvo
+	 *            指定された{@link BuriMethodInvocation}
+	 */
+	protected void saveLog(BuriMethodInvocation bInvo) {
+		BuriSystemContext sysContext =
+		    (BuriSystemContext) bInvo.getCallArguments()[0];
+		BranchWalker walker = (BranchWalker) bInvo.getCallArguments()[1];
+		BuriDataPathHistoryEntity dto = new BuriDataPathHistoryEntity();
+		dto.action = sysContext.getUserContext().getAction();
+		dto.buriUserId = sysContext.getBuriUserId();
+		dto.dataId = sysContext.getDataId();
+		if (walker.getNowPath() != null) {
+			BuriPath realPath =
+			    pathUtil.getBuriPathFromRealPath(walker.getNowPath());
+			Long pathID = realPath.getBuriPathId();
+			dto.pathId = pathID;
+			dto.pathName = realPath.toString();
+		} else {
+			dto.pathName =
+			    sysContext.getCallPath().toString()
+			        + "/"
+			        + bInvo.getCallMethod().getName();
+		}
+		buriDataPathHistoryEntityService.insert(dto);
+	}
 
-    /**
-     * ぶり固有のテーブル{@code BuriDataPathHistory}のDaoを登録します。
-     * 
-     * @param historyDao ぶり固有のテーブル{@code BuriDataPathHistory}のDao
-     */
-    public void setHistoryDao(BuriDataPathHistoryDao historyDao) {
-        this.historyDao = historyDao;
-    }
+	/**
+	 * ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のServiceを返します。
+	 * 
+	 * @return ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のService
+	 */
+	public BuriDataPathHistoryEntityService getBuriDataPathHistoryEntityService() {
+		return buriDataPathHistoryEntityService;
+	}
 
-    /**
-     * パス参照ユーティリティを返します。
-     * 
-     * @return パス参照ユーティリティ
-     */
-    public BuriPathUtil getPathUtil() {
-        return pathUtil;
-    }
+	/**
+	 * ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のServiceを登録します。
+	 * 
+	 * @param historyDao
+	 *            ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のService
+	 */
+	public void setBuriDataPathHistoryEntityService(
+	        BuriDataPathHistoryEntityService buriDataPathHistoryEntityService) {
+		this.buriDataPathHistoryEntityService =
+		    buriDataPathHistoryEntityService;
+	}
 
-    /**
-     * パス参照ユーティリティを登録します。
-     * 
-     * @param pathUtil パス参照ユーティリティ
-     */
-    public void setPathUtil(BuriPathUtil pathUtil) {
-        this.pathUtil = pathUtil;
-    }
+	/**
+	 * パス参照ユーティリティを返します。
+	 * 
+	 * @return パス参照ユーティリティ
+	 */
+	public BuriPathUtil getPathUtil() {
+		return pathUtil;
+	}
 
+	/**
+	 * パス参照ユーティリティを登録します。
+	 * 
+	 * @param pathUtil
+	 *            パス参照ユーティリティ
+	 */
+	public void setPathUtil(BuriPathUtil pathUtil) {
+		this.pathUtil = pathUtil;
+	}
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * 作成日: 2006/01/10
  *
  */
@@ -64,15 +64,9 @@ public class ClassDefUtilImpl implements ClassDefUtil {
         return true;
     }
 
+
     public static boolean hasPropertyName(Class tgtClass, String propertyName) {
-        String methodName = "get" + propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
-        try {
-            tgtClass.getMethod(methodName, new Class[] {});
-        } catch (SecurityException e) {
-            return false;
-        } catch (NoSuchMethodException e) {
-            return false;
-        }
-        return true;
-    }
+    	BeanDesc desc = BeanDescFactory.getBeanDesc(tgtClass);
+    	return desc.hasPropertyDesc(propertyName);
+}
 }
