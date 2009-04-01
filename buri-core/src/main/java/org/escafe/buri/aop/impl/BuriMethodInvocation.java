@@ -13,6 +13,9 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.seasar.framework.aop.S2MethodInvocation;
 import org.seasar.framework.util.MethodUtil;
 
+/**
+ * @author j5ik2o
+ */
 public class BuriMethodInvocation implements S2MethodInvocation {
 	private Class<?> targetClass;
 
@@ -49,7 +52,7 @@ public class BuriMethodInvocation implements S2MethodInvocation {
 		return val;
 	}
 
-	public Class getTargetClass() {
+	public Class<?> getTargetClass() {
 		return targetClass;
 	}
 
@@ -89,7 +92,7 @@ public class BuriMethodInvocation implements S2MethodInvocation {
 		this.method = method;
 	}
 
-	public void setTargetClass(Class targetClass) {
+	public void setTargetClass(Class<?> targetClass) {
 		this.targetClass = targetClass;
 	}
 
