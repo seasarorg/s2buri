@@ -4,12 +4,12 @@
 		</relativePath>
 		<groupId>org.escafe.buri</groupId>
 		<artifactId>buri-project</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.1.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.escafe.buri</groupId>
 	<artifactId>buri-core</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<description></description>
   <build>
     <defaultGoal>validate</defaultGoal>
