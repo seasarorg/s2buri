@@ -14,94 +14,98 @@ import org.seasar.framework.aop.S2MethodInvocation;
 import org.seasar.framework.util.MethodUtil;
 
 public class BuriMethodInvocation implements S2MethodInvocation {
-    private Class targetClass;
-    private Object[] arguments;
-    private Method method;
-    private Object thisObject;
+	private Class<?> targetClass;
 
-    private Method callMethod;
-    private Object[] callArguments;
-    private int interceptorsIndex;
-    private final MethodInterceptor[] interceptors;
+	private Object[] arguments;
 
-    public BuriMethodInvocation(List interceptors) {
-        this.interceptors = new MethodInterceptor[interceptors.size()];
-        Iterator ite = interceptors.iterator();
-        int count = 0;
-        while (ite.hasNext()) {
-            MethodInterceptor interceptor = (MethodInterceptor) ite.next();
-            this.interceptors[count] = interceptor;
-            count = count + 1;
-        }
+	private Method method;
 
-    }
+	private Object thisObject;
 
-    public Object proceed() throws Throwable {
-        if (interceptorsIndex < interceptors.length) {
-            return interceptors[interceptorsIndex++].invoke(this);
-        }
-        Object val = MethodUtil.invoke(callMethod, thisObject, callArguments);
-        return val;
-    }
+	private Method callMethod;
 
-    public Class getTargetClass() {
-        return targetClass;
-    }
+	private Object[] callArguments;
 
-    public Object getParameter(String arg0) {
-        return null;
-    }
+	private int interceptorsIndex;
 
-    public Method getMethod() {
-        return method;
-    }
+	private final MethodInterceptor[] interceptors;
 
-    public Object[] getArguments() {
-        return arguments;
-    }
+	public BuriMethodInvocation(List<MethodInterceptor> interceptors) {
+		this.interceptors = new MethodInterceptor[interceptors.size()];
+		Iterator<MethodInterceptor> ite = interceptors.iterator();
+		int count = 0;
+		while (ite.hasNext()) {
+			MethodInterceptor interceptor = ite.next();
+			this.interceptors[count] = interceptor;
+			count = count + 1;
+		}
+	}
 
-    public Object getThis() {
-        return thisObject;
-    }
+	public Object proceed() throws Throwable {
+		if (interceptorsIndex < interceptors.length) {
+			return interceptors[interceptorsIndex++].invoke(this);
+		}
+		Object val = MethodUtil.invoke(callMethod, thisObject, callArguments);
+		return val;
+	}
 
-    public AccessibleObject getStaticPart() {
-        return method;
-    }
+	public Class getTargetClass() {
+		return targetClass;
+	}
 
-    public Object getThisObject() {
-        return thisObject;
-    }
+	public Object getParameter(String arg0) {
+		return null;
+	}
 
-    public void setThisObject(Object thisObject) {
-        this.thisObject = thisObject;
-    }
+	public Method getMethod() {
+		return method;
+	}
 
-    public void setArguments(Object[] arguments) {
-        this.arguments = arguments;
-    }
+	public Object[] getArguments() {
+		return arguments;
+	}
 
-    public void setMethod(Method method) {
-        this.method = method;
-    }
+	public Object getThis() {
+		return thisObject;
+	}
 
-    public void setTargetClass(Class targetClass) {
-        this.targetClass = targetClass;
-    }
+	public AccessibleObject getStaticPart() {
+		return method;
+	}
 
-    public Object[] getCallArguments() {
-        return callArguments;
-    }
+	public Object getThisObject() {
+		return thisObject;
+	}
 
-    public void setCallArguments(Object[] callArguments) {
-        this.callArguments = callArguments;
-    }
+	public void setThisObject(Object thisObject) {
+		this.thisObject = thisObject;
+	}
 
-    public Method getCallMethod() {
-        return callMethod;
-    }
+	public void setArguments(Object[] arguments) {
+		this.arguments = arguments;
+	}
 
-    public void setCallMethod(Method callMethod) {
-        this.callMethod = callMethod;
-    }
+	public void setMethod(Method method) {
+		this.method = method;
+	}
 
+	public void setTargetClass(Class targetClass) {
+		this.targetClass = targetClass;
+	}
+
+	public Object[] getCallArguments() {
+		return callArguments;
+	}
+
+	public void setCallArguments(Object[] callArguments) {
+		this.callArguments = callArguments;
+	}
+
+	public Method getCallMethod() {
+		return callMethod;
+	}
+
+	public void setCallMethod(Method callMethod) {
+		this.callMethod = callMethod;
+	}
 }
