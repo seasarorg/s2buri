@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="flow" Name="flow" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+<PackageHeader>
+<XPDLVersion>1.0</XPDLVersion>
+<Vendor>Together</Vendor>
+<Created>2006-04-03 09:47:45</Created>
+</PackageHeader>
+<Participants>
+<Participant Id="hoge_par1" Name="roleA">
+<ParticipantType Type="ROLE"/>
+</Participant>
+</Participants>
+<Applications>
+<Application Id="flow_app1" Name="OgnlInvoker"/>
+</Applications>
+<WorkflowProcesses>
+<WorkflowProcess Id="main" Name="main">
+<ProcessHeader>
+<Created>2006-04-03 09:48:01</Created>
+<ValidFrom>20050101000000</ValidFrom>
+<ValidTo>20300401000000</ValidTo>
+</ProcessHeader>
+<Activities>
+<Activity Id="main_act1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="186,46"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="main_act3">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="510,48"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="main_act4">
+<Implementation>
+<SubFlow Execution="SYNCHR" Id="sub"/>
+</Implementation>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="361,53"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="main_act1" Id="main_tra1" To="main_act4">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="main_act4" Id="main_tra2" To="main_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=hoge_par1,CONNECTING_ACTIVITY_ID=main_act3,X_OFFSET=646,Y_OFFSET=55,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=hoge_par1,CONNECTING_ACTIVITY_ID=main_act1,X_OFFSET=99,Y_OFFSET=65,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="hoge_par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+<WorkflowProcess Id="sub" Name="sub">
+<ProcessHeader>
+<Created>2006-04-03 09:48:16</Created>
+</ProcessHeader>
+<ActivitySets>
+<ActivitySet Id="actset">
+<Activities>
+<Activity Id="sub_act1">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="199,53"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="sub_act2">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="365,47"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="sub_act3">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="556,39"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="sub_act1" Id="sub_tra1" To="sub_act2">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="sub_act2" Id="sub_tra2" To="sub_act3">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+</ActivitySet>
+</ActivitySets>
+<Activities>
+<Activity Id="sub_act4">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="192,63"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="sub_act5">
+<Implementation>
+<No/>
+</Implementation>
+<Performer>hoge_par1</Performer>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="577,45"/>
+</ExtendedAttributes>
+</Activity>
+<Activity Id="sub_act6" Name="ACTSETACTSET">
+<BlockActivity BlockId="actset"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="382,63"/>
+</ExtendedAttributes>
+</Activity>
+</Activities>
+<Transitions>
+<Transition From="sub_act4" Id="sub_tra3" To="sub_act6">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+<Transition From="sub_act6" Id="sub_tra4" To="sub_act5">
+<Condition Type="CONDITION"/>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+</ExtendedAttributes>
+</Transition>
+</Transitions>
+<ExtendedAttributes>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=hoge_par1,CONNECTING_ACTIVITY_ID=sub_act5,X_OFFSET=730,Y_OFFSET=65,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=hoge_par1,CONNECTING_ACTIVITY_ID=sub_act4,X_OFFSET=94,Y_OFFSET=78,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_END_OF_BLOCK" Value="ACTIVITY_SET_ID=actset,JaWE_GRAPH_PARTICIPANT_ID=hoge_par1,CONNECTING_ACTIVITY_ID=sub_act3,X_OFFSET=735,Y_OFFSET=43,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_START_OF_BLOCK" Value="ACTIVITY_SET_ID=actset,JaWE_GRAPH_PARTICIPANT_ID=hoge_par1,CONNECTING_ACTIVITY_ID=sub_act1,X_OFFSET=65,Y_OFFSET=84,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=START_DEFAULT"/>
+<ExtendedAttribute Name="JaWE_GRAPH_BLOCK_PARTICIPANT_ORDER" Value="actset;hoge_par1"/>
+<ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="hoge_par1"/>
+</ExtendedAttributes>
+</WorkflowProcess>
+</WorkflowProcesses>
+<ExtendedAttributes>
+<ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+<ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+</ExtendedAttributes>
+</Package>

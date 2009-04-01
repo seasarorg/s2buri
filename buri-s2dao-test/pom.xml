@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+	<parent>
+		<relativePath>../buri-project/pom.xml
+		</relativePath>
+		<groupId>org.escafe.buri</groupId>
+		<artifactId>buri-project</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.escafe.buri</groupId>
+	<artifactId>buri-s2dao-test</artifactId>
+	<description></description>
+	<build>
+		<defaultGoal>validate</defaultGoal>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.5</source>
+						<target>1.5</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>source-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!--
+				[SQLを簡単にderbyに流すための暫定手段(by nobeans)] 下のコメントをはずして、mvn
+				process-test-resourcesを実行するとdb/buri配下にderbyのデータが
+				作成されます。既存のデータがあっても大丈夫だと思います。 ただし、mvn
+				testとして一気にユニットテストまで通して実行しようとするとテスト結果がNGに なってしまいます。原因はまだよくわかっていません。
+				データの投入が完了したら、もう一度コメントアウトしてから、mvn testを実行してください。 mvn
+				process-test-resourcesの実行でいろいろSQLエラーがでるかもしれませんが、 気にしないで(?) mvn
+				testを実行してみてください。全テストが通れば問題はありません。
+			-->
+			<!--
+				<plugin> <groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId> <dependencies>
+				<dependency> <groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId> <version>10.1.2.1</version>
+				<scope>test</scope> </dependency> </dependencies> <configuration>
+				<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
+				<url>jdbc:derby:db/buri;create=true</url>
+				<autocommit>true</autocommit> </configuration> <executions>
+				<execution> <id>drop-db</id> <phase>process-test-resources</phase>
+				<goals> <goal>execute</goal> </goals> <configuration> <fileset>
+				<basedir>${basedir}</basedir> <includes>
+				<include>db/dropdb_derby.sql</include>
+				<include>db/example_drop_derby.sql</include>
+				<include>db/unitTestTable_drop_derby.sql</include> </includes>
+				</fileset> <onError>continue</onError> <skip>false</skip>
+				</configuration> </execution> <execution> <id>create-db</id>
+				<phase>process-test-resources</phase> <goals> <goal>execute</goal>
+				</goals> <configuration> <fileset> <basedir>${basedir}</basedir>
+				<includes> <include>db/createdb_derby.sql</include>
+				<include>db/example_derby.sql</include>
+				<include>db/unitTestTable_derby.sql</include> </includes> </fileset>
+				<onError>continue</onError> <skip>false</skip> </configuration>
+				</execution> </executions> </plugin>
+			-->
+
+			<!--  H2 -->
+			<!--
+				<plugin> <groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId> <dependencies>
+				<dependency> <groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId> <version>1.0.20070617</version>
+				<scope>test</scope> </dependency> </dependencies> <configuration>
+				<driver>org.h2.Driver</driver>
+				<url>jdbc:h2:db/buri/buri;create=true</url>
+				<autocommit>true</autocommit> </configuration> <executions>
+				<execution> <id>drop-db</id> <phase>process-test-resources</phase>
+				<goals> <goal>execute</goal> </goals> <configuration> <srcFiles>
+				<srcFile>${basedir}/db/dropdb_h2.sql</srcFile>
+				<srcFile>${basedir}/db/example_drop_h2.sql</srcFile>
+				<srcFile>${basedir}/db/unitTestTable_drop_h2.sql</srcFile>
+				</srcFiles> <onError>continue</onError> <skip>false</skip>
+				</configuration> </execution> <execution> <id>create-db</id>
+				<phase>process-test-resources</phase> <goals> <goal>execute</goal>
+				</goals> <configuration> <srcFiles>
+				<srcFile>${basedir}/db/createdb_h2.sql</srcFile>
+				<srcFile>${basedir}/db/example_h2.sql</srcFile>
+				<srcFile>${basedir}/db/unitTestTable_h2.sql</srcFile> </srcFiles>
+				<onError>continue</onError> <skip>false</skip> </configuration>
+				</execution> </executions> </plugin>
+			-->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptor>src\main\assembly\executable.xml
+					</descriptor>
+				</configuration>
+			</plugin>
+		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-2</version>
+			</extension>
+		</extensions>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>maven.seasar.org</id>
+			<name>The Seasar Foundation Maven2 Repository</name>
+			<url>http://maven.seasar.org/maven2
+			</url>
+		</repository>
+		<repository>
+			<id>maven-snapshot.seasar.org</id>
+			<name>The Seasar Foundation Maven2 SnapShot Repository</name>
+			<url>http://maven.seasar.org/maven2-snapshot
+			</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>dist.codehaus.org</id>
+			<name>codehaus Maven2 Repository</name>
+			<url>http://dist.codehaus.org/mule/dependencies/maven2/
+			</url>
+		</repository>
+		<repository>
+			<id>local</id>
+			<name>Local Maven2 Repository</name>
+			<url>file:repo</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.escafe.buri</groupId>
+			<artifactId>buri-s2dao</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.escafe.buri</groupId>
+			<artifactId>buri-core-test</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>geronimo-spec</groupId>
+			<artifactId>geronimo-spec-j2ee</artifactId>
+			<version>1.4-rc4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jta_1.1_spec</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jpa_3.0_spec</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.0.20070617</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>maven.seasar.org</id>
+			<name>The Seasar Foundation Maven2 Repository</name>
+			<url>dav:https://www.seasar.org/maven/maven2
+			</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>maven.seasar.org</id>
+			<name>The Seasar Foundation Maven2 Snapshot Repository</name>
+			<url>dav:https://www.seasar.org/maven/maven2-snapshot
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
