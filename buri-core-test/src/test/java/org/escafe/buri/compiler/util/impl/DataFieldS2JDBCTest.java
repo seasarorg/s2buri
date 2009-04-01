@@ -38,14 +38,14 @@ public class DataFieldS2JDBCTest extends S2TestCase {
 		setBuriDataFieldType(dft, "update", "service.update(#data)");
 		setBuriDataFieldType(dft, "select", "service.select(#data)");
 		setBuriDataFieldType(dft, "delete", "service.delete(#data)");
-		setBuriDataFieldType(dft, "tableName", "BuriTestINT");
+		setBuriDataFieldType(dft, "tableName", "BURI_TEST_INT");
 		BuriDataFieldType dst = bdfcp.preprocess(dft);
 		assertEquals(dst.getKeys().toString(), "{testId=testId!=0}");
 		assertEquals(dst.getInsert(), "service.insert(#data)");
 		assertEquals(dst.getUpdate(), "service.update(#data)");
 		assertEquals(dst.getSelect(), "service.select(#data)");
 		assertEquals(dst.getDelete(), "service.delete(#data)");
-		assertEquals(dst.getTableName(), "BuriTestINT");
+		assertEquals(dst.getTableName(), "BURI_TEST_INT");
 	}
 
 	public void testDataFieldType04() {
@@ -56,7 +56,7 @@ public class DataFieldS2JDBCTest extends S2TestCase {
 		setBuriDataFieldType(dft, "update", "service.update(#data)");
 		setBuriDataFieldType(dft, "select", "service.select(#data)");
 		setBuriDataFieldType(dft, "delete", "service.delete(#data)");
-		setBuriDataFieldType(dft, "tableName", "BuriTestINT");
+		setBuriDataFieldType(dft, "tableName", "BURI_TEST_INT");
 		try {
 			bdfcp.preprocess(dft);
 			fail();
@@ -84,7 +84,7 @@ public class DataFieldS2JDBCTest extends S2TestCase {
 		setBuriDataFieldType(dft, "update", "service.update(#data)");
 		setBuriDataFieldType(dft, "select", "service.select(#data)");
 		setBuriDataFieldType(dft, "delete", "service.delete(#data)");
-		setBuriDataFieldType(dft, "tableName", "BuriTestINT");
+		setBuriDataFieldType(dft, "tableName", "BURI_TEST_INT");
 		BuriDataFieldType dst = bdfcp.preprocess(dft);
 		assertEquals(dst.getKeys().toString(), "{testId=testId!=0}");
 		assertEquals(dst.getInsert(), "service.insert(#data)");
@@ -103,7 +103,7 @@ public class DataFieldS2JDBCTest extends S2TestCase {
 		setBuriDataFieldType(dft, "update", "service.update(#data)");
 		setBuriDataFieldType(dft, "select", "service.select(#data)");
 		setBuriDataFieldType(dft, "delete", "service.delete(#data)");
-		setBuriDataFieldType(dft, "tableName", "BuriTestINT");
+		setBuriDataFieldType(dft, "tableName", "BURI_TEST_INT");
 		BuriDataFieldType dst = bdfcp.preprocess(dft);
 		assertEquals(dst.getKeys().toString(), "{testId=testId!=0}");
 		assertEquals(dst.getInsert(), "service.insert(#data)");

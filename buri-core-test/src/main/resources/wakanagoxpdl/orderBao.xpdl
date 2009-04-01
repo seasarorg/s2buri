@@ -483,14 +483,6 @@
 			<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.escafe.buri.entity.Bill()&#10;#bill.shippingId = #data.shippingId&#10;#bill.orderTitleId = #data.orderTitleId&#10;#bill.customerId = #data.customerId&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
 		</ExtendedAttributes>
 	</DataField>
-	<DataField Id="example.org.escafe.buri.dto.ShippingSetDto" IsArray="FALSE">
-		<DataType>
-			<BasicType Type="STRING"/>
-		</DataType>
-		<ExtendedAttributes>
-			<ExtendedAttribute Name="preprocess" Value="#bill = new example.org.escafe.buri.dto.BillDto()&#10;#bill.shippingId = #data.shippingId&#10;#bill.orderTitleId = #data.orderTitleId&#10;#bill.customerId = #data.customerId&#10;#bill.billDate = new java.util.Date()&#10;#bill"/>
-		</ExtendedAttributes>
-	</DataField>
 </DataFields>
 <Activities>
 <Activity Id="order_Wor3_Act1" Name="請求依頼">

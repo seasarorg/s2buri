@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="s2mai_test.dicon"/>
+	<component class="org.escafe.buri.mail.impl.BuriMailSendProcessorImpl" >
+	</component>
+	
+	<component class="org.escafe.buri.mail.mai.BuriMai" >
+		<aspect>
+			s2mai.s2MaiInterceptor
+		</aspect>
+	</component>
+	<component class="org.escafe.buri.common.util.template.impl.TextTemplateFreeMakerImpl" >
+	</component>
+</components>

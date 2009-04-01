@@ -93,6 +93,6 @@ public class BuriDataUtilTest extends S2TestCase {
 		assertTrue(plains.size() == 0);
 		path = new BuriPath("pkg.prces.act", "rpkg.rproces.ract");
 		realPath = pathUtil.getBuriPathFromRealPath(path);
-		assertEquals(fstID, realPath.getBuriPathId());
+		assertEquals(fstID, realPath.getBuriPathId().longValue());
 	}
 }
