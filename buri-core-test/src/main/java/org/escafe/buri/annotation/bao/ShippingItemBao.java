@@ -29,13 +29,13 @@ public interface ShippingItemBao {
 
 	public static String getEndShippingCount_ARGS = "datas";
 
-	public Long getEndShippingCount(List datas);
+	public Long getEndShippingCount(List<ShippingItem> datas);
 
 	public static String startShipping_ACTIVITY = "商品準備開始";
 
 	public void startShipping(ShippingItem dto);
 
-	public void startShipping(List dtos);
+	public void startShipping(List<ShippingItem> dtos);
 
 	public static String endShipping_ACTIVITY = "商品準備中";
 
@@ -47,5 +47,5 @@ public interface ShippingItemBao {
 
 	public void cancel(ShippingItem dto);
 
-	public void cancel(List dtos);
+	public void cancel(List<ShippingItem> dtos);
 }
