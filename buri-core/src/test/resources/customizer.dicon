@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="default-customizer.dicon"/>
+	<!--
+		Bao用設定
+		app.dicon で bao.diconをインクルードしてください．
+	-->
+		<component name="baoSupportAspectCustomizer" class="org.seasar.framework.container.customizer.AspectCustomizer">
+		<initMethod name="addInterceptorName">
+			<arg>"aop.traceInterceptor"</arg>
+		</initMethod>
+		<initMethod name="addInterceptorName">
+			<arg>"j2ee.requiredTx"</arg>
+		</initMethod>
+		<initMethod name="addInterceptorName">
+			<arg>"bao.interceptor"</arg>
+		</initMethod>
+	</component>
+	<component name="baoCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
+		<initMethod name="addCustomizer">
+			<arg>baoSupportAspectCustomizer</arg>
+		</initMethod>
+	</component>
+
+</components>
