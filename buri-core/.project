@@ -21,11 +21,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>com.atlassw.tools.eclipse.checkstyle.CheckstyleBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.seasar.s2daoplugin.cachebuilder</name>
 			<arguments>
 			</arguments>
@@ -52,7 +47,6 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.atlassw.tools.eclipse.checkstyle.CheckstyleNature</nature>
 		<nature>edu.umd.cs.findbugs.plugin.eclipse.findbugsNature</nature>
 		<nature>org.seasar.kijimuna.core.nature</nature>
 		<nature>org.seasar.s2daoplugin.s2daonature</nature>
