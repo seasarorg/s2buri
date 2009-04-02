@@ -16,11 +16,25 @@ import example.org.escafe.buri.entity.ShippingItem;
  * @suppresshack com.google.code.hack.ej2.ToStringRewriter
  */
 public class ShippingItemService extends AbstractService<ShippingItem> {
+	/**
+	 * IDから{@link ShippingItem}エンティティを検索し返します。
+	 * 
+	 * @param shippingItemId
+	 *            {@link ShippingItem}のID
+	 * @return {@link ShippingItem}
+	 */
 	public ShippingItem getShippingItem(Long shippingItemId) {
 		ShippingItem result = select().id(shippingItemId).getSingleResult();
 		return result;
 	}
 
+	/**
+	 * 複数のIDから{@link ShippingItem}エンティティを検索し返します。
+	 * 
+	 * @param shippingItemIds
+	 *            {@link ShippingItem}のIDのリスト
+	 * @return {@link ShippingItem}のリスト
+	 */
 	public List<ShippingItem> getShippingItemByIds(List<Long> shippingItemIds) {
 		List<ShippingItem> result =
 		    select()

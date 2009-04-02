@@ -14,10 +14,24 @@ import example.org.escafe.buri.entity.Bill;
  * @suppresshack com.google.code.hack.ej2.ToStringRewriter
  */
 public class BillService extends AbstractService<Bill> {
+	/**
+	 * IDから{@link Bill}エンティティを検索し返します。
+	 * 
+	 * @param billId
+	 *            {@link Bill}のID
+	 * @return {@link Bill}
+	 */
 	public Bill getBill(Long billId) {
 		return select().id(billId).getSingleResult();
 	}
 
+	/**
+	 * 複数のIDから{@link Bill}エンティティを検索し返します。
+	 * 
+	 * @param billIds
+	 *            {@link Bill}のIDのリスト
+	 * @return {@link Bill}のリスト
+	 */
 	public List<Bill> getBillByIds(List<Long> billIds) {
 		return select().where(in(billId(), billIds)).getResultList();
 	}

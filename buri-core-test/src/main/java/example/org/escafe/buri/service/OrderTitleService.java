@@ -21,10 +21,24 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 	 */
 	public OrderDetailService orderDetailService;
 
+	/**
+	 * IDから{@link OrderTitle}エンティティを検索し返します。
+	 * 
+	 * @param orderTitleId
+	 *            {@link OrderTitle}のID
+	 * @return {@link OrderTitle}
+	 */
 	public OrderTitle getOrderTitle(Long orderTitleId) {
 		return select().id(orderTitleId).getSingleResult();
 	}
 
+	/**
+	 * IDから{@link OrderTitle}エンティティと関連する{@link OrderDetail}のリストを検索し返します。
+	 * 
+	 * @param orderTitleId
+	 *            {@link OrderTitle}のID
+	 * @return {@link OrderTitle}
+	 */
 	public OrderTitle findByIdWithOrderDetail(Long orderTitleId) {
 		return select()
 		    .leftOuterJoin(orderDetailList())
@@ -32,12 +46,28 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 		    .getSingleResult();
 	}
 
+	/**
+	 * 複数のIDから{@link OrderTitle}エンティティを検索し返します。
+	 * 
+	 * @param orderTitleIds
+	 *            {@link OrderTitle}のIDのリスト
+	 * @return {@link OrderTitle}のリスト
+	 */
 	public List<OrderTitle> getOrderTitleByIds(List<Long> orderTitleIds) {
 		return select()
 		    .where(in(orderTitleId(), orderTitleIds))
 		    .getResultList();
 	}
 
+	/**
+	 * {@link OrderTitle}エンティティをINSERTします。
+	 * <p>
+	 * {@link OrderDetail}エンティティもINSERTします。
+	 * </p>
+	 * 
+	 * @see org.seasar.extension.jdbc.service.S2AbstractService#insert(java.lang.
+	 *      Object)
+	 */
 	@Override
 	public int insert(OrderTitle entity) {
 		int result = super.insert(entity);
@@ -50,6 +80,15 @@ public class OrderTitleService extends AbstractService<OrderTitle> {
 		return result;
 	}
 
+	/**
+	 * {@link OrderTitle}エンティティをUPDATEします。
+	 * <p>
+	 * {@link OrderDetail}エンティティもUPDATEします。
+	 * </p>
+	 * 
+	 * @see org.seasar.extension.jdbc.service.S2AbstractService#update(java.lang.
+	 *      Object)
+	 */
 	@Override
 	public int update(OrderTitle entity) {
 		int result = super.update(entity);
