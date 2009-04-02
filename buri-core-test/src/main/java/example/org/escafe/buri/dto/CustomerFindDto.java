@@ -7,7 +7,7 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class CustomerFindDto {
-	private final ArrayList orderList = new ArrayList();
+	private final List<String> orderList = new ArrayList<String>();
 
 	private Long customerId = null;
 
@@ -25,7 +25,7 @@ public class CustomerFindDto {
 
 	private Long customerId_small = null;
 
-	private List customerId_in = null;
+	private List<Long> customerId_in = null;
 
 	private Boolean customerId_isNull = null;
 
@@ -55,7 +55,7 @@ public class CustomerFindDto {
 
 	private String customerName_matchBack = null;
 
-	private List customerName_in = null;
+	private List<String> customerName_in = null;
 
 	private Boolean customerName_isNull = null;
 
@@ -127,11 +127,11 @@ public class CustomerFindDto {
 		this.customerId_small = customerId_small;
 	}
 
-	public List getCustomerId_in() {
+	public List<Long> getCustomerId_in() {
 		return customerId_in;
 	}
 
-	public void setCustomerId_in(List customerId_in) {
+	public void setCustomerId_in(List<Long> customerId_in) {
 		this.customerId_in = customerId_in;
 	}
 
@@ -256,11 +256,11 @@ public class CustomerFindDto {
 		this.customerName_matchBack = customerName_matchBack;
 	}
 
-	public List getCustomerName_in() {
+	public List<String> getCustomerName_in() {
 		return customerName_in;
 	}
 
-	public void setCustomerName_in(List customerName_in) {
+	public void setCustomerName_in(List<String> customerName_in) {
 		this.customerName_in = customerName_in;
 	}
 
@@ -304,10 +304,10 @@ public class CustomerFindDto {
 	public String getOrderList() {
 		String order = "";
 		String ORDER = "ORDER BY ";
-		Iterator ite = orderList.iterator();
+		Iterator<String> ite = orderList.iterator();
 		ScriptProcessor processor = new ScriptProcessor();
 		while (ite.hasNext()) {
-			String orderTgt = (String) ite.next();
+			String orderTgt = ite.next();
 			order = ORDER + order + orderTgt.replace('_', '.') + " ";
 			Boolean var =
 			    (Boolean) processor.getValue(orderTgt + "_isASC", this);

@@ -7,7 +7,7 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class ItemFindDto {
-	private final ArrayList orderList = new ArrayList();
+	private final List<String> orderList = new ArrayList<String>();
 
 	private Long itemId = null;
 
@@ -25,7 +25,7 @@ public class ItemFindDto {
 
 	private Long itemId_small = null;
 
-	private List itemId_in = null;
+	private List<Long> itemId_in = null;
 
 	private Boolean itemId_isNull = null;
 
@@ -55,7 +55,7 @@ public class ItemFindDto {
 
 	private String itemName_matchBack = null;
 
-	private List itemName_in = null;
+	private List<String> itemName_in = null;
 
 	private Boolean itemName_isNull = null;
 
@@ -79,7 +79,7 @@ public class ItemFindDto {
 
 	private Long price_small = null;
 
-	private List price_in = null;
+	private List<Long> price_in = null;
 
 	private Boolean price_isNull = null;
 
@@ -151,11 +151,11 @@ public class ItemFindDto {
 		this.itemId_small = itemId_small;
 	}
 
-	public List getItemId_in() {
+	public List<Long> getItemId_in() {
 		return itemId_in;
 	}
 
-	public void setItemId_in(List itemId_in) {
+	public void setItemId_in(List<Long> itemId_in) {
 		this.itemId_in = itemId_in;
 	}
 
@@ -280,11 +280,11 @@ public class ItemFindDto {
 		this.itemName_matchBack = itemName_matchBack;
 	}
 
-	public List getItemName_in() {
+	public List<String> getItemName_in() {
 		return itemName_in;
 	}
 
-	public void setItemName_in(List itemName_in) {
+	public void setItemName_in(List<String> itemName_in) {
 		this.itemName_in = itemName_in;
 	}
 
@@ -376,11 +376,11 @@ public class ItemFindDto {
 		this.price_small = price_small;
 	}
 
-	public List getPrice_in() {
+	public List<Long> getPrice_in() {
 		return price_in;
 	}
 
-	public void setPrice_in(List price_in) {
+	public void setPrice_in(List<Long> price_in) {
 		this.price_in = price_in;
 	}
 
@@ -424,10 +424,10 @@ public class ItemFindDto {
 	public String getOrderList() {
 		String order = "";
 		String ORDER = "ORDER BY ";
-		Iterator ite = orderList.iterator();
+		Iterator<String> ite = orderList.iterator();
 		ScriptProcessor processor = new ScriptProcessor();
 		while (ite.hasNext()) {
-			String orderTgt = (String) ite.next();
+			String orderTgt = ite.next();
 			order = ORDER + order + orderTgt.replace('_', '.') + " ";
 			Boolean var =
 			    (Boolean) processor.getValue(orderTgt + "_isASC", this);

@@ -7,7 +7,7 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class ShippingItemFindDto {
-	private final ArrayList orderList = new ArrayList();
+	private final List<String> orderList = new ArrayList<String>();
 
 	private Long orderDetailId = null;
 
@@ -25,7 +25,7 @@ public class ShippingItemFindDto {
 
 	private Long orderDetailId_small = null;
 
-	private List orderDetailId_in = null;
+	private List<Long> orderDetailId_in = null;
 
 	private Boolean orderDetailId_isNull = null;
 
@@ -49,7 +49,7 @@ public class ShippingItemFindDto {
 
 	private Long shippingId_small = null;
 
-	private List shippingId_in = null;
+	private List<Long> shippingId_in = null;
 
 	private Boolean shippingId_isNull = null;
 
@@ -73,7 +73,7 @@ public class ShippingItemFindDto {
 
 	private Long shippingItemId_small = null;
 
-	private List shippingItemId_in = null;
+	private List<Long> shippingItemId_in = null;
 
 	private Boolean shippingItemId_isNull = null;
 
@@ -145,11 +145,11 @@ public class ShippingItemFindDto {
 		this.orderDetailId_small = orderDetailId_small;
 	}
 
-	public List getOrderDetailId_in() {
+	public List<Long> getOrderDetailId_in() {
 		return orderDetailId_in;
 	}
 
-	public void setOrderDetailId_in(List orderDetailId_in) {
+	public void setOrderDetailId_in(List<Long> orderDetailId_in) {
 		this.orderDetailId_in = orderDetailId_in;
 	}
 
@@ -241,11 +241,11 @@ public class ShippingItemFindDto {
 		this.shippingId_small = shippingId_small;
 	}
 
-	public List getShippingId_in() {
+	public List<Long> getShippingId_in() {
 		return shippingId_in;
 	}
 
-	public void setShippingId_in(List shippingId_in) {
+	public void setShippingId_in(List<Long> shippingId_in) {
 		this.shippingId_in = shippingId_in;
 	}
 
@@ -337,11 +337,11 @@ public class ShippingItemFindDto {
 		this.shippingItemId_small = shippingItemId_small;
 	}
 
-	public List getShippingItemId_in() {
+	public List<Long> getShippingItemId_in() {
 		return shippingItemId_in;
 	}
 
-	public void setShippingItemId_in(List shippingItemId_in) {
+	public void setShippingItemId_in(List<Long> shippingItemId_in) {
 		this.shippingItemId_in = shippingItemId_in;
 	}
 
@@ -385,10 +385,10 @@ public class ShippingItemFindDto {
 	public String getOrderList() {
 		String order = "";
 		String ORDER = "ORDER BY ";
-		Iterator ite = orderList.iterator();
+		Iterator<String> ite = orderList.iterator();
 		ScriptProcessor processor = new ScriptProcessor();
 		while (ite.hasNext()) {
-			String orderTgt = (String) ite.next();
+			String orderTgt = ite.next();
 			order = ORDER + order + orderTgt.replace('_', '.') + " ";
 			Boolean var =
 			    (Boolean) processor.getValue(orderTgt + "_isASC", this);

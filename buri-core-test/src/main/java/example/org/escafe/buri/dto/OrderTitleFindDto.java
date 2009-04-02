@@ -8,7 +8,7 @@ import java.util.List;
 import org.escafe.buri.common.util.ScriptProcessor;
 
 public class OrderTitleFindDto {
-	private final ArrayList orderList = new ArrayList();
+	private final List<String> orderList = new ArrayList<String>();
 
 	private Long orderTitleId = null;
 
@@ -26,7 +26,7 @@ public class OrderTitleFindDto {
 
 	private Long orderTitleId_small = null;
 
-	private List orderTitleId_in = null;
+	private List<Long> orderTitleId_in = null;
 
 	private Boolean orderTitleId_isNull = null;
 
@@ -50,7 +50,7 @@ public class OrderTitleFindDto {
 
 	private Timestamp orderDate_small = null;
 
-	private List orderDate_in = null;
+	private List<Timestamp> orderDate_in = null;
 
 	private Boolean orderDate_isNull = null;
 
@@ -74,7 +74,7 @@ public class OrderTitleFindDto {
 
 	private Long customerId_small = null;
 
-	private List customerId_in = null;
+	private List<Long> customerId_in = null;
 
 	private Boolean customerId_isNull = null;
 
@@ -98,7 +98,7 @@ public class OrderTitleFindDto {
 
 	private Integer status_small = null;
 
-	private List status_in = null;
+	private List<Integer> status_in = null;
 
 	private Boolean status_isNull = null;
 
@@ -170,11 +170,11 @@ public class OrderTitleFindDto {
 		this.orderTitleId_small = orderTitleId_small;
 	}
 
-	public List getOrderTitleId_in() {
+	public List<Long> getOrderTitleId_in() {
 		return orderTitleId_in;
 	}
 
-	public void setOrderTitleId_in(List orderTitleId_in) {
+	public void setOrderTitleId_in(List<Long> orderTitleId_in) {
 		this.orderTitleId_in = orderTitleId_in;
 	}
 
@@ -266,11 +266,11 @@ public class OrderTitleFindDto {
 		this.orderDate_small = orderDate_small;
 	}
 
-	public List getOrderDate_in() {
+	public List<Timestamp> getOrderDate_in() {
 		return orderDate_in;
 	}
 
-	public void setOrderDate_in(List orderDate_in) {
+	public void setOrderDate_in(List<Timestamp> orderDate_in) {
 		this.orderDate_in = orderDate_in;
 	}
 
@@ -362,11 +362,11 @@ public class OrderTitleFindDto {
 		this.customerId_small = customerId_small;
 	}
 
-	public List getCustomerId_in() {
+	public List<Long> getCustomerId_in() {
 		return customerId_in;
 	}
 
-	public void setCustomerId_in(List customerId_in) {
+	public void setCustomerId_in(List<Long> customerId_in) {
 		this.customerId_in = customerId_in;
 	}
 
@@ -458,11 +458,11 @@ public class OrderTitleFindDto {
 		this.status_small = status_small;
 	}
 
-	public List getStatus_in() {
+	public List<Integer> getStatus_in() {
 		return status_in;
 	}
 
-	public void setStatus_in(List status_in) {
+	public void setStatus_in(List<Integer> status_in) {
 		this.status_in = status_in;
 	}
 
@@ -506,10 +506,10 @@ public class OrderTitleFindDto {
 	public String getOrderList() {
 		String order = "";
 		String ORDER = "ORDER BY ";
-		Iterator ite = orderList.iterator();
+		Iterator<String> ite = orderList.iterator();
 		ScriptProcessor processor = new ScriptProcessor();
 		while (ite.hasNext()) {
-			String orderTgt = (String) ite.next();
+			String orderTgt = ite.next();
 			order = ORDER + order + orderTgt.replace('_', '.') + " ";
 			Boolean var =
 			    (Boolean) processor.getValue(orderTgt + "_isASC", this);
