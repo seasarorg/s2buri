@@ -17,7 +17,7 @@ import example.org.escafe.buri.entity.ShippingItem;
 /**
  * {@link Shipping}のサービスクラスです。
  * 
- * @author S2JDBC-Gen
+ * @author j5ik2o
  * @suppresshack com.google.code.hack.ej2.ToStringRewriter
  */
 public class ShippingService extends AbstractService<Shipping> {
@@ -26,14 +26,35 @@ public class ShippingService extends AbstractService<Shipping> {
 	 */
 	public ShippingItemService shippingItemService;
 
+	/**
+	 * IDから{@link Shipping}エンティティを検索し返します。
+	 * 
+	 * @param shippingId
+	 *            {@link Shipping}のID
+	 * @return {@link Shipping}
+	 */
 	public Shipping getShipping(Long shippingId) {
 		return select().id(shippingId).getSingleResult();
 	}
 
+	/**
+	 * 複数のIDIDから{@link Shipping}エンティティを検索し返します。
+	 * 
+	 * @param shippingIds
+	 *            {@link Shipping}のID
+	 * @return {@link Shipping}
+	 */
 	public List<Shipping> getShippingByIds(List<Long> shippingIds) {
 		return select().where(in(shippingId(), shippingIds)).getResultList();
 	}
 
+	/**
+	 * IDから{@link Shipping}エンティティに変換します。
+	 * 
+	 * @param shippingId
+	 *            {@link Shipping}のID
+	 * @return {@link Shipping}
+	 */
 	public Shipping convertOrNew(Long shippingId) {
 		if (shippingId == null) {
 			throw new IllegalArgumentException("shippingId is null.");
@@ -47,6 +68,13 @@ public class ShippingService extends AbstractService<Shipping> {
 		return entity == null ? result : entity;
 	}
 
+	/**
+	 * {@link OrderTitle}から{@link Shipping}エンティティに変換します。
+	 * 
+	 * @param orderTitle
+	 *            {@link Shipping}
+	 * @return {@link Shipping}
+	 */
 	public Shipping convertOrNew(OrderTitle orderTitle) {
 		if (orderTitle == null) {
 			throw new IllegalArgumentException("orderTitle is null.");
@@ -75,10 +103,21 @@ public class ShippingService extends AbstractService<Shipping> {
 		return result;
 	}
 
+	/**
+	 * ワークフロー上の{@link Shipping}を検索します。
+	 * 
+	 * @param dto
+	 *            検索条件用DTO
+	 * @param paths
+	 *            ぶりパスのリスト
+	 * @return {@link Shipping}のリスト
+	 */
 	public List<Shipping> find(ShippingFindDto dto, List<String> paths) {
 		class Param {
+			@SuppressWarnings("unused")
 			public ShippingFindDto dto;
 
+			@SuppressWarnings("unused")
 			public List<String> paths;
 		}
 		Param param = new Param();
@@ -88,13 +127,27 @@ public class ShippingService extends AbstractService<Shipping> {
 		    .getResultList();
 	}
 
-	public List<Shipping> findAndUser(ShippingFindDto dto, List paths,
-	        List userIds) {
+	/**
+	 * ワークフロー上の{@link Shipping}を検索します。
+	 * 
+	 * @param dto
+	 *            検索条件用DTO
+	 * @param paths
+	 *            ぶりパスのリスト
+	 * @param userIds
+	 *            ユーザIDのリスト
+	 * @return {@link Shipping}のリスト
+	 */
+	public List<Shipping> findAndUser(ShippingFindDto dto, List<String> paths,
+	        List<Long> userIds) {
 		class Param {
+			@SuppressWarnings("unused")
 			public ShippingFindDto dto;
 
+			@SuppressWarnings("unused")
 			public List<String> paths;
 
+			@SuppressWarnings("unused")
 			public List<Long> userIds;
 		}
 		Param param = new Param();
@@ -105,6 +158,15 @@ public class ShippingService extends AbstractService<Shipping> {
 		    .getResultList();
 	}
 
+	/**
+	 * {@link Shipping}エンティティをINSERTします。
+	 * <p>
+	 * {@link ShippingItem}エンティティもINSERTします。
+	 * </p>
+	 * 
+	 * @see org.seasar.extension.jdbc.service.S2AbstractService#insert(java.lang.
+	 *      Object)
+	 */
 	@Override
 	public int insert(Shipping entity) {
 		int result = super.insert(entity);
@@ -117,6 +179,15 @@ public class ShippingService extends AbstractService<Shipping> {
 		return result;
 	}
 
+	/**
+	 * {@link Shipping}エンティティをUPDATEします。
+	 * <p>
+	 * {@link ShippingItem}エンティティもUPDATEします。
+	 * </p>
+	 * 
+	 * @see org.seasar.extension.jdbc.service.S2AbstractService#update(java.lang.
+	 *      Object)
+	 */
 	@Override
 	public int update(Shipping entity) {
 		int result = super.update(entity);
