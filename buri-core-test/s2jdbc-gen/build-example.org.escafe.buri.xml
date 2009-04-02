@@ -1,0 +1,88 @@
+<project name="s2jdbc-gen" default="gen-ddl" basedir=".">
+
+	<property name="classpathdir" value="../target/classes" />
+	<property name="rootpackagename" value="example.org.escafe.buri" />
+	<property name="entitypackagename" value="entity" />
+	<property name="javafiledestdir" value="../src/main/java" />
+	<property name="testjavafiledestdir" value="../src/test/java" />
+	<property name="javafileencoding" value="UTF-8" />
+	<property name="env" value="ut" />
+	<property name="jdbcmanagername" value="jdbcManager" />
+	
+	<property name="migrateDir" value="db/example/migrate"/>
+	<property name="ddlInfoFile" value="db/example/ddInfo.txt"/>
+
+	
+	<path id="classpath">
+		<pathelement location="${classpathdir}" />
+		<pathelement location="../target/test-classes" />
+		<fileset dir="lib" />
+	</path>
+	
+
+	<taskdef resource="s2jdbc-gen-task.properties" classpathref="classpath" />
+
+	<mkdir dir="${classpathdir}" />
+	
+	<target name="gen-ddl">
+		<gen-ddl
+			classpathdir="${classpathdir}"
+			migrateDir="${migrateDir}"
+			ddlInfoFile="${ddlInfoFile}"
+			rootpackagename="${rootpackagename}"
+			entitypackagename="${entitypackagename}"
+			ignoreEntityClassNamePattern="BuriPathData.*"
+			env="${env}"
+			jdbcManagerName="${jdbcmanagername}"
+			javaFileSrcDirs="${javafiledestdir}"
+			classpathref="classpath" />
+		<gen-names
+			classpathdir="${classpathdir}"
+			rootpackagename="${rootpackagename}"
+			entitypackagename="${entitypackagename}"
+			namespackagename="names"
+			javafiledestdir="${javafiledestdir}"
+			javafileencoding="${javafileencoding}"
+			templateFilePrimaryDir="template"
+			namesTemplateFileName="names.ftl"
+			env="${env}"
+			jdbcmanagername="${jdbcmanagername}"
+			classpathref="classpath" />
+	</target>
+	<target name="gen-service">
+		<gen-service
+			classpathdir="${classpathdir}"
+			rootpackagename="${rootpackagename}"
+			entitypackagename="${entitypackagename}"
+			namespackagename="names"
+			javafiledestdir="${javafiledestdir}"
+			javafileencoding="${javafileencoding}"
+			templateFilePrimaryDir="template"
+			serviceTemplateFileName="service.ftl"
+			env="${env}"
+			jdbcmanagername="${jdbcmanagername}"
+			classpathref="classpath" />
+	</target>
+	<target name="gen-test">
+		<gen-test classpathdir="${classpathdir}"
+			rootpackagename="${rootpackagename}"
+			entitypackagename="${entitypackagename}"
+			javafiledestdir="${testjavafiledestdir}"
+			javafileencoding="${javafileencoding}"
+			env="${env}"
+			jdbcmanagername="${jdbcmanagername}" 
+			classpathref="classpath">
+		</gen-test>
+	</target>
+	<target name="migrate">
+		<migrate 
+			migrateDir="${migrateDir}"
+			ddlInfoFile="${ddlInfoFile}"
+			classpathdir="${classpathdir}"
+			rootpackagename="${rootpackagename}"
+			entitypackagename="${entitypackagename}"
+			env="${env}"
+			jdbcmanagername="${jdbcmanagername}"
+			classpathref="classpath" />
+	</target>
+</project>
