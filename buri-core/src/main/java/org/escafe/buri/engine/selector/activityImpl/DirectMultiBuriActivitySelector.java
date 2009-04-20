@@ -26,8 +26,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
 /**
  * 指定された複数アクティビティを選択します。
  * <p>
- * アクティビティが1つ以上選択され、かつ、
- * 1つ以上のアクティビティ名が明示指定されている場合のみ適用されます。
+ * アクティビティが1つ以上選択され、かつ、 1つ以上のアクティビティ名が明示指定されている場合のみ適用されます。
  * </p>
  * 
  * @author makotan
@@ -35,56 +34,61 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author imai78(JavaDoc)
  * @since 2006/06/19
  */
-public class DirectMultiBuriActivitySelector extends AbstractBuriActivitySelector {
+public class DirectMultiBuriActivitySelector extends
+        AbstractBuriActivitySelector {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void applyRule(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		// アクティビティの取得
+		Set<BuriActivityType> result = new HashSet<BuriActivityType>();
+		Set<String> activityNames = getActivityNames(systemContext);
+		for (BuriActivityType activityType : activities) {
+			if (activityNames.contains(activityType.getName())) {
+				result.add(activityType);
+			}
+		}
+		activities.clear();
+		activities.addAll(result);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#applyRule(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        // アクティビティの取得
-        Set<BuriActivityType> result = new HashSet<BuriActivityType>();
-        Set<String> activityNames = getActivityNames(systemContext);
-        for (BuriActivityType activityType : activities) {
-            if (activityNames.contains(activityType.getName())) {
-                result.add(activityType);
-            }
-        }
-        activities.clear();
-        activities.addAll(result);
-    }
+	/**
+	 * 実行用コンテキストからアクティビティ名の一覧を取得して返します。
+	 * <p>
+	 * {@code Bao}で使用されたアノテーションも含めてアクティビティ名を取得します。
+	 * </p>
+	 * 
+	 * @param systemContext
+	 *            実行用コンテキスト
+	 * @return 取得できたアクティビティ名の一覧
+	 */
+	private Set<String> getActivityNames(BuriSystemContext systemContext) {
+		Set<String> acts = new HashSet<String>();
+		// 実行対象のパスが1件以上の場合
+		if (systemContext.getCallPath().getActivityName().size() > 0) {
+			acts.add(systemContext.getCallPath().getActivityName().get(0));
+		}
+		// Baoアノテーションからの取得
+		if ((systemContext.getActivityNames() != null)
+		    && systemContext.getActivityNames().isEmpty() == false) {
+			acts.addAll(systemContext.getActivityNames());
+		}
+		return acts;
+	}
 
-    /**
-     * 実行用コンテキストからアクティビティ名の一覧を取得して返します。
-     * <p>
-     * {@code Bao}で使用されたアノテーションも含めてアクティビティ名を取得します。
-     * </p>
-     * 
-     * @param systemContext 実行用コンテキスト
-     * @return 取得できたアクティビティ名の一覧
-     */
-    private Set<String> getActivityNames(BuriSystemContext systemContext) {
-        Set<String> acts = new HashSet<String>();
-        // 実行対象のパスが1件以上の場合
-        if (systemContext.getCallPath().getActivityName().size() > 0) {
-            acts.add(systemContext.getCallPath().getActivityName().get(0));
-        }
-        // Baoアノテーションからの取得
-        if((systemContext.getActivityNames() != null) && systemContext.getActivityNames().isEmpty() == false){
-            acts.addAll(systemContext.getActivityNames());
-        }
-        return acts;
-    }
-
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#isTarget(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        if ((activities.size() > 0) && (systemContext.getCallPath().getActivityName().size() > 0 || systemContext.getActivityNames() != null)) {
-            return true;
-        }
-        return false;
-    }
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isTarget(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		if ((activities.size() > 0)
+		    && (systemContext.getCallPath().getActivityName().size() > 0 || systemContext
+		        .getActivityNames() != null)) {
+			return true;
+		}
+		return false;
+	}
 }

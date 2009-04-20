@@ -26,8 +26,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
 /**
  * アクティビティ名からアクティビティ群を設定します。
  * <p>
- * 同一のアクティビティ名が複数設定されているフローの場合は、
- * 複数のアクティビティが選択されます。
+ * 同一のアクティビティ名が複数設定されているフローの場合は、 複数のアクティビティが選択されます。
  * </p>
  * <p>
  * 呼び出されれば常に適用されます。
@@ -36,37 +35,39 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
- *
  */
-public class DirectNamedBuriActivitySelector extends AbstractBuriActivitySelector {
+public class DirectNamedBuriActivitySelector extends
+        AbstractBuriActivitySelector {
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void applyRule(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		// アクティビティ名のリストを取得
+		List<String> activityNames =
+		    systemContext.getCallPath().getActivityName();
+		// 先頭の要素を参照
+		String actName = activityNames.get(0).toString();
+		List<?> acts =
+		    execProcess.getBuriWorkflowProcessType().getActivityByName(actName);
+		activities.clear();
+		activities.addAll((List<? extends BuriActivityType>) acts);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#applyRule(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        // アクティビティ名のリストを取得
-        List<String> activityNames = systemContext.getCallPath().getActivityName();
-        // 先頭の要素を参照
-        String actName = activityNames.get(0).toString();
-        List<?> acts = execProcess.getBuriWorkflowProcessType().getActivityByName(actName);
-        activities.clear();
-        activities.addAll((List<? extends BuriActivityType>) acts);
-    }
-
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#isTarget(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        if (!activities.isEmpty()) {
-            return false;
-        }
-        if (systemContext.getCallPath().getActivityName().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isTarget(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		if (!activities.isEmpty()) {
+			return false;
+		}
+		if (systemContext.getCallPath().getActivityName().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 }

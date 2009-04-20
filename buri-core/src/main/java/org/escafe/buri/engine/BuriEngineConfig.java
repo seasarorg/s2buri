@@ -26,17 +26,17 @@ import java.util.List;
  * @since 2006/07/16
  */
 public interface BuriEngineConfig {
-    /**
-     * リソース情報を返します。
-     * 
-     * @return リソース情報
-     */
-    List<BuriConfigDto> getResourceConfigs();
+	/**
+	 * リソース情報を返します。
+	 * 
+	 * @return リソース情報
+	 */
+	List<BuriConfigDto> getResourceConfigs();
 
-    /**
-     * ファイル情報を返します。
-     * 
-     * @return ファイル情報
-     */
-    List<BuriConfigDto> getFileConfigs();
+	/**
+	 * ファイル情報を返します。
+	 * 
+	 * @return ファイル情報
+	 */
+	List<BuriConfigDto> getFileConfigs();
 }

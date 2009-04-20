@@ -145,7 +145,7 @@ public class BuriSystemContext {
 	/**
 	 * ユーザコンテキストを返します。
 	 * 
-	 * @return
+	 * @return ユーザコンテキスト
 	 */
 	public BuriUserContext getUserContext() {
 		return userContext;
@@ -172,7 +172,7 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキストで対象としているデータIDを設定します。
 	 * 
-	 * @param dataID
+	 * @param dataId
 	 *            現在のコンテキストで対象としているデータID
 	 */
 	public void setDataId(Long dataId) {
@@ -191,7 +191,7 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキストで対象としているデータのステータスIDを設定します。
 	 * 
-	 * @param statusID
+	 * @param statusId
 	 *            データのステータスID
 	 */
 	public void setStatusId(Long statusId) {

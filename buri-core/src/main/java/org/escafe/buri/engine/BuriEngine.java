@@ -22,12 +22,11 @@ import org.escafe.buri.engine.impl.WakanagoEngineImpl;
 /**
  * ぶりのエンジンです。
  * <p>
- * ぶりのエンジンの基幹となるのは、このインターフェイスのスーパーインターフェイスである
- * {@link WakanagoEngine}の実装である{@link WakanagoEngineImpl}です。
- * そして、その{@link WakanagoEngineImpl}のサブクラスとして {@link BuriSimpleEngineImpl}
- * と{@link BuriStandardEngineImpl}が存在しています。
- * この{@link BuriSimpleEngineImpl}と{@link BuriStandardEngineImpl}は、
- * それぞれこの{@link BuriEngine}の実装となっています。
+ * ぶりのエンジンの基幹となるのは、このインターフェイスのスーパーインターフェイスである {@link WakanagoEngine}の実装である
+ * {@link WakanagoEngineImpl}です。 そして、その{@link WakanagoEngineImpl}のサブクラスとして
+ * {@link BuriSimpleEngineImpl} と{@link BuriStandardEngineImpl}が存在しています。 この
+ * {@link BuriSimpleEngineImpl}と{@link BuriStandardEngineImpl}は、 それぞれこの
+ * {@link BuriEngine}の実装となっています。
  * </p>
  * 
  * @author makotan
@@ -36,15 +35,13 @@ import org.escafe.buri.engine.impl.WakanagoEngineImpl;
  * @since 2006/03/26
  */
 public interface BuriEngine extends WakanagoEngine {
-    /**
-     * 指定された{@link BuriSystemContext}のユーザ情報を
-     * ぶりの権限管理に使うようにセットアップします。
-     * <p>
-     * このインターフェイスの実装である{@link BuriSimpleEngineImpl}では、
-     * 権限管理を行う必要がないため空の実装がされます。
-     * </p>
-     * 
-     * @param sysContext
-     */
-    void setupUserID(BuriSystemContext sysContext);
+	/**
+	 * 指定された{@link BuriSystemContext}のユーザ情報を ぶりの権限管理に使うようにセットアップします。
+	 * <p>
+	 * このインターフェイスの実装である{@link BuriSimpleEngineImpl}では、 権限管理を行う必要がないため空の実装がされます。
+	 * </p>
+	 * 
+	 * @param sysContext
+	 */
+	void setupUserID(BuriSystemContext sysContext);
 }

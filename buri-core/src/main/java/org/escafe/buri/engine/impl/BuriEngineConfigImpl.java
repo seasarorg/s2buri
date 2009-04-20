@@ -37,21 +37,24 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * フローのリソース情報
 	 */
-	private List<BuriConfigDto> resourceConfigs = new ArrayList<BuriConfigDto>();
+	private final List<BuriConfigDto> resourceConfigs =
+	    new ArrayList<BuriConfigDto>();
+
 	/**
 	 * フローのファイル情報
 	 */
-	private List<BuriConfigDto> fileConfigs = new ArrayList<BuriConfigDto>();
+	private final List<BuriConfigDto> fileConfigs =
+	    new ArrayList<BuriConfigDto>();
 
-	/*
-	 * @see org.escafe.buri.engine.BuriEngineConfig#getResourceConfigs()
+	/**
+	 * {@inheritDoc}
 	 */
 	public List<BuriConfigDto> getResourceConfigs() {
 		return resourceConfigs;
 	}
 
-	/*
-	 * @see org.escafe.buri.engine.BuriEngineConfig#getFileConfigs()
+	/**
+	 * {@inheritDoc}
 	 */
 	public List<BuriConfigDto> getFileConfigs() {
 		return fileConfigs;
@@ -60,8 +63,10 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * フローを登録します。
 	 * 
-	 * @param fileName フローのファイル名
-	 * @param packageName フローのパッケージ名
+	 * @param fileName
+	 *            フローのファイル名
+	 * @param packageName
+	 *            フローのパッケージ名
 	 */
 	public void addResourceConfig(String fileName, String packageName) {
 		addResourceConfig(fileName, packageName, null);
@@ -70,12 +75,15 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * フローを登録します。
 	 * 
-	 * @param fileName フローのファイル名
-	 * @param packageName フローのパッケージ名
-	 * @param provider フローに対して適用する権限主体
+	 * @param fileName
+	 *            フローのファイル名
+	 * @param packageName
+	 *            フローのパッケージ名
+	 * @param provider
+	 *            フローに対して適用する権限主体
 	 */
 	public void addResourceConfig(String fileName, String packageName,
-			ParticipantProvider provider) {
+	        ParticipantProvider provider) {
 		BuriConfigDto dto = new BuriConfigDto();
 		dto.setFileName(fileName);
 		dto.setPackageName(packageName);
@@ -84,29 +92,33 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	}
 
 	/**
-	 * ファイル情報を登録します。 TODO 使ってないっぽい＞＜
+	 * ファイル情報を登録します。
 	 * 
-	 * @param fileName ファイル名
-	 * @param packageName パッケージ名
+	 * @param fileName
+	 *            ファイル名
+	 * @param packageName
+	 *            パッケージ名
 	 */
 	public void addFileConfig(String fileName, String packageName) {
 		addFileConfig(fileName, packageName, null);
 	}
 
 	/**
-	 * ファイル情報を登録します。 TODO 使ってないっぽい＞＜
+	 * ファイル情報を登録します。
 	 * 
-	 * @param fileName ファイル名
-	 * @param packageName パッケージ名
-	 * @param provider フローに対して適用する権限主体
+	 * @param fileName
+	 *            ファイル名
+	 * @param packageName
+	 *            パッケージ名
+	 * @param provider
+	 *            フローに対して適用する権限主体
 	 */
 	public void addFileConfig(String fileName, String packageName,
-			ParticipantProvider provider) {
+	        ParticipantProvider provider) {
 		BuriConfigDto dto = new BuriConfigDto();
 		dto.setFileName(fileName);
 		dto.setPackageName(packageName);
 		dto.setProvider(provider);
 		fileConfigs.add(dto);
 	}
-
 }

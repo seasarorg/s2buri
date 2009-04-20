@@ -57,10 +57,8 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	 */
 	private BuriPathDataUserEntityService buriPathDataUserEntityService;
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.util.BuriTimerInvoker#invoke(org.escafe
-	 * .buri.dto.BuriPathDataEntityDto)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void invoke(BuriPathDataEntity callDto) {
 		DataAccessFactory accessFactory =
@@ -154,7 +152,7 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * ぶり固有のビュー{@code BuriPathDataUserEntity}のServiceを登録します。
 	 * 
-	 * @param dataUserDao
+	 * @param buriPathDataUserEntityService
 	 *            ぶり固有のビュー{@code BuriPathDataUserEntity}のService
 	 */
 	public void setBuriPathDataUserEntityService(

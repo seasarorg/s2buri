@@ -29,14 +29,14 @@ import java.util.List;
  * @since 2005/08/18
  */
 public interface ParticipantProvider {
-
 	/**
 	 * ユーザ情報オブジェクトに含まれるユーザIDを返します。
 	 * <p>
 	 * ユーザ情報とユーザIDとの変換メソッドです。
 	 * </p>
 	 * 
-	 * @param userData ユーザ情報オブジェクト
+	 * @param userData
+	 *            ユーザ情報オブジェクト
 	 * @return ユーザ情報オブジェクトに含まれるユーザID
 	 */
 	IdentityInfo getUserId(Object userData);
@@ -47,7 +47,8 @@ public interface ParticipantProvider {
 	 * ユーザ情報とユーザIDとの変換メソッドです。
 	 * </p>
 	 * 
-	 * @param appUserId アプリケーションが管理するユーザID
+	 * @param appUserId
+	 *            アプリケーションが管理するユーザID
 	 * @return ユーザ情報オブジェクト
 	 */
 	Object getUserData(IdentityInfo appUserId);
@@ -58,7 +59,8 @@ public interface ParticipantProvider {
 	 * dataに対してactionUserがparticipantType/participantNameの権限を 持っているかどうかをチェックします。
 	 * </p>
 	 * 
-	 * @param context 使用する{@link ParticipantContext}
+	 * @param context
+	 *            使用する{@link ParticipantContext}
 	 * @return 権限を持っている場合は{@code true}。持っていない場合は{@code false}。
 	 */
 	boolean hasAuthority(ParticipantContext context);
@@ -69,7 +71,8 @@ public interface ParticipantProvider {
 	 * dataに対してparticipantType/participantNameの権限を 持っている全ユーザのDTOを取得して返します。
 	 * </p>
 	 * 
-	 * @param context 使用する{@link ParticipantContext}
+	 * @param context
+	 *            使用する{@link ParticipantContext}
 	 * @return ユーザID群
 	 */
 	List<IdentityInfo> getAuthorizedUserIds(ParticipantContext context);

@@ -34,15 +34,15 @@ public class BuriTimerService extends AbstractGetRunService {
 	 */
 	private BuriPathDataEntityService buriPathDataEntityService;
 
-	/*
-	 * @see jp.starlogic.servicemanager.OneService#canService()
+	/**
+	 * {@inheritDoc}
 	 */
 	public boolean canService() {
 		return true;
 	}
 
-	/*
-	 * @see jp.starlogic.servicemanager.OneService#execute()
+	/**
+	 * {@inheritDoc}
 	 */
 	public void execute() {
 		List<BuriPathDataEntity> timerOverList =
@@ -64,7 +64,7 @@ public class BuriTimerService extends AbstractGetRunService {
 	/**
 	 * ぶり固有のビュー{@code BuriPathDataEntity}のServiceを登録します。
 	 * 
-	 * @param dataDao
+	 * @param buriPathDataEntityService
 	 *            ぶり固有のビュー{@code BuriPathDataEntity}のService
 	 */
 	public void setBuriPathDataEntityService(

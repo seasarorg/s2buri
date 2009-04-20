@@ -31,8 +31,7 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
 /**
  * 登録済みのデータが現在所属しているアクティビティ群を選択します。
  * <p>
- * 分岐フローによっては1つのデータが複数アクティビティにデータが所属する事が可能です。
- * その場合には、複数のアクティビティが選択されます。
+ * 分岐フローによっては1つのデータが複数アクティビティにデータが所属する事が可能です。 その場合には、複数のアクティビティが選択されます。
  * </p>
  * <p>
  * 呼び出されれば常に適用されます。
@@ -44,75 +43,82 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
  * @since 2006/05/23
  */
 public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector {
+	/**
+	 * データ操作ユーティリティ
+	 */
+	private BuriDataUtil dataUtil;
 
-    /**
-     * データ操作ユーティリティ
-     */
-    private BuriDataUtil dataUtil;
-    /**
-     * ぶり固有のテーブル{@code BuriPath}のユーティリティ
-     */
-    private BuriPathUtil pathUtil;
+	/**
+	 * ぶり固有のテーブル{@code BuriPath}のユーティリティ
+	 */
+	private BuriPathUtil pathUtil;
 
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#applyRule(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        Set<BuriActivityType> result = new HashSet<BuriActivityType>();
-        long dataID = dataUtil.getBuriDataId((DataAccessFactory) execProcess, systemContext);
-        List<BuriPath> pathList = pathUtil.getPathListByDataId(dataID);
-        for (BuriPath path : pathList) {
-            String actID = path.getActivityId().get(0).toString();
-            BuriActivityType act = execProcess.getBuriWorkflowProcessType().getActivityById(actID);
-            result.add(act);
-        }
-        activities.clear();
-        activities.addAll(result);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void applyRule(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		Set<BuriActivityType> result = new HashSet<BuriActivityType>();
+		long dataID =
+		    dataUtil.getBuriDataId(
+		        (DataAccessFactory) execProcess,
+		        systemContext);
+		List<BuriPath> pathList = pathUtil.getPathListByDataId(dataID);
+		for (BuriPath path : pathList) {
+			String actID = path.getActivityId().get(0).toString();
+			BuriActivityType act =
+			    execProcess.getBuriWorkflowProcessType().getActivityById(actID);
+			result.add(act);
+		}
+		activities.clear();
+		activities.addAll(result);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#isTarget(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected boolean isTarget(Set<BuriActivityType> activitys, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        return true;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isTarget(Set<BuriActivityType> activitys,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		return true;
+	}
 
-    /**
-     * データ操作ユーティリティを返します。
-     * 
-     * @return データ操作ユーティリティ
-     */
-    public BuriDataUtil getDataUtil() {
-        return dataUtil;
-    }
+	/**
+	 * データ操作ユーティリティを返します。
+	 * 
+	 * @return データ操作ユーティリティ
+	 */
+	public BuriDataUtil getDataUtil() {
+		return dataUtil;
+	}
 
-    /**
-     * データ操作ユーティリティを登録します。
-     * 
-     * @param dataUtil データ操作ユーティリティ
-     */
-    public void setDataUtil(BuriDataUtil dataUtil) {
-        this.dataUtil = dataUtil;
-    }
+	/**
+	 * データ操作ユーティリティを登録します。
+	 * 
+	 * @param dataUtil
+	 *            データ操作ユーティリティ
+	 */
+	public void setDataUtil(BuriDataUtil dataUtil) {
+		this.dataUtil = dataUtil;
+	}
 
-    /**
-     * ぶり固有のテーブル{@code BuriPath}のユーティリティを返します。
-     * 
-     * @return ぶり固有のテーブル{@code BuriPath}のユーティリティ
-     */
-    public BuriPathUtil getPathUtil() {
-        return pathUtil;
-    }
+	/**
+	 * ぶり固有のテーブル{@code BuriPath}のユーティリティを返します。
+	 * 
+	 * @return ぶり固有のテーブル{@code BuriPath}のユーティリティ
+	 */
+	public BuriPathUtil getPathUtil() {
+		return pathUtil;
+	}
 
-    /**
-     * ぶり固有のテーブル{@code BuriPath}のユーティリティを登録します。
-     * 
-     * @param pathUtil ぶり固有のテーブル{@code BuriPath}のユーティリティ
-     */
-    public void setPathUtil(BuriPathUtil pathUtil) {
-        this.pathUtil = pathUtil;
-    }
-
+	/**
+	 * ぶり固有のテーブル{@code BuriPath}のユーティリティを登録します。
+	 * 
+	 * @param pathUtil
+	 *            ぶり固有のテーブル{@code BuriPath}のユーティリティ
+	 */
+	public void setPathUtil(BuriPathUtil pathUtil) {
+		this.pathUtil = pathUtil;
+	}
 }

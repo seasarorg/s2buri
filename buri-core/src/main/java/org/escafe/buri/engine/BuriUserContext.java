@@ -20,24 +20,18 @@ import java.util.HashMap;
 /**
  * ワークフローの実行の際に使用する情報を保持するクラスです。
  * <p>
- * {@link HashMap}のサブクラスとして実装されています。
- * このクラスにセットされたデータは、ワークフローにOGNL式を記述しておく事で、
+ * {@link HashMap}のサブクラスとして実装されています。 このクラスにセットされたデータは、ワークフローにOGNL式を記述しておく事で、
  * コンパイル済みのワークフローから参照可能となります。
  * </p>
  * <p>
- * 以下に各属性の説明を記します。
- * ここで設定した値は、OGNL式で{@code #data}等とする事で内容を参照する事が可能です。
+ * 以下に各属性の説明を記します。 ここで設定した値は、OGNL式で{@code #data}等とする事で内容を参照する事が可能です。
  * <ul>
- * <li>{@code data}</li>
- * <div>ぶりに管理させたいデータのDtoを指定します。</div>
- * <li>{@code userData}</li>
- * <div>権限による制御を行うワークフローを実行する際に使用する
+ * <li>{@code data}</li> <div>ぶりに管理させたいデータのDtoを指定します。</div>
+ * <li>{@code userData}</li> <div>権限による制御を行うワークフローを実行する際に使用する
  * ユーザ情報となるDtoを指定します。</div>
- * <li>{@code action}</li>
- * <div>ワークフローのトランジションの経路を指定する為の{@code action}
+ * <li>{@code action}</li> <div>ワークフローのトランジションの経路を指定する為の{@code action}
  * を指定します。通常文字列を使用します。</div>
- * <li>{@code callPath}</li>
- * <div>実行するワークフローを表すパスの{@link BuriPath}を指定します。</div>
+ * <li>{@code callPath}</li> <div>実行するワークフローを表すパスの{@link BuriPath}を指定します。</div>
  * </ul>
  * </p>
  * 
@@ -47,7 +41,6 @@ import java.util.HashMap;
  * @since 2006/03/21
  */
 public class BuriUserContext extends HashMap<String, Object> {
-
 	/** */
 	private static final long serialVersionUID = 1L;
 
@@ -59,14 +52,17 @@ public class BuriUserContext extends HashMap<String, Object> {
 	public Object getData() {
 		return super.get("data");
 	}
+
 	/**
 	 * オブジェクトを{@code "data"}として登録します。
 	 * 
-	 * @param data {@code "data"}として登録したいデータのDto
+	 * @param data
+	 *            {@code "data"}として登録したいデータのDto
 	 */
 	public void setData(Object data) {
 		super.put("data", data);
 	}
+
 	/**
 	 * {@code "userData"}として登録されているオブジェクトを返します。
 	 * 
@@ -75,14 +71,17 @@ public class BuriUserContext extends HashMap<String, Object> {
 	public Object getUserData() {
 		return super.get("userData");
 	}
+
 	/**
 	 * オブジェクトを{@code "userData"}として登録します。
 	 * 
-	 * @param data {@code "userData"}として登録したいオブジェクト
+	 * @param data
+	 *            {@code "userData"}として登録したいオブジェクト
 	 */
 	public void setUserData(Object data) {
 		super.put("userData", data);
 	}
+
 	/**
 	 * {@code action}を文字列として返します。
 	 * 
@@ -95,26 +94,31 @@ public class BuriUserContext extends HashMap<String, Object> {
 		}
 		return action.toString();
 	}
+
 	/**
 	 * {@code "action"}を登録します。
 	 * 
-	 * @param data {@code "action"}として登録したいオブジェクト
+	 * @param data
+	 *            {@code "action"}として登録したいオブジェクト
 	 */
 	public void setAction(Object data) {
 		super.put("action", data);
 	}
+
 	/**
 	 * {@code "callPath"}として登録されている{@link BuriPath}を返します。
 	 * 
-	 * @return {@code "callPath"}として登録されている{@link BuriPath} 
+	 * @return {@code "callPath"}として登録されている{@link BuriPath}
 	 */
 	public BuriPath getCallPath() {
 		return (BuriPath) super.get("callPath");
 	}
+
 	/**
 	 * {@code "callPath"}として{@link BuriPath}を登録します。
 	 * 
-	 * @param callPath 登録したい{@link BuriPath}
+	 * @param callPath
+	 *            登録したい{@link BuriPath}
 	 */
 	public void setCallPath(BuriPath callPath) {
 		super.put("callPath", callPath);

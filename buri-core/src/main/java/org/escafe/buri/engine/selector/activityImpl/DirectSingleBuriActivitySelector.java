@@ -37,33 +37,38 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author imai78(JavaDoc)
  * @since 2006/05/23
  */
-public class DirectSingleBuriActivitySelector extends AbstractBuriActivitySelector {
+public class DirectSingleBuriActivitySelector extends
+        AbstractBuriActivitySelector {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void applyRule(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		List<String> activityIds = systemContext.getCallPath().getActivityId();
+		String activityId = activityIds.get(0).toString();
+		BuriActivityType actType =
+		    execProcess
+		        .getBuriWorkflowProcessType()
+		        .getActivityById(activityId);
+		activities.clear();
+		activities.add(actType);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#applyRule(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        List<String> activityIds = systemContext.getCallPath().getActivityId();
-        String activityId = activityIds.get(0).toString();
-        BuriActivityType actType = execProcess.getBuriWorkflowProcessType().getActivityById(activityId);
-        activities.clear();
-        activities.add(actType);
-    }
-
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriActivitySelector#isTarget(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    @Override
-    protected boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-//        List<String> activityIds = systemContext.getCallPath().getRealPath().getActivity();
-        if (activities.isEmpty()) {
-            return false;
-        }
-        if (activities.size() != 1) {
-        	return false;
-        }
-        return true;
-    }
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isTarget(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		// List<String> activityIds =
+		// systemContext.getCallPath().getRealPath().getActivity();
+		if (activities.isEmpty()) {
+			return false;
+		}
+		if (activities.size() != 1) {
+			return false;
+		}
+		return true;
+	}
 }

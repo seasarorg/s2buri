@@ -30,27 +30,29 @@ import org.escafe.buri.util.packages.BuriExePackages;
  * @since 2006/05/29
  */
 public interface BuriProcessSelector {
+	/** 選択に失敗したことを示します。 */
+	final static int SELECT_ERROR = -1;
 
-    /** 選択に失敗したことを示します。 */
-    final static int SELECT_ERROR = -1;
+	/** 選択に成功し、続けて他のセレクタを実行する必要がないことを示します。 */
+	final static int SELECT_FINAL = 0;
 
-    /** 選択に成功し、続けて他のセレクタを実行する必要がないことを示します。 */
-    final static int SELECT_FINAL = 0;
+	/** 選択に成功し、続けて他のセレクタを実行することを示します。 */
+	final static int SELECT_NEXT = 1;
 
-    /** 選択に成功し、続けて他のセレクタを実行することを示します。 */
-    final static int SELECT_NEXT = 1;
-
-    /**
-     * 実行対象のプロセスを選択します。
-     * <p>
-     * 本メソッドを実行することにより第1引数のプロセス群が増減します。
-     * </p>
-     * 
-     * @param processes フローのプロセスの{@link BuriWorkflowProcessType}
-     * @param systemContext 実行用コンテキスト
-     * @param exePackages 実行対象のフローのパッケージ
-     * @return 選択処理の結果ステータス
-     */
-    int select(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages exePackages);
-
+	/**
+	 * 実行対象のプロセスを選択します。
+	 * <p>
+	 * 本メソッドを実行することにより第1引数のプロセス群が増減します。
+	 * </p>
+	 * 
+	 * @param processes
+	 *            フローのプロセスの{@link BuriWorkflowProcessType}
+	 * @param systemContext
+	 *            実行用コンテキスト
+	 * @param exePackages
+	 *            実行対象のフローのパッケージ
+	 * @return 選択処理の結果ステータス
+	 */
+	int select(List<BuriWorkflowProcessType> processes,
+	        BuriSystemContext systemContext, BuriExePackages exePackages);
 }

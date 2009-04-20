@@ -25,8 +25,7 @@ import org.escafe.buri.util.packages.BuriExePackages;
 /**
  * 直接指定されている1つのプロセスを選択します。
  * <p>
- * まだプロセスが選択されておらず、かつ、
- * 実行対象として指定されたプロセスが1件のみ検出された場合に適用されます。
+ * まだプロセスが選択されておらず、かつ、 実行対象として指定されたプロセスが1件のみ検出された場合に適用されます。
  * 適用された場合、ここで決定した1つのみが結果に含まれます。
  * </p>
  * 
@@ -35,32 +34,36 @@ import org.escafe.buri.util.packages.BuriExePackages;
  * @author imai78(JavaDoc)
  * @since 2006/05/29
  */
-public class DirectSingleBuriProcessSelector extends AbstractBuriProcessSelector {
+public class DirectSingleBuriProcessSelector extends
+        AbstractBuriProcessSelector {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isTarget(List<BuriWorkflowProcessType> processes,
+	        BuriSystemContext systemContext, BuriExePackages execPackages) {
+		if (processes.size() > 0) {
+			return false;
+		}
+		String processName = systemContext.getCallPath().getWorkflowProcess();
+		if (execPackages
+		    .getBuriPackageType()
+		    .getProcessByName(processName)
+		    .size() > 1) {
+			return false;
+		}
+		return true;
+	}
 
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriProcessSelector#isTarget(java.util.List, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExePackages)
-     */
-    @Override
-    protected boolean isTarget(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
-        if (processes.size() > 0) {
-            return false;
-        }
-        String processName = systemContext.getCallPath().getWorkflowProcess();
-        if (execPackages.getBuriPackageType().getProcessByName(processName).size() > 1) {
-            return false;
-        }
-        return true;
-    }
-
-    /*
-     * @see org.escafe.buri.engine.selector.abst.AbstractBuriProcessSelector#applyRule(java.util.List, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExePackages)
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void applyRule(List<BuriWorkflowProcessType> processes, BuriSystemContext systemContext, BuriExePackages execPackages) {
-        String processName = systemContext.getCallPath().getWorkflowProcess();
-        processes.clear();
-        processes.addAll((List<? extends BuriWorkflowProcessType>) execPackages.getBuriPackageType().getProcessByName(processName));
-    }
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void applyRule(List<BuriWorkflowProcessType> processes,
+	        BuriSystemContext systemContext, BuriExePackages execPackages) {
+		String processName = systemContext.getCallPath().getWorkflowProcess();
+		processes.clear();
+		processes.addAll(execPackages.getBuriPackageType().getProcessByName(
+		    processName));
+	}
 }

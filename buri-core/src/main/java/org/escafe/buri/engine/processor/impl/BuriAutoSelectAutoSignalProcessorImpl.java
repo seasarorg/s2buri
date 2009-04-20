@@ -23,50 +23,52 @@ import org.escafe.buri.exception.BuriNotSupportOperationException;
 /**
  * シグナルを利用する為のAPIセットです。
  * <p>
- * 権限管理を行うフローの実行時にあえてその権限を無視したい場合、
- * という非常に限定的なシチュエーションで使用するAPIです。
+ * 権限管理を行うフローの実行時にあえてその権限を無視したい場合、 という非常に限定的なシチュエーションで使用するAPIです。
  * </p>
  * 
  * @author makotan
  * @author imai78(JavaDoc)
  * @since 2007/09/27
  */
-public class BuriAutoSelectAutoSignalProcessorImpl extends BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
-    /**
-     * シグナルAPI
-     */
-    private BuriSignal buriSignal;
+public class BuriAutoSelectAutoSignalProcessorImpl extends
+        BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
+	/**
+	 * シグナルAPI
+	 */
+	private BuriSignal buriSignal;
 
-    /*
-     * @see org.escafe.buri.engine.processor.impl.BuriAutoSelectProcessorImpl#toNextStatus(java.lang.String, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public void toNextStatus(String path, Object data, Object userData) {
-        buriSignal.signal(path, data);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void toNextStatus(String path, Object data, Object userData) {
+		buriSignal.signal(path, data);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.impl.BuriAutoSelectProcessorImpl#toNextStatusAction(java.lang.String, java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public void toNextStatusAction(String path, Object data, Object userData, Object action) {
-        buriSignal.signal(path, data, action.toString());
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void toNextStatusAction(String path, Object data, Object userData,
+	        Object action) {
+		buriSignal.signal(path, data, action.toString());
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.impl.BuriAutoSelectProcessorImpl#toNextStatus(java.lang.String, java.lang.Object, java.lang.Object, java.lang.String)
-     */
-    @Override
-    public Object toNextStatus(String path, Object data, Object userData, String resultExp) {
-        throw new BuriNotSupportOperationException("EBRI0030");
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object toNextStatus(String path, Object data, Object userData,
+	        String resultExp) {
+		throw new BuriNotSupportOperationException("EBRI0030");
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.impl.BuriAutoSelectProcessorImpl#toNextStatus(java.lang.String, java.lang.Object, java.lang.Object, org.escafe.buri.engine.processor.BuriProcessorInfo)
-     */
-    @Override
-    public Object toNextStatus(String path, Object data, Object userData, BuriProcessorInfo info) {
-        throw new BuriNotSupportOperationException("EBRI0030");
-    }
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object toNextStatus(String path, Object data, Object userData,
+	        BuriProcessorInfo info) {
+		throw new BuriNotSupportOperationException("EBRI0030");
+	}
 }

@@ -172,28 +172,22 @@ public class BuriSignalImpl implements BuriSignal {
 		}
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.util.BuriSignal#signal(java.lang.String,
-	 * java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void signal(String callPath, Object data) {
 		processSignal(callPath, data, null);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.util.BuriSignal#signal(java.lang.String,
-	 * java.lang.Object, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void signal(String callPath, Object data, String action) {
 		processSignal(callPath, data, action);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.util.BuriSignal#signal(java.lang.String,
-	 * java.util.List)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void signal(String callPath, List<Object> datas) {
 		for (Object data : datas) {
@@ -201,10 +195,8 @@ public class BuriSignalImpl implements BuriSignal {
 		}
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.util.BuriSignal#signal(java.lang.String,
-	 * java.util.List, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void signal(String callPath, List<Object> datas, String action) {
 		for (Object data : datas) {
@@ -249,7 +241,7 @@ public class BuriSignalImpl implements BuriSignal {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param userDao
+	 * @param buriUserEntityService
 	 *            ぶり固有のテーブル{@code BuriUserEntity}のService
 	 */
 	public void setBuriUserEntityService(
@@ -291,7 +283,7 @@ public class BuriSignalImpl implements BuriSignal {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param stateDao
+	 * @param buriStateEntityService
 	 *            ぶり固有のテーブル{@code BuriStateEntity}のService
 	 */
 	public void setBuriStateEntityService(

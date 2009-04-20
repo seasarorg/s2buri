@@ -55,38 +55,29 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	 */
 	private BuriDataUtil dataUtil;
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#toNextStatus(java
-	 * .lang.String, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void toNextStatus(String path, Object data) {
 		toNextStatusAction(path, null, data, null, null);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#toNextStatus(java
-	 * .lang.String, java.lang.Object, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Object toNextStatus(String path, Object data, String resultExp) {
 		return toNextStatusAction(path, null, data, null, resultExp);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#toNextStatusAction
-	 * (java.lang.String, java.lang.Object, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void toNextStatusAction(String path, Object data, String action) {
 		toNextStatusAction(path, null, data, action, null);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#toNextStatus(java
-	 * .lang.String, java.lang.Object,
-	 * org.escafe.buri.engine.processor.BuriProcessorInfo)
+	/**
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public Object toNextStatus(String path, Object data, BuriProcessorInfo info) {
@@ -217,21 +208,17 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 		((BuriSimpleEngineImpl) engine).abortData(systemContext);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#getDataListFromPath
-	 * (java.lang.String, java.lang.Class)
+	/**
+	 * {@inheritDoc}
 	 */
 	public List<Object> getDataListFromPath(String path, Class<?> tgtClass) {
 		return getDataListFromPath(path, tgtClass, getRootContainer());
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#getDataListFromPath
-	 * (java.lang.String, java.lang.Class,
-	 * org.seasar.framework.container.S2Container)
+	/**
+	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Object> getDataListFromPath(String path, Class<?> tgtClass,
 	        S2Container container) {
 		// BuriUserContextの作成
@@ -255,21 +242,17 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 		return dataList;
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#getDataIDFromPath
-	 * (java.lang.String, java.lang.Class)
+	/**
+	 * {@inheritDoc}
 	 */
 	public List<Object> getDataIDFromPath(String path, Class<?> tgtClass) {
 		return getDataIDFromPath(path, tgtClass, getRootContainer());
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#getDataIDFromPath
-	 * (java.lang.String, java.lang.Class,
-	 * org.seasar.framework.container.S2Container)
+	/**
+	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Object> getDataIDFromPath(String path, Class<?> tgtClass,
 	        S2Container container) {
 		// BuriUserContextの作成
@@ -293,20 +276,15 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 		return dataList;
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#getPathFromData(
-	 * java.lang.String, java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public List<BuriPath> getPathFromData(String path, Object data) {
 		return getPathFromData(path, data, getRootContainer());
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#getPathFromData(
-	 * java.lang.String, java.lang.Object,
-	 * org.seasar.framework.container.S2Container)
+	/**
+	 * {@inheritDoc}
 	 */
 	public List<BuriPath> getPathFromData(String path, Object data,
 	        S2Container container) {
@@ -330,20 +308,15 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 		return pathList;
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#countByPathAndDatas
-	 * (java.lang.String, java.util.List)
+	/**
+	 * {@inheritDoc}
 	 */
 	public long countByPathAndDatas(String path, List<Object> datas) {
 		return countByPathAndDatas(path, datas, getRootContainer());
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.processor.SimpleBuriProcessor#countByPathAndDatas
-	 * (java.lang.String, java.util.List,
-	 * org.seasar.framework.container.S2Container)
+	/**
+	 * {@inheritDoc}
 	 */
 	public long countByPathAndDatas(String path, List<Object> datas,
 	        S2Container container) {

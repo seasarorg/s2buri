@@ -61,18 +61,14 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 */
 	private BuriStateEntityService buriStateEntityService;
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.BuriEngine#setupUserID(org.escafe.buri.engine.
-	 * BuriSystemContext)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void setupUserID(BuriSystemContext sysContext) {
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.WakanagoEngineImpl#readWorkFlowFromResource
-	 * (java.lang.String, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void readWorkFlowFromResource(String workFlowName,
@@ -80,11 +76,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 		readFromResource(workFlowName, resourceName, null);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.WakanagoEngineImpl#readWorkFlowFromResource
-	 * (java.lang.String, java.lang.String,
-	 * org.escafe.buri.engine.ParticipantProvider)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void readWorkFlowFromResource(String workFlowName,
@@ -115,12 +108,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 		    .getClassName(data));
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.WakanagoEngineImpl#updateSystemContext(org
-	 * .escafe.buri.engine.BuriSystemContext,
-	 * org.escafe.buri.util.packages.BuriExecProcess,
-	 * org.escafe.buri.util.packages.BuriExePackages)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void updateSystemContext(BuriSystemContext sysContext,
@@ -246,7 +235,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * DIコンテナによって自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param pathDataDao
+	 * @param buriPathDataEntityService
 	 *            ぶり固有のビュー{@code BuriPathDataEntity}のService
 	 */
 	public void setBuriPathDataEntityService(
@@ -254,18 +243,16 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 		this.buriPathDataEntityService = buriPathDataEntityService;
 	}
 
-	/*
-	 * @see org.escafe.buri.engine.impl.WakanagoEngineImpl#getBuriCompiler()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public BuriCompiler getBuriCompiler() {
 		return buriCompiler;
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.WakanagoEngineImpl#setBuriCompiler(org.escafe
-	 * .buri.compiler.BuriCompiler)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setBuriCompiler(BuriCompiler buriCompiler) {
@@ -309,7 +296,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * DIコンテナで自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param stateDao
+	 * @param buriStateEntityService
 	 *            ぶり固有のテーブル{@code BuriState}のService
 	 */
 	public void setBuriStateEntityService(

@@ -30,48 +30,56 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author imai78(JavaDoc)
  * @since 2006/05/23
  */
-public abstract class AbstractBuriActivitySelector implements BuriActivitySelector {
+public abstract class AbstractBuriActivitySelector implements
+        BuriActivitySelector {
+	/**
+	 * {@inheritDoc}
+	 */
+	public int select(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess) {
+		if (!isTarget(activities, systemContext, execProcess)) {
+			return SELECT_NEXT;
+		}
+		applyRule(activities, systemContext, execProcess);
+		return getDefaultResultType();
+	}
 
-    /*
-     * @see org.escafe.buri.engine.selector.BuriActivitySelector#select(java.util.Set, org.escafe.buri.engine.BuriSystemContext, org.escafe.buri.util.packages.BuriExecProcess)
-     */
-    public int select(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess) {
-        if (!isTarget(activities, systemContext, execProcess)) {
-            return SELECT_NEXT;
-        }
-        applyRule(activities, systemContext, execProcess);
-        return getDefaultResultType();
-    }
+	/**
+	 * デフォルトの結果種別を返します。
+	 * 
+	 * @return [選択に成功し、続けて他のセレクタを実行する]旨の結果種別
+	 */
+	protected int getDefaultResultType() {
+		return SELECT_NEXT;
+	}
 
-    /**
-     * デフォルトの結果種別を返します。
-     * 
-     * @return [選択に成功し、続けて他のセレクタを実行する]旨の結果種別
-     */
-    protected int getDefaultResultType() {
-        return SELECT_NEXT;
-    }
+	/**
+	 * アクティビティ選択ルールを適用します。
+	 * <p>
+	 * 実行の結果、第1引数のSetに変更が反映されます。
+	 * </p>
+	 * 
+	 * @param activities
+	 *            フローのアクティビティのリスト
+	 * @param systemContext
+	 *            実行情報のコンテキスト
+	 * @param execProcess
+	 *            対象となるフローのプロセス
+	 */
+	protected abstract void applyRule(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess);
 
-    /**
-     * アクティビティ選択ルールを適用します。
-     * <p>
-     * 実行の結果、第1引数のSetに変更が反映されます。
-     * </p>
-     * 
-     * @param activities フローのアクティビティのリスト
-     * @param systemContext 実行情報のコンテキスト
-     * @param execProcess 対象となるフローのプロセス
-     */
-    protected abstract void applyRule(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess);
-
-    /**
-     * ルールの適用を行う対象かどうかを判定します。
-     * 
-     * @param activities フローのアクティビティのリスト
-     * @param systemContext 実行情報のコンテキスト
-     * @param execProcess 対象となるフローのプロセス
-     * @return 実行対象である場合は<code>true</code>。実行対象ではないは<code>false</code>。
-     */
-    protected abstract boolean isTarget(Set<BuriActivityType> activities, BuriSystemContext systemContext, BuriExecProcess execProcess);
-
+	/**
+	 * ルールの適用を行う対象かどうかを判定します。
+	 * 
+	 * @param activities
+	 *            フローのアクティビティのリスト
+	 * @param systemContext
+	 *            実行情報のコンテキスト
+	 * @param execProcess
+	 *            対象となるフローのプロセス
+	 * @return 実行対象である場合は{@code true}、実行対象ではないは{@code false}。
+	 */
+	protected abstract boolean isTarget(Set<BuriActivityType> activities,
+	        BuriSystemContext systemContext, BuriExecProcess execProcess);
 }

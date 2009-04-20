@@ -37,339 +37,406 @@ import org.seasar.framework.container.S2Container;
  * @since 2006/06/20
  */
 public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
+	/**
+	 * 権限管理をしない場合に使うぶりプロセッサ
+	 */
+	private SimpleBuriProcessor simpleProcessor;
 
-    /**
-     * 権限管理をしない場合に使うぶりプロセッサ
-     */
-    private SimpleBuriProcessor simpleProcessor;
-    /**
-     * 権限管理をする場合に使うぶりプロセッサ
-     */
-    private StandardBuriProcessor standardProcessor;
-    /**
-     * 権限管理をしない場合に使うぶりのエンジン
-     */
-    private BuriEngine simpleEngine;
-    /**
-     * 権限管理をする場合に使うぶりのエンジン
-     */
-    private BuriEngine standardEngine;
-    /**
-     * S2コンテナ
-     */
-    private S2Container container;
+	/**
+	 * 権限管理をする場合に使うぶりプロセッサ
+	 */
+	private StandardBuriProcessor standardProcessor;
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#toNextStatus(java.lang.String, java.lang.Object, java.lang.Object)
-     */
-    public void toNextStatus(String path, Object data, Object userData) {
-        toNextStatusAction(path, getRootContainer(), data, userData, null, null);
-    }
+	/**
+	 * 権限管理をしない場合に使うぶりのエンジン
+	 */
+	private BuriEngine simpleEngine;
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#toNextStatus(java.lang.String, java.lang.Object, java.lang.Object, java.lang.String)
-     */
-    public Object toNextStatus(String path, Object data, Object userData, String resultExp) {
-        return toNextStatusAction(path, getRootContainer(), data, userData, null, resultExp);
-    }
+	/**
+	 * 権限管理をする場合に使うぶりのエンジン
+	 */
+	private BuriEngine standardEngine;
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#toNextStatusAction(java.lang.String, java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    public void toNextStatusAction(String path, Object data, Object userData, Object action) {
-        toNextStatusAction(path, getRootContainer(), data, userData, action, null);
-    }
+	/**
+	 * S2コンテナ
+	 */
+	private S2Container container;
 
-    /**
-     * 状態を次に進めます。
-     * <p>
-     * その際に、{@code action}を指定してトランジションの経路を指定する事が可能です。
-     * </p>
-     * <p>
-     * 権限管理を行わないフローを実行する場合は、{@code userData}に{@code null}を指定します。
-     * </p>
-     * 
-     * @param path パッケージ名.プロセス名[.アクティビティー名]
-     * @param container S2コンテナ。
-     * @param data ぶりに管理させたい(させてる)Dto
-     * @param userData 権限管理時に使用するユーザ情報のDto
-     * @param action Actionの文字列、ぶりのなかでは{@code #action}として参照可能
-     * @param resultExp 戻り値を作るためのOGNL式
-     * @return ONGL式の実行結果
-     */
-    protected Object toNextStatusAction(String path, S2Container container, Object data, Object userData, Object action, String resultExp) {
-        BuriProcessorInfo info = new BuriProcessorInfo();
-        info.setAction(action);
-        info.setContainer(container);
-        info.setResultExp(resultExp);
-        return toNextStatus(path, data, userData, info);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void toNextStatus(String path, Object data, Object userData) {
+		toNextStatusAction(path, getRootContainer(), data, userData, null, null);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#toNextStatus(java.lang.String, java.lang.Object, java.lang.Object, org.escafe.buri.engine.processor.BuriProcessorInfo)
-     */
-    public Object toNextStatus(String path, Object data, Object userData, BuriProcessorInfo info) {
-        Object result = null;
-        if (isStdProcessor(path)) {
-            result = standardProcessor.toNextStatus(path, data, userData, info);
-        }
-        if (isSimpleProcessor(path)) {
-            result = simpleProcessor.toNextStatus(path, data, info);
-        }
-        return result;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object toNextStatus(String path, Object data, Object userData,
+	        String resultExp) {
+		return toNextStatusAction(
+		    path,
+		    getRootContainer(),
+		    data,
+		    userData,
+		    null,
+		    resultExp);
+	}
 
-    /**
-     * 指定したパスに対応したぶりのエンジンを返します。
-     * <p>
-     * {@link BuriSimpleEngineImpl}か{@link BuriStandardEngineImpl}の
-     * いずれかを返します。<br/.
-     * 万一両方に存在した場合は、{@link BuriSimpleEngineImpl}が優先して返されます。
-     * </p>
-     * 
-     * @param buriPath パッケージ名.プロセス名[.アクティビティー名]
-     * @return 対応するぶりのエンジン
-     */
-    protected BuriEngine getEngine(String buriPath) {
-        if (isStdProcessor(buriPath)) {
-            return standardEngine;
-        }
-        if (isSimpleProcessor(buriPath)) {
-            return simpleEngine;
-        }
-        return null;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void toNextStatusAction(String path, Object data, Object userData,
+	        Object action) {
+		toNextStatusAction(
+		    path,
+		    getRootContainer(),
+		    data,
+		    userData,
+		    action,
+		    null);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getDataListFromPath(java.lang.String, java.lang.Object, java.lang.Class)
-     */
-    public List<Object> getDataListFromPath(String path, Object userData, Class<?> tgtClass) {
-        return getDataListFromPath(path, userData, tgtClass, getRootContainer());
-    }
+	/**
+	 * 状態を次に進めます。
+	 * <p>
+	 * その際に、{@code action}を指定してトランジションの経路を指定する事が可能です。
+	 * </p>
+	 * <p>
+	 * 権限管理を行わないフローを実行する場合は、{@code userData}に{@code null}を指定します。
+	 * </p>
+	 * 
+	 * @param path
+	 *            パッケージ名.プロセス名[.アクティビティー名]
+	 * @param container
+	 *            S2コンテナ。
+	 * @param data
+	 *            ぶりに管理させたい(させてる)Dto
+	 * @param userData
+	 *            権限管理時に使用するユーザ情報のDto
+	 * @param action
+	 *            Actionの文字列、ぶりのなかでは{@code #action}として参照可能
+	 * @param resultExp
+	 *            戻り値を作るためのOGNL式
+	 * @return ONGL式の実行結果
+	 */
+	protected Object toNextStatusAction(String path, S2Container container,
+	        Object data, Object userData, Object action, String resultExp) {
+		BuriProcessorInfo info = new BuriProcessorInfo();
+		info.setAction(action);
+		info.setContainer(container);
+		info.setResultExp(resultExp);
+		return toNextStatus(path, data, userData, info);
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getDataListFromPath(java.lang.String, java.lang.Object, java.lang.Class, org.seasar.framework.container.S2Container)
-     */
-    public List<Object> getDataListFromPath(String path, Object userData, Class<?> tgtClass, S2Container container) {
-        List<Object> result = null;
-        if (isStdProcessor(path)) {
-            result = standardProcessor.getDataListFromPath(path, userData, tgtClass, container);
-        }
-        if (isSimpleProcessor(path)) {
-            result = simpleProcessor.getDataListFromPath(path, tgtClass, container);
-        }
-        return result;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object toNextStatus(String path, Object data, Object userData,
+	        BuriProcessorInfo info) {
+		Object result = null;
+		if (isStdProcessor(path)) {
+			result = standardProcessor.toNextStatus(path, data, userData, info);
+		}
+		if (isSimpleProcessor(path)) {
+			result = simpleProcessor.toNextStatus(path, data, info);
+		}
+		return result;
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getDataIDFromPath(java.lang.String, java.lang.Object, java.lang.Class)
-     */
-    public List<Object> getDataIDFromPath(String path, Object userData, Class<?> tgtClass) {
-        return getDataIDFromPath(path, userData, tgtClass, getRootContainer());
-    }
+	/**
+	 * 指定したパスに対応したぶりのエンジンを返します。
+	 * <p>
+	 * {@link BuriSimpleEngineImpl}か{@link BuriStandardEngineImpl}の
+	 * いずれかを返します。<br/. 万一両方に存在した場合は、{@link BuriSimpleEngineImpl}が優先して返されます。
+	 * </p>
+	 * 
+	 * @param buriPath
+	 *            パッケージ名.プロセス名[.アクティビティー名]
+	 * @return 対応するぶりのエンジン
+	 */
+	protected BuriEngine getEngine(String buriPath) {
+		if (isStdProcessor(buriPath)) {
+			return standardEngine;
+		}
+		if (isSimpleProcessor(buriPath)) {
+			return simpleEngine;
+		}
+		return null;
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getDataIDFromPath(java.lang.String, java.lang.Object, java.lang.Class, org.seasar.framework.container.S2Container)
-     */
-    public List<Object> getDataIDFromPath(String path, Object userData, Class<?> tgtClass, S2Container container) {
-        List<Object> result = null;
-        if (isStdProcessor(path)) {
-            result = standardProcessor.getDataIDFromPath(path, userData, tgtClass, container);
-        }
-        if (isSimpleProcessor(path)) {
-            result = simpleProcessor.getDataIDFromPath(path, tgtClass, container);
-        }
-        return result;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<Object> getDataListFromPath(String path, Object userData,
+	        Class<?> tgtClass) {
+		return getDataListFromPath(path, userData, tgtClass, getRootContainer());
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getPathFromData(java.lang.String, java.lang.Object, java.lang.Object, java.lang.Class)
-     */
-    public List<BuriPath> getPathFromData(String path, Object data, Object userData, Class<?> tgtClass) {
-        return getPathFromData(path, data, userData, tgtClass, getRootContainer());
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<Object> getDataListFromPath(String path, Object userData,
+	        Class<?> tgtClass, S2Container container) {
+		List<Object> result = null;
+		if (isStdProcessor(path)) {
+			result =
+			    standardProcessor.getDataListFromPath(
+			        path,
+			        userData,
+			        tgtClass,
+			        container);
+		}
+		if (isSimpleProcessor(path)) {
+			result =
+			    simpleProcessor.getDataListFromPath(path, tgtClass, container);
+		}
+		return result;
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getPathFromData(java.lang.String, java.lang.Object, java.lang.Object, java.lang.Class, org.seasar.framework.container.S2Container)
-     */
-    public List<BuriPath> getPathFromData(String path, Object data, Object userData, Class<?> tgtClass, S2Container container) {
-        List<BuriPath> result = null;
-        if (isStdProcessor(path)) {
-            result = standardProcessor.getPathFromData(path, data, userData, tgtClass, container);
-        }
-        if (isSimpleProcessor(path)) {
-            result = simpleProcessor.getPathFromData(path, data, container);
-        }
-        return result;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<Object> getDataIDFromPath(String path, Object userData,
+	        Class<?> tgtClass) {
+		return getDataIDFromPath(path, userData, tgtClass, getRootContainer());
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#countByPathAndDatas(java.lang.String, java.util.List, java.lang.Object)
-     */
-    public long countByPathAndDatas(String path, List<Object> datas, Object userData) {
-        return countByPathAndDatas(path, datas, userData, getRootContainer());
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<Object> getDataIDFromPath(String path, Object userData,
+	        Class<?> tgtClass, S2Container container) {
+		List<Object> result = null;
+		if (isStdProcessor(path)) {
+			result =
+			    standardProcessor.getDataIDFromPath(
+			        path,
+			        userData,
+			        tgtClass,
+			        container);
+		}
+		if (isSimpleProcessor(path)) {
+			result =
+			    simpleProcessor.getDataIDFromPath(path, tgtClass, container);
+		}
+		return result;
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#countByPathAndDatas(java.lang.String, java.util.List, java.lang.Object, org.seasar.framework.container.S2Container)
-     */
-    public long countByPathAndDatas(String path, List<Object> datas, Object userData, S2Container container) {
-        long result = 0;
-        if (isStdProcessor(path)) {
-            result = standardProcessor.countByPathAndDatas(path, datas, userData, container);
-        }
-        if (isSimpleProcessor(path)) {
-            result = simpleProcessor.countByPathAndDatas(path, datas, container);
-        }
-        return result;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<BuriPath> getPathFromData(String path, Object data,
+	        Object userData, Class<?> tgtClass) {
+		return getPathFromData(
+		    path,
+		    data,
+		    userData,
+		    tgtClass,
+		    getRootContainer());
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#isStdProcessor(java.lang.String)
-     */
-    public boolean isStdProcessor(String buriPath) {
-        BuriPath path = new BuriPath(buriPath);
-        if (standardEngine.hasPackage(path.getWorkflowPackage())) {
-            return true;
-        }
-        return false;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<BuriPath> getPathFromData(String path, Object data,
+	        Object userData, Class<?> tgtClass, S2Container container) {
+		List<BuriPath> result = null;
+		if (isStdProcessor(path)) {
+			result =
+			    standardProcessor.getPathFromData(
+			        path,
+			        data,
+			        userData,
+			        tgtClass,
+			        container);
+		}
+		if (isSimpleProcessor(path)) {
+			result = simpleProcessor.getPathFromData(path, data, container);
+		}
+		return result;
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#getDataAccessFactory(java.lang.String)
-     */
-    public DataAccessFactory getDataAccessFactory(String buriPath) {
-        DataAccessFactory accessFactory = null;
-        BuriPath path = new BuriPath(buriPath);
-        if (isStdProcessor(buriPath)) {
-            accessFactory = (DataAccessFactory) standardEngine.selectDirectProcess(path);
-        }
-        if (isSimpleProcessor(buriPath)) {
-            accessFactory = (DataAccessFactory) simpleEngine.selectDirectProcess(path);
-        }
-        return accessFactory;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public long countByPathAndDatas(String path, List<Object> datas,
+	        Object userData) {
+		return countByPathAndDatas(path, datas, userData, getRootContainer());
+	}
 
-    /*
-     * @see org.escafe.buri.engine.processor.BuriAutoSelectProcessor#isSimpleProcessor(java.lang.String)
-     */
-    public boolean isSimpleProcessor(String buriPath) {
-        BuriPath path = new BuriPath(buriPath);
-        if (simpleEngine.hasPackage(path.getWorkflowPackage())) {
-            return true;
-        }
-        return false;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public long countByPathAndDatas(String path, List<Object> datas,
+	        Object userData, S2Container container) {
+		long result = 0;
+		if (isStdProcessor(path)) {
+			result =
+			    standardProcessor.countByPathAndDatas(
+			        path,
+			        datas,
+			        userData,
+			        container);
+		}
+		if (isSimpleProcessor(path)) {
+			result =
+			    simpleProcessor.countByPathAndDatas(path, datas, container);
+		}
+		return result;
+	}
 
-    /**
-     * S2コンテナからルートのコンテナを返します。
-     * 
-     * @return ルートのS2コンテナ
-     */
-    protected S2Container getRootContainer() {
-        return container.getRoot();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isStdProcessor(String buriPath) {
+		BuriPath path = new BuriPath(buriPath);
+		if (standardEngine.hasPackage(path.getWorkflowPackage())) {
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * 権限管理を行わないぶりのエンジンとして{@link BuriEngine}を返します。
-     * 
-     * @return 権限管理を行わないぶりのエンジン
-     */
-    public BuriEngine getSimpleEngine() {
-        return simpleEngine;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public DataAccessFactory getDataAccessFactory(String buriPath) {
+		DataAccessFactory accessFactory = null;
+		BuriPath path = new BuriPath(buriPath);
+		if (isStdProcessor(buriPath)) {
+			accessFactory =
+			    (DataAccessFactory) standardEngine.selectDirectProcess(path);
+		}
+		if (isSimpleProcessor(buriPath)) {
+			accessFactory =
+			    (DataAccessFactory) simpleEngine.selectDirectProcess(path);
+		}
+		return accessFactory;
+	}
 
-    /**
-     * 権限管理を行わないぶりのエンジンとして{@link BuriEngine}を登録します。
-     * <p>
-     * デフォルトの設定では{@link BuriSimpleEngineImpl}が設定されます。
-     * </p>
-     * 
-     * @param simpleEngine 権限管理を行わないぶりのエンジン
-     */
-    public void setSimpleEngine(BuriEngine simpleEngine) {
-        this.simpleEngine = simpleEngine;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isSimpleProcessor(String buriPath) {
+		BuriPath path = new BuriPath(buriPath);
+		if (simpleEngine.hasPackage(path.getWorkflowPackage())) {
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * 権限管理を行わないぶりプロセッサとして{@link SimpleBuriProcessor}を返します。
-     * 
-     * @return 権限管理を行わないぶりプロセッサ
-     */
-    public SimpleBuriProcessor getSimpleProcessor() {
-        return simpleProcessor;
-    }
+	/**
+	 * S2コンテナからルートのコンテナを返します。
+	 * 
+	 * @return ルートのS2コンテナ
+	 */
+	protected S2Container getRootContainer() {
+		return container.getRoot();
+	}
 
-    /**
-     * 権限管理を行わないぶりプロセッサとして{@link SimpleBuriProcessor}を登録します。
-     * <p>
-     * デフォルトの設定では{@link SimpleBuriProcessorImpl}が設定されます。
-     * </p>
-     * 
-     * @param simpleProcessor 権限管理を行わないぶりプロセッサ
-     */
-    public void setSimpleProcessor(SimpleBuriProcessor simpleProcessor) {
-        this.simpleProcessor = simpleProcessor;
-    }
+	/**
+	 * 権限管理を行わないぶりのエンジンとして{@link BuriEngine}を返します。
+	 * 
+	 * @return 権限管理を行わないぶりのエンジン
+	 */
+	public BuriEngine getSimpleEngine() {
+		return simpleEngine;
+	}
 
-    /**
-     * 権限管理を行うぶりのエンジンとして{@link BuriEngine}を返します。
-     * 
-     * @return 権限管理を行うぶりのエンジン
-     */
-    public BuriEngine getStandardEngine() {
-        return standardEngine;
-    }
+	/**
+	 * 権限管理を行わないぶりのエンジンとして{@link BuriEngine}を登録します。
+	 * <p>
+	 * デフォルトの設定では{@link BuriSimpleEngineImpl}が設定されます。
+	 * </p>
+	 * 
+	 * @param simpleEngine
+	 *            権限管理を行わないぶりのエンジン
+	 */
+	public void setSimpleEngine(BuriEngine simpleEngine) {
+		this.simpleEngine = simpleEngine;
+	}
 
-    /**
-     * 権限管理を行うぶりのエンジンとして{@link BuriEngine}を登録します。
-     * <p>
-     * デフォルトの設定では{@link BuriStandardEngineImpl}が設定されます。
-     * </p>
-     * 
-     * @param standardEngine
-     */
-    public void setStandardEngine(BuriEngine standardEngine) {
-        this.standardEngine = standardEngine;
-    }
+	/**
+	 * 権限管理を行わないぶりプロセッサとして{@link SimpleBuriProcessor}を返します。
+	 * 
+	 * @return 権限管理を行わないぶりプロセッサ
+	 */
+	public SimpleBuriProcessor getSimpleProcessor() {
+		return simpleProcessor;
+	}
 
-    /**
-     * 権限管理を行うぶりプロセッサとして{@link StandardBuriProcessor}を返します。
-     * 
-     * @return 権限管理を行うぶりプロセッサ
-     */
-    public StandardBuriProcessor getStandardProcessor() {
-        return standardProcessor;
-    }
+	/**
+	 * 権限管理を行わないぶりプロセッサとして{@link SimpleBuriProcessor}を登録します。
+	 * <p>
+	 * デフォルトの設定では{@link SimpleBuriProcessorImpl}が設定されます。
+	 * </p>
+	 * 
+	 * @param simpleProcessor
+	 *            権限管理を行わないぶりプロセッサ
+	 */
+	public void setSimpleProcessor(SimpleBuriProcessor simpleProcessor) {
+		this.simpleProcessor = simpleProcessor;
+	}
 
-    /**
-     * 権限管理を行うぶりプロセッサとして{@link StandardBuriProcessor}を登録します。
-     * <p>
-     * デフォルトの設定では{@link StandardBuriProcessorImpl}が設定されます。
-     * </p>
-     * 
-     * @param standardProcessor 権限管理を行うぶりプロセッサ
-     */
-    public void setStandardProcessor(StandardBuriProcessor standardProcessor) {
-        this.standardProcessor = standardProcessor;
-    }
+	/**
+	 * 権限管理を行うぶりのエンジンとして{@link BuriEngine}を返します。
+	 * 
+	 * @return 権限管理を行うぶりのエンジン
+	 */
+	public BuriEngine getStandardEngine() {
+		return standardEngine;
+	}
 
-    /**
-     * S2コンテナを返します。
-     * 
-     * @return S2コンテナ
-     */
-    public S2Container getContainer() {
-        return container;
-    }
+	/**
+	 * 権限管理を行うぶりのエンジンとして{@link BuriEngine}を登録します。
+	 * <p>
+	 * デフォルトの設定では{@link BuriStandardEngineImpl}が設定されます。
+	 * </p>
+	 * 
+	 * @param standardEngine
+	 */
+	public void setStandardEngine(BuriEngine standardEngine) {
+		this.standardEngine = standardEngine;
+	}
 
-    /**
-     * S2コンテナを登録します。
-     * 
-     * @param container S2コンテナ
-     */
-    public void setContainer(S2Container container) {
-        this.container = container;
-    }
+	/**
+	 * 権限管理を行うぶりプロセッサとして{@link StandardBuriProcessor}を返します。
+	 * 
+	 * @return 権限管理を行うぶりプロセッサ
+	 */
+	public StandardBuriProcessor getStandardProcessor() {
+		return standardProcessor;
+	}
 
+	/**
+	 * 権限管理を行うぶりプロセッサとして{@link StandardBuriProcessor}を登録します。
+	 * <p>
+	 * デフォルトの設定では{@link StandardBuriProcessorImpl}が設定されます。
+	 * </p>
+	 * 
+	 * @param standardProcessor
+	 *            権限管理を行うぶりプロセッサ
+	 */
+	public void setStandardProcessor(StandardBuriProcessor standardProcessor) {
+		this.standardProcessor = standardProcessor;
+	}
+
+	/**
+	 * S2コンテナを返します。
+	 * 
+	 * @return S2コンテナ
+	 */
+	public S2Container getContainer() {
+		return container;
+	}
+
+	/**
+	 * S2コンテナを登録します。
+	 * 
+	 * @param container
+	 *            S2コンテナ
+	 */
+	public void setContainer(S2Container container) {
+		this.container = container;
+	}
 }

@@ -40,21 +40,16 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 	 */
 	private BuriUserUtil userUtil;
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#readWorkFlowFromResource
-	 * (java.lang.String, java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void readWorkFlowFromResource(String workFlowName,
 	        String resourceName) {
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#readWorkFlowFromResource
-	 * (java.lang.String, java.lang.String,
-	 * org.escafe.buri.engine.ParticipantProvider)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void readWorkFlowFromResource(String workFlowName,
@@ -62,10 +57,8 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 		readFromResource(workFlowName, resourceName, provider);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#setupUserID(org.escafe
-	 * .buri.engine.BuriSystemContext)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setupUserID(BuriSystemContext sysContext) {
@@ -74,12 +67,8 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 		updateUserInfo(sysContext, wp, wPackageObj);
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.WakanagoEngineImpl#updateUserInfo(org.escafe
-	 * .buri.engine.BuriSystemContext,
-	 * org.escafe.buri.util.packages.BuriExecProcess,
-	 * org.escafe.buri.util.packages.BuriExePackages)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void updateUserInfo(BuriSystemContext sysContext,
@@ -116,18 +105,16 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 		this.userUtil = userUtil;
 	}
 
-	/*
-	 * @see org.escafe.buri.engine.impl.BuriSimpleEngineImpl#getBuriCompiler()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public BuriCompiler getBuriCompiler() {
 		return buriCompiler;
 	}
 
-	/*
-	 * @see
-	 * org.escafe.buri.engine.impl.BuriSimpleEngineImpl#setBuriCompiler(org.
-	 * escafe.buri.compiler.BuriCompiler)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setBuriCompiler(BuriCompiler buriCompiler) {

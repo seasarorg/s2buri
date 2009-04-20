@@ -51,10 +51,8 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 	 */
 	private transient BuriPathUtil pathUtil;
 
-	/*
-	 * @see
-	 * org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept
-	 * .MethodInvocation)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		// ぶりのMethodInvocationではない場合のキャスト
@@ -112,7 +110,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 	/**
 	 * ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のServiceを登録します。
 	 * 
-	 * @param historyDao
+	 * @param buriDataPathHistoryEntityService
 	 *            ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のService
 	 */
 	public void setBuriDataPathHistoryEntityService(
