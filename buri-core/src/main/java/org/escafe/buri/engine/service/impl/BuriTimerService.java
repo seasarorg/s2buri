@@ -21,6 +21,7 @@ import org.escafe.buri.service.BuriPathDataEntityService;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/28
  */
 public class BuriTimerService extends AbstractGetRunService {
@@ -64,8 +65,8 @@ public class BuriTimerService extends AbstractGetRunService {
 	/**
 	 * ぶり固有のビュー{@code BuriPathDataEntity}のServiceを登録します。
 	 * 
-	 * @param buriPathDataEntityService
-	 *            ぶり固有のビュー{@code BuriPathDataEntity}のService
+	 * @param buriPathDataEntityService ぶり固有のビュー{@code BuriPathDataEntity}
+	 *            のService
 	 */
 	public void setBuriPathDataEntityService(
 	        BuriPathDataEntityService buriPathDataEntityService) {
@@ -84,8 +85,7 @@ public class BuriTimerService extends AbstractGetRunService {
 	/**
 	 * {@link BuriTimerInvoker}を登録します。
 	 * 
-	 * @param timerInvoker
-	 *            {@link BuriTimerInvoker}
+	 * @param timerInvoker {@link BuriTimerInvoker}
 	 */
 	public void setTimerInvoker(BuriTimerInvoker timerInvoker) {
 		this.timerInvoker = timerInvoker;

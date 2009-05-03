@@ -40,6 +40,7 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/23
  */
 public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector {
@@ -96,8 +97,7 @@ public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector 
 	/**
 	 * データ操作ユーティリティを登録します。
 	 * 
-	 * @param dataUtil
-	 *            データ操作ユーティリティ
+	 * @param dataUtil データ操作ユーティリティ
 	 */
 	public void setDataUtil(BuriDataUtil dataUtil) {
 		this.dataUtil = dataUtil;
@@ -115,8 +115,7 @@ public class DataStateBuriActivitySelector extends AbstractBuriActivitySelector 
 	/**
 	 * ぶり固有のテーブル{@code BuriPath}のユーティリティを登録します。
 	 * 
-	 * @param pathUtil
-	 *            ぶり固有のテーブル{@code BuriPath}のユーティリティ
+	 * @param pathUtil ぶり固有のテーブル{@code BuriPath}のユーティリティ
 	 */
 	public void setPathUtil(BuriPathUtil pathUtil) {
 		this.pathUtil = pathUtil;

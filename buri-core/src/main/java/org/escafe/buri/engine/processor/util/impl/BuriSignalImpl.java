@@ -39,6 +39,7 @@ import org.seasar.coffee.dataaccess.DataAccessUtilManyKey;
  * @author makotan
  * @author a-conv
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public class BuriSignalImpl implements BuriSignal {
 	/**
@@ -67,10 +68,8 @@ public class BuriSignalImpl implements BuriSignal {
 	 * 指定したデータの主キーがLong型の単一項目の場合、に使用します。
 	 * </p>
 	 * 
-	 * @param data
-	 *            ぶりに管理しているDto
-	 * @param accessFactory
-	 *            使用する{@link DataAccessFactory}
+	 * @param data ぶりに管理しているDto
+	 * @param accessFactory 使用する{@link DataAccessFactory}
 	 * @return データの主キー
 	 */
 	private Long getLongKey(Object data, DataAccessFactory accessFactory) {
@@ -92,10 +91,8 @@ public class BuriSignalImpl implements BuriSignal {
 	 * 主キーが複合項目で構成されている場合に使用します。
 	 * </p>
 	 * 
-	 * @param data
-	 *            ぶりで管理しているDto
-	 * @param accessFactory
-	 *            使用する{@link DataAccessFactory}
+	 * @param data ぶりで管理しているDto
+	 * @param accessFactory 使用する{@link DataAccessFactory}
 	 * @return データの主キー
 	 */
 	private String getManyKey(Object data, DataAccessFactory accessFactory) {
@@ -113,14 +110,10 @@ public class BuriSignalImpl implements BuriSignal {
 	/**
 	 * 状態を次に進めます。
 	 * 
-	 * @param callPath
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりが管理しているDto
-	 * @param userData
-	 *            権限管理に使用するユーザ情報のDto
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは<code>#action</code>として参照可能
+	 * @param callPath パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりが管理しているDto
+	 * @param userData 権限管理に使用するユーザ情報のDto
+	 * @param action Actionの文字列、ぶりのなかでは<code>#action</code>として参照可能
 	 */
 	private void toNextStatus(String callPath, Object data, Object userData,
 	        Object action) {
@@ -132,12 +125,9 @@ public class BuriSignalImpl implements BuriSignal {
 	/**
 	 * シグナルを実行します。
 	 * 
-	 * @param callPath
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりが管理しているDto
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは<code>#action</code>として参照可能
+	 * @param callPath パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりが管理しているDto
+	 * @param action Actionの文字列、ぶりのなかでは<code>#action</code>として参照可能
 	 */
 	private void processSignal(String callPath, Object data, String action) {
 		DataAccessFactory accessFactory =
@@ -219,8 +209,7 @@ public class BuriSignalImpl implements BuriSignal {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param processor
-	 *            プロセッサ
+	 * @param processor プロセッサ
 	 */
 	public void setProcessor(BuriAutoSelectProcessor processor) {
 		this.processor = processor;
@@ -241,8 +230,7 @@ public class BuriSignalImpl implements BuriSignal {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriUserEntityService
-	 *            ぶり固有のテーブル{@code BuriUserEntity}のService
+	 * @param buriUserEntityService ぶり固有のテーブル{@code BuriUserEntity}のService
 	 */
 	public void setBuriUserEntityService(
 	        BuriUserEntityService buriUserEntityService) {
@@ -261,8 +249,7 @@ public class BuriSignalImpl implements BuriSignal {
 	/**
 	 * ユーザ情報を登録します。
 	 * 
-	 * @param userUtil
-	 *            ユーザ情報
+	 * @param userUtil ユーザ情報
 	 */
 	public void setUserUtil(BuriUserUtil userUtil) {
 		this.userUtil = userUtil;
@@ -283,8 +270,7 @@ public class BuriSignalImpl implements BuriSignal {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriStateEntityService
-	 *            ぶり固有のテーブル{@code BuriStateEntity}のService
+	 * @param buriStateEntityService ぶり固有のテーブル{@code BuriStateEntity}のService
 	 */
 	public void setBuriStateEntityService(
 	        BuriStateEntityService buriStateEntityService) {

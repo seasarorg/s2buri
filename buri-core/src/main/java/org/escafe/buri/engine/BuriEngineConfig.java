@@ -23,6 +23,7 @@ import java.util.List;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/07/16
  */
 public interface BuriEngineConfig {

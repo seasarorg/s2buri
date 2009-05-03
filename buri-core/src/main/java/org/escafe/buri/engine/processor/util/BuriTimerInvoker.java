@@ -27,13 +27,13 @@ import org.escafe.buri.entity.BuriPathDataEntity;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public interface BuriTimerInvoker {
 	/**
 	 * {@link BuriPathDataEntity}に基づいてぶりのエンジンを実行します。
 	 * 
-	 * @param callDto
-	 *            実行対象の{@code BuriPathDataUser}のDto
+	 * @param callDto 実行対象の{@code BuriPathDataUser}のDto
 	 */
 	void invoke(BuriPathDataEntity callDto);
 }

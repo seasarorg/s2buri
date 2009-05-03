@@ -28,6 +28,7 @@ import org.escafe.buri.exception.BuriNotSupportOperationException;
  * 
  * @author makotan
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2007/09/27
  */
 public class BuriAutoSelectAutoSignalProcessorImpl extends

@@ -47,6 +47,7 @@ import org.seasar.framework.util.StringUtil;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/07/15
  */
 public class ValidDateBuriProcessSelector extends AbstractBuriProcessSelector {
@@ -92,8 +93,7 @@ public class ValidDateBuriProcessSelector extends AbstractBuriProcessSelector {
 	/**
 	 * フローの有効期間を検査して、現在有効なフローかどうかを判定します。
 	 * 
-	 * @param process
-	 *            対象となるフローの{@link BuriWorkflowProcessType}
+	 * @param process 対象となるフローの{@link BuriWorkflowProcessType}
 	 * @return 有効なフローであれば{@code true}、そうでない場合は{@code false}
 	 */
 	private static boolean isInValidDate(BuriWorkflowProcessType process) {

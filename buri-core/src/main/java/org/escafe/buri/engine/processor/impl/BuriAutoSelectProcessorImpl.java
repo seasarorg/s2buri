@@ -34,6 +34,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/20
  */
 public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
@@ -106,18 +107,12 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	 * 権限管理を行わないフローを実行する場合は、{@code userData}に{@code null}を指定します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param container
-	 *            S2コンテナ。
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限管理時に使用するユーザ情報のDto
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは{@code #action}として参照可能
-	 * @param resultExp
-	 *            戻り値を作るためのOGNL式
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param container S2コンテナ。
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限管理時に使用するユーザ情報のDto
+	 * @param action Actionの文字列、ぶりのなかでは{@code #action}として参照可能
+	 * @param resultExp 戻り値を作るためのOGNL式
 	 * @return ONGL式の実行結果
 	 */
 	protected Object toNextStatusAction(String path, S2Container container,
@@ -151,8 +146,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	 * いずれかを返します。<br/. 万一両方に存在した場合は、{@link BuriSimpleEngineImpl}が優先して返されます。
 	 * </p>
 	 * 
-	 * @param buriPath
-	 *            パッケージ名.プロセス名[.アクティビティー名]
+	 * @param buriPath パッケージ名.プロセス名[.アクティビティー名]
 	 * @return 対応するぶりのエンジン
 	 */
 	protected BuriEngine getEngine(String buriPath) {
@@ -349,8 +343,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	 * デフォルトの設定では{@link BuriSimpleEngineImpl}が設定されます。
 	 * </p>
 	 * 
-	 * @param simpleEngine
-	 *            権限管理を行わないぶりのエンジン
+	 * @param simpleEngine 権限管理を行わないぶりのエンジン
 	 */
 	public void setSimpleEngine(BuriEngine simpleEngine) {
 		this.simpleEngine = simpleEngine;
@@ -371,8 +364,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	 * デフォルトの設定では{@link SimpleBuriProcessorImpl}が設定されます。
 	 * </p>
 	 * 
-	 * @param simpleProcessor
-	 *            権限管理を行わないぶりプロセッサ
+	 * @param simpleProcessor 権限管理を行わないぶりプロセッサ
 	 */
 	public void setSimpleProcessor(SimpleBuriProcessor simpleProcessor) {
 		this.simpleProcessor = simpleProcessor;
@@ -393,7 +385,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	 * デフォルトの設定では{@link BuriStandardEngineImpl}が設定されます。
 	 * </p>
 	 * 
-	 * @param standardEngine
+	 * @param standardEngine 適用する{@link BuriEngine}
 	 */
 	public void setStandardEngine(BuriEngine standardEngine) {
 		this.standardEngine = standardEngine;
@@ -414,8 +406,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	 * デフォルトの設定では{@link StandardBuriProcessorImpl}が設定されます。
 	 * </p>
 	 * 
-	 * @param standardProcessor
-	 *            権限管理を行うぶりプロセッサ
+	 * @param standardProcessor 権限管理を行うぶりプロセッサ
 	 */
 	public void setStandardProcessor(StandardBuriProcessor standardProcessor) {
 		this.standardProcessor = standardProcessor;
@@ -433,8 +424,7 @@ public class BuriAutoSelectProcessorImpl implements BuriAutoSelectProcessor {
 	/**
 	 * S2コンテナを登録します。
 	 * 
-	 * @param container
-	 *            S2コンテナ
+	 * @param container S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;

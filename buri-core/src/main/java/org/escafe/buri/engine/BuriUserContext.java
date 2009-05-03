@@ -38,6 +38,7 @@ import java.util.HashMap;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/03/21
  */
 public class BuriUserContext extends HashMap<String, Object> {
@@ -56,8 +57,7 @@ public class BuriUserContext extends HashMap<String, Object> {
 	/**
 	 * オブジェクトを{@code "data"}として登録します。
 	 * 
-	 * @param data
-	 *            {@code "data"}として登録したいデータのDto
+	 * @param data {@code "data"}として登録したいデータのDto
 	 */
 	public void setData(Object data) {
 		super.put("data", data);
@@ -75,8 +75,7 @@ public class BuriUserContext extends HashMap<String, Object> {
 	/**
 	 * オブジェクトを{@code "userData"}として登録します。
 	 * 
-	 * @param data
-	 *            {@code "userData"}として登録したいオブジェクト
+	 * @param data {@code "userData"}として登録したいオブジェクト
 	 */
 	public void setUserData(Object data) {
 		super.put("userData", data);
@@ -98,8 +97,7 @@ public class BuriUserContext extends HashMap<String, Object> {
 	/**
 	 * {@code "action"}を登録します。
 	 * 
-	 * @param data
-	 *            {@code "action"}として登録したいオブジェクト
+	 * @param data {@code "action"}として登録したいオブジェクト
 	 */
 	public void setAction(Object data) {
 		super.put("action", data);
@@ -117,8 +115,7 @@ public class BuriUserContext extends HashMap<String, Object> {
 	/**
 	 * {@code "callPath"}として{@link BuriPath}を登録します。
 	 * 
-	 * @param callPath
-	 *            登録したい{@link BuriPath}
+	 * @param callPath 登録したい{@link BuriPath}
 	 */
 	public void setCallPath(BuriPath callPath) {
 		super.put("callPath", callPath);

@@ -28,6 +28,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/23
  */
 public abstract class AbstractBuriActivitySelector implements
@@ -59,12 +60,9 @@ public abstract class AbstractBuriActivitySelector implements
 	 * 実行の結果、第1引数のSetに変更が反映されます。
 	 * </p>
 	 * 
-	 * @param activities
-	 *            フローのアクティビティのリスト
-	 * @param systemContext
-	 *            実行情報のコンテキスト
-	 * @param execProcess
-	 *            対象となるフローのプロセス
+	 * @param activities フローのアクティビティのリスト
+	 * @param systemContext 実行情報のコンテキスト
+	 * @param execProcess 対象となるフローのプロセス
 	 */
 	protected abstract void applyRule(Set<BuriActivityType> activities,
 	        BuriSystemContext systemContext, BuriExecProcess execProcess);
@@ -72,12 +70,9 @@ public abstract class AbstractBuriActivitySelector implements
 	/**
 	 * ルールの適用を行う対象かどうかを判定します。
 	 * 
-	 * @param activities
-	 *            フローのアクティビティのリスト
-	 * @param systemContext
-	 *            実行情報のコンテキスト
-	 * @param execProcess
-	 *            対象となるフローのプロセス
+	 * @param activities フローのアクティビティのリスト
+	 * @param systemContext 実行情報のコンテキスト
+	 * @param execProcess 対象となるフローのプロセス
 	 * @return 実行対象である場合は{@code true}、実行対象ではないは{@code false}。
 	 */
 	protected abstract boolean isTarget(Set<BuriActivityType> activities,

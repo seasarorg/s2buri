@@ -50,6 +50,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2005/08/26
  */
 public interface StandardBuriProcessor {
@@ -64,12 +65,9 @@ public interface StandardBuriProcessor {
 	 * がぶりで権限管理を行えるよう、 内部で適切に処理をする事が可能となります。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
 	 */
 	void toNextStatus(String path, Object data, Object userData);
 
@@ -83,14 +81,10 @@ public interface StandardBuriProcessor {
 	 * {@code userData}でこのデータを処理するユーザの情報を指定することで、 ユーザの権限も踏まえた状態遷移を実行することができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param resultExp
-	 *            戻り値を作るためのOGNL式
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param resultExp 戻り値を作るためのOGNL式
 	 * @return {@code resultExp}の実行結果
 	 */
 	Object toNextStatus(String path, Object data, Object userData,
@@ -106,14 +100,10 @@ public interface StandardBuriProcessor {
 	 * {@code userData}でこのデータを処理するユーザの情報を指定することで、 ユーザの権限も踏まえた状態遷移を実行することができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは#actionとして参照可能
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param action Actionの文字列、ぶりのなかでは#actionとして参照可能
 	 */
 	void toNextStatusAction(String path, Object data, Object userData,
 	        Object action);
@@ -131,14 +121,10 @@ public interface StandardBuriProcessor {
 	 * 最も多くの引数が指定できるメソッドです。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param info
-	 *            {@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param info {@link BuriProcessorInfo}
 	 * @return {@code info}に含まれるONGL式の実行結果
 	 */
 	Object toNextStatus(String path, Object data, Object userData,
@@ -150,12 +136,9 @@ public interface StandardBuriProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいDtoのクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいDtoのクラス
 	 * @return Dtoのリスト
 	 */
 	List<Object> getDataListFromPath(String path, Object userData,
@@ -170,12 +153,9 @@ public interface StandardBuriProcessor {
 	 * 任意のS2コンテナを使用する事ができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいDtoのクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいDtoのクラス
 	 * @return Dtoのリスト
 	 */
 	List<Object> getDataIDFromPath(String path, Object userData,
@@ -187,14 +167,10 @@ public interface StandardBuriProcessor {
 	 * 対象のデータが複数のアクティビティに所属していた場合、複数件のリストとして返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいDtoのクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいDtoのクラス
 	 * @return {@link BuriPath}のリスト
 	 */
 	List<BuriPath> getPathFromData(String path, Object data, Object userData,
@@ -203,12 +179,9 @@ public interface StandardBuriProcessor {
 	/**
 	 * 指定したデータの中の{@code path}で指定した状態に所属するデータを抜き出して返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
 	 * @return Dtoのリスト
 	 */
 	long countByPathAndDatas(String path, List<Object> datas, Object userData);
@@ -216,14 +189,10 @@ public interface StandardBuriProcessor {
 	/**
 	 * 任意の{@link S2Container}を指定して、指定した状態に所属するデータの一覧を返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            Dtoのクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass Dtoのクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return Dtoのリスト
 	 */
 	List<Object> getDataListFromPath(String path, Object userData,
@@ -232,14 +201,10 @@ public interface StandardBuriProcessor {
 	/**
 	 * 任意の{@link S2Container}を指定して、指定した状態に所属するデータの IDのリストを返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            Dtoのクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass Dtoのクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return DtoのIDのリスト
 	 */
 	List<Object> getDataIDFromPath(String path, Object userData,
@@ -248,16 +213,11 @@ public interface StandardBuriProcessor {
 	/**
 	 * 指定したデータから所属するアクティビティの{@link BuriPath}のリストを探し出して返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            Dtoのクラス
-	 * @param container
-	 *            container 任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass Dtoのクラス
+	 * @param container container 任意の{@link S2Container}
 	 * @return {@link BuriPath}のリスト
 	 */
 	List<BuriPath> getPathFromData(String path, Object data, Object userData,
@@ -266,14 +226,10 @@ public interface StandardBuriProcessor {
 	/**
 	 * 指定したデータの中の{@code path}で指定した状態に所属するデータを抜き出して返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param container
-	 *            container 任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param container container 任意の{@link S2Container}
 	 * @return Dtoのリスト
 	 */
 	long countByPathAndDatas(String path, List<Object> datas, Object userData,

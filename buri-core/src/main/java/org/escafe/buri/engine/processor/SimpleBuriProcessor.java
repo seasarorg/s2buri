@@ -64,6 +64,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/14
  */
 public interface SimpleBuriProcessor {
@@ -74,10 +75,8 @@ public interface SimpleBuriProcessor {
 	 * にそのデータが現在存在している状態のパスを指定することで、 ぶりの管理下で状態遷移を実行することができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる){@code Dto}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる){@code Dto}
 	 */
 	void toNextStatus(String path, Object data);
 
@@ -89,12 +88,9 @@ public interface SimpleBuriProcessor {
 	 * 戻り値として返されます。。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる){@code Dto}
-	 * @param resultExp
-	 *            戻り値を作るためのOGNL式
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる){@code Dto}
+	 * @param resultExp 戻り値を作るためのOGNL式
 	 * @return ONGL式の実行結果
 	 */
 	Object toNextStatus(String path, Object data, String resultExp);
@@ -108,12 +104,9 @@ public interface SimpleBuriProcessor {
 	 * トランジションを経由して次の状態に移ることになります。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる){@code Dto}
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは{@code #action}として参照可能
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる){@code Dto}
+	 * @param action Actionの文字列、ぶりのなかでは{@code #action}として参照可能
 	 */
 	void toNextStatusAction(String path, Object data, String action);
 
@@ -126,12 +119,9 @@ public interface SimpleBuriProcessor {
 	 * を引数に指定できる事で、 最も多くの引数が指定できるメソッドです。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる){@code Dto}
-	 * @param info
-	 *            {@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる){@code Dto}
+	 * @param info {@link BuriProcessorInfo}
 	 * @return infoに{@code resultExp}があれば評価結果を返す
 	 */
 	Object toNextStatus(String path, Object data, BuriProcessorInfo info);
@@ -142,10 +132,8 @@ public interface SimpleBuriProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param tgtClass
-	 *            リストにしたい{@code Dto}のクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param tgtClass リストにしたい{@code Dto}のクラス
 	 * @return {@code Dto}のリスト
 	 */
 	List<Object> getDataListFromPath(String path, Class<?> tgtClass);
@@ -156,10 +144,8 @@ public interface SimpleBuriProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param tgtClass
-	 *            リストにしたい{@code Dto}のクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param tgtClass リストにしたい{@code Dto}のクラス
 	 * @return {@code Dto}のIDのリスト
 	 */
 	List<Object> getDataIDFromPath(String path, Class<?> tgtClass);
@@ -170,10 +156,8 @@ public interface SimpleBuriProcessor {
 	 * 指定するパスは、フローのプロセスが識別できるものである必要があります。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            アクティビティのパスが知りたい{@code Dto}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data アクティビティのパスが知りたい{@code Dto}
 	 * @return {@link BuriPath}のリスト
 	 */
 	List<BuriPath> getPathFromData(String path, Object data);
@@ -181,10 +165,8 @@ public interface SimpleBuriProcessor {
 	/**
 	 * 指定したデータのリスト内の指定されたパスに所属するデータの件数を返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            データの一覧
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas データの一覧
 	 * @return データの件数
 	 */
 	long countByPathAndDatas(String path, List<Object> datas);
@@ -198,12 +180,9 @@ public interface SimpleBuriProcessor {
 	 * 任意のS2コンテナを使用する事ができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param tgtClass
-	 *            リストにしたい{@code Dto}のクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param tgtClass リストにしたい{@code Dto}のクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return {@code Dto}のリスト
 	 */
 	List<Object> getDataListFromPath(String path, Class<?> tgtClass,
@@ -218,12 +197,9 @@ public interface SimpleBuriProcessor {
 	 * 任意のS2コンテナを使用する事ができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param tgtClass
-	 *            リストにしたい{@code Dto}のクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param tgtClass リストにしたい{@code Dto}のクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return {@code Dto}のIDのリスト
 	 */
 	List<Object> getDataIDFromPath(String path, Class<?> tgtClass,
@@ -238,12 +214,9 @@ public interface SimpleBuriProcessor {
 	 * 任意のS2コンテナを使用する事ができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            アクティビティのパスが知りたい{@code Dto}
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data アクティビティのパスが知りたい{@code Dto}
+	 * @param container 任意の{@link S2Container}
 	 * @return {@link BuriPath}のリスト
 	 */
 	List<BuriPath> getPathFromData(String path, Object data,
@@ -255,12 +228,9 @@ public interface SimpleBuriProcessor {
 	 * 任意のS2コンテナを使用する事ができます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            データの一覧
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas データの一覧
+	 * @param container 任意の{@link S2Container}
 	 * @return データの件数
 	 */
 	long countByPathAndDatas(String path, List<Object> datas,

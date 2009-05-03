@@ -32,6 +32,7 @@ import org.escafe.buri.util.packages.BuriExePackages;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/29
  */
 public class DirectSingleBuriProcessSelector extends

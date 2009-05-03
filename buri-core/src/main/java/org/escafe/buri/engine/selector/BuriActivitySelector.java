@@ -27,6 +27,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/23
  */
 public interface BuriActivitySelector {
@@ -45,12 +46,9 @@ public interface BuriActivitySelector {
 	 * 本メソッドを実行することにより第1引数のアクティビティ群が増減します。
 	 * </p>
 	 * 
-	 * @param activitys
-	 *            実行対象のアクティビティの一覧
-	 * @param systemContext
-	 *            実行用コンテキスト
-	 * @param execProcess
-	 *            実行対象のフローのプロセス
+	 * @param activitys 実行対象のアクティビティの一覧
+	 * @param systemContext 実行用コンテキスト
+	 * @param execProcess 実行対象のフローのプロセス
 	 * @return 選択処理の結果ステータス
 	 */
 	int select(Set<BuriActivityType> activitys,

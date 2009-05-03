@@ -42,6 +42,7 @@ import org.seasar.coffee.dataaccess.PreprocessAccessUtil;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/24
  */
 public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
@@ -90,8 +91,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * この操作で、前後のデータと状態の整合性の調整などは行われません。
 	 * </p>
 	 * 
-	 * @param sysContext
-	 *            フローの実行に必要なコンテキスト
+	 * @param sysContext フローの実行に必要なコンテキスト
 	 */
 	public void abortData(BuriSystemContext sysContext) {
 		BuriExePackages wPackageObj = selectPackage(sysContext);
@@ -144,10 +144,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	/**
 	 * 管理対象のデータが{@code null}ではない場合に{@link BuriSystemContext}の内容を更新します。
 	 * 
-	 * @param dto
-	 *            更新対象の{@link BuriPathDataEntityDto}
-	 * @param sysContext
-	 *            更新時に参照する{@link BuriSystemContext}
+	 * @param dto 更新対象の{@link BuriPathDataEntity}
+	 * @param sysContext 更新時に参照する{@link BuriSystemContext}
 	 */
 	protected void finalSetup(BuriPathDataEntity dto,
 	        BuriSystemContext sysContext) {
@@ -170,10 +168,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * 対象のデータの主キーが複合項目の場合に結果を返します。
 	 * </p>
 	 * 
-	 * @param accessUtil
-	 *            対象データに対応した{@link DataAccessUtil}の実装
-	 * @param data
-	 *            対象データ
+	 * @param accessUtil 対象データに対応した{@link DataAccessUtil}の実装
+	 * @param data 対象データ
 	 * @return 主キー
 	 */
 	protected String getManyKey(DataAccessUtil accessUtil, Object data) {
@@ -189,10 +185,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * 対象のデータの主キーが{@code Long}型の単一項目の場合に結果を返します。
 	 * </p>
 	 * 
-	 * @param accessUtil
-	 *            対象データに対応した{@link DataAccessUtil}の実装
-	 * @param data
-	 *            対象データ
+	 * @param accessUtil 対象データに対応した{@link DataAccessUtil}の実装
+	 * @param data 対象データ
 	 * @return 主キー
 	 */
 	protected Long getLongKey(DataAccessUtil accessUtil, Object data) {
@@ -205,10 +199,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	/**
 	 * セットアップの実行前処理を行います。
 	 * 
-	 * @param factory
-	 *            指定された{@link BuriExecProcess}
-	 * @param userContext
-	 *            設定済みの{@link BuriUserContext}
+	 * @param factory 指定された{@link BuriExecProcess}
+	 * @param userContext 設定済みの{@link BuriUserContext}
 	 */
 	protected void preprocessData(BuriDataAccessFactory factory,
 	        BuriUserContext userContext) {
@@ -235,8 +227,8 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * DIコンテナによって自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriPathDataEntityService
-	 *            ぶり固有のビュー{@code BuriPathDataEntity}のService
+	 * @param buriPathDataEntityService ぶり固有のビュー{@code BuriPathDataEntity}
+	 *            のService
 	 */
 	public void setBuriPathDataEntityService(
 	        BuriPathDataEntityService buriPathDataEntityService) {
@@ -274,8 +266,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * DIコンテナによって自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param classDefUtil
-	 *            クラス定義ユーティリティ
+	 * @param classDefUtil クラス定義ユーティリティ
 	 */
 	public void setClassDefUtil(ClassDefUtil classDefUtil) {
 		this.classDefUtil = classDefUtil;
@@ -296,8 +287,7 @@ public class BuriSimpleEngineImpl extends WakanagoEngineImpl implements
 	 * DIコンテナで自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriStateEntityService
-	 *            ぶり固有のテーブル{@code BuriState}のService
+	 * @param buriStateEntityService ぶり固有のテーブル{@code BuriState}のService
 	 */
 	public void setBuriStateEntityService(
 	        BuriStateEntityService buriStateEntityService) {

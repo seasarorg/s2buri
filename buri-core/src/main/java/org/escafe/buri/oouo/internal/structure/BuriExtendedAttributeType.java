@@ -22,15 +22,19 @@ package org.escafe.buri.oouo.internal.structure;
  * </p>
  * <p>
  * この{@code ExtendedAttribute}のスキーマは以下のように定義されています。
- * <pre>{@code <xsd:element name="ExtendedAttribute">
- *     <xsd:complexType mixed="true">
- *         <xsd:choice minOccurs="0" maxOccurs="unbounded">
- *             <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
- *         </xsd:choice>
- *         <xsd:attribute name="Name" type="xsd:NMTOKEN" use="required"/>
- *         <xsd:attribute name="Value" type="xsd:string"/>
- *     </xsd:complexType>
- * </xsd:element>}</pre>
+ * 
+ * <pre>
+ * &#064;code &lt;xsd:element name=&quot;ExtendedAttribute&quot;&gt;
+ *     &lt;xsd:complexType mixed=&quot;true&quot;&gt;
+ *         &lt;xsd:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;
+ *             &lt;xsd:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+ *         &lt;/xsd:choice&gt;
+ *         &lt;xsd:attribute name=&quot;Name&quot; type=&quot;xsd:NMTOKEN&quot; use=&quot;required&quot;/&gt;
+ *         &lt;xsd:attribute name=&quot;Value&quot; type=&quot;xsd:string&quot;/&gt;
+ *     &lt;/xsd:complexType&gt;
+ * &lt;/xsd:element&gt;}
+ * </pre>
+ * 
  * </p>
  * 
  * @author makotan
@@ -43,6 +47,7 @@ public class BuriExtendedAttributeType {
 	 * {@code ExtendedAttribute}の名前
 	 */
 	private String name;
+
 	/**
 	 * {@code ExtendedAttribute}の値
 	 */
@@ -70,8 +75,7 @@ public class BuriExtendedAttributeType {
 	/**
 	 * {@code ExtendedAttribute}の名前を登録します。
 	 * 
-	 * @param name
-	 *            {@code ExtendedAttribute}
+	 * @param name {@code ExtendedAttribute}
 	 */
 	public void setName(String name) {
 		this.name = name;

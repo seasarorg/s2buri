@@ -28,6 +28,7 @@ import org.escafe.buri.util.packages.BuriExePackages;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/29
  */
 public abstract class AbstractBuriProcessSelector implements
@@ -56,12 +57,9 @@ public abstract class AbstractBuriProcessSelector implements
 	/**
 	 * ルールの適用を行う対象かどうかを判定して返します。
 	 * 
-	 * @param processes
-	 *            返されるフローのプロセスのリスト
-	 * @param systemContext
-	 *            実行用コンテキスト
-	 * @param execPackages
-	 *            実行対象のフローのパッケージ
+	 * @param processes 返されるフローのプロセスのリスト
+	 * @param systemContext 実行用コンテキスト
+	 * @param execPackages 実行対象のフローのパッケージ
 	 * @return 適用処理の結果ステータス（成功時に{@code true}、失敗時に{@code false}）
 	 */
 	protected abstract boolean isTarget(
@@ -74,12 +72,9 @@ public abstract class AbstractBuriProcessSelector implements
 	 * 実行の結果、第1引数のListに変更が反映されます。
 	 * </p>
 	 * 
-	 * @param processes
-	 *            返されるフローのプロセスのリスト
-	 * @param systemContext
-	 *            実行用コンテキスト
-	 * @param execPackages
-	 *            実行対象のフローのパッケージ
+	 * @param processes 返されるフローのプロセスのリスト
+	 * @param systemContext 実行用コンテキスト
+	 * @param execPackages 実行対象のフローのパッケージ
 	 */
 	protected abstract void applyRule(List<BuriWorkflowProcessType> processes,
 	        BuriSystemContext systemContext, BuriExePackages execPackages);

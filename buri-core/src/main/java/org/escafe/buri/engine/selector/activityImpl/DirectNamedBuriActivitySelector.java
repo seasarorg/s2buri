@@ -33,8 +33,8 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * </p>
  * 
  * @author makotan
- * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public class DirectNamedBuriActivitySelector extends
         AbstractBuriActivitySelector {

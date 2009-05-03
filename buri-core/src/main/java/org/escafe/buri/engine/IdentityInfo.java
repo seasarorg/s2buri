@@ -30,6 +30,7 @@ package org.escafe.buri.engine;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/03/24
  */
 public class IdentityInfo {
@@ -58,10 +59,8 @@ public class IdentityInfo {
 	 * ID番号、ID文字列を指定してインスタンスを生成します。
 	 * </p>
 	 * 
-	 * @param idNumber
-	 *            ID番号
-	 * @param idString
-	 *            ID文字列
+	 * @param idNumber ID番号
+	 * @param idString ID文字列
 	 */
 	public IdentityInfo(Long idNumber, String idString) {
 		this.idNumber = idNumber;
@@ -74,8 +73,7 @@ public class IdentityInfo {
 	 * ID番号を指定してインスタンスを生成します。
 	 * </p>
 	 * 
-	 * @param idNumber
-	 *            ID番号
+	 * @param idNumber ID番号
 	 */
 	public IdentityInfo(Long idNumber) {
 		this.idNumber = idNumber;
@@ -87,8 +85,7 @@ public class IdentityInfo {
 	 * ID文字列を指定してインスタンスを生成します。
 	 * </p>
 	 * 
-	 * @param idString
-	 *            ID文字列
+	 * @param idString ID文字列
 	 */
 	public IdentityInfo(String idString) {
 		this.idString = idString;
@@ -106,8 +103,7 @@ public class IdentityInfo {
 	/**
 	 * ID番号を登録します。
 	 * 
-	 * @param idNumber
-	 *            ID番号
+	 * @param idNumber ID番号
 	 */
 	public void setIdNumber(Long idNumber) {
 		this.idNumber = idNumber;
@@ -125,23 +121,22 @@ public class IdentityInfo {
 	/**
 	 * ID文字列を登録します。
 	 * 
-	 * @param idString
-	 *            ID文字列
+	 * @param idString ID文字列
 	 */
 	public void setIdString(String idString) {
 		this.idString = idString;
 	}
 
-	/*
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
 		return "[idString=" + idString + "/idNumber=" + idNumber + "]";
 	}
 
-	/*
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
@@ -154,8 +149,8 @@ public class IdentityInfo {
 		return result;
 	}
 
-	/*
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {

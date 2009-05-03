@@ -38,6 +38,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	/**
@@ -94,12 +95,9 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	 * 1件のデータに対してエンジンの実行を行います。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)entity
-	 * @param info
-	 *            {@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)entity
+	 * @param info {@link BuriProcessorInfo}
 	 * @return {@code info}に含まれるONGL式の実行結果
 	 */
 	public Object toNextStatusOne(String path, Object data,
@@ -132,12 +130,9 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	 * を実行します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)entityのリスト
-	 * @param info
-	 *            {@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas ぶりに管理させたい(させてる)entityのリスト
+	 * @param info {@link BuriProcessorInfo}
 	 * @return {@code info}に含まれるONGL式の実行結果
 	 */
 	public Object toNextStatusList(String path, List<Object> datas,
@@ -152,16 +147,11 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	/**
 	 * {@code #action}を指定して状態を先に進めます。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param container
-	 *            任意の{@link S2Container}
-	 * @param data
-	 *            ぶりに管理させたい(させてる)entity
-	 * @param action
-	 *            指定する{@code #action}
-	 * @param resultExp
-	 *            戻り値のONGL式
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param container 任意の{@link S2Container}
+	 * @param data ぶりに管理させたい(させてる)entity
+	 * @param action 指定する{@code #action}
+	 * @param resultExp 戻り値のONGL式
 	 * @return {@code resultExp}の実行結果
 	 */
 	protected Object toNextStatusAction(String path, S2Container container,
@@ -184,12 +174,9 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	 * この操作で、前後のデータと状態の整合性の調整などは行われません。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param info
-	 *            {@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param info {@link BuriProcessorInfo}
 	 */
 	public void abortData(String path, Object data, BuriProcessorInfo info) {
 		// BuriUserContextの作成
@@ -362,7 +349,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	/**
 	 * S2コンテナを登録します。
 	 * 
-	 * @param container
+	 * @param container S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;
@@ -380,8 +367,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	/**
 	 * 検索処理用ユーティリティを登録します。
 	 * 
-	 * @param dataUtil
-	 *            検索処理用ユーティリティ
+	 * @param dataUtil 検索処理用ユーティリティ
 	 */
 	public void setDataUtil(BuriDataUtil dataUtil) {
 		this.dataUtil = dataUtil;
@@ -399,7 +385,7 @@ public class SimpleBuriProcessorImpl implements SimpleBuriProcessor {
 	/**
 	 * ぶりのエンジンを登録します。
 	 * 
-	 * @param engine
+	 * @param engine {@link BuriEngine}
 	 */
 	public void setEngine(BuriEngine engine) {
 		this.engine = engine;

@@ -24,6 +24,7 @@ package org.escafe.buri.engine;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/07/16
  */
 public class BuriConfigDto {
@@ -57,8 +58,7 @@ public class BuriConfigDto {
 	/**
 	 * フローのファイル名を登録します。
 	 * 
-	 * @param fileName
-	 *            フローのファイル名
+	 * @param fileName フローのファイル名
 	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
@@ -76,8 +76,7 @@ public class BuriConfigDto {
 	/**
 	 * フローで使用する権限主体を登録します。
 	 * 
-	 * @param provider
-	 *            フローで使用する権限主体
+	 * @param provider フローで使用する権限主体
 	 */
 	public void setProvider(ParticipantProvider provider) {
 		this.provider = provider;
@@ -95,8 +94,7 @@ public class BuriConfigDto {
 	/**
 	 * フローのパッケージ名を登録します。
 	 * 
-	 * @param resourceName
-	 *            フローのパッケージ名
+	 * @param resourceName フローのパッケージ名
 	 */
 	public void setPackageName(String resourceName) {
 		this.packageName = resourceName;

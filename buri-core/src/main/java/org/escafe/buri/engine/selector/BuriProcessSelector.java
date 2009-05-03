@@ -27,6 +27,7 @@ import org.escafe.buri.util.packages.BuriExePackages;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/05/29
  */
 public interface BuriProcessSelector {
@@ -45,12 +46,9 @@ public interface BuriProcessSelector {
 	 * 本メソッドを実行することにより第1引数のプロセス群が増減します。
 	 * </p>
 	 * 
-	 * @param processes
-	 *            フローのプロセスの{@link BuriWorkflowProcessType}
-	 * @param systemContext
-	 *            実行用コンテキスト
-	 * @param exePackages
-	 *            実行対象のフローのパッケージ
+	 * @param processes フローのプロセスの{@link BuriWorkflowProcessType}
+	 * @param systemContext 実行用コンテキスト
+	 * @param exePackages 実行対象のフローのパッケージ
 	 * @return 選択処理の結果ステータス
 	 */
 	int select(List<BuriWorkflowProcessType> processes,

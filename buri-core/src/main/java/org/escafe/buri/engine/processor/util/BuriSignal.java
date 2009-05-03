@@ -25,49 +25,40 @@ import java.util.List;
  * 
  * @author a-conv
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public interface BuriSignal {
 	/**
 	 * 1件のデータの状態を次に進めます。
 	 * 
-	 * @param callPath
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
+	 * @param callPath パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
 	 */
 	public void signal(String callPath, Object data);
 
 	/**
 	 * 1件のデータの状態を次に進めます。
 	 * 
-	 * @param callPath
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは{@code #action}として参照可能
+	 * @param callPath パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param action Actionの文字列、ぶりのなかでは{@code #action}として参照可能
 	 */
 	public void signal(String callPath, Object data, String action);
 
 	/**
 	 * 複数1件のデータの状態を次に進めます。
 	 * 
-	 * @param callPath
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param callPath パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
 	 */
 	public void signal(String callPath, List<Object> datas);
 
 	/**
 	 * 複数件のデータの状態を次に進めます。
 	 * 
-	 * @param callPath
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは{@code #action}として参照可能
+	 * @param callPath パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param action Actionの文字列、ぶりのなかでは{@code #action}として参照可能
 	 */
 	public void signal(String callPath, List<Object> datas, String action);
 }

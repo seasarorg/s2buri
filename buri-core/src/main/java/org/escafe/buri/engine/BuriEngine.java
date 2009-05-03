@@ -32,6 +32,7 @@ import org.escafe.buri.engine.impl.WakanagoEngineImpl;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/03/26
  */
 public interface BuriEngine extends WakanagoEngine {
@@ -41,7 +42,7 @@ public interface BuriEngine extends WakanagoEngine {
 	 * このインターフェイスの実装である{@link BuriSimpleEngineImpl}では、 権限管理を行う必要がないため空の実装がされます。
 	 * </p>
 	 * 
-	 * @param sysContext
+	 * @param sysContext フローを実行する上で必要なシステムのコンテキスト情報
 	 */
 	void setupUserID(BuriSystemContext sysContext);
 }

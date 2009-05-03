@@ -40,6 +40,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/11
  */
 public class ParticipantBuriActivitySelector extends
@@ -95,8 +96,7 @@ public class ParticipantBuriActivitySelector extends
 	/**
 	 * ユーザ情報ユーティリティを登録します。
 	 * 
-	 * @param buriUserUtil
-	 *            ユーザ情報ユーティリティ
+	 * @param buriUserUtil ユーザ情報ユーティリティ
 	 */
 	public void setBuriUserUtil(BuriUserUtil buriUserUtil) {
 		this.buriUserUtil = buriUserUtil;

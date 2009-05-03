@@ -32,6 +32,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/03/21
  */
 public class BuriSystemContext {
@@ -116,8 +117,7 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキスト上でのメインのDIコンテナを設定します。
 	 * 
-	 * @param container
-	 *            S2コンテナ
+	 * @param container S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;
@@ -135,8 +135,7 @@ public class BuriSystemContext {
 	/**
 	 * 処理対象のアクティビティのパスを設定します。
 	 * 
-	 * @param callPath
-	 *            処理対象を示す{@link BuriPath}
+	 * @param callPath 処理対象を示す{@link BuriPath}
 	 */
 	public void setCallPath(BuriPath callPath) {
 		this.callPath = callPath;
@@ -163,7 +162,7 @@ public class BuriSystemContext {
 	/**
 	 * ユーザコンテキストを設定します。
 	 * 
-	 * @param userContext
+	 * @param userContext ワークフローの実行の際に使用する情報
 	 */
 	public void setUserContext(BuriUserContext userContext) {
 		this.userContext = userContext;
@@ -172,8 +171,7 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキストで対象としているデータIDを設定します。
 	 * 
-	 * @param dataId
-	 *            現在のコンテキストで対象としているデータID
+	 * @param dataId 現在のコンテキストで対象としているデータID
 	 */
 	public void setDataId(Long dataId) {
 		this.dataId = dataId;
@@ -191,8 +189,7 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキストで対象としているデータのステータスIDを設定します。
 	 * 
-	 * @param statusId
-	 *            データのステータスID
+	 * @param statusId データのステータスID
 	 */
 	public void setStatusId(Long statusId) {
 		this.statusId = statusId;
@@ -210,8 +207,7 @@ public class BuriSystemContext {
 	/**
 	 * 現在のコンテキストで対象としているデータのDTOクラス型を設定します。
 	 * 
-	 * @param targetClass
-	 *            データのDTOクラス型
+	 * @param targetClass データのDTOクラス型
 	 */
 	public void setTargetDtoClass(Class<?> targetClass) {
 		this.targetDtoClass = targetClass;
@@ -229,8 +225,7 @@ public class BuriSystemContext {
 	/**
 	 * アプリケーション側で定義されるユーザIDを設定します。
 	 * 
-	 * @param appUserId
-	 *            アプリケーション側で定義されるユーザID
+	 * @param appUserId アプリケーション側で定義されるユーザID
 	 */
 	public void setAppUserId(IdentityInfo appUserId) {
 		this.appUserId = appUserId;
@@ -280,7 +275,7 @@ public class BuriSystemContext {
 	 * </ul>
 	 * </p>
 	 * 
-	 * @param startParticipantName
+	 * @param startParticipantName 開始アクティビティの権限主体名
 	 */
 	public void setStartParticipantName(String startParticipantName) {
 		this.startParticipantName = startParticipantName;
@@ -292,7 +287,7 @@ public class BuriSystemContext {
 	 * ぶりではアプリケーション側で定義されているユーザをぶり側でも独自に管理します。 本メソッドではこの独自管理上のIDを設定します。
 	 * </p>
 	 * 
-	 * @param buriUserId
+	 * @param buriUserId ぶり側で定義されるユーザID
 	 */
 	public void setBuriUserId(Long buriUserId) {
 		this.buriUserId = buriUserId;
@@ -316,8 +311,7 @@ public class BuriSystemContext {
 	 * {@code WakanagoProcess}での例外処理の実現で使用されます。
 	 * </p>
 	 * 
-	 * @param exception
-	 *            実行時例外
+	 * @param exception 実行時例外
 	 */
 	public void setException(RuntimeException exception) {
 		this.exception = exception;
@@ -341,8 +335,7 @@ public class BuriSystemContext {
 	 * BAOのアノテーションで指定したアクティビティ名が含まれます。
 	 * </p>
 	 * 
-	 * @param actNames
-	 *            アクティビティ名のリスト
+	 * @param actNames アクティビティ名のリスト
 	 */
 	public void setActivityNames(List<String> actNames) {
 		this.activityNames = actNames;
@@ -360,8 +353,7 @@ public class BuriSystemContext {
 	/**
 	 * 後処理として実行するメソッドのメソッド名のリストを登録します。
 	 * 
-	 * @param afterCallMethods
-	 *            後処理として実行するメソッドのメソッド名のリスト
+	 * @param afterCallMethods 後処理として実行するメソッドのメソッド名のリスト
 	 */
 	public void setAfterCallMethods(List<String> afterCallMethods) {
 		this.afterCallMethods = afterCallMethods;
@@ -370,13 +362,15 @@ public class BuriSystemContext {
 	/**
 	 * 後処理として実行するメソッドのメソッド名を追加します。
 	 * 
-	 * @param afterCallName
-	 *            後処理として実行するメソッドのメソッド名
+	 * @param afterCallName 後処理として実行するメソッドのメソッド名
 	 */
 	public void addAfterCallMethods(String afterCallName) {
 		this.afterCallMethods.add(afterCallName);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		StringBuffer buff = new StringBuffer("[");

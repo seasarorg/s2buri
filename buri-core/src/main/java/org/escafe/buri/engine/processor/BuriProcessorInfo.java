@@ -31,6 +31,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/14
  */
 public class BuriProcessorInfo {
@@ -71,7 +72,7 @@ public class BuriProcessorInfo {
 	/**
 	 * {@code #action}を登録します。
 	 * 
-	 * @param action
+	 * @param action {@code #action}
 	 */
 	public void setAction(Object action) {
 		this.action = action;
@@ -89,8 +90,7 @@ public class BuriProcessorInfo {
 	/**
 	 * S2コンテナを登録します。
 	 * 
-	 * @param container
-	 *            S2コンテナ
+	 * @param container S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;
@@ -108,7 +108,7 @@ public class BuriProcessorInfo {
 	/**
 	 * 戻り値のOGNL式を登録します。
 	 * 
-	 * @param resultExp
+	 * @param resultExp 戻り値のOGNL式
 	 */
 	public void setResultExp(String resultExp) {
 		this.resultExp = resultExp;
@@ -117,10 +117,8 @@ public class BuriProcessorInfo {
 	/**
 	 * コンテキストに値を登録します。
 	 * 
-	 * @param key
-	 *            キー値
-	 * @param val
-	 *            値となるオブジェクト
+	 * @param key キー値
+	 * @param val 値となるオブジェクト
 	 */
 	public void put(String key, Object val) {
 		context.put(key, val);
@@ -129,8 +127,7 @@ public class BuriProcessorInfo {
 	/**
 	 * コンテキストを登録します。
 	 * 
-	 * @param datas
-	 *            コンテキスト
+	 * @param datas コンテキスト
 	 */
 	public void putAll(Map<String, Object> datas) {
 		context.putAll(datas);
@@ -139,8 +136,7 @@ public class BuriProcessorInfo {
 	/**
 	 * 指定したキーを持つコンテキストの値を返します。
 	 * 
-	 * @param key
-	 *            キーとなる値
+	 * @param key キーとなる値
 	 * @return コンテキストの値
 	 */
 	public Object get(String key) {
@@ -168,8 +164,7 @@ public class BuriProcessorInfo {
 	/**
 	 * 実行制約用のアクティビティのリストを登録します。
 	 * 
-	 * @param actNames
-	 *            実行制約用のアクティビティー名のリスト
+	 * @param actNames 実行制約用のアクティビティー名のリスト
 	 */
 	public void setActNames(List<String> actNames) {
 		this.actNames = actNames;

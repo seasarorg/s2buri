@@ -36,6 +36,7 @@ import org.seasar.framework.aop.interceptors.AbstractInterceptor;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public class BuriRecorderInterceptor extends AbstractInterceptor {
 	/** */
@@ -72,8 +73,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 	/**
 	 * ぶり固有のテーブル{@code BuriDataPathHistory}にデータを登録します。
 	 * 
-	 * @param bInvo
-	 *            指定された{@link BuriMethodInvocation}
+	 * @param bInvo 指定された{@link BuriMethodInvocation}
 	 */
 	protected void saveLog(BuriMethodInvocation bInvo) {
 		BuriSystemContext sysContext =
@@ -110,8 +110,8 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 	/**
 	 * ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のServiceを登録します。
 	 * 
-	 * @param buriDataPathHistoryEntityService
-	 *            ぶり固有のテーブル{@code BuriDataPathHistoryEntity}のService
+	 * @param buriDataPathHistoryEntityService ぶり固有のテーブル{@code
+	 *            BuriDataPathHistoryEntity}のService
 	 */
 	public void setBuriDataPathHistoryEntityService(
 	        BuriDataPathHistoryEntityService buriDataPathHistoryEntityService) {
@@ -131,8 +131,7 @@ public class BuriRecorderInterceptor extends AbstractInterceptor {
 	/**
 	 * パス参照ユーティリティを登録します。
 	 * 
-	 * @param pathUtil
-	 *            パス参照ユーティリティ
+	 * @param pathUtil パス参照ユーティリティ
 	 */
 	public void setPathUtil(BuriPathUtil pathUtil) {
 		this.pathUtil = pathUtil;

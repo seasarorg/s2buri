@@ -70,6 +70,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/14
  */
 public interface BuriAutoSelectProcessor {
@@ -80,8 +81,7 @@ public interface BuriAutoSelectProcessor {
 	 * その為、指定されたパスがどちらのエンジンに保持されているか、 を参照することでパスから実行させたいエンジンを特定できるという仕組みになっています。
 	 * </p>
 	 * 
-	 * @param buriPath
-	 *            パッケージ名.プロセス名[.アクティビティー名]
+	 * @param buriPath パッケージ名.プロセス名[.アクティビティー名]
 	 * @return 登録されていた場合は{@code true}、そうでない場合は{@code false}
 	 */
 	boolean isStdProcessor(String buriPath);
@@ -93,8 +93,7 @@ public interface BuriAutoSelectProcessor {
 	 * その為、指定されたパスがどちらのエンジンに保持されているか、 を参照することでパスから実行させたいエンジンを特定できるという仕組みになっています。
 	 * </p>
 	 * 
-	 * @param buriPath
-	 *            パッケージ名.プロセス名[.アクティビティー名]
+	 * @param buriPath パッケージ名.プロセス名[.アクティビティー名]
 	 * @return 登録されていた場合は{@code true}、そうでない場合は{@code false}
 	 */
 	boolean isSimpleProcessor(String buriPath);
@@ -104,8 +103,7 @@ public interface BuriAutoSelectProcessor {
 	 * {@link BuriStandardEngineImpl}から取得して、 {@link DataAccessFactory}
 	 * のオブジェクトとして返します。
 	 * 
-	 * @param buriPath
-	 *            パッケージ名.プロセス名[.アクティビティー名]
+	 * @param buriPath パッケージ名.プロセス名[.アクティビティー名]
 	 * @return 実行対象のパスに対応した{@link DataAccessFactory}
 	 */
 	DataAccessFactory getDataAccessFactory(String buriPath);
@@ -120,12 +118,9 @@ public interface BuriAutoSelectProcessor {
 	 * {@code path}には、現在Entityが存在する{@code path}を指定します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
 	 */
 	void toNextStatus(String path, Object data, Object userData);
 
@@ -139,14 +134,10 @@ public interface BuriAutoSelectProcessor {
 	 * {@code path}には、現在Entityが存在する{@code path}を指定します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param resultExp
-	 *            戻り値を作るためのOGNL式
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param resultExp 戻り値を作るためのOGNL式
 	 * @return {@code resultExp}の実行結果
 	 */
 	Object toNextStatus(String path, Object data, Object userData,
@@ -162,14 +153,10 @@ public interface BuriAutoSelectProcessor {
 	 * {@code path}には、現在Entityが存在する{@code path}を指定します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param action
-	 *            Actionの文字列、ぶりのなかでは{@code #action}として参照可能
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param action Actionの文字列、ぶりのなかでは{@code #action}として参照可能
 	 */
 	void toNextStatusAction(String path, Object data, Object userData,
 	        Object action);
@@ -184,14 +171,10 @@ public interface BuriAutoSelectProcessor {
 	 * {@code path}には、現在Entityが存在する{@code path}を指定します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param info
-	 *            {@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param info {@link BuriProcessorInfo}
 	 * @return {@code info}に含まれる戻り値を作るONGL式の実行結果
 	 */
 	Object toNextStatus(String path, Object data, Object userData,
@@ -203,12 +186,9 @@ public interface BuriAutoSelectProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいデータのクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいデータのクラス
 	 * @return Dtoのリスト
 	 */
 	List<Object> getDataListFromPath(String path, Object userData,
@@ -220,12 +200,9 @@ public interface BuriAutoSelectProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいデータのクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいデータのクラス
 	 * @return Dtoのキーのリスト
 	 */
 	List<Object> getDataIDFromPath(String path, Object userData,
@@ -241,14 +218,10 @@ public interface BuriAutoSelectProcessor {
 	 * 所属する事があります。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいデータのクラス
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいデータのクラス
 	 * @return {@link BuriPath}のリスト
 	 */
 	List<BuriPath> getPathFromData(String path, Object data, Object userData,
@@ -260,12 +233,9 @@ public interface BuriAutoSelectProcessor {
 	 * 指定するパスは、フローのプロセスが識別できるものである必要があります。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
 	 * @return データの件数
 	 */
 	long countByPathAndDatas(String path, List<Object> datas, Object userData);
@@ -276,14 +246,10 @@ public interface BuriAutoSelectProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいデータのクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいデータのクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return Dtoのリスト
 	 */
 	List<Object> getDataListFromPath(String path, Object userData,
@@ -295,14 +261,10 @@ public interface BuriAutoSelectProcessor {
 	 * 所属するデータが無い場合、空のリストが返されます。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいデータのクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいデータのクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return Dtoのキーのリスト
 	 */
 	List<Object> getDataIDFromPath(String path, Object userData,
@@ -318,16 +280,11 @@ public interface BuriAutoSelectProcessor {
 	 * 所属する事があります。
 	 * </p>
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)Dto
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいデータのクラス
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)Dto
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいデータのクラス
+	 * @param container 任意の{@link S2Container}
 	 * @return {@link BuriPath}のリスト
 	 */
 	List<BuriPath> getPathFromData(String path, Object data, Object userData,
@@ -336,14 +293,10 @@ public interface BuriAutoSelectProcessor {
 	/**
 	 * 指定したデータのリスト内の指定されたパスに所属するデータの件数を返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティー名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param container
-	 *            任意の{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティー名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param container 任意の{@link S2Container}
 	 * @return データの件数
 	 */
 	long countByPathAndDatas(String path, List<Object> datas, Object userData,

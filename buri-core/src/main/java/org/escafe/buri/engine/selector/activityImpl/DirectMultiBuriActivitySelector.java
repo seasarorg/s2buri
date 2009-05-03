@@ -32,6 +32,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/19
  */
 public class DirectMultiBuriActivitySelector extends
@@ -60,8 +61,7 @@ public class DirectMultiBuriActivitySelector extends
 	 * {@code Bao}で使用されたアノテーションも含めてアクティビティ名を取得します。
 	 * </p>
 	 * 
-	 * @param systemContext
-	 *            実行用コンテキスト
+	 * @param systemContext 実行用コンテキスト
 	 * @return 取得できたアクティビティ名の一覧
 	 */
 	private Set<String> getActivityNames(BuriSystemContext systemContext) {

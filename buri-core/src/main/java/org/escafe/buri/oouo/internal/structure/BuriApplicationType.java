@@ -18,6 +18,8 @@ package org.escafe.buri.oouo.internal.structure;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.escafe.buri.component.BuriComponent;
+
 /**
  * XPDLの{@code Application}要素を表すクラスです。
  * <p>

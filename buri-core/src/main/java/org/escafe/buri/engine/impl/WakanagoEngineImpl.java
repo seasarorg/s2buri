@@ -64,6 +64,7 @@ import org.seasar.framework.util.StringUtil;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/03/26
  */
 public class WakanagoEngineImpl implements WakanagoEngine {
@@ -200,12 +201,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * 登録するフローをリソース名で指定します。
 	 * </p>
 	 * 
-	 * @param workFlowName
-	 *            フローを示すリソース名
-	 * @param resourceName
-	 *            エンジンに登録する名称
-	 * @param provider
-	 *            権限管理に使用する{@link ParticipantProvider}
+	 * @param workFlowName フローを示すリソース名
+	 * @param resourceName エンジンに登録する名称
+	 * @param provider 権限管理に使用する{@link ParticipantProvider}
 	 */
 	public void readFromResource(String workFlowName, String resourceName,
 	        ParticipantProvider provider) {
@@ -220,12 +218,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * 登録するフローを{@link InputStream}オブジェクトで指定します。
 	 * </p>
 	 * 
-	 * @param workFlowIs
-	 *            フローを示す{@link InputStream}
-	 * @param resourceName
-	 *            エンジンに登録する名称
-	 * @param provider
-	 *            権限管理に使用する{@link ParticipantProvider}
+	 * @param workFlowIs フローを示す{@link InputStream}
+	 * @param resourceName エンジンに登録する名称
+	 * @param provider 権限管理に使用する{@link ParticipantProvider}
 	 */
 	public void readFromInputStream(InputStream workFlowIs,
 	        String resourceName, ParticipantProvider provider) {
@@ -240,12 +235,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * 登録するフローを{@link BuriPackageType}オブジェクトで指定します。
 	 * </p>
 	 * 
-	 * @param buriPackage
-	 *            フローから取得した{@link BuriPackageType}
-	 * @param resourceName
-	 *            エンジンに登録する名称
-	 * @param provider
-	 *            権限管理に使用する{@link ParticipantProvider}
+	 * @param buriPackage フローから取得した{@link BuriPackageType}
+	 * @param resourceName エンジンに登録する名称
+	 * @param provider 権限管理に使用する{@link ParticipantProvider}
 	 */
 	public void readFromBuriPackageType(BuriPackageType buriPackage,
 	        String resourceName, ParticipantProvider provider) {
@@ -260,12 +252,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * 登録するフローを{@link BuriExePackages}オブジェクトで指定します。
 	 * </p>
 	 * 
-	 * @param exePackages
-	 *            読み込み済みの{@link BuriExePackages}
-	 * @param resourceName
-	 *            エンジンに登録する名称
-	 * @param provider
-	 *            権限管理に使用する{@link ParticipantProvider}
+	 * @param exePackages 読み込み済みの{@link BuriExePackages}
+	 * @param resourceName エンジンに登録する名称
+	 * @param provider 権限管理に使用する{@link ParticipantProvider}
 	 */
 	protected void readFromBuriExePackages(BuriExePackages exePackages,
 	        String resourceName, ParticipantProvider provider) {
@@ -282,8 +271,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * エンジンのセットアップを行います。
 	 * 
-	 * @param engineConfig
-	 *            エンジンの設定
+	 * @param engineConfig エンジンの設定
 	 */
 	public void setupBuriEngineConfig(BuriEngineConfig engineConfig) {
 		if (finSetup) {
@@ -310,7 +298,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * 遅延ローダーに登録したリソースをエンジンから削除します。
 	 * </p>
 	 * 
-	 * @param resourceName
+	 * @param resourceName リソース名
 	 */
 	public void setupDelayLoad(String resourceName) {
 		packageObjs.put(resourceName, null);
@@ -329,8 +317,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * フローのプロセス・セレクタを追加します。
 	 * 
-	 * @param selector
-	 *            {@link BuriProcessSelector}
+	 * @param selector {@link BuriProcessSelector}
 	 */
 	public void addProcessSelector(BuriProcessSelector selector) {
 		processSelector.add(selector);
@@ -339,8 +326,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * フローのアクティビティ・セレクタを追加します。
 	 * 
-	 * @param selector
-	 *            {@link BuriActivitySelector}
+	 * @param selector {@link BuriActivitySelector}
 	 */
 	public void addActivitySelector(BuriActivitySelector selector) {
 		activitySelector.add(selector);
@@ -376,8 +362,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 指定された{@link BuriSystemContext}にS2コンテナをセットします。
 	 * 
-	 * @param sysContext
-	 *            {@link BuriSystemContext}
+	 * @param sysContext {@link BuriSystemContext}
 	 */
 	private void setupSystemContext(BuriSystemContext sysContext) {
 		if (sysContext.getContainer() == null) {
@@ -411,10 +396,8 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 戻り値を作るためのOGNL式を実行して戻り値を作成します。
 	 * 
-	 * @param sysContext
-	 *            コンテキスト情報
-	 * @param resultScript
-	 *            戻り値のOGNL式
+	 * @param sysContext コンテキスト情報
+	 * @param resultScript 戻り値のOGNL式
 	 * @return OGNL式の実行結果
 	 */
 	protected Object getResultObj(BuriSystemContext sysContext,
@@ -433,12 +416,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 指定された{@link BuriSystemContext}に実行前のセットアップを行います。
 	 * 
-	 * @param sysContext
-	 *            {@link BuriSystemContext}
-	 * @param wp
-	 *            {@link BuriExecProcess}
-	 * @param wPackageObj
-	 *            {@link BuriExePackages}
+	 * @param sysContext {@link BuriSystemContext}
+	 * @param wp {@link BuriExecProcess}
+	 * @param wPackageObj {@link BuriExePackages}
 	 */
 	protected void updateSystemContext(BuriSystemContext sysContext,
 	        BuriExecProcess wp, BuriExePackages wPackageObj) {
@@ -451,12 +431,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * サブクラスである{@link BuriSimpleEngineImpl}では権限管理が不要である為この実装を使わないようにします。
 	 * </p>
 	 * 
-	 * @param sysContext
-	 *            {@link BuriSystemContext}
-	 * @param wp
-	 *            {@link BuriExecProcess}
-	 * @param wPackageObj
-	 *            {@link BuriExePackages}
+	 * @param sysContext {@link BuriSystemContext}
+	 * @param wp {@link BuriExecProcess}
+	 * @param wPackageObj {@link BuriExePackages}
 	 */
 	protected void updateUserInfo(BuriSystemContext sysContext,
 	        BuriExecProcess wp, BuriExePackages wPackageObj) {
@@ -475,10 +452,8 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * アクティビティに設定されている{@code Tool}等の実行を行います。
 	 * </p>
 	 * 
-	 * @param wp
-	 *            実行対象の{@link BuriExecProcess}
-	 * @param sysContext
-	 *            {@link BuriSystemContext}
+	 * @param wp 実行対象の{@link BuriExecProcess}
+	 * @param sysContext {@link BuriSystemContext}
 	 */
 	protected void execActivity(BuriExecProcess wp, BuriSystemContext sysContext) {
 		BranchWalker walker = wp.readBranchWalker(sysContext);
@@ -489,10 +464,8 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * アクティビティのIDを検索して返します。
 	 * 
-	 * @param wp
-	 *            対象のアクティビティが所属する{@link BuriExecProcess}
-	 * @param sysContext
-	 *            {@link BuriSystemContext}
+	 * @param wp 対象のアクティビティが所属する{@link BuriExecProcess}
+	 * @param sysContext {@link BuriSystemContext}
 	 * @return アクティビティのID
 	 */
 	protected String selectActivityId(BuriExecProcess wp,
@@ -534,10 +507,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 実施後のアクティビティのIDを取得します。
 	 * 
-	 * @param acts
-	 *            対象の{@link BuriActivityType}の一覧
-	 * @param systemContext
-	 * @param wp
+	 * @param acts 対象の{@link BuriActivityType}の一覧
+	 * @param systemContext フローを実行する上で必要なシステムのコンテキスト情報
+	 * @param wp 対象の{@link BuriExecProcess}
 	 * @return アクティビティのID
 	 */
 	protected String selectActivityFinal(Set<BuriActivityType> acts,
@@ -552,12 +524,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 遷移先の状態取得で異常が発生した場合に例外を判定して投げます。
 	 * 
-	 * @param acts
-	 *            遷移先になる{@link BuriActivityType}
-	 * @param systemContext
-	 *            {@link BuriSystemContext}
-	 * @param wp
-	 *            {@link BuriExecProcess}
+	 * @param acts 遷移先になる{@link BuriActivityType}
+	 * @param systemContext {@link BuriSystemContext}
+	 * @param wp {@link BuriExecProcess}
 	 */
 	protected void errorActivitySelect(Set<BuriActivityType> acts,
 	        BuriSystemContext systemContext, BuriExecProcess wp) {
@@ -588,10 +557,8 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 指定された{@link BuriExecProcess}をデータ操作を行わないように更新します。
 	 * 
-	 * @param wPackageObj
-	 *            実行対象の{@link BuriExePackages}
-	 * @param sysContext
-	 *            {@link BuriSystemContext}
+	 * @param wPackageObj 実行対象の{@link BuriExePackages}
+	 * @param sysContext {@link BuriSystemContext}
 	 * @return 実行対象の{@link BuriExecProcess}
 	 */
 	public BuriExecProcess selectProcessNoDataAccess(
@@ -661,12 +628,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 実施後のプロセスを取得します。
 	 * 
-	 * @param pros
-	 *            {@link BuriWorkflowProcessType}のリスト
-	 * @param systemContext
-	 *            {@link BuriSystemContext}
-	 * @param wPackageObj
-	 *            {@link BuriExePackages}
+	 * @param pros {@link BuriWorkflowProcessType}のリスト
+	 * @param systemContext {@link BuriSystemContext}
+	 * @param wPackageObj {@link BuriExePackages}
 	 * @return 実行後の{@link BuriExecProcess}
 	 */
 	protected BuriExecProcess selectProcessFinal(
@@ -684,12 +648,9 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 遷移後のプロセスに異常があった場合に例外を判定して投げます。
 	 * 
-	 * @param proces
-	 *            {@link BuriWorkflowProcessType}のリスト
-	 * @param systemContext
-	 *            {@link BuriSystemContext}
-	 * @param wPackageObj
-	 *            {@link BuriExePackages}
+	 * @param proces {@link BuriWorkflowProcessType}のリスト
+	 * @param systemContext {@link BuriSystemContext}
+	 * @param wPackageObj {@link BuriExePackages}
 	 */
 	protected void errorProcessSelect(List<BuriWorkflowProcessType> proces,
 	        BuriSystemContext systemContext, BuriExePackages wPackageObj) {
@@ -736,8 +697,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 実行対象の{@link BuriPath}に合致する{@link BuriWorkflowProcessType}の リストを検索して返します。
 	 * 
-	 * @param path
-	 *            実行対象の{@link BuriPath}
+	 * @param path 実行対象の{@link BuriPath}
 	 * @return {@link BuriWorkflowProcessType}のリスト
 	 */
 	protected List<BuriWorkflowProcessType> getProcessList(BuriPath path) {
@@ -751,8 +711,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	/**
 	 * 実行対象の{@link BuriExePackages}を返します。
 	 * 
-	 * @param path
-	 *            実行対象を示す{@link BuriPath}
+	 * @param path 実行対象を示す{@link BuriPath}
 	 * @return 実行対象の{@link BuriExePackages}
 	 */
 	protected BuriExePackages getBuriExePackages(BuriPath path) {
@@ -777,8 +736,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriCompiler
-	 *            ぶりのコンパイラ
+	 * @param buriCompiler ぶりのコンパイラ
 	 */
 	public void setBuriCompiler(BuriCompiler buriCompiler) {
 		this.buriCompiler = buriCompiler;
@@ -799,8 +757,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param container
-	 *            S2コンテナ
+	 * @param container S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;
@@ -821,8 +778,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param scriptFactory
-	 *            スクリプト実行モジュール
+	 * @param scriptFactory スクリプト実行モジュール
 	 */
 	public void setScriptFactory(ScriptFactory scriptFactory) {
 		this.scriptFactory = scriptFactory;
@@ -843,8 +799,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriEngineEventCaller
-	 *            エンジン実行時の追加処理を提供する拡張ポイント
+	 * @param buriEngineEventCaller エンジン実行時の追加処理を提供する拡張ポイント
 	 */
 	public void setBuriEngineEventCaller(
 	        BuriEngineEventCaller buriEngineEventCaller) {
@@ -866,8 +821,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriActivitySelectEventCaller
-	 *            フローのプロセスを検索する際の追加処理を提供する拡張ポイント
+	 * @param buriActivitySelectEventCaller フローのプロセスを検索する際の追加処理を提供する拡張ポイント
 	 */
 	public void setBuriActivitySelectEventCaller(
 	        BuriActivitySelectEventCaller buriActivitySelectEventCaller) {
@@ -889,8 +843,7 @@ public class WakanagoEngineImpl implements WakanagoEngine {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param buriProcessSelectEventCaller
-	 *            フローのプロセスを検索する際の追加処理を提供する拡張ポイント
+	 * @param buriProcessSelectEventCaller フローのプロセスを検索する際の追加処理を提供する拡張ポイント
 	 */
 	public void setBuriProcessSelectEventCaller(
 	        BuriProcessSelectEventCaller buriProcessSelectEventCaller) {

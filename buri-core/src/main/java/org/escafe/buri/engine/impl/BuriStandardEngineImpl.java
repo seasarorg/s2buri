@@ -32,6 +32,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/06
  */
 public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
@@ -98,8 +99,7 @@ public class BuriStandardEngineImpl extends BuriSimpleEngineImpl {
 	 * DIコンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param userUtil
-	 *            ユーザ情報ユーティリティ
+	 * @param userUtil ユーザ情報ユーティリティ
 	 */
 	public void setUserUtil(BuriUserUtil userUtil) {
 		this.userUtil = userUtil;

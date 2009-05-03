@@ -35,6 +35,7 @@ import org.seasar.coffee.dataaccess.DataAccessFactory;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
@@ -76,12 +77,9 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * 権限管理のないフローを実行します。
 	 * 
-	 * @param callDto
-	 *            実行対象の{@code BuriPathDataUser}のDto
-	 * @param accessFactory
-	 *            実行対象のパスに対応した{@link DataAccessFactory}
-	 * @param info
-	 *            プロセッサの情報
+	 * @param callDto 実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
+	 * @param info プロセッサの情報
 	 */
 	protected void simpleCall(BuriPathDataEntity callDto,
 	        DataAccessFactory accessFactory, BuriProcessorInfo info) {
@@ -90,12 +88,10 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	}
 
 	/**
-	 * {@link BuriPathDataEntityDto}をぶりが管理するDtoのオブジェクトに変換して返します。
+	 * {@link BuriPathDataEntity}をぶりが管理するDtoのオブジェクトに変換して返します。
 	 * 
-	 * @param callDto
-	 *            実行対象の{@code BuriPathDataUser}のDto
-	 * @param accessFactory
-	 *            実行対象のパスに対応した{@link DataAccessFactory}
+	 * @param callDto 実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
 	 * @return ぶりが管理するDtoのオブジェクト
 	 */
 	protected Object getArgDto(BuriPathDataEntity callDto,
@@ -107,10 +103,8 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * ぶり固有のテーブル{@code BuriUser}からアプリケーション用のユーザ情報を取得して返します。
 	 * 
-	 * @param callDto
-	 *            実行対象の{@code BuriPathDataUser}のDto
-	 * @param accessFactory
-	 *            実行対象のパスに対応した{@link DataAccessFactory}
+	 * @param callDto 実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
 	 * @return アプリケーション用のユーザ情報
 	 */
 	protected Object getUserData(BuriPathDataEntity callDto,
@@ -126,12 +120,9 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * 権限管理のあるフローを実行します。
 	 * 
-	 * @param callDto
-	 *            実行対象の{@code BuriPathDataUser}のDto
-	 * @param accessFactory
-	 *            実行対象のパスに対応した{@link DataAccessFactory}
-	 * @param info
-	 *            プロセッサの情報
+	 * @param callDto 実行対象の{@code BuriPathDataUser}のDto
+	 * @param accessFactory 実行対象のパスに対応した{@link DataAccessFactory}
+	 * @param info プロセッサの情報
 	 */
 	protected void stdCall(BuriPathDataEntity callDto,
 	        DataAccessFactory accessFactory, BuriProcessorInfo info) {
@@ -152,8 +143,8 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * ぶり固有のビュー{@code BuriPathDataUserEntity}のServiceを登録します。
 	 * 
-	 * @param buriPathDataUserEntityService
-	 *            ぶり固有のビュー{@code BuriPathDataUserEntity}のService
+	 * @param buriPathDataUserEntityService ぶり固有のビュー{@code
+	 *            BuriPathDataUserEntity}のService
 	 */
 	public void setBuriPathDataUserEntityService(
 	        BuriPathDataUserEntityService buriPathDataUserEntityService) {
@@ -172,8 +163,7 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * データ操作ユーティリティを登録します。
 	 * 
-	 * @param dataUtil
-	 *            データ操作ユーティリティ
+	 * @param dataUtil データ操作ユーティリティ
 	 */
 	public void setDataUtil(BuriDataUtil dataUtil) {
 		this.dataUtil = dataUtil;
@@ -191,8 +181,7 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * {@link BuriAutoSelectProcessor}を登録します。
 	 * 
-	 * @param processor
-	 *            {@link BuriAutoSelectProcessor}
+	 * @param processor {@link BuriAutoSelectProcessor}
 	 */
 	public void setProcessor(BuriAutoSelectProcessor processor) {
 		this.processor = processor;
@@ -210,8 +199,7 @@ public class BuriTimerInvokerImpl implements BuriTimerInvoker {
 	/**
 	 * ユーザ情報ユーティリティを登録します。
 	 * 
-	 * @param userUtil
-	 *            ユーザ情報ユーティリティ
+	 * @param userUtil ユーザ情報ユーティリティ
 	 */
 	public void setUserUtil(BuriUserUtil userUtil) {
 		this.userUtil = userUtil;

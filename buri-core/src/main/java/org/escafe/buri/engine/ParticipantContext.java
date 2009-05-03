@@ -23,6 +23,7 @@ import org.escafe.buri.util.packages.BuriExecProcess;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/06/08
  */
 public class ParticipantContext {
@@ -83,8 +84,7 @@ public class ParticipantContext {
 	/**
 	 * 対象データをフロー上に一番最初に投入したユーザIDを設定します。
 	 * 
-	 * @param insertAppUserId
-	 *            対象データをフロー上に一番最初に投入したユーザID
+	 * @param insertAppUserId 対象データをフロー上に一番最初に投入したユーザID
 	 */
 	public void setInsertUserId(IdentityInfo insertAppUserId) {
 		this.insertUserId = insertAppUserId;
@@ -102,8 +102,7 @@ public class ParticipantContext {
 	/**
 	 * 現在のユーザIDを設定します。
 	 * 
-	 * @param appUserId
-	 *            現在のユーザID
+	 * @param appUserId 現在のユーザID
 	 */
 	public void setUserId(IdentityInfo appUserId) {
 		this.userId = appUserId;
@@ -121,8 +120,7 @@ public class ParticipantContext {
 	/**
 	 * 現在のユーザ情報データを設定します。
 	 * 
-	 * @param userData
-	 *            現在のユーザ情報
+	 * @param userData 現在のユーザ情報
 	 */
 	public void setUserData(Object userData) {
 		this.userData = userData;
@@ -160,8 +158,7 @@ public class ParticipantContext {
 	 * </ul>
 	 * </p>
 	 * 
-	 * @param startParticipantName
-	 *            データの開始アクティビティの権限主体名
+	 * @param startParticipantName データの開始アクティビティの権限主体名
 	 */
 	public void setStartParticipantName(String startParticipantName) {
 		this.startParticipantName = startParticipantName;
@@ -179,8 +176,7 @@ public class ParticipantContext {
 	/**
 	 * 対象データを設定します。
 	 * 
-	 * @param data
-	 *            対象データ
+	 * @param data 対象データ
 	 */
 	public void setData(Object data) {
 		this.data = data;
@@ -198,8 +194,7 @@ public class ParticipantContext {
 	/**
 	 * 現在のコンテキストで対象としている権限主体の名前を設定します。
 	 * 
-	 * @param participantName
-	 *            現在のコンテキストで対象としている権限主体の名前
+	 * @param participantName 現在のコンテキストで対象としている権限主体の名前
 	 */
 	public void setParticipantName(String participantName) {
 		this.participantName = participantName;
@@ -217,8 +212,7 @@ public class ParticipantContext {
 	/**
 	 * 現在のコンテキストで対象としている権限主体の種別を設定します。
 	 * 
-	 * @param participantType
-	 *            現在のコンテキストで対象としている権限主体の種別
+	 * @param participantType 現在のコンテキストで対象としている権限主体の種別
 	 */
 	public void setParticipantType(String participantType) {
 		this.participantType = participantType;
@@ -239,8 +233,7 @@ public class ParticipantContext {
 	/**
 	 * プロセスオブジェクトを設定します。
 	 * 
-	 * @param process
-	 *            対象の{@link BuriExecProcess}
+	 * @param process 対象の{@link BuriExecProcess}
 	 */
 	public void setProcess(BuriExecProcess process) {
 		this.process = process;
@@ -261,8 +254,7 @@ public class ParticipantContext {
 	/**
 	 * ユーザコンテキスト情報を設定します。
 	 * 
-	 * @param userContext
-	 *            対象の{@link BuriUserContext}
+	 * @param userContext 対象の{@link BuriUserContext}
 	 */
 	public void setUserContext(BuriUserContext userContext) {
 		this.userContext = userContext;

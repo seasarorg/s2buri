@@ -31,6 +31,7 @@ import org.escafe.buri.engine.ParticipantProvider;
  * @author makotan
  * @author noebans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2006/07/17
  */
 public class BuriEngineConfigImpl implements BuriEngineConfig {
@@ -63,10 +64,8 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * フローを登録します。
 	 * 
-	 * @param fileName
-	 *            フローのファイル名
-	 * @param packageName
-	 *            フローのパッケージ名
+	 * @param fileName フローのファイル名
+	 * @param packageName フローのパッケージ名
 	 */
 	public void addResourceConfig(String fileName, String packageName) {
 		addResourceConfig(fileName, packageName, null);
@@ -75,12 +74,9 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * フローを登録します。
 	 * 
-	 * @param fileName
-	 *            フローのファイル名
-	 * @param packageName
-	 *            フローのパッケージ名
-	 * @param provider
-	 *            フローに対して適用する権限主体
+	 * @param fileName フローのファイル名
+	 * @param packageName フローのパッケージ名
+	 * @param provider フローに対して適用する権限主体
 	 */
 	public void addResourceConfig(String fileName, String packageName,
 	        ParticipantProvider provider) {
@@ -94,10 +90,8 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * ファイル情報を登録します。
 	 * 
-	 * @param fileName
-	 *            ファイル名
-	 * @param packageName
-	 *            パッケージ名
+	 * @param fileName ファイル名
+	 * @param packageName パッケージ名
 	 */
 	public void addFileConfig(String fileName, String packageName) {
 		addFileConfig(fileName, packageName, null);
@@ -106,12 +100,9 @@ public class BuriEngineConfigImpl implements BuriEngineConfig {
 	/**
 	 * ファイル情報を登録します。
 	 * 
-	 * @param fileName
-	 *            ファイル名
-	 * @param packageName
-	 *            パッケージ名
-	 * @param provider
-	 *            フローに対して適用する権限主体
+	 * @param fileName ファイル名
+	 * @param packageName パッケージ名
+	 * @param provider フローに対して適用する権限主体
 	 */
 	public void addFileConfig(String fileName, String packageName,
 	        ParticipantProvider provider) {

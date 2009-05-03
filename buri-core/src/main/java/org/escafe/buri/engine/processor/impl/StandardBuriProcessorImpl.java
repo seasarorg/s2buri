@@ -35,6 +35,7 @@ import org.seasar.framework.container.S2Container;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  */
 public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	/**
@@ -90,18 +91,12 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	/**
 	 * 状態を次に進めます。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param container
-	 *            使用する{@link S2Container}
-	 * @param data
-	 *            ぶりに管理させたい(させてる)entity
-	 * @param userData
-	 *            権限管理時に使用するユーザ情報のDto
-	 * @param action
-	 *            Actionとして指定する文字列
-	 * @param resultExp
-	 *            戻り値を作るONGL式
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param container 使用する{@link S2Container}
+	 * @param data ぶりに管理させたい(させてる)entity
+	 * @param userData 権限管理時に使用するユーザ情報のDto
+	 * @param action Actionとして指定する文字列
+	 * @param resultExp 戻り値を作るONGL式
 	 * @return 戻り値を作るOGNL式の実行結果
 	 */
 	protected Object toNextStatusAction(String path, S2Container container,
@@ -129,14 +124,10 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	/**
 	 * 1件のデータに対して、状態を先に進める処理を行います。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param data
-	 *            ぶりに管理させたい(させてる)entity
-	 * @param userData
-	 *            権限管理時に使用するユーザ情報のDto
-	 * @param info
-	 *            フロー実行時に使用するデータをセットした{@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param data ぶりに管理させたい(させてる)entity
+	 * @param userData 権限管理時に使用するユーザ情報のDto
+	 * @param info フロー実行時に使用するデータをセットした{@link BuriProcessorInfo}
 	 * @return {@code info}に設定されたONGL式の実行結果
 	 */
 	public Object toNextStatusOne(String path, Object data, Object userData,
@@ -161,14 +152,10 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	/**
 	 * 複数件のデータに対して、状態を先に進める処理を行います。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param datas
-	 *            ぶりに管理させたい(させてる)Dtoのリスト
-	 * @param userData
-	 *            権限管理時に使用するユーザ情報のDto
-	 * @param info
-	 *            フロー実行時に使用するデータをセットした{@link BuriProcessorInfo}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param datas ぶりに管理させたい(させてる)Dtoのリスト
+	 * @param userData 権限管理時に使用するユーザ情報のDto
+	 * @param info フロー実行時に使用するデータをセットした{@link BuriProcessorInfo}
 	 * @return {@code info}に設定されたONGL式の実行結果
 	 */
 	public Object toNextStatusList(String path, List<Object> datas,
@@ -223,14 +210,10 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	/**
 	 * 指定された状態に所属するデータのIDのリストを検索して返します。
 	 * 
-	 * @param path
-	 *            パッケージ名.プロセス名[.アクティビティ名]
-	 * @param userData
-	 *            権限を伴うフローに対応したユーザ情報を表わすDto
-	 * @param tgtClass
-	 *            リストにしたいDtoのクラス
-	 * @param container
-	 *            使用する{@link S2Container}
+	 * @param path パッケージ名.プロセス名[.アクティビティ名]
+	 * @param userData 権限を伴うフローに対応したユーザ情報を表わすDto
+	 * @param tgtClass リストにしたいDtoのクラス
+	 * @param container 使用する{@link S2Container}
 	 * @return データのIDのリスト
 	 */
 	@SuppressWarnings("unchecked")
@@ -356,8 +339,7 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	 * コンテナから自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param container
-	 *            S2コンテナ
+	 * @param container S2コンテナ
 	 */
 	public void setContainer(S2Container container) {
 		this.container = container;
@@ -378,8 +360,7 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param dataUtil
-	 *            データ操作ユーティリティ
+	 * @param dataUtil データ操作ユーティリティ
 	 */
 	public void setDataUtil(BuriDataUtil dataUtil) {
 		this.dataUtil = dataUtil;
@@ -403,8 +384,7 @@ public class StandardBuriProcessorImpl implements StandardBuriProcessor {
 	 * コンテナに自動的にバインドさせる為のメソッドです。
 	 * </p>
 	 * 
-	 * @param engine
-	 *            ぶりのエンジン
+	 * @param engine ぶりのエンジン
 	 */
 	public void setEngine(BuriEngine engine) {
 		this.engine = engine;

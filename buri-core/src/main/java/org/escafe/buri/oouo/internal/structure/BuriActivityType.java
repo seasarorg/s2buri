@@ -18,6 +18,8 @@ package org.escafe.buri.oouo.internal.structure;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.TimerService;
+
 import org.escafe.buri.oouo.internal.structure.util.ExtentedAttributeUtil;
 
 /**

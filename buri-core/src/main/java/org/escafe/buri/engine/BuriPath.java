@@ -41,6 +41,7 @@ import org.escafe.buri.oouo.internal.structure.BuriWorkflowProcessType;
  * @author makotan
  * @author nobeans
  * @author imai78(JavaDoc)
+ * @author j5ik2o
  * @since 2005/05/13
  */
 public class BuriPath {
@@ -86,8 +87,7 @@ public class BuriPath {
 	 * プロセッサやエンジンが受け取るパスでインスタンスを生成します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            プロセッサやエンジンが受け取るパス
+	 * @param path プロセッサやエンジンが受け取るパス
 	 */
 	public BuriPath(String path) {
 		thisPath = new BuriRealPath(path);
@@ -99,10 +99,8 @@ public class BuriPath {
 	 * プロセッサやエンジンが受け取るパスとクラス名に使用されるパスの両方からインスタンスを生成します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            プロセッサやエンジンが受け取るパス
-	 * @param realStrPath
-	 *            クラス名に使用されるパス
+	 * @param path プロセッサやエンジンが受け取るパス
+	 * @param realStrPath クラス名に使用されるパス
 	 */
 	public BuriPath(String path, String realStrPath) {
 		thisPath = new BuriRealPath(path);
@@ -115,12 +113,9 @@ public class BuriPath {
 	 * 2種類のパスとぶり固有のテーブル{@code BuriPath}のIDからインスタンスを生成します。
 	 * </p>
 	 * 
-	 * @param path
-	 *            プロセッサやエンジンが受け取るパス
-	 * @param realStrPath
-	 *            クラス名に使用されるパス
-	 * @param pathId
-	 *            ぶり固有のテーブル{@code BuriPath}のID
+	 * @param path プロセッサやエンジンが受け取るパス
+	 * @param realStrPath クラス名に使用されるパス
+	 * @param pathId ぶり固有のテーブル{@code BuriPath}のID
 	 */
 	public BuriPath(String path, String realStrPath, long pathId) {
 		thisPath = new BuriRealPath(path);
@@ -131,14 +126,10 @@ public class BuriPath {
 	/**
 	 * パッケージ、プロセス、アクティビティのID、名前をそれぞれ保持するDtoのコンストラクタです。
 	 * 
-	 * @param path
-	 *            プロセッサやエンジンが受け取るパス
-	 * @param realStrPath
-	 *            クラス名に使用されるパス
-	 * @param pathId
-	 *            ぶり固有のテーブル{@code BuriPath}のID
-	 * @param pathType
-	 *            XPDLで指定されたPathTypeの値
+	 * @param path プロセッサやエンジンが受け取るパス
+	 * @param realStrPath クラス名に使用されるパス
+	 * @param pathId ぶり固有のテーブル{@code BuriPath}のID
+	 * @param pathType XPDLで指定されたPathTypeの値
 	 */
 	public BuriPath(String path, String realStrPath, long pathId, Long pathType) {
 		thisPath = new BuriRealPath(path);
@@ -150,12 +141,9 @@ public class BuriPath {
 	/**
 	 * パッケージ、プロセス、アクティビティのID、名前をそれぞれ保持するDtoのコンストラクタです。
 	 * 
-	 * @param path
-	 *            プロセッサやエンジンが受け取るパス
-	 * @param realStrPath
-	 *            クラス名に使用されるパス
-	 * @param pathType
-	 *            XPDLで指定されたPathTypeの値
+	 * @param path プロセッサやエンジンが受け取るパス
+	 * @param realStrPath クラス名に使用されるパス
+	 * @param pathType XPDLで指定されたPathTypeの値
 	 */
 	public BuriPath(String path, String realStrPath, Long pathType) {
 		thisPath = new BuriRealPath(path);
@@ -220,8 +208,8 @@ public class BuriPath {
 	// pos);
 	// return clonePath;
 	// }
-	/*
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -308,8 +296,8 @@ public class BuriPath {
 		return thisPath.getWorkflowProcess();
 	}
 
-	/*
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
@@ -344,8 +332,7 @@ public class BuriPath {
 	/**
 	 * {@link BuriActivityType}から新しいアクティビティを追加して移動された実行対象のパスを返します。
 	 * 
-	 * @param newAct
-	 *            追加したい{@link BuriActivityType}
+	 * @param newAct 追加したい{@link BuriActivityType}
 	 * @return 移動後の{@link BuriPath}
 	 */
 	public BuriPath moveChildPath(BuriActivityType newAct) {
@@ -356,10 +343,8 @@ public class BuriPath {
 	/**
 	 * 新しいアクティビティのIDと名前を指定して実行対象パスを移動させます。
 	 * 
-	 * @param newPath
-	 *            移動させたいパスの名前
-	 * @param newRealPath
-	 *            移動させたいパスのID
+	 * @param newPath 移動させたいパスの名前
+	 * @param newRealPath 移動させたいパスのID
 	 * @return 移動後の{@link BuriPath}
 	 */
 	public BuriPath moveChildPath(String newPath, String newRealPath) {
@@ -389,8 +374,7 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param buriPathId
-	 *            ぶり固有のテーブル{@code BuriPath}で使用されるID
+	 * @param buriPathId ぶり固有のテーブル{@code BuriPath}で使用されるID
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setBuriPathId(long buriPathId) {
@@ -400,12 +384,12 @@ public class BuriPath {
 	}
 
 	/**
-	 * PathTypeから得られる{@link BuriPath}を返します。
+	 * {@code PathType}から得られる{@link BuriPath}を返します。
 	 * <p>
-	 * PathTypeはXPDLで指定される値がセットされますが、ぶりではその値を活用しません。
+	 * {@code PathType}はXPDLで指定される値がセットされますが、ぶりではその値を活用しません。
 	 * </p>
 	 * 
-	 * @param pathType
+	 * @param pathType {@code PathType}
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setPathType(Long pathType) {
@@ -420,8 +404,7 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param packageDoc
-	 *            {@link BuriPackageType}
+	 * @param packageDoc {@link BuriPackageType}
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setWorkflowPackage(BuriPackageType packageDoc) {
@@ -437,8 +420,7 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param workflow
-	 *            フローのパッケージ名前
+	 * @param workflow フローのパッケージ名前
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setWorkflowPackage(String workflow) {
@@ -454,10 +436,8 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param workflow
-	 *            フローのパッケージ名
-	 * @param realWorkflow
-	 *            フローのパッケージID
+	 * @param workflow フローのパッケージ名
+	 * @param realWorkflow フローのパッケージID
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setWorkflowPackage(String workflow, String realWorkflow) {
@@ -473,8 +453,7 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param wkfProcess
-	 *            実行対象の{@link BuriWorkflowProcessType}
+	 * @param wkfProcess 実行対象の{@link BuriWorkflowProcessType}
 	 * @return 対応する{@link BuriPath}
 	 */
 	public BuriPath setWorkflowProcess(BuriWorkflowProcessType wkfProcess) {
@@ -490,8 +469,7 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param process
-	 *            フローのプロセス名
+	 * @param process フローのプロセス名
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setWorkflowProcess(String process) {
@@ -507,10 +485,8 @@ public class BuriPath {
 	 * その他の値は今のオブジェクトのものが引き継がれます。
 	 * </p>
 	 * 
-	 * @param process
-	 *            フローのプロセス名
-	 * @param realProcess
-	 *            フローのプロセスID
+	 * @param process フローのプロセス名
+	 * @param realProcess フローのプロセスID
 	 * @return 対応した{@link BuriPath}
 	 */
 	public BuriPath setWorkflowProcess(String process, String realProcess) {
@@ -520,8 +496,8 @@ public class BuriPath {
 		return clonePath;
 	}
 
-	/*
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
