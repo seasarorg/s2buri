@@ -7,7 +7,8 @@ import org.seasar.extension.jdbc.service.S2AbstractService;
  * 
  * @author S2JDBC-Gen
  * @param <ENTITY>
- *            エンティティの型 
+ *            エンティティの型
  */
 public abstract class AbstractService<ENTITY> extends S2AbstractService<ENTITY> {
+
 }

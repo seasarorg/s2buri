@@ -16,16 +16,19 @@ public class PurchaseApplicationTest {
 
 	@Test
 	public void test() {
+		Calendar ca = Calendar.getInstance();
 		BuriAutoSelectProcessor processor = ctx
 				.getComponent(BuriAutoSelectProcessor.class);
 		PurchaseApplication pa = new PurchaseApplication();
 		pa.applicantName = "加藤";
+		pa.productName = "ノート";
 		pa.amount = 1;
-		Calendar ca = Calendar.getInstance();
 		pa.createDate = ca.getTime();
 		pa.applicationDate = ca.getTime();
 		pa.updateDate = ca.getTime();
 		processor.toNextStatus("購入管理.購入申請.申請開始", pa, null);
-
+		processor.toNextStatus("購入管理.購入申請.承認済み", pa, null);
+		processor.toNextStatus("購入管理.購入申請.決済済み", pa, null);
+		processor.toNextStatus("購入管理.購入申請.確認済み", pa, null);
 	}
 }

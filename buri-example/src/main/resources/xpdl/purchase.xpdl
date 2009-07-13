@@ -45,7 +45,7 @@
             <ExtendedAttribute Name="BURI_GRAPH_RECTANGLE" Value="311,200,96,92"/>
           </ExtendedAttributes>
         </Activity>
-        <Activity Id="purchaseFlow_wp1_settlement " Name="決済済み">
+        <Activity Id="purchaseFlow_wp1_settlement" Name="決済済み">
           <Implementation>
             <No/>
           </Implementation>
