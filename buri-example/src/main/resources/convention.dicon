@@ -2,7 +2,8 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
 	"http://www.seasar.org/dtd/components24.dtd">
 <components>
-	<component class="org.seasar.framework.convention.impl.NamingConventionImpl">		<initMethod name="addRootPackageName">
+	<component class="org.seasar.framework.convention.impl.NamingConventionImpl">
+		<initMethod name="addRootPackageName">
 			<arg>"org.escafe.buri.example"</arg>
 		</initMethod>
 	</component>

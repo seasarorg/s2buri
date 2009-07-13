@@ -24,8 +24,8 @@
 		</property>
 		<property name="URL">
 			 <!--"jdbc:h2:file:"
-			 + @org.seasar.framework.util.ResourceUtil@getBuildDir(@example.org.escafe.buri.entity.Bill@class).getCanonicalPath()
-			 +"/db/buri/buriDB"-->
+			 + @org.seasar.framework.util.ResourceUtil@getBuildDir(@org.escafe.buri.example.entity.ProductOrder@class).getCanonicalPath()
+			 +"/db/example"-->
 			"jdbc:h2:tcp://localhost:9093/example"
 		</property>
 		<property name="user">"sa"</property>
@@ -43,17 +43,4 @@
 	<component name="dataSource"
 		class="org.seasar.extension.dbcp.impl.DataSourceImpl"
 	/>
-
-	<!-- from JNDI -->
-	<!--
-	<component name="dataSource"
-		class="javax.sql.DataSource">
-		@org.seasar.extension.j2ee.JndiResourceLocator@lookup("java:comp/env/jdbc/DataSource")
-	</component>
-	-->
-	
-	<!--
-	<component name="dataSource"
-		class="org.seasar.extension.datasource.impl.SelectableDataSourceProxy"/>
-	-->
 </components>
