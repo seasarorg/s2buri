@@ -1,0 +1,1 @@
+drop table PURCHASE_APPLICATION;

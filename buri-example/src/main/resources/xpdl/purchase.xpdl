@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Package xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="purchaseFlow" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+  <PackageHeader>
+    <XPDLVersion>1.0</XPDLVersion>
+    <Vendor>escafe.org</Vendor>
+    <Created>Mon Jul 13 21:05:27 GMT+0900 2009</Created>
+  </PackageHeader>
+  <WorkflowProcesses>
+    <WorkflowProcess Id="purchaseFlow_wp1" Name="購入申請">
+      <ProcessHeader>
+        <Created>Mon Jul 13 21:05:27 GMT+0900 2009</Created>
+      </ProcessHeader>
+      <Participants>
+        <Participant Id="purchaseFlow_wp1_par1" Name="申請者">
+          <ParticipantType Type="ROLE"/>
+        </Participant>
+      </Participants>
+      <Applications/>
+      <Activities>
+        <Activity Id="purchaseFlow_wp1_start" Name="申請開始">
+          <Implementation>
+            <No/>
+          </Implementation>
+          <Performer>purchaseFlow_wp1_par1</Performer>
+          <FinishMode>
+            <Automatic/>
+          </FinishMode>
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="purchaseFlow_wp1_par1"/>
+            <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="158,200"/>
+            <ExtendedAttribute Name="BURI_GRAPH_RECTANGLE" Value="158,200,100,92"/>
+          </ExtendedAttributes>
+        </Activity>
+        <Activity Id="purchaseFlow_wp1_permited" Name="承認済み">
+          <Implementation>
+            <No/>
+          </Implementation>
+          <Performer>purchaseFlow_wp1_par1</Performer>
+          <FinishMode>
+            <Manual/>
+          </FinishMode>
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="purchaseFlow_wp1_par1"/>
+            <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="311,200"/>
+            <ExtendedAttribute Name="BURI_GRAPH_RECTANGLE" Value="311,200,96,92"/>
+          </ExtendedAttributes>
+        </Activity>
+        <Activity Id="purchaseFlow_wp1_settlement" Name="決済済み">
+          <Implementation>
+            <No/>
+          </Implementation>
+          <Performer>purchaseFlow_wp1_par1</Performer>
+          <FinishMode>
+            <Manual/>
+          </FinishMode>
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="purchaseFlow_wp1_par1"/>
+            <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="449,200"/>
+            <ExtendedAttribute Name="BURI_GRAPH_RECTANGLE" Value="449,200,96,92"/>
+          </ExtendedAttributes>
+        </Activity>
+        <Activity Id="purchaseFlow_wp1_checked" Name="確認済み">
+          <Implementation>
+            <No/>
+          </Implementation>
+          <Performer>purchaseFlow_wp1_par1</Performer>
+          <FinishMode>
+            <Manual/>
+          </FinishMode>
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="purchaseFlow_wp1_par1"/>
+            <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="583,196"/>
+            <ExtendedAttribute Name="BURI_GRAPH_RECTANGLE" Value="583,196,96,92"/>
+          </ExtendedAttributes>
+        </Activity>
+      </Activities>
+      <Transitions>
+        <Transition From="purchaseFlow_wp1_start" Id="purchaseFlow_wp1_tra2" To="purchaseFlow_wp1_permited">
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+          </ExtendedAttributes>
+        </Transition>
+        <Transition From="purchaseFlow_wp1_permited" Id="purchaseFlow_wp1_tra3" To="purchaseFlow_wp1_settlement">
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+          </ExtendedAttributes>
+        </Transition>
+        <Transition From="purchaseFlow_wp1_settlement" Id="purchaseFlow_wp1_tra4" To="purchaseFlow_wp1_checked">
+          <ExtendedAttributes>
+            <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+          </ExtendedAttributes>
+        </Transition>
+      </Transitions>
+      <ExtendedAttributes>
+        <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=purchaseFlow_wp1_par1,CONNECTING_ACTIVITY_ID=purchaseFlow_wp1_start,X_OFFSET=87,Y_OFFSET=272,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=START_DEFAULT"/>
+        <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=purchaseFlow_wp1_par1,CONNECTING_ACTIVITY_ID=purchaseFlow_wp1_checked,X_OFFSET=778,Y_OFFSET=273,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_BEZIER,TYPE=END_DEFAULT"/>
+        <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="purchaseFlow_wp1_par1"/>
+      </ExtendedAttributes>
+    </WorkflowProcess>
+  </WorkflowProcesses>
+  <ExtendedAttributes>
+    <ExtendedAttribute Name="EDITING_TOOL" Value="EscafeFlow Editor"/>
+    <ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="0.2.0"/>
+  </ExtendedAttributes>
+</Package>

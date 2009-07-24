@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+  <wb-module deploy-name="buri-example">
+    <property name="java-output-path" value="/src/main/webapp/WEB-INF/classes"/>
+        <property name="context-root" value="buri-example"/>
+    <wb-resource deploy-path="/" source-path="src/main/webapp"/>
+    <dependent-module archiveName="ant-1.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/ant/ant/1.7.0/ant-1.7.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="ant-launcher-1.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="antlr-2.7.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/antlr/antlr/2.7.7/antlr-2.7.7.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="aopalliance-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="avalon-framework-4.1.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-beanutils-1.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-beanutils-core-1.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-beanutils/commons-beanutils-core/1.7.0/commons-beanutils-core-1.7.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-collections/commons-collections/3.1/commons-collections-3.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-digester-1.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-digester/commons-digester/1.6/commons-digester-1.6.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-el-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-el/commons-el/1.0/commons-el-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-fileupload-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-fileupload/commons-fileupload/1.2/commons-fileupload-1.2.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-io-1.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-io/commons-io/1.3.2/commons-io-1.3.2.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-logging-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="commons-validator-1.2.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="easymock-2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/easymock/easymock/2.2/easymock-2.2.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="freemarker-2.3.13.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/freemarker/freemarker/2.3.13/freemarker-2.3.13.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-annotation_1.0_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-annotation_1.0_spec/1.0/geronimo-annotation_1.0_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-ejb_3.0_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-ejb_3.0_spec/1.0/geronimo-ejb_3.0_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-interceptor_3.0_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-interceptor_3.0_spec/1.0/geronimo-interceptor_3.0_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-jpa_3.0_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-jpa_3.0_spec/1.0/geronimo-jpa_3.0_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-jsp_2.0_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-jsp_2.0_spec/1.0/geronimo-jsp_2.0_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-jta_1.1_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.0/geronimo-jta_1.1_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="geronimo-servlet_2.4_spec-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/geronimo/specs/geronimo-servlet_2.4_spec/1.0/geronimo-servlet_2.4_spec-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="h2-1.0.69.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/h2database/h2/1.0.69/h2-1.0.69.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="icu4j-2.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="javassist-3.4.ga.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/jboss/javassist/3.4.ga/javassist-3.4.ga.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="jaxen-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/jaxen/jaxen/1.1.1/jaxen-1.1.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="jdom-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/jdom/jdom/1.0/jdom-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="js-1.6R5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/rhino/js/1.6R5/js-1.6R5.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="jsp-api-2.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/javax/servlet/jsp-api/2.0/jsp-api-2.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="jstl-1.1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/javax/servlet/jstl/1.1.2/jstl-1.1.2.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="junit-4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/junit/junit/4.4/junit-4.4.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="junit-addons-1.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/junit-addons/junit-addons/1.4/junit-addons-1.4.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="log4j-1.2.13.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="logkit-1.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/logkit/logkit/1.0.1/logkit-1.0.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="mayaa-1.1.18.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/seasar/mayaa/mayaa/1.1.18/mayaa-1.1.18.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="nekohtml-0.9.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/nekohtml/nekohtml/0.9.5/nekohtml-0.9.5.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="ognl-2.6.9-patch-20070908.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/ognl/ognl/2.6.9-patch-20070908/ognl-2.6.9-patch-20070908.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="oro-2.0.8.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/oro/oro/2.0.8/oro-2.0.8.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="poi-3.0-FINAL.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/poi/poi/3.0-FINAL/poi-3.0-FINAL.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="s2-extension-2.4.34.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/seasar/container/s2-extension/2.4.34/s2-extension-2.4.34.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="s2-framework-2.4.34.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/seasar/container/s2-framework/2.4.34/s2-framework-2.4.34.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="s2-tiger-2.4.34.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/seasar/container/s2-tiger/2.4.34/s2-tiger-2.4.34.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="s2jdbc-gen-2.4.34.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/seasar/container/s2jdbc-gen/2.4.34/s2jdbc-gen-2.4.34.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="sa-struts-1.0.4-sp4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/seasar/sastruts/sa-struts/1.0.4-sp4/sa-struts-1.0.4-sp4.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="servlet-api-2.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="standard-1.1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/taglibs/standard/1.1.2/standard-1.1.2.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="struts-1.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/struts/struts/1.2.9/struts-1.2.9.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="svnkit-1.2.0.4949.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/tmatesoft/svnkit/svnkit/1.2.0.4949/svnkit-1.2.0.4949.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="xalan-2.5.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/xalan/xalan/2.5.1/xalan-2.5.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="xercesImpl-2.7.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/xerces/xercesImpl/2.7.1/xercesImpl-2.7.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="xml-apis-1.3.03.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/xml-apis/xml-apis/1.3.03/xml-apis-1.3.03.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="xmlParserAPIs-2.6.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="xom-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/xom/xom/1.0/xom-1.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/buri-core/buri-core">
+<dependency-type>uses</dependency-type>
+</dependent-module>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp/WEB-INF/view"/>
+  </wb-module>
+</project-modules>

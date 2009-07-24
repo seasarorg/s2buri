@@ -1,0 +1,1 @@
+drop table BURI_DATA_PATH_HISTORY;

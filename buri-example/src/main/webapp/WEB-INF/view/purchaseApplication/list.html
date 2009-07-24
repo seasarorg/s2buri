@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+</head>
+<body>
+<form id="createForm">
+	<input type="submit" id="doCreate" name="doCreate" value="登録"/>
+</form>
+<table>
+	<thead>
+		<th>ID</th><th>申請者名</th><th>商品名</th><th>数量</th><th>申請日</th><th>操作</th>
+	</thead>
+	<tbody>
+	<span id="purchaseApplicationItems">
+		<tr>
+			<td><span id="id">1</span></td>
+			<td><span id="applicantName">加藤</span></td>
+			<td><span id="productName">鉛筆</span></td>
+			<td><span id="amount">鉛筆</span></td>
+			<td><span id="applicationDate">2009-07-01</span></td>
+			<td>
+				<form id="updateDeleteForm">
+					<input type="hidden" id="purchaseApplicationId"/>
+					<input type="submit" id="doUpdate" name="doUpdate" value="更新"/>
+					<input type="submit" id="doDelete" name="doDelete" value="削除"/>
+				</form>
+			</td>
+		</tr>
+	</span>
+	</tbody>
+</table>
+</body>
+</html>

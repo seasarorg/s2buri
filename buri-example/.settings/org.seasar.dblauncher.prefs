@@ -1,0 +1,5 @@
+#Fri Jul 24 22:03:11 JST 2009
+baseDir=/buri-example/src/main/resources/db
+dbPortNo=9093
+eclipse.preferences.version=1
+initDB=/sa-struts-tutorial/src/main/resources/data

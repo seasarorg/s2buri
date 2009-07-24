@@ -1,0 +1,1 @@
+drop sequence PURCHASE_APPLICATION_SEQ;

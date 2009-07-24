@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>購入申請</title>
+</head>
+<body>
+<span id="allMessages" />
+<form id="purchaseApplicationForm">
+	<input type="hidden" id="purchaseApplicationId" />
+	<input type="hidden" id="versionNo" />
+	<table>
+		<tr>
+			<th>申請者名</th>
+			<td><span id="applicantName">加藤</span><input type="hidden" id="applicantName-hidden" /></td>
+		</tr>
+		<tr>
+			<th>商品名</th>
+			<td><span id="productName">鉛筆</span><input type="hidden" id="productName-hidden" /></td>
+		</tr>
+		<tr>
+			<th>数量</th>
+			<td><span id="amount">1</span><input type="text" id="amount-hidden" /></td>
+		</tr>
+		<tr>
+			<th>申請日時</th>
+			<td><span id="applicationDate">1</span><input type="hidden" id="applicationDate-hidden" /></td>
+		</tr>
+	</table>
+	<input type="submit" name="doFinish" value="完了" />
+</form>
+</body>
+</html>

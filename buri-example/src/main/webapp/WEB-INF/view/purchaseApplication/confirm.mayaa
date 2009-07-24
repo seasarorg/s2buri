@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+		xmlns:html="http://struts.apache.org/tags-html"
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+		xmlns:s="http://sastruts.seasar.org">
+	
+	<m:with m:id="allMessages">
+		<html:errors/>
+	</m:with>
+	<s:form m:id="purchaseApplicationForm"/>
+	<html:hidden m:id="purchaseApplicationId" property="purchaseApplicationId" value="${purchaseApplicationForm.purchaseApplicationId}"/>
+	<html:hidden m:id="versionNo" property="versionNo" value="${purchaseApplicationForm.versionNo}"/>	
+	
+	<html:hidden m:id="applicantName-hidden" property="applicantName" value="${ purchaseApplicationForm.applicantName }"/>
+	<m:write m:id="applicantName" value="${ purchaseApplicationForm.applicantName }" replace="false" />
+	<html:hidden m:id="productName-hidden" property="productName" value="${purchaseApplicationForm.productName}"/>
+	<m:write m:id="productName" value="${ purchaseApplicationForm.productName }" replace="false" />
+	<html:hidden m:id="amount-hidden" property="amount" value="${purchaseApplicationForm.amount}"/>
+	<m:write m:id="amount" value="${ purchaseApplicationForm.amount }" replace="false" />
+	<html:hidden m:id="applicationDate-hidden" property="applicationDate" value="${purchaseApplicationForm.applicationDate}"/>	
+	<m:write m:id="applicationDate" value="${ purchaseApplicationForm.applicationDate }" replace="false" />
+
+</m:mayaa>

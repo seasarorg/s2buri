@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+		xmlns:html="http://struts.apache.org/tags-html"
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+		xmlns:s="http://sastruts.seasar.org">
+		
+	<m:with m:id="allMessages">
+		<html:errors/>
+	</m:with>
+	<s:form m:id="purchaseApplicationForm"/>
+	<html:hidden m:id="purchaseApplicationId" property="purchaseApplicationId" value="${purchaseApplicationForm.purchaseApplicationId}"/>
+	<html:hidden m:id="versionNo" property="versionNo" value="${purchaseApplicationForm.versionNo}"/>	
+	
+	<html:text m:id="applicantName" property="applicantName" value="${purchaseApplicationForm.applicantName}"/>
+	<html:text m:id="productName" property="productName" value="${purchaseApplicationForm.productName}"/>
+	<html:text m:id="amount" property="amount" value="${purchaseApplicationForm.amount}"/>
+	<html:text m:id="applicationDate" property="applicationDate" value="${purchaseApplicationForm.applicationDate}"/>	
+
+</m:mayaa>

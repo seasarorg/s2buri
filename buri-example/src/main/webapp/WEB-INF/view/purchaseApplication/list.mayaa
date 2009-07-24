@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+		xmlns:html="http://struts.apache.org/tags-html"
+		xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+		xmlns:s="http://sastruts.seasar.org">
+
+	<s:form m:id="createForm"/>	
+
+	<m:forEach m:id="purchaseApplicationItems" items="${ purchaseApplicationViewDto.purchaseApplicationItems }" var="purchaseApplication" index="index"/>
+	<m:write m:id="id" value="${ index + 1 }" />
+	<m:write m:id="productName" value="${ purchaseApplication.productName }" />
+	<m:write m:id="applicantName" value="${ purchaseApplication.applicantName }" />
+	<m:write m:id="amount" value="${ purchaseApplication.amount }" />
+	<m:write m:id="applicationDate" value="${ purchaseApplication.applicationDate }" />
+
+	<s:form m:id="updateDeleteForm"/>
+	<html:hidden m:id="Id" property="purchaseApplicationId" value="${ purchaseApplication.purchaseApplicationId }"/>
+
+</m:mayaa>
