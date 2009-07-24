@@ -1,1 +1,0 @@
-alter table PURCHASE_APPLICATION add constraint PURCHASE_APPLICATION_UK1 unique (AMOUNT);

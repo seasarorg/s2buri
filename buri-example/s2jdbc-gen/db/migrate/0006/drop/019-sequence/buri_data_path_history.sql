@@ -1,1 +1,0 @@
-drop sequence BURI_DATA_PATH_HISTORY_SEQ;
