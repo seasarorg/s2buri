@@ -33,12 +33,6 @@ public abstract class AbstractService<E> extends S2AbstractService<E> {
 
     private final AtomicBoolean locking = new AtomicBoolean(false);
 
-    private static final long SYSTEM_USER_ACCOUNT_ID = 1L;
-
-    private final String deleteTypeName = "deleteType";
-
-    private final String disableTypeName = "disableType";
-
     /**
      * 全レコードを削除します。
      */
@@ -126,12 +120,7 @@ public abstract class AbstractService<E> extends S2AbstractService<E> {
      */
     @Override
     public int insert(E entity) {
-        try {
-            return super.insert(entity);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return 0;
+        return super.insert(entity);
     }
 
     /**
